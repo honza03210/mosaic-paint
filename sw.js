@@ -1,9 +1,9 @@
 /* Mosaic Paint – service worker: keeps a copy of the app so it also runs offline.
    Network first, so updates arrive as soon as you're online; the cache is the fallback. */
-const CACHE = 'mosaic-paint-v10';
+const CACHE = 'mosaic-paint-v11';
 const FILES = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
-  'js/colors.js', 'js/geometry.js', 'js/patterns.js', 'js/store.js', 'js/print.js', 'js/automosaic.js', 'js/contour.js', 'js/app.js', 'js/photo.js', 'js/features.js', 'js/automosaic-ui.js', 'js/layplan.js', 'js/mix.js', 'js/vision.js', 'js/pages.js', 'js/snippets.js', 'js/motifs.js',
+  'js/colors.js', 'js/geometry.js', 'js/patterns.js', 'js/store.js', 'js/print.js', 'js/automosaic.js', 'js/contour.js', 'js/app.js', 'js/photo.js', 'js/features.js', 'js/automosaic-ui.js', 'js/layplan.js', 'js/mix.js', 'js/vision.js', 'js/pages.js', 'js/snippets.js', 'js/motifs.js', 'js/share.js',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 

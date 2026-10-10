@@ -755,9 +755,9 @@ function docChanged() {
 }
 function updateTitle() { document.title = `${dirty ? '• ' : ''}${fileName} – Mosaic Paint`; }
 const hasContent = () => fillsG.children.length > 0 || shapesG.children.length > 0;
-let autosaveTimer, lastVersionAt = Date.now(), restored = false;
+let autosaveTimer, lastVersionAt = Date.now(), restored = false, autosavePaused = false;
 function scheduleAutosave() {
-  if (!restored) return; // never overwrite the saved drawing before it has been loaded
+  if (!restored || autosavePaused) return; // never overwrite the saved drawing before it is loaded, or while viewing a shared one
   clearTimeout(autosaveTimer);
   autosaveTimer = setTimeout(autosaveNow, 700);
 }
@@ -2585,6 +2585,7 @@ window.MZ = {
   getHistory: () => ({ history, hIndex }),
   setHistory: (h) => { history = h.history; hIndex = h.hIndex; updateUndoUI(); },
   docChanged, updateView, fitView,
+  pauseAutosave: (on) => { autosavePaused = on; if (on) clearTimeout(autosaveTimer); },
   state, svg, stage, on, emit, toast, download, fmt, fmtLen, fmtArea, unit, mk,
   allShapes, geomOf, isFill, hasFill, fillOf, insideEl, isPaintedAt, paintFill, replaceColor,
   boundarySegments, regionIndex, bucketAt, gridSample, insideRegion, commit, commitGeometry, refImage, loadImg,

@@ -287,3 +287,14 @@ dialog hr { border: 0; border-top: 1px solid var(--border); margin: 10px 0; }
 .panel-rect { fill: none; stroke: #ff8c1a; stroke-width: 2; stroke-dasharray: 8 5; vector-effect: non-scaling-stroke; }
 .panel-label { fill: rgba(255,140,26,.75); font-family: system-ui, sans-serif; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
 #lp-w, #lp-h { width: 64px; }
+
+/* ---- shared mosaics (read-only viewer) ---- */
+.grow-input { flex: 1; font-family: ui-monospace, monospace; font-size: 11px; }
+#viewer-bar { display: none; }
+body.viewer #viewer-bar {
+  display: flex; align-items: center; gap: 8px; position: absolute; z-index: 4; left: 50%; top: 12px; transform: translateX(-50%);
+  padding: 8px 12px; border-radius: 10px; background: rgba(39,40,44,.95); border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,.4);
+}
+body.viewer #tools, body.viewer #panel, body.viewer #page-add, body.viewer .page-more,
+body.viewer #topbar > button:not(#btn-fit):not(#btn-zoomin):not(#btn-zoomout):not(#btn-report),
+body.viewer #mode-switch, body.viewer #btn-panel { display: none !important; }

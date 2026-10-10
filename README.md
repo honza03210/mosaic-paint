@@ -59,6 +59,10 @@ Ctrl+C / Ctrl+X / Ctrl+V copy shapes and their colors between pages, drawings an
 
 A project can have several pages (front and back, color variants, …): the bar under the drawing switches between them, and ⋯ renames, duplicates, moves or deletes a page. Each page has its own drawing, size, photo, undo steps and view; palettes are shared. All pages are saved in one SVG file (other programs show the current page).
 
+## Sharing
+
+**Share** packs the whole drawing (all pages) into a link. Nothing is uploaded: the drawing travels inside the link itself. Whoever opens it sees the mosaic read-only and can **make their own copy** to edit; their own drawing is never touched. Very large mosaics make long links – on phones, "Share file…" sends the SVG file instead.
+
 ## Safety net
 
 The drawing is autosaved in the browser, and **History** keeps the last 40 versions.
@@ -93,6 +97,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/pages.js`: several pages per project
 - `js/snippets.js`: shapes as small SVG snippets, placed moved / turned / scaled
 - `js/motifs.js`: copy / paste and the motif library
+- `js/share.js`: share links (compressed drawing in the link) and the read-only viewer
 - `js/colors.js`: color parsing and closest-color matching
 - `js/store.js`: browser storage for the autosave and versions
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support
