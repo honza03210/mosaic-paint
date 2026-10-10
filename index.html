@@ -205,7 +205,8 @@
           <button id="btn-ref-remove">Remove</button>
         </div>
         <label class="chk expert"><input type="checkbox" id="ref-save"> Keep the photo in saved files</label>
-        <div class="row"><button id="btn-autocolor" class="primary">Color tiles from photo</button></div>
+        <div class="row"><button id="btn-automosaic" class="primary" title="Lay out tiles over the whole page and color them from the photo">Make a mosaic from the photo…</button></div>
+        <div class="row"><button id="btn-autocolor" title="Color the tiles you have drawn">Color my tiles from the photo</button></div>
         <label class="chk"><input type="checkbox" id="opt-unpainted"> Only tiles that aren’t painted yet</label>
         <p class="note">Each tile gets the palette color closest to the photo underneath it. Draw the tile lines first.</p>
       </div>
@@ -357,6 +358,22 @@
   <div class="row dlg-foot"><button id="print-go" class="primary">Print…</button></div>
 </dialog>
 
+<dialog id="dlg-automosaic">
+  <form method="dialog" class="dlg-head"><h2>Mosaic from photo</h2><button title="Close">✕</button></form>
+  <p class="note">Lays out tiles over the whole page and gives each tile the color of the photo underneath it.</p>
+  <p class="note warn" id="am-photo-missing" hidden>First load a photo: <button id="am-load">Load photo…</button></p>
+  <div class="row">
+    <label>Tiles <select id="am-style"></select></label>
+    <label>Size <input id="am-size" type="number" min="0.5" step="1"> <span class="unit-label"></span></label>
+  </div>
+  <div class="row" id="am-detail-row"><label class="grow">Smaller tiles where the photo has detail <input id="am-detail" type="range" min="0" max="100"></label></div>
+  <label class="chk"><input type="radio" name="am-colors" value="palette"> Use the current palette</label>
+  <label class="chk"><input type="radio" name="am-colors" value="suggest"> Suggest <input id="am-count" type="number" min="2" max="64" step="1"> colors from the photo (new palette)</label>
+  <label class="chk"><input type="checkbox" id="am-replace"> Replace the current drawing (it is kept in History)</label>
+  <p class="note" id="am-estimate"></p>
+  <div class="row dlg-foot"><button id="am-go" class="primary">Make mosaic</button></div>
+</dialog>
+
 <dialog id="dlg-history">
   <form method="dialog" class="dlg-head"><h2>History</h2><button title="Close">✕</button></form>
   <p class="note">Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another drawing. Restoring keeps your current drawing as a version too.</p>
@@ -369,7 +386,10 @@
 <script src="js/patterns.js"></script>
 <script src="js/store.js"></script>
 <script src="js/print.js"></script>
+<script src="js/automosaic.js"></script>
 <script src="js/app.js"></script>
+<script src="js/photo.js"></script>
 <script src="js/features.js"></script>
+<script src="js/automosaic-ui.js"></script>
 </body>
 </html>

@@ -225,49 +225,8 @@ $('#hist-save').onclick = async () => {
   renderHistory();
 };
 
-// ---- color the tiles from the photo ------------------------------------------------------
-async function autoColor() {
-  const im = MZ.refImage();
-  if (!im) { MZ.toast('Load a photo first (Photo section).'); return; }
-  const pal = state.palette;
-  if (!pal.length) { MZ.toast('The palette is empty – add colors first.'); return; }
-  let img;
-  try { img = await MZ.loadImg(im.getAttribute('href')); } catch { MZ.toast('Could not read the photo.'); return; }
-  const k = Math.min(1, 1200 / Math.max(img.naturalWidth, img.naturalHeight));
-  const W = Math.max(1, Math.round(img.naturalWidth * k)), H = Math.max(1, Math.round(img.naturalHeight * k));
-  const cv = document.createElement('canvas');
-  cv.width = W;
-  cv.height = H;
-  const cx = cv.getContext('2d', { willReadFrequently: true });
-  cx.drawImage(img, 0, 0, W, H);
-  const data = cx.getImageData(0, 0, W, H).data;
-  const ix0 = +im.getAttribute('x'), iy0 = +im.getAttribute('y'), iw = +im.getAttribute('width'), ih = +im.getAttribute('height');
-  const labs = pal.map(c => Colors.toLab(Colors.toRgb(c)));
-  const ctx = { ix: MZ.regionIndex() };
-  let painted = 0, skipped = 0, outside = 0;
-  for (const f of ctx.ix.faces) {
-    const reg = ctx.ix.region(f);
-    const pts = MZ.gridSample(reg.bb, p => MZ.insideRegion(reg, p), 40);
-    if (!pts.length) continue;
-    if (state.onlyUnpainted && MZ.isPaintedAt(pts[0])) { skipped++; continue; }
-    let r = 0, g = 0, b = 0, n = 0;
-    for (const p of pts) {
-      const u = Math.floor((p.x - ix0) / iw * W), v = Math.floor((p.y - iy0) / ih * H);
-      if (u < 0 || v < 0 || u >= W || v >= H) continue;
-      const i = (v * W + u) * 4;
-      if (data[i + 3] < 20) continue;
-      r += data[i]; g += data[i + 1]; b += data[i + 2]; n++;
-    }
-    if (!n) { outside++; continue; }
-    const c = Colors.nearest([r / n, g / n, b / n], pal, labs);
-    if (MZ.bucketAt(pts[0], c, ctx, f).changed) painted++;
-  }
-  if (painted) MZ.commit(true);
-  MZ.toast(`Colored ${painted} area${painted === 1 ? '' : 's'} with the closest palette colors`
-    + (skipped ? ` · ${skipped} already painted (left as they were)` : '')
-    + (outside ? ` · ${outside} outside the photo` : '') + '.');
-}
-$('#btn-autocolor').onclick = autoColor;
+// ---- color the tiles from the photo (js/photo.js) ----------------------------------------
+$('#btn-autocolor').onclick = () => PhotoTools.colorTiles({ onlyUnpainted: state.onlyUnpainted });
 
 // ---- rulers ------------------------------------------------------------------------------
 const rx = $('#ruler-x'), ry = $('#ruler-y'), corner = $('#ruler-corner');

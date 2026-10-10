@@ -24,6 +24,7 @@ The switch in the top-left corner chooses how much of the app you see.
    Click a swatch to use it as the fill, right-click to use it as the stroke, and double-click to edit it, which also recolors the drawing.
 2. **Page:** set the real size and unit (mm, cm or in). Saved files and printouts use that real size.
 3. **Photo (optional):** load a reference photo, set its opacity, and trace over it.
+   Or let the app do it: **Make a mosaic from the photo…** lays out tiles over the whole page (squares, bricks, hexagons or irregular "crazy paving", smaller where the photo has detail) and colors them, using your palette or a palette it suggests from the photo. It is one undo step.
 4. **Draw** the tiles with any of these tools:
    - **Line (L)**
    - **Free polygon (P):** click corner by corner.
@@ -67,6 +68,10 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/features.js`: report, print template, history, auto-coloring, rulers, install
 - `js/geometry.js`: geometry math, including finding closed areas for the bucket
 - `js/patterns.js`: tiling patterns
+- `js/automosaic.js`: tile layouts for a mosaic from a photo (quadtree, Voronoi) and palette suggestion (k-means)
+- `js/photo.js`: reading the photo (average colors, detail, coloring tiles)
+- `js/automosaic-ui.js`: the "Mosaic from photo" dialog
+- `js/print.js`: splitting the print-out across sheets
 - `js/colors.js`: color parsing and closest-color matching
 - `js/store.js`: browser storage for the autosave and versions
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support

@@ -237,3 +237,5 @@ dialog h2 { margin: 0; font-size: 16px; }
 }
 
 dialog hr { border: 0; border-top: 1px solid var(--border); margin: 10px 0; }
+.note.warn { color: var(--warn); }
+#am-count { width: 52px; }

@@ -131,5 +131,5 @@ const Patterns = (() => {
     return { segments: mergeCollinear(pieces, tol) };
   }
 
-  return { TYPES, build, cells };
+  return { TYPES, build, cells, mergeCollinear };
 })();

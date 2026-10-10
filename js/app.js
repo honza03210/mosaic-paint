@@ -848,43 +848,51 @@ function colorCounts() {
   }
   return m;
 }
+let paletteKey = '';
 function renderPalette() {
   const box = $('#palette');
-  box.innerHTML = '';
-  const counts = colorCounts();
-  for (const c of [null, ...state.palette]) {
-    const d = document.createElement('div');
-    d.className = 'swatch' + (c ? '' : ' none');
-    if (c) d.style.background = c;
-    if (c === state.fill) d.classList.add('is-fill');
-    if (c === state.stroke) d.classList.add('is-stroke');
-    const n = c ? counts.get(c) || 0 : 0;
-    const num = c ? state.palette.indexOf(c) + 1 : 0;
-    d.title = c ? `#${num}  ${c}${n ? ` – used by ${n} area${n > 1 ? 's' : ''}` : ''}\nClick: fill · Right-click: stroke · Double-click: edit` : 'No color – the bucket erases with it';
-    if (n) {
-      const b = document.createElement('span');
-      b.className = 'count';
-      b.textContent = n;
-      d.append(b);
-    }
-    if (c) {
-      const x = document.createElement('button');
-      x.className = 'del';
-      x.textContent = '×';
-      x.title = 'Remove from palette';
-      x.onclick = (e) => { e.stopPropagation(); removeColor(c); };
-      d.append(x);
-      d.ondblclick = () => editColor(c);
-    }
-    d.onclick = () => setFill(c, true);
-    d.oncontextmenu = (e) => { e.preventDefault(); setStroke(c, true); };
-    box.append(d);
+  const counts = colorCounts(), key = state.palette.join();
+  // same colors as before: update the swatches in place (rebuilding them would swallow a double-click)
+  if (key === paletteKey && box.children.length === state.palette.length + 1) {
+    [null, ...state.palette].forEach((c, i) => updateSwatch(box.children[i], c, counts));
+  } else {
+    paletteKey = key;
+    box.innerHTML = '';
+    for (const c of [null, ...state.palette]) box.append(makeSwatch(c, counts));
   }
   const fb = $('#ac-fill'), sb = $('#ac-stroke');
   fb.className = 'acbox' + (state.fill ? '' : ' none');
   fb.style.background = state.fill || '';
   sb.className = 'acbox' + (state.stroke ? '' : ' none');
   sb.style.background = state.stroke || '';
+}
+function updateSwatch(d, c, counts) {
+  d.classList.toggle('is-fill', c === state.fill);
+  d.classList.toggle('is-stroke', c === state.stroke);
+  const n = c ? counts.get(c) || 0 : 0;
+  const num = c ? state.palette.indexOf(c) + 1 : 0;
+  d.title = c ? `#${num}  ${c}${n ? ` – used by ${n} area${n > 1 ? 's' : ''}` : ''}\nClick: fill · Right-click: stroke · Double-click: edit` : 'No color – the bucket erases with it';
+  let b = d.querySelector('.count');
+  if (n && !b) { b = document.createElement('span'); b.className = 'count'; d.prepend(b); }
+  if (b) { if (n) b.textContent = n; else b.remove(); }
+}
+function makeSwatch(c, counts) {
+  const d = document.createElement('div');
+  d.className = 'swatch' + (c ? '' : ' none');
+  if (c) d.style.background = c;
+  updateSwatch(d, c, counts);
+  if (c) {
+    const x = document.createElement('button');
+    x.className = 'del';
+    x.textContent = '×';
+    x.title = 'Remove from palette';
+    x.onclick = (e) => { e.stopPropagation(); removeColor(c); };
+    d.append(x);
+    d.ondblclick = () => editColor(c);
+  }
+  d.onclick = () => setFill(c, true);
+  d.oncontextmenu = (e) => { e.preventDefault(); setStroke(c, true); };
+  return d;
 }
 function applyToSelection() { return state.tool === 'select' && state.selection.size > 0; }
 function setFill(c, apply) {
@@ -2492,8 +2500,28 @@ requestAnimationFrame(fitView);
   emit('ready');
 })();
 
-// ---- API for the add-on features (features.js) and for debugging ---------------------
+// ---- API for the add-on modules and for debugging ---------------------------------------
+/** Adds plain lines ({a, b} segments) in the current line style. Does not commit. */
+function addLineSegments(segs) {
+  for (const s of segs) mk('line', { x1: fmt(s.a.x), y1: fmt(s.a.y), x2: fmt(s.b.x), y2: fmt(s.b.y), ...shapeStyle() }, shapesG);
+}
+/** Removes all lines, shapes and painted areas (the page and photo stay). Does not commit. */
+function clearDrawing() {
+  cancelPending();
+  fillsG.innerHTML = '';
+  shapesG.innerHTML = '';
+  state.selection.clear();
+  touch();
+}
+/** Adds a palette under a free name and switches to it. Returns the name used. */
+function addPalette(name, colors) {
+  const n = uniqueName(name);
+  state.palettes[n] = colors;
+  switchPalette(n);
+  return n;
+}
 window.MZ = {
+  addLineSegments, clearDrawing, addPalette,
   state, svg, stage, on, emit, toast, download, fmt, fmtLen, fmtArea, unit, mk,
   allShapes, geomOf, isFill, hasFill, fillOf, insideEl, isPaintedAt, paintFill, replaceColor,
   boundarySegments, regionIndex, bucketAt, gridSample, insideRegion, commit, commitGeometry, refImage, loadImg,
