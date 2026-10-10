@@ -2,26 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#27282c">
+<meta name="description" content="Design and color mosaics with your own palette – runs in the browser, works offline.">
 <title>Mosaic Paint</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-mode="simple">
 <header id="topbar">
   <span class="brand">Mosaic Paint</span>
+  <div id="mode-switch" class="seg-btns" title="Simple shows the essentials; Expert adds symmetry, layers, rulers, the knife, printing and fine settings">
+    <button data-mode="simple">Simple</button><button data-mode="expert">Expert</button>
+  </div>
+  <span class="sep"></span>
   <button id="btn-new" title="New drawing">New</button>
   <button id="btn-open" title="Open SVG (Ctrl+O) – you can also drop a file on the canvas">Open…</button>
-  <button id="btn-save" title="Save SVG (Ctrl+S)">Save SVG</button>
-  <button id="btn-saveas" title="Save as (Ctrl+Shift+S)">Save as…</button>
-  <button id="btn-png" title="Export a PNG image">Export PNG</button>
+  <button id="btn-save" title="Save SVG (Ctrl+S)">Save</button>
+  <button id="btn-saveas" class="expert" title="Save as (Ctrl+Shift+S)">Save as…</button>
+  <button id="btn-png" title="Export a PNG image">PNG</button>
+  <button id="btn-print" class="expert" title="Print a real-size template with color numbers">Print…</button>
+  <button id="btn-report" title="Colors used, areas and a shopping list">Report</button>
+  <button id="btn-history" title="Earlier versions of your drawing">History</button>
   <span class="sep"></span>
-  <button id="btn-undo" title="Undo (Ctrl+Z)">↶ Undo</button>
-  <button id="btn-redo" title="Redo (Ctrl+Y)">↷ Redo</button>
+  <button id="btn-undo" title="Undo (Ctrl+Z)">↶</button>
+  <button id="btn-redo" title="Redo (Ctrl+Y)">↷</button>
   <span class="sep"></span>
   <button id="btn-zoomout" title="Zoom out (-)">−</button>
   <span id="zoom-label">100%</span>
   <button id="btn-zoomin" title="Zoom in (+)">+</button>
   <button id="btn-fit" title="Fit page (0)">Fit</button>
+  <button id="btn-install" hidden title="Install as an app that also works offline">Install app</button>
+  <button id="btn-panel" title="Show the side panel">☰</button>
   <input type="file" id="file-input" accept=".svg,image/svg+xml" hidden>
 </header>
 
@@ -33,18 +47,30 @@
     <button data-tool="line" title="Line (L)">
       <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg>
     </button>
+    <button data-tool="free" title="Free polygon – click corner by corner (P)">
+      <svg viewBox="0 0 20 20"><path d="M3 15L6 4l10 3-2 10z" class="st"/></svg>
+    </button>
     <button data-tool="ngon" title="Regular polygon (G)">
       <svg viewBox="0 0 20 20"><path d="M10 2l7 4v8l-7 4-7-4V6z" class="st"/></svg>
     </button>
-    <button data-tool="bucket" title="Paint bucket (B)">
+    <button data-tool="knife" class="expert" title="Knife – cut a tile straight across (K)">
+      <svg viewBox="0 0 20 20"><path d="M3 17L15 5l2 2L7 17z" class="st"/><path d="M15 5l2-2" class="st"/></svg>
+    </button>
+    <button data-tool="pattern" title="Pattern – fill an area with tiles (T)">
+      <svg viewBox="0 0 20 20"><path d="M2 2h16v16H2zM2 8h16M2 14h16M7 2v6M13 2v6M5 8v6M11 8v6M17 8v6M8 14v4M14 14v4" class="st"/></svg>
+    </button>
+    <button data-tool="bucket" title="Paint bucket – click or drag across tiles (B)">
       <svg viewBox="0 0 20 20"><path d="M3 9l6-6 7 7-6 6z" class="st"/><path d="M16.5 12.5c1.2 1.8 1.8 2.9 1.8 3.6a1.8 1.8 0 01-3.6 0c0-.7.6-1.8 1.8-3.6z"/></svg>
     </button>
-    <button data-tool="pan" title="Pan (H, or hold Space / middle mouse)">
+    <button data-tool="pan" title="Pan (H, or hold Space / middle mouse / two fingers)">
       <svg viewBox="0 0 20 20"><path d="M10 1l3 3h-2v5h5V7l3 3-3 3v-2h-5v5h2l-3 3-3-3h2v-5H4v2l-3-3 3-3v2h5V4H7z"/></svg>
     </button>
   </nav>
 
   <div id="stage" data-tool="select">
+    <canvas id="ruler-x" class="ruler" hidden></canvas>
+    <canvas id="ruler-y" class="ruler" hidden></canvas>
+    <div id="ruler-corner" hidden></div>
     <svg id="canvas" xmlns="http://www.w3.org/2000/svg">
       <defs id="mz-uidefs">
         <pattern id="mz-checker" width="16" height="16" patternUnits="userSpaceOnUse">
@@ -57,6 +83,7 @@
         </pattern>
       </defs>
       <rect id="mz-page"/>
+      <g id="mz-ref"></g>
       <g id="mz-doc">
         <defs id="mz-docdefs"></defs>
         <g id="mz-fills"></g>
@@ -64,21 +91,34 @@
       </g>
       <rect id="mz-gridrect" fill="url(#mz-grid)" pointer-events="none"/>
       <g id="mz-overlay" pointer-events="none">
+        <g id="mz-guides"></g>
         <g id="mz-sel"></g>
         <g id="mz-preview"></g>
         <g id="mz-snapmark"></g>
+        <g id="mz-flash"></g>
       </g>
     </svg>
+    <div id="stage-actions" hidden>
+      <button id="sa-finish" class="primary">Done</button>
+      <button id="sa-back">Remove last corner</button>
+      <button id="sa-cancel">Cancel</button>
+    </div>
   </div>
 
   <aside id="panel">
     <section>
       <h3>Colors</h3>
+      <div class="row pal-row">
+        <select id="pal-select" title="Your saved palettes"></select>
+        <button id="btn-pal-new" title="New palette">＋</button>
+        <button id="btn-pal-rename" title="Rename this palette">✎</button>
+        <button id="btn-pal-delete" title="Delete this palette">🗑</button>
+      </div>
       <div class="active-colors">
         <div class="ac" title="Fill color – used by the paint bucket"><span>Fill</span><div id="ac-fill" class="acbox"></div></div>
         <div class="ac" title="Stroke color – used for new lines and polygons"><span>Stroke</span><div id="ac-stroke" class="acbox"></div></div>
         <button id="btn-swap" title="Swap fill and stroke">⇄</button>
-        <label class="sw-w" title="Stroke width for new lines and polygons">Width <input id="stroke-width" type="number" min="0" step="0.5"></label>
+        <label class="sw-w" title="Line width for new lines and polygons">Width <input id="stroke-width" type="number" min="0" step="0.5"></label>
       </div>
       <div id="palette"></div>
       <div class="row add-row">
@@ -93,12 +133,18 @@
         <button id="btn-pal-clear">Clear</button>
         <input type="file" id="pal-file" accept=".txt,.gpl,.hex,.css,.json,text/plain" hidden>
       </div>
-      <p class="note">Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing). Ctrl+V on the canvas adds any colors you copied.</p>
+      <p class="note">Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing). Ctrl+V on the canvas adds copied colors.</p>
     </section>
 
     <section class="tool-opts" data-for="line">
       <h3>Line</h3>
       <label class="chk"><input type="checkbox" id="opt-chain"> Chain lines (next line starts at the last end)</label>
+    </section>
+
+    <section class="tool-opts" data-for="free">
+      <h3>Free polygon</h3>
+      <p class="note">Click each corner. Click the first corner again, double-click or press Enter to close it.</p>
+      <label class="chk"><input type="checkbox" id="opt-newfill2"> Fill new shapes with the fill color</label>
     </section>
 
     <section class="tool-opts" data-for="ngon">
@@ -113,31 +159,114 @@
         <label><input type="radio" name="ngmode" value="center"> From center</label>
         <label><input type="radio" name="ngmode" value="edge"> From edge</label>
       </div>
-      <label class="chk"><input type="checkbox" id="opt-ngfill"> Fill new polygons with the fill color</label>
+      <label class="chk"><input type="checkbox" id="opt-newfill"> Fill new shapes with the fill color</label>
+    </section>
+
+    <section class="tool-opts" data-for="knife">
+      <h3>Knife</h3>
+      <p class="note">Press inside a tile and drag in the direction of the cut. The tile is cut straight across, from edge to edge.</p>
+    </section>
+
+    <section class="tool-opts" data-for="pattern">
+      <h3>Pattern</h3>
+      <div class="row">
+        <select id="pat-type"></select>
+        <label>Size <input id="pat-size" type="number" min="0.1" step="1"> <span class="unit-label"></span></label>
+        <label class="expert">Angle <input id="pat-angle" type="number" step="5">°</label>
+      </div>
+      <div class="row"><button id="btn-pat-page">Fill whole page</button></div>
+      <p class="note">Click inside a closed area to fill it with tiles. Painted areas keep their color in every new tile.</p>
     </section>
 
     <section class="tool-opts" data-for="bucket">
       <h3>Paint bucket</h3>
-      <p class="note">Click inside any area enclosed by lines / polygons (and the page edge). Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.</p>
+      <p class="note">Click inside any closed area, or drag across many tiles. Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.</p>
+      <div class="row expert"><label>Close gaps up to <input id="opt-gap" type="number" min="0" step="0.1"> <span class="unit-label"></span></label></div>
+    </section>
+
+    <section>
+      <h3>Photo to trace</h3>
+      <div class="row">
+        <button id="btn-ref-load">Load photo…</button>
+        <input type="file" id="ref-file" accept="image/*" hidden>
+      </div>
+      <div id="ref-controls" hidden>
+        <div class="row"><label class="grow">Opacity <input id="ref-opacity" type="range" min="5" max="100"></label></div>
+        <div class="row">
+          <label class="chk"><input type="checkbox" id="ref-show"> Show</label>
+          <label class="chk"><input type="checkbox" id="ref-lock"> Locked</label>
+          <label>Size <input id="ref-size" type="number" min="5" max="1000" step="5">%</label>
+        </div>
+        <div class="row small">
+          <button id="btn-ref-fit">Fit to page</button>
+          <button id="btn-ref-remove">Remove</button>
+        </div>
+        <label class="chk expert"><input type="checkbox" id="ref-save"> Keep the photo in saved files</label>
+        <div class="row"><button id="btn-autocolor" class="primary">Color tiles from photo</button></div>
+        <label class="chk"><input type="checkbox" id="opt-unpainted"> Only tiles that aren’t painted yet</label>
+        <p class="note">Each tile gets the palette color closest to the photo underneath it. Draw the tile lines first.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>Grout preview</h3>
+      <div class="row">
+        <label class="chk"><input type="checkbox" id="grout-on"> Preview</label>
+        <input type="color" id="grout-color" title="Grout color">
+        <label>Width <input id="grout-width" type="number" min="0" step="0.5"> <span class="unit-label"></span></label>
+      </div>
+      <div class="row small expert"><button id="btn-grout-bake" title="Give every line this color and width for real">Apply to all lines</button></div>
+    </section>
+
+    <section class="expert">
+      <h3>Symmetry</h3>
+      <div class="row">
+        <select id="sym-type">
+          <option value="none">Off</option>
+          <option value="mirror-v">Mirror left ↔ right</option>
+          <option value="mirror-h">Mirror top ↕ bottom</option>
+          <option value="mirror-hv">Mirror both ways</option>
+          <option value="radial">Rotate around center</option>
+        </select>
+      </div>
+      <div class="row" id="sym-radial">
+        <label>Copies <input id="sym-n" type="number" min="2" max="64" step="1"></label>
+        <label class="chk"><input type="checkbox" id="sym-mirror"> also mirrored</label>
+      </div>
+      <div class="row small">
+        <button id="btn-sym-center">Pick center</button>
+        <button id="btn-sym-reset">Page center</button>
+      </div>
+      <p class="note">Lines, polygons, knife cuts and painting are repeated around the guides.</p>
+    </section>
+
+    <section class="expert">
+      <h3>Layers</h3>
+      <table class="layers">
+        <tr><td>Lines &amp; shapes</td><td><button data-layer="shapes" data-prop="visible"></button></td><td><button data-layer="shapes" data-prop="locked"></button></td></tr>
+        <tr><td>Painted areas</td><td><button data-layer="fills" data-prop="visible"></button></td><td><button data-layer="fills" data-prop="locked"></button></td></tr>
+        <tr><td>Photo</td><td><button data-layer="ref" data-prop="visible"></button></td><td><button data-layer="ref" data-prop="locked"></button></td></tr>
+      </table>
+      <p class="note">Lock the lines while painting so they can’t be moved by accident.</p>
     </section>
 
     <section>
       <h3>Snapping</h3>
       <label class="chk"><input type="checkbox" id="opt-snap"> Snap to points &amp; lines <kbd>S</kbd></label>
-      <label class="chk"><input type="checkbox" id="opt-link"> Shared vertices move together</label>
-      <label class="chk"><input type="checkbox" id="opt-border"> Page edge counts as a line</label>
-      <label class="chk"><input type="checkbox" id="opt-grid"> Grid, size <input id="opt-gridsize" type="number" min="1" step="1"></label>
-      <p class="note">Snaps to ends &amp; corners ▢, crossings ✕, midpoints △, anywhere along a line ◇, polygon centers ○. Hold Alt to place freely.</p>
+      <label class="chk expert"><input type="checkbox" id="opt-link"> Shared corners move together</label>
+      <label class="chk expert"><input type="checkbox" id="opt-border"> Page edge counts as a line</label>
+      <label class="chk"><input type="checkbox" id="opt-grid"> Grid, size <input id="opt-gridsize" type="number" min="0.1" step="1"> <span class="unit-label"></span></label>
+      <p class="note expert">Snaps to ends &amp; corners ▢, crossings ✕, midpoints △, anywhere along a line ◇, centers ○. Hold Alt to place freely.</p>
     </section>
 
     <section id="sel-section" hidden>
       <h3>Selection <span id="sel-info"></span></h3>
-      <div id="ngon-props" class="grid3" hidden>
+      <div id="ngon-props" class="grid3 expert" hidden>
         <label>Sides<input id="sel-sides" type="number" min="3" max="64" step="1"></label>
         <label>Radius<input id="sel-radius" type="number" min="0" step="1"></label>
         <label>Rotation°<input id="sel-rot" type="number" step="1"></label>
       </div>
-      <div class="row"><label>Stroke width <input id="sel-sw" type="number" min="0" step="0.5"></label></div>
+      <div class="row expert"><label>Line width <input id="sel-sw" type="number" min="0" step="0.5"></label></div>
       <div class="row btns">
         <button id="btn-del" title="Delete">Delete</button>
         <button id="btn-dup" title="Ctrl+D">Duplicate</button>
@@ -149,33 +278,38 @@
     <section>
       <h3>Page</h3>
       <div class="row">
-        <label>W <input id="doc-w" type="number" min="1"></label>
-        <label>H <input id="doc-h" type="number" min="1"></label>
+        <label>W <input id="doc-w" type="number" min="0.1"></label>
+        <label>H <input id="doc-h" type="number" min="0.1"></label>
+        <select id="doc-unit" title="Real-world unit: 1 drawing unit = 1 mm / cm / inch">
+          <option value="mm">mm</option><option value="cm">cm</option><option value="in">in</option><option value="px">px</option>
+        </select>
         <button id="btn-doc-size">Apply</button>
       </div>
       <div class="row">
         <label>Background <input type="color" id="doc-bg"></label>
         <label class="chk"><input type="checkbox" id="doc-bg-none"> transparent</label>
       </div>
+      <label class="chk expert"><input type="checkbox" id="opt-rulers"> Show rulers</label>
     </section>
 
     <section>
       <details>
         <summary>Keyboard &amp; mouse</summary>
         <table class="keys">
-          <tr><td>V L G B H</td><td>Select, Line, Polygon, Bucket, Pan</td></tr>
+          <tr><td>V L P G T B H</td><td>Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan</td></tr>
+          <tr class="expert"><td>K</td><td>Knife</td></tr>
           <tr><td>3 – 9</td><td>Polygon sides</td></tr>
           <tr><td>S</td><td>Toggle snapping</td></tr>
-          <tr><td>Alt</td><td>Draw / drag without snapping; detach shared vertex</td></tr>
-          <tr><td>Shift</td><td>Lines at 15° steps; polygon rotation in 15° steps; add to selection</td></tr>
+          <tr><td>Alt</td><td>Draw / drag without snapping; detach a shared corner; Alt+click with the bucket picks a color</td></tr>
+          <tr><td>Shift</td><td>15° steps; add to selection</td></tr>
           <tr><td>Ctrl (polygon tool)</td><td>Flip side when drawing from an edge</td></tr>
           <tr><td>Ctrl + drag handle</td><td>Freely move a polygon corner (it stops being regular)</td></tr>
-          <tr><td>Esc / right-click</td><td>Stop the current line, clear selection</td></tr>
-          <tr><td>Del</td><td>Delete selection</td></tr>
+          <tr><td>Enter / Esc</td><td>Finish / cancel the current shape</td></tr>
+          <tr><td>Del</td><td>Delete selection (or the last corner of a free polygon)</td></tr>
           <tr><td>Arrows</td><td>Nudge (Shift = ×10)</td></tr>
           <tr><td>Ctrl+Z / Ctrl+Y</td><td>Undo / redo</td></tr>
           <tr><td>Ctrl+D, Ctrl+A</td><td>Duplicate, select all</td></tr>
-          <tr><td>Wheel, Space+drag</td><td>Zoom, pan</td></tr>
+          <tr><td>Wheel, Space+drag</td><td>Zoom, pan (two fingers on touch screens)</td></tr>
           <tr><td>0</td><td>Fit page</td></tr>
         </table>
       </details>
@@ -189,7 +323,42 @@
   <span id="st-msg"></span>
 </footer>
 
+<dialog id="dlg-report">
+  <form method="dialog" class="dlg-head"><h2>Colors &amp; shopping list</h2><button title="Close">✕</button></form>
+  <p id="rep-summary"></p>
+  <div class="row expert">
+    <label>Piece size <input id="rep-tw" type="number" min="0" step="0.5"> × <input id="rep-th" type="number" min="0" step="0.5"> <span class="unit-label"></span></label>
+    <label>Waste <input id="rep-waste" type="number" min="0" step="1"> %</label>
+  </div>
+  <div class="table-wrap"><table id="rep-table"></table></div>
+  <div class="row dlg-foot">
+    <span class="note">“Replace with” recolors every area of that color.</span>
+    <button id="rep-csv" class="expert">Download CSV</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-print">
+  <form method="dialog" class="dlg-head"><h2>Print template</h2><button title="Close">✕</button></form>
+  <p class="note">Opens a print page at the real size of your mosaic, to use as a cutting or laying template.</p>
+  <label class="chk"><input type="radio" name="print-style" value="colors" checked> In color</label>
+  <label class="chk"><input type="radio" name="print-style" value="both"> In color, with color numbers</label>
+  <label class="chk"><input type="radio" name="print-style" value="numbers"> Outlines with color numbers (paint by number)</label>
+  <label class="chk"><input type="checkbox" id="print-legend" checked> Add a page with the color legend</label>
+  <div class="row dlg-foot"><button id="print-go" class="primary">Print…</button></div>
+</dialog>
+
+<dialog id="dlg-history">
+  <form method="dialog" class="dlg-head"><h2>History</h2><button title="Close">✕</button></form>
+  <p class="note">Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another drawing. Restoring keeps your current drawing as a version too.</p>
+  <div class="row"><button id="hist-save">Save a version now</button></div>
+  <div id="hist-list"></div>
+</dialog>
+
+<script src="js/colors.js"></script>
 <script src="js/geometry.js"></script>
+<script src="js/patterns.js"></script>
+<script src="js/store.js"></script>
 <script src="js/app.js"></script>
+<script src="js/features.js"></script>
 </body>
 </html>

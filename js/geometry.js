@@ -206,7 +206,51 @@ const Geo = (() => {
       regions.set(f, r);
       return r;
     };
-    return { locate, region };
+    return { locate, region, faces: inner };
+  }
+
+  /** Parts of segment a-b for which keep(midpoint) holds, split where it crosses the rings. */
+  function clipSegment(a, b, rings, keep) {
+    const ts = [0, 1];
+    for (const r of rings) for (let i = 0, n = r.length; i < n; i++) {
+      const x = segIntersect(a, b, r[i], r[(i + 1) % n]);
+      if (x) ts.push(x.t);
+    }
+    ts.sort((p, q) => p - q);
+    const at = (t) => ({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
+    const out = [];
+    let start = null, end = null;
+    for (let i = 0; i + 1 < ts.length; i++) {
+      const t0 = ts[i], t1 = ts[i + 1];
+      if (t1 - t0 < 1e-9) continue;
+      if (keep(at((t0 + t1) / 2))) { if (start === null) start = t0; end = t1; }
+      else if (start !== null) { out.push({ a: at(start), b: at(end) }); start = null; }
+    }
+    if (start !== null) out.push({ a: at(start), b: at(end) });
+    return out;
+  }
+
+  function distToRings(p, rings) {
+    let d = Infinity;
+    for (const r of rings) for (let i = 0, n = r.length; i < n; i++) d = Math.min(d, dist(p, project(p, r[i], r[(i + 1) % n])));
+    return d;
+  }
+
+  /** The piece of the infinite line through p (direction dir) that stays inside the rings around p. */
+  function chordThrough(p, dir, rings) {
+    let tmin = -Infinity, tmax = Infinity;
+    for (const r of rings) for (let i = 0, n = r.length; i < n; i++) {
+      const a = r[i], b = r[(i + 1) % n], ex = b.x - a.x, ey = b.y - a.y;
+      const den = cross(dir.x, dir.y, ex, ey);
+      if (Math.abs(den) < 1e-12) continue;
+      const qx = a.x - p.x, qy = a.y - p.y;
+      const t = cross(qx, qy, ex, ey) / den, u = cross(qx, qy, dir.x, dir.y) / den;
+      if (u < -1e-9 || u > 1 + 1e-9) continue;
+      if (t > 1e-9 && t < tmax) tmax = t;
+      if (t < -1e-9 && t > tmin) tmin = t;
+    }
+    if (!Number.isFinite(tmin) || !Number.isFinite(tmax)) return null;
+    return { a: { x: p.x + dir.x * tmin, y: p.y + dir.y * tmin }, b: { x: p.x + dir.x * tmax, y: p.y + dir.y * tmax } };
   }
 
   function bounds(pts) {
@@ -222,5 +266,6 @@ const Geo = (() => {
     get eps() { return eps; },
     setEps(v) { eps = v; },
     dist, project, segIntersect, polygonArea, pointInPolygon, regularPolygon, planarFaces, findRegion, regionIndex, bounds,
+    clipSegment, distToRings, chordThrough,
   };
 })();

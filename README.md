@@ -1,34 +1,72 @@
 # Mosaic Paint
 
-A small local vector editor for designing and coloring mosaics with your own palette.
-**Use it online: https://honza03210.github.io/mosaic-paint/**
+A vector editor for designing and coloring mosaics with your own palette.
 
-Or run it offline: no install or build step, just open `index.html` in Chrome / Edge / Firefox.
+**Use it online: https://honza03210.github.io/mosaic-paint/**
+It can be installed as an app ("Install app" button, or the browser's install icon), and then it also works offline.
+To run it from a download instead, open `index.html` in Chrome / Edge / Firefox; there's no build step.
+
+## Simple and Expert mode
+
+The switch in the top-left corner chooses how much of the app you see.
+
+- **Simple** has the whole workflow: palettes, drawing, patterns, painting, tracing a photo, the color report, grout preview and history.
+- **Expert** adds the knife, symmetry, layers, rulers, the printable template, and finer settings:
+  - gap tolerance and snapping details
+  - numeric polygon editing and line widths
+  - a material estimate and CSV export in the report
 
 ## Workflow
 
-1. **Palette** – paste colors into the box under the swatches (or press Ctrl+V anywhere on the canvas).
-   It accepts `#hex`, bare hex, `rgb()/hsl()`, CSS names, coolors.co URLs, and GIMP `.gpl` rows, one or many at a time.
-   Click a swatch to make it the fill color and right-click to make it the stroke color.
-   Double-click a swatch to edit it; every area painted with that color is recolored too.
-   The small number on a swatch is how many areas use that color, which helps when counting tiles.
-2. **Draw** with the Line tool (L) and the Regular polygon tool (G).
-   With Snap on (S), points snap to ends, corners, crossings, midpoints, polygon centers, the page edge, or anywhere along an existing line.
-   That last one is how you start or end a line in the middle of another line.
-   "From edge" polygon mode builds a polygon on an existing edge, so tiles fit together exactly.
-3. **Paint** with the bucket (B). Click inside any area enclosed by lines, polygons, or the page edge.
-   The app finds the enclosed area, even one made of many separate lines, and paints it with the fill color. Click it again to recolor.
-   Painted areas follow the lines: when you move, add or delete lines, each area reshapes to its new outline.
-   A tile cut in two keeps its color in both halves; when two painted tiles merge, the bigger one's color wins.
-4. **Edit** with Select (V). Drag shapes, or drag corner handles; corners shared by several lines move together (hold Alt to detach one).
-   Yellow handles on regular polygons resize and rotate them. Sides, radius and rotation can also be typed in the Selection panel.
-5. **Save SVG** (Ctrl+S) / **Export PNG**. A saved SVG remembers the palette and opens back up for further editing.
-   Any other SVG can be opened too (Open… or drag and drop onto the canvas).
+1. **Palette:** paste colors into the box under the swatches, or press Ctrl+V anywhere on the canvas.
+   It accepts `#hex`, bare hex, `rgb()/hsl()`, color names, coolors.co links and GIMP `.gpl` rows.
+   Keep several named palettes and switch between them with the drop-down.
+   Click a swatch to use it as the fill, right-click to use it as the stroke, and double-click to edit it, which also recolors the drawing.
+2. **Page:** set the real size and unit (mm, cm or in). Saved files and printouts use that real size.
+3. **Photo (optional):** load a reference photo, set its opacity, and trace over it.
+4. **Draw** the tiles with any of these tools:
+   - **Line (L)**
+   - **Free polygon (P):** click corner by corner.
+   - **Regular polygon (G):** drawn from its center or along an existing edge.
+   - **Pattern (T):** fills an area with squares, bricks, herringbone, hexagons, triangles or rings.
+   - **Knife (K, Expert):** cuts a tile straight across.
 
-Your work is also autosaved in the browser and restored when you reopen the page.
+   **Snap** (S) puts points exactly on ends, corners, crossings, midpoints or anywhere along a line.
+5. **Paint:**
+   - **Bucket (B):** click or drag across tiles. Small gaps where lines almost meet are closed automatically. If an area isn't closed, the line ends that don't touch anything are circled in red.
+   - **Color tiles from photo:** gives every tile the palette color closest to the photo underneath it.
+   - **Painted areas follow the lines:** move, add or delete lines and the colors reshape with them. A tile cut in two keeps its color in both halves.
+6. **Check:**
+   - **Report** lists every color with its number of areas, total area and share of the mosaic, and can replace one color with another everywhere. In Expert mode it also estimates how many pieces to buy and exports a CSV.
+   - **Grout preview** shows the lines in a grout color and width without changing them.
+7. **Output:**
+   - **Save** writes an SVG that remembers the palette, unit and photo.
+   - **PNG** exports an image.
+   - **Print… (Expert)** opens a real-size template in color, with color numbers, or as a paint-by-number outline, plus a legend page.
+
+## Safety net
+
+The drawing is autosaved in the browser, and **History** keeps the last 40 versions.
+A version is saved every few minutes while you work, and before you open, start or restore another drawing.
+
+## Expert extras
+
+- **Symmetry:** mirror left–right, top–bottom or both ways, or rotate N copies around a center (optionally mirrored too). Lines, polygons, knife cuts and painting are repeated.
+- **Layers:** show/hide and lock the lines, the painted areas and the photo separately. For example, lock the lines while painting.
+- **Rulers** in the page unit.
+
+## Phones and tablets
+
+Draw with one finger; pinch with two fingers to zoom and pan. The ☰ button opens the side panel.
+The Done / Cancel bar finishes chained lines and free polygons.
 
 ## Files
 
-- `index.html`, `style.css` – UI
-- `js/geometry.js` – math: snapping helpers and finding enclosed areas (planar faces) for the bucket
-- `js/app.js` – editor: tools, selection, palette, undo, load/save
+- `index.html`, `style.css`: UI
+- `js/app.js`: editor core (tools, snapping, selection, palettes, undo, autosave, load/save)
+- `js/features.js`: report, print template, history, auto-coloring, rulers, install
+- `js/geometry.js`: geometry math, including finding closed areas for the bucket
+- `js/patterns.js`: tiling patterns
+- `js/colors.js`: color parsing and closest-color matching
+- `js/store.js`: browser storage for the autosave and versions
+- `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support
