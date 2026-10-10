@@ -41,6 +41,7 @@ The switch in the top-left corner chooses how much of the app you see.
 6. **Check:**
    - **Report** lists every color with its number of areas, total area and share of the mosaic, and can replace one color with another everywhere. In Expert mode it also estimates how many pieces to buy and exports a CSV.
    - **Grout preview** shows the lines in a grout color and width without changing them.
+   - **View menu** (top bar): see the mosaic in black & white or as people with red-, green- or blue-blindness see it (screen only). The report lists colors that may look alike, and **Contrast** (Expert) marks tiles that blend into a neighbouring tile.
 7. **Output:**
    - **Save** writes an SVG that remembers the palette, unit and photo.
    - **PNG** exports an image.
@@ -75,6 +76,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/print.js`: splitting the print-out across sheets
 - `js/contour.js`: rows following an outline (distance field, marching squares)
 - `js/mix.js`: the random color mix
+- `js/vision.js`: black & white / color-blind views and contrast checks
 - `js/colors.js`: color parsing and closest-color matching
 - `js/store.js`: browser storage for the autosave and versions
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support

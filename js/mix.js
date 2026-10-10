@@ -10,26 +10,10 @@ try { Object.assign(mix, JSON.parse(localStorage.getItem('mz-mix') || '{}')); } 
 const save = () => { try { localStorage.setItem('mz-mix', JSON.stringify(mix)); } catch { /* ignore */ } };
 const active = () => mix.on && mix.colors.length >= 2;
 
-/** Colors of the painted areas touching a region (looked up just outside each of its edges). */
-function neighbourColors(reg) {
-  const out = new Set(), d = Geo.eps * 50;
-  for (const r of [reg.outer, ...reg.holes]) for (let i = 0, n = r.length; i < n; i++) {
-    const a = r[i], b = r[(i + 1) % n], len = Geo.dist(a, b);
-    if (len < d * 4) continue;
-    const m = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, nx = -(b.y - a.y) / len, ny = (b.x - a.x) / len;
-    for (const s of [1, -1]) {
-      const p = { x: m.x + nx * d * s, y: m.y + ny * d * s };
-      if (MZ.insideRegion(reg, p)) continue;
-      const c = MZ.paintedColorAt(p);
-      if (c) out.add(c);
-    }
-  }
-  return out;
-}
 function pick(reg) {
   let options = mix.colors;
   if (mix.avoid && reg) {
-    const taken = neighbourColors(reg), free = options.filter(c => !taken.has(c));
+    const taken = MZ.neighbourColors(reg), free = options.filter(c => !taken.has(c));
     if (free.length) options = free;
   }
   return options[Math.floor(Math.random() * options.length)];

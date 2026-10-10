@@ -94,3 +94,31 @@ test('mosaic from photo: irregular tiles, smaller where the photo has detail', a
   expect(r.faces).toBeGreaterThan(100);
   expect(r.fills).toBe(r.faces); // every tile painted
 });
+
+test('view filters, similar colors in the report and contrast marks (Expert)', async ({ page }) => {
+  await h.open(page, { mode: 'expert' });
+  await page.selectOption('#view-filter', 'gray');
+  expect(await page.getAttribute('#mz-doc', 'filter')).toBe('url(#mz-vision-gray)');
+  await page.selectOption('#view-filter', 'none');
+  expect(await page.getAttribute('#mz-doc', 'filter')).toBeNull();
+
+  // two neighbouring tiles in a red and a green that green-blind viewers confuse, one blue tile
+  await h.key(page, 'l');
+  await h.drag(page, { x: 333, y: 0 }, { x: 333, y: 1000 });
+  await h.drag(page, { x: 666, y: 0 }, { x: 666, y: 1000 });
+  await h.key(page, 'b');
+  for (const [x, c] of [[150, '#c8503c'], [500, '#6e8c3c'], [850, '#2846dc']]) {
+    await h.setState(page, { fill: c });
+    await h.click(page, { x, y: 500 });
+  }
+  await page.click('#btn-report');
+  await expect(page.locator('#rep-alike li')).toHaveCount(1);
+  await expect(page.locator('#rep-alike li')).toContainText('#c8503c and #6e8c3c');
+  await expect(page.locator('#rep-alike li')).toContainText('green-blind');
+  await page.keyboard.press('Escape');
+
+  await page.click('#btn-contrast');
+  expect(await h.count(page, '#mz-marks .contrast-mark')).toBe(0); // fine for normal vision
+  await page.selectOption('#view-filter', 'deutan');
+  expect(await h.count(page, '#mz-marks .contrast-mark')).toBe(2); // the red and green tiles
+});

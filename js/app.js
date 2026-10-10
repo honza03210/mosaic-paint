@@ -1508,6 +1508,22 @@ function paintedColorAt(p) {
   for (const el of shapesAt(p)) if ((isFill(el) || hasFill(el)) && insideEl(el, p)) return fillOf(el);
   return null;
 }
+/** Colors of the painted areas touching a region (looked up just outside each of its edges). */
+function neighbourColors(reg) {
+  const out = new Set(), d = Geo.eps * 50;
+  for (const r of [reg.outer, ...reg.holes]) for (let i = 0, n = r.length; i < n; i++) {
+    const a = r[i], b = r[(i + 1) % n], len = Geo.dist(a, b);
+    if (len < d * 4) continue;
+    const m = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, nx = -(b.y - a.y) / len, ny = (b.x - a.x) / len;
+    for (const s of [1, -1]) {
+      const p = { x: m.x + nx * d * s, y: m.y + ny * d * s };
+      if (insideRegion(reg, p)) continue;
+      const c = paintedColorAt(p);
+      if (c) out.add(c);
+    }
+  }
+  return out;
+}
 function paintPoints(p, ctx) {
   for (const t of symTransforms()) {
     const q = t(p), f = ctx.ix.locate(q);
@@ -2550,7 +2566,7 @@ function addPalette(name, colors) {
   return n;
 }
 window.MZ = {
-  addLineSegments, clearDrawing, addPalette, paintedColorAt,
+  addLineSegments, clearDrawing, addPalette, paintedColorAt, neighbourColors,
   setFillChooser: (fn) => { fillChooser = fn; },
   state, svg, stage, on, emit, toast, download, fmt, fmtLen, fmtArea, unit, mk,
   allShapes, geomOf, isFill, hasFill, fillOf, insideEl, isPaintedAt, paintFill, replaceColor,

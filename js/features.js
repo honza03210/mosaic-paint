@@ -83,6 +83,10 @@ function renderReport() {
     };
   }
   for (const el of document.querySelectorAll('.unit-label')) el.textContent = u;
+  // colors that are hard to tell apart (vision.js)
+  const alike = Vision.similarPairs(rows.map(r => r.c));
+  $('#rep-alike').innerHTML = alike.length ? '<h3>Colors that may look alike</h3><ul>'
+    + alike.map(p => `<li><span class="mini" style="background:${p.a}"></span> <span class="mini" style="background:${p.b}"></span> ${p.a} and ${p.b} ${esc(Vision.describe(p.views))}</li>`).join('') + '</ul>' : '';
 }
 function reportCSV() {
   const rows = reportRows(), u = MZ.unit();

@@ -84,10 +84,35 @@ const Colors = (() => {
     return best;
   }
 
+  /**
+   * How colors look in black & white and with color-vision deficiencies (Machado et al. 2009,
+   * full severity). 3×3 matrices on linear RGB – the same numbers drive the on-screen SVG filters.
+   */
+  const VISION = {
+    gray: [0.2126, 0.7152, 0.0722, 0.2126, 0.7152, 0.0722, 0.2126, 0.7152, 0.0722],
+    protan: [0.152286, 1.052583, -0.204868, 0.114503, 0.786281, 0.099216, -0.003882, -0.048116, 1.051998],
+    deutan: [0.367322, 0.860646, -0.227968, 0.280085, 0.672501, 0.047413, -0.011820, 0.042940, 0.968881],
+    tritan: [1.255528, -0.076749, -0.178779, -0.078411, 0.930809, 0.147602, 0.004733, 0.691367, 0.303900],
+  };
+  const toLin = (v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+  const fromLin = (v) => Math.round(255 * Math.max(0, Math.min(1, v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055)));
+  /** The color as seen under a VISION type ('none' returns it unchanged), as [r, g, b]. */
+  function simulate(c, type) {
+    const rgb = Array.isArray(c) ? c : toRgb(c), m = VISION[type];
+    if (!rgb || !m) return rgb;
+    const [r, g, b] = rgb.map(toLin);
+    return [0, 1, 2].map(i => fromLin(m[i * 3] * r + m[i * 3 + 1] * g + m[i * 3 + 2] * b));
+  }
+  /** Perceived difference between two colors (CIE76 ΔE; under ~10 they are easy to confuse). */
+  function deltaE(a, b) {
+    const la = toLab(Array.isArray(a) ? a : toRgb(a)), lb = toLab(Array.isArray(b) ? b : toRgb(b));
+    return Math.hypot(la[0] - lb[0], la[1] - lb[1], la[2] - lb[2]);
+  }
+
   function luminance(c) {
     const [r, g, b] = toRgb(c) || [255, 255, 255];
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
 
-  return { norm, parse, toRgb, toLab, fromLab, nearest, luminance };
+  return { norm, parse, toRgb, toLab, fromLab, nearest, luminance, VISION, simulate, deltaE };
 })();
