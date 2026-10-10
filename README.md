@@ -29,7 +29,7 @@ The switch in the top-left corner chooses how much of the app you see.
    - **Line (L)**
    - **Free polygon (P):** click corner by corner.
    - **Regular polygon (G):** drawn from its center or along an existing edge.
-   - **Pattern (T):** fills an area with squares, bricks, herringbone, hexagons, triangles or rings.
+   - **Pattern (T):** fills an area with squares, bricks, herringbone, hexagons, triangles or rings, or with **rows following the outline** (opus vermiculatum): rows of tiles that run along the area's edge and around any shapes inside it.
    - **Knife (K, Expert):** cuts a tile straight across.
 
    **Snap** (S) puts points exactly on ends, corners, crossings, midpoints or anywhere along a line.
@@ -72,6 +72,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/photo.js`: reading the photo (average colors, detail, coloring tiles)
 - `js/automosaic-ui.js`: the "Mosaic from photo" dialog
 - `js/print.js`: splitting the print-out across sheets
+- `js/contour.js`: rows following an outline (distance field, marching squares)
 - `js/colors.js`: color parsing and closest-color matching
 - `js/store.js`: browser storage for the autosave and versions
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support

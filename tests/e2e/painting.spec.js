@@ -26,11 +26,12 @@ test('bucket paints closed areas, recolors, erases and leaves islands as holes',
   await h.setState(page, { fill: null });
   await h.click(page, { x: 650, y: 560 });
   expect(await h.colorAt(page, { x: 650, y: 560 })).toBe('none');
-  // a small square island inside the teal area becomes a hole in it
+  // a small square drawn inside the teal area: the area gets a hole, and the square keeps the teal color
+  // (drawing lines never changes how the mosaic looks)
   await h.key(page, 'g');
   await page.evaluate(() => { MZ.state.sides = 4; });
   await h.drag(page, { x: 850, y: 850 }, { x: 850, y: 800 });
-  await h.expectFills(page, [['#2a9d8f', 189739]]);
+  await h.expectFills(page, [['#2a9d8f', 5000], ['#2a9d8f', 189739]]);
 });
 
 test('dragging the bucket paints every tile it crosses, as one undo step', async ({ page }) => {

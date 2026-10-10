@@ -5,6 +5,7 @@ const Patterns = (() => {
   const TYPES = [
     ['square', 'Squares'], ['brick', 'Bricks'], ['herringbone', 'Herringbone'],
     ['hex', 'Hexagons'], ['triangle', 'Triangles'], ['rings', 'Rings (around the click)'],
+    ['rows', 'Rows following the outline'],
   ];
   const rect = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
   const odd = (j) => ((j % 2) + 2) % 2 === 1;

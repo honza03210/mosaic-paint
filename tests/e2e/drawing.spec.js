@@ -89,3 +89,25 @@ test('radial symmetry repeats a line around the center (Expert)', async ({ page 
   await h.drag(page, { x: 500, y: 420 }, { x: 500, y: 60 }, { keys: ['Alt'] });
   expect(await h.count(page, '#mz-shapes line')).toBe(4);
 });
+
+test('rows following the outline wrap around a shape and keep its painted color', async ({ page }) => {
+  await h.open(page, { doc: h.blank(300, 300, 'mm') });
+  // a square motif in the middle, the area around it painted
+  await h.key(page, 'g');
+  await page.evaluate(() => { MZ.state.sides = 4; MZ.state.ngonMode = 'center'; });
+  await h.drag(page, { x: 150, y: 150 }, { x: 150, y: 90 });
+  await h.key(page, 'b');
+  await h.setState(page, { fill: '#457b9d' });
+  await h.click(page, { x: 20, y: 20 });
+  await h.setState(page, { pattern: { type: 'rows', size: 15, rows: 2 } });
+  await h.key(page, 't');
+  await h.click(page, { x: 20, y: 20 });
+  // two row lines along the page border and two around the motif
+  expect(await h.count(page, '#mz-shapes polygon:not([data-ngon])')).toBe(4);
+  const info = await page.evaluate(() => {
+    const ix = MZ.regionIndex();
+    return { tiles: ix.faces.length, painted: document.querySelectorAll('.mz-fill[fill="#457b9d"]').length };
+  });
+  expect(info.tiles).toBeGreaterThan(100);
+  expect(info.painted).toBeGreaterThan(100); // the background color carried into every new tile
+});

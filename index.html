@@ -175,10 +175,11 @@
       <div class="row">
         <select id="pat-type"></select>
         <label>Size <input id="pat-size" type="number" min="0.1" step="1"> <span class="unit-label"></span></label>
-        <label class="expert">Angle <input id="pat-angle" type="number" step="5">°</label>
+        <label class="expert" id="pat-angle-row">Angle <input id="pat-angle" type="number" step="5">°</label>
+        <label id="pat-rows-row" title="0 = as many rows as fit">Rows <input id="pat-rows" type="number" min="0" step="1"></label>
       </div>
       <div class="row"><button id="btn-pat-page">Fill whole page</button></div>
-      <p class="note">Click inside a closed area to fill it with tiles. Painted areas keep their color in every new tile.</p>
+      <p class="note">Click inside a closed area to fill it with tiles. Painted areas keep their color in every new tile. “Rows following the outline” lays rows along the area’s edge and around shapes inside it (Rows 0 = fill it).</p>
     </section>
 
     <section class="tool-opts" data-for="bucket">
@@ -387,6 +388,7 @@
 <script src="js/store.js"></script>
 <script src="js/print.js"></script>
 <script src="js/automosaic.js"></script>
+<script src="js/contour.js"></script>
 <script src="js/app.js"></script>
 <script src="js/photo.js"></script>
 <script src="js/features.js"></script>

@@ -237,7 +237,9 @@ const Geo = (() => {
       regions.set(f, r);
       return r;
     };
-    return { locate, region, faces: inner };
+    /** Bounded faces whose bounding box overlaps b. */
+    const within = (b) => [...grid.query(b.x0, b.y0, b.x1, b.y1)].filter(f => f.bb.x1 >= b.x0 && f.bb.x0 <= b.x1 && f.bb.y1 >= b.y0 && f.bb.y0 <= b.y1);
+    return { locate, region, faces: inner, within };
   }
 
   /** Parts of segment a-b for which keep(midpoint) holds, split where it crosses the rings. */

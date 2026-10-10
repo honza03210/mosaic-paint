@@ -53,7 +53,7 @@ async function key(page, k) {
 const fills = (page) => page.evaluate(() =>
   [...document.querySelectorAll('.mz-fill')].map(p => `${p.getAttribute('fill')} ${Math.round(+p.dataset.area)}`).sort());
 /**
- * Checks painted areas against [color, area] pairs, allowing 1% on each area: some browsers
+ * Checks painted areas against [color, area] pairs, allowing 1% plus a perimeter-sized error: some browsers
  * (WebKit) round mouse positions to whole pixels, so drawn points can be off by a fraction of a unit.
  */
 async function expectFills(page, expected) {
@@ -61,7 +61,7 @@ async function expectFills(page, expected) {
   const sort = (l) => [...l].sort((a, b) => a[0].localeCompare(b[0]) || a[1] - b[1]);
   const g = sort(got), e = sort(expected);
   expect(g.map(x => x[0]), `colors of ${JSON.stringify(got)}`).toEqual(e.map(x => x[0]));
-  g.forEach((x, i) => expect(Math.abs(x[1] - e[i][1]), `area ${x[1]} vs ${e[i][1]}`).toBeLessThanOrEqual(e[i][1] * 0.01 + 1));
+  g.forEach((x, i) => expect(Math.abs(x[1] - e[i][1]), `area ${x[1]} vs ${e[i][1]}`).toBeLessThanOrEqual(e[i][1] * 0.01 + 2 * Math.sqrt(e[i][1])));
 }
 const near = (a, b, tol = 1.5) => Math.abs(a - b) <= tol;
 /** Color of the topmost painted area at a point ('none' if unpainted). */

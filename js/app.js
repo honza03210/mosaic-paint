@@ -27,7 +27,7 @@ const state = {
   snap: true, link: true, grid: false, gridSize: 10, border: true, gapPct: 0.4,
   chain: false, sides: 6, ngonMode: 'center', newFill: false,
   lastRadius: 20, lastRot: -90,
-  pattern: { type: 'square', size: 10, angle: 0 },
+  pattern: { type: 'square', size: 10, angle: 0, rows: 0 },
   sym: { type: 'none', n: 8, mirror: false, cx: null, cy: null },
   layers: { ref: { visible: true, locked: true }, fills: { visible: true, locked: false }, shapes: { visible: true, locked: false } },
   refOpacity: 0.5, savePhoto: true, onlyUnpainted: true,
@@ -1146,7 +1146,7 @@ function reflowFills() {
       const f = ix.locate(p);
       if (f) votes.set(f, (votes.get(f) || 0) + 1);
     }
-    items.push({ el, inside, votes, area, n: samples.length || 1 });
+    items.push({ el, inside, votes, area, bbox: g.bbox, n: samples.length || 1 });
   }
   if (!items.length) return;
   // match changed areas to regions by best overlap (intersection over union), greedily,
@@ -1167,7 +1167,8 @@ function reflowFills() {
   // a line drawn through a painted area: pieces lying within the old area keep its color
   for (const it of items) {
     if (!it.el.isConnected) continue;
-    for (const f of it.votes.keys()) {
+    // every region within the old area's bounds is a candidate (samples may miss small pieces)
+    for (const f of ix.within(it.bbox)) {
       if (owner.has(f)) continue;
       const reg = ix.region(f);
       const pts = gridSample(reg.bb, (p) => insideRegion(reg, p), 40);
@@ -1459,6 +1460,7 @@ function applyPattern(p) {
     region = { outer: pts, holes: [], area: state.doc.w * state.doc.h, bb: Geo.bounds(pts) };
   }
   const P = state.pattern;
+  if (P.type === 'rows') { applyRows(region, P); return; }
   const origin = P.type === 'rings'
     ? (p || { x: state.doc.x + state.doc.w / 2, y: state.doc.y + state.doc.h / 2 })
     : { x: region.bb.x0, y: region.bb.y0 };
@@ -1473,6 +1475,17 @@ function applyPattern(p) {
   for (const s of segs) mk('line', { x1: fmt(s.a.x), y1: fmt(s.a.y), x2: fmt(s.b.x), y2: fmt(s.b.y), ...shapeStyle() }, shapesG);
   commitGeometry();
   toast(`Added a ${Patterns.TYPES.find(t => t[0] === P.type)[1].toLowerCase()} pattern (${segs.length} lines).`);
+}
+/** Rows of tiles following the area's outline (and around any shapes inside it). */
+function applyRows(region, P) {
+  const span = Math.max(region.bb.x1 - region.bb.x0, region.bb.y1 - region.bb.y0);
+  if (P.size * 2 > span) { toast('The rows are wider than this area – use a smaller size.'); return; }
+  const { loops, cuts } = Contour.build({ rings: [region.outer, ...region.holes], width: P.size, length: P.size, rows: P.rows || 0 });
+  if (!loops.length) { toast('This area is too narrow for a row of that width.'); return; }
+  for (const l of loops) mk('polygon', { points: ptsStr(l), fill: 'none', ...shapeStyle() }, shapesG);
+  for (const c of cuts) mk('line', { x1: fmt(c.a.x), y1: fmt(c.a.y), x2: fmt(c.b.x), y2: fmt(c.b.y), ...shapeStyle() }, shapesG);
+  commitGeometry();
+  toast(`Added ${loops.length} row line${loops.length === 1 ? '' : 's'} and ${cuts.length} cuts following the outline.`);
 }
 const patternTool = {
   // applied on release, so a pinch / drag that starts here doesn't add a pattern
@@ -2349,7 +2362,10 @@ function bindPanel() {
   const pt = $('#pat-type');
   for (const [v, label] of Patterns.TYPES) { const o = document.createElement('option'); o.value = v; o.textContent = label; pt.append(o); }
   pt.value = state.pattern.type;
-  pt.onchange = () => { state.pattern.type = pt.value; savePrefs(); };
+  const patUI = () => { $('#pat-rows-row').hidden = state.pattern.type !== 'rows'; $('#pat-angle-row').hidden = state.pattern.type === 'rows'; };
+  pt.onchange = () => { state.pattern.type = pt.value; savePrefs(); patUI(); };
+  patUI();
+  bindNumber('#pat-rows', () => state.pattern.rows || 0, (v) => { state.pattern.rows = Math.max(0, Math.round(v)); });
   bindNumber('#pat-size', () => state.pattern.size, (v) => { if (!(v > 0)) return false; state.pattern.size = v; });
   bindNumber('#pat-angle', () => state.pattern.angle, (v) => { state.pattern.angle = v; });
   $('#btn-pat-page').onclick = () => applyPattern(null);
