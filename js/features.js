@@ -166,35 +166,34 @@ function printTemplate() {
     }
     root.appendChild(g);
   }
-  const svgText = new XMLSerializer().serializeToString(root);
-  const d = state.doc, u = MZ.unit();
-  const size = u === 'px' ? `${d.w}px` : `${d.w}${u}`, sizeH = u === 'px' ? `${d.h}px` : `${d.h}${u}`;
+  // the drawing's content, without the outer <svg>, is placed on the sheets by Printing.html
+  const art = [...root.childNodes].map(c => new XMLSerializer().serializeToString(c)).join('');
   const rows = [...stats.entries()].map(([c, e]) => ({ c, n: nums.get(c), ...e })).sort((a, b) => a.n - b.n);
-  const legendHTML = legend && rows.length ? `<section class="legend"><h2>${esc(MZ.fileName)} – colors</h2><table>`
+  const legendHTML = legend && rows.length ? `<h2>${esc(MZ.fileName)} – colors</h2><table>`
     + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles} area${r.tiles === 1 ? '' : 's'}</td><td>${esc(MZ.fmtArea(r.area))}</td></tr>`).join('')
-    + `</table></section>` : '';
-  const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(MZ.fileName)} – template</title><style>
-    @page { margin: 10mm; }
-    body { margin: 0; font-family: Arial, sans-serif; }
-    .sheet svg { display: block; width: ${size}; height: ${sizeH}; }
-    .hint { font-size: 12px; color: #555; margin: 0 0 6px; }
-    .legend { page-break-before: always; }
-    .legend table { border-collapse: collapse; }
-    .legend td { padding: 4px 10px; border-bottom: 1px solid #ddd; }
-    .legend td.n { font-weight: bold; }
-    .legend span { display: inline-block; width: 28px; height: 18px; border: 1px solid #999; vertical-align: middle;
-      -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    @media print { .hint { display: none; } }
-  </style></head><body>
-  <p class="hint">Printed at real size (${MZ.fmt(d.w)} × ${MZ.fmt(d.h)} ${u}). If it is bigger than the paper, choose “Fit to page” or print in parts.</p>
-  <div class="sheet">${svgText}</div>${legendHTML}
-  <script>window.onload = () => setTimeout(() => window.print(), 300);<\/script></body></html>`;
+    + `</table>` : '';
+  const d = state.doc;
+  openPrintPage(Printing.html({
+    art, box: { x: d.x, y: d.y, w: d.w, h: d.h }, unit: MZ.unit(), legend: legendHTML, title: MZ.fileName.replace(/\.svg$/i, ''),
+    paper: $('#print-paper').value, mode: document.querySelector('input[name=print-size]:checked').value,
+  }));
+}
+function openPrintPage(html) {
   const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
   const w = window.open(url, '_blank');
   if (!w) { MZ.toast('The browser blocked the print window – allow pop-ups for this page.'); return; }
   setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
-$('#btn-print').onclick = () => $('#dlg-print').showModal();
+function updatePrintInfo() {
+  const d = state.doc, k = Printing.MM[MZ.unit()] || Printing.MM.px;
+  const mode = document.querySelector('input[name=print-size]:checked').value;
+  const L = Printing.layout(d.w * k, d.h * k, $('#print-paper').value, mode);
+  $('#print-info').textContent = mode === 'fit'
+    ? `One ${L.paper.name} sheet (${L.orientation}), at ${Math.round(L.scale * 100)} % of the real size.`
+    : `${L.sheets.length} ${L.paper.name} sheet${L.sheets.length > 1 ? 's' : ''} (${L.orientation}${L.sheets.length > 1 ? `, ${L.rows} × ${L.cols}, overlapping ${Printing.OVERLAP} mm` : ''}) at real size.`;
+}
+$('#btn-print').onclick = () => { updatePrintInfo(); $('#dlg-print').showModal(); };
+for (const el of document.querySelectorAll('#print-paper, input[name=print-size]')) el.onchange = updatePrintInfo;
 $('#print-go').onclick = () => { $('#dlg-print').close(); printTemplate(); };
 
 // ---- version history -------------------------------------------------------------------

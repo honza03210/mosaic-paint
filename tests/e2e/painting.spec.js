@@ -19,7 +19,7 @@ test('bucket paints closed areas, recolors, erases and leaves islands as holes',
   await h.click(page, { x: 650, y: 560 });
   await h.setState(page, { fill: '#2a9d8f' });
   await h.click(page, { x: 900, y: 900 });
-  expect(await h.fills(page)).toEqual(['#2a9d8f 194739', '#e76f51 37780']);
+  await h.expectFills(page, [['#2a9d8f', 194739], ['#e76f51', 37780]]);
   await h.setState(page, { fill: '#1d3557' });
   await h.click(page, { x: 650, y: 560 });
   expect(await h.colorAt(page, { x: 650, y: 560 })).toBe('#1d3557');
@@ -30,7 +30,7 @@ test('bucket paints closed areas, recolors, erases and leaves islands as holes',
   await h.key(page, 'g');
   await page.evaluate(() => { MZ.state.sides = 4; });
   await h.drag(page, { x: 850, y: 850 }, { x: 850, y: 800 });
-  expect(await h.fills(page)).toEqual(['#2a9d8f 189739']);
+  await h.expectFills(page, [['#2a9d8f', 189739]]);
 });
 
 test('dragging the bucket paints every tile it crosses, as one undo step', async ({ page }) => {
@@ -57,7 +57,7 @@ test('small gaps are closed; open line ends are shown when nothing is closed', a
   await h.key(page, 'b');
   await h.setState(page, { fill: '#e9c46a' });
   await h.click(page, { x: 750, y: 150 });
-  expect(await h.fills(page)).toEqual(['#e9c46a 150000']);
+  await h.expectFills(page, [['#e9c46a', 150000]]);
 
   // without the page edge nothing is closed: the dangling ends are circled
   await h.setState(page, { border: false });
@@ -80,23 +80,23 @@ test('painted areas follow edited lines: move, split, merge', async ({ page }) =
   await h.key(page, 'v');
   await h.click(page, { x: 500, y: 300 });
   await h.drag(page, { x: 500, y: 0 }, { x: 600, y: 0 });
-  expect(await h.fills(page)).toEqual(['#0000ff 237500', '#ff0000 287500']);
+  await h.expectFills(page, [['#0000ff', 237500], ['#ff0000', 287500]]);
 
   await h.key(page, 'l');
   await h.drag(page, { x: 0, y: 250 }, { x: 570, y: 250 });
-  expect(await h.fills(page)).toEqual(['#0000ff 237500', '#ff0000 140483', '#ff0000 147017']);
+  await h.expectFills(page, [['#0000ff', 237500], ['#ff0000', 140483], ['#ff0000', 147017]]);
 
   await h.key(page, 'v');
   await h.click(page, { x: 300, y: 500 });
   await h.drag(page, { x: 300, y: 500 }, { x: 300, y: 560 });
-  expect(await h.fills(page)).toEqual(['#0000ff 210320', '#ff0000 147017', '#ff0000 173303']);
+  await h.expectFills(page, [['#0000ff', 210320], ['#ff0000', 147017], ['#ff0000', 173303]]);
   expect(await h.colorAt(page, { x: 800, y: 200 })).toBe('none');
 
   await h.click(page, { x: 200, y: 560 });
   await page.keyboard.press('Delete');
-  expect(await h.fills(page)).toEqual(['#0000ff 450000', '#ff0000 147017', '#ff0000 402983']);
+  await h.expectFills(page, [['#0000ff', 450000], ['#ff0000', 147017], ['#ff0000', 402983]]);
   await page.keyboard.press('Control+z');
-  expect(await h.fills(page)).toEqual(['#0000ff 210320', '#ff0000 147017', '#ff0000 173303']);
+  await h.expectFills(page, [['#0000ff', 210320], ['#ff0000', 147017], ['#ff0000', 173303]]);
 });
 
 test('locked lines cannot be selected or drawn on, but can be painted (Expert)', async ({ page }) => {
@@ -113,4 +113,15 @@ test('locked lines cannot be selected or drawn on, but can be painted (Expert)',
   await h.key(page, 'b');
   await h.click(page, { x: 250, y: 250 });
   expect(await h.count(page, '.mz-fill')).toBe(1);
+});
+
+test('Alt+click with the bucket picks up a painted color', async ({ page }) => {
+  await h.open(page);
+  await h.key(page, 'b');
+  await h.setState(page, { fill: '#e76f51' });
+  await h.click(page, { x: 500, y: 500 });
+  await h.setState(page, { fill: '#000000' });
+  await h.click(page, { x: 500, y: 500 }, { keys: ['Alt'] });
+  expect(await page.evaluate(() => MZ.state.fill)).toBe('#e76f51');
+  expect(await h.colorAt(page, { x: 500, y: 500 })).toBe('#e76f51');
 });

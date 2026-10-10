@@ -12,7 +12,7 @@ test('save and reopen keeps lines, painted areas, palette, unit and background',
   const svg = await page.evaluate(() => MZ.buildSVGString());
   expect(svg).toContain('width="300mm"');
   await page.evaluate((s) => MZ.loadSVGText(s), svg);
-  expect(await h.fills(page)).toEqual(['#e76f51 45000']);
+  await h.expectFills(page, [['#e76f51', 45000]]);
   expect(await page.evaluate(() => MZ.state.doc.unit)).toBe('mm');
 });
 
@@ -71,7 +71,7 @@ test('history keeps versions that can be restored', async ({ page }) => {
   await expect.poll(() => h.count(page, '#mz-shapes line')).toBe(1);
 });
 
-test('print template opens at real size with color numbers and a legend (Expert)', async ({ page, context }) => {
+test('print template: real size split over overlapping A4 sheets, with numbers and a legend (Expert)', async ({ page, context, browserName }) => {
   await h.open(page, { mode: 'expert', doc: h.blank(300, 300, 'mm') });
   await h.key(page, 'l');
   await h.drag(page, { x: 150, y: 0 }, { x: 150, y: 300 });
@@ -79,18 +79,37 @@ test('print template opens at real size with color numbers and a legend (Expert)
   await h.setState(page, { fill: '#e76f51' });
   await h.click(page, { x: 75, y: 75 });
   await page.click('#btn-print');
+  await page.selectOption('#print-paper', 'a4');
   await page.check('input[name=print-style][value=both]');
-  const [popup] = await Promise.all([
-    context.waitForEvent('page'),
-    page.click('#print-go'),
-  ]);
+  await page.check('input[name=print-size][value=real]');
+  await expect(page.locator('#print-info')).toContainText('4 A4 sheets');
+  const [popup] = await Promise.all([context.waitForEvent('page'), page.click('#print-go')]);
   await popup.waitForLoadState();
   const info = await popup.evaluate(() => ({
-    width: getComputedStyle(document.querySelector('.sheet svg')).width,
-    labels: document.querySelectorAll('.sheet svg text').length,
+    sheets: document.querySelectorAll('section.sheet').length,
+    labels: document.querySelectorAll('#art text').length,
     legend: document.querySelectorAll('.legend tr').length,
+    firstSheetWidth: getComputedStyle(document.querySelectorAll('section.sheet svg')[1]).width,
   }));
-  expect(info.labels).toBe(1);
-  expect(info.legend).toBe(1);
-  expect(parseFloat(info.width)).toBeCloseTo(300 / 25.4 * 96, 0); // 300 mm in CSS pixels
+  expect(info).toMatchObject({ sheets: 6, labels: 1, legend: 1 }); // overview + 4 sheets + legend
+  expect(parseFloat(info.firstSheetWidth)).toBeCloseTo(190 / 25.4 * 96, 0); // a full A4 width (190 mm printable)
+  if (browserName === 'chromium') {
+    // the real thing: render to PDF and check the paper size and page count
+    const pdf = (await popup.pdf({ preferCSSPageSize: true })).toString('latin1');
+    expect((pdf.match(/\/Type\s*\/Page\b(?!s)/g) || []).length).toBe(6);
+    const [w, hgt] = /\/MediaBox\s*\[\s*0 0 ([\d.]+) ([\d.]+)/.exec(pdf).slice(1).map(Number);
+    expect(Math.round(Math.min(w, hgt) / 72 * 25.4)).toBe(210);
+    expect(Math.round(Math.max(w, hgt) / 72 * 25.4)).toBe(297);
+  }
+});
+
+test('fit-to-sheet printing makes a single page', async ({ page, context }) => {
+  await h.open(page, { mode: 'expert', doc: h.blank(1000, 600, 'mm') });
+  await page.click('#btn-print');
+  await page.check('input[name=print-size][value=fit]');
+  await page.uncheck('#print-legend');
+  await expect(page.locator('#print-info')).toContainText('One A4 sheet (landscape)');
+  const [popup] = await Promise.all([context.waitForEvent('page'), page.click('#print-go')]);
+  await popup.waitForLoadState();
+  expect(await popup.evaluate(() => document.querySelectorAll('section.sheet').length)).toBe(1);
 });

@@ -3,7 +3,9 @@ const { test } = require('@playwright/test');
 const h = require('./helpers');
 const { expect } = h;
 
-test('a 2,500-tile mosaic stays responsive', async ({ page }) => {
+test('a 2,500-tile mosaic stays responsive', async ({ page, browserName }) => {
+  // Playwright's WebKit on Windows/Linux renders in software and is much slower per frame than Safari
+  const slow = browserName === 'webkit' ? 4 : 1;
   await h.open(page);
   await h.setState(page, { pattern: { type: 'square', size: 20, angle: 0 } });
   await h.key(page, 't');
@@ -25,7 +27,7 @@ test('a 2,500-tile mosaic stays responsive', async ({ page }) => {
   await h.key(page, 'l');
   let t = Date.now();
   for (let i = 0; i < 40; i++) await page.mouse.move(300 + i * 10, 400 + (i % 5));
-  expect(Date.now() - t).toBeLessThan(4000);
+  expect(Date.now() - t).toBeLessThan(4000 * slow);
   await page.keyboard.press('Escape');
 
   await h.key(page, 'b');

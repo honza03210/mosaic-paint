@@ -15,11 +15,14 @@ module.exports = defineConfig({
     baseURL: `http://localhost:${PORT}/`,
     viewport: { width: 1400, height: 860 },
     serviceWorkers: 'block',
-    ...(local ? { channel: 'chrome' } : {}),
   },
+  // Chrome, Firefox and Safari's engine (WebKit) on desktop; an Android phone and an iPhone for the touch tests
   projects: [
-    { name: 'desktop', testIgnore: /mobile\.spec/ },
+    { name: 'desktop', testIgnore: /mobile\.spec/, use: { ...(local ? { channel: 'chrome' } : {}) } },
+    { name: 'firefox', testIgnore: /mobile\.spec/, use: { browserName: 'firefox' } },
+    { name: 'webkit', testIgnore: /mobile\.spec/, use: { browserName: 'webkit' } },
     { name: 'mobile', testMatch: /mobile\.spec/, use: { ...devices['Pixel 7'], ...(local ? { channel: 'chrome' } : {}) } },
+    { name: 'iphone', testMatch: /mobile\.spec/, use: { ...devices['iPhone 14'] } },
   ],
   webServer: {
     command: `node tests/serve.js ${PORT}`,

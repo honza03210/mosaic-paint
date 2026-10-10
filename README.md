@@ -42,7 +42,7 @@ The switch in the top-left corner chooses how much of the app you see.
 7. **Output:**
    - **Save** writes an SVG that remembers the palette, unit and photo.
    - **PNG** exports an image.
-   - **Print… (Expert)** opens a real-size template in color, with color numbers, or as a paint-by-number outline, plus a legend page.
+   - **Print… (Expert)** opens a template in color, with color numbers, or as a paint-by-number outline, plus a legend page. At real size it is split across overlapping, labeled sheets (A1, A2, …) with an overview page; or it can be fitted onto one sheet.
 
 ## Safety net
 
@@ -81,4 +81,4 @@ npm test             # unit tests (geometry, patterns) + end-to-end tests in Chr
 
 The end-to-end tests (`tests/e2e/`) drive the real app with mouse, keyboard and touch input:
 drawing, snapping, painting, painted areas following edits, files, autosave, history, printing, the photo tools, the phone layout and offline start.
-They run on every push (GitHub Actions).
+They run on every push (GitHub Actions) in Chrome, Firefox and WebKit, plus emulated Android and iPhone. See [TESTING.md](TESTING.md), including the checklist for real devices.

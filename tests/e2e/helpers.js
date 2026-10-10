@@ -52,6 +52,18 @@ async function key(page, k) {
 /** Painted areas as sorted "color area" strings. */
 const fills = (page) => page.evaluate(() =>
   [...document.querySelectorAll('.mz-fill')].map(p => `${p.getAttribute('fill')} ${Math.round(+p.dataset.area)}`).sort());
+/**
+ * Checks painted areas against [color, area] pairs, allowing 1% on each area: some browsers
+ * (WebKit) round mouse positions to whole pixels, so drawn points can be off by a fraction of a unit.
+ */
+async function expectFills(page, expected) {
+  const got = (await fills(page)).map(s => s.split(' ')).map(([c, a]) => [c, +a]);
+  const sort = (l) => [...l].sort((a, b) => a[0].localeCompare(b[0]) || a[1] - b[1]);
+  const g = sort(got), e = sort(expected);
+  expect(g.map(x => x[0]), `colors of ${JSON.stringify(got)}`).toEqual(e.map(x => x[0]));
+  g.forEach((x, i) => expect(Math.abs(x[1] - e[i][1]), `area ${x[1]} vs ${e[i][1]}`).toBeLessThanOrEqual(e[i][1] * 0.01 + 1));
+}
+const near = (a, b, tol = 1.5) => Math.abs(a - b) <= tol;
 /** Color of the topmost painted area at a point ('none' if unpainted). */
 const colorAt = (page, p) => page.evaluate((q) => {
   const f = [...document.querySelectorAll('.mz-fill')].reverse().find(el => MZ.insideEl(el, q));
@@ -82,4 +94,4 @@ function png(w, h, fn) {
   return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), chunk('IHDR', ihdr), chunk('IDAT', zlib.deflateSync(raw)), chunk('IEND', Buffer.alloc(0))]);
 }
 
-module.exports = { expect, blank, open, scr, drag, click, key, fills, colorAt, count, setState, png };
+module.exports = { expect, blank, open, scr, drag, click, key, fills, expectFills, near, colorAt, count, setState, png };

@@ -7,7 +7,7 @@ const $ = (s) => document.querySelector(s);
 const $$ = (s) => [...document.querySelectorAll(s)];
 
 // ---- DOM ------------------------------------------------------------------
-const svg = $('#canvas'), stage = $('#stage');
+const svg = $('#canvas'), overlaySvg = $('#overlay'), stage = $('#stage');
 const docG = $('#mz-doc'), defsG = $('#mz-docdefs'), fillsG = $('#mz-fills'), shapesG = $('#mz-shapes'), refG = $('#mz-ref');
 const selG = $('#mz-sel'), previewG = $('#mz-preview'), snapG = $('#mz-snapmark'), guidesG = $('#mz-guides'), flashG = $('#mz-flash');
 const pageRect = $('#mz-page'), gridRect = $('#mz-gridrect'), gridPattern = $('#mz-grid'), gridPath = $('#mz-gridpath');
@@ -381,7 +381,9 @@ function updateView() {
   const r = svg.getBoundingClientRect();
   if (!r.width || !r.height) return;
   const v = state.view;
-  svg.setAttribute('viewBox', `${v.x} ${v.y} ${r.width / v.s} ${r.height / v.s}`);
+  const vb = `${v.x} ${v.y} ${r.width / v.s} ${r.height / v.s}`;
+  svg.setAttribute('viewBox', vb);
+  overlaySvg.setAttribute('viewBox', vb);
   $('#zoom-label').textContent = Math.round(v.s * 100) + '%';
   gridPath.setAttribute('stroke-width', px(1));
   $('#mz-checker').setAttribute('patternTransform', `scale(${1 / v.s})`);
@@ -1179,10 +1181,10 @@ function commitGeometry() {
 function commitFor(els) {
   if ([...els].every(isFill)) commit(); else commitGeometry();
 }
-function eyedrop(e) {
-  for (const t of document.elementsFromPoint(e.clientX, e.clientY)) {
-    if (!docG.contains(t) || !t.matches(SHAPE_SEL) || t.tagName === 'line') continue;
-    const c = normColor(getComputedStyle(t).fill);
+function eyedrop(p) {
+  for (const t of shapesAt(p)) {
+    if (!insideEl(t, p)) continue;
+    const c = fillOf(t);
     if (c) {
       setFill(c, false);
       toast(`Picked ${c}${state.palette.includes(c) ? '' : ' (not in the palette – add it with “From drawing”)'}`);
@@ -1488,7 +1490,7 @@ function paintPoints(p, ctx) {
 }
 const bucketTool = {
   down(e, raw) {
-    if (e.altKey) { eyedrop(e); return; }
+    if (e.altKey) { eyedrop(raw); return; }
     if (!editable('fills')) { toast('Painted areas are locked or hidden (see Layers).'); return; }
     const ctx = paintCtx();
     ctx.done = new Set();
