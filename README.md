@@ -1,7 +1,9 @@
 # Mosaic Paint
 
 A small local vector editor for designing and coloring mosaics with your own palette.
-No install or build step: open `index.html` in Chrome / Edge / Firefox.
+**Use it online: https://honza03210.github.io/mosaic-paint/**
+
+Or run it offline: no install or build step, just open `index.html` in Chrome / Edge / Firefox.
 
 ## Workflow
 
