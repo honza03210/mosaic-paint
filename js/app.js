@@ -732,7 +732,7 @@ function finishLine(a, b) {
       x1: fmt(a.x), y1: fmt(a.y), x2: fmt(b.x), y2: fmt(b.y),
       stroke: state.stroke || 'none', 'stroke-width': state.strokeWidth, 'stroke-linecap': 'round',
     }, shapesG);
-    commit();
+    commitGeometry();
     state.lineStart = state.chain ? { x: b.x, y: b.y } : null;
   } else state.lineStart = null; // clicking twice on the same spot ends a chain
   previewG.innerHTML = '';
@@ -823,7 +823,7 @@ const ngonTool = {
       stroke: state.stroke || 'none', 'stroke-width': state.strokeWidth, 'stroke-linejoin': 'round',
     }, shapesG);
     setNgonData(el, s);
-    commit();
+    commitGeometry();
   },
 };
 
@@ -893,6 +893,92 @@ function bucket(p, color) {
     return;
   }
   toast('No closed area here – make sure the lines meet (keep Snap on while drawing).');
+}
+// ---- painted areas follow the lines ----------------------------------------------
+/** Up to ~max points spread over a bbox that pass `inside`. */
+function gridSample(bb, inside, max) {
+  for (const n of [8, 20, 48]) {
+    const pts = [];
+    for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+      const p = { x: bb.x0 + (bb.x1 - bb.x0) * (i + 0.5) / n, y: bb.y0 + (bb.y1 - bb.y0) * (j + 0.5) / n };
+      if (inside(p)) pts.push(p);
+    }
+    if (pts.length >= 6 || n === 48) {
+      const step = Math.max(1, Math.floor(pts.length / max));
+      return pts.filter((_, k) => k % step === 0);
+    }
+  }
+  return [];
+}
+const insideRegion = (r, p) => Geo.pointInPolygon(p, r.outer) && !r.holes.some(h => Geo.pointInPolygon(p, h));
+function setFillRegion(el, region) {
+  const m = elMatrix(el);
+  const map = m.isIdentity ? (r) => r : ((inv) => (r) => r.map(p => applyM(inv, p)))(m.inverse());
+  el.setAttribute('d', ringsToD([region.outer, ...region.holes].map(map)));
+  el.setAttribute('data-area', fmt(region.area));
+  invalidate(el);
+}
+/**
+ * After lines change, every painted area re-finds its region: points sampled inside its old
+ * shape vote for the area they now fall in. Split areas keep the color in every piece, merged
+ * areas keep the color of the bigger one, and areas that no longer close are removed.
+ */
+function reflowFills() {
+  const fills = [...docG.querySelectorAll('path.mz-fill')];
+  if (!fills.length) return;
+  touch();
+  const ix = Geo.regionIndex(boundarySegments());
+  const items = fills.map(el => {
+    const g = geomOf(el), rings = g.polys.filter(p => p.closed).map(p => p.pts);
+    const inside = (p) => rings.reduce((n, r) => n + (Geo.pointInPolygon(p, r) ? 1 : 0), 0) % 2 === 1;
+    const samples = gridSample(g.bbox, inside, 64), votes = new Map();
+    for (const p of samples) {
+      const f = ix.locate(p);
+      if (f) votes.set(f, (votes.get(f) || 0) + 1);
+    }
+    const area = Math.abs(+el.dataset.area) || rings.reduce((s, r) => s + Math.abs(Geo.polygonArea(r)), 0);
+    return { el, inside, votes, area, n: samples.length || 1 };
+  });
+  // match painted areas to regions by best overlap (intersection over union), greedily,
+  // so an area that loses its first choice falls back to the next best region
+  const pairs = [];
+  for (const it of items) for (const [f, v] of it.votes) {
+    const ov = it.area * v / it.n, fa = ix.region(f).area;
+    pairs.push({ it, f, score: ov / (it.area + fa - ov) });
+  }
+  pairs.sort((a, b) => b.score - a.score || b.it.area - a.it.area);
+  const owner = new Map(), placed = new Set();
+  for (const { it, f } of pairs) {
+    if (placed.has(it) || owner.has(f)) continue;
+    owner.set(f, it);
+    placed.add(it);
+    setFillRegion(it.el, ix.region(f));
+  }
+  for (const it of items) if (!placed.has(it)) it.el.remove();
+  // a line drawn through a painted area: pieces lying within the old area keep its color
+  for (const it of items) {
+    if (!it.el.isConnected) continue;
+    for (const f of it.votes.keys()) {
+      if (owner.has(f)) continue;
+      const reg = ix.region(f);
+      const pts = gridSample(reg.bb, (p) => insideRegion(reg, p), 40);
+      if (!pts.length || pts.filter(it.inside).length < pts.length * 0.85) continue;
+      owner.set(f, it);
+      const c = it.el.cloneNode(false);
+      it.el.after(c);
+      setFillRegion(c, reg);
+    }
+  }
+  [...fillsG.children].sort((a, b) => (+b.dataset.area || 0) - (+a.dataset.area || 0)).forEach(c => fillsG.appendChild(c));
+}
+/** Commit for edits that change lines: painted areas are updated in the same undo step. */
+function commitGeometry() {
+  reflowFills();
+  commit();
+}
+/** Edits that touched only painted areas leave the others alone. */
+function commitFor(els) {
+  if ([...els].every(isFill)) commit(); else commitGeometry();
 }
 function eyedrop(e) {
   for (const t of document.elementsFromPoint(e.clientX, e.clientY)) {
@@ -996,8 +1082,9 @@ const selectTool = {
     if (!a || !a.moved) return;
     if (a.type === 'vertex') {
       for (const t of a.targets) t.el.removeAttribute('data-ngon');
-      commit();
-    } else if (a.type === 'ngon-resize' || a.type === 'move') commit();
+      commitGeometry();
+    } else if (a.type === 'ngon-resize') commitGeometry();
+    else if (a.type === 'move') commitFor(a.caps.map(c => c.el));
     else if (a.type === 'marquee' && a.cur) {
       const x0 = Math.min(a.start.x, a.cur.x), x1 = Math.max(a.start.x, a.cur.x);
       const y0 = Math.min(a.start.y, a.cur.y), y1 = Math.max(a.start.y, a.cur.y);
@@ -1030,9 +1117,10 @@ function setTool(t) {
 // ---- selection commands -------------------------------------------------------
 function deleteSel() {
   if (!state.selection.size) return;
-  for (const el of state.selection) el.remove();
+  const els = [...state.selection];
+  for (const el of els) el.remove();
   state.selection.clear();
-  commit();
+  commitFor(els);
 }
 function duplicate() {
   if (!state.selection.size) return;
@@ -1040,7 +1128,7 @@ function duplicate() {
   const off = state.grid ? state.gridSize : Math.max(state.doc.w, state.doc.h) / 100;
   moveElements(clones, { x: off, y: off });
   state.selection = new Set(clones);
-  commit();
+  commitFor(clones);
 }
 function toFront() {
   for (const el of state.selection) el.parentNode.appendChild(el);
@@ -1308,7 +1396,7 @@ window.addEventListener('keydown', (e) => {
     if (!state.selection.size) return;
     const s = state.grid ? state.gridSize : (e.shiftKey ? 10 : 1);
     moveElements([...state.selection], { x: dx * s, y: dy * s });
-    commit();
+    commitFor(state.selection);
   };
   switch (k) {
     case 'v': setTool('select'); break;
@@ -1445,7 +1533,7 @@ function bindPanel() {
     const r = +$('#sel-radius').value > 0 ? +$('#sel-radius').value : g.r;
     const rot = Number.isFinite(+$('#sel-rot').value) ? +$('#sel-rot').value : g.rot;
     setNgon(el, { ...g, n, r, rot });
-    commit();
+    commitGeometry();
   };
   for (const id of ['#sel-sides', '#sel-radius', '#sel-rot']) $(id).onchange = ngonInput;
   $('#sel-sw').onchange = () => {
@@ -1470,7 +1558,7 @@ function bindPanel() {
     state.doc.w = w;
     state.doc.h = h;
     applyDoc();
-    commit();
+    commitGeometry();
     fitView();
   };
   $('#doc-bg').onchange = () => { state.doc.bg = $('#doc-bg').value; applyDoc(); commit(); };

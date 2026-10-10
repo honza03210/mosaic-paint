@@ -179,21 +179,48 @@ const Geo = (() => {
    * (separate groups of lines fully inside it) cut out as holes.
    */
   function findRegion(segs, p) {
+    const ix = regionIndex(segs), f = ix.locate(p);
+    return f ? ix.region(f) : null;
+  }
+
+  /** Computes the faces once, then answers many "which area is this point in?" queries. */
+  function regionIndex(segs) {
     const faces = planarFaces(segs);
-    let best = null;
-    for (const f of faces) {
-      if (f.area > 0 && (!best || f.area < best.area) && pointInPolygon(p, f.pts)) best = f;
+    for (const f of faces) f.bb = bounds(f.pts);
+    const inner = faces.filter(f => f.area > 0), outer = faces.filter(f => f.area < 0);
+    const regions = new Map();
+    const locate = (p) => {
+      let best = null;
+      for (const f of inner) {
+        const b = f.bb;
+        if (p.x < b.x0 || p.x > b.x1 || p.y < b.y0 || p.y > b.y1) continue;
+        if ((!best || f.area < best.area) && pointInPolygon(p, f.pts)) best = f;
+      }
+      return best;
+    };
+    const region = (f) => {
+      if (regions.has(f)) return regions.get(f);
+      const cands = outer.filter(h => h.comp !== f.comp && pointInPolygon(h.pts[0], f.pts));
+      const holes = cands.filter(h => !cands.some(o => o !== h && pointInPolygon(h.pts[0], o.pts)));
+      const r = { outer: f.pts, holes: holes.map(h => h.pts), area: f.area + holes.reduce((s, h) => s + h.area, 0), bb: f.bb };
+      regions.set(f, r);
+      return r;
+    };
+    return { locate, region };
+  }
+
+  function bounds(pts) {
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    for (const q of pts) {
+      if (q.x < x0) x0 = q.x; if (q.x > x1) x1 = q.x;
+      if (q.y < y0) y0 = q.y; if (q.y > y1) y1 = q.y;
     }
-    if (!best) return null;
-    const cands = faces.filter(f => f.area < 0 && f.comp !== best.comp && pointInPolygon(f.pts[0], best.pts));
-    const holes = cands.filter(h => !cands.some(o => o !== h && pointInPolygon(h.pts[0], o.pts)));
-    const area = best.area + holes.reduce((s, h) => s + h.area, 0);
-    return { outer: best.pts, holes: holes.map(h => h.pts), area };
+    return { x0, y0, x1, y1 };
   }
 
   return {
     get eps() { return eps; },
     setEps(v) { eps = v; },
-    dist, project, segIntersect, polygonArea, pointInPolygon, regularPolygon, planarFaces, findRegion,
+    dist, project, segIntersect, polygonArea, pointInPolygon, regularPolygon, planarFaces, findRegion, regionIndex, bounds,
   };
 })();

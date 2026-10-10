@@ -18,6 +18,8 @@ Or run it offline: no install or build step, just open `index.html` in Chrome / 
    "From edge" polygon mode builds a polygon on an existing edge, so tiles fit together exactly.
 3. **Paint** with the bucket (B). Click inside any area enclosed by lines, polygons, or the page edge.
    The app finds the enclosed area, even one made of many separate lines, and paints it with the fill color. Click it again to recolor.
+   Painted areas follow the lines: when you move, add or delete lines, each area reshapes to its new outline.
+   A tile cut in two keeps its color in both halves; when two painted tiles merge, the bigger one's color wins.
 4. **Edit** with Select (V). Drag shapes, or drag corner handles; corners shared by several lines move together (hold Alt to detach one).
    Yellow handles on regular polygons resize and rotate them. Sides, radius and rotation can also be typed in the Selection panel.
 5. **Save SVG** (Ctrl+S) / **Export PNG**. A saved SVG remembers the palette and opens back up for further editing.
