@@ -2399,6 +2399,7 @@ requestAnimationFrame(fitView);
     updateTitle();
   }
   restored = true;
+  window.MZ.ready = true;
   emit('ready');
 })();
 

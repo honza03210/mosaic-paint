@@ -325,6 +325,8 @@ MZ.on('mode', drawRulers);
 
 // ---- phone / tablet layout ------------------------------------------------------------
 $('#btn-panel').onclick = () => document.body.classList.toggle('panel-open');
+// the slide-in panel starts below the top bar, so ☰ stays reachable to close it
+new ResizeObserver(([e]) => document.documentElement.style.setProperty('--topbar-h', e.target.offsetHeight + 'px')).observe($('#topbar'));
 MZ.stage.addEventListener('pointerdown', () => document.body.classList.remove('panel-open'));
 for (const d of document.querySelectorAll('dialog')) {
   d.addEventListener('click', (e) => { if (e.target === d) d.close(); }); // click on the backdrop closes

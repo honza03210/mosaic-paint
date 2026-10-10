@@ -70,3 +70,15 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/colors.js`: color parsing and closest-color matching
 - `js/store.js`: browser storage for the autosave and versions
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support
+
+## Development
+
+```bash
+npm install          # test tools only; the app itself has no dependencies
+npm run serve        # http://localhost:4173/
+npm test             # unit tests (geometry, patterns) + end-to-end tests in Chrome
+```
+
+The end-to-end tests (`tests/e2e/`) drive the real app with mouse, keyboard and touch input:
+drawing, snapping, painting, painted areas following edits, files, autosave, history, printing, the photo tools, the phone layout and offline start.
+They run on every push (GitHub Actions).
