@@ -64,11 +64,8 @@ async function expectFills(page, expected) {
   g.forEach((x, i) => expect(Math.abs(x[1] - e[i][1]), `area ${x[1]} vs ${e[i][1]}`).toBeLessThanOrEqual(e[i][1] * 0.01 + 2 * Math.sqrt(e[i][1])));
 }
 const near = (a, b, tol = 1.5) => Math.abs(a - b) <= tol;
-/** Color of the topmost painted area at a point ('none' if unpainted). */
-const colorAt = (page, p) => page.evaluate((q) => {
-  const f = [...document.querySelectorAll('.mz-fill')].reverse().find(el => MZ.insideEl(el, q));
-  return f ? f.getAttribute('fill') : 'none';
-}, p);
+/** Color of the topmost painted area or filled shape at a point ('none' if unpainted). */
+const colorAt = (page, p) => page.evaluate((q) => MZ.paintedColorAt(q) || 'none', p);
 const count = (page, sel) => page.evaluate((s) => document.querySelectorAll(s).length, sel);
 const setState = (page, patch) => page.evaluate((p) => {
   for (const k in p) {

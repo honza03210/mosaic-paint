@@ -89,8 +89,8 @@ function download(blob, name) {
   a.download = name;
   document.body.appendChild(a);
   a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  // Safari needs the link (and its URL) for a while after the click
+  setTimeout(() => { a.remove(); URL.revokeObjectURL(a.href); }, 30000);
 }
 
 // ---- units ------------------------------------------------------------------
@@ -2268,7 +2268,9 @@ window.addEventListener('blur', () => { state.space = false; stage.classList.rem
 // paste colors anywhere outside a text field
 document.addEventListener('paste', (e) => {
   if (typingIn(e.target)) return;
-  const text = e.clipboardData && e.clipboardData.getData('text');
+  const text = (e.clipboardData && e.clipboardData.getData('text')) || '';
+  // modules get the first look (motifs.js pastes copied shapes), even with an empty clipboard
+  for (const fn of hooks.pasteText || []) if (fn(text)) { e.preventDefault(); return; }
   if (!text) return;
   const cols = Colors.parse(text);
   if (!cols.length) { toast('The clipboard has no color codes.'); return; }
@@ -2311,7 +2313,8 @@ function bindPanel() {
   for (const b of $$('#mode-switch button')) b.onclick = () => setMode(b.dataset.mode);
   $('#btn-new').onclick = newDoc;
   $('#btn-open').onclick = openFile;
-  $('#file-input').onchange = (e) => { loadFile(e.target.files[0]); e.target.value = ''; };
+  // read the file before resetting the input (resetting first can make the file unreadable)
+  $('#file-input').onchange = async (e) => { await loadFile(e.target.files[0]); e.target.value = ''; };
   $('#btn-save').onclick = () => save(false);
   $('#btn-saveas').onclick = () => save(true);
   $('#btn-png').onclick = exportPNG;
@@ -2375,9 +2378,10 @@ function bindPanel() {
   $('#btn-pal-import').onclick = () => $('#pal-file').click();
   $('#pal-file').onchange = async (e) => {
     const f = e.target.files[0];
-    e.target.value = '';
     if (!f) return;
-    const n = addColors(Colors.parse(await f.text()));
+    const text = await f.text();
+    e.target.value = '';
+    const n = addColors(Colors.parse(text));
     toast(n ? `Imported ${n} color${n > 1 ? 's' : ''}.` : 'No new colors found in ' + f.name);
   };
 
@@ -2443,7 +2447,7 @@ function bindPanel() {
 
   // reference photo
   $('#btn-ref-load').onclick = () => $('#ref-file').click();
-  $('#ref-file').onchange = (e) => { const f = e.target.files[0]; e.target.value = ''; if (f) loadPhoto(f); };
+  $('#ref-file').onchange = async (e) => { const f = e.target.files[0]; if (f) await loadPhoto(f); e.target.value = ''; };
   $('#ref-opacity').oninput = (e) => {
     state.refOpacity = +e.target.value / 100;
     const im = refImage();
@@ -2574,6 +2578,10 @@ function addPalette(name, colors) {
 window.MZ = {
   addLineSegments, clearDrawing, addPalette, paintedColorAt, neighbourColors,
   setFillChooser: (fn) => { fillChooser = fn; },
+  elMatrix, snapPoint, toDoc, typingIn, invalidate,
+  setSelection: (els) => { state.selection = new Set(els); selectionChanged(); },
+  /** Adds a tool that has no button (e.g. placing a motif): handlers { down, move, up }. */
+  registerTool: (name, handlers, hint) => { tools[name] = handlers; HINTS[name] = hint; },
   getHistory: () => ({ history, hIndex }),
   setHistory: (h) => { history = h.history; hIndex = h.hIndex; updateUndoUI(); },
   docChanged, updateView, fitView,

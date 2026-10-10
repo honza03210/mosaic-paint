@@ -233,6 +233,18 @@
       <div class="row small expert"><button id="btn-grout-bake" title="Give every line this color and width for real">Apply to all lines</button></div>
     </section>
 
+    <section>
+      <h3>Motifs</h3>
+      <div id="motif-list" class="motif-grid"></div>
+      <div class="row small">
+        <button id="btn-motif-save" title="Save the selected shapes as a motif">Save selection…</button>
+        <button id="btn-motif-import" title="Load motifs from a file">Import…</button>
+        <button id="btn-motif-export" title="Download all motifs as a file">Export</button>
+        <input type="file" id="motif-file" accept=".json,application/json" hidden>
+      </div>
+      <p class="note">Click a motif, then click on the drawing to place it (R turns it, Esc stops). Ctrl+C / Ctrl+X / Ctrl+V copy shapes between pages, drawings and browser tabs.</p>
+    </section>
+
     <section class="expert">
       <h3>Symmetry</h3>
       <div class="row">
@@ -324,6 +336,7 @@
           <tr><td>Del</td><td>Delete selection (or the last corner of a free polygon)</td></tr>
           <tr><td>Arrows</td><td>Nudge (Shift = ×10)</td></tr>
           <tr><td>Ctrl+Z / Ctrl+Y</td><td>Undo / redo</td></tr>
+          <tr><td>Ctrl+C / X / V</td><td>Copy, cut, paste shapes (also between pages and drawings)</td></tr>
           <tr><td>Ctrl+D, Ctrl+A</td><td>Duplicate, select all</td></tr>
           <tr><td>Wheel, Space+drag</td><td>Zoom, pan (two fingers on touch screens)</td></tr>
           <tr><td>0</td><td>Fit page</td></tr>
@@ -413,5 +426,7 @@
 <script src="js/mix.js"></script>
 <script src="js/vision.js"></script>
 <script src="js/pages.js"></script>
+<script src="js/snippets.js"></script>
+<script src="js/motifs.js"></script>
 </body>
 </html>
