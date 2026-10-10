@@ -113,3 +113,40 @@ test('fit-to-sheet printing makes a single page', async ({ page, context }) => {
   await popup.waitForLoadState();
   expect(await popup.evaluate(() => document.querySelectorAll('section.sheet').length)).toBe(1);
 });
+
+test('laying plan: numbered panels, each at real size, with tiles per panel (Expert)', async ({ page, context, browserName }) => {
+  await h.open(page, { mode: 'expert', doc: h.blank(400, 300, 'mm') });
+  await h.setState(page, { pattern: { type: 'square', size: 50, angle: 0 } });
+  await h.key(page, 't');
+  await page.click('#btn-pat-page');
+  await h.key(page, 'b');
+  for (const [x, c] of [[25, '#e76f51'], [75, '#2a9d8f'], [375, '#e76f51']]) {
+    await h.setState(page, { fill: c });
+    await h.click(page, { x, y: 25 });
+  }
+  await page.click('#btn-layplan');
+  await page.fill('#lp-w', '200');
+  await page.fill('#lp-h', '150');
+  await page.locator('#lp-h').dispatchEvent('change');
+  await page.selectOption('#lp-paper', 'a4');
+  await expect(page.locator('#lp-info')).toContainText('4 panels (2 × 2)');
+  expect(await h.count(page, '#mz-panels .panel-rect')).toBe(4); // preview on the drawing
+  const [popup] = await Promise.all([context.waitForEvent('page'), page.click('#lp-go')]);
+  await popup.waitForLoadState();
+  expect(await h.count(page, '#mz-panels .panel-rect')).toBe(0); // preview gone with the dialog
+  const info = await popup.evaluate(() => ({
+    sections: document.querySelectorAll('section.sheet').length,
+    labels: [...document.querySelectorAll('.label')].map(l => l.textContent),
+    counts: [...document.querySelectorAll('.counts tr')].map(tr => [...tr.cells].map(c => c.textContent.trim())),
+  }));
+  // overview + 4 panels (200 × 150 mm fits one A4 sheet each) + counts + legend
+  expect(info.sections).toBe(7);
+  expect(info.labels[1]).toContain('Panel 1');
+  // columns in palette order (teal, red): panel 1 (top left) has one of each, panel 2 (top right) one red
+  expect(info.counts[1]).toEqual(['1', '1', '1']);
+  expect(info.counts[2]).toEqual(['2', '', '1']);
+  if (browserName === 'chromium') {
+    const pdf = (await popup.pdf({ preferCSSPageSize: true })).toString('latin1');
+    expect((pdf.match(/\/Type\s*\/Page\b(?!s)/g) || []).length).toBe(7);
+  }
+});

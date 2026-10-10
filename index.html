@@ -24,6 +24,7 @@
   <button id="btn-saveas" class="expert" title="Save as (Ctrl+Shift+S)">Save as…</button>
   <button id="btn-png" title="Export a PNG image">PNG</button>
   <button id="btn-print" class="expert" title="Print a real-size template with color numbers">Print…</button>
+  <button id="btn-layplan" class="expert" title="Split the mosaic into numbered panels and print a laying plan">Plan…</button>
   <button id="btn-report" title="Colors used, areas and a shopping list">Report</button>
   <button id="btn-history" title="Earlier versions of your drawing">History</button>
   <span class="sep"></span>
@@ -97,6 +98,7 @@
     <!-- selection, previews and snap marks live in their own layer, so redrawing them doesn't repaint the mosaic -->
     <svg id="overlay" class="canvas-layer" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <g id="mz-overlay" pointer-events="none">
+        <g id="mz-panels"></g>
         <g id="mz-marks"></g>
         <g id="mz-guides"></g>
         <g id="mz-sel"></g>
@@ -405,6 +407,19 @@
   <div class="row dlg-foot"><button id="am-go" class="primary">Make mosaic</button></div>
 </dialog>
 
+<dialog id="dlg-layplan">
+  <form method="dialog" class="dlg-head"><h2>Laying plan</h2><button title="Close">✕</button></form>
+  <p class="note">Splits the mosaic into numbered panels – the size of your work surface or of the mesh sheets you lay the tiles on. The print has an overview, every panel at real size and the number of tiles of each color per panel.</p>
+  <div class="row">
+    <label>Panel size <input id="lp-w" type="number" min="1" step="1"> × <input id="lp-h" type="number" min="1" step="1"> <span class="unit-label"></span></label>
+    <label>Paper <select id="lp-paper"><option value="a4">A4</option><option value="letter">Letter</option><option value="a3">A3</option><option value="tabloid">Tabloid</option></select></label>
+  </div>
+  <label class="chk"><input type="checkbox" id="lp-numbers"> Color numbers on the tiles</label>
+  <label class="chk"><input type="checkbox" id="lp-grid"> Show the panels on the drawing</label>
+  <p class="note" id="lp-info"></p>
+  <div class="row dlg-foot"><button id="lp-go" class="primary">Print…</button></div>
+</dialog>
+
 <dialog id="dlg-history">
   <form method="dialog" class="dlg-head"><h2>History</h2><button title="Close">✕</button></form>
   <p class="note">Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another drawing. Restoring keeps your current drawing as a version too.</p>
@@ -423,6 +438,7 @@
 <script src="js/photo.js"></script>
 <script src="js/features.js"></script>
 <script src="js/automosaic-ui.js"></script>
+<script src="js/layplan.js"></script>
 <script src="js/mix.js"></script>
 <script src="js/vision.js"></script>
 <script src="js/pages.js"></script>

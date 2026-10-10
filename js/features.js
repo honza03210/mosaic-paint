@@ -125,9 +125,11 @@ function labelSpot(el) {
   }
   return best && { p: best, r: bd };
 }
-function printTemplate() {
-  const style = document.querySelector('input[name=print-style]:checked').value;
-  const legend = $('#print-legend').checked;
+/**
+ * The drawing for printing, as inner SVG markup: style 'colors', 'both' (colors + numbers) or
+ * 'numbers' (white tiles with color numbers). Also returns the color rows for legends.
+ */
+function printArt(style) {
   const stats = colorStats(), nums = colorNumbers(stats.keys());
   const doc = new DOMParser().parseFromString(MZ.buildSVGString({ photo: false, grout: state.grout.on, pageOnly: true }), 'image/svg+xml');
   const root = doc.documentElement, NS = 'http://www.w3.org/2000/svg';
@@ -170,16 +172,22 @@ function printTemplate() {
     }
     root.appendChild(g);
   }
-  // the drawing's content, without the outer <svg>, is placed on the sheets by Printing.html
+  // the drawing's content, without the outer <svg>, is placed on the sheets by Printing
   const art = [...root.childNodes].map(c => new XMLSerializer().serializeToString(c)).join('');
   const rows = [...stats.entries()].map(([c, e]) => ({ c, n: nums.get(c), ...e })).sort((a, b) => a.n - b.n);
-  const legendHTML = legend && rows.length ? `<h2>${esc(MZ.fileName)} – colors</h2><table>`
+  return { art, rows, nums };
+}
+function legendHTML(rows) {
+  return rows.length ? `<h2>${esc(MZ.fileName)} – colors</h2><table>`
     + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles} area${r.tiles === 1 ? '' : 's'}</td><td>${esc(MZ.fmtArea(r.area))}</td></tr>`).join('')
-    + `</table>` : '';
+    + '</table>' : '';
+}
+function printTemplate() {
+  const { art, rows } = printArt(document.querySelector('input[name=print-style]:checked').value);
   const d = state.doc;
   openPrintPage(Printing.html({
-    art, box: { x: d.x, y: d.y, w: d.w, h: d.h }, unit: MZ.unit(), legend: legendHTML, title: MZ.fileName.replace(/\.svg$/i, ''),
-    paper: $('#print-paper').value, mode: document.querySelector('input[name=print-size]:checked').value,
+    art, box: { x: d.x, y: d.y, w: d.w, h: d.h }, unit: MZ.unit(), legend: $('#print-legend').checked ? legendHTML(rows) : '',
+    title: MZ.fileName.replace(/\.svg$/i, ''), paper: $('#print-paper').value, mode: document.querySelector('input[name=print-size]:checked').value,
   }));
 }
 function openPrintPage(html) {
@@ -197,6 +205,8 @@ function updatePrintInfo() {
     : `${L.sheets.length} ${L.paper.name} sheet${L.sheets.length > 1 ? 's' : ''} (${L.orientation}${L.sheets.length > 1 ? `, ${L.rows} × ${L.cols}, overlapping ${Printing.OVERLAP} mm` : ''}) at real size.`;
 }
 $('#btn-print').onclick = () => { updatePrintInfo(); $('#dlg-print').showModal(); };
+// shared with the laying plan (layplan.js)
+window.PrintTools = { art: printArt, legend: legendHTML, open: openPrintPage, colorStats, colorNumbers };
 for (const el of document.querySelectorAll('#print-paper, input[name=print-size]')) el.onchange = updatePrintInfo;
 $('#print-go').onclick = () => { $('#dlg-print').close(); printTemplate(); };
 

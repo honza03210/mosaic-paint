@@ -47,6 +47,10 @@ The switch in the top-left corner chooses how much of the app you see.
    - **PNG** exports an image.
    - **Print… (Expert)** opens a template in color, with color numbers, or as a paint-by-number outline, plus a legend page. At real size it is split across overlapping, labeled sheets (A1, A2, …) with an overview page; or it can be fitted onto one sheet.
 
+## Laying plan (Expert)
+
+**Plan…** splits a large mosaic into numbered panels of the size of your work surface or mesh sheets (shown on the drawing while you choose). The print has an overview with the panel numbers, every panel at real size (on several overlapping sheets if it is bigger than the paper) with color numbers, a table of how many tiles of each color every panel needs, and the color legend.
+
 ## Copy, paste and motifs
 
 Ctrl+C / Ctrl+X / Ctrl+V copy shapes and their colors between pages, drawings and browser tabs (they arrive under the mouse, at real size even if the other drawing uses different units). Save a selection as a **motif** to reuse it: click it in the Motifs section, then click on the drawing to place copies (R turns them). The library can be exported and imported as a file.
@@ -81,7 +85,8 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/automosaic.js`: tile layouts for a mosaic from a photo (quadtree, Voronoi) and palette suggestion (k-means)
 - `js/photo.js`: reading the photo (average colors, detail, coloring tiles)
 - `js/automosaic-ui.js`: the "Mosaic from photo" dialog
-- `js/print.js`: splitting the print-out across sheets
+- `js/print.js`: splitting the print-out across sheets, print pages
+- `js/layplan.js`: the laying plan (panels, per-panel counts)
 - `js/contour.js`: rows following an outline (distance field, marching squares)
 - `js/mix.js`: the random color mix
 - `js/vision.js`: black & white / color-blind views and contrast checks
