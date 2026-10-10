@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mosaic Paint</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="topbar">
+  <span class="brand">Mosaic Paint</span>
+  <button id="btn-new" title="New drawing">New</button>
+  <button id="btn-open" title="Open SVG (Ctrl+O) – you can also drop a file on the canvas">Open…</button>
+  <button id="btn-save" title="Save SVG (Ctrl+S)">Save SVG</button>
+  <button id="btn-saveas" title="Save as (Ctrl+Shift+S)">Save as…</button>
+  <button id="btn-png" title="Export a PNG image">Export PNG</button>
+  <span class="sep"></span>
+  <button id="btn-undo" title="Undo (Ctrl+Z)">↶ Undo</button>
+  <button id="btn-redo" title="Redo (Ctrl+Y)">↷ Redo</button>
+  <span class="sep"></span>
+  <button id="btn-zoomout" title="Zoom out (-)">−</button>
+  <span id="zoom-label">100%</span>
+  <button id="btn-zoomin" title="Zoom in (+)">+</button>
+  <button id="btn-fit" title="Fit page (0)">Fit</button>
+  <input type="file" id="file-input" accept=".svg,image/svg+xml" hidden>
+</header>
+
+<div id="main">
+  <nav id="tools">
+    <button data-tool="select" title="Select / edit (V)">
+      <svg viewBox="0 0 20 20"><path d="M4 2l11 8-5 1 3 6-2 1-3-6-4 4z"/></svg>
+    </button>
+    <button data-tool="line" title="Line (L)">
+      <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg>
+    </button>
+    <button data-tool="ngon" title="Regular polygon (G)">
+      <svg viewBox="0 0 20 20"><path d="M10 2l7 4v8l-7 4-7-4V6z" class="st"/></svg>
+    </button>
+    <button data-tool="bucket" title="Paint bucket (B)">
+      <svg viewBox="0 0 20 20"><path d="M3 9l6-6 7 7-6 6z" class="st"/><path d="M16.5 12.5c1.2 1.8 1.8 2.9 1.8 3.6a1.8 1.8 0 01-3.6 0c0-.7.6-1.8 1.8-3.6z"/></svg>
+    </button>
+    <button data-tool="pan" title="Pan (H, or hold Space / middle mouse)">
+      <svg viewBox="0 0 20 20"><path d="M10 1l3 3h-2v5h5V7l3 3-3 3v-2h-5v5h2l-3 3-3-3h2v-5H4v2l-3-3 3-3v2h5V4H7z"/></svg>
+    </button>
+  </nav>
+
+  <div id="stage" data-tool="select">
+    <svg id="canvas" xmlns="http://www.w3.org/2000/svg">
+      <defs id="mz-uidefs">
+        <pattern id="mz-checker" width="16" height="16" patternUnits="userSpaceOnUse">
+          <rect width="16" height="16" fill="#ffffff"/>
+          <rect width="8" height="8" fill="#d9d9d9"/>
+          <rect x="8" y="8" width="8" height="8" fill="#d9d9d9"/>
+        </pattern>
+        <pattern id="mz-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path id="mz-gridpath" d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,110,255,0.35)" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect id="mz-page"/>
+      <g id="mz-doc">
+        <defs id="mz-docdefs"></defs>
+        <g id="mz-fills"></g>
+        <g id="mz-shapes"></g>
+      </g>
+      <rect id="mz-gridrect" fill="url(#mz-grid)" pointer-events="none"/>
+      <g id="mz-overlay" pointer-events="none">
+        <g id="mz-sel"></g>
+        <g id="mz-preview"></g>
+        <g id="mz-snapmark"></g>
+      </g>
+    </svg>
+  </div>
+
+  <aside id="panel">
+    <section>
+      <h3>Colors</h3>
+      <div class="active-colors">
+        <div class="ac" title="Fill color – used by the paint bucket"><span>Fill</span><div id="ac-fill" class="acbox"></div></div>
+        <div class="ac" title="Stroke color – used for new lines and polygons"><span>Stroke</span><div id="ac-stroke" class="acbox"></div></div>
+        <button id="btn-swap" title="Swap fill and stroke">⇄</button>
+        <label class="sw-w" title="Stroke width for new lines and polygons">Width <input id="stroke-width" type="number" min="0" step="0.5"></label>
+      </div>
+      <div id="palette"></div>
+      <div class="row add-row">
+        <span id="color-preview" class="mini"></span>
+        <input id="color-input" type="text" placeholder="Paste #hex, rgb(), name…" spellcheck="false" autocomplete="off">
+        <button id="btn-add-color" class="primary">Add color</button>
+      </div>
+      <div class="row small">
+        <button id="btn-pal-import" title="Load colors from a .txt / .gpl / .css file">Import…</button>
+        <button id="btn-pal-doc" title="Add every color used in the drawing">From drawing</button>
+        <button id="btn-pal-export" title="Download the palette as a list of hex codes">Export</button>
+        <button id="btn-pal-clear">Clear</button>
+        <input type="file" id="pal-file" accept=".txt,.gpl,.hex,.css,.json,text/plain" hidden>
+      </div>
+      <p class="note">Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing). Ctrl+V on the canvas adds any colors you copied.</p>
+    </section>
+
+    <section class="tool-opts" data-for="line">
+      <h3>Line</h3>
+      <label class="chk"><input type="checkbox" id="opt-chain"> Chain lines (next line starts at the last end)</label>
+    </section>
+
+    <section class="tool-opts" data-for="ngon">
+      <h3>Regular polygon</h3>
+      <div class="row">
+        <label>Sides <input id="opt-sides" type="number" min="3" max="64" step="1"></label>
+        <span class="quick" id="quick-sides">
+          <button data-sides="3">3</button><button data-sides="4">4</button><button data-sides="5">5</button><button data-sides="6">6</button><button data-sides="8">8</button><button data-sides="12">12</button>
+        </span>
+      </div>
+      <div class="row seg">
+        <label><input type="radio" name="ngmode" value="center"> From center</label>
+        <label><input type="radio" name="ngmode" value="edge"> From edge</label>
+      </div>
+      <label class="chk"><input type="checkbox" id="opt-ngfill"> Fill new polygons with the fill color</label>
+    </section>
+
+    <section class="tool-opts" data-for="bucket">
+      <h3>Paint bucket</h3>
+      <p class="note">Click inside any area enclosed by lines / polygons (and the page edge). Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.</p>
+    </section>
+
+    <section>
+      <h3>Snapping</h3>
+      <label class="chk"><input type="checkbox" id="opt-snap"> Snap to points &amp; lines <kbd>S</kbd></label>
+      <label class="chk"><input type="checkbox" id="opt-link"> Shared vertices move together</label>
+      <label class="chk"><input type="checkbox" id="opt-border"> Page edge counts as a line</label>
+      <label class="chk"><input type="checkbox" id="opt-grid"> Grid, size <input id="opt-gridsize" type="number" min="1" step="1"></label>
+      <p class="note">Snaps to ends &amp; corners ▢, crossings ✕, midpoints △, anywhere along a line ◇, polygon centers ○. Hold Alt to place freely.</p>
+    </section>
+
+    <section id="sel-section" hidden>
+      <h3>Selection <span id="sel-info"></span></h3>
+      <div id="ngon-props" class="grid3" hidden>
+        <label>Sides<input id="sel-sides" type="number" min="3" max="64" step="1"></label>
+        <label>Radius<input id="sel-radius" type="number" min="0" step="1"></label>
+        <label>Rotation°<input id="sel-rot" type="number" step="1"></label>
+      </div>
+      <div class="row"><label>Stroke width <input id="sel-sw" type="number" min="0" step="0.5"></label></div>
+      <div class="row btns">
+        <button id="btn-del" title="Delete">Delete</button>
+        <button id="btn-dup" title="Ctrl+D">Duplicate</button>
+        <button id="btn-front">To front</button>
+        <button id="btn-back">To back</button>
+      </div>
+    </section>
+
+    <section>
+      <h3>Page</h3>
+      <div class="row">
+        <label>W <input id="doc-w" type="number" min="1"></label>
+        <label>H <input id="doc-h" type="number" min="1"></label>
+        <button id="btn-doc-size">Apply</button>
+      </div>
+      <div class="row">
+        <label>Background <input type="color" id="doc-bg"></label>
+        <label class="chk"><input type="checkbox" id="doc-bg-none"> transparent</label>
+      </div>
+    </section>
+
+    <section>
+      <details>
+        <summary>Keyboard &amp; mouse</summary>
+        <table class="keys">
+          <tr><td>V L G B H</td><td>Select, Line, Polygon, Bucket, Pan</td></tr>
+          <tr><td>3 – 9</td><td>Polygon sides</td></tr>
+          <tr><td>S</td><td>Toggle snapping</td></tr>
+          <tr><td>Alt</td><td>Draw / drag without snapping; detach shared vertex</td></tr>
+          <tr><td>Shift</td><td>Lines at 15° steps; polygon rotation in 15° steps; add to selection</td></tr>
+          <tr><td>Ctrl (polygon tool)</td><td>Flip side when drawing from an edge</td></tr>
+          <tr><td>Ctrl + drag handle</td><td>Freely move a polygon corner (it stops being regular)</td></tr>
+          <tr><td>Esc / right-click</td><td>Stop the current line, clear selection</td></tr>
+          <tr><td>Del</td><td>Delete selection</td></tr>
+          <tr><td>Arrows</td><td>Nudge (Shift = ×10)</td></tr>
+          <tr><td>Ctrl+Z / Ctrl+Y</td><td>Undo / redo</td></tr>
+          <tr><td>Ctrl+D, Ctrl+A</td><td>Duplicate, select all</td></tr>
+          <tr><td>Wheel, Space+drag</td><td>Zoom, pan</td></tr>
+          <tr><td>0</td><td>Fit page</td></tr>
+        </table>
+      </details>
+    </section>
+  </aside>
+</div>
+
+<footer id="status">
+  <span id="st-pos"></span>
+  <span id="st-hint"></span>
+  <span id="st-msg"></span>
+</footer>
+
+<script src="js/geometry.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
