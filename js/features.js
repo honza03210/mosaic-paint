@@ -129,7 +129,7 @@ function printTemplate() {
   const style = document.querySelector('input[name=print-style]:checked').value;
   const legend = $('#print-legend').checked;
   const stats = colorStats(), nums = colorNumbers(stats.keys());
-  const doc = new DOMParser().parseFromString(MZ.buildSVGString({ photo: false, grout: state.grout.on }), 'image/svg+xml');
+  const doc = new DOMParser().parseFromString(MZ.buildSVGString({ photo: false, grout: state.grout.on, pageOnly: true }), 'image/svg+xml');
   const root = doc.documentElement, NS = 'http://www.w3.org/2000/svg';
   const labels = [];
   if (style !== 'colors') {

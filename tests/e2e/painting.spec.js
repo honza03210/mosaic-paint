@@ -31,7 +31,9 @@ test('bucket paints closed areas, recolors, erases and leaves islands as holes',
   await h.key(page, 'g');
   await page.evaluate(() => { MZ.state.sides = 4; });
   await h.drag(page, { x: 850, y: 850 }, { x: 850, y: 800 });
-  await h.expectFills(page, [['#2a9d8f', 5000], ['#2a9d8f', 189739]]);
+  // the square's exact size depends on pixel rounding (WebKit), so measure it
+  const square = await page.evaluate(() => Math.abs(Geo.polygonArea(MZ.geomOf(document.querySelectorAll('#mz-shapes polygon')[1]).polys[0].pts)));
+  await h.expectFills(page, [['#2a9d8f', square], ['#2a9d8f', 194739 - square]]);
 });
 
 test('dragging the bucket paints every tile it crosses, as one undo step', async ({ page }) => {

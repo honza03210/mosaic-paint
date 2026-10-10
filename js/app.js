@@ -1840,7 +1840,10 @@ function buildSVGString(opts = {}) {
   for (const c of fillsG.childNodes) f.appendChild(c.cloneNode(true));
   const s = mk('g', { id: 'mosaic-shapes' }, root);
   for (const c of shapesG.childNodes) s.appendChild(c.cloneNode(true));
-  return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root).replace(/></g, '>\n<');
+  let out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root).replace(/></g, '>\n<');
+  // modules may add to the file (pages.js adds the other pages); opts.pageOnly: just this page
+  for (const fn of hooks.serialize || []) out = fn(out, opts) || out;
+  return out;
 }
 function sanitize(root) {
   root.querySelectorAll('script,foreignObject').forEach(n => n.remove());
@@ -1871,6 +1874,7 @@ function loadSVGText(text, opts = {}) {
     return false;
   }
   sanitize(root);
+  emit('deserialize', root, opts); // pages.js reads the other pages here
   const vb = (root.getAttribute('viewBox') || '').trim().split(/[\s,]+/).map(Number);
   const hasVB = vb.length === 4 && vb.every(Number.isFinite) && vb[2] > 0 && vb[3] > 0;
   const box = hasVB ? { x: vb[0], y: vb[1], w: vb[2], h: vb[3] }
@@ -1900,6 +1904,7 @@ function loadSVGText(text, opts = {}) {
     }
     if (id === 'mosaic-bg') { bg = child.getAttribute('fill'); continue; }
     if (id === 'mosaic-reference') { photo = child.querySelector('image'); continue; }
+    if (id === 'mosaic-pages') continue;
     if (['metadata', 'title', 'desc', 'namedview'].includes(tag)) continue;
     if (tag === 'defs' || tag === 'style') { defsG.appendChild(document.importNode(child, true)); continue; }
     if (id === 'mosaic-fills' || id === 'mosaic-shapes') {
@@ -2013,7 +2018,7 @@ function exportPNG() {
   const W = Math.round(+ans);
   if (!(W > 0 && W <= 16000)) { toast('Invalid width.'); return; }
   const H = Math.max(1, Math.round(W * d.h / d.w));
-  const url = URL.createObjectURL(new Blob([buildSVGString({ photo: false, grout: state.grout.on })], { type: 'image/svg+xml' }));
+  const url = URL.createObjectURL(new Blob([buildSVGString({ photo: false, grout: state.grout.on, pageOnly: true })], { type: 'image/svg+xml' }));
   const img = new Image();
   img.onload = () => {
     const c = document.createElement('canvas');
@@ -2042,6 +2047,7 @@ function resetDoc(keepSize) {
   applyGrout();
   resetHistory();
   dirty = false;
+  emit('reset'); // e.g. back to a single page
   fitView();
   afterChange();
 }
@@ -2568,6 +2574,9 @@ function addPalette(name, colors) {
 window.MZ = {
   addLineSegments, clearDrawing, addPalette, paintedColorAt, neighbourColors,
   setFillChooser: (fn) => { fillChooser = fn; },
+  getHistory: () => ({ history, hIndex }),
+  setHistory: (h) => { history = h.history; hIndex = h.hIndex; updateUndoUI(); },
+  docChanged, updateView, fitView,
   state, svg, stage, on, emit, toast, download, fmt, fmtLen, fmtArea, unit, mk,
   allShapes, geomOf, isFill, hasFill, fillOf, insideEl, isPaintedAt, paintFill, replaceColor,
   boundarySegments, regionIndex, bucketAt, gridSample, insideRegion, commit, commitGeometry, refImage, loadImg,

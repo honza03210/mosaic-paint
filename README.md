@@ -47,6 +47,10 @@ The switch in the top-left corner chooses how much of the app you see.
    - **PNG** exports an image.
    - **Print… (Expert)** opens a template in color, with color numbers, or as a paint-by-number outline, plus a legend page. At real size it is split across overlapping, labeled sheets (A1, A2, …) with an overview page; or it can be fitted onto one sheet.
 
+## Pages
+
+A project can have several pages (front and back, color variants, …): the bar under the drawing switches between them, and ⋯ renames, duplicates, moves or deletes a page. Each page has its own drawing, size, photo, undo steps and view; palettes are shared. All pages are saved in one SVG file (other programs show the current page).
+
 ## Safety net
 
 The drawing is autosaved in the browser, and **History** keeps the last 40 versions.
@@ -77,6 +81,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/contour.js`: rows following an outline (distance field, marching squares)
 - `js/mix.js`: the random color mix
 - `js/vision.js`: black & white / color-blind views and contrast checks
+- `js/pages.js`: several pages per project
 - `js/colors.js`: color parsing and closest-color matching
 - `js/store.js`: browser storage for the autosave and versions
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support
