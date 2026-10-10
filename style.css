@@ -239,3 +239,9 @@ dialog h2 { margin: 0; font-size: 16px; }
 dialog hr { border: 0; border-top: 1px solid var(--border); margin: 10px 0; }
 .note.warn { color: var(--warn); }
 #am-count { width: 52px; }
+
+/* ---- color mix ---- */
+.mix-box { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.mix-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0; }
+.mix-chip { width: 22px; height: 22px; border-radius: 4px; border: 1px solid rgba(255,255,255,.3); cursor: pointer; }
+.swatch.in-mix::after { content: ''; position: absolute; right: 3px; top: 3px; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1.5px #000; }

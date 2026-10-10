@@ -136,7 +136,7 @@
         <button id="btn-pal-clear">Clear</button>
         <input type="file" id="pal-file" accept=".txt,.gpl,.hex,.css,.json,text/plain" hidden>
       </div>
-      <p class="note">Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing). Ctrl+V on the canvas adds copied colors.</p>
+      <p class="note">Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing) · Shift+click = add to the color mix. Ctrl+V on the canvas adds copied colors.</p>
     </section>
 
     <section class="tool-opts" data-for="line">
@@ -185,6 +185,12 @@
     <section class="tool-opts" data-for="bucket">
       <h3>Paint bucket</h3>
       <p class="note">Click inside any closed area, or drag across many tiles. Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.</p>
+      <div class="mix-box">
+        <label class="chk"><input type="checkbox" id="mix-on"> Mix colors (a random one per tile)</label>
+        <div id="mix-colors" class="mix-chips"></div>
+        <p class="note" id="mix-hint"></p>
+        <label class="chk"><input type="checkbox" id="mix-avoid"> Avoid the same color next to itself</label>
+      </div>
       <div class="row expert"><label>Close gaps up to <input id="opt-gap" type="number" min="0" step="0.1"> <span class="unit-label"></span></label></div>
     </section>
 
@@ -278,6 +284,7 @@
         <button id="btn-front">To front</button>
         <button id="btn-back">To back</button>
       </div>
+      <div class="row"><button id="btn-mix-sel" title="Give the selected painted areas random colors from the mix">Mix colors</button></div>
     </section>
 
     <section>
@@ -393,5 +400,6 @@
 <script src="js/photo.js"></script>
 <script src="js/features.js"></script>
 <script src="js/automosaic-ui.js"></script>
+<script src="js/mix.js"></script>
 </body>
 </html>

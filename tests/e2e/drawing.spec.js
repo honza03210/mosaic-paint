@@ -111,3 +111,14 @@ test('rows following the outline wrap around a shape and keep its painted color'
   expect(info.tiles).toBeGreaterThan(100);
   expect(info.painted).toBeGreaterThan(100); // the background color carried into every new tile
 });
+
+test('keyboard shortcuts still work after clicking a checkbox, but not while typing', async ({ page }) => {
+  await h.open(page);
+  await page.click('#opt-grid');
+  await page.keyboard.press('l');
+  expect(await page.evaluate(() => MZ.state.tool)).toBe('line');
+  await page.click('#color-input');
+  await page.keyboard.press('v');
+  expect(await page.evaluate(() => MZ.state.tool)).toBe('line');
+  expect(await page.inputValue('#color-input')).toBe('v');
+});

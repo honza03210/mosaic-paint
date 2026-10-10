@@ -126,3 +126,33 @@ test('Alt+click with the bucket picks up a painted color', async ({ page }) => {
   expect(await page.evaluate(() => MZ.state.fill)).toBe('#e76f51');
   expect(await h.colorAt(page, { x: 500, y: 500 })).toBe('#e76f51');
 });
+
+test('color mix: Shift+click swatches, then painting picks among them without equal neighbours', async ({ page }) => {
+  await h.open(page);
+  await page.evaluate(() => {
+    MZ.state.palette = ['#e76f51', '#2a9d8f', '#264653'];
+    document.querySelector('#pal-select').dispatchEvent(new Event('change')); // redraw the swatches
+  });
+  await page.locator('#palette .swatch').nth(1).click({ modifiers: ['Shift'] });
+  await page.locator('#palette .swatch').nth(2).click({ modifiers: ['Shift'] });
+  await expect(page.locator('#mix-colors .mix-chip')).toHaveCount(2);
+  await expect(page.locator('#palette .swatch.in-mix')).toHaveCount(2);
+  await h.setState(page, { pattern: { type: 'square', size: 100, angle: 0 } });
+  await h.key(page, 't');
+  await h.click(page, { x: 500, y: 500 });
+  await h.key(page, 'b');
+  await page.click('#tools [data-tool=bucket]'); // show the bucket options
+  await expect(page.locator('#mix-on')).toBeChecked();
+  await h.drag(page, { x: 50, y: 450 }, { x: 950, y: 450 }, { steps: 40 });
+  const row = [];
+  for (let i = 0; i < 10; i++) row.push(await h.colorAt(page, { x: 50 + i * 100, y: 450 }));
+  expect(new Set(row)).toEqual(new Set(['#e76f51', '#2a9d8f']));
+  for (let i = 1; i < 10; i++) expect(row[i]).not.toBe(row[i - 1]); // two colors, no equal neighbours → alternating
+
+  // re-mix a selection
+  await page.uncheck('#mix-avoid');
+  await h.key(page, 'v');
+  await page.keyboard.press('Control+a');
+  await page.click('#btn-mix-sel');
+  await expect(page.locator('#st-msg')).toContainText('Mixed the colors of 10 areas');
+});

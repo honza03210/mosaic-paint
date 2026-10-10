@@ -34,7 +34,8 @@ The switch in the top-left corner chooses how much of the app you see.
 
    **Snap** (S) puts points exactly on ends, corners, crossings, midpoints or anywhere along a line.
 5. **Paint:**
-   - **Bucket (B):** click or drag across tiles. Small gaps where lines almost meet are closed automatically. If an area isn't closed, the line ends that don't touch anything are circled in red.
+   - **Bucket (B):** click or drag across tiles. **Mix colors:** Shift+click two or more swatches and each tile gets one of them at random (optionally never the same color next to itself), so big backgrounds look alive. "Mix colors" in the Selection panel does the same for selected areas.
+      Small gaps where lines almost meet are closed automatically. If an area isn't closed, the line ends that don't touch anything are circled in red.
    - **Color tiles from photo:** gives every tile the palette color closest to the photo underneath it.
    - **Painted areas follow the lines:** move, add or delete lines and the colors reshape with them. A tile cut in two keeps its color in both halves.
 6. **Check:**
@@ -73,6 +74,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - `js/automosaic-ui.js`: the "Mosaic from photo" dialog
 - `js/print.js`: splitting the print-out across sheets
 - `js/contour.js`: rows following an outline (distance field, marching squares)
+- `js/mix.js`: the random color mix
 - `js/colors.js`: color parsing and closest-color matching
 - `js/store.js`: browser storage for the autosave and versions
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support

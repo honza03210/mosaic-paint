@@ -865,6 +865,7 @@ function renderPalette() {
   fb.style.background = state.fill || '';
   sb.className = 'acbox' + (state.stroke ? '' : ' none');
   sb.style.background = state.stroke || '';
+  emit('palette');
 }
 function updateSwatch(d, c, counts) {
   d.classList.toggle('is-fill', c === state.fill);
@@ -890,7 +891,8 @@ function makeSwatch(c, counts) {
     d.append(x);
     d.ondblclick = () => editColor(c);
   }
-  d.onclick = () => setFill(c, true);
+  // Shift+click is left to add-on modules (the color mix)
+  d.onclick = (e) => { if (e.shiftKey) emit('swatch-shift', c, e); else setFill(c, true); };
   d.oncontextmenu = (e) => { e.preventDefault(); setStroke(c, true); };
   return d;
 }
@@ -1499,12 +1501,19 @@ const patternTool = {
 };
 
 // paint bucket – click, or drag across tiles
+/** Optional (point, face, ctx) → color for each painted tile, e.g. a random color mix (mix.js). */
+let fillChooser = null;
+/** Color of the topmost painted area or filled shape at p (null if none). */
+function paintedColorAt(p) {
+  for (const el of shapesAt(p)) if ((isFill(el) || hasFill(el)) && insideEl(el, p)) return fillOf(el);
+  return null;
+}
 function paintPoints(p, ctx) {
   for (const t of symTransforms()) {
     const q = t(p), f = ctx.ix.locate(q);
     if (f && ctx.done.has(f)) continue;
     if (f) ctx.done.add(f);
-    const r = bucketAt(q, state.fill, ctx, f);
+    const r = bucketAt(q, fillChooser ? fillChooser(q, f, ctx) : state.fill, ctx, f);
     if (r.found) ctx.found = true;
     if (r.changed) ctx.changed = true;
   }
@@ -2158,12 +2167,17 @@ svg.addEventListener('wheel', (e) => {
 }, { passive: false });
 new ResizeObserver(() => updateView()).observe(stage);
 
+/** Is the user typing in a field? (Checkboxes, sliders and buttons don't take keys, so shortcuts still work there.) */
+function typingIn(t) {
+  if (t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable) return true;
+  return t.tagName === 'INPUT' && !['checkbox', 'radio', 'range', 'color', 'button', 'file'].includes(t.type);
+}
 window.addEventListener('keydown', (e) => {
-  const tag = e.target.tagName;
-  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
+  if (typingIn(e.target)) {
     if (e.key === 'Escape') e.target.blur();
     return;
   }
+  if (e.target.tagName === 'INPUT' && e.key === ' ') return; // space toggles a focused checkbox
   if (document.querySelector('dialog[open]')) return;
   const ctrl = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
   if (ctrl) {
@@ -2231,8 +2245,7 @@ window.addEventListener('blur', () => { state.space = false; stage.classList.rem
 
 // paste colors anywhere outside a text field
 document.addEventListener('paste', (e) => {
-  const tag = e.target.tagName;
-  if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+  if (typingIn(e.target)) return;
   const text = e.clipboardData && e.clipboardData.getData('text');
   if (!text) return;
   const cols = Colors.parse(text);
@@ -2537,7 +2550,8 @@ function addPalette(name, colors) {
   return n;
 }
 window.MZ = {
-  addLineSegments, clearDrawing, addPalette,
+  addLineSegments, clearDrawing, addPalette, paintedColorAt,
+  setFillChooser: (fn) => { fillChooser = fn; },
   state, svg, stage, on, emit, toast, download, fmt, fmtLen, fmtArea, unit, mk,
   allShapes, geomOf, isFill, hasFill, fillOf, insideEl, isPaintedAt, paintFill, replaceColor,
   boundarySegments, regionIndex, bucketAt, gridSample, insideRegion, commit, commitGeometry, refImage, loadImg,
