@@ -183,15 +183,46 @@ const Geo = (() => {
     return f ? ix.region(f) : null;
   }
 
+  /** Buckets items by their bounding boxes so lookups only look at what's nearby. */
+  class SpatialGrid {
+    constructor(cell) {
+      this.cell = cell > 0 ? cell : 1;
+      this.map = new Map();
+      this.big = [];
+    }
+    insert(item, b) {
+      const c = this.cell, i0 = Math.floor(b.x0 / c), i1 = Math.floor(b.x1 / c), j0 = Math.floor(b.y0 / c), j1 = Math.floor(b.y1 / c);
+      if (!Number.isFinite(i0 + i1 + j0 + j1) || (i1 - i0 + 1) * (j1 - j0 + 1) > 4096) { this.big.push(item); return; }
+      for (let i = i0; i <= i1; i++) for (let j = j0; j <= j1; j++) {
+        const k = i + ',' + j, list = this.map.get(k);
+        if (list) list.push(item); else this.map.set(k, [item]);
+      }
+    }
+    /** Items whose cells touch the box (a superset: callers still check exact bounds). */
+    query(x0, y0, x1, y1) {
+      const c = this.cell, out = new Set(this.big);
+      const i0 = Math.floor(x0 / c), i1 = Math.floor(x1 / c), j0 = Math.floor(y0 / c), j1 = Math.floor(y1 / c);
+      if ((i1 - i0 + 1) * (j1 - j0 + 1) > 1e5) { for (const list of this.map.values()) for (const it of list) out.add(it); return out; }
+      for (let i = i0; i <= i1; i++) for (let j = j0; j <= j1; j++) {
+        const list = this.map.get(i + ',' + j);
+        if (list) for (const it of list) out.add(it);
+      }
+      return out;
+    }
+  }
+
   /** Computes the faces once, then answers many "which area is this point in?" queries. */
   function regionIndex(segs) {
     const faces = planarFaces(segs);
     for (const f of faces) f.bb = bounds(f.pts);
     const inner = faces.filter(f => f.area > 0), outer = faces.filter(f => f.area < 0);
+    const all = bounds(inner.flatMap(f => [{ x: f.bb.x0, y: f.bb.y0 }, { x: f.bb.x1, y: f.bb.y1 }]));
+    const grid = new SpatialGrid(Math.max(all.x1 - all.x0, all.y1 - all.y0) / Math.max(8, Math.sqrt(inner.length)));
+    for (const f of inner) grid.insert(f, f.bb);
     const regions = new Map();
     const locate = (p) => {
       let best = null;
-      for (const f of inner) {
+      for (const f of grid.query(p.x, p.y, p.x, p.y)) {
         const b = f.bb;
         if (p.x < b.x0 || p.x > b.x1 || p.y < b.y0 || p.y > b.y1) continue;
         if ((!best || f.area < best.area) && pointInPolygon(p, f.pts)) best = f;
@@ -265,7 +296,7 @@ const Geo = (() => {
   return {
     get eps() { return eps; },
     setEps(v) { eps = v; },
-    dist, project, segIntersect, polygonArea, pointInPolygon, regularPolygon, planarFaces, findRegion, regionIndex, bounds,
+    dist, project, segIntersect, polygonArea, pointInPolygon, regularPolygon, planarFaces, findRegion, regionIndex, bounds, SpatialGrid,
     clipSegment, distToRings, chordThrough,
   };
 })();

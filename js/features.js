@@ -33,7 +33,7 @@ function colorNumbers(colors) {
   return out;
 }
 function unpaintedCount() {
-  const ix = Geo.regionIndex(MZ.boundarySegments());
+  const ix = MZ.regionIndex();
   let n = 0;
   for (const f of ix.faces) {
     const r = ix.region(f), p = MZ.gridSample(r.bb, q => MZ.insideRegion(r, q), 1)[0];
@@ -77,7 +77,7 @@ function renderReport() {
       if (!s.value) return;
       const to = s.value === 'none' ? null : s.value;
       const n = MZ.replaceColor(s.dataset.from, to);
-      MZ.commit();
+      MZ.commit(true);
       MZ.toast(`${to ? 'Recolored' : 'Erased'} ${n} area${n === 1 ? '' : 's'}.`);
       renderReport();
     };
@@ -244,7 +244,7 @@ async function autoColor() {
   const data = cx.getImageData(0, 0, W, H).data;
   const ix0 = +im.getAttribute('x'), iy0 = +im.getAttribute('y'), iw = +im.getAttribute('width'), ih = +im.getAttribute('height');
   const labs = pal.map(c => Colors.toLab(Colors.toRgb(c)));
-  const ctx = { ix: Geo.regionIndex(MZ.boundarySegments()) };
+  const ctx = { ix: MZ.regionIndex() };
   let painted = 0, skipped = 0, outside = 0;
   for (const f of ctx.ix.faces) {
     const reg = ctx.ix.region(f);
@@ -263,7 +263,7 @@ async function autoColor() {
     const c = Colors.nearest([r / n, g / n, b / n], pal, labs);
     if (MZ.bucketAt(pts[0], c, ctx, f).changed) painted++;
   }
-  if (painted) MZ.commit();
+  if (painted) MZ.commit(true);
   MZ.toast(`Colored ${painted} area${painted === 1 ? '' : 's'} with the closest palette colors`
     + (skipped ? ` · ${skipped} already painted (left as they were)` : '')
     + (outside ? ` · ${outside} outside the photo` : '') + '.');

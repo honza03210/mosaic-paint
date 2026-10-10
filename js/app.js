@@ -111,7 +111,9 @@ function fmtArea(a) {
 function setPaint(el, prop, color) {
   const v = color || 'none';
   el.setAttribute(prop, v);
-  el.style.removeProperty(prop);
+  if (el.hasAttribute('style')) el.style.removeProperty(prop);
+  // only an imported <style> sheet can override the attribute; reading computed styles is slow
+  if (!defsG.getElementsByTagName('style').length) return;
   const cs = getComputedStyle(el)[prop];
   const ok = v === 'none' ? cs === 'none' : normColor(cs) === normColor(v);
   if (!ok) el.style.setProperty(prop, v); // a CSS rule in an imported file overrides attributes
@@ -120,18 +122,76 @@ function paintFill(el, c) {
   setPaint(el, 'fill', c);
   if (isFill(el)) setPaint(el, 'stroke', c); // the thin same-color stroke hides seams between areas
 }
-function hasFill(el) { return el.tagName !== 'line' && getComputedStyle(el).fill !== 'none'; }
-const fillOf = (el) => el.tagName === 'line' ? null : normColor(getComputedStyle(el).fill);
+/** The fill attribute can be trusted (no inline style, no class-based CSS from an imported file). */
+function plainFill(el) {
+  if (el.hasAttribute('style') || !el.hasAttribute('fill') || defsG.getElementsByTagName('style').length) return null;
+  const cls = el.getAttribute('class');
+  return cls === null || cls === 'mz-fill' ? el.getAttribute('fill') : null;
+}
+function hasFill(el) {
+  if (el.tagName === 'line') return false;
+  const f = plainFill(el);
+  return (f !== null ? f : getComputedStyle(el).fill) !== 'none';
+}
+function fillOf(el) {
+  if (el.tagName === 'line') return null;
+  const f = plainFill(el);
+  return normColor(f !== null ? f : getComputedStyle(el).fill);
+}
 
 // ---- document elements & their geometry ------------------------------------
-function allShapes() {
-  const out = [];
-  for (const el of docG.querySelectorAll(SHAPE_SEL)) {
-    if (el.closest('defs,clipPath,mask,pattern,symbol,marker')) continue;
-    out.push(el);
+// The shape list and the spatial index are cached; adding / removing elements resets them,
+// geometry edits reset them through touch().
+// Changes arrive either through the observer callback (between events) or through takeRecords()
+// (synchronously, right after a change) – both go through applyDocChanges.
+const docObserver = new MutationObserver((recs) => applyDocChanges(recs));
+docObserver.observe(docG, { childList: true, subtree: true });
+let shapeList = null, shapeSet = new WeakSet(), shapeGrid = null;
+const isShape = (el) => el.matches(SHAPE_SEL) && !el.closest('defs,clipPath,mask,pattern,symbol,marker');
+const checkDocChanges = () => applyDocChanges(docObserver.takeRecords());
+function applyDocChanges(recs) {
+  if (!recs.length || !shapeList) return;
+  // additions (painting, drawing) are applied in place; removals rebuild everything
+  for (const r of recs) {
+    for (const n of r.removedNodes) if (n.nodeType === 1) { shapeList = null; shapeGrid = null; return; }
   }
-  return out;
+  for (const r of recs) for (const n of r.addedNodes) {
+    if (n.nodeType !== 1 || !n.isConnected) continue;
+    for (const el of [n, ...n.querySelectorAll(SHAPE_SEL)]) {
+      if (!isShape(el) || shapeSet.has(el)) continue;
+      shapeSet.add(el);
+      shapeList.push(el);
+      if (shapeGrid) shapeGrid.insert(el, geomOf(el).bbox);
+    }
+  }
 }
+/** Every drawable element. Do not modify the returned array. */
+function allShapes() {
+  checkDocChanges();
+  if (!shapeList) {
+    shapeList = [...docG.querySelectorAll(SHAPE_SEL)].filter(isShape);
+    shapeSet = new WeakSet(shapeList);
+  }
+  return shapeList;
+}
+/** Elements whose bounding box touches the box, topmost first. */
+function shapesNear(x0, y0, x1, y1) {
+  const list = allShapes();
+  if (!shapeGrid) {
+    const d = state.doc;
+    shapeGrid = new Geo.SpatialGrid(Math.max(d.w, d.h) / 100);
+    for (const el of list) shapeGrid.insert(el, geomOf(el).bbox);
+  }
+  const out = [];
+  for (const el of shapeGrid.query(x0, y0, x1, y1)) {
+    if (!el.isConnected) continue;
+    const b = geomOf(el).bbox;
+    if (b.x1 >= x0 && b.x0 <= x1 && b.y1 >= y0 && b.y0 <= y1) out.push(el);
+  }
+  // topmost (later in the document) first
+  return out.sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? 1 : -1));
+}
+const shapesAt = (p, r = 0) => shapesNear(p.x - r, p.y - r, p.x + r, p.y + r);
 const IDENT = new DOMMatrix();
 /** Matrix from an element's own coordinates to document coordinates. */
 function elMatrix(node) {
@@ -142,7 +202,7 @@ function elMatrix(node) {
   return DOMMatrix.fromMatrix(a).inverse().multiply(DOMMatrix.fromMatrix(b));
 }
 let geomCache = new WeakMap();
-const touch = () => { geomCache = new WeakMap(); };
+const touch = () => { geomCache = new WeakMap(); shapeGrid = null; };
 const invalidate = (el) => geomCache.delete(el);
 
 /** { polys: [{pts, closed}], bbox } in document coordinates. */
@@ -256,7 +316,7 @@ function insideEl(el, p) {
 function strokeW(el) { return parseFloat(getComputedStyle(el).strokeWidth) || 0; }
 /** Is p covered by a painted area or a filled shape? */
 function isPaintedAt(p) {
-  return allShapes().some(el => (isFill(el) || hasFill(el)) && insideEl(el, p));
+  return shapesAt(p).some(el => (isFill(el) || hasFill(el)) && insideEl(el, p));
 }
 
 // vertices of editable shapes (line / polyline / polygon)
@@ -284,7 +344,7 @@ function setVertex(el, idx, q) {
 }
 function verticesAt(p) {
   const out = [], tol = Geo.eps * 5;
-  for (const el of allShapes()) {
+  for (const el of shapesAt(p, tol)) {
     if (!EDITABLE.has(el.tagName) || isFill(el) || !selectable(el)) continue;
     const b = geomOf(el).bbox;
     if (p.x < b.x0 - tol || p.x > b.x1 + tol || p.y < b.y0 - tol || p.y > b.y1 + tol) continue;
@@ -485,7 +545,7 @@ function snapPoint(p, opt = {}) {
     }
   };
   if (state.border) scan(pageGeom());
-  for (const el of allShapes()) {
+  for (const el of shapesNear(p.x - r, p.y - r, p.x + r, p.y + r)) {
     if (isFill(el) || (ex && ex.has(el))) continue;
     scan(geomOf(el));
     const ng = ngonData(el);
@@ -551,7 +611,7 @@ function drawMeasure(p, text) {
 
 // ---- hit testing & selection ------------------------------------------------
 function hitTest(p) {
-  const list = allShapes().filter(selectable).reverse(), tol = px(HIT_PX);
+  const tol = px(HIT_PX), list = shapesAt(p, tol + Math.max(state.doc.w, state.doc.h) / 100).filter(selectable);
   // first: lines / outlines near the pointer (they are thin, so they win)
   for (const el of list) {
     if (isFill(el)) continue;
@@ -645,11 +705,15 @@ function moveElements(els, d) {
 let history = [], hIndex = -1, dirty = false, fileName = 'mosaic.svg', fileHandle = null;
 const snapshot = () => ({ defs: defsG.innerHTML, fills: fillsG.innerHTML, shapes: shapesG.innerHTML, doc: { ...state.doc } });
 function resetHistory() { history = [snapshot()]; hIndex = 0; updateUndoUI(); }
-function commit() {
-  touch();
+/** paintOnly: only colors changed – cached geometry stays valid. */
+function commit(paintOnly) {
+  if (!paintOnly) touch();
   history.splice(hIndex + 1);
   history.push(snapshot());
-  if (history.length > 200) history.shift();
+  // up to 200 steps, but at most ~60 MB of snapshots (big mosaics get fewer undo steps)
+  const size = (s) => s.fills.length + s.shapes.length + s.defs.length;
+  let total = history.reduce((t, s) => t + size(s), 0) * 2;
+  while (history.length > 2 && (history.length > 200 || total > 60e6)) total -= size(history.shift()) * 2;
   hIndex = history.length - 1;
   dirty = true;
   afterChange();
@@ -829,7 +893,7 @@ function setFill(c, apply) {
       if (isFill(el) && !c) { el.remove(); continue; }
       if (el.tagName !== 'line') paintFill(el, c);
     }
-    commit();
+    commit(true);
   } else renderPalette();
 }
 function setStroke(c, apply) {
@@ -837,7 +901,7 @@ function setStroke(c, apply) {
   savePrefs();
   if (apply && applyToSelection()) {
     for (const el of state.selection) if (!isFill(el)) setPaint(el, 'stroke', c);
-    commit();
+    commit(true);
   } else renderPalette();
 }
 function removeColor(c) {
@@ -870,7 +934,7 @@ function editColor(old) {
   if (state.fill === old) state.fill = c;
   if (state.stroke === old) state.stroke = c;
   savePrefs();
-  if (n) { commit(); toast(`Recolored ${n} element${n > 1 ? 's' : ''}.`); } else renderPalette();
+  if (n) { commit(true); toast(`Recolored ${n} element${n > 1 ? 's' : ''}.`); } else renderPalette();
 }
 function addFromInput() {
   const inp = $('#color-input');
@@ -911,6 +975,17 @@ function boundarySegments() {
   for (const el of allShapes()) if (!isFill(el)) add(geomOf(el));
   const bridges = bridgeGaps(segs, ends, gapTol());
   return segs.concat(bridges).filter(s => Geo.dist(s.a, s.b) > Geo.eps);
+}
+// The closed areas only change when lines / shapes or page settings change: cache them until then.
+const lineObserver = new MutationObserver(() => { areaIndex = null; });
+lineObserver.observe(shapesG, { childList: true, subtree: true, attributes: true });
+let areaIndex = null, areaKey = '';
+/** Geo.regionIndex of the current drawing (cached). */
+function regionIndex() {
+  const d = state.doc, key = [state.border, gapTol(), d.x, d.y, d.w, d.h].join();
+  if (lineObserver.takeRecords().length || key !== areaKey) areaIndex = null;
+  if (!areaIndex) { areaIndex = Geo.regionIndex(boundarySegments()); areaKey = key; }
+  return areaIndex;
 }
 function bridgeGaps(segs, ends, tol) {
   lastOpenEnds = [];
@@ -965,23 +1040,27 @@ function createFill(region, color, cover) {
     const m = elMatrix(cover.parentNode);
     if (!m.isIdentity) path.setAttribute('transform', m.inverse().toString());
   } else {
-    // bigger areas go below smaller ones, so areas inside areas stay visible
-    let ref = null;
-    for (const c of fillsG.children) if (!(+c.dataset.area >= region.area)) { ref = c; break; }
-    fillsG.insertBefore(path, ref);
+    // bigger areas go below smaller ones, so areas inside areas stay visible (kept sorted: binary search)
+    const kids = fillsG.children;
+    let lo = 0, hi = kids.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (+kids[mid].dataset.area >= region.area) lo = mid + 1; else hi = mid;
+    }
+    fillsG.insertBefore(path, kids[lo] || null);
   }
   paintFill(path, color);
   return path;
 }
-const paintCtx = () => ({ ix: Geo.regionIndex(boundarySegments()) });
+const paintCtx = () => ({ ix: regionIndex() });
 /**
  * Paints the closed area around p. ctx.ix is a Geo.regionIndex of the current lines (reused while
  * dragging). Does not commit. Returns { found, changed }.
  */
 function bucketAt(p, color, ctx, face) {
   const f = face || ctx.ix.locate(p), region = f ? ctx.ix.region(f) : null;
-  const shapesTop = allShapes().filter(e => !isFill(e)).reverse();
-  const fillsAt = allShapes().filter(e => isFill(e) && insideEl(e, p)).reverse();
+  const near = shapesAt(p), shapesTop = near.filter(e => !isFill(e));
+  const fillsAt = near.filter(e => isFill(e) && insideEl(e, p));
   const paint = (el) => {
     if (!color && isFill(el)) { el.remove(); return true; }
     if (fillOf(el) === color) return false;
@@ -1039,19 +1118,28 @@ function reflowFills() {
   const fills = [...docG.querySelectorAll('path.mz-fill')];
   if (!fills.length) return;
   touch();
-  const ix = Geo.regionIndex(boundarySegments());
-  const items = fills.map(el => {
+  const ix = regionIndex(), tol = Geo.eps * 10;
+  const owner = new Map(), placed = new Set(), items = [];
+  const sameBox = (a, b) => Math.abs(a.x0 - b.x0) < tol && Math.abs(a.y0 - b.y0) < tol && Math.abs(a.x1 - b.x1) < tol && Math.abs(a.y1 - b.y1) < tol;
+  for (const el of fills) {
     const g = geomOf(el), rings = g.polys.filter(p => p.closed).map(p => p.pts);
     const inside = (p) => rings.reduce((n, r) => n + (Geo.pointInPolygon(p, r) ? 1 : 0), 0) % 2 === 1;
+    const area = Math.abs(+el.dataset.area) || rings.reduce((s, r) => s + Math.abs(Geo.polygonArea(r)), 0);
+    // most areas are untouched by an edit: they still match a region exactly and are left alone
+    const probe = gridSample(g.bbox, inside, 1)[0], pf = probe && ix.locate(probe);
+    if (pf && !owner.has(pf) && nearArea(ix.region(pf).area, area) && sameBox(pf.bb, g.bbox)) {
+      owner.set(pf, null);
+      continue;
+    }
     const samples = gridSample(g.bbox, inside, 64), votes = new Map();
     for (const p of samples) {
       const f = ix.locate(p);
       if (f) votes.set(f, (votes.get(f) || 0) + 1);
     }
-    const area = Math.abs(+el.dataset.area) || rings.reduce((s, r) => s + Math.abs(Geo.polygonArea(r)), 0);
-    return { el, inside, votes, area, n: samples.length || 1 };
-  });
-  // match painted areas to regions by best overlap (intersection over union), greedily,
+    items.push({ el, inside, votes, area, n: samples.length || 1 });
+  }
+  if (!items.length) return;
+  // match changed areas to regions by best overlap (intersection over union), greedily,
   // so an area that loses its first choice falls back to the next best region
   const pairs = [];
   for (const it of items) for (const [f, v] of it.votes) {
@@ -1059,7 +1147,6 @@ function reflowFills() {
     pairs.push({ it, f, score: ov / (it.area + fa - ov) });
   }
   pairs.sort((a, b) => b.score - a.score || b.it.area - a.it.area);
-  const owner = new Map(), placed = new Set();
   for (const { it, f } of pairs) {
     if (placed.has(it) || owner.has(f)) continue;
     owner.set(f, it);
@@ -1260,7 +1347,7 @@ function ngonSpec(a) {
   const R = L / (2 * Math.sin(Math.PI / n)), ap = L / (2 * Math.tan(Math.PI / n));
   const ux = (a.b.x - a.a.x) / L, uy = (a.b.y - a.a.y) / L;
   const centerOn = (side) => ({ x: (a.a.x + a.b.x) / 2 - uy * ap * side, y: (a.a.y + a.b.y) / 2 + ux * ap * side });
-  const occupied = (p) => allShapes().some(e => !isFill(e) && insideEl(e, p));
+  const occupied = (p) => shapesAt(p).some(e => !isFill(e) && insideEl(e, p));
   let side = -1;
   if (occupied(centerOn(side)) && !occupied(centerOn(-side))) side = -side;
   if (a.flip) side = -side;
@@ -1326,7 +1413,7 @@ function knifeCuts(a) {
 const knifeTool = {
   down(e, raw) {
     if (!canDraw()) return;
-    state.action = { type: 'knife', a: raw, b: raw, ix: Geo.regionIndex(boundarySegments()), sx: e.clientX, sy: e.clientY, moved: false, cuts: [] };
+    state.action = { type: 'knife', a: raw, b: raw, ix: regionIndex(), sx: e.clientX, sy: e.clientY, moved: false, cuts: [] };
     if (!state.action.ix.locate(raw)) { state.action = null; toast('Start the cut inside a closed area.'); showGaps(); }
   },
   move(e, raw) {
@@ -1354,7 +1441,7 @@ function applyPattern(p) {
   if (!canDraw()) return;
   let region;
   if (p) {
-    const ix = Geo.regionIndex(boundarySegments()), f = ix.locate(p);
+    const ix = regionIndex(), f = ix.locate(p);
     if (!f) { toast('Click inside a closed area (or use “Fill whole page”).'); showGaps(); return; }
     region = ix.region(f);
   } else {
@@ -1419,7 +1506,7 @@ const bucketTool = {
   up() {
     const a = state.action;
     state.action = null;
-    if (a && a.ctx.changed) commit();
+    if (a && a.ctx.changed) commit(true);
   },
 };
 
@@ -1646,7 +1733,7 @@ function bakeGrout() {
   $('#grout-on').checked = false;
   applyGrout();
   savePrefs();
-  commit();
+  commit(true);
   toast(`Applied the grout color and width to ${n} lines.`);
 }
 
@@ -2033,7 +2120,7 @@ svg.addEventListener('pointerup', (e) => {
 });
 svg.addEventListener('pointercancel', (e) => {
   pointerEnd(e);
-  if (state.action && state.action.type === 'paint' && state.action.ctx.changed) commit();
+  if (state.action && state.action.type === 'paint' && state.action.ctx.changed) commit(true);
   state.action = null;
   previewG.innerHTML = '';
   stage.classList.remove('panning');
@@ -2407,7 +2494,7 @@ requestAnimationFrame(fitView);
 window.MZ = {
   state, svg, stage, on, emit, toast, download, fmt, fmtLen, fmtArea, unit, mk,
   allShapes, geomOf, isFill, hasFill, fillOf, insideEl, isPaintedAt, paintFill, replaceColor,
-  boundarySegments, bucketAt, gridSample, insideRegion, commit, commitGeometry, refImage, loadImg,
+  boundarySegments, regionIndex, bucketAt, gridSample, insideRegion, commit, commitGeometry, refImage, loadImg,
   buildSVGString, loadSVGText, saveVersion, restoreVersion, confirmDiscard, hasContent, setMode, setTool,
   get fileName() { return fileName; },
 };
