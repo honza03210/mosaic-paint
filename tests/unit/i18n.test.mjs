@@ -4,10 +4,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { CS } from '../../src/shared/i18n-cs.ts';
+import { DICTS, LANGS } from '../../src/shared/i18n.ts';
 import * as Patterns from '../../src/lib/patterns.ts';
 import * as AutoMosaic from '../../src/lib/automosaic.ts';
-import { t, num } from '../../src/shared/i18n.ts';
+import { t, num, wordForm } from '../../src/shared/i18n.ts';
 
 const root = path.resolve(import.meta.dirname, '..', '..');
 const hasWords = (s) => /[A-Za-z]{2}/.test(s);
@@ -47,21 +47,42 @@ function allKeys() {
   return [...keys].filter(hasWords).filter(k => !/^(Mosaic Paint|English|Čeština|STL|PNG|SVG|Ctrl\+.*|px|mm|cm|in|1:1)$/.test(k));
 }
 
-test('every text has a Czech translation', () => {
-  const missing = allKeys().filter(k => CS[k] == null);
-  if (missing.length) fs.writeFileSync(path.join(root, 'test-results-i18n-missing.json'), JSON.stringify(missing, null, 1));
-  assert.deepEqual(missing.slice(0, 20), [], `${missing.length} texts have no Czech translation (all listed in test-results-i18n-missing.json)`);
+const others = LANGS.map(([code]) => code).filter(code => code !== 'en');
+
+for (const code of others) test(`every text has a translation: ${code}`, () => {
+  const missing = allKeys().filter(k => DICTS[code][k] == null);
+  if (missing.length) fs.writeFileSync(path.join(root, `test-results-i18n-missing-${code}.json`), JSON.stringify(missing, null, 1));
+  assert.deepEqual(missing.slice(0, 20), [], `${missing.length} texts have no ${code} translation (all listed in test-results-i18n-missing-${code}.json)`);
 });
 
 test('translations keep the placeholders of the English text', () => {
   // the same names (Czech may add a word form, e.g. {n|dlaždice|dlaždice|dlaždic}, where English needs none)
   const names = (s) => [...new Set([...s.matchAll(/\{(\w+)(?:\|[^}]*)?\}/g)].map(m => m[1]))].sort();
-  const bad = Object.entries(CS).filter(([en, cs]) => names(en).join() !== names(cs).join());
-  assert.deepEqual(bad, []);
+  for (const code of others) {
+    const bad = Object.entries(DICTS[code]).filter(([en, tr]) => names(en).join() !== names(tr).join());
+    assert.deepEqual(bad, [], code);
+  }
+});
+
+test('word forms come in the number each language has', () => {
+  // German: one | other; Czech, Slovak, Polish: one | few | many
+  const want = { de: 2, cs: 3, sk: 3, pl: 3 };
+  for (const code of others) {
+    const bad = Object.values(DICTS[code]).flatMap(tr => [...tr.matchAll(/\{\w+\|([^}]*)\}/g)].filter(m => m[1].split('|').length !== want[code]).map(m => m[0] + ' in ' + tr));
+    assert.deepEqual(bad, [], code);
+  }
 });
 
 test('t() fills in values and picks the English word form', () => {
   assert.equal(t('Made {n} {n|tile|tiles} in {c} {c|color|colors}.', { n: 1, c: 3 }), 'Made 1 tile in 3 colors.');
   assert.equal(t('Made {n} {n|tile|tiles} in {c} {c|color|colors}.', { n: 1152, c: 1 }), 'Made 1,152 tiles in 1 color.');
   assert.equal(num(2.5, 2), '2.50');
+});
+
+test('each language picks its own word form', () => {
+  const pl = ['płytka', 'płytki', 'płytek'], cs = ['dlaždice', 'dlaždice', 'dlaždic'], de = ['Fliese', 'Fliesen'];
+  assert.deepEqual([1, 2, 4, 5, 12, 22, 25, 0].map(n => wordForm('pl', n, pl)), ['płytka', 'płytki', 'płytki', 'płytek', 'płytek', 'płytki', 'płytek', 'płytek']);
+  assert.deepEqual([1, 3, 5, 22, 2.5].map(n => wordForm('cs', n, cs)), ['dlaždice', 'dlaždice', 'dlaždic', 'dlaždic', 'dlaždic']);
+  assert.deepEqual([1, 3, 5].map(n => wordForm('sk', n, ['dlaždica', 'dlaždice', 'dlaždíc'])), ['dlaždica', 'dlaždice', 'dlaždíc']);
+  assert.deepEqual([1, 2, 0].map(n => wordForm('de', n, de)), ['Fliese', 'Fliesen', 'Fliesen']);
 });

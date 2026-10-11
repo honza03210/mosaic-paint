@@ -13,7 +13,7 @@ test('the coaster: 100 tiles on grout, with its palette', () => {
 });
 
 test('the sign spells the word in the letters it knows', () => {
-  for (const word of ['HOME', 'DOMOV', 'AHOJ']) {
+  for (const word of ['HOME', 'DOMOV', 'AHOJ', 'HEIM', 'DOM']) {
     assert.ok([...word].every(c => Ex.signLetters.includes(c)), word);
     const svg = Ex.signSvg(word, 'Sign'), cols = word.length * 6 + 3;
     assert.equal((svg.match(/<rect x=/g) || []).length, cols * 11);

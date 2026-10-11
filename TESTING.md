@@ -5,7 +5,7 @@
 `npm test` builds `dist/`, type-checks the TypeScript (`tsc`), lints the code (`npm run lint`: ESLint with the recommended JavaScript and TypeScript rules), then runs:
 
 - **Unit tests** (`tests/unit/`): geometry (closed areas, holes, T-junctions), tiling patterns, print sheet layout, and that the offline cache lists every file.
-- **Translations:** every text people see (in the code and on both pages) has a Czech version with the same placeholders.
+- **Translations:** every text people see (in the code and on both pages) has a Czech, German, Slovak and Polish version with the same placeholders and the right number of word forms; each language picks its word forms (Polish 22 płytki, 25 płytek).
 - **Unit tests** of the 3D print model (heights, merged boxes, a closed outward-facing STL, the filament plan, the multi-filament parts, finishing, the files the worker builds), the example projects and of the raster app's pixel algorithms (flood fill, lines, polygons, palette reduction, the mosaic effect).
 - **End-to-end tests** (`tests/e2e/`), driving both apps in:
   - Chrome, Firefox and WebKit (Safari's engine) on desktop;
