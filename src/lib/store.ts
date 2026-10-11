@@ -25,7 +25,8 @@ function open(): Promise<IDBDatabase> {
 async function run<T>(name: string, mode: IDBTransactionMode, fn: (s: IDBObjectStore) => IDBRequest | void): Promise<T> {
   const d = await open();
   return new Promise((resolve, reject) => {
-    const t = d.transaction(name, mode), req = fn(t.objectStore(name));
+    // relaxed: done once the browser has the data, without waiting for the disk (that can take seconds)
+    const t = d.transaction(name, mode, { durability: 'relaxed' }), req = fn(t.objectStore(name));
     t.oncomplete = () => resolve(req ? req.result : undefined);
     t.onerror = t.onabort = () => reject(t.error);
   });

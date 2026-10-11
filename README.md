@@ -13,7 +13,7 @@ To run it from a download instead, open `index.html` (or `raster.html`) in Chrom
 
 ## Getting started
 
-The first time you open an app, a short guide points out its parts; the **?** button in the top bar shows it again. **Examples…** opens ready-made projects to look at or start from: a coaster and a sign in the vector app, a pixel-art heart and a sunset mosaic in the raster app (your current work is kept in History).
+The first time you open an app, a short guide points out its parts; the **?** button in the top bar shows it again. **Examples…** opens ready-made projects to look at or start from: a coaster, a sign and “Your photo” (load a photo, then Mosaic from photo) in the vector app, a pixel-art heart and a sunset mosaic in the raster app (your current work is kept in History).
 
 ## Languages
 
@@ -141,6 +141,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `build3d.ts`: the 3D model as the dialog builds it – thin towers lowered, finishing, the solids of either kind of model, the files
   - `vectorize.ts`: raster tiles as a Mosaic Paint SVG (one polygon per piece)
   - `examples.ts`: the example projects, made on the spot
+  - `photo.ts`: reading a photo over the drawing – colors, detail, palette suggestions, the tile layout of Mosaic from photo
   - `html.ts`: escaping text for HTML
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
   - `trace.ts`: outlines of pixel areas as polygons (corner points only, holes, diagonal pixels kept apart)

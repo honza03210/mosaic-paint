@@ -113,3 +113,13 @@ export function sunsetImage(W = 240, H = 160): Img {
   }
   return { width: W, height: H, data };
 }
+
+/** A picture for "Mosaic from your photo": the sunset as 16 × 12 square tiles. */
+export function photoTilesSvg(paletteName: string): string {
+  const img = sunsetImage(16, 12), tiles: [number, number, number, string][] = [];
+  for (let y = 0; y < 12; y++) for (let x = 0; x < 16; x++) {
+    const i = (y * 16 + x) * 4, c = '#' + [0, 1, 2].map(k => img.data[i + k].toString(16).padStart(2, '0')).join('');
+    tiles.push([x * 10 + 0.75, y * 10 + 0.75, 8.5, c]);
+  }
+  return tileSvg(160, 120, tiles, paletteName);
+}

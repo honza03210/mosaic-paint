@@ -10,6 +10,19 @@ async function open(svg: string, name: string): Promise<void> {
   if (!MZ.confirmDiscard()) return;
   await MZ.openText(svg, name);
 }
+/** Load a photo (the tracing photo), then the "Mosaic from photo" dialog. */
+function fromPhoto(): void {
+  const input = document.querySelector<HTMLInputElement>('#ref-file'), before = MZ.refImage();
+  input.addEventListener('change', () => {
+    // the photo is read in the background: open the dialog once it is there
+    const started = Date.now(), wait = () => {
+      if (MZ.refImage() && MZ.refImage() !== before) document.querySelector<HTMLElement>('#btn-automosaic').click();
+      else if (Date.now() - started < 5000) setTimeout(wait, 100);
+    };
+    wait();
+  }, { once: true });
+  input.click();
+}
 const coaster = () => Ex.coasterSvg(t('Coaster'));
 // the sign says "HOME" in the page's language (in letters the sign font has)
 const sign = () => Ex.signSvg(t('HOME'), t('Sign'));
@@ -22,6 +35,10 @@ initExamples(document.querySelector('#btn-examples'), [
   {
     id: 'sign', title: t('Sign'), text: t('A word in tiles with a border – try Report for a shopping list.'),
     preview: () => svgUrl(sign()), open: () => open(sign(), t('sign') + '.svg'),
+  },
+  {
+    id: 'photo', title: t('Your photo'), text: t('Load a photo and turn it into tiles – smaller where it has detail.'),
+    preview: () => svgUrl(Ex.photoTilesSvg('')), open: fromPhoto,
   },
 ]);
 

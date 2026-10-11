@@ -842,7 +842,7 @@
   async function run(name, mode, fn) {
     const d = await open();
     return new Promise((resolve, reject) => {
-      const t2 = d.transaction(name, mode), req = fn(t2.objectStore(name));
+      const t2 = d.transaction(name, mode, { durability: "relaxed" }), req = fn(t2.objectStore(name));
       t2.oncomplete = () => resolve(req ? req.result : void 0);
       t2.onerror = t2.onabort = () => reject(t2.error);
     });
@@ -5052,9 +5052,50 @@
     return centers.map((c, i) => ({ c, n: counts[i] })).sort((a, b) => b.n - a.n).map((x) => x.c);
   }
 
+  // src/lib/photo.ts
+  function sampler({ data, W, H, box }) {
+    return (p) => {
+      const u = Math.floor((p.x - box.x) / box.w * W), v = Math.floor((p.y - box.y) / box.h * H);
+      if (u < 0 || v < 0 || u >= W || v >= H) return null;
+      const i = (v * W + u) * 4;
+      return data[i + 3] < 20 ? null : [data[i], data[i + 1], data[i + 2]];
+    };
+  }
+  function detailAt(at, x, y, w, h) {
+    const labs = [];
+    for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
+      const c = at({ x: x + w * (i + 0.5) / 5, y: y + h * (j + 0.5) / 5 });
+      if (c) labs.push(toLab(c));
+    }
+    if (labs.length < 2) return 0;
+    const m = [0, 1, 2].map((k) => labs.reduce((s, l) => s + l[k], 0) / labs.length);
+    return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
+  }
+  function suggestPalette(at, box, n4) {
+    const labs = [];
+    for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
+      const c = at({ x: box.x + box.w * (i + 0.5) / 70, y: box.y + box.h * (j + 0.5) / 70 });
+      if (c) labs.push(toLab(c));
+    }
+    return [...new Set(kmeans(labs, n4, 7).map(fromLab))];
+  }
+  function photoMosaic(j, progress) {
+    setEps(j.eps);
+    const at = sampler(j.photo), d = j.page;
+    const page2 = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
+    const bar = 4 + (1 - j.detail / 100) * 26;
+    const busy = (x, y, w, h) => detailAt(at, x, y, w, h) > bar;
+    const cells3 = cells2({ style: j.style, box: d, size: j.size, detail: j.detail / 100, busy, seed: j.seed });
+    progress?.(0.5);
+    if (cells3.length > j.maxTiles) return { tiles: cells3.length, lines: [], palette: [] };
+    const lines2 = lines(cells3, [page2], (p) => pointInPolygon(p, page2), j.eps);
+    progress?.(0.85);
+    return { tiles: cells3.length, lines: lines2, palette: j.suggest ? suggestPalette(at, j.photo.box, j.suggest) : [] };
+  }
+
   // src/features/photo-tools.ts
   var PhotoTools = /* @__PURE__ */ (() => {
-    async function pixels() {
+    async function photoPixels() {
       const im = MZ.refImage();
       if (!im) return null;
       let img;
@@ -5072,13 +5113,11 @@
       cx.drawImage(img, 0, 0, W, H);
       const data = cx.getImageData(0, 0, W, H).data;
       const box = { x: +im.getAttribute("x"), y: +im.getAttribute("y"), w: +im.getAttribute("width"), h: +im.getAttribute("height") };
-      const at = (p) => {
-        const u = Math.floor((p.x - box.x) / box.w * W), v = Math.floor((p.y - box.y) / box.h * H);
-        if (u < 0 || v < 0 || u >= W || v >= H) return null;
-        const i = (v * W + u) * 4;
-        return data[i + 3] < 20 ? null : [data[i], data[i + 1], data[i + 2]];
-      };
-      return { at, box };
+      return { data, W, H, box };
+    }
+    async function pixels() {
+      const p = await photoPixels();
+      return p && { at: sampler(p), box: p.box };
     }
     function average(px2, pts) {
       let r = 0, g = 0, b = 0, n4 = 0;
@@ -5092,24 +5131,8 @@
       }
       return n4 ? [r / n4, g / n4, b / n4] : null;
     }
-    function detailAt2(px2, x, y, w, h) {
-      const labs = [];
-      for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
-        const c = px2.at({ x: x + w * (i + 0.5) / 5, y: y + h * (j + 0.5) / 5 });
-        if (c) labs.push(toLab(c));
-      }
-      if (labs.length < 2) return 0;
-      const m = [0, 1, 2].map((k) => labs.reduce((s, l) => s + l[k], 0) / labs.length);
-      return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
-    }
-    function suggestPalette(px2, box, n4) {
-      const labs = [];
-      for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
-        const c = px2.at({ x: box.x + box.w * (i + 0.5) / 70, y: box.y + box.h * (j + 0.5) / 70 });
-        if (c) labs.push(toLab(c));
-      }
-      return [...new Set(kmeans(labs, n4, 7).map(fromLab))];
-    }
+    const detailAt3 = (px2, x, y, w, h) => detailAt(px2.at, x, y, w, h);
+    const suggestPalette2 = (px2, box, n4) => suggestPalette(px2.at, box, n4);
     async function colorTiles({ onlyUnpainted = true, commit: commit2 = true, quiet = false } = {}) {
       const px2 = await pixels();
       if (!px2) {
@@ -5145,7 +5168,7 @@
       }
       return { painted, skipped, outside };
     }
-    return { pixels, average, detailAt: detailAt2, suggestPalette, colorTiles };
+    return { photoPixels, pixels, average, detailAt: detailAt3, suggestPalette: suggestPalette2, colorTiles };
   })();
 
   // src/features/vision.ts
@@ -5741,887 +5764,8 @@ ${sections.join("\n")}
   // src/features/shell.ts
   initShell(MZ.stage);
 
-  // src/features/automosaic.ts
-  var { state: state6 } = MZ;
-  var MAX_TILES = 8e3;
-  var opts = { style: "square", size: 10, detail: 50, colors: "palette", count: 12, replace: true };
-  loadSettings("mz-automosaic", opts);
-  var save2 = () => saveSettings("mz-automosaic", opts);
-  function estimate() {
-    const d = state6.doc, per = { square: 1, brick: 2, hex: Math.sqrt(3) / 2, irregular: 1 }[opts.style] || 1;
-    const base = d.w * d.h / (opts.size * opts.size * per);
-    return Math.round(opts.detail > 0 && opts.style !== "hex" ? base * (0.5 + opts.detail / 100) : base);
-  }
-  function renderUI() {
-    $("#am-style").value = opts.style;
-    $("#am-size").value = opts.size;
-    $("#am-detail").value = opts.detail;
-    $("#am-detail-row").hidden = opts.style === "hex";
-    $("#am-count").value = opts.count;
-    for (const r of document.querySelectorAll("input[name=am-colors]")) r.checked = r.value === opts.colors;
-    $("#am-replace").checked = opts.replace;
-    $("#am-photo-missing").hidden = !!MZ.refImage();
-    const n4 = estimate();
-    $("#am-estimate").textContent = n4 > MAX_TILES ? t("About {n} tiles – too many, use a bigger tile size.", { n: n4 }) : t("About {n} tiles.", { n: n4 });
-    $("#am-go").disabled = !MZ.refImage() || n4 > MAX_TILES;
-  }
-  async function generate() {
-    const px2 = await PhotoTools.pixels();
-    if (!px2) {
-      MZ.toast(t("Load a photo first."));
-      return;
-    }
-    const d = state6.doc, box = { x: d.x, y: d.y, w: d.w, h: d.h };
-    const page2 = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
-    const bar = 4 + (1 - opts.detail / 100) * 26;
-    const busy = (x, y, w, h) => PhotoTools.detailAt(px2, x, y, w, h) > bar;
-    const cells3 = cells2({ style: opts.style, box, size: opts.size, detail: opts.detail / 100, busy, seed: (Date.now() & 65535) + 1 });
-    if (cells3.length > MAX_TILES * 1.5) {
-      MZ.toast(t("That gives {n} tiles – use a bigger tile size.", { n: cells3.length }));
-      return;
-    }
-    const segs = lines(cells3, [page2], (p) => pointInPolygon(p, page2), eps);
-    if (opts.replace) {
-      if (MZ.hasContent()) await MZ.saveVersion(t("Before making a mosaic from the photo"));
-      MZ.clearDrawing();
-    }
-    if (opts.colors === "suggest") {
-      const cols = PhotoTools.suggestPalette(px2, px2.box, Math.max(2, Math.min(64, opts.count)));
-      const name = MZ.addPalette(t("From photo"), cols);
-      MZ.toast(t("New palette “{name}” with {n} {n|color|colors}.", { name, n: cols.length }));
-    }
-    MZ.addLineSegments(segs);
-    const r = await PhotoTools.colorTiles({ onlyUnpainted: false, commit: false, quiet: true });
-    MZ.commit();
-    MZ.toast(t("Made a mosaic of {n} tiles from the photo.", { n: r ? r.painted : 0 }));
-  }
-  $("#btn-automosaic").onclick = () => {
-    renderUI();
-    $("#dlg-automosaic").showModal();
-  };
-  var sel = $("#am-style");
-  for (const [v, label] of STYLES) {
-    const o = document.createElement("option");
-    o.value = v;
-    o.textContent = t(label);
-    sel.append(o);
-  }
-  sel.onchange = () => {
-    opts.style = sel.value;
-    save2();
-    renderUI();
-  };
-  $("#am-size").onchange = (e) => {
-    const v = parseFloat(e.target.value);
-    if (v > 0) opts.size = v;
-    save2();
-    renderUI();
-  };
-  $("#am-detail").oninput = (e) => {
-    opts.detail = +e.target.value;
-    save2();
-    renderUI();
-  };
-  $("#am-count").onchange = (e) => {
-    const v = Math.round(+e.target.value);
-    if (v >= 2 && v <= 64) opts.count = v;
-    save2();
-    renderUI();
-  };
-  for (const r of document.querySelectorAll("input[name=am-colors]")) r.onchange = () => {
-    if (r.checked) {
-      opts.colors = r.value;
-      save2();
-    }
-  };
-  $("#am-replace").onchange = (e) => {
-    opts.replace = e.target.checked;
-    save2();
-  };
-  $("#am-load").onclick = () => $("#ref-file").click();
-  $("#ref-file").addEventListener("change", () => setTimeout(renderUI, 600));
-  $("#am-go").onclick = async () => {
-    $("#am-go").disabled = true;
-    $("#am-go").textContent = t("Working…");
-    await new Promise((r) => setTimeout(r, 30));
-    try {
-      await generate();
-    } finally {
-      $("#am-go").textContent = t("Make mosaic");
-      $("#dlg-automosaic").close();
-    }
-  };
-
-  // src/lib/layplan.ts
-  function panels(box, pw, ph) {
-    const cols = Math.max(1, Math.ceil(box.w / pw - 1e-9)), rows = Math.max(1, Math.ceil(box.h / ph - 1e-9)), out = [];
-    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-      const x = box.x + c * pw, y = box.y + r * ph;
-      out.push({ index: out.length + 1, row: r, col: c, x, y, w: Math.min(pw, box.x + box.w - x), h: Math.min(ph, box.y + box.h - y) });
-    }
-    return { rows, cols, panels: out };
-  }
-  function panelAt(plan, p) {
-    return plan.panels.find((q) => p.x >= q.x && p.x < q.x + q.w + 1e-9 && p.y >= q.y && p.y < q.y + q.h + 1e-9) || null;
-  }
-  function countByPanel(plan, tiles) {
-    const out = new Map(plan.panels.map((q) => [q.index, /* @__PURE__ */ new Map()]));
-    for (const t2 of tiles) {
-      const q = panelAt(plan, t2.p);
-      if (!q) continue;
-      const m = out.get(q.index);
-      m.set(t2.color, (m.get(t2.color) || 0) + 1);
-    }
-    return out;
-  }
-
-  // src/features/layplan.ts
-  var LayPlan = (() => {
-    const { state: state11 } = MZ;
-    const opts3 = { w: 0, h: 0, numbers: true, grid: true, paper: "a4" };
-    loadSettings("mz-layplan", opts3);
-    const save4 = () => saveSettings("mz-layplan", opts3);
-    const box = () => ({ x: state11.doc.x, y: state11.doc.y, w: state11.doc.w, h: state11.doc.h });
-    const k = () => MM[MZ.unit()] || MM.px;
-    const panelSize = () => ({ w: opts3.w > 0 ? opts3.w : 300 / k(), h: opts3.h > 0 ? opts3.h : 300 / k() });
-    const plan = () => {
-      const s = panelSize();
-      return panels(box(), s.w, s.h);
-    };
-    function drawGrid(show) {
-      const g = $("#mz-panels");
-      g.innerHTML = "";
-      if (!show) return;
-      const NS = "http://www.w3.org/2000/svg";
-      for (const q of plan().panels) {
-        const r = document.createElementNS(NS, "rect");
-        for (const [a, v] of [["x", q.x], ["y", q.y], ["width", q.w], ["height", q.h]]) r.setAttribute(a, String(v));
-        r.setAttribute("class", "panel-rect");
-        g.appendChild(r);
-        const t2 = document.createElementNS(NS, "text");
-        t2.setAttribute("x", String(q.x + q.w / 2));
-        t2.setAttribute("y", String(q.y + q.h / 2));
-        t2.setAttribute("font-size", String(Math.min(q.w, q.h) / 5));
-        t2.setAttribute("class", "panel-label");
-        t2.textContent = String(q.index);
-        g.appendChild(t2);
-      }
-    }
-    function renderUI2() {
-      const s = panelSize(), P = plan(), u = MZ.unit();
-      $("#lp-w").value = MZ.fmt(s.w);
-      $("#lp-h").value = MZ.fmt(s.h);
-      for (const el of document.querySelectorAll("#dlg-layplan .unit-label")) el.textContent = u;
-      $("#lp-numbers").checked = opts3.numbers;
-      $("#lp-grid").checked = opts3.grid;
-      $("#lp-paper").value = opts3.paper;
-      const L = layout(s.w * k(), s.h * k(), opts3.paper, "real");
-      $("#lp-info").textContent = t("{n} {n|panel|panels} ({rows} × {cols}) · each printed at real size on {s} {paper} {s|sheet|sheets}.", { n: P.panels.length, rows: P.rows, cols: P.cols, s: L.sheets.length, paper: L.paper.name });
-      drawGrid(opts3.grid);
-    }
-    function tiles() {
-      const out = [];
-      for (const el of MZ.allShapes()) {
-        const c = MZ.fillOf(el);
-        if (!c) continue;
-        const p = MZ.gridSample(MZ.geomOf(el).bbox, (q) => MZ.insideEl(el, q), 1)[0];
-        if (p) out.push({ p, color: c });
-      }
-      return out;
-    }
-    function printPlan() {
-      const P = plan(), K = k(), B = box(), u = MZ.unit();
-      const { art, rows, nums } = PrintTools.art(opts3.numbers ? "both" : "colors");
-      const title = MZ.fileName.replace(/\.svg$/i, "");
-      const sheetsFor2 = (o) => P.panels.reduce((s, q) => s + layout(q.w * K, q.h * K, opts3.paper, "real", o).sheets.length, 0);
-      const orientation = sheetsFor2("landscape") < sheetsFor2("portrait") ? "landscape" : "portrait";
-      const A = area(opts3.paper, orientation);
-      const sections = [overviewSection(
-        B,
-        K,
-        A,
-        P.panels.map((q) => ({ ...q, label: String(q.index) })),
-        `${title} – ` + t("laying plan: {n} {n|panel|panels} ({rows} rows × {cols} columns) of {w} × {h} {unit}", { n: P.panels.length, rows: P.rows, cols: P.cols, w: MZ.fmt(panelSize().w), h: MZ.fmt(panelSize().h), unit: u })
-      )];
-      for (const q of P.panels) {
-        const L = layout(q.w * K, q.h * K, opts3.paper, "real", orientation);
-        sections.push(...sheetSections({ x: q.x, y: q.y, w: q.w, h: q.h }, K, L, {
-          title: t("Panel {n} – row {row}, column {col}", { n: q.index, row: q.row + 1, col: q.col + 1 }),
-          prefix: t("Panel {n}", { n: q.index }) + " · "
-        }));
-      }
-      const counts = countByPanel(P, tiles());
-      const chip = (c) => `<span style="background:${c}"></span>`;
-      const table = `<table class="counts"><tr><td class="n">${t("Panel")}</td>${rows.map((r) => `<td class="n">${chip(r.c)} ${r.n}</td>`).join("")}</tr>` + P.panels.map((q) => `<tr><td class="n">${q.index}</td>${rows.map((r) => `<td>${counts.get(q.index).get(r.c) || ""}</td>`).join("")}</tr>`).join("") + "</table>";
-      sections.push(`<section class="sheet"><div class="label">${esc(title)} – ${t("tiles per panel and color")}</div>${table}</section>`);
-      if (rows.length) sections.push(`<section class="sheet legend">${PrintTools.legend(rows)}</section>`);
-      openPrintPage(page({ art, sections, paper: opts3.paper, orientation, title: `${title} – ${t("laying plan")}` }));
-      void nums;
-    }
-    $("#btn-layplan").onclick = () => {
-      renderUI2();
-      $("#dlg-layplan").showModal();
-    };
-    $("#dlg-layplan").addEventListener("close", () => drawGrid(false));
-    for (const id of ["#lp-w", "#lp-h"]) {
-      $(id).onchange = () => {
-        const w = parseFloat($("#lp-w").value), h = parseFloat($("#lp-h").value);
-        if (w > 0) opts3.w = w;
-        if (h > 0) opts3.h = h;
-        save4();
-        renderUI2();
-      };
-    }
-    $("#lp-numbers").onchange = (e) => {
-      opts3.numbers = e.target.checked;
-      save4();
-    };
-    $("#lp-grid").onchange = (e) => {
-      opts3.grid = e.target.checked;
-      save4();
-      renderUI2();
-    };
-    $("#lp-paper").onchange = (e) => {
-      opts3.paper = e.target.value;
-      save4();
-      renderUI2();
-    };
-    $("#lp-go").onclick = () => {
-      drawGrid(false);
-      $("#dlg-layplan").close();
-      printPlan();
-    };
-    return { panels, panelAt, countByPanel };
-  })();
-
-  // src/features/mix.ts
-  var { state: state7 } = MZ;
-  var mix = { on: false, colors: [], avoid: true };
-  loadSettings("mz-mix", mix);
-  var save3 = () => saveSettings("mz-mix", mix);
-  var active = () => mix.on && mix.colors.length >= 2;
-  function pick(reg) {
-    let options = mix.colors;
-    if (mix.avoid && reg) {
-      const taken = MZ.neighbourColors(reg), free = options.filter((c) => !taken.has(c));
-      if (free.length) options = free;
-    }
-    return options[Math.floor(Math.random() * options.length)];
-  }
-  var chooser = (q, face, ctx2) => pick(face ? ctx2.ix.region(face) : null);
-  function render() {
-    MZ.setFillChooser(active() ? chooser : null);
-    $("#mix-on").checked = mix.on;
-    $("#mix-avoid").checked = mix.avoid;
-    const box = $("#mix-colors");
-    box.innerHTML = "";
-    for (const c of mix.colors) {
-      const chip = document.createElement("span");
-      chip.className = "mix-chip";
-      chip.style.background = c;
-      chip.title = t("{c} – click to remove from the mix", { c });
-      chip.onclick = () => toggle(c);
-      box.append(chip);
-    }
-    $("#mix-hint").textContent = mix.colors.length < 2 ? t("Shift+click two or more swatches to put them in the mix.") : t("Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.", { n: mix.colors.length });
-    $("#btn-mix-sel").hidden = mix.colors.length < 2;
-    markSwatches();
-    save3();
-  }
-  function markSwatches() {
-    const sw = document.querySelectorAll("#palette .swatch");
-    [null, ...state7.palette].forEach((c, i) => sw[i] && sw[i].classList.toggle("in-mix", !!c && active() && mix.colors.includes(c)));
-  }
-  function toggle(c) {
-    const i = mix.colors.indexOf(c);
-    if (i >= 0) mix.colors.splice(i, 1);
-    else mix.colors.push(c);
-    if (mix.colors.length >= 2 && i < 0) mix.on = true;
-    render();
-  }
-  function mixSelection() {
-    if (!active()) {
-      MZ.toast(t("Put at least two colors in the mix first (Shift+click swatches)."));
-      return;
-    }
-    const ix = MZ.regionIndex();
-    let n4 = 0;
-    for (const el of state7.selection) {
-      if (!MZ.fillOf(el)) continue;
-      const g = MZ.geomOf(el), p = MZ.gridSample(g.bbox, (q) => MZ.insideEl(el, q), 1)[0], f = p && ix.locate(p);
-      MZ.paintFill(el, pick(f ? ix.region(f) : null));
-      n4++;
-    }
-    if (n4) MZ.commit(true);
-    MZ.toast(n4 ? t("Mixed the colors of {n} {n|area|areas}.", { n: n4 }) : t("Select painted areas first."));
-  }
-  MZ.on("swatch-shift", (c) => {
-    if (c) toggle(c);
-  });
-  MZ.on("palette", markSwatches);
-  $("#mix-on").onchange = (e) => {
-    mix.on = e.target.checked;
-    if (mix.on && mix.colors.length < 2) MZ.toast(t("Shift+click two or more swatches to put them in the mix."));
-    render();
-  };
-  $("#mix-avoid").onchange = (e) => {
-    mix.avoid = e.target.checked;
-    render();
-  };
-  $("#btn-mix-sel").onclick = mixSelection;
-  render();
-
-  // src/features/pages.ts
-  var Pages = (() => {
-    const { state: state11 } = MZ;
-    const attr = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-    const XML = '<?xml version="1.0" encoding="UTF-8"?>\n';
-    let pages = [{ name: t("Page {n}", { n: 1 }), svg: null, history: null, view: null }], cur = 0, switching = false;
-    function tag(svg2, name, index) {
-      return svg2.replace(/^<\?xml[^>]*>\s*/, "").replace(/<svg\b([^>]*)>/, (m, attrs) => `<svg${attrs.replace(/\s+data-page-(name|index)="[^"]*"/g, "")} data-page-name="${attr(name)}" data-page-index="${index}">`);
-    }
-    MZ.on("serialize", (out, opts3) => {
-      out = XML + tag(out, pages[cur].name, cur);
-      if (opts3.pageOnly || pages.length < 2) return out;
-      const others = pages.map((p, i) => i === cur ? "" : tag(p.svg, p.name, i)).join("\n");
-      return out.replace(/<\/svg>\s*$/, `<g id="mosaic-pages" display="none">
-${others}
-</g>
-</svg>`);
-    });
-    MZ.on("deserialize", (root) => {
-      if (switching) return;
-      const list = [{ index: +root.getAttribute("data-page-index") || 0, name: root.getAttribute("data-page-name") || t("Page {n}", { n: 1 }), svg: null }];
-      const group = root.querySelector('[id="mosaic-pages"]');
-      if (group) {
-        for (const s of group.children) {
-          if (s.localName !== "svg") continue;
-          list.push({ index: +s.getAttribute("data-page-index"), name: s.getAttribute("data-page-name") || "Page", svg: XML + new XMLSerializer().serializeToString(s) });
-        }
-      }
-      list.sort((a, b) => a.index - b.index);
-      pages = list.map((p) => ({ name: p.name, svg: p.svg, history: null, view: null }));
-      cur = pages.findIndex((p) => p.svg === null);
-      render3();
-    });
-    MZ.on("reset", () => {
-      pages = [{ name: t("Page {n}", { n: 1 }), svg: null, history: null, view: null }];
-      cur = 0;
-      render3();
-    });
-    function capture2() {
-      const p = pages[cur];
-      p.svg = MZ.buildSVGString({ pageOnly: true });
-      p.history = MZ.getHistory();
-      p.view = { ...state11.view };
-    }
-    function show(i) {
-      cur = i;
-      const p = pages[i];
-      switching = true;
-      try {
-        MZ.loadSVGText(p.svg, { restore: true, quiet: true });
-      } finally {
-        switching = false;
-      }
-      p.svg = null;
-      if (p.history) MZ.setHistory(p.history);
-      if (p.view) {
-        Object.assign(state11.view, p.view);
-        MZ.updateView();
-      }
-      render3();
-      MZ.docChanged();
-    }
-    function switchTo(i) {
-      if (i === cur || !pages[i]) return;
-      capture2();
-      show(i);
-    }
-    function blankPage() {
-      const d = state11.doc, u = MZ.unit(), size = (v) => v + (u === "px" ? "" : u);
-      return `${XML}<svg xmlns="http://www.w3.org/2000/svg" viewBox="${d.x} ${d.y} ${d.w} ${d.h}" width="${size(d.w)}" height="${size(d.h)}"><metadata id="mosaic-palette">{"unit":"${u}"}</metadata><rect id="mosaic-bg" x="${d.x}" y="${d.y}" width="${d.w}" height="${d.h}" fill="#ffffff"/><g id="mosaic-fills"/><g id="mosaic-shapes"/></svg>`;
-    }
-    function add(duplicate2) {
-      capture2();
-      const src = pages[cur];
-      pages.splice(cur + 1, 0, {
-        name: duplicate2 ? t("{name} copy", { name: src.name }) : t("Page {n}", { n: pages.length + 1 }),
-        svg: duplicate2 ? src.svg : blankPage(),
-        history: null,
-        view: duplicate2 ? { ...src.view } : null
-      });
-      show(cur + 1);
-      if (!duplicate2) MZ.fitView();
-    }
-    function rename(i) {
-      const n4 = prompt(t("Page name:"), pages[i].name);
-      if (!n4 || !n4.trim()) return;
-      pages[i].name = n4.trim();
-      render3();
-      MZ.docChanged();
-    }
-    function remove(i) {
-      if (pages.length < 2) {
-        MZ.toast(t("A project needs at least one page."));
-        return;
-      }
-      if (!confirm(t("Delete the page “{name}”? (A copy of the project is kept in History.)", { name: pages[i].name }))) return;
-      MZ.saveVersion(t("Before deleting the page {name}", { name: pages[i].name }));
-      if (i === cur) {
-        pages.splice(i, 1);
-        show(Math.min(i, pages.length - 1));
-      } else {
-        pages.splice(i, 1);
-        if (i < cur) cur--;
-        render3();
-        MZ.docChanged();
-      }
-    }
-    function move(i, by) {
-      const j = i + by;
-      if (j < 0 || j >= pages.length) return;
-      [pages[i], pages[j]] = [pages[j], pages[i]];
-      if (cur === i) cur = j;
-      else if (cur === j) cur = i;
-      render3();
-      MZ.docChanged();
-    }
-    function closeMenu() {
-      const m = $("#page-menu");
-      if (m) m.remove();
-    }
-    function openMenu(i, anchor) {
-      closeMenu();
-      const m = document.createElement("div");
-      m.id = "page-menu";
-      for (const [label, fn, ok] of [
-        [t("Rename…"), () => rename(i), true],
-        [t("Duplicate"), () => add(true), true],
-        [t("Move left"), () => move(i, -1), i > 0],
-        [t("Move right"), () => move(i, 1), i < pages.length - 1],
-        [t("Delete…"), () => remove(i), pages.length > 1]
-      ]) {
-        const b = document.createElement("button");
-        b.textContent = label;
-        b.disabled = !ok;
-        b.onclick = () => {
-          closeMenu();
-          fn();
-        };
-        m.append(b);
-      }
-      document.body.append(m);
-      const r = anchor.getBoundingClientRect();
-      m.style.left = Math.min(r.left, innerWidth - m.offsetWidth - 8) + "px";
-      m.style.top = r.top - m.offsetHeight - 4 + "px";
-    }
-    document.addEventListener("pointerdown", (e) => {
-      if (!e.target.closest("#page-menu, .page-more")) closeMenu();
-    });
-    function render3() {
-      const box = $("#page-tabs");
-      box.innerHTML = "";
-      pages.forEach((p, i) => {
-        const tab = document.createElement("div");
-        tab.className = "page-tab" + (i === cur ? " active" : "");
-        const b = document.createElement("button");
-        b.textContent = p.name;
-        b.title = i === cur ? t("Double-click to rename") : t("Switch to this page");
-        b.onclick = () => switchTo(i);
-        b.ondblclick = () => rename(i);
-        tab.append(b);
-        if (i === cur) {
-          const more = document.createElement("button");
-          more.className = "page-more";
-          more.textContent = "⋯";
-          more.title = t("Page options");
-          more.onclick = () => openMenu(i, more);
-          tab.append(more);
-        }
-        box.append(tab);
-      });
-    }
-    $("#page-add").onclick = () => add(false);
-    render3();
-    return { switchTo, add, get count() {
-      return pages.length;
-    }, get current() {
-      return cur;
-    }, get names() {
-      return pages.map((p) => p.name);
-    } };
-  })();
-
-  // src/features/snippets.ts
-  var Snippets = (() => {
-    const NS = "http://www.w3.org/2000/svg";
-    const MM2 = { mm: 1, cm: 10, in: 25.4, px: 25.4 / 96 };
-    const n4 = (v) => String(Math.round(v * 1e3) / 1e3);
-    function fromElements(els) {
-      const fills = [], shapes = [];
-      let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-      const ordered = [...els].sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
-      for (const el of ordered) {
-        const c = el.cloneNode(true), m = MZ.elMatrix(el);
-        if (!m.isIdentity) c.setAttribute("transform", m.toString());
-        else c.removeAttribute("transform");
-        (MZ.isFill(el) ? fills : shapes).push(c);
-        const b = MZ.geomOf(el).bbox;
-        if (Number.isFinite(b.x0)) {
-          x0 = Math.min(x0, b.x0);
-          y0 = Math.min(y0, b.y0);
-          x1 = Math.max(x1, b.x1);
-          y1 = Math.max(y1, b.y1);
-        }
-      }
-      if (!Number.isFinite(x0)) return null;
-      const root = document.createElementNS(NS, "svg");
-      root.setAttribute("data-mosaic-snippet", "1");
-      root.setAttribute("data-unit", MZ.unit());
-      root.setAttribute("viewBox", [x0, y0, x1 - x0, y1 - y0].map(n4).join(" "));
-      for (const [layer2, list] of [["fills", fills], ["shapes", shapes]]) {
-        const g = document.createElementNS(NS, "g");
-        g.setAttribute("data-layer", layer2);
-        for (const c of list) g.appendChild(c);
-        root.appendChild(g);
-      }
-      return new XMLSerializer().serializeToString(root);
-    }
-    const isSnippet = (text) => /^\s*(<\?xml[^>]*>\s*)?<svg[\s>]/i.test(text) && /data-mosaic-snippet/.test(text);
-    function parse2(text) {
-      const xml = new DOMParser().parseFromString(text, "image/svg+xml"), root = xml.documentElement;
-      if (!root || root.localName !== "svg" || xml.getElementsByTagName("parsererror").length) return null;
-      root.querySelectorAll("script,foreignObject").forEach((e) => e.remove());
-      const vb = (root.getAttribute("viewBox") || "0 0 0 0").split(/[\s,]+/).map(Number);
-      return { root, box: { x: vb[0], y: vb[1], w: vb[2], h: vb[3] }, unit: root.getAttribute("data-unit") || "px" };
-    }
-    function placement(snip, at, angle = 0) {
-      const k = (MM2[snip.unit] || 1) / (MM2[MZ.unit()] || 1), cx = snip.box.x + snip.box.w / 2, cy = snip.box.y + snip.box.h / 2;
-      return new DOMMatrix().translateSelf(at.x, at.y).rotateSelf(angle).scaleSelf(k).translateSelf(-cx, -cy);
-    }
-    const mapPt = (m, x, y) => ({ x: m.a * x + m.c * y + m.e, y: m.b * x + m.d * y + m.f });
-    function mapElement(el, m) {
-      const scale = Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)), angle = Math.atan2(m.b, m.a) * 180 / Math.PI;
-      const has = el.hasAttribute("transform"), tag = el.localName;
-      if (!has && tag === "line") {
-        const a = mapPt(m, +el.getAttribute("x1"), +el.getAttribute("y1")), b = mapPt(m, +el.getAttribute("x2"), +el.getAttribute("y2"));
-        el.setAttribute("x1", n4(a.x));
-        el.setAttribute("y1", n4(a.y));
-        el.setAttribute("x2", n4(b.x));
-        el.setAttribute("y2", n4(b.y));
-      } else if (!has && (tag === "polygon" || tag === "polyline")) {
-        const nums = (el.getAttribute("points") || "").match(/[-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?/gi) || [];
-        const pts = [];
-        for (let i = 0; i + 1 < nums.length; i += 2) {
-          const p = mapPt(m, +nums[i], +nums[i + 1]);
-          pts.push(n4(p.x) + "," + n4(p.y));
-        }
-        el.setAttribute("points", pts.join(" "));
-        const ng = (el.getAttribute("data-ngon") || "").split(/\s+/).map(Number);
-        if (ng.length === 5 && ng.every(Number.isFinite)) {
-          const c = mapPt(m, ng[1], ng[2]);
-          el.setAttribute("data-ngon", [ng[0], n4(c.x), n4(c.y), n4(ng[3] * scale), n4(ng[4] + angle)].join(" "));
-        }
-      } else if (!has && tag === "path" && /^[\s\dMLZmlz.,eE+-]*$/.test(el.getAttribute("d") || "") && !/[mlz]/.test(el.getAttribute("d"))) {
-        el.setAttribute("d", el.getAttribute("d").replace(
-          /([-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?)[\s,]+([-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?)/gi,
-          (s, x, y) => {
-            const p = mapPt(m, +x, +y);
-            return n4(p.x) + " " + n4(p.y);
-          }
-        ));
-        if (el.hasAttribute("data-area")) el.setAttribute("data-area", n4(+el.getAttribute("data-area") * scale * scale));
-      } else {
-        el.setAttribute("transform", `${m.toString()} ${el.getAttribute("transform") || ""}`.trim());
-        return;
-      }
-      if (scale !== 1 && el.hasAttribute("stroke-width")) el.setAttribute("stroke-width", n4(+el.getAttribute("stroke-width") * scale));
-    }
-    function place(snip, at, angle = 0) {
-      const m = placement(snip, at, angle), out = [];
-      const fillsG2 = document.querySelector("#mz-fills"), shapesG2 = document.querySelector("#mz-shapes");
-      for (const g of snip.root.children) {
-        const dest = g.getAttribute("data-layer") === "fills" ? fillsG2 : shapesG2;
-        for (const c of [...g.children]) {
-          const el = document.importNode(c, true);
-          mapElement(el, m);
-          dest.appendChild(el);
-          out.push(el);
-        }
-      }
-      return out;
-    }
-    return { fromElements, isSnippet, parse: parse2, placement, place, mapElement };
-  })();
-
-  // src/features/image-clipboard.ts
-  var { state: state8 } = MZ;
-  function imageSize(w, h) {
-    return Math.round(clamp(Math.max(w, h) * state8.view.s * (window.devicePixelRatio || 1), 1024, 4096));
-  }
-  async function copyDrawing() {
-    if (!canCopyImages()) {
-      MZ.toast(t("This browser can’t copy images – use PNG to save one instead."));
-      return;
-    }
-    const svg2 = MZ.buildSVGString({ photo: false, grout: state8.grout.on, pageOnly: true });
-    const ok = await copyImage(svgToPng(svg2, imageSize(state8.doc.w, state8.doc.h)));
-    MZ.toast(ok ? t("Copied the drawing as an image – paste it into the raster app or any other program.") : t("Could not copy the image (the browser refused)."));
-  }
-  $("#btn-copy-img").onclick = () => {
-    if (state8.selection.size) copySelection(false, false);
-    else copyDrawing();
-  };
-  document.addEventListener("keydown", (e) => {
-    if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey || e.key.toLowerCase() !== "c") return;
-    if (MZ.typingIn(e.target) || state8.selection.size || modalOpen()) return;
-    if (window.getSelection && String(window.getSelection())) return;
-    e.preventDefault();
-    copyDrawing();
-  });
-
-  // src/features/motifs.ts
-  var { state: state9 } = MZ;
-  var lastPointer = null;
-  var internalClip = null;
-  MZ.svg.addEventListener("pointermove", (e) => {
-    lastPointer = MZ.toDoc(e.clientX, e.clientY);
-  });
-  MZ.svg.addEventListener("pointerleave", () => {
-    lastPointer = null;
-  });
-  function target(snip) {
-    if (lastPointer) return MZ.snapPoint(lastPointer, {});
-    return { x: snip.box.x + snip.box.w / 2, y: snip.box.y + snip.box.h / 2 };
-  }
-  var clipboardOk = false;
-  var pendingCopy = null;
-  function copySelection(cut, viaKey = true) {
-    const text = Snippets.fromElements(state9.selection);
-    if (!text) return;
-    internalClip = text;
-    pendingCopy = viaKey ? text : null;
-    clipboardOk = false;
-    if (canCopyImages()) {
-      const { w, h } = svgSize(text);
-      copyImage(svgToPng(text, imageSize(w, h)), text).then((ok) => {
-        if (ok) clipboardOk = true;
-        else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => {
-          clipboardOk = true;
-        }, () => {
-        });
-      });
-    } else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => {
-      clipboardOk = true;
-    }, () => {
-    });
-    const n4 = state9.selection.size;
-    if (cut) {
-      for (const el of state9.selection) el.remove();
-      MZ.setSelection([]);
-      MZ.commitGeometry();
-    }
-    MZ.toast(cut ? t("Cut {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n4 }) : t("Copied {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n4 }));
-  }
-  document.addEventListener("keydown", (e) => {
-    const k = e.key.toLowerCase();
-    if (!(e.ctrlKey || e.metaKey) || MZ.typingIn(e.target)) return;
-    if ((k === "c" || k === "x") && state9.selection.size) copySelection(k === "x");
-    if (k === "v" && internalClip) {
-      if (!clipboardOk) {
-        e.preventDefault();
-        pasteSnippet(internalClip);
-        return;
-      }
-      pasteSeen = false;
-      setTimeout(() => {
-        if (!pasteSeen && internalClip) pasteSnippet(internalClip);
-      }, 80);
-    }
-  });
-  var pasteSeen = true;
-  document.addEventListener("paste", () => {
-    pasteSeen = true;
-  }, true);
-  window.addEventListener("blur", () => {
-    if (!clipboardOk) internalClip = null;
-  });
-  for (const type of ["copy", "cut"]) {
-    document.addEventListener(type, (e) => {
-      if (!pendingCopy || !e.clipboardData) return;
-      e.clipboardData.setData("text/plain", pendingCopy);
-      e.preventDefault();
-      clipboardOk = true;
-      pendingCopy = null;
-    });
-  }
-  function pasteSnippet(text) {
-    const snip = Snippets.parse(text);
-    if (!snip) return false;
-    const els = Snippets.place(snip, target(snip));
-    if (!els.length) return false;
-    if (state9.tool !== "select") MZ.setTool("select");
-    MZ.commitGeometry();
-    MZ.setSelection(els.filter((el) => el.isConnected));
-    MZ.toast(t("Pasted {n} {n|shape|shapes}.", { n: els.length }));
-    return true;
-  }
-  MZ.on("pasteText", (text) => {
-    pasteSeen = true;
-    if (Snippets.isSnippet(text)) return pasteSnippet(text);
-    if (internalClip && (!clipboardOk || !text.trim())) return pasteSnippet(internalClip);
-    return false;
-  });
-  var motifs = [];
-  var placing = null;
-  async function load() {
-    try {
-      motifs = await Store.get("motifs") || [];
-    } catch {
-      motifs = JSON.parse(localStorage.getItem("mz-motifs") || "[]");
-    }
-    render2();
-  }
-  async function persist() {
-    try {
-      await Store.set("motifs", motifs);
-    } catch {
-      try {
-        localStorage.setItem("mz-motifs", JSON.stringify(motifs));
-      } catch {
-        MZ.toast(t("Could not store the motifs."));
-      }
-    }
-  }
-  var thumbs = [];
-  function render2() {
-    thumbs.forEach((u) => URL.revokeObjectURL(u));
-    thumbs = [];
-    const list = $("#motif-list");
-    list.innerHTML = "";
-    if (!motifs.length) {
-      list.innerHTML = `<p class="note">${t("No motifs yet. Select some shapes and save them.")}</p>`;
-      return;
-    }
-    for (const m of motifs) {
-      const item = document.createElement("div");
-      item.className = "motif" + (placing && placing.id === m.id ? " active" : "");
-      item.title = t("{name} – click, then click on the drawing to place it", { name: m.name });
-      const url2 = URL.createObjectURL(new Blob([m.svg], { type: "image/svg+xml" }));
-      thumbs.push(url2);
-      item.innerHTML = `<img src="${url2}" alt=""><span></span><button class="del" title="${t("Delete this motif")}">×</button>`;
-      item.querySelector("span").textContent = m.name;
-      item.onclick = () => startPlacing(m);
-      item.querySelector(".del").onclick = async (e) => {
-        e.stopPropagation();
-        if (!confirm(t("Delete the motif “{name}”?", { name: m.name }))) return;
-        motifs = motifs.filter((x) => x !== m);
-        await persist();
-        render2();
-      };
-      list.append(item);
-    }
-  }
-  async function saveSelection() {
-    if (!state9.selection.size) {
-      MZ.toast(t("Select the shapes of the motif first (Select tool)."));
-      return;
-    }
-    const svg2 = Snippets.fromElements(state9.selection);
-    const name = prompt(t("Name of the motif:"), t("Motif {n}", { n: motifs.length + 1 }));
-    if (!name || !name.trim()) return;
-    motifs.push({ id: Date.now().toString(36), name: name.trim(), svg: svg2, created: Date.now() });
-    await persist();
-    render2();
-    MZ.toast(t("Saved the motif “{name}”.", { name: name.trim() }));
-  }
-  function startPlacing(m) {
-    const snip = Snippets.parse(m.svg);
-    if (!snip) {
-      MZ.toast(t("This motif could not be read."));
-      return;
-    }
-    placing = { id: m.id, name: m.name, snip, angle: 0 };
-    MZ.setTool("place-motif");
-    render2();
-    if (lastPointer) preview(lastPointer);
-  }
-  function preview(p) {
-    const g = $("#mz-preview");
-    g.innerHTML = "";
-    if (!placing) return;
-    const at = MZ.snapPoint(p, {}), m = Snippets.placement(placing.snip, at, placing.angle);
-    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    group.setAttribute("transform", m.toString());
-    group.setAttribute("opacity", "0.6");
-    for (const layer2 of placing.snip.root.children) for (const c of layer2.children) group.appendChild(document.importNode(c, true));
-    g.appendChild(group);
-  }
-  MZ.registerTool("place-motif", {
-    down(e, raw) {
-      if (!placing) return;
-      const els = Snippets.place(placing.snip, MZ.snapPoint(raw, {}), placing.angle);
-      MZ.commitGeometry();
-      MZ.toast(t("Placed “{name}”. Click again for another one, R turns it, Esc stops.", { name: placing.name }));
-      return els;
-    },
-    move(e, raw) {
-      preview(raw);
-    },
-    up() {
-    }
-  }, t("Click to place the motif · R: turn it by 15° (Shift+R: 90°) · Esc: stop"));
-  document.addEventListener("keydown", (e) => {
-    if (state9.tool !== "place-motif" || MZ.typingIn(e.target)) return;
-    if (e.key === "Escape") {
-      placing = null;
-      MZ.setTool("select");
-      render2();
-    } else if (e.key.toLowerCase() === "r" && !e.ctrlKey && !e.metaKey) {
-      placing.angle = (placing.angle + (e.shiftKey ? 90 : 15)) % 360;
-      if (lastPointer) preview(lastPointer);
-      e.stopPropagation();
-    }
-  }, true);
-  document.addEventListener("pointerdown", (e) => {
-    const b = e.target.closest?.("#tools button");
-    if (b && placing) {
-      placing = null;
-      render2();
-    }
-  });
-  $("#btn-motif-save").onclick = saveSelection;
-  $("#btn-motif-export").onclick = () => {
-    if (!motifs.length) {
-      MZ.toast(t("There are no motifs to export yet."));
-      return;
-    }
-    MZ.download(new Blob([JSON.stringify({ mosaicMotifs: 1, motifs }, null, 1)], { type: "application/json" }), "motifs.json");
-  };
-  $("#btn-motif-import").onclick = () => $("#motif-file").click();
-  $("#motif-file").onchange = async (e) => {
-    const f = e.target.files[0];
-    if (!f) return;
-    const text = await f.text();
-    e.target.value = "";
-    try {
-      const data = JSON.parse(text), list = Array.isArray(data) ? data : data.motifs;
-      let n4 = 0;
-      for (const m of list || []) {
-        if (!m || typeof m.svg !== "string" || !Snippets.parse(m.svg)) continue;
-        motifs.push({ id: Date.now().toString(36) + n4, name: String(m.name || "Motif"), svg: m.svg, created: Date.now() });
-        n4++;
-      }
-      await persist();
-      render2();
-      MZ.toast(n4 ? t("Imported {n} {n|motif|motifs}.", { n: n4 }) : t("No motifs found in that file."));
-    } catch (err) {
-      console.warn(err);
-      MZ.toast(t("That file is not a motif library."));
-    }
-  };
-  load();
+  // worker-source:worker-source
+  var worker_source_default = '(()=>{var z=null,tt=new Map;function le(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(tt.has(t))return tt.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let i=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(z=z||document.createElement("canvas").getContext("2d"),z.fillStyle="#000",z.fillStyle=n,i=z.fillStyle),tt.set(t,i),i}function et(e){if(Array.isArray(e))return e;let t=le(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(i=>parseInt(t.slice(i,i+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function E([e,t,n]){let i=g=>(g/=255,g<=.04045?g/12.92:Math.pow((g+.055)/1.055,2.4)),o=i(e),s=i(t),r=i(n),u=(o*.4124+s*.3576+r*.1805)/.95047,l=o*.2126+s*.7152+r*.0722,a=(o*.0193+s*.1192+r*.9505)/1.08883,m=g=>g>216/24389?Math.cbrt(g):(24389/27*g+16)/116,c=m(u),f=m(l),p=m(a);return[116*f-16,500*(c-f),200*(f-p)]}function gt([e,t,n]){let i=(e+16)/116,o=i+t/500,s=i-n/200,r=f=>f**3>216/24389?f**3:(116*f-16)/(24389/27),u=.95047*r(o),l=r(i),a=1.08883*r(s),m=f=>f<=.0031308?12.92*f:1.055*Math.pow(f,1/2.4)-.055;return"#"+[3.2406*u-1.5372*l-.4986*a,-.9689*u+1.8758*l+.0415*a,.0557*u-.204*l+1.057*a].map(f=>Math.round(Math.max(0,Math.min(1,m(f)))*255)).map(f=>f.toString(16).padStart(2,"0")).join("")}function xt(e,t,n){n=n||t.map(r=>E(et(r)));let i=E(e),o=null,s=1/0;return t.forEach((r,u)=>{let l=n[u],a=(i[0]-l[0])**2+(i[1]-l[1])**2+(i[2]-l[2])**2;a<s&&(s=a,o=r)}),o}var dt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function Mt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:et(e)}function J(e,t=255){let n=e?Mt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var nt=e=>e.toString(16).padStart(2,"0"),ot=(e,t,n)=>"#"+nt(e)+nt(t)+nt(n);function rt(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function wt(e){let t=e.map(i=>E(Mt(i))),n=new Map;return(i,o,s)=>{let r=i<<16|o<<8|s,u=n.get(r);return u||(u=xt([i,o,s],e,t),n.set(r,u)),u}}function Pt(e,t){let{width:n,height:i}=e,o=e.data,s=dt(n,i),r=s.data,u=Math.max(2,Math.round(t.tile)),l=Math.min(u-1,Math.max(0,Math.round(t.grout))),a=t.palette&&t.palette.length?wt(t.palette):null,m=J(t.groutColor),c=new Map,f=0;for(let p=0,g=0;p<i;p+=u,g++){let d=t.bricks&&g%2?-Math.floor(u/2):0;for(let P=d;P<n;P+=u){let v=Math.max(0,P),R=Math.min(n,P+u),w=Math.min(i,p+u),k=0,B=0,M=0,S=0,h=0;for(let x=p;x<w-(w===p+u?l:0);x++)for(let A=v;A<Math.min(R,P+u-l);A++){let I=(x*n+A)*4;h++,!(o[I+3]<128)&&(k+=o[I],B+=o[I+1],M+=o[I+2],S++)}let b=S>0&&S>=h/2,y=[0,0,0,0];if(b){k=Math.round(k/S),B=Math.round(B/S),M=Math.round(M/S);let x=a?a(k,B,M):ot(k,B,M);y=J(x),c.set(x,(c.get(x)||0)+1),f++}for(let x=p;x<w;x++)for(let A=v;A<R;A++){let I=A>=P+u-l||x>=p+u-l;rt(r,(x*n+A)*4,I?b?m:[0,0,0,0]:y)}}}return{img:s,counts:c,tiles:f}}function vt(e){let{width:t,height:n,data:i}=e,o=t*n,s=new Int32Array(o).fill(-1),r=[],u=[],l=m=>i[m*4+3]<128?-1:i[m*4]<<16|i[m*4+1]<<8|i[m*4+2],a=[];for(let m=0;m<o;m++){if(s[m]>=0)continue;let c=l(m);if(c<0)continue;let f=r.length,p=0;for(s[m]=f,a.push(m);a.length;){let g=a.pop(),d=g%t;p++;for(let P of[d>0?g-1:-1,d<t-1?g+1:-1,g-t,g+t])P<0||P>=o||s[P]>=0||l(P)!==c||(s[P]=f,a.push(P))}r.push(ot(c>>16,c>>8&255,c&255)),u.push(p)}return{labels:s,colors:r,sizes:u}}function At(e,t,n,i,o){let s=[],r=e.data;for(let l=0;l<5;l++)for(let a=0;a<5;a++){let m=Math.floor(t+i*(l+.5)/5),c=Math.floor(n+o*(a+.5)/5);if(m<0||c<0||m>=e.width||c>=e.height)continue;let f=(c*e.width+m)*4;r[f+3]>=128&&s.push(E([r[f],r[f+1],r[f+2]]))}if(s.length<2)return 0;let u=[0,1,2].map(l=>s.reduce((a,m)=>a+m[l],0)/s.length);return s.reduce((l,a)=>l+Math.hypot(a[0]-u[0],a[1]-u[1],a[2]-u[2]),0)/s.length}function ue(e,t,n,i){let o=n.length,s=n.map(l=>l.y),r=Math.max(0,Math.floor(Math.min(...s))),u=Math.min(t-1,Math.ceil(Math.max(...s)));for(let l=r;l<=u;l++){let a=l+.5,m=[];for(let c=0;c<o;c++){let f=n[c],p=n[(c+1)%o];f.y<=a!=p.y<=a&&m.push(f.x+(a-f.y)*(p.x-f.x)/(p.y-f.y))}m.sort((c,f)=>c-f);for(let c=0;c+1<m.length;c+=2){let f=Math.max(0,Math.ceil(m[c]-.5)),p=Math.min(e-1,Math.floor(m[c+1]-.5));for(let g=f;g<=p;g++)i(l*e+g)}}}function St(e,t,n){let{width:i,height:o}=e,s=e.data,r=dt(i,o),u=r.data,l=n.palette&&n.palette.length?wt(n.palette):null,a=new Map,m=[],c=0;for(let p of t){let g=0,d=0,P=0,v=0,R=0,w=[];if(ue(i,o,p,M=>{w.push(M),R++;let S=M*4;s[S+3]<128||(g+=s[S],d+=s[S+1],P+=s[S+2],v++)}),!v||v<R/2)continue;g=Math.round(g/v),d=Math.round(d/v),P=Math.round(P/v);let k=l?l(g,d,P):ot(g,d,P),B=J(k);for(let M of w)rt(u,M*4,B);a.set(k,(a.get(k)||0)+1),c++,m.push(p)}let f=Math.max(0,n.grout)/2;if(f>0){let p=J(n.groutColor);for(let g of m)for(let d=0;d<g.length;d++){let P=g[d],v=g[(d+1)%g.length],R=v.x-P.x,w=v.y-P.y,k=R*R+w*w||1,B=Math.max(0,Math.floor(Math.min(P.x,v.x)-f)),M=Math.min(i-1,Math.ceil(Math.max(P.x,v.x)+f)),S=Math.max(0,Math.floor(Math.min(P.y,v.y)-f)),h=Math.min(o-1,Math.ceil(Math.max(P.y,v.y)+f));for(let b=S;b<=h;b++)for(let y=B;y<=M;y++){let x=y+.5,A=b+.5,I=Math.max(0,Math.min(1,((x-P.x)*R+(A-P.y)*w)/k)),$=P.x+I*R-x,U=P.y+I*w-A;$*$+U*U<=f*f&&rt(u,(b*i+y)*4,p)}}}return{img:r,counts:a,tiles:c}}function kt(e){let t=new Map;return e.colors.forEach((n,i)=>{let o=t.get(n)||{n:0,color:n,pieces:0,pixels:0};o.pieces++,o.pixels+=e.sizes[i],t.set(n,o)}),[...t.values()].sort((n,i)=>i.pixels-n.pixels).map((n,i)=>({...n,n:i+1}))}var ce=.01;function Rt(e){ce=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),st=(e,t,n,i)=>e*i-t*n;function me(e,t,n){let i=n.x-t.x,o=n.y-t.y,s=i*i+o*o,r=s?((e.x-t.x)*i+(e.y-t.y)*o)/s:0;return r=Math.max(0,Math.min(1,r)),{x:t.x+i*r,y:t.y+o*r,t:r}}function fe(e,t,n,i){let o=t.x-e.x,s=t.y-e.y,r=i.x-n.x,u=i.y-n.y,l=st(o,s,r,u);if(Math.abs(l)<1e-12)return null;let a=n.x-e.x,m=n.y-e.y,c=st(a,m,r,u)/l,f=st(a,m,o,s)/l;return c<0||c>1||f<0||f>1?null:{x:e.x+o*c,y:e.y+s*c,t:c,u:f}}function Bt(e,t){let n=!1;for(let i=0,o=t.length-1;i<t.length;o=i++){let s=t[i],r=t[o];s.y>e.y!=r.y>e.y&&e.x<(r.x-s.x)*(e.y-s.y)/(r.y-s.y)+s.x&&(n=!n)}return n}function $t(e,t,n,i,o){let s=[];for(let r=0;r<e;r++){let u=o+r*2*Math.PI/e;s.push({x:t+i*Math.cos(u),y:n+i*Math.sin(u)})}return s}function it(e,t,n,i){let o=[0,1];for(let a of n)for(let m=0,c=a.length;m<c;m++){let f=fe(e,t,a[m],a[(m+1)%c]);f&&o.push(f.t)}o.sort((a,m)=>a-m);let s=a=>({x:e.x+(t.x-e.x)*a,y:e.y+(t.y-e.y)*a}),r=[],u=null,l=0;for(let a=0;a+1<o.length;a++){let m=o[a],c=o[a+1];c-m<1e-9||(i(s((m+c)/2))?(u===null&&(u=m),l=c):u!==null&&(r.push({a:s(u),b:s(l)}),u=null))}return u!==null&&r.push({a:s(u),b:s(l)}),r}function at(e,t){let n=1/0;for(let i of t)for(let o=0,s=i.length;o<s;o++)n=Math.min(n,H(e,me(e,i[o],i[(o+1)%s])));return n}var Y=(e,t,n,i)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+i},{x:e,y:t+i}],ut=e=>(e%2+2)%2===1,G=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Ut(e,t,n){let i=[];if(e==="square"){let[o,s]=G(n.x0,n.x1,t),[r,u]=G(n.y0,n.y1,t);for(let l=o;l<=s;l++)for(let a=r;a<=u;a++)i.push(Y(l*t,a*t,t,t))}else if(e==="brick"){let o=2*t,[s,r]=G(n.y0,n.y1,t);for(let u=s;u<=r;u++){let l=ut(u)?t:0,[a,m]=G(n.x0-l,n.x1-l,o);for(let c=a;c<=m;c++)i.push(Y(l+c*o,u*t,o,t))}}else if(e==="hex"){let o=Math.sqrt(3)*t,s=1.5*t,[r,u]=G(n.y0,n.y1,s);for(let l=r;l<=u;l++){let a=ut(l)?o/2:0,[m,c]=G(n.x0-a,n.x1-a,o);for(let f=m;f<=c;f++)i.push($t(6,a+f*o,l*s,t,-Math.PI/2))}}else if(e==="triangle"){let o=t*Math.sqrt(3)/2,[s,r]=G(n.y0,n.y1,o);for(let u=s;u<=r;u++){let l=u*o,a=ut(u)?t/2:0,[m,c]=G(n.x0-a,n.x1-a,t);for(let f=m;f<=c;f++){let p=a+f*t;i.push([{x:p,y:l+o},{x:p+t/2,y:l},{x:p+t,y:l+o}]),i.push([{x:p+t/2,y:l},{x:p+1.5*t,y:l},{x:p+t,y:l+o}])}}}else if(e==="herringbone"){let o=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([c,f])=>[c/t,f/t]),s=o.map(([c,f])=>(c+f)/4),r=o.map(([c,f])=>(c-f)/2),u=Math.floor(Math.min(...s))-2,l=Math.ceil(Math.max(...s))+2,a=Math.floor(Math.min(...r))-2,m=Math.ceil(Math.max(...r))+2;for(let c=u;c<=l;c++)for(let f=a;f<=m;f++)i.push(Y((2*c+f)*t,(2*c-f)*t,t,2*t)),i.push(Y((2*c+1+f)*t,(2*c+1-f)*t,2*t,t))}return i}function Lt(e,t){let n=new Map;for(let o of e){let s=o.b.x-o.a.x,r=o.b.y-o.a.y,u=Math.hypot(s,r);if(u<t)continue;s/=u,r/=u,(s<-1e-9||Math.abs(s)<=1e-9&&r<0)&&(s=-s,r=-r);let l=-r*o.a.x+s*o.a.y,a=Math.round(Math.atan2(r,s)*1e6)+"|"+Math.round(l/(t*10)),m=s*o.a.x+r*o.a.y,c=s*o.b.x+r*o.b.y;(n.get(a)||n.set(a,{dx:s,dy:r,off:l,list:[]}).get(a)).list.push([Math.min(m,c),Math.max(m,c)])}let i=[];for(let o of n.values()){o.list.sort((l,a)=>l[0]-a[0]);let s=l=>({x:o.dx*l-o.dy*o.off,y:o.dy*l+o.dx*o.off}),[r,u]=o.list[0];for(let l=1;l<=o.list.length;l++){let a=o.list[l];if(a&&a[0]<=u+t){u=Math.max(u,a[1]);continue}i.push({a:s(r),b:s(u)}),a&&([r,u]=a)}}return i}function Ft(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,i)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+i},{x:e,y:t+i}];function pe(e,t,n,i){let o=n?t*2:t,s=n?t/2:t,r=[],u=(l,a,m)=>{if(!(l>=e.x+e.w-1e-9||a>=e.y+e.h-1e-9))if(m>s*1.0001&&i(l,a,m,m)){let c=m/2;u(l,a,c),u(l+c,a,c),u(l,a+c,c),u(l+c,a+c,c)}else r.push({x:l,y:a,s:m})};for(let l=0;l*o<e.h;l++)for(let a=0;a*o<e.w;a++)u(e.x+a*o,e.y+l*o,o);return r}function be(e,t){let n=[];for(let i=0,o=e.length;i<o;i++){let s=e[i],r=e[(i+1)%o],u=t(s),l=t(r);if(u<=0&&n.push(s),u<0&&l>0||u>0&&l<0){let a=u/(u-l);n.push({x:s.x+(r.x-s.x)*a,y:s.y+(r.y-s.y)*a})}}return n}function ge(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,i=new Map,o=(r,u)=>r+","+u;e.forEach((r,u)=>{let l=o(Math.floor(r.x/n),Math.floor(r.y/n));(i.get(l)||i.set(l,[]).get(l)).push(u)});let s=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((r,u)=>{let l=Math.floor(r.x/n),a=Math.floor(r.y/n),m=N(t.x,t.y,t.w,t.h),c=()=>Math.max(...m.map(f=>H(f,r)));for(let f=0;f<=s&&m.length>=3&&!((f-1)*n>2*c());f++){let p=[];for(let g=l-f;g<=l+f;g++)for(let d=a-f;d<=a+f;d++)if(Math.max(Math.abs(g-l),Math.abs(d-a))===f)for(let P of i.get(o(g,d))||[])P!==u&&p.push(P);p.sort((g,d)=>H(e[g],r)-H(e[d],r));for(let g of p){let d=e[g],P=d.x-r.x,v=d.y-r.y,R=(r.x+d.x)/2,w=(r.y+d.y)/2;if(m=be(m,k=>(k.x-R)*P+(k.y-w)*v),m.length<3)break}}return m}).filter(r=>r.length>=3)}function V({style:e,box:t,size:n,detail:i=0,busy:o=()=>!1,seed:s=1}){let r=i>0;if(e==="hex"){let l=n/Math.sqrt(3);return Ut("hex",l,{x0:-l,y0:-l,x1:t.w+l,y1:t.h+l}).map(a=>a.map(m=>({x:m.x+t.x,y:m.y+t.y})))}if(e==="brick"){let l=[];for(let a=0;a*n<t.h;a++){let m=a%2?-n:0;for(let c=t.x+m;c<t.x+t.w;c+=2*n){let f=t.y+a*n;r&&o(c,f,2*n,n)?l.push(N(c,f,n,n),N(c+n,f,n,n)):l.push(N(c,f,2*n,n))}}return l}let u=pe(t,n,r,o);if(e==="irregular"){let l=Ft(s),a=u.map(m=>({x:m.x+m.s*(.5+(l()-.5)*.7),y:m.y+m.s*(.5+(l()-.5)*.7)})).filter(m=>m.x>=t.x&&m.y>=t.y&&m.x<=t.x+t.w&&m.y<=t.y+t.h);return ge(a,t)}return u.map(l=>N(l.x,l.y,l.s,l.s))}function jt(e,t,n,i){let o=i*10,s=a=>Math.round(a.x/o)+","+Math.round(a.y/o),r=new Set,u=[],l=a=>n(a)&&at(a,t)>i*20;for(let a of e)for(let m=0;m<a.length;m++){let c=a[m],f=a[(m+1)%a.length],p=s(c),g=s(f),d=p<g?p+"|"+g:g+"|"+p;p===g||r.has(d)||(r.add(d),u.push(...it(c,f,t,l)))}return Lt(u,i)}function Tt(e,t,n=1,i=16){if(!e.length)return[];t=Math.min(t,e.length);let o=Ft(n),s=(l,a)=>(l[0]-a[0])**2+(l[1]-a[1])**2+(l[2]-a[2])**2,r=[e[Math.floor(o()*e.length)]];for(;r.length<t;){let l=e.map(c=>Math.min(...r.map(f=>s(c,f)))),a=o()*l.reduce((c,f)=>c+f,0),m=0;for(;m<e.length-1&&(a-=l[m])>0;)m++;r.push(e[m])}let u=[];for(let l=0;l<i;l++){let a=r.map(()=>[0,0,0]);u=r.map(()=>0);for(let m of e){let c=0,f=1/0;r.forEach((p,g)=>{let d=s(m,p);d<f&&(f=d,c=g)}),a[c][0]+=m[0],a[c][1]+=m[1],a[c][2]+=m[2],u[c]++}r.forEach((m,c)=>{u[c]&&(r[c]=a[c].map(f=>f/u[c]))})}return r.map((l,a)=>({c:l,n:u[a]})).sort((l,a)=>a.n-l.n).map(l=>l.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function xe(e,t,n){let i=new Uint8Array(t*n),o=[];for(let s=0;s<n;s++)for(let r=0;r<t;r++){let u=s*t+r,l=e[u];if(l<0||i[u])continue;let a=1;for(;r+a<t&&e[u+a]===l&&!i[u+a];)a++;let m=1;t:for(;s+m<n;){let c=(s+m)*t+r;for(let f=0;f<a;f++)if(e[c+f]!==l||i[c+f])break t;m++}for(let c=s;c<s+m;c++)i.fill(1,c*t+r,c*t+r+a);o.push({x:r,y:s,w:a,h:m,level:l})}return o}function ye(e,t){let n=new Int16Array(e.length);for(let i=0;i<e.length;i++)n[i]=e[i]===-2?0:e[i]<0?t.baseLayers:_(e[i],t);return n}function Dt(e,t){let n=e.length,i=ye(e,t),o=new Int16Array(n);for(let s=0;s<n;s++)o[s]=Math.max(0,e[s]);return{bottom:new Int16Array(n),top:i,level:o}}function ct(e,t,n,i,o){let s=(h,b)=>h>=0&&b>=0&&h<t&&b<n,r=(h,b)=>s(h,b)?e.bottom[b*t+h]:0,u=(h,b)=>{if(!s(h,b))return 0;let y=b*t+h;return e.top[y]>e.bottom[y]?e.top[y]:e.bottom[y]},l=(h,b)=>u(h,b)>r(h,b),a=(h,b)=>s(h,b)?e.level[b*t+h]:0,m=[],c=h=>n-h,f=new Int16Array(t*n),p=h=>{let b=new Map,y=[];for(let x=0;x<n;x++)for(let A=0;A<t;A++){let I=x*t+A;if(!l(A,x)){f[I]=-1;continue}let $=h(A,x)*4096+a(A,x),U=b.get($);U==null&&(U=y.length,b.set($,U),y.push($)),f[I]=U}return{rs:xe(f,t,n),vals:y}};{let{rs:h,vals:b}=p(u);for(let y of h){let x=b[y.level];m.push({o:[y.x,c(y.y+y.h),Math.floor(x/4096)],u:[y.w,0,0],v:[0,y.h,0],level:x%4096})}}{let{rs:h,vals:b}=p(r);for(let y of h){let x=b[y.level];m.push({o:[y.x,c(y.y+y.h),Math.floor(x/4096)],u:[0,y.h,0],v:[y.w,0,0],level:x%4096})}}let g=(h,b,y,x)=>{if(b<=h)return[];if(x<=y||x<=h||y>=b)return[[h,b]];let A=[];return y>h&&A.push([h,y]),x<b&&A.push([x,b]),A},d=(h,b)=>l(h,b)?[r(h,b),u(h,b)]:[0,0];for(let h=0;h<=n;h++)for(let b=0;b<t;){let[y,x]=d(b,h-1),[A,I]=d(b,h);if(y===A&&x===I){b++;continue}let $=b+1;for(;$<t;$++){let[F,L]=d($,h-1),[T,C]=d($,h);if(F!==y||L!==x||T!==A||C!==I)break}let U=c(h);for(let[F,L]of g(y,x,A,I))m.push({o:[b,U,F],u:[$-b,0,0],v:[0,0,L-F],level:a(b,h-1)});for(let[F,L]of g(A,I,y,x))m.push({o:[b,U,F],u:[0,0,L-F],v:[$-b,0,0],level:a(b,h)});b=$}for(let h=0;h<=t;h++)for(let b=n-1;b>=0;){let[y,x]=d(h-1,b),[A,I]=d(h,b);if(y===A&&x===I){b--;continue}let $=b-1;for(;$>=0;$--){let[L,T]=d(h-1,$),[C,q]=d(h,$);if(L!==y||T!==x||C!==A||q!==I)break}let U=c(b+1),F=b-$;for(let[L,T]of g(A,I,y,x))m.push({o:[h,U,L],u:[0,0,T-L],v:[0,F,0],level:a(h,b)});for(let[L,T]of g(y,x,A,I))m.push({o:[h,U,L],u:[0,F,0],v:[0,0,T-L],level:a(h-1,b)});b=$}let P=[new Map,new Map,new Map],v=(h,b,y)=>h.o.map((x,A)=>x+b*h.u[A]+y*h.v[A]),R=(h,b)=>b===0?h[1]*1e5+h[2]:b===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of m)for(let[b,y]of[[0,0],[1,0],[1,1],[0,1]]){let x=v(h,b,y);for(let A=0;A<3;A++){let I=R(x,A),$=P[A].get(I);$||P[A].set(I,$=[]),$.push(x[A])}}for(let h of P)for(let[b,y]of h)h.set(b,[...new Set(y)].sort((x,A)=>x-A));let w=[],k=[],B=[],M=new Map,S=h=>{let b=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,y=M.get(b);return y==null&&(y=w.length/3,M.set(b,y),w.push(h[0]*i,h[1]*i,h[2]*o)),y};for(let h of m){let b=[v(h,0,0),v(h,1,0),v(h,1,1),v(h,0,1)],y=[];for(let A=0;A<4;A++){let I=b[A],$=b[(A+1)%4],U=I.findIndex((C,q)=>C!==$[q]);y.push(I);let F=Math.min(I[U],$[U]),L=Math.max(I[U],$[U]),T=(P[U].get(R(I,U))||[]).filter(C=>C>F&&C<L);I[U]>$[U]&&T.reverse();for(let C of T){let q=[...I];q[U]=C,y.push(q)}}let x=y.map(S);if(x.length===4)k.push(x[0],x[1],x[2],x[0],x[2],x[3]),B.push(h.level,h.level);else{let A=S(v(h,.5,.5));for(let I=0;I<x.length;I++)k.push(A,x[I],x[(I+1)%x.length]),B.push(h.level)}}return{vertices:w,triangles:k,levels:B}}function Et(e,t,n,i,o,s){let r=Int16Array.from(e),u=t*n,l=new Int32Array(u),a=new Float32Array(u),m=s.heightOf||(f=>f===-2?0:(f<0?o.baseLayers:_(f,o))*o.layerHeight),c=0;for(let f=0;f<12;f++){l.fill(-1);let p=[],g=[];for(let M=0;M<u;M++){if(l[M]>=0)continue;let S=p.length,h=r[M];for(p.push(h),l[M]=S,g.push(M);g.length;){let b=g.pop(),y=b%t;for(let x of[y>0?b-1:-1,y<t-1?b+1:-1,b-t,b+t])x<0||x>=u||l[x]>=0||r[x]!==h||(l[x]=S,g.push(x))}}let d=Math.SQRT2;for(let M=0;M<u;M++){let S=M%t,h=M/t|0,b=l[M],y=S===0||h===0||S===t-1||h===n-1||l[M-1]!==b||l[M+1]!==b||l[M-t]!==b||l[M+t]!==b;a[M]=y?1:1e9}for(let M=0;M<n;M++)for(let S=0;S<t;S++){let h=M*t+S;a[h]<=1||(a[h]=Math.min(a[h],a[h-1]+1,a[h-t]+1,a[h-t-1]+d,a[h-t+1]+d))}for(let M=n-1;M>=0;M--)for(let S=t-1;S>=0;S--){let h=M*t+S;a[h]<=1||(a[h]=Math.min(a[h],a[h+1]+1,a[h+t]+1,a[h+t+1]+d,a[h+t-1]+d))}let P=new Float32Array(p.length);for(let M=0;M<u;M++)a[M]>P[l[M]]&&(P[l[M]]=a[M]);let v=p.map(()=>new Map),R=new Float64Array(p.length).fill(1/0),w=(M,S)=>{let h=l[M],b=l[S];if(h===b)return;let y=r[M],x=r[S];R[h]=Math.min(R[h],m(x)),R[b]=Math.min(R[b],m(y)),x<y&&v[h].set(x,(v[h].get(x)||0)+1),y<x&&v[b].set(y,(v[b].get(y)||0)+1)};for(let M=0;M<n;M++)for(let S=0;S<t;S++){let h=M*t+S;S<t-1&&w(h,h+1),M<n-1&&w(h,h+t)}let k=new Int16Array(p.length).fill(-32768),B=0;if(p.forEach((M,S)=>{let h=m(M)-R[S];if(!(h>1e-9)||!v[S].size)return;let b=Math.max(1,2*P[S]-1)*i;if(b>=s.minWidth&&h<=s.maxRatio*b)return;let y=-2,x=-1;for(let[A,I]of v[S])(I>x||I===x&&A>y)&&(y=A,x=I);k[S]=y,B++}),!B)break;for(let M=0;M<u;M++){let S=k[l[M]];S!==-32768&&(r[M]=S)}c+=B}return{grid:r,lowered:c}}function mt(e,t="Mosaic Paint"){let n=e.vertices,i=e.triangles,o=i.length/3,s=new ArrayBuffer(84+o*50),r=new DataView(s),u=`${t} – multi-color by layer`.slice(0,80);for(let a=0;a<u.length;a++)r.setUint8(a,u.charCodeAt(a)&127);r.setUint32(80,o,!0);let l=84;for(let a=0;a<o;a++){let m=[0,1,2].map(B=>i[a*3+B]*3),c=n[m[1]]-n[m[0]],f=n[m[1]+1]-n[m[0]+1],p=n[m[1]+2]-n[m[0]+2],g=n[m[2]]-n[m[0]],d=n[m[2]+1]-n[m[0]+1],P=n[m[2]+2]-n[m[0]+2],v=f*P-p*d,R=p*g-c*P,w=c*d-f*g,k=Math.hypot(v,R,w)||1;v/=k,R/=k,w/=k;for(let B of[v,R,w])r.setFloat32(l,B,!0),l+=4;for(let B of m)for(let M=0;M<3;M++)r.setFloat32(l,n[B+M],!0),l+=4;r.setUint16(l,0,!0),l+=2}return s}function Gt(e,t){return e.map((n,i)=>{let o=i===0?1:_(i-1,t)+1,s=_(i,t);return{color:n,fromLayer:o,toLayer:s,changeAtLayer:i===0?null:o,z:i===0?null:+(o*t.layerHeight).toFixed(3)}})}var O=-3,de=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,i,o){let s=Math.max(0,Math.round(i.frame)),r=t+2*s,u=n+2*s,l=new Int16Array(r*u).fill(O);for(let f=0;f<n;f++)for(let p=0;p<t;p++)l[(f+s)*r+p+s]=e[f*t+p];let a=Math.min(i.corner,r/2,u/2),m=i.hole/2,c=de(i,o);for(let f=0;f<u;f++)for(let p=0;p<r;p++){let g=p+.5,d=f+.5;if(a>0){let P=g<a?a:g>r-a?r-a:g,v=d<a?a:d>u-a?u-a:d;if((g-P)**2+(d-v)**2>a*a){l[f*r+p]=-2;continue}}m>0&&(g-r/2)**2+(d-c)**2<=m*m&&(l[f*r+p]=-2)}return{grid:l,w:r,h:u}}function qt(e,t,n,i){let o=new Uint8Array(e*t),s=n/2;if(s<=0)return o;let r=[i,e-i],u=[i,t-i];for(let l of r)for(let a of u)for(let m=Math.max(0,Math.floor(a-s));m<Math.min(t,Math.ceil(a+s));m++)for(let c=Math.max(0,Math.floor(l-s));c<Math.min(e,Math.ceil(l+s));c++)(c+.5-l)**2+(m+.5-a)**2<=s*s&&(o[m*e+c]=1);return o}function _t(e,t,n,i=2){let o=n;for(let s=0;s<t.length;s++){if(!t[s])continue;let r=0;for(let u of e)u.top[s]>u.bottom[s]&&(r=Math.max(r,u.top[s]));r>0&&(o=Math.min(o,r-i))}if(o=Math.max(0,o),!o)return 0;for(let s=0;s<t.length;s++)if(t[s])for(let r of e)r.top[s]>r.bottom[s]&&r.bottom[s]<o&&(r.bottom[s]=o,r.top[s]<o&&(r.top[s]=o));return o}function zt(e,t,n,i){let o=e.length,s={bottom:new Int16Array(o).fill(t),top:new Int16Array(o),level:new Int16Array(o).fill(i)};for(let r=0;r<o;r++)e[r]===O&&(s.top[r]=n);return s}var j=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),D=e=>String(+e.toFixed(4)),ft=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,Z=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function Me(e,t,n){let i=e.vertices,o=e.triangles,s=[];s.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${j(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let r of t)s.push(`<base name="${j(r)}" displaycolor="${r.toUpperCase()}FF"/>`);s.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${j(n)}">`,"<mesh>","<vertices>");for(let r=0;r<i.length;r+=3)s.push(`<vertex x="${D(i[r])}" y="${D(i[r+1])}" z="${D(i[r+2])}"/>`);s.push("</vertices>","<triangles>");for(let r=0;r<o.length;r+=3)s.push(`<triangle v1="${o[r]}" v2="${o[r+1]}" v3="${o[r+2]}" pid="1" p1="${Math.max(0,e.levels[r/3])}"/>`);return s.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),s.join(`\n`)}function we(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Ht(e,t,n){return[{name:"[Content_Types].xml",data:ft},{name:"_rels/.rels",data:Z},{name:"3D/3dmodel.model",data:Me(e,t.map(i=>i.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:we(t)}]}function Nt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,i=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return o=>o===-2?0:o<0?t.baseLayers*t.layerHeight:e[o]?i:n}function Jt(e,t,n,i,o,s){let r=t*n,u=[];if(s.baseLayers>0){let l=new Int16Array(r);for(let a=0;a<r;a++)e[a]!==-2&&(l[a]=s.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(r),top:l,level:new Int16Array(r)}})}for(let l=0;l<i;l++){let a=new Int16Array(r).fill(s.baseLayers),m=new Int16Array(r),c=new Int16Array(r).fill(l),f=s.baseLayers+(o[l]?Math.max(1,s.tileLayers-s.groutRecess):s.tileLayers),p=!1;for(let g=0;g<r;g++)e[g]===l&&(m[g]=f,p=!0);p&&u.push({part:l,solid:{bottom:a,top:m,level:c}})}return u}function Yt(e,t,n="prusa"){return n==="bambu"?Pe(e,t):ve(e,t)}function Pe(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',i=(a,m)=>`${a.toString(16).padStart(8,"0")}-0000-4000-8000-${m.toString(16).padStart(12,"0")}`,o=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((a,m)=>{let c=a.mesh.vertices,f=a.mesh.triangles;o.push(`<object id="${m+1}" p:UUID="${i(1,m)}" type="model">`,"<mesh>","<vertices>");for(let p=0;p<c.length;p+=3)o.push(`<vertex x="${D(c[p])}" y="${D(c[p+1])}" z="${D(c[p+2])}"/>`);o.push("</vertices>","<triangles>");for(let p=0;p<f.length;p+=3)o.push(`<triangle v1="${f[p]}" v2="${f[p+1]}" v3="${f[p+2]}"/>`);o.push("</triangles>","</mesh>","</object>")}),o.push("</resources>","<build/>","</model>");let s=e.length+1,r="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${j(t)}</metadata>`,"<resources>",`<object id="${s}" p:UUID="${i(2,0)}" type="model">`,"<components>"];e.forEach((a,m)=>u.push(`<component p:path="${r}" objectid="${m+1}" p:UUID="${i(3,m)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${i(4,0)}">`,`<item objectid="${s}" p:UUID="${i(5,0)}" printable="1"/>`,"</build>","</model>");let l=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${s}">`,`<metadata key="name" value="${j(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((a,m)=>l.push(`<part id="${m+1}" subtype="normal_part">`,`<metadata key="name" value="${j(a.name)}"/>`,`<metadata key="extruder" value="${a.filament||m+1}"/>`,"</part>")),l.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ft},{name:"_rels/.rels",data:Z},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:Z.replace("/3D/3dmodel.model",r)},{name:"3D/Objects/object_1.model",data:o.join(`\n`)},{name:"Metadata/model_settings.config",data:l.join(`\n`)}]}function ve(e,t){let n=[],i=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${j(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let r of e)n.push(`<base name="${j(r.name)}" displaycolor="${r.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${j(t)}">`,"<mesh>","<vertices>");for(let r of e){let u=r.mesh.vertices;for(let l=0;l<u.length;l+=3)n.push(`<vertex x="${D(u[l])}" y="${D(u[l+1])}" z="${D(u[l+2])}"/>`)}n.push("</vertices>","<triangles>"),i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${j(t)}"/>`);let o=0,s=0;return e.forEach((r,u)=>{let l=r.mesh.triangles,a=l.length/3;for(let m=0;m<l.length;m+=3)n.push(`<triangle v1="${l[m]+o}" v2="${l[m+1]+o}" v3="${l[m+2]+o}" pid="2" p1="${u}"/>`);i.push(`<volume firstid="${s}" lastid="${s+a-1}">`,`<metadata type="volume" key="name" value="${j(r.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${r.filament||u+1}"/>`,"</volume>"),o+=r.mesh.vertices.length/3,s+=a}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),i.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ft},{name:"_rels/.rels",data:Z},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:i.join(`\n`)}]}function Vt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let i=t.vertices.length/3;for(let o of n.vertices)t.vertices.push(o);for(let o of n.triangles)t.triangles.push(o+i);for(let o of n.levels)t.levels.push(o)}return t}var X=null;function Se(e){if(!X){X=new Uint32Array(256);for(let n=0;n<256;n++){let i=n;for(let o=0;o<8;o++)i=i&1?3988292384^i>>>1:i>>>1;X[n]=i>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=X[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function ke(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function K(e,{compress:t=!0}={}){let n=new TextEncoder,i=[],o=[],s=0;for(let c of e){let f=n.encode(c.name),p=typeof c.data=="string"?n.encode(c.data):c.data,g=Se(p),d=t?await ke(p):null,P=!!d&&d.length<p.length,v=P?d:p,R=new Uint8Array(30+f.length),w=new DataView(R.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,g,!0),w.setUint32(18,v.length,!0),w.setUint32(22,p.length,!0),w.setUint16(26,f.length,!0),R.set(f,30);let k=new Uint8Array(46+f.length),B=new DataView(k.buffer);B.setUint32(0,33639248,!0),B.setUint16(4,20,!0),B.setUint16(6,20,!0),B.setUint16(8,2048,!0),B.setUint16(10,P?8:0,!0),B.setUint16(12,0,!0),B.setUint16(14,33,!0),B.setUint32(16,g,!0),B.setUint32(20,v.length,!0),B.setUint32(24,p.length,!0),B.setUint16(28,f.length,!0),B.setUint32(42,s,!0),k.set(f,46),i.push(R,v),o.push(k),s+=R.length+v.length}let r=o.reduce((c,f)=>c+f.length,0),u=new Uint8Array(22),l=new DataView(u.buffer);l.setUint32(0,101010256,!0),l.setUint16(8,e.length,!0),l.setUint16(10,e.length,!0),l.setUint32(12,r,!0),l.setUint32(16,s,!0);let a=new Uint8Array(s+r+22),m=0;for(let c of[...i,...o,u])a.set(c,m),m+=c.length;return a}var Zt=2,Ie=2,Q=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Kt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),Re=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Qt(e,t,n,i,o,s,r,u,l){let a=o.filter(p=>s[p]>0),m={list:a,grid:new Int16Array(0),counts:[],lowered:0},c=Int16Array.from(e),f=0;for(let p=0;p<4;p++){l?.(p/4);let g=new Int16Array(r.length).fill(-1);a.forEach((w,k)=>{g[w]=k});let d=c.map(w=>w<0?-1:g[w]),P=u.mode==="flat"?Nt(a.map(w=>r[w]),Kt(u)):void 0,v=Et(d,t,n,i,Q(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:P});f+=v.lowered;let R=a.map(()=>0);for(let w=0;w<v.grid.length;w++){let k=v.grid[w];k>=0&&R[k]++,c[w]=k<0?-1:a[k]}if(m={list:a,grid:v.grid,counts:R,lowered:f},R.every(w=>w>0))break;a=a.filter((w,k)=>R[k]>0)}return m}var Xt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),Q(t)))+t.frameRaise;function Wt(e,t,n,i,o){let s=Ot(e,t,n,{frame:o.frame/i,corner:o.corner/i,hole:o.hole/i},Zt/i),r=(o.magnet/2+Zt+o.corner*.3)/i;return{...s,mask:o.magnet>0?qt(s.w,s.h,o.magnet/i,r):null}}function te(e,t,n){let i=t.length,o;if(n.mode==="flat")o=Jt(e.grid,e.w,e.h,i,t,Kt(n)),n.frame>0&&o.splice(n.baseLayers?1:0,0,{part:O,solid:zt(e.grid,n.baseLayers,Xt(i,n),0)});else{let s=Dt(e.grid,Q(n)),r=Xt(i,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===O&&(s.top[u]=r,s.level[u]=i-1);o=[{part:0,solid:s}]}return e.mask&&_t(o.map(s=>s.solid),e.mask,Re(n.magnetDepth,n),Ie),o}function ee(e,t){let n=Wt(e.grid,e.w,e.h,e.cell,t);return Vt(te(n,e.grout,t).map(i=>ct(i.solid,n.w,n.h,e.cell,t.layerHeight)))}async function ne(e,t){let{shape:n,o:i}=e,o=Wt(n.grid,n.w,n.h,n.cell,i);t?.(.05);let s=te(o,n.grout,i);t?.(.15);let r=s.map((a,m)=>{let c=ct(a.solid,o.w,o.h,n.cell,i.layerHeight);return t?.(.15+.7*(m+1)/s.length),c}),u=r.reduce((a,m)=>a+m.triangles.length/3,0),l=(a,m,c)=>({fileName:a,type:m,data:c,triangles:u,parts:r.length});if(i.mode==="flat"){let a=s.map((c,f)=>{let p=Math.max(0,c.part),g=e.colors[p];return{name:c.part===O?e.labels.frame:c.part<0?e.labels.base:`${c.part+1} ${g}`,color:g,mesh:r[f],filament:p+1}});if(e.kind==="3mf")return l(e.name+".3mf","model/3mf",await K(Yt(a,e.name,e.slicer)));let m=s.map((c,f)=>({name:`${e.name}-${c.part===O?"frame":c.part<0?"base":`${c.part+1}-${e.colors[c.part].slice(1)}`}.stl`,data:new Uint8Array(mt(a[f].mesh,a[f].name))}));return l(e.name+"-stl.zip","application/zip",await K(m))}return e.kind==="3mf"?l(e.name+".3mf","model/3mf",await K(Ht(r[0],Gt(e.colors,Q(i)),e.name))):l(e.name+".stl","model/stl",new Uint8Array(mt(r[0],e.name)))}function oe(e,t,n,i,o){let s=(c,f)=>c<0||f<0||c>=t||f>=n?-1:e[f*t+c],r=t+1,u=(c,f)=>f*r+c,l=Array.from({length:i},()=>new Map),a=(c,f,p,g,d)=>{let P=l[c],v=u(f,p),R=P.get(v);R?R.push(u(g,d)):P.set(v,[u(g,d)])};for(let c=0;c<n;c++)for(let f=0;f<t;f++){o&&f===0&&c%64===0&&o(.5*c/n);let p=e[c*t+f];p<0||(s(f,c-1)!==p&&a(p,f+1,c,f,c),s(f-1,c)!==p&&a(p,f,c,f,c+1),s(f,c+1)!==p&&a(p,f,c+1,f+1,c+1),s(f+1,c)!==p&&a(p,f+1,c+1,f+1,c))}let m=[];for(let c=0;c<i;c++){o&&c%256===0&&o(.5+.5*c/i);let f=l[c],p=[];for(let[g]of f)for(;f.get(g)&&f.get(g).length;){let d=[g],P=g,v=re(f,g,-1,r);for(;v!==g;){d.push(v);let R=re(f,v,P,r);P=v,v=R}p.push($e(d,r))}m.push(p)}return m}function re(e,t,n,i){let o=e.get(t),s=0;if(o.length>1&&n>=0){let u=t%i-n%i,l=Math.floor(t/i)-Math.floor(n/i),a=m=>{let c=m%i-t%i,f=Math.floor(m/i)-Math.floor(t/i);return c===l&&f===-u?0:c===u&&f===l?1:2};for(let m=1;m<o.length;m++)a(o[m])<a(o[s])&&(s=m)}let r=o[s];return o.splice(s,1),o.length||e.delete(t),r}function $e(e,t){let n=e.map(s=>({x:s%t,y:Math.floor(s/t)})),i=n.length,o=[];for(let s=0;s<i;s++){let r=n[(s+i-1)%i],u=n[s],l=n[(s+1)%i];(u.x-r.x)*(l.y-u.y)-(u.y-r.y)*(l.x-u.x)!==0&&o.push(u)}return o}function ht(e){let t=0;for(let n=0,i=e.length;n<i;n++){let o=e[n],s=e[(n+1)%i];t+=o.x*s.y-s.x*o.y}return t/2}var W=e=>String(Math.round(e*1e3)/1e3);function se(e,t,n,i,o){let s=e.width,r=e.height,u=n/s,l=vt(e);o?.(.15);let a=new Int32Array(l.colors.length).fill(-1),m=[];l.colors.forEach((w,k)=>{w!==t&&(a[k]=m.length,m.push(w))});let c=l.labels.map(w=>w<0?-1:a[w]),f=oe(c,s,r,m.length,o&&(w=>o(.15+.8*w))),p=[],g=w=>w.map(k=>`${W(k.x*u)},${W(k.y*u)}`).join(" ");f.forEach((w,k)=>{if(w.length===1)p.push(`<polygon points="${g(w[0])}" fill="${m[k]}" stroke="none"/>`);else{let M=[...w].sort((S,h)=>Math.abs(ht(h))-Math.abs(ht(S))).map(S=>"M"+g(S).replace(/ /g,"L")+"Z").join("");p.push(`<path d="${M}" fill="${m[k]}" fill-rule="evenodd" stroke="none"/>`)}});let d=W(n),P=W(r*u),v=[...new Set(kt(l).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${d} ${P}" width="${d}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:v,paletteName:i,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${d}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${p.join(`\n`)}\n</g>\n</svg>`,tiles:m.length}}function Ue({data:e,W:t,H:n,box:i}){return o=>{let s=Math.floor((o.x-i.x)/i.w*t),r=Math.floor((o.y-i.y)/i.h*n);if(s<0||r<0||s>=t||r>=n)return null;let u=(r*t+s)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Le(e,t,n,i,o){let s=[];for(let u=0;u<5;u++)for(let l=0;l<5;l++){let a=e({x:t+i*(u+.5)/5,y:n+o*(l+.5)/5});a&&s.push(E(a))}if(s.length<2)return 0;let r=[0,1,2].map(u=>s.reduce((l,a)=>l+a[u],0)/s.length);return s.reduce((u,l)=>u+Math.hypot(l[0]-r[0],l[1]-r[1],l[2]-r[2]),0)/s.length}function Fe(e,t,n){let i=[];for(let o=0;o<70;o++)for(let s=0;s<70;s++){let r=e({x:t.x+t.w*(o+.5)/70,y:t.y+t.h*(s+.5)/70});r&&i.push(E(r))}return[...new Set(Tt(i,n,7).map(gt))]}function ie(e,t){Rt(e.eps);let n=Ue(e.photo),i=e.page,o=[{x:i.x,y:i.y},{x:i.x+i.w,y:i.y},{x:i.x+i.w,y:i.y+i.h},{x:i.x,y:i.y+i.h}],s=4+(1-e.detail/100)*26,r=(a,m,c,f)=>Le(n,a,m,c,f)>s,u=V({style:e.style,box:i,size:e.size,detail:e.detail/100,busy:r,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let l=jt(u,[o],a=>Bt(a,o),e.eps);return t?.(.85),{tiles:u.length,lines:l,palette:e.suggest?Fe(n,e.photo.box,e.suggest):[]}}function je(e,t){let n=e.img,i=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!i)return Pt(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let o=4+(1-e.detail/100)*26,s=(l,a,m,c)=>At(n,l,a,m,c)>o,r=e.shape==="brick"?e.tile/2:e.tile,u=V({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:r,detail:e.detail/100,busy:s,seed:7});return t(.5),St(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var ae={mosaic:(e,t)=>je(e,t),vectorize:(e,t)=>se(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Qt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ie(e,t),view3d:e=>ee(e.shape,e.o),export3d:(e,t)=>ne(e,t)};function pt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let i of Object.values(e))pt(i,t+1,n);return[...n]}var bt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:i}=e.data,o=0,s=r=>{let u=Date.now();u-o>100&&(o=u,bt({id:t,progress:r}))};try{let r=await ae[n](i,s);bt({id:t,result:r},pt(r))}catch(r){bt({id:t,error:String(r?.message||r)})}};})();\n';
 
   // src/lib/raster.ts
   var makeImg = (width, height) => ({ width, height, data: new Uint8ClampedArray(width * height * 4) });
@@ -6735,7 +5879,7 @@ ${others}
     }
     return { labels, colors, sizes };
   }
-  function detailAt(img, x, y, w, h) {
+  function detailAt2(img, x, y, w, h) {
     const labs = [], d = img.data;
     for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
       const px2 = Math.floor(x + w * (i + 0.5) / 5), py = Math.floor(y + h * (j + 0.5) / 5);
@@ -7528,6 +6672,1096 @@ ${others}
     return done(r.name + ".stl", "model/stl", new Uint8Array(stl(meshes[0], r.name)));
   }
 
+  // src/lib/trace.ts
+  function traceAll(labels, W, H, count, progress) {
+    const at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x];
+    const V = W + 1, key = (x, y) => y * V + x;
+    const out = Array.from({ length: count }, () => /* @__PURE__ */ new Map());
+    const add = (l, x0, y0, x1, y1) => {
+      const m = out[l], k = key(x0, y0);
+      const list = m.get(k);
+      if (list) list.push(key(x1, y1));
+      else m.set(k, [key(x1, y1)]);
+    };
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      if (progress && x === 0 && y % 64 === 0) progress(0.5 * y / H);
+      const l = labels[y * W + x];
+      if (l < 0) continue;
+      if (at(x, y - 1) !== l) add(l, x + 1, y, x, y);
+      if (at(x - 1, y) !== l) add(l, x, y, x, y + 1);
+      if (at(x, y + 1) !== l) add(l, x, y + 1, x + 1, y + 1);
+      if (at(x + 1, y) !== l) add(l, x + 1, y + 1, x + 1, y);
+    }
+    const rings = [];
+    for (let l = 0; l < count; l++) {
+      if (progress && l % 256 === 0) progress(0.5 + 0.5 * l / count);
+      const m = out[l], list = [];
+      for (const [start] of m) {
+        while (m.get(start) && m.get(start).length) {
+          const ring = [start];
+          let prev = start, cur = take(m, start, -1, V);
+          while (cur !== start) {
+            ring.push(cur);
+            const next = take(m, cur, prev, V);
+            prev = cur;
+            cur = next;
+          }
+          list.push(simplify2(ring, V));
+        }
+      }
+      rings.push(list);
+    }
+    return rings;
+  }
+  function take(m, from, prev, V) {
+    const list = m.get(from);
+    let i = 0;
+    if (list.length > 1 && prev >= 0) {
+      const dx = from % V - prev % V, dy = Math.floor(from / V) - Math.floor(prev / V);
+      const score = (to2) => {
+        const ex = to2 % V - from % V, ey = Math.floor(to2 / V) - Math.floor(from / V);
+        return ex === dy && ey === -dx ? 0 : ex === dx && ey === dy ? 1 : 2;
+      };
+      for (let k = 1; k < list.length; k++) if (score(list[k]) < score(list[i])) i = k;
+    }
+    const to = list[i];
+    list.splice(i, 1);
+    if (!list.length) m.delete(from);
+    return to;
+  }
+  function simplify2(ring, V) {
+    const pts = ring.map((k) => ({ x: k % V, y: Math.floor(k / V) })), n4 = pts.length, out = [];
+    for (let i = 0; i < n4; i++) {
+      const a = pts[(i + n4 - 1) % n4], b = pts[i], c = pts[(i + 1) % n4];
+      if ((b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) !== 0) out.push(b);
+    }
+    return out;
+  }
+  function ringArea(r) {
+    let s = 0;
+    for (let i = 0, n4 = r.length; i < n4; i++) {
+      const a = r[i], b = r[(i + 1) % n4];
+      s += a.x * b.y - b.x * a.y;
+    }
+    return s / 2;
+  }
+
+  // src/lib/vectorize.ts
+  var n2 = (v) => String(Math.round(v * 1e3) / 1e3);
+  function piecesSvg(img, grout, widthMm, name, progress) {
+    const W = img.width, H = img.height, k = widthMm / W, p = pieces(img);
+    progress?.(0.15);
+    const ids = new Int32Array(p.colors.length).fill(-1), colors = [];
+    p.colors.forEach((c, i) => {
+      if (c !== grout) {
+        ids[i] = colors.length;
+        colors.push(c);
+      }
+    });
+    const labels = p.labels.map((l) => l < 0 ? -1 : ids[l]);
+    const rings = traceAll(labels, W, H, colors.length, progress && ((f) => progress(0.15 + 0.8 * f)));
+    const shapes = [];
+    const pts = (r) => r.map((q) => `${n2(q.x * k)},${n2(q.y * k)}`).join(" ");
+    rings.forEach((list, i) => {
+      if (list.length === 1) shapes.push(`<polygon points="${pts(list[0])}" fill="${colors[i]}" stroke="none"/>`);
+      else {
+        const sorted = [...list].sort((a, b) => Math.abs(ringArea(b)) - Math.abs(ringArea(a)));
+        const d = sorted.map((r) => "M" + pts(r).replace(/ /g, "L") + "Z").join("");
+        shapes.push(`<path d="${d}" fill="${colors[i]}" fill-rule="evenodd" stroke="none"/>`);
+      }
+    });
+    const w = n2(widthMm), h = n2(H * k), palette = [...new Set(colorRows(p).map((r) => r.color))];
+    const svg2 = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">
+<metadata id="mosaic-palette">${JSON.stringify({ palette, paletteName: name, unit: "mm" })}</metadata>
+${grout ? `<rect id="mosaic-bg" x="0" y="0" width="${w}" height="${h}" fill="${grout}"/>` : ""}
+<g id="mosaic-fills"></g>
+<g id="mosaic-shapes">
+${shapes.join("\n")}
+</g>
+</svg>`;
+    return { svg: svg2, tiles: colors.length };
+  }
+
+  // src/worker/jobs.ts
+  function mosaic2(m, progress) {
+    const img = m.img, adaptive = m.detail > 0 && ["square", "brick", "irregular"].includes(m.shape);
+    if (m.shape === "offset" || m.shape === "square" && !adaptive) {
+      return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette: m.palette, bricks: m.shape === "offset" });
+    }
+    const bar = 4 + (1 - m.detail / 100) * 26;
+    const busy = (x, y, w, h) => detailAt2(img, x, y, w, h) > bar;
+    const size = m.shape === "brick" ? m.tile / 2 : m.tile;
+    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
+    progress(0.5);
+    return mosaicCells(img, cells3, { grout: m.grout, groutColor: m.groutColor, palette: m.palette });
+  }
+  var jobs = {
+    mosaic: (a, p) => mosaic2(a, p),
+    vectorize: (a, p) => piecesSvg(a.img, a.grout, a.widthMm, a.name, p),
+    towers: (a, p) => towers(a.colorGrid, a.w, a.h, a.cell, a.order, a.counts, a.isLine, a.o, p),
+    photoMosaic: (a, p) => photoMosaic(a, p),
+    view3d: (a) => viewMesh(a.shape, a.o),
+    export3d: (a, p) => exportModel(a, p)
+  };
+
+  // src/shared/work.ts
+  var Cancelled = class extends Error {
+    constructor() {
+      super("cancelled");
+    }
+  };
+  var isCancelled = (e) => e instanceof Cancelled;
+  var lanes = /* @__PURE__ */ new Map();
+  var url = "";
+  var noWorkers = false;
+  var seq = 0;
+  function spawn() {
+    if (noWorkers || typeof Worker === "undefined") return null;
+    try {
+      url || (url = URL.createObjectURL(new Blob([worker_source_default], { type: "text/javascript" })));
+      return new Worker(url);
+    } catch {
+      noWorkers = true;
+      return null;
+    }
+  }
+  async function runHere(job, args, progress) {
+    await new Promise((r) => setTimeout(r, 0));
+    return jobs[job](args, progress || (() => {
+    }));
+  }
+  function run2(job, args, o = {}) {
+    const name = o.lane || job, old = lanes.get(name);
+    if (old) {
+      old.worker?.terminate();
+      old.reject(new Cancelled());
+      lanes.delete(name);
+    }
+    const worker = spawn();
+    if (!worker) return runHere(job, args, o.progress);
+    return new Promise((resolve, reject) => {
+      const lane = { worker, id: ++seq, resolve, reject, progress: o.progress, job, args };
+      lanes.set(name, lane);
+      const finish = () => {
+        worker.terminate();
+        if (lanes.get(name) === lane) lanes.delete(name);
+      };
+      worker.onmessage = (e) => {
+        const m = e.data;
+        if (m.id !== lane.id) return;
+        if (m.progress != null) {
+          lane.progress?.(m.progress);
+          return;
+        }
+        finish();
+        if (m.error != null) reject(new Error(m.error));
+        else resolve(m.result);
+      };
+      worker.onerror = (e) => {
+        e.preventDefault?.();
+        finish();
+        noWorkers = true;
+        runHere(job, args, o.progress).then(resolve, reject);
+      };
+      worker.postMessage({ id: lane.id, job, args });
+    });
+  }
+
+  // src/features/automosaic.ts
+  var { state: state6 } = MZ;
+  var MAX_TILES = 8e3;
+  var opts = { style: "square", size: 10, detail: 50, colors: "palette", count: 12, replace: true };
+  loadSettings("mz-automosaic", opts);
+  var save2 = () => saveSettings("mz-automosaic", opts);
+  function estimate() {
+    const d = state6.doc, per = { square: 1, brick: 2, hex: Math.sqrt(3) / 2, irregular: 1 }[opts.style] || 1;
+    const base = d.w * d.h / (opts.size * opts.size * per);
+    return Math.round(opts.detail > 0 && opts.style !== "hex" ? base * (0.5 + opts.detail / 100) : base);
+  }
+  function renderUI() {
+    $("#am-style").value = opts.style;
+    $("#am-size").value = opts.size;
+    $("#am-detail").value = opts.detail;
+    $("#am-detail-row").hidden = opts.style === "hex";
+    $("#am-count").value = opts.count;
+    for (const r of document.querySelectorAll("input[name=am-colors]")) r.checked = r.value === opts.colors;
+    $("#am-replace").checked = opts.replace;
+    $("#am-photo-missing").hidden = !!MZ.refImage();
+    const n4 = estimate();
+    $("#am-estimate").textContent = n4 > MAX_TILES ? t("About {n} tiles – too many, use a bigger tile size.", { n: n4 }) : t("About {n} tiles.", { n: n4 });
+    $("#am-go").disabled = !MZ.refImage() || n4 > MAX_TILES;
+  }
+  async function generate(progress) {
+    const photo = await PhotoTools.photoPixels();
+    if (!photo) {
+      MZ.toast(t("Load a photo first."));
+      return;
+    }
+    const d = state6.doc;
+    const res = await run2("photoMosaic", {
+      photo,
+      page: { x: d.x, y: d.y, w: d.w, h: d.h },
+      style: opts.style,
+      size: opts.size,
+      detail: opts.detail,
+      seed: (Date.now() & 65535) + 1,
+      eps,
+      maxTiles: MAX_TILES * 1.5,
+      suggest: opts.colors === "suggest" ? Math.max(2, Math.min(64, opts.count)) : 0
+    }, { progress: (f) => progress(f * 0.7) });
+    if (!res.lines.length) {
+      MZ.toast(t("That gives {n} tiles – use a bigger tile size.", { n: res.tiles }));
+      return;
+    }
+    const segs = res.lines;
+    if (opts.replace) {
+      if (MZ.hasContent()) await MZ.saveVersion(t("Before making a mosaic from the photo"));
+      MZ.clearDrawing();
+    }
+    if (opts.colors === "suggest") {
+      const cols = res.palette;
+      const name = MZ.addPalette(t("From photo"), cols);
+      MZ.toast(t("New palette “{name}” with {n} {n|color|colors}.", { name, n: cols.length }));
+    }
+    MZ.addLineSegments(segs);
+    const r = await PhotoTools.colorTiles({ onlyUnpainted: false, commit: false, quiet: true });
+    MZ.commit();
+    MZ.toast(t("Made a mosaic of {n} tiles from the photo.", { n: r ? r.painted : 0 }));
+  }
+  $("#btn-automosaic").onclick = () => {
+    renderUI();
+    $("#dlg-automosaic").showModal();
+  };
+  var sel = $("#am-style");
+  for (const [v, label] of STYLES) {
+    const o = document.createElement("option");
+    o.value = v;
+    o.textContent = t(label);
+    sel.append(o);
+  }
+  sel.onchange = () => {
+    opts.style = sel.value;
+    save2();
+    renderUI();
+  };
+  $("#am-size").onchange = (e) => {
+    const v = parseFloat(e.target.value);
+    if (v > 0) opts.size = v;
+    save2();
+    renderUI();
+  };
+  $("#am-detail").oninput = (e) => {
+    opts.detail = +e.target.value;
+    save2();
+    renderUI();
+  };
+  $("#am-count").onchange = (e) => {
+    const v = Math.round(+e.target.value);
+    if (v >= 2 && v <= 64) opts.count = v;
+    save2();
+    renderUI();
+  };
+  for (const r of document.querySelectorAll("input[name=am-colors]")) r.onchange = () => {
+    if (r.checked) {
+      opts.colors = r.value;
+      save2();
+    }
+  };
+  $("#am-replace").onchange = (e) => {
+    opts.replace = e.target.checked;
+    save2();
+  };
+  $("#am-load").onclick = () => $("#ref-file").click();
+  $("#ref-file").addEventListener("change", () => setTimeout(renderUI, 600));
+  $("#am-go").onclick = async () => {
+    const go = $("#am-go");
+    go.disabled = true;
+    go.textContent = t("Working…");
+    try {
+      await generate((f) => {
+        go.textContent = t("Working… {p} %", { p: Math.round(f * 100) });
+      });
+    } catch (e) {
+      if (!isCancelled(e)) MZ.toast(t("Could not make the mosaic."));
+    } finally {
+      go.textContent = t("Make mosaic");
+      go.disabled = false;
+      $("#dlg-automosaic").close();
+    }
+  };
+
+  // src/lib/layplan.ts
+  function panels(box, pw, ph) {
+    const cols = Math.max(1, Math.ceil(box.w / pw - 1e-9)), rows = Math.max(1, Math.ceil(box.h / ph - 1e-9)), out = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const x = box.x + c * pw, y = box.y + r * ph;
+      out.push({ index: out.length + 1, row: r, col: c, x, y, w: Math.min(pw, box.x + box.w - x), h: Math.min(ph, box.y + box.h - y) });
+    }
+    return { rows, cols, panels: out };
+  }
+  function panelAt(plan, p) {
+    return plan.panels.find((q) => p.x >= q.x && p.x < q.x + q.w + 1e-9 && p.y >= q.y && p.y < q.y + q.h + 1e-9) || null;
+  }
+  function countByPanel(plan, tiles) {
+    const out = new Map(plan.panels.map((q) => [q.index, /* @__PURE__ */ new Map()]));
+    for (const t2 of tiles) {
+      const q = panelAt(plan, t2.p);
+      if (!q) continue;
+      const m = out.get(q.index);
+      m.set(t2.color, (m.get(t2.color) || 0) + 1);
+    }
+    return out;
+  }
+
+  // src/features/layplan.ts
+  var LayPlan = (() => {
+    const { state: state11 } = MZ;
+    const opts3 = { w: 0, h: 0, numbers: true, grid: true, paper: "a4" };
+    loadSettings("mz-layplan", opts3);
+    const save4 = () => saveSettings("mz-layplan", opts3);
+    const box = () => ({ x: state11.doc.x, y: state11.doc.y, w: state11.doc.w, h: state11.doc.h });
+    const k = () => MM[MZ.unit()] || MM.px;
+    const panelSize = () => ({ w: opts3.w > 0 ? opts3.w : 300 / k(), h: opts3.h > 0 ? opts3.h : 300 / k() });
+    const plan = () => {
+      const s = panelSize();
+      return panels(box(), s.w, s.h);
+    };
+    function drawGrid(show) {
+      const g = $("#mz-panels");
+      g.innerHTML = "";
+      if (!show) return;
+      const NS = "http://www.w3.org/2000/svg";
+      for (const q of plan().panels) {
+        const r = document.createElementNS(NS, "rect");
+        for (const [a, v] of [["x", q.x], ["y", q.y], ["width", q.w], ["height", q.h]]) r.setAttribute(a, String(v));
+        r.setAttribute("class", "panel-rect");
+        g.appendChild(r);
+        const t2 = document.createElementNS(NS, "text");
+        t2.setAttribute("x", String(q.x + q.w / 2));
+        t2.setAttribute("y", String(q.y + q.h / 2));
+        t2.setAttribute("font-size", String(Math.min(q.w, q.h) / 5));
+        t2.setAttribute("class", "panel-label");
+        t2.textContent = String(q.index);
+        g.appendChild(t2);
+      }
+    }
+    function renderUI2() {
+      const s = panelSize(), P = plan(), u = MZ.unit();
+      $("#lp-w").value = MZ.fmt(s.w);
+      $("#lp-h").value = MZ.fmt(s.h);
+      for (const el of document.querySelectorAll("#dlg-layplan .unit-label")) el.textContent = u;
+      $("#lp-numbers").checked = opts3.numbers;
+      $("#lp-grid").checked = opts3.grid;
+      $("#lp-paper").value = opts3.paper;
+      const L = layout(s.w * k(), s.h * k(), opts3.paper, "real");
+      $("#lp-info").textContent = t("{n} {n|panel|panels} ({rows} × {cols}) · each printed at real size on {s} {paper} {s|sheet|sheets}.", { n: P.panels.length, rows: P.rows, cols: P.cols, s: L.sheets.length, paper: L.paper.name });
+      drawGrid(opts3.grid);
+    }
+    function tiles() {
+      const out = [];
+      for (const el of MZ.allShapes()) {
+        const c = MZ.fillOf(el);
+        if (!c) continue;
+        const p = MZ.gridSample(MZ.geomOf(el).bbox, (q) => MZ.insideEl(el, q), 1)[0];
+        if (p) out.push({ p, color: c });
+      }
+      return out;
+    }
+    function printPlan() {
+      const P = plan(), K = k(), B = box(), u = MZ.unit();
+      const { art, rows, nums } = PrintTools.art(opts3.numbers ? "both" : "colors");
+      const title = MZ.fileName.replace(/\.svg$/i, "");
+      const sheetsFor2 = (o) => P.panels.reduce((s, q) => s + layout(q.w * K, q.h * K, opts3.paper, "real", o).sheets.length, 0);
+      const orientation = sheetsFor2("landscape") < sheetsFor2("portrait") ? "landscape" : "portrait";
+      const A = area(opts3.paper, orientation);
+      const sections = [overviewSection(
+        B,
+        K,
+        A,
+        P.panels.map((q) => ({ ...q, label: String(q.index) })),
+        `${title} – ` + t("laying plan: {n} {n|panel|panels} ({rows} rows × {cols} columns) of {w} × {h} {unit}", { n: P.panels.length, rows: P.rows, cols: P.cols, w: MZ.fmt(panelSize().w), h: MZ.fmt(panelSize().h), unit: u })
+      )];
+      for (const q of P.panels) {
+        const L = layout(q.w * K, q.h * K, opts3.paper, "real", orientation);
+        sections.push(...sheetSections({ x: q.x, y: q.y, w: q.w, h: q.h }, K, L, {
+          title: t("Panel {n} – row {row}, column {col}", { n: q.index, row: q.row + 1, col: q.col + 1 }),
+          prefix: t("Panel {n}", { n: q.index }) + " · "
+        }));
+      }
+      const counts = countByPanel(P, tiles());
+      const chip = (c) => `<span style="background:${c}"></span>`;
+      const table = `<table class="counts"><tr><td class="n">${t("Panel")}</td>${rows.map((r) => `<td class="n">${chip(r.c)} ${r.n}</td>`).join("")}</tr>` + P.panels.map((q) => `<tr><td class="n">${q.index}</td>${rows.map((r) => `<td>${counts.get(q.index).get(r.c) || ""}</td>`).join("")}</tr>`).join("") + "</table>";
+      sections.push(`<section class="sheet"><div class="label">${esc(title)} – ${t("tiles per panel and color")}</div>${table}</section>`);
+      if (rows.length) sections.push(`<section class="sheet legend">${PrintTools.legend(rows)}</section>`);
+      openPrintPage(page({ art, sections, paper: opts3.paper, orientation, title: `${title} – ${t("laying plan")}` }));
+      void nums;
+    }
+    $("#btn-layplan").onclick = () => {
+      renderUI2();
+      $("#dlg-layplan").showModal();
+    };
+    $("#dlg-layplan").addEventListener("close", () => drawGrid(false));
+    for (const id of ["#lp-w", "#lp-h"]) {
+      $(id).onchange = () => {
+        const w = parseFloat($("#lp-w").value), h = parseFloat($("#lp-h").value);
+        if (w > 0) opts3.w = w;
+        if (h > 0) opts3.h = h;
+        save4();
+        renderUI2();
+      };
+    }
+    $("#lp-numbers").onchange = (e) => {
+      opts3.numbers = e.target.checked;
+      save4();
+    };
+    $("#lp-grid").onchange = (e) => {
+      opts3.grid = e.target.checked;
+      save4();
+      renderUI2();
+    };
+    $("#lp-paper").onchange = (e) => {
+      opts3.paper = e.target.value;
+      save4();
+      renderUI2();
+    };
+    $("#lp-go").onclick = () => {
+      drawGrid(false);
+      $("#dlg-layplan").close();
+      printPlan();
+    };
+    return { panels, panelAt, countByPanel };
+  })();
+
+  // src/features/mix.ts
+  var { state: state7 } = MZ;
+  var mix = { on: false, colors: [], avoid: true };
+  loadSettings("mz-mix", mix);
+  var save3 = () => saveSettings("mz-mix", mix);
+  var active = () => mix.on && mix.colors.length >= 2;
+  function pick(reg) {
+    let options = mix.colors;
+    if (mix.avoid && reg) {
+      const taken = MZ.neighbourColors(reg), free = options.filter((c) => !taken.has(c));
+      if (free.length) options = free;
+    }
+    return options[Math.floor(Math.random() * options.length)];
+  }
+  var chooser = (q, face, ctx2) => pick(face ? ctx2.ix.region(face) : null);
+  function render() {
+    MZ.setFillChooser(active() ? chooser : null);
+    $("#mix-on").checked = mix.on;
+    $("#mix-avoid").checked = mix.avoid;
+    const box = $("#mix-colors");
+    box.innerHTML = "";
+    for (const c of mix.colors) {
+      const chip = document.createElement("span");
+      chip.className = "mix-chip";
+      chip.style.background = c;
+      chip.title = t("{c} – click to remove from the mix", { c });
+      chip.onclick = () => toggle(c);
+      box.append(chip);
+    }
+    $("#mix-hint").textContent = mix.colors.length < 2 ? t("Shift+click two or more swatches to put them in the mix.") : t("Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.", { n: mix.colors.length });
+    $("#btn-mix-sel").hidden = mix.colors.length < 2;
+    markSwatches();
+    save3();
+  }
+  function markSwatches() {
+    const sw = document.querySelectorAll("#palette .swatch");
+    [null, ...state7.palette].forEach((c, i) => sw[i] && sw[i].classList.toggle("in-mix", !!c && active() && mix.colors.includes(c)));
+  }
+  function toggle(c) {
+    const i = mix.colors.indexOf(c);
+    if (i >= 0) mix.colors.splice(i, 1);
+    else mix.colors.push(c);
+    if (mix.colors.length >= 2 && i < 0) mix.on = true;
+    render();
+  }
+  function mixSelection() {
+    if (!active()) {
+      MZ.toast(t("Put at least two colors in the mix first (Shift+click swatches)."));
+      return;
+    }
+    const ix = MZ.regionIndex();
+    let n4 = 0;
+    for (const el of state7.selection) {
+      if (!MZ.fillOf(el)) continue;
+      const g = MZ.geomOf(el), p = MZ.gridSample(g.bbox, (q) => MZ.insideEl(el, q), 1)[0], f = p && ix.locate(p);
+      MZ.paintFill(el, pick(f ? ix.region(f) : null));
+      n4++;
+    }
+    if (n4) MZ.commit(true);
+    MZ.toast(n4 ? t("Mixed the colors of {n} {n|area|areas}.", { n: n4 }) : t("Select painted areas first."));
+  }
+  MZ.on("swatch-shift", (c) => {
+    if (c) toggle(c);
+  });
+  MZ.on("palette", markSwatches);
+  $("#mix-on").onchange = (e) => {
+    mix.on = e.target.checked;
+    if (mix.on && mix.colors.length < 2) MZ.toast(t("Shift+click two or more swatches to put them in the mix."));
+    render();
+  };
+  $("#mix-avoid").onchange = (e) => {
+    mix.avoid = e.target.checked;
+    render();
+  };
+  $("#btn-mix-sel").onclick = mixSelection;
+  render();
+
+  // src/features/pages.ts
+  var Pages = (() => {
+    const { state: state11 } = MZ;
+    const attr = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const XML = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    let pages = [{ name: t("Page {n}", { n: 1 }), svg: null, history: null, view: null }], cur = 0, switching = false;
+    function tag(svg2, name, index) {
+      return svg2.replace(/^<\?xml[^>]*>\s*/, "").replace(/<svg\b([^>]*)>/, (m, attrs) => `<svg${attrs.replace(/\s+data-page-(name|index)="[^"]*"/g, "")} data-page-name="${attr(name)}" data-page-index="${index}">`);
+    }
+    MZ.on("serialize", (out, opts3) => {
+      out = XML + tag(out, pages[cur].name, cur);
+      if (opts3.pageOnly || pages.length < 2) return out;
+      const others = pages.map((p, i) => i === cur ? "" : tag(p.svg, p.name, i)).join("\n");
+      return out.replace(/<\/svg>\s*$/, `<g id="mosaic-pages" display="none">
+${others}
+</g>
+</svg>`);
+    });
+    MZ.on("deserialize", (root) => {
+      if (switching) return;
+      const list = [{ index: +root.getAttribute("data-page-index") || 0, name: root.getAttribute("data-page-name") || t("Page {n}", { n: 1 }), svg: null }];
+      const group = root.querySelector('[id="mosaic-pages"]');
+      if (group) {
+        for (const s of group.children) {
+          if (s.localName !== "svg") continue;
+          list.push({ index: +s.getAttribute("data-page-index"), name: s.getAttribute("data-page-name") || "Page", svg: XML + new XMLSerializer().serializeToString(s) });
+        }
+      }
+      list.sort((a, b) => a.index - b.index);
+      pages = list.map((p) => ({ name: p.name, svg: p.svg, history: null, view: null }));
+      cur = pages.findIndex((p) => p.svg === null);
+      render3();
+    });
+    MZ.on("reset", () => {
+      pages = [{ name: t("Page {n}", { n: 1 }), svg: null, history: null, view: null }];
+      cur = 0;
+      render3();
+    });
+    function capture2() {
+      const p = pages[cur];
+      p.svg = MZ.buildSVGString({ pageOnly: true });
+      p.history = MZ.getHistory();
+      p.view = { ...state11.view };
+    }
+    function show(i) {
+      cur = i;
+      const p = pages[i];
+      switching = true;
+      try {
+        MZ.loadSVGText(p.svg, { restore: true, quiet: true });
+      } finally {
+        switching = false;
+      }
+      p.svg = null;
+      if (p.history) MZ.setHistory(p.history);
+      if (p.view) {
+        Object.assign(state11.view, p.view);
+        MZ.updateView();
+      }
+      render3();
+      MZ.docChanged();
+    }
+    function switchTo(i) {
+      if (i === cur || !pages[i]) return;
+      capture2();
+      show(i);
+    }
+    function blankPage() {
+      const d = state11.doc, u = MZ.unit(), size = (v) => v + (u === "px" ? "" : u);
+      return `${XML}<svg xmlns="http://www.w3.org/2000/svg" viewBox="${d.x} ${d.y} ${d.w} ${d.h}" width="${size(d.w)}" height="${size(d.h)}"><metadata id="mosaic-palette">{"unit":"${u}"}</metadata><rect id="mosaic-bg" x="${d.x}" y="${d.y}" width="${d.w}" height="${d.h}" fill="#ffffff"/><g id="mosaic-fills"/><g id="mosaic-shapes"/></svg>`;
+    }
+    function add(duplicate2) {
+      capture2();
+      const src = pages[cur];
+      pages.splice(cur + 1, 0, {
+        name: duplicate2 ? t("{name} copy", { name: src.name }) : t("Page {n}", { n: pages.length + 1 }),
+        svg: duplicate2 ? src.svg : blankPage(),
+        history: null,
+        view: duplicate2 ? { ...src.view } : null
+      });
+      show(cur + 1);
+      if (!duplicate2) MZ.fitView();
+    }
+    function rename(i) {
+      const n4 = prompt(t("Page name:"), pages[i].name);
+      if (!n4 || !n4.trim()) return;
+      pages[i].name = n4.trim();
+      render3();
+      MZ.docChanged();
+    }
+    function remove(i) {
+      if (pages.length < 2) {
+        MZ.toast(t("A project needs at least one page."));
+        return;
+      }
+      if (!confirm(t("Delete the page “{name}”? (A copy of the project is kept in History.)", { name: pages[i].name }))) return;
+      MZ.saveVersion(t("Before deleting the page {name}", { name: pages[i].name }));
+      if (i === cur) {
+        pages.splice(i, 1);
+        show(Math.min(i, pages.length - 1));
+      } else {
+        pages.splice(i, 1);
+        if (i < cur) cur--;
+        render3();
+        MZ.docChanged();
+      }
+    }
+    function move(i, by) {
+      const j = i + by;
+      if (j < 0 || j >= pages.length) return;
+      [pages[i], pages[j]] = [pages[j], pages[i]];
+      if (cur === i) cur = j;
+      else if (cur === j) cur = i;
+      render3();
+      MZ.docChanged();
+    }
+    function closeMenu() {
+      const m = $("#page-menu");
+      if (m) m.remove();
+    }
+    function openMenu(i, anchor) {
+      closeMenu();
+      const m = document.createElement("div");
+      m.id = "page-menu";
+      for (const [label, fn, ok] of [
+        [t("Rename…"), () => rename(i), true],
+        [t("Duplicate"), () => add(true), true],
+        [t("Move left"), () => move(i, -1), i > 0],
+        [t("Move right"), () => move(i, 1), i < pages.length - 1],
+        [t("Delete…"), () => remove(i), pages.length > 1]
+      ]) {
+        const b = document.createElement("button");
+        b.textContent = label;
+        b.disabled = !ok;
+        b.onclick = () => {
+          closeMenu();
+          fn();
+        };
+        m.append(b);
+      }
+      document.body.append(m);
+      const r = anchor.getBoundingClientRect();
+      m.style.left = Math.min(r.left, innerWidth - m.offsetWidth - 8) + "px";
+      m.style.top = r.top - m.offsetHeight - 4 + "px";
+    }
+    document.addEventListener("pointerdown", (e) => {
+      if (!e.target.closest("#page-menu, .page-more")) closeMenu();
+    });
+    function render3() {
+      const box = $("#page-tabs");
+      box.innerHTML = "";
+      pages.forEach((p, i) => {
+        const tab = document.createElement("div");
+        tab.className = "page-tab" + (i === cur ? " active" : "");
+        const b = document.createElement("button");
+        b.textContent = p.name;
+        b.title = i === cur ? t("Double-click to rename") : t("Switch to this page");
+        b.onclick = () => switchTo(i);
+        b.ondblclick = () => rename(i);
+        tab.append(b);
+        if (i === cur) {
+          const more = document.createElement("button");
+          more.className = "page-more";
+          more.textContent = "⋯";
+          more.title = t("Page options");
+          more.onclick = () => openMenu(i, more);
+          tab.append(more);
+        }
+        box.append(tab);
+      });
+    }
+    $("#page-add").onclick = () => add(false);
+    render3();
+    return { switchTo, add, get count() {
+      return pages.length;
+    }, get current() {
+      return cur;
+    }, get names() {
+      return pages.map((p) => p.name);
+    } };
+  })();
+
+  // src/features/snippets.ts
+  var Snippets = (() => {
+    const NS = "http://www.w3.org/2000/svg";
+    const MM2 = { mm: 1, cm: 10, in: 25.4, px: 25.4 / 96 };
+    const n4 = (v) => String(Math.round(v * 1e3) / 1e3);
+    function fromElements(els) {
+      const fills = [], shapes = [];
+      let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+      const ordered = [...els].sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
+      for (const el of ordered) {
+        const c = el.cloneNode(true), m = MZ.elMatrix(el);
+        if (!m.isIdentity) c.setAttribute("transform", m.toString());
+        else c.removeAttribute("transform");
+        (MZ.isFill(el) ? fills : shapes).push(c);
+        const b = MZ.geomOf(el).bbox;
+        if (Number.isFinite(b.x0)) {
+          x0 = Math.min(x0, b.x0);
+          y0 = Math.min(y0, b.y0);
+          x1 = Math.max(x1, b.x1);
+          y1 = Math.max(y1, b.y1);
+        }
+      }
+      if (!Number.isFinite(x0)) return null;
+      const root = document.createElementNS(NS, "svg");
+      root.setAttribute("data-mosaic-snippet", "1");
+      root.setAttribute("data-unit", MZ.unit());
+      root.setAttribute("viewBox", [x0, y0, x1 - x0, y1 - y0].map(n4).join(" "));
+      for (const [layer2, list] of [["fills", fills], ["shapes", shapes]]) {
+        const g = document.createElementNS(NS, "g");
+        g.setAttribute("data-layer", layer2);
+        for (const c of list) g.appendChild(c);
+        root.appendChild(g);
+      }
+      return new XMLSerializer().serializeToString(root);
+    }
+    const isSnippet = (text) => /^\s*(<\?xml[^>]*>\s*)?<svg[\s>]/i.test(text) && /data-mosaic-snippet/.test(text);
+    function parse2(text) {
+      const xml = new DOMParser().parseFromString(text, "image/svg+xml"), root = xml.documentElement;
+      if (!root || root.localName !== "svg" || xml.getElementsByTagName("parsererror").length) return null;
+      root.querySelectorAll("script,foreignObject").forEach((e) => e.remove());
+      const vb = (root.getAttribute("viewBox") || "0 0 0 0").split(/[\s,]+/).map(Number);
+      return { root, box: { x: vb[0], y: vb[1], w: vb[2], h: vb[3] }, unit: root.getAttribute("data-unit") || "px" };
+    }
+    function placement(snip, at, angle = 0) {
+      const k = (MM2[snip.unit] || 1) / (MM2[MZ.unit()] || 1), cx = snip.box.x + snip.box.w / 2, cy = snip.box.y + snip.box.h / 2;
+      return new DOMMatrix().translateSelf(at.x, at.y).rotateSelf(angle).scaleSelf(k).translateSelf(-cx, -cy);
+    }
+    const mapPt = (m, x, y) => ({ x: m.a * x + m.c * y + m.e, y: m.b * x + m.d * y + m.f });
+    function mapElement(el, m) {
+      const scale = Math.sqrt(Math.abs(m.a * m.d - m.b * m.c)), angle = Math.atan2(m.b, m.a) * 180 / Math.PI;
+      const has = el.hasAttribute("transform"), tag = el.localName;
+      if (!has && tag === "line") {
+        const a = mapPt(m, +el.getAttribute("x1"), +el.getAttribute("y1")), b = mapPt(m, +el.getAttribute("x2"), +el.getAttribute("y2"));
+        el.setAttribute("x1", n4(a.x));
+        el.setAttribute("y1", n4(a.y));
+        el.setAttribute("x2", n4(b.x));
+        el.setAttribute("y2", n4(b.y));
+      } else if (!has && (tag === "polygon" || tag === "polyline")) {
+        const nums = (el.getAttribute("points") || "").match(/[-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?/gi) || [];
+        const pts = [];
+        for (let i = 0; i + 1 < nums.length; i += 2) {
+          const p = mapPt(m, +nums[i], +nums[i + 1]);
+          pts.push(n4(p.x) + "," + n4(p.y));
+        }
+        el.setAttribute("points", pts.join(" "));
+        const ng = (el.getAttribute("data-ngon") || "").split(/\s+/).map(Number);
+        if (ng.length === 5 && ng.every(Number.isFinite)) {
+          const c = mapPt(m, ng[1], ng[2]);
+          el.setAttribute("data-ngon", [ng[0], n4(c.x), n4(c.y), n4(ng[3] * scale), n4(ng[4] + angle)].join(" "));
+        }
+      } else if (!has && tag === "path" && /^[\s\dMLZmlz.,eE+-]*$/.test(el.getAttribute("d") || "") && !/[mlz]/.test(el.getAttribute("d"))) {
+        el.setAttribute("d", el.getAttribute("d").replace(
+          /([-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?)[\s,]+([-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?)/gi,
+          (s, x, y) => {
+            const p = mapPt(m, +x, +y);
+            return n4(p.x) + " " + n4(p.y);
+          }
+        ));
+        if (el.hasAttribute("data-area")) el.setAttribute("data-area", n4(+el.getAttribute("data-area") * scale * scale));
+      } else {
+        el.setAttribute("transform", `${m.toString()} ${el.getAttribute("transform") || ""}`.trim());
+        return;
+      }
+      if (scale !== 1 && el.hasAttribute("stroke-width")) el.setAttribute("stroke-width", n4(+el.getAttribute("stroke-width") * scale));
+    }
+    function place(snip, at, angle = 0) {
+      const m = placement(snip, at, angle), out = [];
+      const fillsG2 = document.querySelector("#mz-fills"), shapesG2 = document.querySelector("#mz-shapes");
+      for (const g of snip.root.children) {
+        const dest = g.getAttribute("data-layer") === "fills" ? fillsG2 : shapesG2;
+        for (const c of [...g.children]) {
+          const el = document.importNode(c, true);
+          mapElement(el, m);
+          dest.appendChild(el);
+          out.push(el);
+        }
+      }
+      return out;
+    }
+    return { fromElements, isSnippet, parse: parse2, placement, place, mapElement };
+  })();
+
+  // src/features/image-clipboard.ts
+  var { state: state8 } = MZ;
+  function imageSize(w, h) {
+    return Math.round(clamp(Math.max(w, h) * state8.view.s * (window.devicePixelRatio || 1), 1024, 4096));
+  }
+  async function copyDrawing() {
+    if (!canCopyImages()) {
+      MZ.toast(t("This browser can’t copy images – use PNG to save one instead."));
+      return;
+    }
+    const svg2 = MZ.buildSVGString({ photo: false, grout: state8.grout.on, pageOnly: true });
+    const ok = await copyImage(svgToPng(svg2, imageSize(state8.doc.w, state8.doc.h)));
+    MZ.toast(ok ? t("Copied the drawing as an image – paste it into the raster app or any other program.") : t("Could not copy the image (the browser refused)."));
+  }
+  $("#btn-copy-img").onclick = () => {
+    if (state8.selection.size) copySelection(false, false);
+    else copyDrawing();
+  };
+  document.addEventListener("keydown", (e) => {
+    if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey || e.key.toLowerCase() !== "c") return;
+    if (MZ.typingIn(e.target) || state8.selection.size || modalOpen()) return;
+    if (window.getSelection && String(window.getSelection())) return;
+    e.preventDefault();
+    copyDrawing();
+  });
+
+  // src/features/motifs.ts
+  var { state: state9 } = MZ;
+  var lastPointer = null;
+  var internalClip = null;
+  MZ.svg.addEventListener("pointermove", (e) => {
+    lastPointer = MZ.toDoc(e.clientX, e.clientY);
+  });
+  MZ.svg.addEventListener("pointerleave", () => {
+    lastPointer = null;
+  });
+  function target(snip) {
+    if (lastPointer) return MZ.snapPoint(lastPointer, {});
+    return { x: snip.box.x + snip.box.w / 2, y: snip.box.y + snip.box.h / 2 };
+  }
+  var clipboardOk = false;
+  var pendingCopy = null;
+  function copySelection(cut, viaKey = true) {
+    const text = Snippets.fromElements(state9.selection);
+    if (!text) return;
+    internalClip = text;
+    pendingCopy = viaKey ? text : null;
+    clipboardOk = false;
+    if (canCopyImages()) {
+      const { w, h } = svgSize(text);
+      copyImage(svgToPng(text, imageSize(w, h)), text).then((ok) => {
+        if (ok) clipboardOk = true;
+        else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => {
+          clipboardOk = true;
+        }, () => {
+        });
+      });
+    } else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => {
+      clipboardOk = true;
+    }, () => {
+    });
+    const n4 = state9.selection.size;
+    if (cut) {
+      for (const el of state9.selection) el.remove();
+      MZ.setSelection([]);
+      MZ.commitGeometry();
+    }
+    MZ.toast(cut ? t("Cut {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n4 }) : t("Copied {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n4 }));
+  }
+  document.addEventListener("keydown", (e) => {
+    const k = e.key.toLowerCase();
+    if (!(e.ctrlKey || e.metaKey) || MZ.typingIn(e.target)) return;
+    if ((k === "c" || k === "x") && state9.selection.size) copySelection(k === "x");
+    if (k === "v" && internalClip) {
+      if (!clipboardOk) {
+        e.preventDefault();
+        pasteSnippet(internalClip);
+        return;
+      }
+      pasteSeen = false;
+      setTimeout(() => {
+        if (!pasteSeen && internalClip) pasteSnippet(internalClip);
+      }, 80);
+    }
+  });
+  var pasteSeen = true;
+  document.addEventListener("paste", () => {
+    pasteSeen = true;
+  }, true);
+  window.addEventListener("blur", () => {
+    if (!clipboardOk) internalClip = null;
+  });
+  for (const type of ["copy", "cut"]) {
+    document.addEventListener(type, (e) => {
+      if (!pendingCopy || !e.clipboardData) return;
+      e.clipboardData.setData("text/plain", pendingCopy);
+      e.preventDefault();
+      clipboardOk = true;
+      pendingCopy = null;
+    });
+  }
+  function pasteSnippet(text) {
+    const snip = Snippets.parse(text);
+    if (!snip) return false;
+    const els = Snippets.place(snip, target(snip));
+    if (!els.length) return false;
+    if (state9.tool !== "select") MZ.setTool("select");
+    MZ.commitGeometry();
+    MZ.setSelection(els.filter((el) => el.isConnected));
+    MZ.toast(t("Pasted {n} {n|shape|shapes}.", { n: els.length }));
+    return true;
+  }
+  MZ.on("pasteText", (text) => {
+    pasteSeen = true;
+    if (Snippets.isSnippet(text)) return pasteSnippet(text);
+    if (internalClip && (!clipboardOk || !text.trim())) return pasteSnippet(internalClip);
+    return false;
+  });
+  var motifs = [];
+  var placing = null;
+  async function load() {
+    try {
+      motifs = await Store.get("motifs") || [];
+    } catch {
+      motifs = JSON.parse(localStorage.getItem("mz-motifs") || "[]");
+    }
+    render2();
+  }
+  async function persist() {
+    try {
+      await Store.set("motifs", motifs);
+    } catch {
+      try {
+        localStorage.setItem("mz-motifs", JSON.stringify(motifs));
+      } catch {
+        MZ.toast(t("Could not store the motifs."));
+      }
+    }
+  }
+  var thumbs = [];
+  function render2() {
+    thumbs.forEach((u) => URL.revokeObjectURL(u));
+    thumbs = [];
+    const list = $("#motif-list");
+    list.innerHTML = "";
+    if (!motifs.length) {
+      list.innerHTML = `<p class="note">${t("No motifs yet. Select some shapes and save them.")}</p>`;
+      return;
+    }
+    for (const m of motifs) {
+      const item = document.createElement("div");
+      item.className = "motif" + (placing && placing.id === m.id ? " active" : "");
+      item.title = t("{name} – click, then click on the drawing to place it", { name: m.name });
+      const url2 = URL.createObjectURL(new Blob([m.svg], { type: "image/svg+xml" }));
+      thumbs.push(url2);
+      item.innerHTML = `<img src="${url2}" alt=""><span></span><button class="del" title="${t("Delete this motif")}">×</button>`;
+      item.querySelector("span").textContent = m.name;
+      item.onclick = () => startPlacing(m);
+      item.querySelector(".del").onclick = async (e) => {
+        e.stopPropagation();
+        if (!confirm(t("Delete the motif “{name}”?", { name: m.name }))) return;
+        motifs = motifs.filter((x) => x !== m);
+        await persist();
+        render2();
+      };
+      list.append(item);
+    }
+  }
+  async function saveSelection() {
+    if (!state9.selection.size) {
+      MZ.toast(t("Select the shapes of the motif first (Select tool)."));
+      return;
+    }
+    const svg2 = Snippets.fromElements(state9.selection);
+    const name = prompt(t("Name of the motif:"), t("Motif {n}", { n: motifs.length + 1 }));
+    if (!name || !name.trim()) return;
+    motifs.push({ id: Date.now().toString(36), name: name.trim(), svg: svg2, created: Date.now() });
+    await persist();
+    render2();
+    MZ.toast(t("Saved the motif “{name}”.", { name: name.trim() }));
+  }
+  function startPlacing(m) {
+    const snip = Snippets.parse(m.svg);
+    if (!snip) {
+      MZ.toast(t("This motif could not be read."));
+      return;
+    }
+    placing = { id: m.id, name: m.name, snip, angle: 0 };
+    MZ.setTool("place-motif");
+    render2();
+    if (lastPointer) preview(lastPointer);
+  }
+  function preview(p) {
+    const g = $("#mz-preview");
+    g.innerHTML = "";
+    if (!placing) return;
+    const at = MZ.snapPoint(p, {}), m = Snippets.placement(placing.snip, at, placing.angle);
+    const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group.setAttribute("transform", m.toString());
+    group.setAttribute("opacity", "0.6");
+    for (const layer2 of placing.snip.root.children) for (const c of layer2.children) group.appendChild(document.importNode(c, true));
+    g.appendChild(group);
+  }
+  MZ.registerTool("place-motif", {
+    down(e, raw) {
+      if (!placing) return;
+      const els = Snippets.place(placing.snip, MZ.snapPoint(raw, {}), placing.angle);
+      MZ.commitGeometry();
+      MZ.toast(t("Placed “{name}”. Click again for another one, R turns it, Esc stops.", { name: placing.name }));
+      return els;
+    },
+    move(e, raw) {
+      preview(raw);
+    },
+    up() {
+    }
+  }, t("Click to place the motif · R: turn it by 15° (Shift+R: 90°) · Esc: stop"));
+  document.addEventListener("keydown", (e) => {
+    if (state9.tool !== "place-motif" || MZ.typingIn(e.target)) return;
+    if (e.key === "Escape") {
+      placing = null;
+      MZ.setTool("select");
+      render2();
+    } else if (e.key.toLowerCase() === "r" && !e.ctrlKey && !e.metaKey) {
+      placing.angle = (placing.angle + (e.shiftKey ? 90 : 15)) % 360;
+      if (lastPointer) preview(lastPointer);
+      e.stopPropagation();
+    }
+  }, true);
+  document.addEventListener("pointerdown", (e) => {
+    const b = e.target.closest?.("#tools button");
+    if (b && placing) {
+      placing = null;
+      render2();
+    }
+  });
+  $("#btn-motif-save").onclick = saveSelection;
+  $("#btn-motif-export").onclick = () => {
+    if (!motifs.length) {
+      MZ.toast(t("There are no motifs to export yet."));
+      return;
+    }
+    MZ.download(new Blob([JSON.stringify({ mosaicMotifs: 1, motifs }, null, 1)], { type: "application/json" }), "motifs.json");
+  };
+  $("#btn-motif-import").onclick = () => $("#motif-file").click();
+  $("#motif-file").onchange = async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const text = await f.text();
+    e.target.value = "";
+    try {
+      const data = JSON.parse(text), list = Array.isArray(data) ? data : data.motifs;
+      let n4 = 0;
+      for (const m of list || []) {
+        if (!m || typeof m.svg !== "string" || !Snippets.parse(m.svg)) continue;
+        motifs.push({ id: Date.now().toString(36) + n4, name: String(m.name || "Motif"), svg: m.svg, created: Date.now() });
+        n4++;
+      }
+      await persist();
+      render2();
+      MZ.toast(n4 ? t("Imported {n} {n|motif|motifs}.", { n: n4 }) : t("No motifs found in that file."));
+    } catch (err) {
+      console.warn(err);
+      MZ.toast(t("That file is not a motif library."));
+    }
+  };
+  load();
+
   // src/shared/view3d.ts
   var VS = `
 attribute vec3 aPos; attribute vec3 aNormal; attribute vec3 aColor;
@@ -7709,204 +7943,6 @@ void main() {
       exaggeration = k;
       render3();
     }, reset, render: render3 };
-  }
-
-  // worker-source:worker-source
-  var worker_source_default = '(()=>{var _=null,W=new Map;function Zt(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(W.has(t))return W.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let o=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(_=_||document.createElement("canvas").getContext("2d"),_.fillStyle="#000",_.fillStyle=n,o=_.fillStyle),W.set(t,o),o}function tt(e){if(Array.isArray(e))return e;let t=Zt(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(o=>parseInt(t.slice(o,o+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function z([e,t,n]){let o=g=>(g/=255,g<=.04045?g/12.92:Math.pow((g+.055)/1.055,2.4)),a=o(e),s=o(t),r=o(n),m=(a*.4124+s*.3576+r*.1805)/.95047,i=a*.2126+s*.7152+r*.0722,l=(a*.0193+s*.1192+r*.9505)/1.08883,c=g=>g>216/24389?Math.cbrt(g):(24389/27*g+16)/116,u=c(m),f=c(i),p=c(l);return[116*f-16,500*(u-f),200*(f-p)]}function mt(e,t,n){n=n||t.map(r=>z(tt(r)));let o=z(e),a=null,s=1/0;return t.forEach((r,m)=>{let i=n[m],l=(o[0]-i[0])**2+(o[1]-i[1])**2+(o[2]-i[2])**2;l<s&&(s=l,a=r)}),a}var ft=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function ht(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:tt(e)}function N(e,t=255){let n=e?ht(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var et=e=>e.toString(16).padStart(2,"0"),rt=(e,t,n)=>"#"+et(e)+et(t)+et(n);function nt(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function pt(e){let t=e.map(o=>z(ht(o))),n=new Map;return(o,a,s)=>{let r=o<<16|a<<8|s,m=n.get(r);return m||(m=mt([o,a,s],e,t),n.set(r,m)),m}}function bt(e,t){let{width:n,height:o}=e,a=e.data,s=ft(n,o),r=s.data,m=Math.max(2,Math.round(t.tile)),i=Math.min(m-1,Math.max(0,Math.round(t.grout))),l=t.palette&&t.palette.length?pt(t.palette):null,c=N(t.groutColor),u=new Map,f=0;for(let p=0,g=0;p<o;p+=m,g++){let M=t.bricks&&g%2?-Math.floor(m/2):0;for(let P=M;P<n;P+=m){let v=Math.max(0,P),I=Math.min(n,P+m),w=Math.min(o,p+m),k=0,$=0,d=0,S=0,h=0;for(let x=p;x<w-(w===p+m?i:0);x++)for(let A=v;A<Math.min(I,P+m-i);A++){let R=(x*n+A)*4;h++,!(a[R+3]<128)&&(k+=a[R],$+=a[R+1],d+=a[R+2],S++)}let b=S>0&&S>=h/2,y=[0,0,0,0];if(b){k=Math.round(k/S),$=Math.round($/S),d=Math.round(d/S);let x=l?l(k,$,d):rt(k,$,d);y=N(x),u.set(x,(u.get(x)||0)+1),f++}for(let x=p;x<w;x++)for(let A=v;A<I;A++){let R=A>=P+m-i||x>=p+m-i;nt(r,(x*n+A)*4,R?b?c:[0,0,0,0]:y)}}}return{img:s,counts:u,tiles:f}}function gt(e){let{width:t,height:n,data:o}=e,a=t*n,s=new Int32Array(a).fill(-1),r=[],m=[],i=c=>o[c*4+3]<128?-1:o[c*4]<<16|o[c*4+1]<<8|o[c*4+2],l=[];for(let c=0;c<a;c++){if(s[c]>=0)continue;let u=i(c);if(u<0)continue;let f=r.length,p=0;for(s[c]=f,l.push(c);l.length;){let g=l.pop(),M=g%t;p++;for(let P of[M>0?g-1:-1,M<t-1?g+1:-1,g-t,g+t])P<0||P>=a||s[P]>=0||i(P)!==u||(s[P]=f,l.push(P))}r.push(rt(u>>16,u>>8&255,u&255)),m.push(p)}return{labels:s,colors:r,sizes:m}}function xt(e,t,n,o,a){let s=[],r=e.data;for(let i=0;i<5;i++)for(let l=0;l<5;l++){let c=Math.floor(t+o*(i+.5)/5),u=Math.floor(n+a*(l+.5)/5);if(c<0||u<0||c>=e.width||u>=e.height)continue;let f=(u*e.width+c)*4;r[f+3]>=128&&s.push(z([r[f],r[f+1],r[f+2]]))}if(s.length<2)return 0;let m=[0,1,2].map(i=>s.reduce((l,c)=>l+c[i],0)/s.length);return s.reduce((i,l)=>i+Math.hypot(l[0]-m[0],l[1]-m[1],l[2]-m[2]),0)/s.length}function Kt(e,t,n,o){let a=n.length,s=n.map(i=>i.y),r=Math.max(0,Math.floor(Math.min(...s))),m=Math.min(t-1,Math.ceil(Math.max(...s)));for(let i=r;i<=m;i++){let l=i+.5,c=[];for(let u=0;u<a;u++){let f=n[u],p=n[(u+1)%a];f.y<=l!=p.y<=l&&c.push(f.x+(l-f.y)*(p.x-f.x)/(p.y-f.y))}c.sort((u,f)=>u-f);for(let u=0;u+1<c.length;u+=2){let f=Math.max(0,Math.ceil(c[u]-.5)),p=Math.min(e-1,Math.floor(c[u+1]-.5));for(let g=f;g<=p;g++)o(i*e+g)}}}function yt(e,t,n){let{width:o,height:a}=e,s=e.data,r=ft(o,a),m=r.data,i=n.palette&&n.palette.length?pt(n.palette):null,l=new Map,c=[],u=0;for(let p of t){let g=0,M=0,P=0,v=0,I=0,w=[];if(Kt(o,a,p,d=>{w.push(d),I++;let S=d*4;s[S+3]<128||(g+=s[S],M+=s[S+1],P+=s[S+2],v++)}),!v||v<I/2)continue;g=Math.round(g/v),M=Math.round(M/v),P=Math.round(P/v);let k=i?i(g,M,P):rt(g,M,P),$=N(k);for(let d of w)nt(m,d*4,$);l.set(k,(l.get(k)||0)+1),u++,c.push(p)}let f=Math.max(0,n.grout)/2;if(f>0){let p=N(n.groutColor);for(let g of c)for(let M=0;M<g.length;M++){let P=g[M],v=g[(M+1)%g.length],I=v.x-P.x,w=v.y-P.y,k=I*I+w*w||1,$=Math.max(0,Math.floor(Math.min(P.x,v.x)-f)),d=Math.min(o-1,Math.ceil(Math.max(P.x,v.x)+f)),S=Math.max(0,Math.floor(Math.min(P.y,v.y)-f)),h=Math.min(a-1,Math.ceil(Math.max(P.y,v.y)+f));for(let b=S;b<=h;b++)for(let y=$;y<=d;y++){let x=y+.5,A=b+.5,R=Math.max(0,Math.min(1,((x-P.x)*I+(A-P.y)*w)/k)),B=P.x+R*I-x,U=P.y+R*w-A;B*B+U*U<=f*f&&nt(m,(b*o+y)*4,p)}}}return{img:r,counts:l,tiles:u}}function dt(e){let t=new Map;return e.colors.forEach((n,o)=>{let a=t.get(n)||{n:0,color:n,pieces:0,pixels:0};a.pieces++,a.pixels+=e.sizes[o],t.set(n,a)}),[...t.values()].sort((n,o)=>o.pixels-n.pixels).map((n,o)=>({...n,n:o+1}))}var J=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y);function wt(e,t,n,o,a){let s=[];for(let r=0;r<e;r++){let m=a+r*2*Math.PI/e;s.push({x:t+o*Math.cos(m),y:n+o*Math.sin(m)})}return s}var Y=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}],ot=e=>(e%2+2)%2===1,E=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function vt(e,t,n){let o=[];if(e==="square"){let[a,s]=E(n.x0,n.x1,t),[r,m]=E(n.y0,n.y1,t);for(let i=a;i<=s;i++)for(let l=r;l<=m;l++)o.push(Y(i*t,l*t,t,t))}else if(e==="brick"){let a=2*t,[s,r]=E(n.y0,n.y1,t);for(let m=s;m<=r;m++){let i=ot(m)?t:0,[l,c]=E(n.x0-i,n.x1-i,a);for(let u=l;u<=c;u++)o.push(Y(i+u*a,m*t,a,t))}}else if(e==="hex"){let a=Math.sqrt(3)*t,s=1.5*t,[r,m]=E(n.y0,n.y1,s);for(let i=r;i<=m;i++){let l=ot(i)?a/2:0,[c,u]=E(n.x0-l,n.x1-l,a);for(let f=c;f<=u;f++)o.push(wt(6,l+f*a,i*s,t,-Math.PI/2))}}else if(e==="triangle"){let a=t*Math.sqrt(3)/2,[s,r]=E(n.y0,n.y1,a);for(let m=s;m<=r;m++){let i=m*a,l=ot(m)?t/2:0,[c,u]=E(n.x0-l,n.x1-l,t);for(let f=c;f<=u;f++){let p=l+f*t;o.push([{x:p,y:i+a},{x:p+t/2,y:i},{x:p+t,y:i+a}]),o.push([{x:p+t/2,y:i},{x:p+1.5*t,y:i},{x:p+t,y:i+a}])}}}else if(e==="herringbone"){let a=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([u,f])=>[u/t,f/t]),s=a.map(([u,f])=>(u+f)/4),r=a.map(([u,f])=>(u-f)/2),m=Math.floor(Math.min(...s))-2,i=Math.ceil(Math.max(...s))+2,l=Math.floor(Math.min(...r))-2,c=Math.ceil(Math.max(...r))+2;for(let u=m;u<=i;u++)for(let f=l;f<=c;f++)o.push(Y((2*u+f)*t,(2*u-f)*t,t,2*t)),o.push(Y((2*u+1+f)*t,(2*u+1-f)*t,2*t,t))}return o}function ee(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var H=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}];function ne(e,t,n,o){let a=n?t*2:t,s=n?t/2:t,r=[],m=(i,l,c)=>{if(!(i>=e.x+e.w-1e-9||l>=e.y+e.h-1e-9))if(c>s*1.0001&&o(i,l,c,c)){let u=c/2;m(i,l,u),m(i+u,l,u),m(i,l+u,u),m(i+u,l+u,u)}else r.push({x:i,y:l,s:c})};for(let i=0;i*a<e.h;i++)for(let l=0;l*a<e.w;l++)m(e.x+l*a,e.y+i*a,a);return r}function re(e,t){let n=[];for(let o=0,a=e.length;o<a;o++){let s=e[o],r=e[(o+1)%a],m=t(s),i=t(r);if(m<=0&&n.push(s),m<0&&i>0||m>0&&i<0){let l=m/(m-i);n.push({x:s.x+(r.x-s.x)*l,y:s.y+(r.y-s.y)*l})}}return n}function oe(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,o=new Map,a=(r,m)=>r+","+m;e.forEach((r,m)=>{let i=a(Math.floor(r.x/n),Math.floor(r.y/n));(o.get(i)||o.set(i,[]).get(i)).push(m)});let s=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((r,m)=>{let i=Math.floor(r.x/n),l=Math.floor(r.y/n),c=H(t.x,t.y,t.w,t.h),u=()=>Math.max(...c.map(f=>J(f,r)));for(let f=0;f<=s&&c.length>=3&&!((f-1)*n>2*u());f++){let p=[];for(let g=i-f;g<=i+f;g++)for(let M=l-f;M<=l+f;M++)if(Math.max(Math.abs(g-i),Math.abs(M-l))===f)for(let P of o.get(a(g,M))||[])P!==m&&p.push(P);p.sort((g,M)=>J(e[g],r)-J(e[M],r));for(let g of p){let M=e[g],P=M.x-r.x,v=M.y-r.y,I=(r.x+M.x)/2,w=(r.y+M.y)/2;if(c=re(c,k=>(k.x-I)*P+(k.y-w)*v),c.length<3)break}}return c}).filter(r=>r.length>=3)}function At({style:e,box:t,size:n,detail:o=0,busy:a=()=>!1,seed:s=1}){let r=o>0;if(e==="hex"){let i=n/Math.sqrt(3);return vt("hex",i,{x0:-i,y0:-i,x1:t.w+i,y1:t.h+i}).map(l=>l.map(c=>({x:c.x+t.x,y:c.y+t.y})))}if(e==="brick"){let i=[];for(let l=0;l*n<t.h;l++){let c=l%2?-n:0;for(let u=t.x+c;u<t.x+t.w;u+=2*n){let f=t.y+l*n;r&&a(u,f,2*n,n)?i.push(H(u,f,n,n),H(u+n,f,n,n)):i.push(H(u,f,2*n,n))}}return i}let m=ne(t,n,r,a);if(e==="irregular"){let i=ee(s),l=m.map(c=>({x:c.x+c.s*(.5+(i()-.5)*.7),y:c.y+c.s*(.5+(i()-.5)*.7)})).filter(c=>c.x>=t.x&&c.y>=t.y&&c.x<=t.x+t.w&&c.y<=t.y+t.h);return oe(l,t)}return m.map(i=>H(i.x,i.y,i.s,i.s))}var q=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function ae(e,t,n){let o=new Uint8Array(t*n),a=[];for(let s=0;s<n;s++)for(let r=0;r<t;r++){let m=s*t+r,i=e[m];if(i<0||o[m])continue;let l=1;for(;r+l<t&&e[m+l]===i&&!o[m+l];)l++;let c=1;t:for(;s+c<n;){let u=(s+c)*t+r;for(let f=0;f<l;f++)if(e[u+f]!==i||o[u+f])break t;c++}for(let u=s;u<s+c;u++)o.fill(1,u*t+r,u*t+r+l);a.push({x:r,y:s,w:l,h:c,level:i})}return a}function ie(e,t){let n=new Int16Array(e.length);for(let o=0;o<e.length;o++)n[o]=e[o]===-2?0:e[o]<0?t.baseLayers:q(e[o],t);return n}function St(e,t){let n=e.length,o=ie(e,t),a=new Int16Array(n);for(let s=0;s<n;s++)a[s]=Math.max(0,e[s]);return{bottom:new Int16Array(n),top:o,level:a}}function st(e,t,n,o,a){let s=(h,b)=>h>=0&&b>=0&&h<t&&b<n,r=(h,b)=>s(h,b)?e.bottom[b*t+h]:0,m=(h,b)=>{if(!s(h,b))return 0;let y=b*t+h;return e.top[y]>e.bottom[y]?e.top[y]:e.bottom[y]},i=(h,b)=>m(h,b)>r(h,b),l=(h,b)=>s(h,b)?e.level[b*t+h]:0,c=[],u=h=>n-h,f=new Int16Array(t*n),p=h=>{let b=new Map,y=[];for(let x=0;x<n;x++)for(let A=0;A<t;A++){let R=x*t+A;if(!i(A,x)){f[R]=-1;continue}let B=h(A,x)*4096+l(A,x),U=b.get(B);U==null&&(U=y.length,b.set(B,U),y.push(B)),f[R]=U}return{rs:ae(f,t,n),vals:y}};{let{rs:h,vals:b}=p(m);for(let y of h){let x=b[y.level];c.push({o:[y.x,u(y.y+y.h),Math.floor(x/4096)],u:[y.w,0,0],v:[0,y.h,0],level:x%4096})}}{let{rs:h,vals:b}=p(r);for(let y of h){let x=b[y.level];c.push({o:[y.x,u(y.y+y.h),Math.floor(x/4096)],u:[0,y.h,0],v:[y.w,0,0],level:x%4096})}}let g=(h,b,y,x)=>{if(b<=h)return[];if(x<=y||x<=h||y>=b)return[[h,b]];let A=[];return y>h&&A.push([h,y]),x<b&&A.push([x,b]),A},M=(h,b)=>i(h,b)?[r(h,b),m(h,b)]:[0,0];for(let h=0;h<=n;h++)for(let b=0;b<t;){let[y,x]=M(b,h-1),[A,R]=M(b,h);if(y===A&&x===R){b++;continue}let B=b+1;for(;B<t;B++){let[j,L]=M(B,h-1),[T,C]=M(B,h);if(j!==y||L!==x||T!==A||C!==R)break}let U=u(h);for(let[j,L]of g(y,x,A,R))c.push({o:[b,U,j],u:[B-b,0,0],v:[0,0,L-j],level:l(b,h-1)});for(let[j,L]of g(A,R,y,x))c.push({o:[b,U,j],u:[0,0,L-j],v:[B-b,0,0],level:l(b,h)});b=B}for(let h=0;h<=t;h++)for(let b=n-1;b>=0;){let[y,x]=M(h-1,b),[A,R]=M(h,b);if(y===A&&x===R){b--;continue}let B=b-1;for(;B>=0;B--){let[L,T]=M(h-1,B),[C,O]=M(h,B);if(L!==y||T!==x||C!==A||O!==R)break}let U=u(b+1),j=b-B;for(let[L,T]of g(A,R,y,x))c.push({o:[h,U,L],u:[0,0,T-L],v:[0,j,0],level:l(h,b)});for(let[L,T]of g(y,x,A,R))c.push({o:[h,U,L],u:[0,j,0],v:[0,0,T-L],level:l(h-1,b)});b=B}let P=[new Map,new Map,new Map],v=(h,b,y)=>h.o.map((x,A)=>x+b*h.u[A]+y*h.v[A]),I=(h,b)=>b===0?h[1]*1e5+h[2]:b===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of c)for(let[b,y]of[[0,0],[1,0],[1,1],[0,1]]){let x=v(h,b,y);for(let A=0;A<3;A++){let R=I(x,A),B=P[A].get(R);B||P[A].set(R,B=[]),B.push(x[A])}}for(let h of P)for(let[b,y]of h)h.set(b,[...new Set(y)].sort((x,A)=>x-A));let w=[],k=[],$=[],d=new Map,S=h=>{let b=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,y=d.get(b);return y==null&&(y=w.length/3,d.set(b,y),w.push(h[0]*o,h[1]*o,h[2]*a)),y};for(let h of c){let b=[v(h,0,0),v(h,1,0),v(h,1,1),v(h,0,1)],y=[];for(let A=0;A<4;A++){let R=b[A],B=b[(A+1)%4],U=R.findIndex((C,O)=>C!==B[O]);y.push(R);let j=Math.min(R[U],B[U]),L=Math.max(R[U],B[U]),T=(P[U].get(I(R,U))||[]).filter(C=>C>j&&C<L);R[U]>B[U]&&T.reverse();for(let C of T){let O=[...R];O[U]=C,y.push(O)}}let x=y.map(S);if(x.length===4)k.push(x[0],x[1],x[2],x[0],x[2],x[3]),$.push(h.level,h.level);else{let A=S(v(h,.5,.5));for(let R=0;R<x.length;R++)k.push(A,x[R],x[(R+1)%x.length]),$.push(h.level)}}return{vertices:w,triangles:k,levels:$}}function kt(e,t,n,o,a,s){let r=Int16Array.from(e),m=t*n,i=new Int32Array(m),l=new Float32Array(m),c=s.heightOf||(f=>f===-2?0:(f<0?a.baseLayers:q(f,a))*a.layerHeight),u=0;for(let f=0;f<12;f++){i.fill(-1);let p=[],g=[];for(let d=0;d<m;d++){if(i[d]>=0)continue;let S=p.length,h=r[d];for(p.push(h),i[d]=S,g.push(d);g.length;){let b=g.pop(),y=b%t;for(let x of[y>0?b-1:-1,y<t-1?b+1:-1,b-t,b+t])x<0||x>=m||i[x]>=0||r[x]!==h||(i[x]=S,g.push(x))}}let M=Math.SQRT2;for(let d=0;d<m;d++){let S=d%t,h=d/t|0,b=i[d],y=S===0||h===0||S===t-1||h===n-1||i[d-1]!==b||i[d+1]!==b||i[d-t]!==b||i[d+t]!==b;l[d]=y?1:1e9}for(let d=0;d<n;d++)for(let S=0;S<t;S++){let h=d*t+S;l[h]<=1||(l[h]=Math.min(l[h],l[h-1]+1,l[h-t]+1,l[h-t-1]+M,l[h-t+1]+M))}for(let d=n-1;d>=0;d--)for(let S=t-1;S>=0;S--){let h=d*t+S;l[h]<=1||(l[h]=Math.min(l[h],l[h+1]+1,l[h+t]+1,l[h+t+1]+M,l[h+t-1]+M))}let P=new Float32Array(p.length);for(let d=0;d<m;d++)l[d]>P[i[d]]&&(P[i[d]]=l[d]);let v=p.map(()=>new Map),I=new Float64Array(p.length).fill(1/0),w=(d,S)=>{let h=i[d],b=i[S];if(h===b)return;let y=r[d],x=r[S];I[h]=Math.min(I[h],c(x)),I[b]=Math.min(I[b],c(y)),x<y&&v[h].set(x,(v[h].get(x)||0)+1),y<x&&v[b].set(y,(v[b].get(y)||0)+1)};for(let d=0;d<n;d++)for(let S=0;S<t;S++){let h=d*t+S;S<t-1&&w(h,h+1),d<n-1&&w(h,h+t)}let k=new Int16Array(p.length).fill(-32768),$=0;if(p.forEach((d,S)=>{let h=c(d)-I[S];if(!(h>1e-9)||!v[S].size)return;let b=Math.max(1,2*P[S]-1)*o;if(b>=s.minWidth&&h<=s.maxRatio*b)return;let y=-2,x=-1;for(let[A,R]of v[S])(R>x||R===x&&A>y)&&(y=A,x=R);k[S]=y,$++}),!$)break;for(let d=0;d<m;d++){let S=k[i[d]];S!==-32768&&(r[d]=S)}u+=$}return{grid:r,lowered:u}}function at(e,t="Mosaic Paint"){let n=e.vertices,o=e.triangles,a=o.length/3,s=new ArrayBuffer(84+a*50),r=new DataView(s),m=`${t} – multi-color by layer`.slice(0,80);for(let l=0;l<m.length;l++)r.setUint8(l,m.charCodeAt(l)&127);r.setUint32(80,a,!0);let i=84;for(let l=0;l<a;l++){let c=[0,1,2].map($=>o[l*3+$]*3),u=n[c[1]]-n[c[0]],f=n[c[1]+1]-n[c[0]+1],p=n[c[1]+2]-n[c[0]+2],g=n[c[2]]-n[c[0]],M=n[c[2]+1]-n[c[0]+1],P=n[c[2]+2]-n[c[0]+2],v=f*P-p*M,I=p*g-u*P,w=u*M-f*g,k=Math.hypot(v,I,w)||1;v/=k,I/=k,w/=k;for(let $ of[v,I,w])r.setFloat32(i,$,!0),i+=4;for(let $ of c)for(let d=0;d<3;d++)r.setFloat32(i,n[$+d],!0),i+=4;r.setUint16(i,0,!0),i+=2}return s}function Rt(e,t){return e.map((n,o)=>{let a=o===0?1:q(o-1,t)+1,s=q(o,t);return{color:n,fromLayer:a,toLayer:s,changeAtLayer:o===0?null:a,z:o===0?null:+(a*t.layerHeight).toFixed(3)}})}var G=-3,le=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function It(e,t,n,o,a){let s=Math.max(0,Math.round(o.frame)),r=t+2*s,m=n+2*s,i=new Int16Array(r*m).fill(G);for(let f=0;f<n;f++)for(let p=0;p<t;p++)i[(f+s)*r+p+s]=e[f*t+p];let l=Math.min(o.corner,r/2,m/2),c=o.hole/2,u=le(o,a);for(let f=0;f<m;f++)for(let p=0;p<r;p++){let g=p+.5,M=f+.5;if(l>0){let P=g<l?l:g>r-l?r-l:g,v=M<l?l:M>m-l?m-l:M;if((g-P)**2+(M-v)**2>l*l){i[f*r+p]=-2;continue}}c>0&&(g-r/2)**2+(M-u)**2<=c*c&&(i[f*r+p]=-2)}return{grid:i,w:r,h:m}}function $t(e,t,n,o){let a=new Uint8Array(e*t),s=n/2;if(s<=0)return a;let r=[o,e-o],m=[o,t-o];for(let i of r)for(let l of m)for(let c=Math.max(0,Math.floor(l-s));c<Math.min(t,Math.ceil(l+s));c++)for(let u=Math.max(0,Math.floor(i-s));u<Math.min(e,Math.ceil(i+s));u++)(u+.5-i)**2+(c+.5-l)**2<=s*s&&(a[c*e+u]=1);return a}function Bt(e,t,n,o=2){let a=n;for(let s=0;s<t.length;s++){if(!t[s])continue;let r=0;for(let m of e)m.top[s]>m.bottom[s]&&(r=Math.max(r,m.top[s]));r>0&&(a=Math.min(a,r-o))}if(a=Math.max(0,a),!a)return 0;for(let s=0;s<t.length;s++)if(t[s])for(let r of e)r.top[s]>r.bottom[s]&&r.bottom[s]<a&&(r.bottom[s]=a,r.top[s]<a&&(r.top[s]=a));return a}function Ut(e,t,n,o){let a=e.length,s={bottom:new Int16Array(a).fill(t),top:new Int16Array(a),level:new Int16Array(a).fill(o)};for(let r=0;r<a;r++)e[r]===G&&(s.top[r]=n);return s}var F=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),D=e=>String(+e.toFixed(4)),it=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,V=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function ue(e,t,n){let o=e.vertices,a=e.triangles,s=[];s.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${F(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let r of t)s.push(`<base name="${F(r)}" displaycolor="${r.toUpperCase()}FF"/>`);s.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${F(n)}">`,"<mesh>","<vertices>");for(let r=0;r<o.length;r+=3)s.push(`<vertex x="${D(o[r])}" y="${D(o[r+1])}" z="${D(o[r+2])}"/>`);s.push("</vertices>","<triangles>");for(let r=0;r<a.length;r+=3)s.push(`<triangle v1="${a[r]}" v2="${a[r+1]}" v3="${a[r+2]}" pid="1" p1="${Math.max(0,e.levels[r/3])}"/>`);return s.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),s.join(`\n`)}function ce(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Lt(e,t,n){return[{name:"[Content_Types].xml",data:it},{name:"_rels/.rels",data:V},{name:"3D/3dmodel.model",data:ue(e,t.map(o=>o.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:ce(t)}]}function jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,o=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return a=>a===-2?0:a<0?t.baseLayers*t.layerHeight:e[a]?o:n}function Ft(e,t,n,o,a,s){let r=t*n,m=[];if(s.baseLayers>0){let i=new Int16Array(r);for(let l=0;l<r;l++)e[l]!==-2&&(i[l]=s.baseLayers);m.push({part:-1,solid:{bottom:new Int16Array(r),top:i,level:new Int16Array(r)}})}for(let i=0;i<o;i++){let l=new Int16Array(r).fill(s.baseLayers),c=new Int16Array(r),u=new Int16Array(r).fill(i),f=s.baseLayers+(a[i]?Math.max(1,s.tileLayers-s.groutRecess):s.tileLayers),p=!1;for(let g=0;g<r;g++)e[g]===i&&(c[g]=f,p=!0);p&&m.push({part:i,solid:{bottom:l,top:c,level:u}})}return m}function Tt(e,t,n="prusa"){return n==="bambu"?me(e,t):fe(e,t)}function me(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',o=(l,c)=>`${l.toString(16).padStart(8,"0")}-0000-4000-8000-${c.toString(16).padStart(12,"0")}`,a=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((l,c)=>{let u=l.mesh.vertices,f=l.mesh.triangles;a.push(`<object id="${c+1}" p:UUID="${o(1,c)}" type="model">`,"<mesh>","<vertices>");for(let p=0;p<u.length;p+=3)a.push(`<vertex x="${D(u[p])}" y="${D(u[p+1])}" z="${D(u[p+2])}"/>`);a.push("</vertices>","<triangles>");for(let p=0;p<f.length;p+=3)a.push(`<triangle v1="${f[p]}" v2="${f[p+1]}" v3="${f[p+2]}"/>`);a.push("</triangles>","</mesh>","</object>")}),a.push("</resources>","<build/>","</model>");let s=e.length+1,r="/3D/Objects/object_1.model",m=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${F(t)}</metadata>`,"<resources>",`<object id="${s}" p:UUID="${o(2,0)}" type="model">`,"<components>"];e.forEach((l,c)=>m.push(`<component p:path="${r}" objectid="${c+1}" p:UUID="${o(3,c)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),m.push("</components>","</object>","</resources>",`<build p:UUID="${o(4,0)}">`,`<item objectid="${s}" p:UUID="${o(5,0)}" printable="1"/>`,"</build>","</model>");let i=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${s}">`,`<metadata key="name" value="${F(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((l,c)=>i.push(`<part id="${c+1}" subtype="normal_part">`,`<metadata key="name" value="${F(l.name)}"/>`,`<metadata key="extruder" value="${l.filament||c+1}"/>`,"</part>")),i.push("</object>","</config>"),[{name:"[Content_Types].xml",data:it},{name:"_rels/.rels",data:V},{name:"3D/3dmodel.model",data:m.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:V.replace("/3D/3dmodel.model",r)},{name:"3D/Objects/object_1.model",data:a.join(`\n`)},{name:"Metadata/model_settings.config",data:i.join(`\n`)}]}function fe(e,t){let n=[],o=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${F(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let r of e)n.push(`<base name="${F(r.name)}" displaycolor="${r.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${F(t)}">`,"<mesh>","<vertices>");for(let r of e){let m=r.mesh.vertices;for(let i=0;i<m.length;i+=3)n.push(`<vertex x="${D(m[i])}" y="${D(m[i+1])}" z="${D(m[i+2])}"/>`)}n.push("</vertices>","<triangles>"),o.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${F(t)}"/>`);let a=0,s=0;return e.forEach((r,m)=>{let i=r.mesh.triangles,l=i.length/3;for(let c=0;c<i.length;c+=3)n.push(`<triangle v1="${i[c]+a}" v2="${i[c+1]+a}" v3="${i[c+2]+a}" pid="2" p1="${m}"/>`);o.push(`<volume firstid="${s}" lastid="${s+l-1}">`,`<metadata type="volume" key="name" value="${F(r.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${r.filament||m+1}"/>`,"</volume>"),a+=r.mesh.vertices.length/3,s+=l}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),o.push("</object>","</config>"),[{name:"[Content_Types].xml",data:it},{name:"_rels/.rels",data:V},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:o.join(`\n`)}]}function Ct(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let o=t.vertices.length/3;for(let a of n.vertices)t.vertices.push(a);for(let a of n.triangles)t.triangles.push(a+o);for(let a of n.levels)t.levels.push(a)}return t}var Z=null;function pe(e){if(!Z){Z=new Uint32Array(256);for(let n=0;n<256;n++){let o=n;for(let a=0;a<8;a++)o=o&1?3988292384^o>>>1:o>>>1;Z[n]=o>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=Z[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function be(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function X(e,{compress:t=!0}={}){let n=new TextEncoder,o=[],a=[],s=0;for(let u of e){let f=n.encode(u.name),p=typeof u.data=="string"?n.encode(u.data):u.data,g=pe(p),M=t?await be(p):null,P=!!M&&M.length<p.length,v=P?M:p,I=new Uint8Array(30+f.length),w=new DataView(I.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,g,!0),w.setUint32(18,v.length,!0),w.setUint32(22,p.length,!0),w.setUint16(26,f.length,!0),I.set(f,30);let k=new Uint8Array(46+f.length),$=new DataView(k.buffer);$.setUint32(0,33639248,!0),$.setUint16(4,20,!0),$.setUint16(6,20,!0),$.setUint16(8,2048,!0),$.setUint16(10,P?8:0,!0),$.setUint16(12,0,!0),$.setUint16(14,33,!0),$.setUint32(16,g,!0),$.setUint32(20,v.length,!0),$.setUint32(24,p.length,!0),$.setUint16(28,f.length,!0),$.setUint32(42,s,!0),k.set(f,46),o.push(I,v),a.push(k),s+=I.length+v.length}let r=a.reduce((u,f)=>u+f.length,0),m=new Uint8Array(22),i=new DataView(m.buffer);i.setUint32(0,101010256,!0),i.setUint16(8,e.length,!0),i.setUint16(10,e.length,!0),i.setUint32(12,r,!0),i.setUint32(16,s,!0);let l=new Uint8Array(s+r+22),c=0;for(let u of[...o,...a,m])l.set(u,c),c+=u.length;return l}var Dt=2,ge=2,K=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Gt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),xe=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Ot(e,t,n,o,a,s,r,m,i){let l=a.filter(p=>s[p]>0),c={list:l,grid:new Int16Array(0),counts:[],lowered:0},u=Int16Array.from(e),f=0;for(let p=0;p<4;p++){i?.(p/4);let g=new Int16Array(r.length).fill(-1);l.forEach((w,k)=>{g[w]=k});let M=u.map(w=>w<0?-1:g[w]),P=m.mode==="flat"?jt(l.map(w=>r[w]),Gt(m)):void 0,v=kt(M,t,n,o,K(m),{minWidth:m.minWidth,maxRatio:m.maxRatio,heightOf:P});f+=v.lowered;let I=l.map(()=>0);for(let w=0;w<v.grid.length;w++){let k=v.grid[w];k>=0&&I[k]++,u[w]=k<0?-1:l[k]}if(c={list:l,grid:v.grid,counts:I,lowered:f},I.every(w=>w>0))break;l=l.filter((w,k)=>I[k]>0)}return c}var Et=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:q(Math.max(0,e-1),K(t)))+t.frameRaise;function qt(e,t,n,o,a){let s=It(e,t,n,{frame:a.frame/o,corner:a.corner/o,hole:a.hole/o},Dt/o),r=(a.magnet/2+Dt+a.corner*.3)/o;return{...s,mask:a.magnet>0?$t(s.w,s.h,a.magnet/o,r):null}}function _t(e,t,n){let o=t.length,a;if(n.mode==="flat")a=Ft(e.grid,e.w,e.h,o,t,Gt(n)),n.frame>0&&a.splice(n.baseLayers?1:0,0,{part:G,solid:Ut(e.grid,n.baseLayers,Et(o,n),0)});else{let s=St(e.grid,K(n)),r=Et(o,n);for(let m=0;m<e.grid.length;m++)e.grid[m]===G&&(s.top[m]=r,s.level[m]=o-1);a=[{part:0,solid:s}]}return e.mask&&Bt(a.map(s=>s.solid),e.mask,xe(n.magnetDepth,n),ge),a}function zt(e,t){let n=qt(e.grid,e.w,e.h,e.cell,t);return Ct(_t(n,e.grout,t).map(o=>st(o.solid,n.w,n.h,e.cell,t.layerHeight)))}async function Ht(e,t){let{shape:n,o}=e,a=qt(n.grid,n.w,n.h,n.cell,o);t?.(.05);let s=_t(a,n.grout,o);t?.(.15);let r=s.map((l,c)=>{let u=st(l.solid,a.w,a.h,n.cell,o.layerHeight);return t?.(.15+.7*(c+1)/s.length),u}),m=r.reduce((l,c)=>l+c.triangles.length/3,0),i=(l,c,u)=>({fileName:l,type:c,data:u,triangles:m,parts:r.length});if(o.mode==="flat"){let l=s.map((u,f)=>{let p=Math.max(0,u.part),g=e.colors[p];return{name:u.part===G?e.labels.frame:u.part<0?e.labels.base:`${u.part+1} ${g}`,color:g,mesh:r[f],filament:p+1}});if(e.kind==="3mf")return i(e.name+".3mf","model/3mf",await X(Tt(l,e.name,e.slicer)));let c=s.map((u,f)=>({name:`${e.name}-${u.part===G?"frame":u.part<0?"base":`${u.part+1}-${e.colors[u.part].slice(1)}`}.stl`,data:new Uint8Array(at(l[f].mesh,l[f].name))}));return i(e.name+"-stl.zip","application/zip",await X(c))}return e.kind==="3mf"?i(e.name+".3mf","model/3mf",await X(Lt(r[0],Rt(e.colors,K(o)),e.name))):i(e.name+".stl","model/stl",new Uint8Array(at(r[0],e.name)))}function Jt(e,t,n,o,a){let s=(u,f)=>u<0||f<0||u>=t||f>=n?-1:e[f*t+u],r=t+1,m=(u,f)=>f*r+u,i=Array.from({length:o},()=>new Map),l=(u,f,p,g,M)=>{let P=i[u],v=m(f,p),I=P.get(v);I?I.push(m(g,M)):P.set(v,[m(g,M)])};for(let u=0;u<n;u++)for(let f=0;f<t;f++){a&&f===0&&u%64===0&&a(.5*u/n);let p=e[u*t+f];p<0||(s(f,u-1)!==p&&l(p,f+1,u,f,u),s(f-1,u)!==p&&l(p,f,u,f,u+1),s(f,u+1)!==p&&l(p,f,u+1,f+1,u+1),s(f+1,u)!==p&&l(p,f+1,u+1,f+1,u))}let c=[];for(let u=0;u<o;u++){a&&u%256===0&&a(.5+.5*u/o);let f=i[u],p=[];for(let[g]of f)for(;f.get(g)&&f.get(g).length;){let M=[g],P=g,v=Nt(f,g,-1,r);for(;v!==g;){M.push(v);let I=Nt(f,v,P,r);P=v,v=I}p.push(de(M,r))}c.push(p)}return c}function Nt(e,t,n,o){let a=e.get(t),s=0;if(a.length>1&&n>=0){let m=t%o-n%o,i=Math.floor(t/o)-Math.floor(n/o),l=c=>{let u=c%o-t%o,f=Math.floor(c/o)-Math.floor(t/o);return u===i&&f===-m?0:u===m&&f===i?1:2};for(let c=1;c<a.length;c++)l(a[c])<l(a[s])&&(s=c)}let r=a[s];return a.splice(s,1),a.length||e.delete(t),r}function de(e,t){let n=e.map(s=>({x:s%t,y:Math.floor(s/t)})),o=n.length,a=[];for(let s=0;s<o;s++){let r=n[(s+o-1)%o],m=n[s],i=n[(s+1)%o];(m.x-r.x)*(i.y-m.y)-(m.y-r.y)*(i.x-m.x)!==0&&a.push(m)}return a}function lt(e){let t=0;for(let n=0,o=e.length;n<o;n++){let a=e[n],s=e[(n+1)%o];t+=a.x*s.y-s.x*a.y}return t/2}var Q=e=>String(Math.round(e*1e3)/1e3);function Yt(e,t,n,o,a){let s=e.width,r=e.height,m=n/s,i=gt(e);a?.(.15);let l=new Int32Array(i.colors.length).fill(-1),c=[];i.colors.forEach((w,k)=>{w!==t&&(l[k]=c.length,c.push(w))});let u=i.labels.map(w=>w<0?-1:l[w]),f=Jt(u,s,r,c.length,a&&(w=>a(.15+.8*w))),p=[],g=w=>w.map(k=>`${Q(k.x*m)},${Q(k.y*m)}`).join(" ");f.forEach((w,k)=>{if(w.length===1)p.push(`<polygon points="${g(w[0])}" fill="${c[k]}" stroke="none"/>`);else{let d=[...w].sort((S,h)=>Math.abs(lt(h))-Math.abs(lt(S))).map(S=>"M"+g(S).replace(/ /g,"L")+"Z").join("");p.push(`<path d="${d}" fill="${c[k]}" fill-rule="evenodd" stroke="none"/>`)}});let M=Q(n),P=Q(r*m),v=[...new Set(dt(i).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${M} ${P}" width="${M}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:v,paletteName:o,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${M}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${p.join(`\n`)}\n</g>\n</svg>`,tiles:c.length}}function Me(e,t){let n=e.img,o=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!o)return bt(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let a=4+(1-e.detail/100)*26,s=(i,l,c,u)=>xt(n,i,l,c,u)>a,r=e.shape==="brick"?e.tile/2:e.tile,m=At({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:r,detail:e.detail/100,busy:s,seed:7});return t(.5),yt(n,m,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var Vt={mosaic:(e,t)=>Me(e,t),vectorize:(e,t)=>Yt(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Ot(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),view3d:e=>zt(e.shape,e.o),export3d:(e,t)=>Ht(e,t)};function ut(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let o of Object.values(e))ut(o,t+1,n);return[...n]}var ct=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:o}=e.data,a=0,s=r=>{let m=Date.now();m-a>100&&(a=m,ct({id:t,progress:r}))};try{let r=await Vt[n](o,s);ct({id:t,result:r},ut(r))}catch(r){ct({id:t,error:String(r?.message||r)})}};})();\n';
-
-  // src/lib/trace.ts
-  function traceAll(labels, W, H, count, progress) {
-    const at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x];
-    const V = W + 1, key = (x, y) => y * V + x;
-    const out = Array.from({ length: count }, () => /* @__PURE__ */ new Map());
-    const add = (l, x0, y0, x1, y1) => {
-      const m = out[l], k = key(x0, y0);
-      const list = m.get(k);
-      if (list) list.push(key(x1, y1));
-      else m.set(k, [key(x1, y1)]);
-    };
-    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-      if (progress && x === 0 && y % 64 === 0) progress(0.5 * y / H);
-      const l = labels[y * W + x];
-      if (l < 0) continue;
-      if (at(x, y - 1) !== l) add(l, x + 1, y, x, y);
-      if (at(x - 1, y) !== l) add(l, x, y, x, y + 1);
-      if (at(x, y + 1) !== l) add(l, x, y + 1, x + 1, y + 1);
-      if (at(x + 1, y) !== l) add(l, x + 1, y + 1, x + 1, y);
-    }
-    const rings = [];
-    for (let l = 0; l < count; l++) {
-      if (progress && l % 256 === 0) progress(0.5 + 0.5 * l / count);
-      const m = out[l], list = [];
-      for (const [start] of m) {
-        while (m.get(start) && m.get(start).length) {
-          const ring = [start];
-          let prev = start, cur = take(m, start, -1, V);
-          while (cur !== start) {
-            ring.push(cur);
-            const next = take(m, cur, prev, V);
-            prev = cur;
-            cur = next;
-          }
-          list.push(simplify2(ring, V));
-        }
-      }
-      rings.push(list);
-    }
-    return rings;
-  }
-  function take(m, from, prev, V) {
-    const list = m.get(from);
-    let i = 0;
-    if (list.length > 1 && prev >= 0) {
-      const dx = from % V - prev % V, dy = Math.floor(from / V) - Math.floor(prev / V);
-      const score = (to2) => {
-        const ex = to2 % V - from % V, ey = Math.floor(to2 / V) - Math.floor(from / V);
-        return ex === dy && ey === -dx ? 0 : ex === dx && ey === dy ? 1 : 2;
-      };
-      for (let k = 1; k < list.length; k++) if (score(list[k]) < score(list[i])) i = k;
-    }
-    const to = list[i];
-    list.splice(i, 1);
-    if (!list.length) m.delete(from);
-    return to;
-  }
-  function simplify2(ring, V) {
-    const pts = ring.map((k) => ({ x: k % V, y: Math.floor(k / V) })), n4 = pts.length, out = [];
-    for (let i = 0; i < n4; i++) {
-      const a = pts[(i + n4 - 1) % n4], b = pts[i], c = pts[(i + 1) % n4];
-      if ((b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) !== 0) out.push(b);
-    }
-    return out;
-  }
-  function ringArea(r) {
-    let s = 0;
-    for (let i = 0, n4 = r.length; i < n4; i++) {
-      const a = r[i], b = r[(i + 1) % n4];
-      s += a.x * b.y - b.x * a.y;
-    }
-    return s / 2;
-  }
-
-  // src/lib/vectorize.ts
-  var n2 = (v) => String(Math.round(v * 1e3) / 1e3);
-  function piecesSvg(img, grout, widthMm, name, progress) {
-    const W = img.width, H = img.height, k = widthMm / W, p = pieces(img);
-    progress?.(0.15);
-    const ids = new Int32Array(p.colors.length).fill(-1), colors = [];
-    p.colors.forEach((c, i) => {
-      if (c !== grout) {
-        ids[i] = colors.length;
-        colors.push(c);
-      }
-    });
-    const labels = p.labels.map((l) => l < 0 ? -1 : ids[l]);
-    const rings = traceAll(labels, W, H, colors.length, progress && ((f) => progress(0.15 + 0.8 * f)));
-    const shapes = [];
-    const pts = (r) => r.map((q) => `${n2(q.x * k)},${n2(q.y * k)}`).join(" ");
-    rings.forEach((list, i) => {
-      if (list.length === 1) shapes.push(`<polygon points="${pts(list[0])}" fill="${colors[i]}" stroke="none"/>`);
-      else {
-        const sorted = [...list].sort((a, b) => Math.abs(ringArea(b)) - Math.abs(ringArea(a)));
-        const d = sorted.map((r) => "M" + pts(r).replace(/ /g, "L") + "Z").join("");
-        shapes.push(`<path d="${d}" fill="${colors[i]}" fill-rule="evenodd" stroke="none"/>`);
-      }
-    });
-    const w = n2(widthMm), h = n2(H * k), palette = [...new Set(colorRows(p).map((r) => r.color))];
-    const svg2 = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">
-<metadata id="mosaic-palette">${JSON.stringify({ palette, paletteName: name, unit: "mm" })}</metadata>
-${grout ? `<rect id="mosaic-bg" x="0" y="0" width="${w}" height="${h}" fill="${grout}"/>` : ""}
-<g id="mosaic-fills"></g>
-<g id="mosaic-shapes">
-${shapes.join("\n")}
-</g>
-</svg>`;
-    return { svg: svg2, tiles: colors.length };
-  }
-
-  // src/worker/jobs.ts
-  function mosaic2(m, progress) {
-    const img = m.img, adaptive = m.detail > 0 && ["square", "brick", "irregular"].includes(m.shape);
-    if (m.shape === "offset" || m.shape === "square" && !adaptive) {
-      return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette: m.palette, bricks: m.shape === "offset" });
-    }
-    const bar = 4 + (1 - m.detail / 100) * 26;
-    const busy = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
-    const size = m.shape === "brick" ? m.tile / 2 : m.tile;
-    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
-    progress(0.5);
-    return mosaicCells(img, cells3, { grout: m.grout, groutColor: m.groutColor, palette: m.palette });
-  }
-  var jobs = {
-    mosaic: (a, p) => mosaic2(a, p),
-    vectorize: (a, p) => piecesSvg(a.img, a.grout, a.widthMm, a.name, p),
-    towers: (a, p) => towers(a.colorGrid, a.w, a.h, a.cell, a.order, a.counts, a.isLine, a.o, p),
-    view3d: (a) => viewMesh(a.shape, a.o),
-    export3d: (a, p) => exportModel(a, p)
-  };
-
-  // src/shared/work.ts
-  var Cancelled = class extends Error {
-    constructor() {
-      super("cancelled");
-    }
-  };
-  var isCancelled = (e) => e instanceof Cancelled;
-  var lanes = /* @__PURE__ */ new Map();
-  var url = "";
-  var noWorkers = false;
-  var seq = 0;
-  function spawn() {
-    if (noWorkers || typeof Worker === "undefined") return null;
-    try {
-      url || (url = URL.createObjectURL(new Blob([worker_source_default], { type: "text/javascript" })));
-      return new Worker(url);
-    } catch {
-      noWorkers = true;
-      return null;
-    }
-  }
-  async function runHere(job, args, progress) {
-    await new Promise((r) => setTimeout(r, 0));
-    return jobs[job](args, progress || (() => {
-    }));
-  }
-  function run2(job, args, o = {}) {
-    const name = o.lane || job, old = lanes.get(name);
-    if (old) {
-      old.worker?.terminate();
-      old.reject(new Cancelled());
-      lanes.delete(name);
-    }
-    const worker = spawn();
-    if (!worker) return runHere(job, args, o.progress);
-    return new Promise((resolve, reject) => {
-      const lane = { worker, id: ++seq, resolve, reject, progress: o.progress, job, args };
-      lanes.set(name, lane);
-      const finish = () => {
-        worker.terminate();
-        if (lanes.get(name) === lane) lanes.delete(name);
-      };
-      worker.onmessage = (e) => {
-        const m = e.data;
-        if (m.id !== lane.id) return;
-        if (m.progress != null) {
-          lane.progress?.(m.progress);
-          return;
-        }
-        finish();
-        if (m.error != null) reject(new Error(m.error));
-        else resolve(m.result);
-      };
-      worker.onerror = (e) => {
-        e.preventDefault?.();
-        finish();
-        noWorkers = true;
-        runHere(job, args, o.progress).then(resolve, reject);
-      };
-      worker.postMessage({ id: lane.id, job, args });
-    });
   }
 
   // src/shared/export3d.ts
@@ -8610,8 +8646,37 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
     }
     return tileSvg(cols * pitch, rows * pitch, tiles, paletteName);
   }
+  var hex2 = (c) => [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)];
   var HEART_COLORS = { o: "#6b1d2a", R: "#e63946", r: "#c1121f", "*": "#ffd6dc" };
   var HEART_PALETTE = Object.values(HEART_COLORS);
+  function sunsetImage(W = 240, H = 160) {
+    const data = new Uint8ClampedArray(W * H * 4), horizon = Math.round(H * 0.58);
+    const mix2 = (a, b, f) => a.map((v, i) => v + (b[i] - v) * f);
+    const sky = ["#2b2d5c", "#6b3e75", "#c0566b", "#f28a4a"].map(hex2), sea = ["#457b9d", "#1d3557"].map(hex2);
+    const sun = { x: W / 2, y: horizon, r: H * 0.2 };
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      let c;
+      if (y < horizon) {
+        const f = y / horizon * (sky.length - 1), k = Math.min(sky.length - 2, Math.floor(f));
+        c = mix2(sky[k], sky[k + 1], f - k);
+        if ((x - sun.x) ** 2 + (y - sun.y) ** 2 < sun.r ** 2) c = hex2("#ffd27a");
+      } else {
+        c = mix2(sea[0], sea[1], (y - horizon) / (H - horizon));
+        const half = sun.r * (1 - 0.6 * (y - horizon) / (H - horizon));
+        if (Math.abs(x - sun.x) < half && Math.floor((y - horizon) / 6) % 2 === 0) c = hex2("#f4a261");
+      }
+      data.set([...c.map(Math.round), 255], (y * W + x) * 4);
+    }
+    return { width: W, height: H, data };
+  }
+  function photoTilesSvg(paletteName) {
+    const img = sunsetImage(16, 12), tiles = [];
+    for (let y = 0; y < 12; y++) for (let x = 0; x < 16; x++) {
+      const i = (y * 16 + x) * 4, c = "#" + [0, 1, 2].map((k) => img.data[i + k].toString(16).padStart(2, "0")).join("");
+      tiles.push([x * 10 + 0.75, y * 10 + 0.75, 8.5, c]);
+    }
+    return tileSvg(160, 120, tiles, paletteName);
+  }
 
   // src/shared/examples-ui.ts
   function initExamples(button, examples) {
@@ -8710,6 +8775,17 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
     if (!MZ.confirmDiscard()) return;
     await MZ.openText(svg2, name);
   }
+  function fromPhoto() {
+    const input = document.querySelector("#ref-file"), before = MZ.refImage();
+    input.addEventListener("change", () => {
+      const started = Date.now(), wait = () => {
+        if (MZ.refImage() && MZ.refImage() !== before) document.querySelector("#btn-automosaic").click();
+        else if (Date.now() - started < 5e3) setTimeout(wait, 100);
+      };
+      wait();
+    }, { once: true });
+    input.click();
+  }
   var coaster = () => coasterSvg(t("Coaster"));
   var sign = () => signSvg(t("HOME"), t("Sign"));
   initExamples(document.querySelector("#btn-examples"), [
@@ -8726,6 +8802,13 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       text: t("A word in tiles with a border – try Report for a shopping list."),
       preview: () => svgUrl(sign()),
       open: () => open2(sign(), t("sign") + ".svg")
+    },
+    {
+      id: "photo",
+      title: t("Your photo"),
+      text: t("Load a photo and turn it into tiles – smaller where it has detail."),
+      preview: () => svgUrl(photoTilesSvg("")),
+      open: fromPhoto
     }
   ]);
   initGuide(document.querySelector("#btn-guide"), [

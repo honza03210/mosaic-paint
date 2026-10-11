@@ -4,6 +4,7 @@ import * as R from '../lib/raster.ts';
 import * as AutoMosaic from '../lib/automosaic.ts';
 import * as B from '../lib/build3d.ts';
 import { piecesSvg } from '../lib/vectorize.ts';
+import { photoMosaic, type PhotoMosaicJob } from '../lib/photo.ts';
 
 export type Progress = (f: number) => void;
 
@@ -44,6 +45,7 @@ export const jobs = {
   mosaic: (a: MosaicJob, p: Progress) => mosaic(a, p),
   vectorize: (a: { img: R.Img; grout: string | null; widthMm: number; name: string }, p: Progress) => piecesSvg(a.img, a.grout, a.widthMm, a.name, p),
   towers: (a: TowersJob, p: Progress) => B.towers(a.colorGrid, a.w, a.h, a.cell, a.order, a.counts, a.isLine, a.o, p),
+  photoMosaic: (a: PhotoMosaicJob, p: Progress) => photoMosaic(a, p),
   view3d: (a: { shape: B.Shape; o: B.Build3DOptions }) => B.viewMesh(a.shape, a.o),
   export3d: (a: B.ExportRequest, p: Progress) => B.exportModel(a, p),
 };

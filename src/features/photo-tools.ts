@@ -2,12 +2,12 @@
    palette suggestions, and coloring tiles from it. Uses the editor core (window.MZ). */
 import { MZ } from '../core/api.ts';
 import * as Colors from '../lib/colors.ts';
-import * as AutoMosaic from '../lib/automosaic.ts';
+import * as Photo from '../lib/photo.ts';
 import { t } from '../shared/i18n.ts';
 
 export const PhotoTools = (() => {
-  /** The photo's pixels in drawing coordinates: at(p) → [r, g, b] or null outside the photo. */
-  async function pixels() {
+  /** The photo's pixels (at most 1200 px a side) and where it lies in the drawing. */
+  async function photoPixels(): Promise<Photo.PhotoPixels | null> {
     const im = MZ.refImage();
     if (!im) return null;
     let img;
@@ -21,13 +21,12 @@ export const PhotoTools = (() => {
     cx.drawImage(img, 0, 0, W, H);
     const data = cx.getImageData(0, 0, W, H).data;
     const box = { x: +im.getAttribute('x'), y: +im.getAttribute('y'), w: +im.getAttribute('width'), h: +im.getAttribute('height') };
-    const at = (p) => {
-      const u = Math.floor((p.x - box.x) / box.w * W), v = Math.floor((p.y - box.y) / box.h * H);
-      if (u < 0 || v < 0 || u >= W || v >= H) return null;
-      const i = (v * W + u) * 4;
-      return data[i + 3] < 20 ? null : [data[i], data[i + 1], data[i + 2]];
-    };
-    return { at, box };
+    return { data, W, H, box };
+  }
+  /** The photo's pixels in drawing coordinates: at(p) → [r, g, b] or null outside the photo. */
+  async function pixels() {
+    const p = await photoPixels();
+    return p && { at: Photo.sampler(p), box: p.box };
   }
 
   function average(px, pts) {
@@ -41,26 +40,9 @@ export const PhotoTools = (() => {
   }
 
   /** How much the photo's color varies inside a rectangle (average Lab distance from its mean). */
-  function detailAt(px, x, y, w, h) {
-    const labs = [];
-    for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
-      const c = px.at({ x: x + w * (i + 0.5) / 5, y: y + h * (j + 0.5) / 5 });
-      if (c) labs.push(Colors.toLab(c));
-    }
-    if (labs.length < 2) return 0;
-    const m = [0, 1, 2].map(k => labs.reduce((s, l) => s + l[k], 0) / labs.length);
-    return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
-  }
-
+  const detailAt = (px, x, y, w, h) => Photo.detailAt(px.at, x, y, w, h);
   /** n colors that represent the photo inside box (k-means in Lab), most common first. */
-  function suggestPalette(px, box, n) {
-    const labs = [];
-    for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
-      const c = px.at({ x: box.x + box.w * (i + 0.5) / 70, y: box.y + box.h * (j + 0.5) / 70 });
-      if (c) labs.push(Colors.toLab(c));
-    }
-    return [...new Set(AutoMosaic.kmeans(labs, n, 7).map(Colors.fromLab))];
-  }
+  const suggestPalette = (px, box, n) => Photo.suggestPalette(px.at, box, n);
 
   /**
    * Gives every closed area the palette color closest to the photo underneath it.
@@ -92,5 +74,5 @@ export const PhotoTools = (() => {
     return { painted, skipped, outside };
   }
 
-  return { pixels, average, detailAt, suggestPalette, colorTiles };
+  return { photoPixels, pixels, average, detailAt, suggestPalette, colorTiles };
 })();

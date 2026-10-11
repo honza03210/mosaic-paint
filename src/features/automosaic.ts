@@ -3,6 +3,7 @@
 import { MZ } from '../core/api.ts';
 import * as Geo from '../lib/geometry.ts';
 import * as AutoMosaic from '../lib/automosaic.ts';
+import { run, isCancelled } from '../shared/work.ts';
 import { PhotoTools } from './photo-tools.ts';
 import { t } from '../shared/i18n.ts';
 import { $, loadSettings, saveSettings } from '../shared/ui.ts';
@@ -34,24 +35,24 @@ function renderUI() {
   $('#am-go').disabled = !MZ.refImage() || n > MAX_TILES;
 }
 
-async function generate() {
-  const px = await PhotoTools.pixels();
-  if (!px) { MZ.toast(t('Load a photo first.')); return; }
-  const d = state.doc, box = { x: d.x, y: d.y, w: d.w, h: d.h };
-  const page = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
-  // an area counts as detailed when its colors spread more than this (Lab units); more detail → lower bar
-  const bar = 4 + (1 - opts.detail / 100) * 26;
-  const busy = (x, y, w, h) => PhotoTools.detailAt(px, x, y, w, h) > bar;
-  const cells = AutoMosaic.cells({ style: opts.style, box, size: opts.size, detail: opts.detail / 100, busy, seed: (Date.now() & 0xffff) + 1 });
-  if (cells.length > MAX_TILES * 1.5) { MZ.toast(t('That gives {n} tiles – use a bigger tile size.', { n: cells.length })); return; }
-  const segs = AutoMosaic.lines(cells, [page], (p) => Geo.pointInPolygon(p, page), Geo.eps);
+/** Lays out the tiles in a worker (the photo decides where they get smaller), then colors them here. */
+async function generate(progress: (f: number) => void) {
+  const photo = await PhotoTools.photoPixels();
+  if (!photo) { MZ.toast(t('Load a photo first.')); return; }
+  const d = state.doc;
+  const res = await run('photoMosaic', {
+    photo, page: { x: d.x, y: d.y, w: d.w, h: d.h }, style: opts.style, size: opts.size, detail: opts.detail,
+    seed: (Date.now() & 0xffff) + 1, eps: Geo.eps, maxTiles: MAX_TILES * 1.5, suggest: opts.colors === 'suggest' ? Math.max(2, Math.min(64, opts.count)) : 0,
+  }, { progress: f => progress(f * 0.7) });
+  if (!res.lines.length) { MZ.toast(t('That gives {n} tiles – use a bigger tile size.', { n: res.tiles })); return; }
+  const segs = res.lines;
 
   if (opts.replace) {
     if (MZ.hasContent()) await MZ.saveVersion(t('Before making a mosaic from the photo'));
     MZ.clearDrawing();
   }
   if (opts.colors === 'suggest') {
-    const cols = PhotoTools.suggestPalette(px, px.box, Math.max(2, Math.min(64, opts.count)));
+    const cols = res.palette;
     const name = MZ.addPalette(t('From photo'), cols);
     MZ.toast(t('New palette “{name}” with {n} {n|color|colors}.', { name, n: cols.length }));
   }
@@ -73,11 +74,17 @@ $('#am-replace').onchange = (e) => { opts.replace = e.target.checked; save(); };
 $('#am-load').onclick = () => $('#ref-file').click();
 $('#ref-file').addEventListener('change', () => setTimeout(renderUI, 600));
 $('#am-go').onclick = async () => {
-  $('#am-go').disabled = true;
-  $('#am-go').textContent = t('Working…');
-  await new Promise(r => setTimeout(r, 30)); // let the button update before the work starts
-  try { await generate(); } finally {
-    $('#am-go').textContent = t('Make mosaic');
+  // the dialog stays open, its button showing how far the work is, until the mosaic is there
+  const go = $('#am-go');
+  go.disabled = true;
+  go.textContent = t('Working…');
+  try {
+    await generate(f => { go.textContent = t('Working… {p} %', { p: Math.round(f * 100) }); });
+  } catch (e) {
+    if (!isCancelled(e)) MZ.toast(t('Could not make the mosaic.'));
+  } finally {
+    go.textContent = t('Make mosaic');
+    go.disabled = false;
     $('#dlg-automosaic').close();
   }
 };

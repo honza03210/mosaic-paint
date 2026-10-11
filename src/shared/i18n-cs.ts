@@ -1500,4 +1500,10 @@ export const CS: Record<string, string> = {
     'Krátký průvodce aplikací',
   'Guide':
     'Průvodce',
+  'Working… {p} %':
+    'Pracuji… {p} %',
+  'Your photo':
+    'Vaše fotka',
+  'Load a photo and turn it into tiles – smaller where it has detail.':
+    'Načtěte fotku a proměňte ji v dlaždice – menší tam, kde má detaily.',
 };

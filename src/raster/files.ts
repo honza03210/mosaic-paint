@@ -56,7 +56,8 @@ export async function openImageFile(f: File): Promise<boolean> {
 }
 /** Opens a picture as the image (the current one is kept in History). */
 export async function openCanvas(c: HTMLCanvasElement, name: string): Promise<void> {
-  await saveVersion(t('Before opening {name}', { name }));
+  // the current image is copied right away (toBlob takes it as it is now); storing it can finish later
+  saveVersion(t('Before opening {name}', { name }));
   loadCanvas(c, name);
   scheduleAutosave();
   toast(t('Opened {name} ({w} × {h} px).', { name, w: c.width, h: c.height }));

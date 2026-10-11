@@ -6,7 +6,7 @@ const { expect } = h;
 test('vector: the examples open as drawings with their palettes', async ({ page }) => {
   const { errors } = await h.open(page);
   await page.click('#btn-examples');
-  await expect(page.locator('#dlg-examples .ex-card')).toHaveCount(2);
+  await expect(page.locator('#dlg-examples .ex-card')).toHaveCount(3);
   await expect(page.locator('[data-example=coaster] img')).toHaveAttribute('src', /^data:image\/svg\+xml/);
   await page.click('[data-example=coaster]');
   await expect(page.locator('#dlg-examples')).toBeHidden();
@@ -78,4 +78,13 @@ test('Esc stops a line after its first point – also while the guide is open or
   await page.focus('#stroke-width');
   await page.keyboard.press('Escape');
   expect(await pending()).toBe(false);
+});
+
+test('vector: "Your photo" asks for a photo, then opens Mosaic from photo', async ({ page }) => {
+  await h.open(page);
+  await page.click('#btn-examples');
+  const [chooser] = await Promise.all([page.waitForEvent('filechooser'), page.click('[data-example=photo]')]);
+  await chooser.setFiles({ name: 'photo.png', mimeType: 'image/png', buffer: h.png(60, 40, (x) => (x < 30 ? [232, 116, 63] : [74, 122, 160])) });
+  await expect(page.locator('#dlg-automosaic')).toBeVisible();
+  await expect(page.locator('#am-photo-missing')).toBeHidden();
 });
