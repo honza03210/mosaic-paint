@@ -1,4 +1,4 @@
 node_modules/
 test-results/
 playwright-report/
-test-results-i18n-missing.json
+test-results-i18n-missing*.json
