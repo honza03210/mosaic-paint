@@ -1,6 +1,8 @@
-/* Turning a picture into a mosaic: square tiles with grout, colored from the palette (or a palette
-   suggested from the picture), and reducing a picture to the palette's colors. */
+/* Turning a picture into a mosaic: tiles (squares, offset squares, bricks, hexagons or irregular, smaller
+   where the picture has detail) with grout, colored from the palette (or a palette suggested from the
+   picture), and reducing a picture to the palette's colors. The tile layouts are the vector app's. */
 import * as R from '../lib/raster.ts';
+import * as AutoMosaic from '../lib/automosaic.ts';
 import { $, toast } from '../shared/ui.ts';
 import { state, savePrefs } from './state.ts';
 import { doc, dctx } from './canvas.ts';
@@ -31,10 +33,24 @@ export function makeMosaic(): void {
     if (!palette.length) { toast('There is nothing to make a mosaic from (the area is transparent).'); return; }
     addPalette('From picture', palette);
   }
-  const res = R.mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette, bricks: m.bricks });
+  const res = tiles(img, palette);
   dctx.putImageData(new ImageData(res.img.data, b.w, b.h), b.x, b.y);
   commit();
   toast(`Made ${summary(res.counts, 'tile')}.`);
+}
+/** The mosaic of an image: the exact square grid when it can be, else the tile layout's polygons. */
+function tiles(img: ImageData, palette: string[] | null) {
+  const m = state.mosaic, adaptive = m.detail > 0 && ['square', 'brick', 'irregular'].includes(m.shape);
+  if (m.shape === 'offset' || (m.shape === 'square' && !adaptive)) {
+    return R.mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette, bricks: m.shape === 'offset' });
+  }
+  // an area counts as detailed when its colors spread more than this (Lab units); more detail → lower bar
+  const bar = 4 + (1 - m.detail / 100) * 26;
+  const busy = (x: number, y: number, w: number, h: number) => R.detailAt(img, x, y, w, h) > bar;
+  // bricks are two squares wide: their size is the row height
+  const size = m.shape === 'brick' ? m.tile / 2 : m.tile;
+  const cells = AutoMosaic.cells({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
+  return R.mosaicCells(img, cells, { grout: m.grout, groutColor: m.groutColor, palette });
 }
 export function reduceToPalette(): void {
   if (!state.palette.length) { toast('The palette is empty.'); return; }
@@ -47,9 +63,16 @@ export function reduceToPalette(): void {
 
 // ---- dialog ------------------------------------------------------------------------------------------
 function estimate(): void {
-  const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height };
-  const n = Math.ceil(b.w / Math.max(2, m.tile)) * Math.ceil(b.h / Math.max(2, m.tile));
-  $('#mo-estimate').textContent = `About ${fmtN(n)} tiles${state.sel ? ' in the selection' : ''}.`;
+  const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height }, t = Math.max(2, m.tile);
+  // area of one tile in t² (a hexagon t wide covers t² × √3/2; a brick t wide is half as high)
+  const per = { hex: Math.sqrt(3) / 2, brick: 0.5 }[m.shape] || 1;
+  const base = (b.w * b.h) / (t * t * per);
+  // with detail, calm parts get bigger tiles: the size is the smallest tile
+  const adaptive = m.detail > 0 && ['square', 'brick', 'irregular'].includes(m.shape);
+  $('#mo-estimate').textContent = adaptive
+    ? `At most about ${fmtN(Math.round(base))} tiles${state.sel ? ' in the selection' : ''} – bigger ones where the picture is calm.`
+    : `About ${fmtN(Math.round(base))} tiles${state.sel ? ' in the selection' : ''}.`;
+  $('#mo-detail-row').hidden = m.shape === 'hex' || m.shape === 'offset';
 }
 export function bindMosaic(): void {
   const m = state.mosaic;
@@ -63,8 +86,10 @@ export function bindMosaic(): void {
   num('#mo-count', 'count', 2);
   $('#mo-grout-color').value = m.groutColor;
   $('#mo-grout-color').onchange = (e: any) => { m.groutColor = e.target.value; savePrefs(); };
-  $('#mo-bricks').checked = m.bricks;
-  $('#mo-bricks').onchange = (e: any) => { m.bricks = e.target.checked; savePrefs(); };
+  $('#mo-shape').value = m.shape;
+  $('#mo-shape').onchange = (e: any) => { m.shape = e.target.value; savePrefs(); estimate(); };
+  $('#mo-detail').value = m.detail;
+  $('#mo-detail').onchange = (e: any) => { m.detail = +e.target.value; savePrefs(); estimate(); };
   for (const r of document.querySelectorAll<HTMLInputElement>('input[name=mo-colors]')) {
     r.checked = r.value === m.colors;
     r.onchange = () => { if (r.checked) { m.colors = r.value; savePrefs(); } };

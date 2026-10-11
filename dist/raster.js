@@ -292,7 +292,7 @@
     const near = o.palette && o.palette.length ? nearestCache(o.palette) : null;
     const grout = rgba(o.groutColor);
     const counts2 = /* @__PURE__ */ new Map();
-    let tiles = 0;
+    let tiles2 = 0;
     for (let ty = 0, row = 0; ty < H; ty += T, row++) {
       const shift = o.bricks && row % 2 ? -Math.floor(T / 2) : 0;
       for (let tx = shift; tx < W; tx += T) {
@@ -316,7 +316,7 @@
           const name = near ? near(r, g, b) : hex(r, g, b);
           c = rgba(name);
           counts2.set(name, (counts2.get(name) || 0) + 1);
-          tiles++;
+          tiles2++;
         }
         for (let y = ty; y < y1; y++) for (let x = x0; x < x1; x++) {
           const inGrout = x >= tx + T - G || y >= ty + T - G;
@@ -324,7 +324,7 @@
         }
       }
     }
-    return { img: out, counts: counts2, tiles };
+    return { img: out, counts: counts2, tiles: tiles2 };
   }
   function classify(img, colors) {
     const near = nearestCache(colors), index2 = new Map(colors.map((c, i) => [c, i]));
@@ -426,6 +426,78 @@
       }
     }
     return out.join("");
+  }
+  function detailAt(img, x, y, w, h) {
+    const labs = [], d = img.data;
+    for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
+      const px = Math.floor(x + w * (i + 0.5) / 5), py = Math.floor(y + h * (j + 0.5) / 5);
+      if (px < 0 || py < 0 || px >= img.width || py >= img.height) continue;
+      const k = (py * img.width + px) * 4;
+      if (d[k + 3] >= 128) labs.push(toLab([d[k], d[k + 1], d[k + 2]]));
+    }
+    if (labs.length < 2) return 0;
+    const m = [0, 1, 2].map((c) => labs.reduce((s, l) => s + l[c], 0) / labs.length);
+    return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
+  }
+  function polygonPixels(W, H, pts, fn) {
+    const n4 = pts.length, ys = pts.map((p) => p.y);
+    const top = Math.max(0, Math.floor(Math.min(...ys))), bottom = Math.min(H - 1, Math.ceil(Math.max(...ys)));
+    for (let y = top; y <= bottom; y++) {
+      const cy = y + 0.5, xs = [];
+      for (let i = 0; i < n4; i++) {
+        const a = pts[i], c = pts[(i + 1) % n4];
+        if (a.y <= cy !== c.y <= cy) xs.push(a.x + (cy - a.y) * (c.x - a.x) / (c.y - a.y));
+      }
+      xs.sort((p, q) => p - q);
+      for (let k = 0; k + 1 < xs.length; k += 2) {
+        const x0 = Math.max(0, Math.ceil(xs[k] - 0.5)), x1 = Math.min(W - 1, Math.floor(xs[k + 1] - 0.5));
+        for (let x = x0; x <= x1; x++) fn(y * W + x);
+      }
+    }
+  }
+  function mosaicCells(src, cells3, o) {
+    const { width: W, height: H } = src, s = src.data, out = makeImg(W, H), d = out.data;
+    const near = o.palette && o.palette.length ? nearestCache(o.palette) : null;
+    const counts2 = /* @__PURE__ */ new Map(), filled = [];
+    let tiles2 = 0;
+    for (const poly of cells3) {
+      let r = 0, g = 0, b = 0, n4 = 0, all = 0;
+      const px = [];
+      polygonPixels(W, H, poly, (i) => {
+        px.push(i);
+        all++;
+        const k = i * 4;
+        if (s[k + 3] < 128) return;
+        r += s[k];
+        g += s[k + 1];
+        b += s[k + 2];
+        n4++;
+      });
+      if (!n4 || n4 < all / 2) continue;
+      r = Math.round(r / n4);
+      g = Math.round(g / n4);
+      b = Math.round(b / n4);
+      const name = near ? near(r, g, b) : hex(r, g, b), c = rgba(name);
+      for (const i of px) setPx(d, i * 4, c);
+      counts2.set(name, (counts2.get(name) || 0) + 1);
+      tiles2++;
+      filled.push(poly);
+    }
+    const half = Math.max(0, o.grout) / 2;
+    if (half > 0) {
+      const gc = rgba(o.groutColor);
+      for (const poly of filled) for (let e = 0; e < poly.length; e++) {
+        const a = poly[e], b = poly[(e + 1) % poly.length], dx = b.x - a.x, dy = b.y - a.y, L2 = dx * dx + dy * dy || 1;
+        const x0 = Math.max(0, Math.floor(Math.min(a.x, b.x) - half)), x1 = Math.min(W - 1, Math.ceil(Math.max(a.x, b.x) + half));
+        const y0 = Math.max(0, Math.floor(Math.min(a.y, b.y) - half)), y1 = Math.min(H - 1, Math.ceil(Math.max(a.y, b.y) + half));
+        for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+          const cx = x + 0.5, cy = y + 0.5, t = Math.max(0, Math.min(1, ((cx - a.x) * dx + (cy - a.y) * dy) / L2));
+          const ex = a.x + t * dx - cx, ey = a.y + t * dy - cy;
+          if (ex * ex + ey * ey <= half * half) setPx(d, (y * W + x) * 4, gc);
+        }
+      }
+    }
+    return { img: out, counts: counts2, tiles: tiles2 };
   }
 
   // src/shared/ui.ts
@@ -798,7 +870,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     grid: true,
     /** the real width of the finished mosaic, mm (report, print, 3D) */
     realWidth: 300,
-    mosaic: { tile: 16, grout: 2, groutColor: "#b8b2a7", colors: "palette", count: 12, bricks: false },
+    mosaic: { tile: 16, grout: 2, groutColor: "#b8b2a7", colors: "palette", count: 12, shape: "square", detail: 0 },
     view: { x: 0, y: 0, s: 1 },
     /** the rectangle selection (whole pixels), or null */
     sel: null,
@@ -838,8 +910,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }
     for (const k of PREF_KEYS) {
       if (!(k in o)) continue;
-      if (k === "mosaic") Object.assign(state.mosaic, o.mosaic);
-      else state[k] = o[k];
+      if (k === "mosaic") {
+        if (o.mosaic.bricks && !o.mosaic.shape) o.mosaic.shape = "offset";
+        delete o.mosaic.bricks;
+        Object.assign(state.mosaic, o.mosaic);
+      } else state[k] = o[k];
     }
     loadSharedPalettes(state);
     if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || "My palette";
@@ -1241,11 +1316,56 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
 
   // src/lib/geometry.ts
+  var dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
   function regularPolygon(n4, cx, cy, r, rot) {
     const out = [];
     for (let i = 0; i < n4; i++) {
       const a = rot + i * 2 * Math.PI / n4;
       out.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
+    }
+    return out;
+  }
+
+  // src/lib/patterns.ts
+  var rect = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
+  var odd = (j) => (j % 2 + 2) % 2 === 1;
+  var range = (a0, a1, step) => [Math.floor(a0 / step) - 1, Math.ceil(a1 / step) + 1];
+  function cells(type, s, b) {
+    const out = [];
+    if (type === "square") {
+      const [i0, i1] = range(b.x0, b.x1, s), [j0, j1] = range(b.y0, b.y1, s);
+      for (let i = i0; i <= i1; i++) for (let j = j0; j <= j1; j++) out.push(rect(i * s, j * s, s, s));
+    } else if (type === "brick") {
+      const L = 2 * s, [j0, j1] = range(b.y0, b.y1, s);
+      for (let j = j0; j <= j1; j++) {
+        const off = odd(j) ? s : 0, [i0, i1] = range(b.x0 - off, b.x1 - off, L);
+        for (let i = i0; i <= i1; i++) out.push(rect(off + i * L, j * s, L, s));
+      }
+    } else if (type === "hex") {
+      const w = Math.sqrt(3) * s, rh = 1.5 * s, [j0, j1] = range(b.y0, b.y1, rh);
+      for (let j = j0; j <= j1; j++) {
+        const off = odd(j) ? w / 2 : 0, [i0, i1] = range(b.x0 - off, b.x1 - off, w);
+        for (let i = i0; i <= i1; i++) out.push(regularPolygon(6, off + i * w, j * rh, s, -Math.PI / 2));
+      }
+    } else if (type === "triangle") {
+      const h = s * Math.sqrt(3) / 2, [j0, j1] = range(b.y0, b.y1, h);
+      for (let j = j0; j <= j1; j++) {
+        const y = j * h, off = odd(j) ? s / 2 : 0, [i0, i1] = range(b.x0 - off, b.x1 - off, s);
+        for (let i = i0; i <= i1; i++) {
+          const x = off + i * s;
+          out.push([{ x, y: y + h }, { x: x + s / 2, y }, { x: x + s, y: y + h }]);
+          out.push([{ x: x + s / 2, y }, { x: x + 1.5 * s, y }, { x: x + s, y: y + h }]);
+        }
+      }
+    } else if (type === "herringbone") {
+      const cs = [[b.x0, b.y0], [b.x1, b.y0], [b.x0, b.y1], [b.x1, b.y1]].map(([x, y]) => [x / s, y / s]);
+      const ks = cs.map(([u, v]) => (u + v) / 4), ms = cs.map(([u, v]) => (u - v) / 2);
+      const k0 = Math.floor(Math.min(...ks)) - 2, k1 = Math.ceil(Math.max(...ks)) + 2;
+      const m0 = Math.floor(Math.min(...ms)) - 2, m1 = Math.ceil(Math.max(...ms)) + 2;
+      for (let k = k0; k <= k1; k++) for (let m = m0; m <= m1; m++) {
+        out.push(rect((2 * k + m) * s, (2 * k - m) * s, s, 2 * s));
+        out.push(rect((2 * k + 1 + m) * s, (2 * k + 1 - m) * s, 2 * s, s));
+      }
     }
     return out;
   }
@@ -1259,6 +1379,89 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     };
+  }
+  var rect2 = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
+  function quadLeaves(box, size, adaptive, busy) {
+    const top = adaptive ? size * 2 : size, min = adaptive ? size / 2 : size, out = [];
+    const visit = (x, y, s) => {
+      if (x >= box.x + box.w - 1e-9 || y >= box.y + box.h - 1e-9) return;
+      if (s > min * 1.0001 && busy(x, y, s, s)) {
+        const h = s / 2;
+        visit(x, y, h);
+        visit(x + h, y, h);
+        visit(x, y + h, h);
+        visit(x + h, y + h, h);
+      } else out.push({ x, y, s });
+    };
+    for (let j = 0; j * top < box.h; j++) for (let i = 0; i * top < box.w; i++) visit(box.x + i * top, box.y + j * top, top);
+    return out;
+  }
+  function clipHalf(poly, f) {
+    const out = [];
+    for (let i = 0, n4 = poly.length; i < n4; i++) {
+      const a = poly[i], b = poly[(i + 1) % n4], fa = f(a), fb = f(b);
+      if (fa <= 0) out.push(a);
+      if (fa < 0 && fb > 0 || fa > 0 && fb < 0) {
+        const t = fa / (fa - fb);
+        out.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
+      }
+    }
+    return out;
+  }
+  function voronoi(seeds, box) {
+    const cell = Math.sqrt(box.w * box.h / Math.max(1, seeds.length)) || 1, grid = /* @__PURE__ */ new Map();
+    const key = (i, j) => i + "," + j;
+    seeds.forEach((s, idx) => {
+      const k = key(Math.floor(s.x / cell), Math.floor(s.y / cell));
+      (grid.get(k) || grid.set(k, []).get(k)).push(idx);
+    });
+    const maxRing = Math.ceil(Math.max(box.w, box.h) / cell) + 1;
+    return seeds.map((s, idx) => {
+      const ci = Math.floor(s.x / cell), cj = Math.floor(s.y / cell);
+      let poly = rect2(box.x, box.y, box.w, box.h);
+      const radius = () => Math.max(...poly.map((p) => dist(p, s)));
+      for (let r = 0; r <= maxRing && poly.length >= 3; r++) {
+        if ((r - 1) * cell > 2 * radius()) break;
+        const ring = [];
+        for (let i = ci - r; i <= ci + r; i++) for (let j = cj - r; j <= cj + r; j++) {
+          if (Math.max(Math.abs(i - ci), Math.abs(j - cj)) !== r) continue;
+          for (const o of grid.get(key(i, j)) || []) if (o !== idx) ring.push(o);
+        }
+        ring.sort((a, b) => dist(seeds[a], s) - dist(seeds[b], s));
+        for (const o of ring) {
+          const n4 = seeds[o], nx = n4.x - s.x, ny = n4.y - s.y, mx = (s.x + n4.x) / 2, my = (s.y + n4.y) / 2;
+          poly = clipHalf(poly, (p) => (p.x - mx) * nx + (p.y - my) * ny);
+          if (poly.length < 3) break;
+        }
+      }
+      return poly;
+    }).filter((p) => p.length >= 3);
+  }
+  function cells2({ style, box, size, detail = 0, busy = () => false, seed = 1 }) {
+    const adaptive = detail > 0;
+    if (style === "hex") {
+      const s = size / Math.sqrt(3);
+      return cells("hex", s, { x0: -s, y0: -s, x1: box.w + s, y1: box.h + s }).map((poly) => poly.map((p) => ({ x: p.x + box.x, y: p.y + box.y })));
+    }
+    if (style === "brick") {
+      const out = [];
+      for (let j = 0; j * size < box.h; j++) {
+        const off = j % 2 ? -size : 0;
+        for (let x = box.x + off; x < box.x + box.w; x += 2 * size) {
+          const y = box.y + j * size;
+          if (adaptive && busy(x, y, 2 * size, size)) out.push(rect2(x, y, size, size), rect2(x + size, y, size, size));
+          else out.push(rect2(x, y, 2 * size, size));
+        }
+      }
+      return out;
+    }
+    const leaves = quadLeaves(box, size, adaptive, busy);
+    if (style === "irregular") {
+      const rnd = rng(seed);
+      const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box.x && p.y >= box.y && p.x <= box.x + box.w && p.y <= box.y + box.h);
+      return voronoi(seeds, box);
+    }
+    return leaves.map((l) => rect2(l.x, l.y, l.s, l.s));
   }
   function kmeans(points, k, seed = 1, iterations = 16) {
     if (!points.length) return [];
@@ -2022,10 +2225,21 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       }
       addPalette("From picture", palette);
     }
-    const res = mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette, bricks: m.bricks });
+    const res = tiles(img, palette);
     dctx.putImageData(new ImageData(res.img.data, b.w, b.h), b.x, b.y);
     commit();
     toast(`Made ${summary(res.counts, "tile")}.`);
+  }
+  function tiles(img, palette) {
+    const m = state.mosaic, adaptive = m.detail > 0 && ["square", "brick", "irregular"].includes(m.shape);
+    if (m.shape === "offset" || m.shape === "square" && !adaptive) {
+      return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette, bricks: m.shape === "offset" });
+    }
+    const bar = 4 + (1 - m.detail / 100) * 26;
+    const busy = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
+    const size = m.shape === "brick" ? m.tile / 2 : m.tile;
+    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
+    return mosaicCells(img, cells3, { grout: m.grout, groutColor: m.groutColor, palette });
   }
   function reduceToPalette() {
     if (!state.palette.length) {
@@ -2039,9 +2253,12 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     toast(`Every pixel now has a palette color: ${summary(counts2, "pixel")}.`);
   }
   function estimate() {
-    const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height };
-    const n4 = Math.ceil(b.w / Math.max(2, m.tile)) * Math.ceil(b.h / Math.max(2, m.tile));
-    $("#mo-estimate").textContent = `About ${fmtN(n4)} tiles${state.sel ? " in the selection" : ""}.`;
+    const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height }, t = Math.max(2, m.tile);
+    const per = { hex: Math.sqrt(3) / 2, brick: 0.5 }[m.shape] || 1;
+    const base = b.w * b.h / (t * t * per);
+    const adaptive = m.detail > 0 && ["square", "brick", "irregular"].includes(m.shape);
+    $("#mo-estimate").textContent = adaptive ? `At most about ${fmtN(Math.round(base))} tiles${state.sel ? " in the selection" : ""} – bigger ones where the picture is calm.` : `About ${fmtN(Math.round(base))} tiles${state.sel ? " in the selection" : ""}.`;
+    $("#mo-detail-row").hidden = m.shape === "hex" || m.shape === "offset";
   }
   function bindMosaic() {
     const m = state.mosaic;
@@ -2066,10 +2283,17 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       m.groutColor = e.target.value;
       savePrefs();
     };
-    $("#mo-bricks").checked = m.bricks;
-    $("#mo-bricks").onchange = (e) => {
-      m.bricks = e.target.checked;
+    $("#mo-shape").value = m.shape;
+    $("#mo-shape").onchange = (e) => {
+      m.shape = e.target.value;
       savePrefs();
+      estimate();
+    };
+    $("#mo-detail").value = m.detail;
+    $("#mo-detail").onchange = (e) => {
+      m.detail = +e.target.value;
+      savePrefs();
+      estimate();
     };
     for (const r of document.querySelectorAll("input[name=mo-colors]")) {
       r.checked = r.value === m.colors;
@@ -3506,9 +3730,9 @@ ${shapes.join("\n")}
   }
   function info() {
     const grout = $("#vz-grout").value || null, rows2 = colorRows(pieces(getImage()));
-    const tiles = rows2.filter((r) => r.color !== grout).reduce((s, r) => s + r.pieces, 0);
-    $("#vz-info").textContent = `${tiles.toLocaleString("en")} tile${tiles === 1 ? "" : "s"} at ${n3(state.realWidth)} × ${n3(state.realWidth * doc.height / doc.width)} mm` + (tiles > MAX_TILES ? " – too many: make a mosaic or reduce the picture to the palette first." : ".");
-    $("#vz-go").disabled = tiles > MAX_TILES || !tiles;
+    const tiles2 = rows2.filter((r) => r.color !== grout).reduce((s, r) => s + r.pieces, 0);
+    $("#vz-info").textContent = `${tiles2.toLocaleString("en")} tile${tiles2 === 1 ? "" : "s"} at ${n3(state.realWidth)} × ${n3(state.realWidth * doc.height / doc.width)} mm` + (tiles2 > MAX_TILES ? " – too many: make a mosaic or reduce the picture to the palette first." : ".");
+    $("#vz-go").disabled = tiles2 > MAX_TILES || !tiles2;
   }
   function bindVectorize() {
     $("#btn-vectorize").onclick = () => {
@@ -3526,9 +3750,9 @@ ${shapes.join("\n")}
       info();
     };
     $("#vz-go").onclick = async () => {
-      const { svg, tiles } = vectorSVG($("#vz-grout").value || null, state.realWidth);
+      const { svg, tiles: tiles2 } = vectorSVG($("#vz-grout").value || null, state.realWidth);
       try {
-        await Store.set("handoff", { svg, name: rt.fileName.replace(/\.[a-z0-9]+$/i, "") + ".svg", time: Date.now(), tiles });
+        await Store.set("handoff", { svg, name: rt.fileName.replace(/\.[a-z0-9]+$/i, "") + ".svg", time: Date.now(), tiles: tiles2 });
       } catch {
         toast("Could not hand the tiles over (browser storage unavailable).");
         return;

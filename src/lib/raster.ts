@@ -361,3 +361,81 @@ export function pieceOutlines(p: Pieces, W: number, H: number): string {
   }
   return out.join('');
 }
+
+// ---- mosaics of any tile shape ---------------------------------------------------------------------------
+type P = { x: number; y: number };
+/** How much the colors vary inside a box: mean Lab distance from their mean, over 5 × 5 samples. */
+export function detailAt(img: Img, x: number, y: number, w: number, h: number): number {
+  const labs: Lab[] = [], d = img.data;
+  for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
+    const px = Math.floor(x + w * (i + 0.5) / 5), py = Math.floor(y + h * (j + 0.5) / 5);
+    if (px < 0 || py < 0 || px >= img.width || py >= img.height) continue;
+    const k = (py * img.width + px) * 4;
+    if (d[k + 3] >= 128) labs.push(Colors.toLab([d[k], d[k + 1], d[k + 2]]));
+  }
+  if (labs.length < 2) return 0;
+  const m = [0, 1, 2].map(c => labs.reduce((s, l) => s + l[c], 0) / labs.length);
+  return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
+}
+/** Calls fn(index) for every pixel whose centre is inside the polygon (even–odd). */
+function polygonPixels(W: number, H: number, pts: P[], fn: (i: number) => void): void {
+  const n = pts.length, ys = pts.map(p => p.y);
+  const top = Math.max(0, Math.floor(Math.min(...ys))), bottom = Math.min(H - 1, Math.ceil(Math.max(...ys)));
+  for (let y = top; y <= bottom; y++) {
+    const cy = y + 0.5, xs: number[] = [];
+    for (let i = 0; i < n; i++) {
+      const a = pts[i], c = pts[(i + 1) % n];
+      if ((a.y <= cy) !== (c.y <= cy)) xs.push(a.x + (cy - a.y) * (c.x - a.x) / (c.y - a.y));
+    }
+    xs.sort((p, q) => p - q);
+    for (let k = 0; k + 1 < xs.length; k += 2) {
+      const x0 = Math.max(0, Math.ceil(xs[k] - 0.5)), x1 = Math.min(W - 1, Math.floor(xs[k + 1] - 0.5));
+      for (let x = x0; x <= x1; x++) fn(y * W + x);
+    }
+  }
+}
+/**
+ * A mosaic from tile polygons (pixel coordinates, e.g. from automosaic.cells): every tile gets the average
+ * color of the pixels under it (or the nearest palette color), and grout `grout` pixels wide is drawn along
+ * the tile edges. Tiles that are mostly transparent stay empty.
+ */
+export function mosaicCells(src: Img, cells: P[][], o: { grout: number; groutColor: string | null; palette: string[] | null }): { img: Img; counts: Map<string, number>; tiles: number } {
+  const { width: W, height: H } = src, s = src.data, out = makeImg(W, H), d = out.data;
+  const near = o.palette && o.palette.length ? nearestCache(o.palette) : null;
+  const counts = new Map<string, number>(), filled: P[][] = [];
+  let tiles = 0;
+  for (const poly of cells) {
+    let r = 0, g = 0, b = 0, n = 0, all = 0;
+    const px: number[] = [];
+    polygonPixels(W, H, poly, (i) => {
+      px.push(i);
+      all++;
+      const k = i * 4;
+      if (s[k + 3] < 128) return;
+      r += s[k]; g += s[k + 1]; b += s[k + 2]; n++;
+    });
+    if (!n || n < all / 2) continue;
+    r = Math.round(r / n); g = Math.round(g / n); b = Math.round(b / n);
+    const name = near ? near(r, g, b) : hex(r, g, b), c = rgba(name);
+    for (const i of px) setPx(d, i * 4, c);
+    counts.set(name, (counts.get(name) || 0) + 1);
+    tiles++;
+    filled.push(poly);
+  }
+  // grout: everything within half the grout width of a tile edge
+  const half = Math.max(0, o.grout) / 2;
+  if (half > 0) {
+    const gc = rgba(o.groutColor);
+    for (const poly of filled) for (let e = 0; e < poly.length; e++) {
+      const a = poly[e], b = poly[(e + 1) % poly.length], dx = b.x - a.x, dy = b.y - a.y, L2 = dx * dx + dy * dy || 1;
+      const x0 = Math.max(0, Math.floor(Math.min(a.x, b.x) - half)), x1 = Math.min(W - 1, Math.ceil(Math.max(a.x, b.x) + half));
+      const y0 = Math.max(0, Math.floor(Math.min(a.y, b.y) - half)), y1 = Math.min(H - 1, Math.ceil(Math.max(a.y, b.y) + half));
+      for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+        const cx = x + 0.5, cy = y + 0.5, t = Math.max(0, Math.min(1, ((cx - a.x) * dx + (cy - a.y) * dy) / L2));
+        const ex = a.x + t * dx - cx, ey = a.y + t * dy - cy;
+        if (ex * ex + ey * ey <= half * half) setPx(d, (y * W + x) * 4, gc);
+      }
+    }
+  }
+  return { img: out, counts, tiles };
+}

@@ -137,3 +137,19 @@ test('pieces are areas of one color; each gets a spot inside it for its number a
   assert.match(d, /M0 0H5/); // the top edge in one run
   assert.match(d, /M3 0V3/); // right of the red square: the blue piece, then the transparent pixel
 });
+
+test('a mosaic from any tile polygons: one color per tile, grout along the edges', () => {
+  const key = { a: '#e01010', b: '#1010e0' };
+  const im = img(['aaaabbbb', 'aaaabbbb', 'aaaabbbb', 'aaaabbbb'], key);
+  // two triangles splitting the image corner to corner, then two squares
+  const tri = [[{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 4 }], [{ x: 8, y: 0 }, { x: 8, y: 4 }, { x: 0, y: 4 }]];
+  const r1 = R.mosaicCells(im, tri, { grout: 0, groutColor: null, palette: ['#ff0000', '#0000ff'] });
+  assert.equal(r1.tiles, 2);
+  assert.equal(R.colorAt(r1.img, 0, 0), '#ff0000'); // mostly red above the diagonal
+  assert.equal(R.colorAt(r1.img, 7, 3), '#0000ff');
+  const squares = [[{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }], [{ x: 4, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 4 }, { x: 4, y: 4 }]];
+  const r2 = R.mosaicCells(im, squares, { grout: 2, groutColor: '#000000', palette: null });
+  assert.deepEqual(rows(r2.img, { ...K, a: '#e01010', b: '#1010e0' }), ['kkkkkkkk', 'kaakkbbk', 'kaakkbbk', 'kkkkkkkk']);
+  assert.ok(R.detailAt(im, 0, 0, 4, 4) < 1e-9); // one color: no detail
+  assert.ok(R.detailAt(im, 0, 0, 8, 4) > 10);
+});

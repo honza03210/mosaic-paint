@@ -258,13 +258,20 @@
 
 <dialog id="dlg-mosaic">
   <form method="dialog" class="dlg-head"><h2>Make a mosaic</h2><button title="Close">✕</button></form>
-  <p class="note">Splits the picture into square tiles and gives each tile the color underneath it, with grout between the tiles.</p>
+  <p class="note">Splits the picture into tiles and gives each tile the color underneath it, with grout between the tiles.</p>
   <div class="row">
-    <label>Tile <input id="mo-tile" type="number" min="2" max="400" step="1"> px</label>
+    <label>Tiles <select id="mo-shape">
+      <option value="square">Squares</option>
+      <option value="offset">Squares, offset rows</option>
+      <option value="brick">Bricks</option>
+      <option value="hex">Hexagons</option>
+      <option value="irregular">Irregular (crazy paving)</option>
+    </select></label>
+    <label>Size <input id="mo-tile" type="number" min="2" max="400" step="1"> px</label>
     <label>Grout <input id="mo-grout" type="number" min="0" max="50" step="1"> px</label>
     <input type="color" id="mo-grout-color" title="Grout color">
   </div>
-  <label class="chk"><input type="checkbox" id="mo-bricks"> Offset rows (like bricks)</label>
+  <div class="row" id="mo-detail-row"><label class="grow">Smaller tiles where the picture has detail <input id="mo-detail" type="range" min="0" max="100"></label></div>
   <hr>
   <label class="chk"><input type="radio" name="mo-colors" value="palette"> Use the current palette</label>
   <label class="chk"><input type="radio" name="mo-colors" value="suggest"> Suggest <input id="mo-count" type="number" min="2" max="64" step="1"> colors from the picture (new palette)</label>

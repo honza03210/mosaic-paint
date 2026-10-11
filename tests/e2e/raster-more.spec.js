@@ -126,3 +126,34 @@ test('raster tiles open as vector tiles at real size; the grout becomes the page
   expect(await page.evaluate(() => MZ.state.palette)).toEqual(expect.arrayContaining(['#e76f51', '#264653']));
   expect(page.url()).not.toContain('#from-raster');
 });
+
+test('mosaic tile shapes: hexagons and irregular tiles in palette colors with grout', async ({ page }) => {
+  await open(page);
+  await page.evaluate(() => {
+    const x = RZ.doc.getContext('2d'), g = x.createLinearGradient(0, 0, 60, 0);
+    g.addColorStop(0, '#e9c46a'); g.addColorStop(1, '#264653');
+    x.fillStyle = g; x.fillRect(0, 0, 60, 40); RZ.commit();
+  });
+  const allowed = await page.evaluate(() => [...RZ.state.palette, '#b8b2a7']);
+  for (const shape of ['hex', 'irregular', 'brick']) {
+    await page.click('#btn-mosaic');
+    await page.selectOption('#mo-shape', shape);
+    await page.fill('#mo-tile', '10');
+    await page.dispatchEvent('#mo-tile', 'change');
+    await page.fill('#mo-grout', '1');
+    await page.dispatchEvent('#mo-grout', 'change');
+    await page.evaluate(() => { RZ.state.mosaic.groutColor = '#b8b2a7'; });
+    await page.check('input[name=mo-colors][value=palette]');
+    await expect(page.locator('#mo-detail-row')).toBeVisible({ visible: shape !== 'hex' });
+    await page.click('#mo-go');
+    await expect(page.locator('#st-msg')).toContainText(/Made \d+ tiles/);
+    const colors = await page.evaluate(() => {
+      const d = RZ.doc.getContext('2d').getImageData(0, 0, RZ.doc.width, RZ.doc.height).data, s = new Set();
+      for (let i = 0; i < d.length; i += 4) if (d[i + 3]) s.add('#' + [d[i], d[i + 1], d[i + 2]].map(v => v.toString(16).padStart(2, '0')).join(''));
+      return [...s];
+    });
+    expect(colors.every(c => allowed.includes(c)), `${shape}: ${colors}`).toBe(true);
+    expect(colors).toContain('#b8b2a7');
+    await page.keyboard.press('Control+z');
+  }
+});

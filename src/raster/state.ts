@@ -18,7 +18,7 @@ export const state = {
   grid: true,
   /** the real width of the finished mosaic, mm (report, print, 3D) */
   realWidth: 300,
-  mosaic: { tile: 16, grout: 2, groutColor: '#b8b2a7', colors: 'palette', count: 12, bricks: false },
+  mosaic: { tile: 16, grout: 2, groutColor: '#b8b2a7', colors: 'palette', count: 12, shape: 'square', detail: 0 },
   view: { x: 0, y: 0, s: 1 },
   /** the rectangle selection (whole pixels), or null */
   sel: null as Box | null,
@@ -55,7 +55,12 @@ export function loadPrefs(): void {
   try { o = JSON.parse(lsGet(KEY) || '{}'); } catch { /* ignore */ }
   for (const k of PREF_KEYS) {
     if (!(k in o)) continue;
-    if (k === 'mosaic') Object.assign(state.mosaic, o.mosaic); else state[k] = o[k];
+    if (k === 'mosaic') {
+      // settings from before tile shapes: "offset rows" was a checkbox
+      if (o.mosaic.bricks && !o.mosaic.shape) o.mosaic.shape = 'offset';
+      delete o.mosaic.bricks;
+      Object.assign(state.mosaic, o.mosaic);
+    } else state[k] = o[k];
   }
   loadSharedPalettes(state);
   if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || 'My palette';
