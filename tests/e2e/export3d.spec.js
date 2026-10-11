@@ -8,9 +8,9 @@ const { expect } = h;
 
 test.skip(({ browserName }) => browserName === 'webkit' && process.platform === 'win32', 'downloads are cancelled by WebKit on Windows');
 
-/** Bounding box and triangle count of a binary STL file. */
+/** Bounding box and triangle count of a binary STL file (a path or its bytes). */
 function readStl(file) {
-  const b = fs.readFileSync(file), n = b.readUInt32LE(80);
+  const b = Buffer.isBuffer(file) ? file : fs.readFileSync(file), n = b.readUInt32LE(80);
   expect(b.length).toBe(84 + n * 50);
   const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity], tops = new Set();
   for (let t = 0; t < n; t++) {
@@ -24,8 +24,8 @@ function readStl(file) {
   }
   return { n, lo: lo.map(v => +v.toFixed(3)), hi: hi.map(v => +v.toFixed(3)), tops: [...tops].sort((a, c) => a - c) };
 }
-/** The files in a ZIP archive (from its central directory), as text. */
-function unzip(file) {
+/** The files in a ZIP archive (from its central directory), as text (or bytes: raw). */
+function unzip(file, raw = false) {
   const b = fs.readFileSync(file), out = {};
   const end = b.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
   let p = b.readUInt32LE(end + 16);
@@ -34,7 +34,8 @@ function unzip(file) {
     const extra = b.readUInt16LE(p + 30), comment = b.readUInt16LE(p + 32), local = b.readUInt32LE(p + 42);
     const name = b.toString('utf8', p + 46, p + 46 + nameLen);
     const start = local + 30 + b.readUInt16LE(local + 26) + b.readUInt16LE(local + 28), data = b.subarray(start, start + size);
-    out[name] = (method === 8 ? zlib.inflateRawSync(data) : data).toString('utf8');
+    const bytes = method === 8 ? zlib.inflateRawSync(data) : data;
+    out[name] = raw ? bytes : bytes.toString('utf8');
     p += 46 + nameLen + extra + comment;
   }
   return out;
@@ -186,4 +187,47 @@ test('the 3D view shows the model and turns when dragged', async ({ page, browse
   expect(await image()).not.toBe(before);
   await page.click('#m3-tab-top');
   await expect(page.locator('#m3-preview')).toBeVisible();
+});
+
+test('several filaments: a flat model, one part per color with its filament, for PrusaSlicer or Bambu Studio', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await page.evaluate(() => {
+    RZ.blank(40, 30, '#b8b2a7');
+    const x = RZ.doc.getContext('2d'); x.fillStyle = '#e76f51'; x.fillRect(5, 5, 30, 20); RZ.commit();
+    RZ.state.mosaic.groutColor = '#b8b2a7';
+  });
+  await page.click('#btn-3d');
+  await page.fill('#m3-w', '40');
+  await page.dispatchEvent('#m3-w', 'change');
+  await page.click('#m3-mode-flat');
+  await expect(page.locator('#m3-lpc')).toBeHidden();
+  await expect(page.locator('#m3-tile')).toBeVisible();
+  await expect(page.locator('#m3-summary')).toContainText('2 colors = 2 filaments · flat, 1.6 mm high (8 layers)');
+  await expect(page.locator('#m3-order .m3-row').first()).toContainText('filament 1');
+  await expect(page.locator('#m3-order .m3-row').first()).toContainText('#b8b2a7');
+
+  // PrusaSlicer: one mesh, its parts are ranges of triangles with their filament
+  const [m3] = await Promise.all([page.waitForEvent('download'), page.click('#m3-go')]);
+  const prusa = unzip(await m3.path()), config = prusa['Metadata/Slic3r_PE_model.config'];
+  expect((prusa['3D/3dmodel.model'].match(/<object /g) || []).length).toBe(1);
+  expect([...config.matchAll(/key="extruder" value="(\d+)"/g)].map(m => +m[1])).toEqual([1, 1, 2]);
+  expect(config).toContain('value="2 #e76f51"');
+  // the STL files: base, grout (two layers lower), tiles
+  const [zipped] = await Promise.all([page.waitForEvent('download'), page.click('#m3-stl')]);
+  expect(zipped.suggestedFilename()).toMatch(/-stl\.zip$/);
+  const stls = unzip(await zipped.path(), true), names = Object.keys(stls);
+  expect(names.map(n => n.replace(/^.*?-(base|\d-\w+)\.stl$/, '$1'))).toEqual(['base', '1-b8b2a7', '2-e76f51']);
+  expect(names.map(n => readStl(stls[n]).hi[2])).toEqual([0.6, 1.2, 1.6]);
+  const [plan] = await Promise.all([page.waitForEvent('download'), page.click('#m3-plan')]);
+  const text = fs.readFileSync(await plan.path(), 'utf8');
+  expect(text).toContain('Filament 1: #b8b2a7 (also the base plate)');
+  expect(text).toContain('Filament 2: #e76f51');
+
+  // Bambu Studio: the parts as components, their filaments in its model settings
+  await page.selectOption('#m3-slicer', 'bambu');
+  const [bambu] = await Promise.all([page.waitForEvent('download'), page.click('#m3-go')]);
+  const b = unzip(await bambu.path());
+  expect((b['3D/Objects/object_1.model'].match(/<object /g) || []).length).toBe(3);
+  expect([...b['Metadata/model_settings.config'].matchAll(/<part id="\d" subtype="normal_part">\n<metadata key="name" value="[^"]*"\/>\n<metadata key="extruder" value="(\d)"/g)].map(m => +m[1])).toEqual([1, 1, 2]);
 });

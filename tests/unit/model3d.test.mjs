@@ -163,3 +163,53 @@ test('thin towers sink into what is around them; grout grooves and wide tiles st
   const ok = M.removeTowers([0, 0, 0, 0, 2, 0, 0, 0, 0], 3, 3, 1.5, tall, o);
   assert.equal(ok.grid[4], 2);
 });
+
+test('solids with pockets underneath and holes through are closed too', () => {
+  const w = 6, h = 5, n = w * h;
+  const bottom = new Int16Array(n), top = new Int16Array(n).fill(10), level = new Int16Array(n);
+  // a pocket 4 layers deep under a 2 × 2 patch, and a hole through one cell
+  for (const i of [7, 8, 13, 14]) bottom[i] = 4;
+  top[22] = 0;
+  // a raised strip
+  for (let x = 0; x < w; x++) { top[x] = 14; level[x] = 1; }
+  const mesh = M.solidMesh({ bottom, top, level }, w, h, 1, 0.2);
+  assertClosed(mesh);
+  let expected = 0;
+  for (let i = 0; i < n; i++) expected += Math.max(0, top[i] - bottom[i]) * 0.2;
+  assert.ok(close(volume(mesh), expected), `${volume(mesh)} vs ${expected}`);
+  // a part standing on another (bottom above 0 everywhere) is closed on its own
+  const part = M.solidMesh({ bottom: new Int16Array(4).fill(3), top: new Int16Array([6, 6, 0, 6]), level: new Int16Array(4) }, 2, 2, 1, 0.2);
+  assertClosed(part);
+  assert.ok(close(volume(part), 3 * 3 * 0.2));
+});
+
+test('several filaments: a base plate and one flat part per color, grout lower', () => {
+  const grid = [0, 0, 1, -1, 1, 1, -2, 1, 0], f = { layerHeight: 0.2, baseLayers: 2, tileLayers: 5, groutRecess: 2 };
+  const parts = M.flatParts(grid, 3, 3, 2, [true, false], f);
+  assert.deepEqual(parts.map(p => p.part), [-1, 0, 1]);
+  const vol = (p) => volume(M.solidMesh(p.solid, 3, 3, 1, 0.2));
+  for (const p of parts) assertClosed(M.solidMesh(p.solid, 3, 3, 1, 0.2));
+  assert.ok(close(vol(parts[0]), 8 * 2 * 0.2)); // base under all 8 cells with material (not the hole)
+  assert.ok(close(vol(parts[1]), 3 * 3 * 0.2)); // grout: 3 cells, 5 − 2 layers
+  assert.ok(close(vol(parts[2]), 4 * 5 * 0.2)); // tiles: 4 cells, 5 layers
+  const h = M.flatHeights([true, false], f);
+  assert.ok(close(h(0), 1.0) && close(h(1), 1.4) && close(h(-1), 0.4) && h(-2) === 0);
+
+  const files = M.threeMfPartsFiles(parts.map((p, k) => ({ name: 'Part ' + k, color: ['#222222', '#b8b2a7', '#e76f51'][k], mesh: M.solidMesh(p.solid, 3, 3, 1, 0.2) })), 'Coaster');
+  const model = files[2].data;
+  assert.equal((model.match(/<object /g) || []).length, 1); // one object, its parts are ranges of triangles
+  assert.match(model, /<base name="Part 2" displaycolor="#E76F51FF"\/>/);
+  const config = files[3].data, ranges = [...config.matchAll(/firstid="(\d+)" lastid="(\d+)"/g)].map(m => [+m[1], +m[2]]);
+  assert.equal(ranges.length, 3);
+  assert.equal(ranges[0][0], 0);
+  for (let k = 1; k < 3; k++) assert.equal(ranges[k][0], ranges[k - 1][1] + 1);
+  assert.equal(ranges[2][1] + 1, (model.match(/<triangle /g) || []).length);
+  assert.match(config, /key="extruder" value="3"/);
+
+  const bambu = M.threeMfPartsFiles(parts.map((p, k) => ({ name: 'Part ' + k, color: '#222222', mesh: M.solidMesh(p.solid, 3, 3, 1, 0.2) })), 'Coaster', 'bambu');
+  const byName = Object.fromEntries(bambu.map(f => [f.name, f.data]));
+  assert.equal((byName['3D/3dmodel.model'].match(/<component p:path="\/3D\/Objects\/object_1.model" objectid="\d"/g) || []).length, 3);
+  assert.equal((byName['3D/Objects/object_1.model'].match(/<object /g) || []).length, 3);
+  assert.match(byName['3D/_rels/3dmodel.model.rels'], /Target="\/3D\/Objects\/object_1.model"/);
+  assert.match(byName['Metadata/model_settings.config'], /<part id="3" subtype="normal_part">\n<metadata key="name" value="Part 2"\/>\n<metadata key="extruder" value="3"\/>/);
+});

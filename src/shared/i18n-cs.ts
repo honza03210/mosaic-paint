@@ -1316,4 +1316,56 @@ export const CS: Record<string, string> = {
     'Výšky ×',
   'This browser can’t show 3D (WebGL is off).':
     'Tento prohlížeč neumí zobrazit 3D (WebGL je vypnuté).',
+  'One nozzle – colors by height':
+    'Jedna tryska – barvy podle výšky',
+  'Several filaments (AMS, MMU…) – flat':
+    'Více filamentů (AMS, MMU…) – plochý',
+  'A flat model with one part per color, for printers that switch filaments by themselves. The 3MF file already assigns filament 1, 2, … to the parts – load the filaments in the order listed below.':
+    'Plochý model s jedním dílem pro každou barvu, pro tiskárny, které samy mění filamenty. Soubor 3MF už dílům přiřazuje filament 1, 2, … – založte filamenty v pořadí uvedeném níže.',
+  'How thick the tiles are above the base':
+    'Jak silné jsou dlaždice nad podložkou',
+  'Tile layers':
+    'Vrstvy dlaždic',
+  'Grout colors end this many layers below the tiles, so the lines between them stay low. 0: all flat':
+    'Barvy spár končí o tolik vrstev níž než dlaždice, takže čáry mezi nimi zůstanou nízko. 0: vše rovně',
+  'Grout lower by':
+    'Spáry níž o',
+  'layers':
+    'vrstvy',
+  'Filaments:':
+    'Filamenty:',
+  'Grout colors come first and stay lower than the tiles. The base plate uses filament 1.':
+    'Barvy spár jsou první a zůstávají níž než dlaždice. Podložka se tiskne filamentem 1.',
+  '3MF for':
+    '3MF pro',
+  'The model, one part per color with its filament':
+    'Model, jeden díl pro každou barvu s jejím filamentem',
+  'One STL file per color, in a ZIP – load them as parts of one object':
+    'Jeden soubor STL pro každou barvu, v ZIPu – načtěte je jako díly jednoho objektu',
+  '{share} % · filament {k}':
+    '{share} % · filament {k}',
+  '{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})':
+    '{n} {n|barva|barvy|barev} = {n} {n|filament|filamenty|filamentů} · plochý, výška {h} mm ({layers} {layers|vrstva|vrstvy|vrstev})',
+  'Base':
+    'Podložka',
+  'Mosaic Paint – multi-filament plan for {name}.3mf':
+    'Mosaic Paint – plán více filamentů pro {name}.3mf',
+  'Size {w} × {h} mm · layer height {lh} mm · base {base} {base|layer|layers} · tiles {tile} {tile|layer|layers} · grout {recess} {recess|layer|layers} lower':
+    'Velikost {w} × {h} mm · výška vrstvy {lh} mm · podložka {base} {base|vrstva|vrstvy|vrstev} · dlaždice {tile} {tile|vrstva|vrstvy|vrstev} · spáry o {recess} {recess|vrstvu|vrstvy|vrstev} níž',
+  'Total height {total} mm.':
+    'Celková výška {total} mm.',
+  'Filament {k}: {color} (also the base plate)':
+    'Filament {k}: {color} (i podložka)',
+  'Filament {k}: {color}':
+    'Filament {k}: {color}',
+  '{slicer}: open the 3MF – every color is a part of one object with its filament already assigned. Load the filaments in this order (AMS slots, MMU…).':
+    '{slicer}: otevřete 3MF – každá barva je díl jednoho objektu a má už přiřazený filament. Založte filamenty v tomto pořadí (sloty AMS, MMU…).',
+  'The 3MF is made for {slicer}: other slicers may read it as one part – then use the STL files.':
+    '3MF je určený pro {slicer}: jiné slicery ho mohou načíst jako jeden díl – pak použijte soubory STL.',
+  'STL: one file per color in a ZIP. Load them together as one object made of parts and give each its filament.':
+    'STL: jeden soubor pro každou barvu v ZIPu. Načtěte je společně jako jeden objekt z dílů a každému přiřaďte jeho filament.',
+  'Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.':
+    'Uloženo {name}.3mf pro {slicer}: {n} {n|díl|díly|dílů} s přiřazenými filamenty.',
+  'Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.':
+    'Uloženo {name}-stl.zip: {n} {n|soubor|soubory|souborů} STL, jeden pro každou barvu. Načtěte je jako díly jednoho objektu.',
 };

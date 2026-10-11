@@ -1,8 +1,12 @@
-/* "3D print" dialog shared by both apps: the mosaic as a 3D model where every color stands at its own
-   height, so any single-nozzle printer prints it in color by swapping filament at a few layers. The 3MF
-   file carries those filament changes for PrusaSlicer; for other slicers the plan lists them to enter by hand.
-   Grout colors are always printed first (lowest), and pieces that would print as thin towers are lowered.
-   The app (host) renders its picture and says which colors it uses. */
+/* "3D print" dialog shared by both apps. Two kinds of model:
+   - one nozzle: every color stands at its own height, so any single-nozzle printer prints it in color by
+     swapping filament at a few layers. The 3MF file carries those filament changes for PrusaSlicer; for
+     other slicers the plan lists them to enter by hand. Grout colors are always printed first (lowest).
+   - several filaments (AMS, MMU…): a flat model with one part per color, the filaments already assigned
+     (PrusaSlicer and Bambu Studio each read only their own 3MF layout, so the user picks one). Grout
+     stays a few layers lower.
+   Either way pieces that would print as thin towers are lowered. The app (host) renders its picture and
+   says which colors it uses. */
 import * as Colors from '../lib/colors.ts';
 import * as R from '../lib/raster.ts';
 import * as M from '../lib/model3d.ts';
@@ -29,14 +33,20 @@ export interface Export3DHost {
 const MAX_CELLS = 4e6, MANY_COLORS = 16;
 /** a raised part may be at most this many times as tall (above what is around it) as it is wide */
 const MAX_RATIO = 2;
-const opts = { width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3, minWidth: 1.2 };
+const opts = {
+  width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3, minWidth: 1.2,
+  /** 'height': one nozzle, colors by height; 'flat': several filaments, one part per color */
+  mode: 'height' as 'height' | 'flat', tileLayers: 5, groutRecess: 2, slicer: 'prusa' as M.PartsSlicer,
+};
 try { Object.assign(opts, JSON.parse(lsGet('mz-3d') || '{}')); } catch { /* ignore */ }
 const saveOpts = () => lsSet('mz-3d', JSON.stringify(opts));
 const f2 = (v: number) => String(+v.toFixed(2));
 
 const DIALOG = `
 <form method="dialog" class="dlg-head"><h2>${t('3D print')}</h2><button title="${t('Close')}">✕</button></form>
-<p class="note">${t('A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.')}</p>
+<div class="seg-btns m3-mode"><button id="m3-mode-height">${t('One nozzle – colors by height')}</button><button id="m3-mode-flat">${t('Several filaments (AMS, MMU…) – flat')}</button></div>
+<p class="note" data-mode="height">${t('A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.')}</p>
+<p class="note" data-mode="flat">${t('A flat model with one part per color, for printers that switch filaments by themselves. The 3MF file already assigns filament 1, 2, … to the parts – load the filaments in the order listed below.')}</p>
 <div class="row">
   <label>${t('Size')} <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
   <label title="${t('Size of the model’s smallest step – about your nozzle width')}">${t('Detail')} <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
@@ -44,7 +54,9 @@ const DIALOG = `
 </div>
 <div class="row">
   <label>${t('Layer height')} <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
-  <label title="${t('How many layers each color gets – more layers cover the color below better')}">${t('Layers per color')} <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
+  <label data-mode="height" title="${t('How many layers each color gets – more layers cover the color below better')}">${t('Layers per color')} <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
+  <label data-mode="flat" title="${t('How thick the tiles are above the base')}">${t('Tile layers')} <input id="m3-tile" type="number" min="1" max="50" step="1"></label>
+  <label data-mode="flat" title="${t('Grout colors end this many layers below the tiles, so the lines between them stay low. 0: all flat')}">${t('Grout lower by')} <input id="m3-recess" type="number" min="0" max="49" step="1"> ${t('layers')}</label>
   <label title="${t('A plate under everything, printed in the first color. 0: unpainted parts are left open')}">${t('Base layers')} <input id="m3-base" type="number" min="0" max="50" step="1"></label>
 </div>
 <p class="note warn" id="m3-note" hidden></p>
@@ -56,18 +68,20 @@ const DIALOG = `
     <label class="grow" id="m3-zrow" hidden title="${t('Shows the heights taller than they are, to see the color bands')}">${t('Heights ×')} <input id="m3-z" type="range" min="1" max="10" value="3"></label>
   </div>
   <div class="m3-side">
-    <div class="row small"><span class="note">${t('Print order (bottom first):')}</span>
+    <div class="row small"><span class="note" data-mode="height">${t('Print order (bottom first):')}</span><span class="note" data-mode="flat">${t('Filaments:')}</span>
       <button id="m3-light" title="${t('Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom')}">${t('Light → dark')}</button>
       <button id="m3-dark">${t('Dark → light')}</button>
     </div>
     <div id="m3-order"></div>
-    <p class="note">${t('Grout colors are always printed first, so the lines between the tiles stay low.')}</p>
+    <p class="note" data-mode="height">${t('Grout colors are always printed first, so the lines between the tiles stay low.')}</p>
+    <p class="note" data-mode="flat">${t('Grout colors come first and stay lower than the tiles. The base plate uses filament 1.')}</p>
   </div>
 </div>
 <p class="note" id="m3-summary"></p>
 <div class="row dlg-foot">
   <button id="m3-plan" title="${t('Which filament to load at which layer, as a text file')}">${t('Plan')}</button>
   <button id="m3-stl" title="${t('Just the shape – add the filament changes from the plan in your slicer')}">STL</button>
+  <label data-mode="flat">${t('3MF for')} <select id="m3-slicer"><option value="prusa">PrusaSlicer</option><option value="bambu">Bambu Studio, OrcaSlicer</option></select></label>
   <button id="m3-go" class="primary" title="${t('The model, with the filament changes for PrusaSlicer')}">${t('Download 3MF')}</button>
 </div>`;
 
@@ -87,6 +101,8 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   const groutChoice = new Map<string, boolean>();
   const isLine = (ci: number) => lines.has(colors[ci]);
   const settings = (): M.PrintSettings => ({ layerHeight: opts.layerHeight, layersPerColor: opts.layersPerColor, baseLayers: opts.baseLayers });
+  const flat = (): M.FlatSettings => ({ layerHeight: opts.layerHeight, baseLayers: opts.baseLayers, tileLayers: opts.tileLayers, groutRecess: Math.min(opts.groutRecess, opts.tileLayers - 1) });
+  const isFlat = () => opts.mode === 'flat';
   const size = () => {
     const a = host.aspect();
     return { w: opts.width, h: opts.width / a };
@@ -101,7 +117,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
    */
   let cached: Model | null = null, cachedKey = '';
   function model(): Model {
-    const key = [version, order.join(), opts.layerHeight, opts.layersPerColor, opts.baseLayers, opts.minWidth, cell].join('|');
+    const key = [version, order.join(), [...lines].join(), opts.mode, opts.tileLayers, opts.groutRecess, opts.layerHeight, opts.layersPerColor, opts.baseLayers, opts.minWidth, cell].join('|');
     if (cached && key === cachedKey) return cached;
     let list = order.filter(i => counts[i] > 0), out: Model = { list, grid: new Int16Array(0), counts: [], lowered: 0 };
     // the picture as color indexes, with each round's lowering kept for the next
@@ -111,7 +127,8 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       const rank = new Int16Array(colors.length).fill(-1);
       list.forEach((ci, k) => { rank[ci] = k; });
       const levels = colorGrid.map(v => (v < 0 ? -1 : rank[v]));
-      const res = M.removeTowers(levels, gw, gh, cell, settings(), { minWidth: opts.minWidth, maxRatio: MAX_RATIO });
+      const heightOf = isFlat() ? M.flatHeights(list.map(isLine), flat()) : undefined;
+      const res = M.removeTowers(levels, gw, gh, cell, settings(), { minWidth: opts.minWidth, maxRatio: MAX_RATIO, heightOf });
       lowered += res.lowered;
       const c = list.map(() => 0);
       for (let p = 0; p < res.grid.length; p++) {
@@ -176,10 +193,15 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     render();
   }
   function render(): void {
-    const s = settings(), m = model(), list = m.list, { w, h } = size();
+    const s = settings(), m = model(), list = m.list, { w, h } = size(), fl = isFlat();
+    for (const el of dlg.querySelectorAll<HTMLElement>('[data-mode]')) el.hidden = el.dataset.mode !== opts.mode;
+    $('#m3-mode-height').classList.toggle('active', !fl);
+    $('#m3-mode-flat').classList.toggle('active', fl);
+    $('#m3-go').title = fl ? t('The model, one part per color with its filament') : t('The model, with the filament changes for PrusaSlicer');
+    $('#m3-stl').title = fl ? t('One STL file per color, in a ZIP – load them as parts of one object') : t('Just the shape – add the filament changes from the plan in your slicer');
     $('#m3-w').value = f2(w);
     $('#m3-h').value = f2(h);
-    const warn = [note, list.length > MANY_COLORS ? t('{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).', { n: list.length }) : '',
+    const warn = [note, !fl && list.length > MANY_COLORS ? t('{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).', { n: list.length }) : '',
       cell > opts.detail + 1e-9 ? t('Detail lowered to {d} mm for this size.', { d: num(+f2(cell)) }) : ''].filter(Boolean).join(' ');
     $('#m3-note').hidden = !warn;
     $('#m3-note').textContent = warn;
@@ -204,8 +226,9 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
         rows.set(c, row);
       }
       const share = num(Math.max(0.1, +(m.counts[k] / total * 100).toFixed(1)));
-      row.querySelector('.note').textContent = p.z == null
-        ? t('{share} % · layers {from}–{to}', { share, from: p.fromLayer, to: p.toLayer })
+      row.querySelector('.note').textContent = fl
+        ? t('{share} % · filament {k}', { share, k: k + 1 })
+        : p.z == null ? t('{share} % · layers {from}–{to}', { share, from: p.fromLayer, to: p.toLayer })
         : t('{share} % · layers {from}–{to} · change at Z {z}', { share, from: p.fromLayer, to: p.toLayer, z: num(p.z, 2) });
       const [tag, up, down] = row.querySelectorAll('button');
       tag.classList.toggle('on', isLine(ci));
@@ -214,11 +237,14 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       if (box.children[k] !== row) box.insertBefore(row, box.children[k] || null);
     });
     const unpainted = grid ? grid.filter(v => v < 0).length : 0;
-    $('#m3-summary').textContent = list.length
-      ? t('{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}', { n: list.length, h: num(M.modelHeight(list.length, s)), layers: M.topLayer(list.length - 1, s), c: list.length - 1 })
+    const fs = flat();
+    $('#m3-summary').textContent = !list.length ? t('Nothing is painted yet.') : fl
+      ? t('{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})', { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers })
         + (unpainted ? ' · ' + (opts.baseLayers ? t('unpainted parts stay at the base ({h} mm)', { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t('unpainted parts are left open')) : '')
         + (m.lowered ? ' · ' + t('{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower', { n: m.lowered }) : '')
-      : t('Nothing is painted yet.');
+      : t('{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}', { n: list.length, h: num(M.modelHeight(list.length, s)), layers: M.topLayer(list.length - 1, s), c: list.length - 1 })
+        + (unpainted ? ' · ' + (opts.baseLayers ? t('unpainted parts stay at the base ({h} mm)', { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t('unpainted parts are left open')) : '')
+        + (m.lowered ? ' · ' + t('{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower', { n: m.lowered }) : '');
     $('#m3-go').disabled = $('#m3-stl').disabled = $('#m3-plan').disabled = !list.length;
     drawPreview(m);
     if (view) schedule3d();
@@ -238,7 +264,16 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) g[y * w + x] = m.grid[Math.min(gh - 1, y * f) * gw + Math.min(gw - 1, x * f)];
     }
     const rgb = m.list.map(ci => R.rgba(colors[ci]).slice(0, 3) as [number, number, number]);
-    view.show(M.closedMesh(g, w, h, cell * f, settings()), (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
+    const shape = isFlat() ? M.mergeMeshes(parts(g, w, h, cell * f).map(p => p.mesh)) : M.closedMesh(g, w, h, cell * f, settings());
+    view.show(shape, (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
+  }
+  /** The flat model's parts: the base plate (filament 1, like the first color), then one per color. */
+  function parts(g: Int16Array, w: number, h: number, c: number): M.ModelPart[] {
+    const list = model().list, fs = flat();
+    return M.flatParts(g, w, h, list.length, list.map(isLine), fs).map(p => {
+      const color = colors[list[Math.max(0, p.part)]];
+      return { name: p.part < 0 ? t('Base') : `${p.part + 1} ${color}`, color, mesh: M.solidMesh(p.solid, w, h, c, fs.layerHeight), filament: Math.max(0, p.part) + 1 };
+    });
   }
   function showTab(three: boolean): void {
     if (three && !view) {
@@ -273,7 +308,26 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, '');
   const plan = () => M.colorPlan(model().list.map(i => colors[i]), settings());
   const mesh = () => M.closedMesh(model().grid, gw, gh, cell, settings());
+  function flatPlanText(): string {
+    const fs = flat(), list = model().list, { w, h } = size(), slicer = opts.slicer === 'bambu' ? 'Bambu Studio / OrcaSlicer' : 'PrusaSlicer';
+    const v = { name: base(), w: f2(w), h: f2(h), lh: fs.layerHeight, base: fs.baseLayers, tile: fs.tileLayers, recess: fs.groutRecess, total: f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight), slicer };
+    const lines = [
+      t('Mosaic Paint – multi-filament plan for {name}.3mf', v),
+      t('Size {w} × {h} mm · layer height {lh} mm · base {base} {base|layer|layers} · tiles {tile} {tile|layer|layers} · grout {recess} {recess|layer|layers} lower', v),
+      t('Total height {total} mm.', v),
+      '',
+      ...list.map((ci, k) => (k === 0 && fs.baseLayers
+        ? t('Filament {k}: {color} (also the base plate)', { k: k + 1, color: colors[ci] })
+        : t('Filament {k}: {color}', { k: k + 1, color: colors[ci] }))),
+      '',
+      t('{slicer}: open the 3MF – every color is a part of one object with its filament already assigned. Load the filaments in this order (AMS slots, MMU…).', v),
+      t('The 3MF is made for {slicer}: other slicers may read it as one part – then use the STL files.', v),
+      t('STL: one file per color in a ZIP. Load them together as one object made of parts and give each its filament.'),
+    ];
+    return lines.join('\n') + '\n';
+  }
   function planText(): string {
+    if (isFlat()) return flatPlanText();
     const s = settings(), list = model().list, plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
     const v = { name: base(), w: f2(w), h: f2(h), lh: s.layerHeight, lpc: s.layersPerColor, base: s.baseLayers, total: M.modelHeight(list.length, s), layers: M.topLayer(list.length - 1, s) };
     // the plan is a file: plain numbers (2.40), whatever the language
@@ -304,7 +358,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     i.value = opts[key];
     i.onchange = () => {
       let v = +i.value;
-      if (Number.isFinite(v) && v > 0 || ((key === 'baseLayers' || key === 'minWidth') && v === 0)) {
+      if (Number.isFinite(v) && v > 0 || ((key === 'baseLayers' || key === 'minWidth' || key === 'groutRecess') && v === 0)) {
         v = clamp(whole ? Math.round(v) : v, min, max);
         opts[key] = v;
         saveOpts();
@@ -318,6 +372,14 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   bindNum('#m3-lh', 'layerHeight', 0.04, 1, false, false);
   bindNum('#m3-lpc', 'layersPerColor', 1, 50, true, false);
   bindNum('#m3-base', 'baseLayers', 0, 50, true, false);
+  bindNum('#m3-tile', 'tileLayers', 1, 50, true, false);
+  bindNum('#m3-recess', 'groutRecess', 0, 49, true, false);
+  const setMode = (mode: typeof opts.mode) => { opts.mode = mode; saveOpts(); render(); };
+  $('#m3-mode-height').onclick = () => setMode('height');
+  $('#m3-mode-flat').onclick = () => setMode('flat');
+  const slicer = $('#m3-slicer') as HTMLSelectElement;
+  slicer.value = opts.slicer;
+  slicer.onchange = () => { opts.slicer = slicer.value as M.PartsSlicer; saveOpts(); };
   $('#m3-w').onchange = () => { const v = +$('#m3-w').value; if (v >= 5 && v <= 2000) { opts.width = v; saveOpts(); } reanalyse(); };
   $('#m3-h').onchange = () => { const v = +$('#m3-h').value; if (v >= 5 && v <= 2000) { opts.width = v * host.aspect(); saveOpts(); } reanalyse(); };
   $('#m3-tab-top').onclick = () => showTab(false);
@@ -327,15 +389,33 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   $('#m3-dark').onclick = () => sortBy(false);
   const triangles = (m: M.Mesh) => m.triangles.length / 3;
   $('#m3-go').onclick = async () => {
-    const m = mesh(), p = plan();
     $('#m3-go').disabled = true;
     try {
+      if (isFlat()) {
+        const ps = parts(model().grid, gw, gh, cell), slicer = opts.slicer === 'bambu' ? 'Bambu Studio' : 'PrusaSlicer';
+        const data = await zip(M.threeMfPartsFiles(ps, base(), opts.slicer));
+        download(new Blob([data as BlobPart], { type: 'model/3mf' }), base() + '.3mf');
+        toast(t('Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.', { name: base(), slicer, n: ps.length }));
+        return;
+      }
+      const m = mesh(), p = plan();
       const data = await zip(M.threeMfFiles(m, p, base()));
       download(new Blob([data as BlobPart], { type: 'model/3mf' }), base() + '.3mf');
       toast(t('Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).', { name: base(), n: triangles(m), c: p.length - 1 }));
     } finally { $('#m3-go').disabled = false; }
   };
-  $('#m3-stl').onclick = () => {
+  $('#m3-stl').onclick = async () => {
+    if (isFlat()) {
+      const ps = parts(model().grid, gw, gh, cell);
+      // the base plate comes first (when there is one), then filament 1, 2, …
+      const files = ps.map((p, k) => ({
+        name: k === 0 && opts.baseLayers ? `${base()}-base.stl` : `${base()}-${p.filament}-${p.color.slice(1)}.stl`,
+        data: new Uint8Array(M.stl(p.mesh, p.name)),
+      }));
+      download(new Blob([await zip(files) as BlobPart], { type: 'application/zip' }), base() + '-stl.zip');
+      toast(t('Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.', { name: base(), n: files.length }));
+      return;
+    }
     const m = mesh();
     download(new Blob([M.stl(m, base())], { type: 'model/stl' }), base() + '.stl');
     toast(t('Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.', { name: base(), n: triangles(m) }));
