@@ -1,6 +1,8 @@
 /* The tracing photo shown under the drawing. */
 import type { Pt } from '../lib/geometry.ts';
 import { $, state, refG, mk, fmt, toast } from './env.ts';
+import { readAsDataURL, loadImg } from '../shared/ui.ts';
+export { readAsDataURL, loadImg };
 import { applyLayers } from './view.ts';
 import { savePrefs } from './palette.ts';
 import { docChanged } from './history.ts';
@@ -11,12 +13,6 @@ export function inRef(p: Pt): boolean {
   if (!im) return false;
   const x = +im.getAttribute('x'), y = +im.getAttribute('y'), w = +im.getAttribute('width'), h = +im.getAttribute('height');
   return p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h;
-}
-export function readAsDataURL(file: Blob): Promise<string> {
-  return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result as string); r.onerror = rej; r.readAsDataURL(file); });
-}
-export function loadImg(src: string): Promise<HTMLImageElement> {
-  return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
 }
 export async function loadPhoto(file: Blob): Promise<void> {
   let img: HTMLImageElement;
@@ -35,6 +31,12 @@ export async function loadPhoto(file: Blob): Promise<void> {
   savePrefs();
   docChanged();
   toast('Photo loaded and locked. Unlock it to move it with the Select tool.');
+}
+/** A pasted image becomes the photo to trace (after asking, if there already is one). */
+export async function pastePhoto(file: Blob): Promise<void> {
+  if (refImage() && !confirm('Replace the photo to trace with the pasted image?')) return;
+  await loadPhoto(file);
+  if (refImage()) toast('The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles.');
 }
 export function setPhoto(href: string | null, nw?: number, nh?: number): void {
   refG.innerHTML = '';

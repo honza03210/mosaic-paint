@@ -1,10 +1,15 @@
 # Mosaic Paint
 
-A vector editor for designing and coloring mosaics with your own palette.
+Two editors for designing and coloring mosaics with your own palette:
+
+- **Vector** (`index.html`): tiles are shapes – draw, snap, pattern, paint, print real-size templates.
+- **Raster** (`raster.html`): paint with pixels – brush, pencil, bucket, and a one-click mosaic effect for any picture.
+
+Switch between them with **Vector | Raster** in the top bar. They look and work alike, share your palettes, and pass pictures to each other through the clipboard.
 
 **Use it online: https://honza03210.github.io/mosaic-paint/**
 It can be installed as an app ("Install app" button, or the browser's install icon), and then it also works offline.
-To run it from a download instead, open `index.html` in Chrome / Edge / Firefox; there's no build step.
+To run it from a download instead, open `index.html` (or `raster.html`) in Chrome / Edge / Firefox; there's no build step.
 
 ## Simple and Expert mode
 
@@ -53,7 +58,7 @@ The switch in the top-left corner chooses how much of the app you see.
 
 ## Copy, paste and motifs
 
-Ctrl+C / Ctrl+X / Ctrl+V copy shapes and their colors between pages, drawings and browser tabs (they arrive under the mouse, at real size even if the other drawing uses different units). Save a selection as a **motif** to reuse it: click it in the Motifs section, then click on the drawing to place copies (R turns them). The library can be exported and imported as a file.
+Ctrl+C / Ctrl+X / Ctrl+V copy shapes and their colors between pages, drawings and browser tabs (they arrive under the mouse, at real size even if the other drawing uses different units). Copied shapes also go on the clipboard as a picture, for the raster app and other programs; **Copy image** (or Ctrl+C with nothing selected) copies the whole drawing as a picture. Pasting a picture (from the raster app, a screenshot, a web page) makes it the photo to trace. Save a selection as a **motif** to reuse it: click it in the Motifs section, then click on the drawing to place copies (R turns them). The library can be exported and imported as a file.
 
 ## Pages
 
@@ -79,12 +84,23 @@ A version is saved every few minutes while you work, and before you open, start 
 Draw with one finger; pinch with two fingers to zoom and pan. The ☰ button opens the side panel.
 The Done / Cancel bar finishes chained lines and free polygons.
 
+## Raster app
+
+The raster app paints pixels. It has the same layout, palettes (shared with the vector app) and Simple / Expert switch.
+
+- **Tools:** select (V), brush (B, soft edges), pencil (P, hard pixels in exact palette colors – best for pixel mosaics), eraser (E), line (L), regular polygon (G), paint bucket with a tolerance (F), color picker (I, or Alt+click). Shift draws straight lines; [ and ] change the size. The ∅ swatch paints transparent.
+- **Selection:** drag a rectangle, then drag it to move it (Alt: a copy); Enter places it, Esc puts it back. Clear, crop, select all (Ctrl+A).
+- **Clipboard:** Ctrl+C / Ctrl+X copy the selection (or the whole image) as a PNG; Ctrl+V pastes any picture – from the vector app, a screenshot, another program – under the mouse, ready to move. On touch screens use the **Copy** and **Paste** buttons. Pasted color codes go into the palette.
+- **Mosaic:** **Make a mosaic…** turns the image (or the selection) into square tiles with grout – colored from your palette, from a palette it suggests, or keeping the picture's colors, optionally with offset rows. **Reduce to palette** gives every pixel the nearest palette color.
+- **Files:** open PNG / JPEG / WebP / GIF / SVG (or drop one on the canvas), save as PNG, export JPEG / WebP (Expert), resize the image or the canvas. The image is autosaved in the browser.
+
 ## Files
 
-The app is written in TypeScript and bundled into one script, `dist/mosaic.js`. The bundle is committed, so GitHub Pages and opening `index.html` straight from disk need no build step.
+The apps are written in TypeScript and bundled into one script each: `dist/mosaic.js` (vector) and `dist/raster.js` (raster). The bundles are committed, so GitHub Pages and opening the pages straight from disk need no build step.
 
-- `index.html`, `style.css`: UI
-- `src/main.ts`: entry point; loads the editor core, then the features
+- `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
+- `src/main.ts`: vector entry point; loads the editor core, then the features
+- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket
   - `patterns.ts`: tiling patterns
@@ -95,6 +111,7 @@ The app is written in TypeScript and bundled into one script, `dist/mosaic.js`. 
   - `layplan.ts`: laying-plan panels and per-panel counts
   - `pack.ts`: compressing a drawing into a share link
   - `store.ts`: browser storage for the autosave and versions
+  - `raster.ts`: pixel algorithms – flood fill, hard-edged lines and polygons, reducing to a palette, the mosaic effect
 - `src/core/`: the editor
   - `env.ts`: page elements, settings and state, small helpers, events between modules
   - `doc.ts`: shapes and their geometry, painting, regular-polygon data
@@ -109,7 +126,8 @@ The app is written in TypeScript and bundled into one script, `dist/mosaic.js`. 
   - `files.ts`: reading / writing SVG, open, save, PNG export, mode
   - `input.ts`, `panel.ts`: mouse, touch, keyboard, paste, drop; the side panel
   - `api.ts`: startup and the `MZ` interface used by the features
-- `src/features/`: one module per feature: `report`, `print`, `history-ui`, `rulers`, `shell` (phone layout, install), `photo-tools`, `automosaic`, `layplan`, `mix`, `vision`, `pages`, `snippets`, `motifs`, `share`
+- `src/features/`: one module per vector feature: `report`, `print`, `history-ui`, `rulers`, `shell` (phone layout, install), `photo-tools`, `automosaic`, `layplan`, `mix`, `vision`, `pages`, `snippets`, `motifs`, `share`, `image-clipboard`
+- `src/raster/`: the raster app – `state`, `canvas` (image, zoom, drawing on screen), `history` (undo, autosave), `paint` (painting tools), `select` (selection, clipboard), `palette`, `mosaic`, `files`, `tools`, `input`, `panel`, `main`
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support
 
 ## Development

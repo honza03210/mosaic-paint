@@ -1,15 +1,12 @@
 /* Wires the side panel and toolbar controls to the editor. */
-import * as Colors from '../lib/colors.ts';
 import * as Patterns from '../lib/patterns.ts';
-import { $, $$, state, isFill, fmt, clamp, emit, toast, download, unit } from './env.ts';
-import { allShapes, fillOf, ngonData, setNgon } from './doc.ts';
+import { $, $$, state, isFill, fmt, clamp, emit, toast, unit } from './env.ts';
+import { ngonData, setNgon } from './doc.ts';
 import { applyDoc, applyLayers, fitView, zoomCenter, drawGuides } from './view.ts';
 import { deleteSel, duplicate, toFront, toBack } from './selection.ts';
 import { gapTol, commitGeometry } from './areas.ts';
 import { commit, undo, redo, docChanged } from './history.ts';
-import {
-  savePrefs, renderPalette, switchPalette, uniqueName, addColors, addFromInput, updateColorPreview,
-} from './palette.ts';
+import { savePrefs, bindPalette } from './palette.ts';
 import { applyGrout, bakeGrout } from './grout.ts';
 import { refImage, loadPhoto, setPhoto, fitPhoto, setPhotoSize } from './photo.ts';
 import { newDoc, openFile, loadFile, save, exportPNG, setMode } from './files.ts';
@@ -51,57 +48,9 @@ export function bindPanel(): void {
   $('#sa-back').onclick = freeBack;
   $('#sa-cancel').onclick = cancelPending;
 
-  // colors & palettes
-  const inp = $('#color-input');
-  $('#btn-add-color').onclick = addFromInput;
-  inp.addEventListener('keydown', (e: KeyboardEvent) => { if (e.key === 'Enter') addFromInput(); });
-  inp.addEventListener('input', updateColorPreview);
-  inp.addEventListener('paste', () => setTimeout(() => { if (Colors.parse(inp.value).length) addFromInput(); }, 0));
-  $('#btn-swap').onclick = () => { const f = state.fill; state.fill = state.stroke; state.stroke = f; savePrefs(); renderPalette(); };
+  // colors & palettes (the shared palette panel)
+  bindPalette();
   bindNumber('#stroke-width', () => state.strokeWidth, (v) => { if (v < 0) return false; state.strokeWidth = v; });
-  $('#pal-select').onchange = (e: any) => switchPalette(e.target.value);
-  $('#btn-pal-new').onclick = () => {
-    const n = prompt('Name of the new palette:', uniqueName('Palette'));
-    if (!n || !n.trim()) return;
-    const name = uniqueName(n.trim());
-    state.palettes[name] = [];
-    switchPalette(name);
-    toast(`Created “${name}”. Paste colors to fill it.`);
-  };
-  $('#btn-pal-rename').onclick = () => {
-    const old = state.paletteName, n = prompt('Rename palette:', old);
-    if (!n || !n.trim() || n.trim() === old) return;
-    const name = uniqueName(n.trim()), next: Record<string, string[]> = {};
-    for (const k of Object.keys(state.palettes)) next[k === old ? name : k] = state.palettes[k];
-    state.palettes = next;
-    switchPalette(name);
-  };
-  $('#btn-pal-delete').onclick = () => {
-    if (!confirm(`Delete the palette “${state.paletteName}”? (The drawing is not changed.)`)) return;
-    delete state.palettes[state.paletteName];
-    if (!Object.keys(state.palettes).length) state.palettes['My palette'] = [];
-    switchPalette(Object.keys(state.palettes)[0]);
-  };
-  $('#btn-pal-doc').onclick = () => {
-    const cols: (string | null)[] = [];
-    for (const el of allShapes()) {
-      cols.push(fillOf(el));
-      if (!isFill(el)) cols.push(Colors.norm(getComputedStyle(el).stroke));
-    }
-    const n = addColors(cols);
-    toast(n ? `Added ${n} color${n > 1 ? 's' : ''} from the drawing.` : 'No new colors in the drawing.');
-  };
-  $('#btn-pal-export').onclick = () => download(new Blob([state.palette.join('\n') + '\n'], { type: 'text/plain' }), state.paletteName + '.txt');
-  $('#btn-pal-clear').onclick = () => { if (confirm('Remove all colors from this palette? (The drawing is not changed.)')) { state.palette = []; savePrefs(); renderPalette(); } };
-  $('#btn-pal-import').onclick = () => $('#pal-file').click();
-  $('#pal-file').onchange = async (e: any) => {
-    const f = e.target.files[0];
-    if (!f) return;
-    const text = await f.text();
-    e.target.value = '';
-    const n = addColors(Colors.parse(text));
-    toast(n ? `Imported ${n} color${n > 1 ? 's' : ''}.` : 'No new colors found in ' + f.name);
-  };
 
   // tool options
   bindCheck('#opt-chain', 'chain', () => { if (!state.chain) cancelPending(); });

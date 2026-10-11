@@ -65,6 +65,11 @@ kbd { font: 11px ui-monospace, monospace; padding: 0 4px; border: 1px solid var(
 #stage[data-tool=pan] #canvas, #stage.space #canvas { cursor: grab; }
 #stage.panning #canvas { cursor: grabbing; }
 #stage.drop { outline: 3px dashed var(--accent); outline-offset: -6px; }
+/* raster app: one canvas shows the image; the brush outline is drawn on it */
+#stage[data-tool] #view { cursor: crosshair; }
+#stage[data-tool=bucket] #view { cursor: cell; }
+#stage[data-tool=pan] #view, #stage.space #view { cursor: grab; }
+#stage.panning #view { cursor: grabbing; }
 
 #mz-page { stroke: rgba(0,0,0,.45); stroke-width: 1; vector-effect: non-scaling-stroke; filter: drop-shadow(0 2px 10px rgba(0,0,0,.45)); }
 .sel-outline { fill: none; stroke: #2b8cff; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
@@ -149,6 +154,9 @@ body[data-mode=simple] .expert { display: none !important; }
 .seg-btns { display: inline-flex; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
 .seg-btns button { border: 0; border-radius: 0; padding: 4px 11px; background: transparent; color: var(--muted); }
 .seg-btns button.active { background: var(--accent); color: #fff; }
+.seg-btns a { padding: 4px 11px; color: var(--muted); text-decoration: none; }
+.seg-btns a:hover { color: var(--text); }
+.seg-btns a[aria-current] { background: var(--accent); color: #fff; }
 select {
   background: #1b1c1f; color: var(--text); border: 1px solid var(--border);
   border-radius: 5px; padding: 3px 5px; font: inherit; max-width: 100%;

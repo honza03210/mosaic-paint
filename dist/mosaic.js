@@ -51,10 +51,449 @@
     }
   };
 
-  // src/core/env.ts
-  var SVGNS = "http://www.w3.org/2000/svg";
+  // src/shared/ui.ts
   var $ = (s) => document.querySelector(s);
   var $$ = (s) => [...document.querySelectorAll(s)];
+  var clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  var toastTimer;
+  function toast(msg) {
+    const t = $("#st-msg");
+    t.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      t.textContent = "";
+    }, 5e3);
+  }
+  function lsGet(k) {
+    try {
+      return localStorage.getItem(k);
+    } catch {
+      return null;
+    }
+  }
+  function lsSet(k, v) {
+    try {
+      localStorage.setItem(k, v);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  function download(blob, name) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    }, 3e4);
+  }
+  function typingIn(t) {
+    if (!t) return false;
+    if (t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable) return true;
+    return t.tagName === "INPUT" && !["checkbox", "radio", "range", "color", "button", "file"].includes(t.type);
+  }
+  function readAsDataURL(file) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => res(r.result);
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+  }
+  function loadImg(src) {
+    return new Promise((res, rej) => {
+      const i = new Image();
+      i.onload = () => res(i);
+      i.onerror = rej;
+      i.src = src;
+    });
+  }
+
+  // src/lib/colors.ts
+  var colors_exports = {};
+  __export(colors_exports, {
+    VISION: () => VISION,
+    deltaE: () => deltaE,
+    fromLab: () => fromLab,
+    luminance: () => luminance,
+    nearest: () => nearest,
+    norm: () => norm,
+    parse: () => parse,
+    simulate: () => simulate,
+    toLab: () => toLab,
+    toRgb: () => toRgb
+  });
+  var ctx = null;
+  var cache = /* @__PURE__ */ new Map();
+  function norm(s) {
+    if (s == null) return null;
+    const str = String(s).trim();
+    if (!str || str === "none") return null;
+    if (cache.has(str)) return cache.get(str);
+    let t = str;
+    if (/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(t)) t = "#" + t;
+    let out = null;
+    if (CSS.supports("color", t) && !/^(inherit|initial|unset|revert|currentcolor)$/i.test(t)) {
+      ctx = ctx || document.createElement("canvas").getContext("2d");
+      ctx.fillStyle = "#000";
+      ctx.fillStyle = t;
+      out = ctx.fillStyle;
+    }
+    cache.set(str, out);
+    return out;
+  }
+  function parse(text) {
+    const out = [];
+    for (const line of String(text).split(/\r?\n/)) {
+      const g = line.match(/^\s*(\d{1,3})\s+(\d{1,3})\s+(\d{1,3})(\s|$)/);
+      if (g && [g[1], g[2], g[3]].every((v) => +v <= 255)) {
+        out.push(norm(`rgb(${g[1]},${g[2]},${g[3]})`));
+        continue;
+      }
+      const re = /#[0-9a-f]{3,8}\b|\b[0-9a-f]{6}\b|(?:rgba?|hsla?)\([^)]*\)|\b[a-z]{3,20}\b/gi;
+      for (const tok of line.match(re) || []) {
+        const c = norm(tok);
+        if (c) out.push(c);
+      }
+    }
+    return [...new Set(out.filter(Boolean))];
+  }
+  function toRgb(c) {
+    if (Array.isArray(c)) return c;
+    const n2 = norm(c);
+    if (!n2) return null;
+    if (n2[0] === "#") return [1, 3, 5].map((i) => parseInt(n2.slice(i, i + 2), 16));
+    const m = n2.match(/[\d.]+/g);
+    return m ? m.slice(0, 3).map(Number) : null;
+  }
+  function toLab([r, g, b]) {
+    const lin = (v) => {
+      v /= 255;
+      return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    };
+    const R = lin(r), G = lin(g), B = lin(b);
+    const X = (R * 0.4124 + G * 0.3576 + B * 0.1805) / 0.95047;
+    const Y = R * 0.2126 + G * 0.7152 + B * 0.0722;
+    const Z = (R * 0.0193 + G * 0.1192 + B * 0.9505) / 1.08883;
+    const f = (t) => t > 216 / 24389 ? Math.cbrt(t) : (24389 / 27 * t + 16) / 116;
+    const fx = f(X), fy = f(Y), fz = f(Z);
+    return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
+  }
+  function fromLab([L, a, b]) {
+    const fy = (L + 16) / 116, fx = fy + a / 500, fz = fy - b / 200;
+    const inv = (t) => t ** 3 > 216 / 24389 ? t ** 3 : (116 * t - 16) / (24389 / 27);
+    const X = 0.95047 * inv(fx), Y = inv(fy), Z = 1.08883 * inv(fz);
+    const gam = (v) => v <= 31308e-7 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055;
+    const rgb = [
+      3.2406 * X - 1.5372 * Y - 0.4986 * Z,
+      -0.9689 * X + 1.8758 * Y + 0.0415 * Z,
+      0.0557 * X - 0.204 * Y + 1.057 * Z
+    ].map((v) => Math.round(Math.max(0, Math.min(1, gam(v))) * 255));
+    return "#" + rgb.map((v) => v.toString(16).padStart(2, "0")).join("");
+  }
+  function nearest(rgb, palette, labs) {
+    labs = labs || palette.map((c) => toLab(toRgb(c)));
+    const l = toLab(rgb);
+    let best = null, bd = Infinity;
+    palette.forEach((c, i) => {
+      const L = labs[i], d = (l[0] - L[0]) ** 2 + (l[1] - L[1]) ** 2 + (l[2] - L[2]) ** 2;
+      if (d < bd) {
+        bd = d;
+        best = c;
+      }
+    });
+    return best;
+  }
+  var VISION = {
+    gray: [0.2126, 0.7152, 0.0722, 0.2126, 0.7152, 0.0722, 0.2126, 0.7152, 0.0722],
+    protan: [0.152286, 1.052583, -0.204868, 0.114503, 0.786281, 0.099216, -3882e-6, -0.048116, 1.051998],
+    deutan: [0.367322, 0.860646, -0.227968, 0.280085, 0.672501, 0.047413, -0.01182, 0.04294, 0.968881],
+    tritan: [1.255528, -0.076749, -0.178779, -0.078411, 0.930809, 0.147602, 4733e-6, 0.691367, 0.3039]
+  };
+  var toLin = (v) => {
+    v /= 255;
+    return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  };
+  var fromLin = (v) => Math.round(255 * Math.max(0, Math.min(1, v <= 31308e-7 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055)));
+  function simulate(c, type) {
+    const rgb = toRgb(c), m = VISION[type];
+    if (!rgb || !m) return rgb;
+    const [r, g, b] = rgb.map(toLin);
+    return [0, 1, 2].map((i) => fromLin(m[i * 3] * r + m[i * 3 + 1] * g + m[i * 3 + 2] * b));
+  }
+  function deltaE(a, b) {
+    const la = toLab(toRgb(a)), lb = toLab(toRgb(b));
+    return Math.hypot(la[0] - lb[0], la[1] - lb[1], la[2] - lb[2]);
+  }
+  function luminance(c) {
+    const [r, g, b] = toRgb(c) || [255, 255, 255];
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  }
+
+  // src/shared/palette-ui.ts
+  var DEFAULT_PALETTE = ["#264653", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51", "#f1faee", "#a8dadc", "#457b9d", "#1d3557"];
+  var SHARED_KEY = "mz-prefs";
+  function readShared() {
+    try {
+      return JSON.parse(lsGet(SHARED_KEY) || "{}");
+    } catch {
+      return {};
+    }
+  }
+  function loadSharedPalettes(st) {
+    const o = readShared();
+    if (o.palettes && typeof o.palettes === "object" && Object.keys(o.palettes).length) st.palettes = o.palettes;
+    if (o.paletteName && st.palettes[o.paletteName]) st.paletteName = o.paletteName;
+  }
+  function createPaletteUI(host) {
+    const st = host.state;
+    function uniqueName2(base) {
+      let n2 = base, i = 2;
+      while (st.palettes[n2]) n2 = `${base} ${i++}`;
+      return n2;
+    }
+    function renderSelect() {
+      const sel2 = $("#pal-select");
+      sel2.innerHTML = "";
+      for (const name of Object.keys(st.palettes)) {
+        const o = document.createElement("option");
+        o.value = o.textContent = name;
+        sel2.append(o);
+      }
+      sel2.value = st.paletteName;
+    }
+    function switchPalette2(name) {
+      if (!st.palettes[name]) return;
+      st.paletteName = name;
+      host.save();
+      renderSelect();
+      render3();
+    }
+    function addPalette2(name, colors) {
+      const n2 = uniqueName2(name);
+      st.palettes[n2] = colors;
+      switchPalette2(n2);
+      return n2;
+    }
+    function addColors2(list) {
+      let added = 0;
+      for (const c of list) if (c && !st.palette.includes(c)) {
+        st.palette.push(c);
+        added++;
+      }
+      host.save();
+      render3();
+      return added;
+    }
+    let paletteKey = "";
+    function render3() {
+      const box = $("#palette");
+      const counts = host.counts(), key = st.palette.join();
+      if (key === paletteKey && box.children.length === st.palette.length + 1) {
+        [null, ...st.palette].forEach((c, i) => updateSwatch(box.children[i], c, counts));
+      } else {
+        paletteKey = key;
+        box.innerHTML = "";
+        for (const c of [null, ...st.palette]) box.append(makeSwatch(c, counts));
+      }
+      const fb = $("#ac-fill"), sb = $("#ac-stroke");
+      fb.className = "acbox" + (st.fill ? "" : " none");
+      fb.style.background = st.fill || "";
+      if (sb) {
+        sb.className = "acbox" + (st.stroke ? "" : " none");
+        sb.style.background = st.stroke || "";
+      }
+      if (host.rendered) host.rendered();
+    }
+    function updateSwatch(d, c, counts) {
+      d.classList.toggle("is-fill", c === st.fill);
+      d.classList.toggle("is-stroke", c === st.stroke);
+      const n2 = c ? counts.get(c) || 0 : 0;
+      const num = c ? st.palette.indexOf(c) + 1 : 0;
+      const N = host.names;
+      d.title = c ? `#${num}  ${c}${n2 ? ` – used by ${host.usage(n2)}` : ""}
+Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
+      let b = d.querySelector(".count");
+      if (n2 && !b) {
+        b = document.createElement("span");
+        b.className = "count";
+        d.prepend(b);
+      }
+      if (b) {
+        if (n2) b.textContent = n2 > 9999 ? Math.round(n2 / 1e3) + "k" : String(n2);
+        else b.remove();
+      }
+    }
+    function makeSwatch(c, counts) {
+      const d = document.createElement("div");
+      d.className = "swatch" + (c ? "" : " none");
+      if (c) d.style.background = c;
+      updateSwatch(d, c, counts);
+      if (c) {
+        const x = document.createElement("button");
+        x.className = "del";
+        x.textContent = "×";
+        x.title = "Remove from palette";
+        x.onclick = (e) => {
+          e.stopPropagation();
+          removeColor(c);
+        };
+        d.append(x);
+        d.ondblclick = () => editColor(c);
+      }
+      d.onclick = (e) => {
+        if (e.shiftKey && host.shiftClick) host.shiftClick(c, e);
+        else setFill2(c, true);
+      };
+      d.oncontextmenu = (e) => {
+        e.preventDefault();
+        setStroke2(c, true);
+      };
+      return d;
+    }
+    function setFill2(c, apply) {
+      st.fill = c;
+      host.save();
+      if (!(apply && host.applyFill && host.applyFill(c))) render3();
+    }
+    function setStroke2(c, apply) {
+      st.stroke = c;
+      host.save();
+      if (!(apply && host.applyStroke && host.applyStroke(c))) render3();
+    }
+    function removeColor(c) {
+      st.palette = st.palette.filter((x) => x !== c);
+      host.save();
+      render3();
+    }
+    function editColor(old) {
+      const v = prompt("Edit color (hex or any CSS color).\nThe drawing is recolored too.", old);
+      if (v == null) return;
+      const c = norm(v);
+      if (!c) {
+        toast("Not a valid color: " + v);
+        return;
+      }
+      if (c === old) return;
+      const i = st.palette.indexOf(old);
+      if (st.palette.includes(c)) st.palette.splice(i, 1);
+      else st.palette[i] = c;
+      if (st.fill === old) st.fill = c;
+      if (st.stroke === old) st.stroke = c;
+      host.save();
+      const msg = host.recolor ? host.recolor(old, c) : null;
+      if (msg) toast(msg);
+      render3();
+    }
+    function addFromInput2() {
+      const inp = $("#color-input");
+      const text = inp.value.trim();
+      if (!text) {
+        inp.focus();
+        toast("Paste a color code (or several) into the box, then press Enter.");
+        return;
+      }
+      const cols = parse(text);
+      if (!cols.length) {
+        toast("No color found in: " + text);
+        return;
+      }
+      const n2 = addColors2(cols);
+      if (cols.length === 1) setFill2(cols[0], false);
+      inp.value = "";
+      updatePreview();
+      toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""}.` : "Already in the palette.");
+    }
+    function updatePreview() {
+      const c = parse($("#color-input").value)[0];
+      const p = $("#color-preview");
+      p.style.background = c || "transparent";
+      p.title = c || "";
+    }
+    function pasteColors2(text) {
+      const cols = parse(text);
+      if (!cols.length) return false;
+      const n2 = addColors2(cols);
+      if (cols.length === 1) setFill2(cols[0], false);
+      toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""} from the clipboard.` : "Those colors are already in the palette.");
+      return true;
+    }
+    function bind() {
+      const inp = $("#color-input");
+      $("#btn-add-color").onclick = addFromInput2;
+      inp.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") addFromInput2();
+      });
+      inp.addEventListener("input", updatePreview);
+      inp.addEventListener("paste", () => setTimeout(() => {
+        if (parse(inp.value).length) addFromInput2();
+      }, 0));
+      $("#btn-swap").onclick = () => {
+        const f = st.fill;
+        st.fill = st.stroke;
+        st.stroke = f;
+        host.save();
+        render3();
+      };
+      $("#pal-select").onchange = (e) => switchPalette2(e.target.value);
+      $("#btn-pal-new").onclick = () => {
+        const n2 = prompt("Name of the new palette:", uniqueName2("Palette"));
+        if (!n2 || !n2.trim()) return;
+        const name = uniqueName2(n2.trim());
+        st.palettes[name] = [];
+        switchPalette2(name);
+        toast(`Created “${name}”. Paste colors to fill it.`);
+      };
+      $("#btn-pal-rename").onclick = () => {
+        const old = st.paletteName, n2 = prompt("Rename palette:", old);
+        if (!n2 || !n2.trim() || n2.trim() === old) return;
+        const name = uniqueName2(n2.trim()), next = {};
+        for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
+        st.palettes = next;
+        switchPalette2(name);
+      };
+      $("#btn-pal-delete").onclick = () => {
+        if (!confirm(`Delete the palette “${st.paletteName}”? (The drawing is not changed.)`)) return;
+        delete st.palettes[st.paletteName];
+        if (!Object.keys(st.palettes).length) st.palettes["My palette"] = [];
+        switchPalette2(Object.keys(st.palettes)[0]);
+      };
+      $("#btn-pal-doc").onclick = () => {
+        const n2 = addColors2(host.docColors());
+        toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""} from the drawing.` : "No new colors in the drawing.");
+      };
+      $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
+      $("#btn-pal-clear").onclick = () => {
+        if (confirm("Remove all colors from this palette? (The drawing is not changed.)")) {
+          st.palette = [];
+          host.save();
+          render3();
+        }
+      };
+      $("#btn-pal-import").onclick = () => $("#pal-file").click();
+      $("#pal-file").onchange = async (e) => {
+        const f = e.target.files[0];
+        if (!f) return;
+        const text = await f.text();
+        e.target.value = "";
+        const n2 = addColors2(parse(text));
+        toast(n2 ? `Imported ${n2} color${n2 > 1 ? "s" : ""}.` : "No new colors found in " + f.name);
+      };
+      window.addEventListener("storage", (e) => {
+        if (e.key !== SHARED_KEY) return;
+        loadSharedPalettes(st);
+        renderSelect();
+        render3();
+      });
+    }
+    return { uniqueName: uniqueName2, renderSelect, switchPalette: switchPalette2, addPalette: addPalette2, addColors: addColors2, render: render3, setFill: setFill2, setStroke: setStroke2, addFromInput: addFromInput2, updatePreview, pasteColors: pasteColors2, bind };
+  }
+
+  // src/core/env.ts
+  var SVGNS = "http://www.w3.org/2000/svg";
   var svg = $("#canvas");
   var overlaySvg = $("#overlay");
   var stage = $("#stage");
@@ -74,7 +513,6 @@
   var gridPath = $("#mz-gridpath");
   var EDITABLE = /* @__PURE__ */ new Set(["line", "polyline", "polygon"]);
   var SHAPE_SEL = "line,polyline,polygon,rect,circle,ellipse,path";
-  var DEFAULT_PALETTE = ["#264653", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51", "#f1faee", "#a8dadc", "#457b9d", "#1d3557"];
   var EXPERT_TOOLS = /* @__PURE__ */ new Set(["knife"]);
   var VERSION_EVERY_MS = 3 * 60 * 1e3;
   var MAX_VERSIONS = 40;
@@ -145,7 +583,6 @@
   });
   var handlers = (name) => hooks[name] || [];
   var fmt = (n2) => String(Math.round(n2 * 1e3) / 1e3);
-  var clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   var px = (n2) => n2 / state.view.s;
   var applyM = (m, p) => ({ x: m.a * p.x + m.c * p.y + m.e, y: m.b * p.x + m.d * p.y + m.f });
   var linM = (m, d) => ({ x: m.a * d.x + m.c * d.y, y: m.b * d.x + m.d * d.y });
@@ -163,46 +600,6 @@
     const out = [];
     for (let i = 0; i + 1 < n2.length; i += 2) out.push({ x: +n2[i], y: +n2[i + 1] });
     return out;
-  }
-  var toastTimer;
-  function toast(msg) {
-    const t = $("#st-msg");
-    t.textContent = msg;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      t.textContent = "";
-    }, 5e3);
-  }
-  function lsGet(k) {
-    try {
-      return localStorage.getItem(k);
-    } catch {
-      return null;
-    }
-  }
-  function lsSet(k, v) {
-    try {
-      localStorage.setItem(k, v);
-      return true;
-    } catch {
-      return false;
-    }
-  }
-  function download(blob, name) {
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = name;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      a.remove();
-      URL.revokeObjectURL(a.href);
-    }, 3e4);
-  }
-  function typingIn(t) {
-    if (!t) return false;
-    if (t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable) return true;
-    return t.tagName === "INPUT" && !["checkbox", "radio", "range", "color", "button", "file"].includes(t.type);
   }
   var unit = () => state.doc.unit || "px";
   function fmtLen(v) {
@@ -515,127 +912,6 @@
     return { a: { x: p.x + dir.x * tmin, y: p.y + dir.y * tmin }, b: { x: p.x + dir.x * tmax, y: p.y + dir.y * tmax } };
   }
 
-  // src/lib/colors.ts
-  var colors_exports = {};
-  __export(colors_exports, {
-    VISION: () => VISION,
-    deltaE: () => deltaE,
-    fromLab: () => fromLab,
-    luminance: () => luminance,
-    nearest: () => nearest,
-    norm: () => norm,
-    parse: () => parse,
-    simulate: () => simulate,
-    toLab: () => toLab,
-    toRgb: () => toRgb
-  });
-  var ctx = null;
-  var cache = /* @__PURE__ */ new Map();
-  function norm(s) {
-    if (s == null) return null;
-    const str = String(s).trim();
-    if (!str || str === "none") return null;
-    if (cache.has(str)) return cache.get(str);
-    let t = str;
-    if (/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(t)) t = "#" + t;
-    let out = null;
-    if (CSS.supports("color", t) && !/^(inherit|initial|unset|revert|currentcolor)$/i.test(t)) {
-      ctx = ctx || document.createElement("canvas").getContext("2d");
-      ctx.fillStyle = "#000";
-      ctx.fillStyle = t;
-      out = ctx.fillStyle;
-    }
-    cache.set(str, out);
-    return out;
-  }
-  function parse(text) {
-    const out = [];
-    for (const line of String(text).split(/\r?\n/)) {
-      const g = line.match(/^\s*(\d{1,3})\s+(\d{1,3})\s+(\d{1,3})(\s|$)/);
-      if (g && [g[1], g[2], g[3]].every((v) => +v <= 255)) {
-        out.push(norm(`rgb(${g[1]},${g[2]},${g[3]})`));
-        continue;
-      }
-      const re = /#[0-9a-f]{3,8}\b|\b[0-9a-f]{6}\b|(?:rgba?|hsla?)\([^)]*\)|\b[a-z]{3,20}\b/gi;
-      for (const tok of line.match(re) || []) {
-        const c = norm(tok);
-        if (c) out.push(c);
-      }
-    }
-    return [...new Set(out.filter(Boolean))];
-  }
-  function toRgb(c) {
-    if (Array.isArray(c)) return c;
-    const n2 = norm(c);
-    if (!n2) return null;
-    if (n2[0] === "#") return [1, 3, 5].map((i) => parseInt(n2.slice(i, i + 2), 16));
-    const m = n2.match(/[\d.]+/g);
-    return m ? m.slice(0, 3).map(Number) : null;
-  }
-  function toLab([r, g, b]) {
-    const lin = (v) => {
-      v /= 255;
-      return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-    };
-    const R = lin(r), G = lin(g), B = lin(b);
-    const X = (R * 0.4124 + G * 0.3576 + B * 0.1805) / 0.95047;
-    const Y = R * 0.2126 + G * 0.7152 + B * 0.0722;
-    const Z = (R * 0.0193 + G * 0.1192 + B * 0.9505) / 1.08883;
-    const f = (t) => t > 216 / 24389 ? Math.cbrt(t) : (24389 / 27 * t + 16) / 116;
-    const fx = f(X), fy = f(Y), fz = f(Z);
-    return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
-  }
-  function fromLab([L, a, b]) {
-    const fy = (L + 16) / 116, fx = fy + a / 500, fz = fy - b / 200;
-    const inv = (t) => t ** 3 > 216 / 24389 ? t ** 3 : (116 * t - 16) / (24389 / 27);
-    const X = 0.95047 * inv(fx), Y = inv(fy), Z = 1.08883 * inv(fz);
-    const gam = (v) => v <= 31308e-7 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055;
-    const rgb = [
-      3.2406 * X - 1.5372 * Y - 0.4986 * Z,
-      -0.9689 * X + 1.8758 * Y + 0.0415 * Z,
-      0.0557 * X - 0.204 * Y + 1.057 * Z
-    ].map((v) => Math.round(Math.max(0, Math.min(1, gam(v))) * 255));
-    return "#" + rgb.map((v) => v.toString(16).padStart(2, "0")).join("");
-  }
-  function nearest(rgb, palette, labs) {
-    labs = labs || palette.map((c) => toLab(toRgb(c)));
-    const l = toLab(rgb);
-    let best = null, bd = Infinity;
-    palette.forEach((c, i) => {
-      const L = labs[i], d = (l[0] - L[0]) ** 2 + (l[1] - L[1]) ** 2 + (l[2] - L[2]) ** 2;
-      if (d < bd) {
-        bd = d;
-        best = c;
-      }
-    });
-    return best;
-  }
-  var VISION = {
-    gray: [0.2126, 0.7152, 0.0722, 0.2126, 0.7152, 0.0722, 0.2126, 0.7152, 0.0722],
-    protan: [0.152286, 1.052583, -0.204868, 0.114503, 0.786281, 0.099216, -3882e-6, -0.048116, 1.051998],
-    deutan: [0.367322, 0.860646, -0.227968, 0.280085, 0.672501, 0.047413, -0.01182, 0.04294, 0.968881],
-    tritan: [1.255528, -0.076749, -0.178779, -0.078411, 0.930809, 0.147602, 4733e-6, 0.691367, 0.3039]
-  };
-  var toLin = (v) => {
-    v /= 255;
-    return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-  };
-  var fromLin = (v) => Math.round(255 * Math.max(0, Math.min(1, v <= 31308e-7 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055)));
-  function simulate(c, type) {
-    const rgb = toRgb(c), m = VISION[type];
-    if (!rgb || !m) return rgb;
-    const [r, g, b] = rgb.map(toLin);
-    return [0, 1, 2].map((i) => fromLin(m[i * 3] * r + m[i * 3 + 1] * g + m[i * 3 + 2] * b));
-  }
-  function deltaE(a, b) {
-    const la = toLab(toRgb(a)), lb = toLab(toRgb(b));
-    return Math.hypot(la[0] - lb[0], la[1] - lb[1], la[2] - lb[2]);
-  }
-  function luminance(c) {
-    const [r, g, b] = toRgb(c) || [255, 255, 255];
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  }
-
   // src/core/palette.ts
   var PREF_KEYS = [
     "mode",
@@ -687,44 +963,6 @@
     }
     if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || "My palette";
   }
-  function uniqueName(base) {
-    let n2 = base, i = 2;
-    while (state.palettes[n2]) n2 = `${base} ${i++}`;
-    return n2;
-  }
-  function renderPaletteSelect() {
-    const sel2 = $("#pal-select");
-    sel2.innerHTML = "";
-    for (const name of Object.keys(state.palettes)) {
-      const o = document.createElement("option");
-      o.value = o.textContent = name;
-      sel2.append(o);
-    }
-    sel2.value = state.paletteName;
-  }
-  function switchPalette(name) {
-    if (!state.palettes[name]) return;
-    state.paletteName = name;
-    savePrefs();
-    renderPaletteSelect();
-    renderPalette();
-  }
-  function addPalette(name, colors) {
-    const n2 = uniqueName(name);
-    state.palettes[n2] = colors;
-    switchPalette(n2);
-    return n2;
-  }
-  function addColors(list) {
-    let added = 0;
-    for (const c of list) if (c && !state.palette.includes(c)) {
-      state.palette.push(c);
-      added++;
-    }
-    savePrefs();
-    renderPalette();
-    return added;
-  }
   function colorCounts() {
     const m = /* @__PURE__ */ new Map();
     for (const el of allShapes()) {
@@ -732,97 +970,6 @@
       if (c) m.set(c, (m.get(c) || 0) + 1);
     }
     return m;
-  }
-  var paletteKey = "";
-  function renderPalette() {
-    const box = $("#palette");
-    const counts = colorCounts(), key = state.palette.join();
-    if (key === paletteKey && box.children.length === state.palette.length + 1) {
-      [null, ...state.palette].forEach((c, i) => updateSwatch(box.children[i], c, counts));
-    } else {
-      paletteKey = key;
-      box.innerHTML = "";
-      for (const c of [null, ...state.palette]) box.append(makeSwatch(c, counts));
-    }
-    const fb = $("#ac-fill"), sb = $("#ac-stroke");
-    fb.className = "acbox" + (state.fill ? "" : " none");
-    fb.style.background = state.fill || "";
-    sb.className = "acbox" + (state.stroke ? "" : " none");
-    sb.style.background = state.stroke || "";
-    emit("palette");
-  }
-  function updateSwatch(d, c, counts) {
-    d.classList.toggle("is-fill", c === state.fill);
-    d.classList.toggle("is-stroke", c === state.stroke);
-    const n2 = c ? counts.get(c) || 0 : 0;
-    const num = c ? state.palette.indexOf(c) + 1 : 0;
-    d.title = c ? `#${num}  ${c}${n2 ? ` – used by ${n2} area${n2 > 1 ? "s" : ""}` : ""}
-Click: fill · Right-click: stroke · Double-click: edit` : "No color – the bucket erases with it";
-    let b = d.querySelector(".count");
-    if (n2 && !b) {
-      b = document.createElement("span");
-      b.className = "count";
-      d.prepend(b);
-    }
-    if (b) {
-      if (n2) b.textContent = String(n2);
-      else b.remove();
-    }
-  }
-  function makeSwatch(c, counts) {
-    const d = document.createElement("div");
-    d.className = "swatch" + (c ? "" : " none");
-    if (c) d.style.background = c;
-    updateSwatch(d, c, counts);
-    if (c) {
-      const x = document.createElement("button");
-      x.className = "del";
-      x.textContent = "×";
-      x.title = "Remove from palette";
-      x.onclick = (e) => {
-        e.stopPropagation();
-        removeColor(c);
-      };
-      d.append(x);
-      d.ondblclick = () => editColor(c);
-    }
-    d.onclick = (e) => {
-      if (e.shiftKey) emit("swatch-shift", c, e);
-      else setFill(c, true);
-    };
-    d.oncontextmenu = (e) => {
-      e.preventDefault();
-      setStroke(c, true);
-    };
-    return d;
-  }
-  var applyToSelection = () => state.tool === "select" && state.selection.size > 0;
-  function setFill(c, apply) {
-    state.fill = c;
-    savePrefs();
-    if (apply && applyToSelection()) {
-      for (const el of state.selection) {
-        if (isFill(el) && !c) {
-          el.remove();
-          continue;
-        }
-        if (el.tagName !== "line") paintFill(el, c);
-      }
-      commit(true);
-    } else renderPalette();
-  }
-  function setStroke(c, apply) {
-    state.stroke = c;
-    savePrefs();
-    if (apply && applyToSelection()) {
-      for (const el of state.selection) if (!isFill(el)) setPaint(el, "stroke", c);
-      commit(true);
-    } else renderPalette();
-  }
-  function removeColor(c) {
-    state.palette = state.palette.filter((x) => x !== c);
-    savePrefs();
-    renderPalette();
   }
   function replaceColor(from, to) {
     let n2 = 0;
@@ -834,58 +981,69 @@ Click: fill · Right-click: stroke · Double-click: edit` : "No color – the bu
     }
     return n2;
   }
-  function editColor(old) {
-    const v = prompt("Edit color (hex or any CSS color).\nAreas painted with it are recolored too.", old);
-    if (v == null) return;
-    const c = norm(v);
-    if (!c) {
-      toast("Not a valid color: " + v);
-      return;
-    }
-    if (c === old) return;
-    const i = state.palette.indexOf(old);
-    if (state.palette.includes(c)) state.palette.splice(i, 1);
-    else state.palette[i] = c;
-    let n2 = replaceColor(old, c);
-    for (const el of allShapes()) {
-      if (!isFill(el) && norm(getComputedStyle(el).stroke) === old) {
-        setPaint(el, "stroke", c);
-        n2++;
+  var applyToSelection = () => state.tool === "select" && state.selection.size > 0;
+  var ui = createPaletteUI({
+    state,
+    save: savePrefs,
+    counts: colorCounts,
+    usage: (n2) => `${n2} area${n2 > 1 ? "s" : ""}`,
+    names: { fill: "fill", stroke: "stroke", none: "No color – the bucket erases with it" },
+    docColors() {
+      const cols = [];
+      for (const el of allShapes()) {
+        cols.push(fillOf(el));
+        if (!isFill(el)) cols.push(norm(getComputedStyle(el).stroke));
       }
-    }
-    if (state.fill === old) state.fill = c;
-    if (state.stroke === old) state.stroke = c;
-    savePrefs();
-    if (n2) {
+      return cols;
+    },
+    applyFill(c) {
+      if (!applyToSelection()) return false;
+      for (const el of state.selection) {
+        if (isFill(el) && !c) {
+          el.remove();
+          continue;
+        }
+        if (el.tagName !== "line") paintFill(el, c);
+      }
       commit(true);
-      toast(`Recolored ${n2} element${n2 > 1 ? "s" : ""}.`);
-    } else renderPalette();
-  }
-  function addFromInput() {
-    const inp = $("#color-input");
-    const text = inp.value.trim();
-    if (!text) {
-      inp.focus();
-      toast("Paste a color code (or several) into the box, then press Enter.");
-      return;
-    }
-    const cols = parse(text);
-    if (!cols.length) {
-      toast("No color found in: " + text);
-      return;
-    }
-    const n2 = addColors(cols);
-    if (cols.length === 1) setFill(cols[0], false);
-    inp.value = "";
-    updateColorPreview();
-    toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""}.` : "Already in the palette.");
-  }
-  function updateColorPreview() {
-    const c = parse($("#color-input").value)[0];
-    const p = $("#color-preview");
-    p.style.background = c || "transparent";
-    p.title = c || "";
-  }
+      return true;
+    },
+    applyStroke(c) {
+      if (!applyToSelection()) return false;
+      for (const el of state.selection) if (!isFill(el)) setPaint(el, "stroke", c);
+      commit(true);
+      return true;
+    },
+    recolor(old, c) {
+      let n2 = replaceColor(old, c);
+      for (const el of allShapes()) {
+        if (!isFill(el) && norm(getComputedStyle(el).stroke) === old) {
+          setPaint(el, "stroke", c);
+          n2++;
+        }
+      }
+      if (!n2) return null;
+      commit(true);
+      return `Recolored ${n2} element${n2 > 1 ? "s" : ""}.`;
+    },
+    // Shift+click is left to add-on modules (the color mix)
+    shiftClick: (c, e) => emit("swatch-shift", c, e),
+    rendered: () => emit("palette")
+  });
+  var {
+    uniqueName,
+    switchPalette,
+    addPalette,
+    addColors,
+    setFill,
+    setStroke,
+    addFromInput,
+    pasteColors,
+    render: renderPalette,
+    renderSelect: renderPaletteSelect,
+    updatePreview: updateColorPreview,
+    bind: bindPalette
+  } = ui;
 
   // src/core/grout.ts
   function applyGrout() {
@@ -920,22 +1078,6 @@ Click: fill · Right-click: stroke · Double-click: edit` : "No color – the bu
     const x = +im.getAttribute("x"), y = +im.getAttribute("y"), w = +im.getAttribute("width"), h = +im.getAttribute("height");
     return p.x >= x && p.x <= x + w && p.y >= y && p.y <= y + h;
   }
-  function readAsDataURL(file) {
-    return new Promise((res, rej) => {
-      const r = new FileReader();
-      r.onload = () => res(r.result);
-      r.onerror = rej;
-      r.readAsDataURL(file);
-    });
-  }
-  function loadImg(src) {
-    return new Promise((res, rej) => {
-      const i = new Image();
-      i.onload = () => res(i);
-      i.onerror = rej;
-      i.src = src;
-    });
-  }
   async function loadPhoto(file) {
     let img;
     try {
@@ -957,6 +1099,11 @@ Click: fill · Right-click: stroke · Double-click: edit` : "No color – the bu
     savePrefs();
     docChanged();
     toast("Photo loaded and locked. Unlock it to move it with the Select tool.");
+  }
+  async function pastePhoto(file) {
+    if (refImage() && !confirm("Replace the photo to trace with the pasted image?")) return;
+    await loadPhoto(file);
+    if (refImage()) toast("The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles.");
   }
   function setPhoto(href, nw, nh) {
     refG.innerHTML = "";
@@ -3249,75 +3396,11 @@ Click: fill · Right-click: stroke · Double-click: edit` : "No color – the bu
     };
     $("#sa-back").onclick = freeBack;
     $("#sa-cancel").onclick = cancelPending;
-    const inp = $("#color-input");
-    $("#btn-add-color").onclick = addFromInput;
-    inp.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") addFromInput();
-    });
-    inp.addEventListener("input", updateColorPreview);
-    inp.addEventListener("paste", () => setTimeout(() => {
-      if (parse(inp.value).length) addFromInput();
-    }, 0));
-    $("#btn-swap").onclick = () => {
-      const f = state.fill;
-      state.fill = state.stroke;
-      state.stroke = f;
-      savePrefs();
-      renderPalette();
-    };
+    bindPalette();
     bindNumber("#stroke-width", () => state.strokeWidth, (v) => {
       if (v < 0) return false;
       state.strokeWidth = v;
     });
-    $("#pal-select").onchange = (e) => switchPalette(e.target.value);
-    $("#btn-pal-new").onclick = () => {
-      const n2 = prompt("Name of the new palette:", uniqueName("Palette"));
-      if (!n2 || !n2.trim()) return;
-      const name = uniqueName(n2.trim());
-      state.palettes[name] = [];
-      switchPalette(name);
-      toast(`Created “${name}”. Paste colors to fill it.`);
-    };
-    $("#btn-pal-rename").onclick = () => {
-      const old = state.paletteName, n2 = prompt("Rename palette:", old);
-      if (!n2 || !n2.trim() || n2.trim() === old) return;
-      const name = uniqueName(n2.trim()), next = {};
-      for (const k of Object.keys(state.palettes)) next[k === old ? name : k] = state.palettes[k];
-      state.palettes = next;
-      switchPalette(name);
-    };
-    $("#btn-pal-delete").onclick = () => {
-      if (!confirm(`Delete the palette “${state.paletteName}”? (The drawing is not changed.)`)) return;
-      delete state.palettes[state.paletteName];
-      if (!Object.keys(state.palettes).length) state.palettes["My palette"] = [];
-      switchPalette(Object.keys(state.palettes)[0]);
-    };
-    $("#btn-pal-doc").onclick = () => {
-      const cols = [];
-      for (const el of allShapes()) {
-        cols.push(fillOf(el));
-        if (!isFill(el)) cols.push(norm(getComputedStyle(el).stroke));
-      }
-      const n2 = addColors(cols);
-      toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""} from the drawing.` : "No new colors in the drawing.");
-    };
-    $("#btn-pal-export").onclick = () => download(new Blob([state.palette.join("\n") + "\n"], { type: "text/plain" }), state.paletteName + ".txt");
-    $("#btn-pal-clear").onclick = () => {
-      if (confirm("Remove all colors from this palette? (The drawing is not changed.)")) {
-        state.palette = [];
-        savePrefs();
-        renderPalette();
-      }
-    };
-    $("#btn-pal-import").onclick = () => $("#pal-file").click();
-    $("#pal-file").onchange = async (e) => {
-      const f = e.target.files[0];
-      if (!f) return;
-      const text = await f.text();
-      e.target.value = "";
-      const n2 = addColors(parse(text));
-      toast(n2 ? `Imported ${n2} color${n2 > 1 ? "s" : ""}.` : "No new colors found in " + f.name);
-    };
     bindCheck("#opt-chain", "chain", () => {
       if (!state.chain) cancelPending();
     });
@@ -3535,6 +3618,60 @@ Click: fill · Right-click: stroke · Double-click: edit` : "No color – the bu
       commit();
     };
     bindCheck("#opt-rulers", "rulers", () => emit("view"));
+  }
+
+  // src/shared/clipboard.ts
+  var canCopyImages = () => !!(navigator.clipboard && navigator.clipboard.write && typeof ClipboardItem !== "undefined");
+  async function copyImage(png, text) {
+    if (!canCopyImages()) return false;
+    const items = { "image/png": png };
+    if (text) items["text/plain"] = new Blob([text], { type: "text/plain" });
+    try {
+      await navigator.clipboard.write([new ClipboardItem(items)]);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  function imageFromPaste(e) {
+    const dt = e.clipboardData;
+    if (!dt) return null;
+    for (const f of dt.files || []) if (/^image\//.test(f.type)) return f;
+    for (const it of dt.items || []) {
+      if (it.kind === "file" && /^image\//.test(it.type)) {
+        const f = it.getAsFile();
+        if (f) return f;
+      }
+    }
+    return null;
+  }
+  function canvasToPng(c) {
+    return new Promise((res, rej) => c.toBlob((b) => b ? res(b) : rej(new Error("PNG encoding failed")), "image/png"));
+  }
+  function svgSize(svg2) {
+    const vb = /viewBox="\s*[-\d.e]+[\s,]+[-\d.e]+[\s,]+([\d.e]+)[\s,]+([\d.e]+)/.exec(svg2);
+    if (vb) return { w: +vb[1], h: +vb[2] };
+    const w = /\swidth="([\d.]+)/.exec(svg2), h = /\sheight="([\d.]+)/.exec(svg2);
+    return { w: w ? +w[1] : 300, h: h ? +h[1] : 150 };
+  }
+  async function svgToCanvas(svg2, long) {
+    const { w, h } = svgSize(svg2), k = long / Math.max(w, h, 1e-9);
+    const W = Math.max(1, Math.round(w * k)), H = Math.max(1, Math.round(h * k));
+    const sized = svg2.replace(/<svg\b([^>]*)>/, (m, a) => `<svg${a.replace(/\s(width|height)="[^"]*"/g, "")} width="${W}" height="${H}">`);
+    const url = URL.createObjectURL(new Blob([sized], { type: "image/svg+xml" }));
+    try {
+      const img = await loadImg(url);
+      const c = document.createElement("canvas");
+      c.width = W;
+      c.height = H;
+      c.getContext("2d").drawImage(img, 0, 0, W, H);
+      return c;
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+  async function svgToPng(svg2, long) {
+    return canvasToPng(await svgToCanvas(svg2, long));
   }
 
   // src/core/input.ts
@@ -3810,19 +3947,18 @@ Click: fill · Right-click: stroke · Double-click: edit` : "No color – the bu
     document.addEventListener("paste", (e) => {
       if (typingIn(e.target)) return;
       const text = e.clipboardData && e.clipboardData.getData("text") || "";
+      const img = imageFromPaste(e);
+      if (img && !/data-mosaic-snippet/.test(text)) {
+        e.preventDefault();
+        pastePhoto(img);
+        return;
+      }
       for (const fn of handlers("pasteText")) if (fn(text)) {
         e.preventDefault();
         return;
       }
       if (!text) return;
-      const cols = parse(text);
-      if (!cols.length) {
-        toast("The clipboard has no color codes.");
-        return;
-      }
-      const n2 = addColors(cols);
-      if (cols.length === 1) setFill(cols[0], false);
-      toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""} from the clipboard.` : "Those colors are already in the palette.");
+      if (!pasteColors(text)) toast("The clipboard has no color codes.");
     });
     stage.addEventListener("dragover", (e) => {
       e.preventDefault();
@@ -4703,42 +4839,45 @@ ${sections.join("\n")}
   MZ.on("view", drawRulers);
   MZ.on("mode", drawRulers);
 
-  // src/features/shell.ts
-  var $6 = (s) => document.querySelector(s);
-  var { state: state6 } = MZ;
-  $6("#btn-panel").onclick = () => document.body.classList.toggle("panel-open");
-  new ResizeObserver(([e]) => document.documentElement.style.setProperty("--topbar-h", e.target.offsetHeight + "px")).observe($6("#topbar"));
-  MZ.stage.addEventListener("pointerdown", () => document.body.classList.remove("panel-open"));
-  for (const d of document.querySelectorAll("dialog")) {
-    d.addEventListener("click", (e) => {
-      if (e.target === d) d.close();
+  // src/shared/shell.ts
+  function initShell(stage2) {
+    $("#btn-panel").onclick = () => document.body.classList.toggle("panel-open");
+    new ResizeObserver(([e]) => document.documentElement.style.setProperty("--topbar-h", e.target.offsetHeight + "px")).observe($("#topbar"));
+    stage2.addEventListener("pointerdown", () => document.body.classList.remove("panel-open"));
+    for (const d of document.querySelectorAll("dialog")) {
+      d.addEventListener("click", (e) => {
+        if (e.target === d) d.close();
+      });
+    }
+    let installEvent = null;
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      installEvent = e;
+      $("#btn-install").hidden = false;
     });
-  }
-  var installEvent = null;
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    installEvent = e;
-    $6("#btn-install").hidden = false;
-  });
-  $6("#btn-install").onclick = async () => {
-    if (!installEvent) return;
-    installEvent.prompt();
-    await installEvent.userChoice;
-    installEvent = null;
-    $6("#btn-install").hidden = true;
-  };
-  window.addEventListener("appinstalled", () => {
-    $6("#btn-install").hidden = true;
-    MZ.toast("Installed – Mosaic Paint now works offline too.");
-  });
-  if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
-    navigator.serviceWorker.register("sw.js").catch(() => {
+    $("#btn-install").onclick = async () => {
+      if (!installEvent) return;
+      installEvent.prompt();
+      await installEvent.userChoice;
+      installEvent = null;
+      $("#btn-install").hidden = true;
+    };
+    window.addEventListener("appinstalled", () => {
+      $("#btn-install").hidden = true;
+      toast("Installed – Mosaic Paint now works offline too.");
     });
+    if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+      navigator.serviceWorker.register("sw.js").catch(() => {
+      });
+    }
   }
 
+  // src/features/shell.ts
+  initShell(MZ.stage);
+
   // src/features/automosaic.ts
-  var $7 = (s) => document.querySelector(s);
-  var { state: state7 } = MZ;
+  var $6 = (s) => document.querySelector(s);
+  var { state: state6 } = MZ;
   var MAX_TILES = 8e3;
   var opts = { style: "square", size: 10, detail: 50, colors: "palette", count: 12, replace: true };
   try {
@@ -4752,22 +4891,22 @@ ${sections.join("\n")}
     }
   };
   function estimate() {
-    const d = state7.doc, per = { square: 1, brick: 2, hex: Math.sqrt(3) / 2, irregular: 1 }[opts.style] || 1;
+    const d = state6.doc, per = { square: 1, brick: 2, hex: Math.sqrt(3) / 2, irregular: 1 }[opts.style] || 1;
     const base = d.w * d.h / (opts.size * opts.size * per);
     return Math.round(opts.detail > 0 && opts.style !== "hex" ? base * (0.5 + opts.detail / 100) : base);
   }
   function renderUI() {
-    $7("#am-style").value = opts.style;
-    $7("#am-size").value = opts.size;
-    $7("#am-detail").value = opts.detail;
-    $7("#am-detail-row").hidden = opts.style === "hex";
-    $7("#am-count").value = opts.count;
+    $6("#am-style").value = opts.style;
+    $6("#am-size").value = opts.size;
+    $6("#am-detail").value = opts.detail;
+    $6("#am-detail-row").hidden = opts.style === "hex";
+    $6("#am-count").value = opts.count;
     for (const r of document.querySelectorAll("input[name=am-colors]")) r.checked = r.value === opts.colors;
-    $7("#am-replace").checked = opts.replace;
-    $7("#am-photo-missing").hidden = !!MZ.refImage();
+    $6("#am-replace").checked = opts.replace;
+    $6("#am-photo-missing").hidden = !!MZ.refImage();
     const n2 = estimate();
-    $7("#am-estimate").textContent = `About ${n2.toLocaleString()} tiles${n2 > MAX_TILES ? " – too many, use a bigger tile size" : ""}.`;
-    $7("#am-go").disabled = !MZ.refImage() || n2 > MAX_TILES;
+    $6("#am-estimate").textContent = `About ${n2.toLocaleString()} tiles${n2 > MAX_TILES ? " – too many, use a bigger tile size" : ""}.`;
+    $6("#am-go").disabled = !MZ.refImage() || n2 > MAX_TILES;
   }
   async function generate() {
     const px2 = await PhotoTools.pixels();
@@ -4775,7 +4914,7 @@ ${sections.join("\n")}
       MZ.toast("Load a photo first.");
       return;
     }
-    const d = state7.doc, box = { x: d.x, y: d.y, w: d.w, h: d.h };
+    const d = state6.doc, box = { x: d.x, y: d.y, w: d.w, h: d.h };
     const page2 = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
     const bar = 4 + (1 - opts.detail / 100) * 26;
     const busy = (x, y, w, h) => PhotoTools.detailAt(px2, x, y, w, h) > bar;
@@ -4799,11 +4938,11 @@ ${sections.join("\n")}
     MZ.commit();
     MZ.toast(`Made a mosaic of ${(r ? r.painted : 0).toLocaleString()} tiles from the photo.`);
   }
-  $7("#btn-automosaic").onclick = () => {
+  $6("#btn-automosaic").onclick = () => {
     renderUI();
-    $7("#dlg-automosaic").showModal();
+    $6("#dlg-automosaic").showModal();
   };
-  var sel = $7("#am-style");
+  var sel = $6("#am-style");
   for (const [v, label] of STYLES) {
     const o = document.createElement("option");
     o.value = v;
@@ -4815,18 +4954,18 @@ ${sections.join("\n")}
     save2();
     renderUI();
   };
-  $7("#am-size").onchange = (e) => {
+  $6("#am-size").onchange = (e) => {
     const v = parseFloat(e.target.value);
     if (v > 0) opts.size = v;
     save2();
     renderUI();
   };
-  $7("#am-detail").oninput = (e) => {
+  $6("#am-detail").oninput = (e) => {
     opts.detail = +e.target.value;
     save2();
     renderUI();
   };
-  $7("#am-count").onchange = (e) => {
+  $6("#am-count").onchange = (e) => {
     const v = Math.round(+e.target.value);
     if (v >= 2 && v <= 64) opts.count = v;
     save2();
@@ -4838,21 +4977,21 @@ ${sections.join("\n")}
       save2();
     }
   };
-  $7("#am-replace").onchange = (e) => {
+  $6("#am-replace").onchange = (e) => {
     opts.replace = e.target.checked;
     save2();
   };
-  $7("#am-load").onclick = () => $7("#ref-file").click();
-  $7("#ref-file").addEventListener("change", () => setTimeout(renderUI, 600));
-  $7("#am-go").onclick = async () => {
-    $7("#am-go").disabled = true;
-    $7("#am-go").textContent = "Working…";
+  $6("#am-load").onclick = () => $6("#ref-file").click();
+  $6("#ref-file").addEventListener("change", () => setTimeout(renderUI, 600));
+  $6("#am-go").onclick = async () => {
+    $6("#am-go").disabled = true;
+    $6("#am-go").textContent = "Working…";
     await new Promise((r) => setTimeout(r, 30));
     try {
       await generate();
     } finally {
-      $7("#am-go").textContent = "Make mosaic";
-      $7("#dlg-automosaic").close();
+      $6("#am-go").textContent = "Make mosaic";
+      $6("#dlg-automosaic").close();
     }
   };
 
@@ -5009,8 +5148,8 @@ ${sections.join("\n")}
   })();
 
   // src/features/mix.ts
-  var $8 = (s) => document.querySelector(s);
-  var { state: state8 } = MZ;
+  var $7 = (s) => document.querySelector(s);
+  var { state: state7 } = MZ;
   var mix = { on: false, colors: [], avoid: true };
   try {
     Object.assign(mix, JSON.parse(localStorage.getItem("mz-mix") || "{}"));
@@ -5034,9 +5173,9 @@ ${sections.join("\n")}
   var chooser = (q, face, ctx2) => pick(face ? ctx2.ix.region(face) : null);
   function render() {
     MZ.setFillChooser(active() ? chooser : null);
-    $8("#mix-on").checked = mix.on;
-    $8("#mix-avoid").checked = mix.avoid;
-    const box = $8("#mix-colors");
+    $7("#mix-on").checked = mix.on;
+    $7("#mix-avoid").checked = mix.avoid;
+    const box = $7("#mix-colors");
     box.innerHTML = "";
     for (const c of mix.colors) {
       const chip = document.createElement("span");
@@ -5046,14 +5185,14 @@ ${sections.join("\n")}
       chip.onclick = () => toggle(c);
       box.append(chip);
     }
-    $8("#mix-hint").textContent = mix.colors.length < 2 ? "Shift+click two or more swatches to put them in the mix." : `Each tile gets one of these ${mix.colors.length} colors at random. Shift+click swatches to change the mix.`;
-    $8("#btn-mix-sel").hidden = mix.colors.length < 2;
+    $7("#mix-hint").textContent = mix.colors.length < 2 ? "Shift+click two or more swatches to put them in the mix." : `Each tile gets one of these ${mix.colors.length} colors at random. Shift+click swatches to change the mix.`;
+    $7("#btn-mix-sel").hidden = mix.colors.length < 2;
     markSwatches();
     save3();
   }
   function markSwatches() {
     const sw = document.querySelectorAll("#palette .swatch");
-    [null, ...state8.palette].forEach((c, i) => sw[i] && sw[i].classList.toggle("in-mix", !!c && active() && mix.colors.includes(c)));
+    [null, ...state7.palette].forEach((c, i) => sw[i] && sw[i].classList.toggle("in-mix", !!c && active() && mix.colors.includes(c)));
   }
   function toggle(c) {
     const i = mix.colors.indexOf(c);
@@ -5069,7 +5208,7 @@ ${sections.join("\n")}
     }
     const ix = MZ.regionIndex();
     let n2 = 0;
-    for (const el of state8.selection) {
+    for (const el of state7.selection) {
       if (!MZ.fillOf(el)) continue;
       const g = MZ.geomOf(el), p = MZ.gridSample(g.bbox, (q) => MZ.insideEl(el, q), 1)[0], f = p && ix.locate(p);
       MZ.paintFill(el, pick(f ? ix.region(f) : null));
@@ -5082,16 +5221,16 @@ ${sections.join("\n")}
     if (c) toggle(c);
   });
   MZ.on("palette", markSwatches);
-  $8("#mix-on").onchange = (e) => {
+  $7("#mix-on").onchange = (e) => {
     mix.on = e.target.checked;
     if (mix.on && mix.colors.length < 2) MZ.toast("Shift+click two or more swatches to put them in the mix.");
     render();
   };
-  $8("#mix-avoid").onchange = (e) => {
+  $7("#mix-avoid").onchange = (e) => {
     mix.avoid = e.target.checked;
     render();
   };
-  $8("#btn-mix-sel").onclick = mixSelection;
+  $7("#btn-mix-sel").onclick = mixSelection;
   render();
 
   // src/features/pages.ts
@@ -5379,6 +5518,33 @@ ${others}
     return { fromElements, isSnippet, parse: parse2, placement, place, mapElement };
   })();
 
+  // src/features/image-clipboard.ts
+  var $8 = (s) => document.querySelector(s);
+  var { state: state8 } = MZ;
+  function imageSize(w, h) {
+    return Math.round(clamp(Math.max(w, h) * state8.view.s * (window.devicePixelRatio || 1), 1024, 4096));
+  }
+  async function copyDrawing() {
+    if (!canCopyImages()) {
+      MZ.toast("This browser can’t copy images – use PNG to save one instead.");
+      return;
+    }
+    const svg2 = MZ.buildSVGString({ photo: false, grout: state8.grout.on, pageOnly: true });
+    const ok = await copyImage(svgToPng(svg2, imageSize(state8.doc.w, state8.doc.h)));
+    MZ.toast(ok ? "Copied the drawing as an image – paste it into the raster app or any other program." : "Could not copy the image (the browser refused).");
+  }
+  $8("#btn-copy-img").onclick = () => {
+    if (state8.selection.size) copySelection(false, false);
+    else copyDrawing();
+  };
+  document.addEventListener("keydown", (e) => {
+    if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey || e.key.toLowerCase() !== "c") return;
+    if (MZ.typingIn(e.target) || state8.selection.size || document.querySelector("dialog[open]")) return;
+    if (window.getSelection && String(window.getSelection())) return;
+    e.preventDefault();
+    copyDrawing();
+  });
+
   // src/features/motifs.ts
   var $9 = (s) => document.querySelector(s);
   var { state: state9 } = MZ;
@@ -5396,13 +5562,22 @@ ${others}
   }
   var clipboardOk = false;
   var pendingCopy = null;
-  function copySelection(cut) {
+  function copySelection(cut, viaKey = true) {
     const text = Snippets.fromElements(state9.selection);
     if (!text) return;
     internalClip = text;
-    pendingCopy = text;
+    pendingCopy = viaKey ? text : null;
     clipboardOk = false;
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => {
+    if (canCopyImages()) {
+      const { w, h } = svgSize(text);
+      copyImage(svgToPng(text, imageSize(w, h)), text).then((ok) => {
+        if (ok) clipboardOk = true;
+        else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => {
+          clipboardOk = true;
+        }, () => {
+        });
+      });
+    } else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => {
       clipboardOk = true;
     }, () => {
     });
@@ -5431,6 +5606,9 @@ ${others}
     }
   });
   var pasteSeen = true;
+  document.addEventListener("paste", () => {
+    pasteSeen = true;
+  }, true);
   window.addEventListener("blur", () => {
     if (!clipboardOk) internalClip = null;
   });

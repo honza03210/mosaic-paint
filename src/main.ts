@@ -17,6 +17,7 @@ import { Vision } from './features/vision.ts';
 import { Pages } from './features/pages.ts';
 import { Snippets } from './features/snippets.ts';
 import './features/motifs.ts';
+import './features/image-clipboard.ts';
 import { Share } from './features/share.ts';
 
 // for the end-to-end tests and for poking around in the browser console

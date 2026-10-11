@@ -5,7 +5,8 @@
 `npm test` builds `dist/mosaic.js`, type-checks the TypeScript (`tsc`), then runs:
 
 - **Unit tests** (`tests/unit/`): geometry (closed areas, holes, T-junctions), tiling patterns, print sheet layout, and that the offline cache lists every file.
-- **End-to-end tests** (`tests/e2e/`), driving the real app in:
+- **Unit tests** of the raster app's pixel algorithms (flood fill, lines, polygons, palette reduction, the mosaic effect).
+- **End-to-end tests** (`tests/e2e/`), driving both apps in:
   - Chrome, Firefox and WebKit (Safari's engine) on desktop;
   - an Android phone (Pixel 7) and an iPhone 14, emulated with touch input.
 
@@ -25,6 +26,12 @@ Emulation can't cover everything. Before relying on a new version, check these:
 - [ ] Load a photo from the camera roll; "Color tiles from photo" works.
 - [ ] Save: the file is offered for download / sharing.
 - [ ] Moving the finger over a big mosaic (2,000+ tiles) feels smooth. (Playwright's WebKit renders in software and is slow here; real Safari uses the GPU.)
+
+### Clipboard between the apps and other programs
+- [ ] Vector: Ctrl+C with nothing selected → paste into the raster app, an image editor, a chat: the drawing appears.
+- [ ] Raster: select, Ctrl+C → paste into the vector app: it becomes the photo to trace.
+- [ ] A screenshot (Win+Shift+S / Cmd+Ctrl+Shift+4) pastes into both apps.
+- [ ] Safari / iPhone: the **Copy** and **Paste** buttons work (the browser may ask for permission).
 
 ### Install & offline
 - [ ] Chrome / Edge: "Install app" appears; the installed app opens in its own window.

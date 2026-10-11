@@ -1,12 +1,12 @@
 /* The editor's foundation: page elements, constants, shared state, events and small helpers.
    Imports nothing from the rest of the editor, so every other module can use it. */
 import type { Pt } from '../lib/geometry.ts';
+import { $ } from '../shared/ui.ts';
+import { DEFAULT_PALETTE } from '../shared/palette-ui.ts';
+export { DEFAULT_PALETTE };
+export { $, $$, clamp, toast, lsGet, lsSet, download, typingIn } from '../shared/ui.ts';
 
 export const SVGNS = 'http://www.w3.org/2000/svg';
-// DOM lookups are typed loosely: the page's markup is the contract
-export const $ = (s: string): any => document.querySelector(s);
-export const $$ = (s: string): any[] => [...document.querySelectorAll(s)];
-
 // ---- page elements ------------------------------------------------------------------------
 export const svg = $('#canvas') as SVGSVGElement, overlaySvg = $('#overlay') as SVGSVGElement, stage = $('#stage') as HTMLElement;
 export const docG = $('#mz-doc') as SVGGElement, defsG = $('#mz-docdefs') as SVGDefsElement;
@@ -18,7 +18,6 @@ export const pageRect = $('#mz-page'), gridRect = $('#mz-gridrect'), gridPattern
 // ---- constants ----------------------------------------------------------------------------
 export const EDITABLE = new Set(['line', 'polyline', 'polygon']);
 export const SHAPE_SEL = 'line,polyline,polygon,rect,circle,ellipse,path';
-export const DEFAULT_PALETTE = ['#264653', '#2a9d8f', '#8ab17d', '#e9c46a', '#f4a261', '#e76f51', '#f1faee', '#a8dadc', '#457b9d', '#1d3557'];
 export const EXPERT_TOOLS = new Set(['knife']);
 export const VERSION_EVERY_MS = 3 * 60 * 1000, MAX_VERSIONS = 40;
 
@@ -75,7 +74,6 @@ export const handlers = (name: string) => hooks[name] || [];
 
 // ---- small utilities ----------------------------------------------------------------------
 export const fmt = (n: number): string => String(Math.round(n * 1000) / 1000);
-export const clamp = (v: number, a: number, b: number): number => Math.max(a, Math.min(b, v));
 /** Screen pixels → document units. */
 export const px = (n: number): number => n / state.view.s;
 export const applyM = (m: DOMMatrixReadOnly, p: Pt): Pt => ({ x: m.a * p.x + m.c * p.y + m.e, y: m.b * p.x + m.d * p.y + m.f });
@@ -96,31 +94,6 @@ export function parsePoints(s: string | null): Pt[] {
   for (let i = 0; i + 1 < n.length; i += 2) out.push({ x: +n[i], y: +n[i + 1] });
   return out;
 }
-let toastTimer: any;
-export function toast(msg: string): void {
-  const t = $('#st-msg');
-  t.textContent = msg;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.textContent = ''; }, 5000);
-}
-export function lsGet(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } }
-export function lsSet(k: string, v: string): boolean { try { localStorage.setItem(k, v); return true; } catch { return false; } }
-export function download(blob: Blob, name: string): void {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  document.body.appendChild(a);
-  a.click();
-  // Safari needs the link (and its URL) for a while after the click
-  setTimeout(() => { a.remove(); URL.revokeObjectURL(a.href); }, 30000);
-}
-/** Is the user typing in a field? (Checkboxes, sliders and buttons don't take keys, so shortcuts still work there.) */
-export function typingIn(t: any): boolean {
-  if (!t) return false;
-  if (t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable) return true;
-  return t.tagName === 'INPUT' && !['checkbox', 'radio', 'range', 'color', 'button', 'file'].includes(t.type);
-}
-
 // ---- units ----------------------------------------------------------------------------------
 export const unit = (): string => state.doc.unit || 'px';
 export function fmtLen(v: number): string {

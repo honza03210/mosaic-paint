@@ -59,3 +59,34 @@ test('the Done bar closes a free polygon without a keyboard', async ({ page }) =
   expect(await h.count(page, '#mz-shapes polygon')).toBe(1);
   await expect(page.locator('#stage-actions')).toBeHidden();
 });
+
+test('raster app on a phone: a finger paints, two fingers zoom without painting, Paste is in the toolbar', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', e => errors.push(e.message));
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await page.evaluate(() => { RZ.blank(100, 100); Object.assign(RZ.state, { fill: '#e76f51', size: 4 }); RZ.setTool('pencil'); });
+  const at = (x, y) => page.evaluate(([x, y]) => RZ.screen(x + 0.5, y + 0.5), [x, y]);
+  const s = await at(50, 50);
+  await page.touchscreen.tap(s.x, s.y);
+  expect(await page.evaluate(() => RZ.colorAt(50, 50))).toBe('#e76f51');
+
+  const view = (await page.evaluate(() => RZ.state.view.s));
+  const pointer = (type, id, p) => page.evaluate(([t, i, x, y]) => document.querySelector('#view').dispatchEvent(new PointerEvent(t, {
+    bubbles: true, pointerId: i, pointerType: 'touch', isPrimary: i === 1, button: 0, clientX: x, clientY: y,
+  })), [type, id, p.x, p.y]);
+  const a = await at(20, 80), b = await at(40, 80);
+  await page.evaluate(() => { RZ.state.fill = '#264653'; });
+  await pointer('pointerdown', 1, a);
+  await pointer('pointerdown', 2, b);
+  for (let i = 1; i <= 5; i++) {
+    await pointer('pointermove', 1, { x: a.x - i * 10, y: a.y });
+    await pointer('pointermove', 2, { x: b.x + i * 10, y: b.y });
+  }
+  await pointer('pointerup', 1, a);
+  await pointer('pointerup', 2, b);
+  expect(await page.evaluate(() => RZ.state.view.s)).toBeGreaterThan(view * 1.5);
+  expect(await page.evaluate(() => RZ.colorAt(20, 80))).toBe('#ffffff'); // the first finger's stroke was taken back
+  await expect(page.locator('#btn-paste')).toBeVisible();
+  expect(errors).toEqual([]);
+});

@@ -1,0 +1,38 @@
+/* Page helpers used by both apps (vector and raster): element lookup, messages, downloads, storage. */
+
+// DOM lookups are typed loosely: the page's markup is the contract
+export const $ = (s: string): any => document.querySelector(s);
+export const $$ = (s: string): any[] => [...document.querySelectorAll(s)];
+export const clamp = (v: number, a: number, b: number): number => Math.max(a, Math.min(b, v));
+
+let toastTimer: any;
+/** A short message in the status bar. */
+export function toast(msg: string): void {
+  const t = $('#st-msg');
+  t.textContent = msg;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.textContent = ''; }, 5000);
+}
+export function lsGet(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } }
+export function lsSet(k: string, v: string): boolean { try { localStorage.setItem(k, v); return true; } catch { return false; } }
+export function download(blob: Blob, name: string): void {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  // Safari needs the link (and its URL) for a while after the click
+  setTimeout(() => { a.remove(); URL.revokeObjectURL(a.href); }, 30000);
+}
+/** Is the user typing in a field? (Checkboxes, sliders and buttons don't take keys, so shortcuts still work there.) */
+export function typingIn(t: any): boolean {
+  if (!t) return false;
+  if (t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable) return true;
+  return t.tagName === 'INPUT' && !['checkbox', 'radio', 'range', 'color', 'button', 'file'].includes(t.type);
+}
+export function readAsDataURL(file: Blob): Promise<string> {
+  return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result as string); r.onerror = rej; r.readAsDataURL(file); });
+}
+export function loadImg(src: string): Promise<HTMLImageElement> {
+  return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+}

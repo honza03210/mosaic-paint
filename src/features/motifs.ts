@@ -3,6 +3,8 @@
 import { MZ } from '../core/api.ts';
 import { Store } from '../lib/store.ts';
 import { Snippets } from './snippets.ts';
+import { canCopyImages, copyImage, svgToPng, svgSize } from '../shared/clipboard.ts';
+import { imageSize } from './image-clipboard.ts';
 
 const $ = (s) => document.querySelector<any>(s);
 const { state } = MZ;
@@ -21,13 +23,21 @@ function target(snip) {
 // Ctrl+C / Ctrl+X are handled as keys (Safari only sends "copy" events when text is selected);
 // the text goes to the system clipboard, and is also kept here in case the browser refuses that.
 let clipboardOk = false, pendingCopy = null;
-function copySelection(cut) {
+/** viaKey: Ctrl+C / Ctrl+X, which is followed by a copy event that can carry the text too. */
+export function copySelection(cut, viaKey = true) {
   const text = Snippets.fromElements(state.selection);
   if (!text) return;
   internalClip = text;
-  pendingCopy = text;
+  pendingCopy = viaKey ? text : null;
   clipboardOk = false;
-  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => { clipboardOk = true; }, () => {});
+  if (canCopyImages()) {
+    // shapes as text (pasted back as shapes here) plus a picture of them for other programs and the raster app
+    const { w, h } = svgSize(text);
+    copyImage(svgToPng(text, imageSize(w, h)), text).then((ok) => {
+      if (ok) clipboardOk = true;
+      else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => { clipboardOk = true; }, () => {});
+    });
+  } else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(() => { clipboardOk = true; }, () => {});
   const n = state.selection.size;
   if (cut) {
     for (const el of state.selection) el.remove();
@@ -49,6 +59,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 let pasteSeen = true;
+// any paste event (also an image, handled by the editor core) means the browser delivered the clipboard
+document.addEventListener('paste', () => { pasteSeen = true; }, true);
 // leaving the window may mean copying something else elsewhere: then the system clipboard wins again
 window.addEventListener('blur', () => { if (!clipboardOk) internalClip = null; });
 // when the browser does send a copy event, it is the surest way into the clipboard

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#27282c">
+<meta name="description" content="Paint mosaics pixel by pixel with your own palette – runs in the browser, works offline.">
+<title>Mosaic Paint – Raster</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-mode="simple" class="raster">
+<header id="topbar">
+  <span class="brand">Mosaic Paint</span>
+  <nav class="app-switch seg-btns" aria-label="Switch app" title="Vector: tiles as shapes. Raster: paint with pixels. Palettes are shared; copy and paste images between them.">
+    <a href="index.html">Vector</a><a href="raster.html" aria-current="page">Raster</a>
+  </nav>
+  <div id="mode-switch" class="seg-btns" title="Simple shows the essentials; Expert adds opacity, tolerance, resizing and more">
+    <button data-mode="simple">Simple</button><button data-mode="expert">Expert</button>
+  </div>
+  <span class="sep"></span>
+  <button id="btn-new" title="New image">New</button>
+  <button id="btn-open" title="Open an image (Ctrl+O) – you can also drop one on the canvas">Open…</button>
+  <button id="btn-save" title="Save as PNG (Ctrl+S)">Save</button>
+  <button id="btn-export" class="expert" title="Export as JPEG or WebP">Export…</button>
+  <button id="btn-copy" title="Copy the selection (or the whole image) to the clipboard (Ctrl+C)">Copy</button>
+  <button id="btn-paste" title="Paste an image from the clipboard (Ctrl+V)">Paste</button>
+  <span class="sep"></span>
+  <button id="btn-undo" title="Undo (Ctrl+Z)">↶</button>
+  <button id="btn-redo" title="Redo (Ctrl+Y)">↷</button>
+  <span class="sep"></span>
+  <button id="btn-zoomout" title="Zoom out (-)">−</button>
+  <span id="zoom-label">100%</span>
+  <button id="btn-zoomin" title="Zoom in (+)">+</button>
+  <button id="btn-fit" title="Fit image (0)">Fit</button>
+  <button id="btn-actual" class="expert" title="Actual pixels (1)">1:1</button>
+  <span class="sep"></span>
+  <button id="btn-install" hidden title="Install as an app that also works offline">Install app</button>
+  <button id="btn-panel" title="Show the side panel">☰</button>
+  <input type="file" id="file-input" accept="image/*" hidden>
+</header>
+
+<div id="main">
+  <nav id="tools">
+    <button data-tool="select" title="Select – drag a rectangle, then drag it to move (V)">
+      <svg viewBox="0 0 20 20"><path d="M3 3h14v14H3z" class="st" stroke-dasharray="3 2"/></svg>
+    </button>
+    <button data-tool="brush" title="Brush – soft edges (B)">
+      <svg viewBox="0 0 20 20"><path d="M17 2l1 1-8 9-2-2z"/><path d="M7.5 11.5l1.5 1.5c0 2.5-2 4.5-6 4.5 1.2-1 1-2.5 1.5-4 .5-1.2 1.6-2 3-2z"/></svg>
+    </button>
+    <button data-tool="pencil" title="Pencil – hard pixels in exact colors (P)">
+      <svg viewBox="0 0 20 20"><path d="M3 17l1-4L14 3l3 3L7 16z" class="st"/><path d="M12 5l3 3" class="st"/></svg>
+    </button>
+    <button data-tool="eraser" title="Eraser (E)">
+      <svg viewBox="0 0 20 20"><path d="M8 17L2 11l8-8 8 8-6 6z" class="st"/><path d="M5 8l7 7" class="st"/><path d="M8 17h9" class="st"/></svg>
+    </button>
+    <button data-tool="line" title="Line (L)">
+      <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg>
+    </button>
+    <button data-tool="ngon" title="Regular polygon (G)">
+      <svg viewBox="0 0 20 20"><path d="M10 2l7 4v8l-7 4-7-4V6z" class="st"/></svg>
+    </button>
+    <button data-tool="bucket" title="Paint bucket – fill an area (F)">
+      <svg viewBox="0 0 20 20"><path d="M3 9l6-6 7 7-6 6z" class="st"/><path d="M16.5 12.5c1.2 1.8 1.8 2.9 1.8 3.6a1.8 1.8 0 01-3.6 0c0-.7.6-1.8 1.8-3.6z"/></svg>
+    </button>
+    <button data-tool="picker" title="Pick a color (I, or Alt+click with any paint tool)">
+      <svg viewBox="0 0 20 20"><path d="M3 17l1-3 8-8 2 2-8 8z" class="st"/><path d="M12 4l2-2 4 4-2 2z"/></svg>
+    </button>
+    <button data-tool="pan" title="Pan (H, or hold Space / middle mouse / two fingers)">
+      <svg viewBox="0 0 20 20"><path d="M10 1l3 3h-2v5h5V7l3 3-3 3v-2h-5v5h2l-3 3-3-3h2v-5H4v2l-3-3 3-3v2h5V4H7z"/></svg>
+    </button>
+  </nav>
+
+  <div id="stage" data-tool="brush">
+    <canvas id="view" class="canvas-layer"></canvas>
+    <div id="stage-actions" hidden>
+      <button id="sa-finish" class="primary">Place</button>
+      <button id="sa-cancel">Cancel</button>
+    </div>
+  </div>
+
+  <aside id="panel">
+    <section>
+      <h3>Colors</h3>
+      <div class="row pal-row">
+        <select id="pal-select" title="Your saved palettes (shared with the vector app)"></select>
+        <button id="btn-pal-new" title="New palette">＋</button>
+        <button id="btn-pal-rename" title="Rename this palette">✎</button>
+        <button id="btn-pal-delete" title="Delete this palette">🗑</button>
+      </div>
+      <div class="active-colors">
+        <div class="ac" title="Paint color – brush, pencil, lines, polygons and the bucket"><span>Paint</span><div id="ac-fill" class="acbox"></div></div>
+        <div class="ac" title="Outline color – the outline of polygons"><span>Outline</span><div id="ac-stroke" class="acbox"></div></div>
+        <button id="btn-swap" title="Swap paint and outline colors (X)">⇄</button>
+        <label class="sw-w" title="Brush, pencil, eraser and line size in pixels ( [ and ] )">Size <input id="opt-size" type="number" min="1" max="500" step="1"></label>
+      </div>
+      <div id="palette"></div>
+      <div class="row add-row">
+        <span id="color-preview" class="mini"></span>
+        <input id="color-input" type="text" placeholder="Paste #hex, rgb(), name…" spellcheck="false" autocomplete="off">
+        <button id="btn-add-color" class="primary">Add color</button>
+      </div>
+      <div class="row small">
+        <button id="btn-pal-import" title="Load colors from a .txt / .gpl / .css file">Import…</button>
+        <button id="btn-pal-doc" title="Add the colors used in the image (or suggest some for a photo)">From image</button>
+        <button id="btn-pal-export" title="Download the palette as a list of hex codes">Export</button>
+        <button id="btn-pal-clear">Clear</button>
+        <input type="file" id="pal-file" accept=".txt,.gpl,.hex,.css,.json,text/plain" hidden>
+      </div>
+      <p class="note">Click a swatch = paint color · right-click = outline color · double-click = edit (also recolors the image). The ∅ swatch paints transparent. Palettes are shared with the vector app.</p>
+    </section>
+
+    <section class="tool-opts" data-for="brush pencil eraser line">
+      <h3>Brush</h3>
+      <div class="row">
+        <label class="grow">Size <input id="opt-size-range" type="range" min="1" max="100"></label>
+      </div>
+      <div class="row expert"><label class="grow">Opacity <input id="opt-opacity" type="range" min="5" max="100"></label></div>
+      <label class="chk"><input type="checkbox" id="opt-smooth"> Smooth edges for lines and polygons</label>
+      <p class="note">The pencil always paints hard pixels in exact palette colors – best for pixel mosaics. Shift: straight lines in 15° steps.</p>
+    </section>
+
+    <section class="tool-opts" data-for="ngon">
+      <h3>Regular polygon</h3>
+      <div class="row">
+        <label>Sides <input id="opt-sides" type="number" min="3" max="64" step="1"></label>
+        <span class="quick" id="quick-sides">
+          <button data-sides="3">3</button><button data-sides="4">4</button><button data-sides="5">5</button><button data-sides="6">6</button><button data-sides="8">8</button><button data-sides="12">12</button>
+        </span>
+      </div>
+      <label class="chk"><input type="checkbox" id="opt-ngon-fill"> Fill with the paint color</label>
+      <label class="chk"><input type="checkbox" id="opt-ngon-outline"> Outline in the outline color</label>
+      <p class="note">Drag from the center. Shift: 15° rotation steps.</p>
+    </section>
+
+    <section class="tool-opts" data-for="bucket">
+      <h3>Paint bucket</h3>
+      <div class="row"><label class="grow">Tolerance <input id="opt-tolerance" type="range" min="0" max="128"></label><span id="tol-label" class="note"></span></div>
+      <label class="chk expert"><input type="checkbox" id="opt-contiguous"> Only connected pixels</label>
+      <p class="note">Fills the area of similar color under the click. Alt+click picks a color.</p>
+    </section>
+
+    <section id="sel-section" hidden>
+      <h3>Selection <span id="sel-info"></span></h3>
+      <div class="row btns">
+        <button id="btn-sel-copy" title="Ctrl+C">Copy</button>
+        <button id="btn-sel-cut" title="Ctrl+X">Cut</button>
+        <button id="btn-sel-del" title="Delete">Clear</button>
+        <button id="btn-sel-crop">Crop</button>
+      </div>
+      <p class="note">Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.</p>
+    </section>
+
+    <section>
+      <h3>Mosaic</h3>
+      <div class="row"><button id="btn-mosaic" class="primary" title="Turn the image (or the selection) into tiles with grout">Make a mosaic…</button></div>
+      <div class="row"><button id="btn-reduce" title="Give every pixel the closest palette color">Reduce to palette</button></div>
+      <p class="note">Works on the selection, or on the whole image when nothing is selected.</p>
+    </section>
+
+    <section>
+      <h3>Image</h3>
+      <div class="row">
+        <label>W <input id="img-w" type="number" min="1" max="8000" step="1"></label>
+        <label>H <input id="img-h" type="number" min="1" max="8000" step="1"></label>
+        <span class="note">px</span>
+      </div>
+      <div class="row small">
+        <button id="btn-resize" title="Scale the picture to this size">Resize image</button>
+        <button id="btn-canvas" class="expert" title="Change the canvas size, keeping the picture centered">Canvas size</button>
+      </div>
+      <label class="chk expert"><input type="checkbox" id="opt-grid"> Pixel grid when zoomed in</label>
+    </section>
+
+    <section>
+      <details>
+        <summary>Keyboard &amp; mouse</summary>
+        <table class="keys">
+          <tr><td>V B P E L G F I H</td><td>Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan</td></tr>
+          <tr><td>[ ]</td><td>Smaller / bigger brush</td></tr>
+          <tr><td>3 – 9</td><td>Polygon sides</td></tr>
+          <tr><td>X</td><td>Swap paint and outline colors</td></tr>
+          <tr><td>Alt+click</td><td>Pick a color</td></tr>
+          <tr><td>Shift</td><td>Straight lines, 15° steps</td></tr>
+          <tr><td>Ctrl+C / X / V</td><td>Copy, cut, paste images (also between the two apps and other programs)</td></tr>
+          <tr><td>Ctrl+A, Del</td><td>Select all, clear the selection</td></tr>
+          <tr><td>Enter / Esc</td><td>Place / cancel a moved or pasted image</td></tr>
+          <tr><td>Ctrl+Z / Ctrl+Y</td><td>Undo / redo</td></tr>
+          <tr><td>Wheel, Space+drag</td><td>Zoom, pan (two fingers on touch screens)</td></tr>
+          <tr><td>0, 1</td><td>Fit image, actual pixels</td></tr>
+        </table>
+      </details>
+    </section>
+  </aside>
+</div>
+
+<footer id="status">
+  <span id="st-pos"></span>
+  <span id="st-hint"></span>
+  <span id="st-msg"></span>
+</footer>
+
+<dialog id="dlg-mosaic">
+  <form method="dialog" class="dlg-head"><h2>Make a mosaic</h2><button title="Close">✕</button></form>
+  <p class="note">Splits the picture into square tiles and gives each tile the color underneath it, with grout between the tiles.</p>
+  <div class="row">
+    <label>Tile <input id="mo-tile" type="number" min="2" max="400" step="1"> px</label>
+    <label>Grout <input id="mo-grout" type="number" min="0" max="50" step="1"> px</label>
+    <input type="color" id="mo-grout-color" title="Grout color">
+  </div>
+  <label class="chk"><input type="checkbox" id="mo-bricks"> Offset rows (like bricks)</label>
+  <hr>
+  <label class="chk"><input type="radio" name="mo-colors" value="palette"> Use the current palette</label>
+  <label class="chk"><input type="radio" name="mo-colors" value="suggest"> Suggest <input id="mo-count" type="number" min="2" max="64" step="1"> colors from the picture (new palette)</label>
+  <label class="chk"><input type="radio" name="mo-colors" value="keep"> Keep the picture’s colors</label>
+  <p class="note" id="mo-estimate"></p>
+  <div class="row dlg-foot"><button id="mo-go" class="primary">Make mosaic</button></div>
+</dialog>
+
+<dialog id="dlg-export">
+  <form method="dialog" class="dlg-head"><h2>Export</h2><button title="Close">✕</button></form>
+  <div class="row">
+    <label>Format <select id="ex-format"><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option><option value="image/png">PNG</option></select></label>
+    <label id="ex-quality-row">Quality <input id="ex-quality" type="number" min="10" max="100" step="5" value="90"> %</label>
+  </div>
+  <p class="note">JPEG has no transparency: transparent parts become white.</p>
+  <div class="row dlg-foot"><button id="ex-go" class="primary">Export</button></div>
+</dialog>
+
+<script src="dist/raster.js"></script>
+</body>
+</html>

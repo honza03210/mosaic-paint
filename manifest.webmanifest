@@ -1,16 +1,45 @@
 {
   "name": "Mosaic Paint",
   "short_name": "Mosaic Paint",
-  "description": "Design and color mosaics with your own palette.",
+  "description": "Design and paint mosaics with your own palette – as shapes (vector) or pixels (raster).",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#1d1e21",
   "theme_color": "#27282c",
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
-    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mosaic Paint – Vector",
+      "short_name": "Vector",
+      "url": "index.html"
+    },
+    {
+      "name": "Mosaic Paint – Raster",
+      "short_name": "Raster",
+      "url": "raster.html"
+    }
   ]
 }

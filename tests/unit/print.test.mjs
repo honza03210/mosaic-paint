@@ -46,10 +46,13 @@ test('the print page puts the drawing on every sheet', () => {
   assert.match(html, /@page \{ size: A4 (portrait|landscape)/);
 });
 
-test('the offline cache lists every script the page loads', () => {
+test('the offline cache lists both pages and every script and stylesheet they load', () => {
   const root = path.resolve(import.meta.dirname, '..', '..');
-  const index = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
   const sw = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-  for (const [, src] of index.matchAll(/<script src="([^"]+)"/g)) assert.ok(sw.includes(`'${src}'`), `${src} is missing from sw.js`);
-  for (const [, href] of index.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)) assert.ok(sw.includes(`'${href}'`), `${href} is missing from sw.js`);
+  for (const page of ['index.html', 'raster.html']) {
+    assert.ok(sw.includes(`'${page}'`), `${page} is missing from sw.js`);
+    const index = fs.readFileSync(path.join(root, page), 'utf8');
+    for (const [, src] of index.matchAll(/<script src="([^"]+)"/g)) assert.ok(sw.includes(`'${src}'`), `${src} is missing from sw.js`);
+    for (const [, href] of index.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)) assert.ok(sw.includes(`'${href}'`), `${href} is missing from sw.js`);
+  }
 });

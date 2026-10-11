@@ -14,6 +14,9 @@
 <body data-mode="simple">
 <header id="topbar">
   <span class="brand">Mosaic Paint</span>
+  <nav class="app-switch seg-btns" aria-label="Switch app" title="Vector: tiles as shapes. Raster: paint with pixels. Palettes are shared; copy and paste images between them.">
+    <a href="index.html" aria-current="page">Vector</a><a href="raster.html">Raster</a>
+  </nav>
   <div id="mode-switch" class="seg-btns" title="Simple shows the essentials; Expert adds symmetry, layers, rulers, the knife, printing and fine settings">
     <button data-mode="simple">Simple</button><button data-mode="expert">Expert</button>
   </div>
@@ -23,6 +26,7 @@
   <button id="btn-save" title="Save SVG (Ctrl+S)">Save</button>
   <button id="btn-saveas" class="expert" title="Save as (Ctrl+Shift+S)">Save as…</button>
   <button id="btn-png" title="Export a PNG image">PNG</button>
+  <button id="btn-copy-img" title="Copy the drawing (or the selected shapes) as an image – paste it into the raster app or any other program (Ctrl+C)">Copy image</button>
   <button id="btn-print" class="expert" title="Print a real-size template with color numbers">Print…</button>
   <button id="btn-layplan" class="expert" title="Split the mosaic into numbered panels and print a laying plan">Plan…</button>
   <button id="btn-report" title="Colors used, areas and a shopping list">Report</button>
@@ -344,7 +348,7 @@
           <tr><td>Del</td><td>Delete selection (or the last corner of a free polygon)</td></tr>
           <tr><td>Arrows</td><td>Nudge (Shift = ×10)</td></tr>
           <tr><td>Ctrl+Z / Ctrl+Y</td><td>Undo / redo</td></tr>
-          <tr><td>Ctrl+C / X / V</td><td>Copy, cut, paste shapes (also between pages and drawings)</td></tr>
+          <tr><td>Ctrl+C / X / V</td><td>Copy, cut, paste shapes (also between pages and drawings). Ctrl+C with nothing selected copies the drawing as an image; pasting an image makes it the photo to trace</td></tr>
           <tr><td>Ctrl+D, Ctrl+A</td><td>Duplicate, select all</td></tr>
           <tr><td>Wheel, Space+drag</td><td>Zoom, pan (two fingers on touch screens)</td></tr>
           <tr><td>0</td><td>Fit page</td></tr>

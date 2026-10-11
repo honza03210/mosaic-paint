@@ -1,5 +1,4 @@
 /* Pointer, touch (pinch to zoom), keyboard, paste and drag & drop. */
-import * as Colors from '../lib/colors.ts';
 import type { Pt } from '../lib/geometry.ts';
 import { $, state, rt, svg, stage, previewG, snapG, clamp, handlers, toast, unit, typingIn } from './env.ts';
 import { toDoc, updateView, fitView, zoomAt, zoomCenter, drawGuides } from './view.ts';
@@ -7,8 +6,9 @@ import { snapPoint } from './snap.ts';
 import { selectionChanged, moveElements, deleteSel, duplicate, selectAll } from './selection.ts';
 import { commitFor } from './areas.ts';
 import { commit, restoreCurrent, undo, redo } from './history.ts';
-import { savePrefs, addColors, setFill } from './palette.ts';
-import { loadPhoto } from './photo.ts';
+import { savePrefs, pasteColors } from './palette.ts';
+import { loadPhoto, pastePhoto } from './photo.ts';
+import { imageFromPaste } from '../shared/clipboard.ts';
 import { save, openFile, loadFile, confirmDiscard } from './files.ts';
 import { tools, setTool, cancelPending, updateStageActions, finishFree, freeBack } from './tools.ts';
 import { setSides } from './panel.ts';
@@ -211,14 +211,14 @@ export function bindInput(): void {
   document.addEventListener('paste', (e) => {
     if (typingIn(e.target)) return;
     const text = (e.clipboardData && e.clipboardData.getData('text')) || '';
+    // an image (from the raster app, a screenshot, a web page…) becomes the photo to trace;
+    // shapes copied here carry a picture too, but paste as shapes
+    const img = imageFromPaste(e);
+    if (img && !/data-mosaic-snippet/.test(text)) { e.preventDefault(); pastePhoto(img); return; }
     // modules get the first look (motifs pastes copied shapes), even with an empty clipboard
     for (const fn of handlers('pasteText')) if (fn(text)) { e.preventDefault(); return; }
     if (!text) return;
-    const cols = Colors.parse(text);
-    if (!cols.length) { toast('The clipboard has no color codes.'); return; }
-    const n = addColors(cols);
-    if (cols.length === 1) setFill(cols[0], false);
-    toast(n ? `Added ${n} color${n > 1 ? 's' : ''} from the clipboard.` : 'Those colors are already in the palette.');
+    if (!pasteColors(text)) toast('The clipboard has no color codes.');
   });
 
   // drag & drop an SVG (opens it) or a photo (becomes the tracing photo)
