@@ -15,6 +15,10 @@ To run it from a download instead, open `index.html` (or `raster.html`) in Chrom
 
 The first time you open an app, a short guide points out its parts; the **?** button in the top bar shows it again. **Examples…** opens ready-made projects to look at or start from: a coaster, a sign and “Your photo” (load a photo, then Mosaic from photo) in the vector app, a pixel-art heart and a sunset mosaic in the raster app (your current work is kept in History).
 
+## Accessibility
+
+Both apps can be used from the keyboard (every tool has a key, see Keyboard & mouse; palette swatches take Tab, Enter / Space to pick – Shift for the stroke color – and Delete to remove), buttons that only show a symbol are named for screen readers, keyboard focus is always visible, and animations stop when the system asks for less motion. The end-to-end tests check both apps and their dialogs with axe-core (WCAG 2.1 A and AA).
+
 ## Languages
 
 Both apps are in English, Czech (čeština), German (Deutsch), Slovak (slovenčina) and Polish (polski). They follow the browser’s language; the language menu in the top bar switches it.

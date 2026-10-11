@@ -782,7 +782,8 @@
     "Unpin – it may be cleared with old versions": "Odepnout – může být smazána se starými verzemi",
     "Pin – kept when old versions are cleared": "Připnout – zůstane, i když se staré verze mažou",
     "Name this version": "Pojmenovat tuto verzi",
-    "Name of this version:": "Název této verze:"
+    "Name of this version:": "Název této verze:",
+    "Share link": "Odkaz ke sdílení"
   };
 
   // src/shared/i18n-de.ts
@@ -1562,7 +1563,8 @@
     "Unpin – it may be cleared with old versions": "Lösen – kann mit alten Versionen gelöscht werden",
     "Pin – kept when old versions are cleared": "Anheften – bleibt, wenn alte Versionen gelöscht werden",
     "Name this version": "Diese Version benennen",
-    "Name of this version:": "Name dieser Version:"
+    "Name of this version:": "Name dieser Version:",
+    "Share link": "Link zum Teilen"
   };
 
   // src/shared/i18n-sk.ts
@@ -2342,7 +2344,8 @@
     "Unpin – it may be cleared with old versions": "Odopnúť – môže byť zmazaná so starými verziami",
     "Pin – kept when old versions are cleared": "Pripnúť – zostane, aj keď sa staré verzie mažú",
     "Name this version": "Pomenovať túto verziu",
-    "Name of this version:": "Názov tejto verzie:"
+    "Name of this version:": "Názov tejto verzie:",
+    "Share link": "Odkaz na zdieľanie"
   };
 
   // src/shared/i18n-pl.ts
@@ -3122,7 +3125,8 @@
     "Unpin – it may be cleared with old versions": "Odepnij – może zostać usunięta ze starymi wersjami",
     "Pin – kept when old versions are cleared": "Przypnij – zostaje, gdy stare wersje są usuwane",
     "Name this version": "Nazwij tę wersję",
-    "Name of this version:": "Nazwa tej wersji:"
+    "Name of this version:": "Nazwa tej wersji:",
+    "Share link": "Link do udostępnienia"
   };
 
   // src/shared/i18n.ts
@@ -3185,6 +3189,27 @@
 
   // src/shared/i18n-start.ts
   translateDom(document.body);
+
+  // src/shared/a11y.ts
+  var SYMBOLS = /^[^\p{L}\p{N}]{1,3}$/u;
+  function label(b) {
+    if (b.tagName !== "BUTTON") return;
+    const title = b.getAttribute("title");
+    if (title && SYMBOLS.test((b.textContent || "").trim())) b.setAttribute("aria-label", title);
+  }
+  function labelAll(root) {
+    if (root instanceof Element && root.matches("button")) label(root);
+    root.querySelectorAll?.("button[title]").forEach(label);
+  }
+  labelAll(document.body);
+  new MutationObserver((changes) => {
+    for (const c of changes) {
+      if (c.type === "attributes") label(c.target);
+      else c.addedNodes.forEach((n4) => {
+        if (n4 instanceof Element) labelAll(n4);
+      });
+    }
+  }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["title"] });
 
   // src/lib/store.ts
   var appOf = (v) => v.app || "vector";
@@ -3518,6 +3543,8 @@
       const N = host.names;
       d.title = c ? `#${num4}  ${c}${n4 ? " – " + t("used by {what}", { what: host.usage(n4) }) : ""}
 ` + t("Click: {fill} · Right-click: {stroke} · Double-click: edit", { fill: N.fill, stroke: N.stroke }) : N.none;
+      d.setAttribute("aria-label", c ? `#${num4} ${c}${n4 ? " – " + t("used by {what}", { what: host.usage(n4) }) : ""}` : N.none);
+      d.setAttribute("aria-pressed", String(c === st.fill));
       let b = d.querySelector(".count");
       if (n4 && !b) {
         b = document.createElement("span");
@@ -3543,6 +3570,8 @@
           e.stopPropagation();
           removeColor(c);
         };
+        x.tabIndex = -1;
+        x.setAttribute("aria-hidden", "true");
         d.append(x);
         d.ondblclick = () => editColor(c);
       }
@@ -3553,6 +3582,19 @@
       d.oncontextmenu = (e) => {
         e.preventDefault();
         setStroke2(c, true);
+      };
+      d.setAttribute("role", "button");
+      d.tabIndex = 0;
+      d.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          if (e.shiftKey) setStroke2(c, true);
+          else setFill2(c, true);
+        } else if ((e.key === "Delete" || e.key === "Backspace") && c) {
+          e.preventDefault();
+          e.stopPropagation();
+          removeColor(c);
+        }
       };
       return d;
     }
@@ -6629,10 +6671,10 @@
       $("#opt-newfill2").checked = state.newFill;
     });
     const pt = $("#pat-type");
-    for (const [v, label] of TYPES) {
+    for (const [v, label2] of TYPES) {
       const o = document.createElement("option");
       o.value = v;
-      o.textContent = t(label);
+      o.textContent = t(label2);
       pt.append(o);
     }
     pt.value = state.pattern.type;
@@ -7629,10 +7671,10 @@
     function init() {
       buildFilters();
       const sel2 = $("#view-filter");
-      for (const [v, label] of VIEWS) {
+      for (const [v, label2] of VIEWS) {
         const o = document.createElement("option");
         o.value = v;
-        o.textContent = label;
+        o.textContent = label2;
         sel2.append(o);
       }
       sel2.onchange = () => setView(sel2.value);
@@ -7808,8 +7850,8 @@
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
       const marks = shade.map((r) => `<rect x="${n(r[0])}" y="${n(r[1])}" width="${n(r[2])}" height="${n(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n(2 / k)} ${n(2 / k)}" stroke-width="${n(0.3 / k)}"/>`).join("");
-      const label = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title;
-      return `<section class="sheet"><div class="label">${esc(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(" ")}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
+      const label2 = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title;
+      return `<section class="sheet"><div class="label">${esc(label2)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(" ")}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
     });
   }
   function layoutInfo(L, mode) {
@@ -8097,14 +8139,14 @@ ${sections.join("\n")}
         c.lineTo(w - tick, s + 0.5);
       }
       if (major) {
-        const label = String(+t2.toFixed(6));
-        if (horizontal) c.fillText(label, s + 3, 10);
+        const label2 = String(+t2.toFixed(6));
+        if (horizontal) c.fillText(label2, s + 3, 10);
         else {
           c.save();
           c.translate(10, s + 3);
           c.rotate(-Math.PI / 2);
           c.textAlign = "right";
-          c.fillText(label, 0, 0);
+          c.fillText(label2, 0, 0);
           c.restore();
         }
       }
@@ -8541,31 +8583,31 @@ ${sections.join("\n")}
     return { vertices, triangles, levels };
   }
   function removeTowers(input, w, h, cell, s, o) {
-    const grid = Int16Array.from(input), n4 = w * h, label = new Int32Array(n4), dist2 = new Float32Array(n4);
+    const grid = Int16Array.from(input), n4 = w * h, label2 = new Int32Array(n4), dist2 = new Float32Array(n4);
     const heightOf = o.heightOf || ((lv) => lv === -2 ? 0 : (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight);
     let lowered = 0;
     for (let round = 0; round < 12; round++) {
-      label.fill(-1);
+      label2.fill(-1);
       const levels = [], stack = [];
       for (let p = 0; p < n4; p++) {
-        if (label[p] >= 0) continue;
+        if (label2[p] >= 0) continue;
         const id = levels.length, lv = grid[p];
         levels.push(lv);
-        label[p] = id;
+        label2[p] = id;
         stack.push(p);
         while (stack.length) {
           const q = stack.pop(), x = q % w;
           for (const r of [x > 0 ? q - 1 : -1, x < w - 1 ? q + 1 : -1, q - w, q + w]) {
-            if (r < 0 || r >= n4 || label[r] >= 0 || grid[r] !== lv) continue;
-            label[r] = id;
+            if (r < 0 || r >= n4 || label2[r] >= 0 || grid[r] !== lv) continue;
+            label2[r] = id;
             stack.push(r);
           }
         }
       }
       const D = Math.SQRT2;
       for (let p = 0; p < n4; p++) {
-        const x = p % w, y = p / w | 0, l = label[p];
-        const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label[p - 1] !== l || label[p + 1] !== l || label[p - w] !== l || label[p + w] !== l;
+        const x = p % w, y = p / w | 0, l = label2[p];
+        const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label2[p - 1] !== l || label2[p + 1] !== l || label2[p - w] !== l || label2[p + w] !== l;
         dist2[p] = edge ? 1 : 1e9;
       }
       for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
@@ -8579,11 +8621,11 @@ ${sections.join("\n")}
         dist2[p] = Math.min(dist2[p], dist2[p + 1] + 1, dist2[p + w] + 1, dist2[p + w + 1] + D, dist2[p + w - 1] + D);
       }
       const widest = new Float32Array(levels.length);
-      for (let p = 0; p < n4; p++) if (dist2[p] > widest[label[p]]) widest[label[p]] = dist2[p];
+      for (let p = 0; p < n4; p++) if (dist2[p] > widest[label2[p]]) widest[label2[p]] = dist2[p];
       const borders = levels.map(() => /* @__PURE__ */ new Map());
       const lowest = new Float64Array(levels.length).fill(Infinity);
       const meet = (a, b) => {
-        const la = label[a], lb = label[b];
+        const la = label2[a], lb = label2[b];
         if (la === lb) return;
         const ga = grid[a], gb = grid[b];
         lowest[la] = Math.min(lowest[la], heightOf(gb));
@@ -8613,7 +8655,7 @@ ${sections.join("\n")}
       });
       if (!changed) break;
       for (let p = 0; p < n4; p++) {
-        const tl = target2[label[p]];
+        const tl = target2[label2[p]];
         if (tl !== -32768) grid[p] = tl;
       }
       lowered += changed;
@@ -9427,10 +9469,10 @@ ${shapes.join("\n")}
     $("#dlg-automosaic").showModal();
   };
   var sel = $("#am-style");
-  for (const [v, label] of STYLES) {
+  for (const [v, label2] of STYLES) {
     const o = document.createElement("option");
     o.value = v;
-    o.textContent = t(label);
+    o.textContent = t(label2);
     sel.append(o);
   }
   sel.onchange = () => {
@@ -9827,7 +9869,7 @@ ${others}
       closeMenu();
       const m = document.createElement("div");
       m.id = "page-menu";
-      for (const [label, fn, ok] of [
+      for (const [label2, fn, ok] of [
         [t("Rename…"), () => rename(i), true],
         [t("Duplicate"), () => add(true), true],
         [t("Move left"), () => move(i, -1), i > 0],
@@ -9835,7 +9877,7 @@ ${others}
         [t("Delete…"), () => remove(i), pages.length > 1]
       ]) {
         const b = document.createElement("button");
-        b.textContent = label;
+        b.textContent = label2;
         b.disabled = !ok;
         b.onclick = () => {
           closeMenu();

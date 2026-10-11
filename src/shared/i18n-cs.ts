@@ -1552,4 +1552,6 @@ export const CS: Record<string, string> = {
     'Pojmenovat tuto verzi',
   'Name of this version:':
     'Název této verze:',
+  'Share link':
+    'Odkaz ke sdílení',
 };

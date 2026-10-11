@@ -1552,4 +1552,6 @@ export const DE: Record<string, string> = {
     'Diese Version benennen',
   'Name of this version:':
     'Name dieser Version:',
+  'Share link':
+    'Link zum Teilen',
 };

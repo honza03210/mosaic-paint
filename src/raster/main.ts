@@ -1,6 +1,7 @@
 /* Mosaic Paint Raster – entry point: paints mosaics pixel by pixel. Shares the look, the palettes,
    the palette panel, the color tools and the app shell with the vector app (src/shared, src/lib). */
 import '../shared/i18n-start.ts';
+import '../shared/a11y.ts';
 import * as R from '../lib/raster.ts';
 import { $$ } from '../shared/ui.ts';
 import { initShell } from '../shared/shell.ts';

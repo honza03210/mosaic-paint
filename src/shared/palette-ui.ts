@@ -121,6 +121,9 @@ export function createPaletteUI(host: PaletteHost) {
     const num = c ? st.palette.indexOf(c) + 1 : 0;
     const N = host.names;
     d.title = c ? `#${num}  ${c}${n ? ' – ' + t('used by {what}', { what: host.usage(n) }) : ''}\n` + t('Click: {fill} · Right-click: {stroke} · Double-click: edit', { fill: N.fill, stroke: N.stroke }) : N.none;
+    // for keyboards and screen readers: the color, and whether it is the active one
+    d.setAttribute('aria-label', c ? `#${num} ${c}${n ? ' – ' + t('used by {what}', { what: host.usage(n) }) : ''}` : N.none);
+    d.setAttribute('aria-pressed', String(c === st.fill));
     let b = d.querySelector('.count');
     if (n && !b) { b = document.createElement('span'); b.className = 'count'; d.prepend(b); }
     if (b) { if (n) b.textContent = n > 9999 ? Math.round(n / 1000) + 'k' : String(n); else b.remove(); }
@@ -136,11 +139,21 @@ export function createPaletteUI(host: PaletteHost) {
       x.textContent = '×';
       x.title = t('Remove from palette');
       x.onclick = (e) => { e.stopPropagation(); removeColor(c); };
+      // the swatch itself takes Delete from the keyboard: this small button is for the mouse
+      x.tabIndex = -1;
+      x.setAttribute('aria-hidden', 'true');
       d.append(x);
       d.ondblclick = () => editColor(c);
     }
     d.onclick = (e) => { if (e.shiftKey && host.shiftClick) host.shiftClick(c, e); else setFill(c, true); };
     d.oncontextmenu = (e) => { e.preventDefault(); setStroke(c, true); };
+    // keyboard: Enter / Space = fill (Shift: stroke), Delete removes the color
+    d.setAttribute('role', 'button');
+    d.tabIndex = 0;
+    d.onkeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (e.shiftKey) setStroke(c, true); else setFill(c, true); }
+      else if ((e.key === 'Delete' || e.key === 'Backspace') && c) { e.preventDefault(); e.stopPropagation(); removeColor(c); }
+    };
     return d;
   }
 

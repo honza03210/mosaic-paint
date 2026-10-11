@@ -776,7 +776,8 @@
     "Unpin – it may be cleared with old versions": "Odepnout – může být smazána se starými verzemi",
     "Pin – kept when old versions are cleared": "Připnout – zůstane, i když se staré verze mažou",
     "Name this version": "Pojmenovat tuto verzi",
-    "Name of this version:": "Název této verze:"
+    "Name of this version:": "Název této verze:",
+    "Share link": "Odkaz ke sdílení"
   };
 
   // src/shared/i18n-de.ts
@@ -1556,7 +1557,8 @@
     "Unpin – it may be cleared with old versions": "Lösen – kann mit alten Versionen gelöscht werden",
     "Pin – kept when old versions are cleared": "Anheften – bleibt, wenn alte Versionen gelöscht werden",
     "Name this version": "Diese Version benennen",
-    "Name of this version:": "Name dieser Version:"
+    "Name of this version:": "Name dieser Version:",
+    "Share link": "Link zum Teilen"
   };
 
   // src/shared/i18n-sk.ts
@@ -2336,7 +2338,8 @@
     "Unpin – it may be cleared with old versions": "Odopnúť – môže byť zmazaná so starými verziami",
     "Pin – kept when old versions are cleared": "Pripnúť – zostane, aj keď sa staré verzie mažú",
     "Name this version": "Pomenovať túto verziu",
-    "Name of this version:": "Názov tejto verzie:"
+    "Name of this version:": "Názov tejto verzie:",
+    "Share link": "Odkaz na zdieľanie"
   };
 
   // src/shared/i18n-pl.ts
@@ -3116,7 +3119,8 @@
     "Unpin – it may be cleared with old versions": "Odepnij – może zostać usunięta ze starymi wersjami",
     "Pin – kept when old versions are cleared": "Przypnij – zostaje, gdy stare wersje są usuwane",
     "Name this version": "Nazwij tę wersję",
-    "Name of this version:": "Nazwa tej wersji:"
+    "Name of this version:": "Nazwa tej wersji:",
+    "Share link": "Link do udostępnienia"
   };
 
   // src/shared/i18n.ts
@@ -3179,6 +3183,27 @@
 
   // src/shared/i18n-start.ts
   translateDom(document.body);
+
+  // src/shared/a11y.ts
+  var SYMBOLS = /^[^\p{L}\p{N}]{1,3}$/u;
+  function label(b) {
+    if (b.tagName !== "BUTTON") return;
+    const title2 = b.getAttribute("title");
+    if (title2 && SYMBOLS.test((b.textContent || "").trim())) b.setAttribute("aria-label", title2);
+  }
+  function labelAll(root) {
+    if (root instanceof Element && root.matches("button")) label(root);
+    root.querySelectorAll?.("button[title]").forEach(label);
+  }
+  labelAll(document.body);
+  new MutationObserver((changes) => {
+    for (const c of changes) {
+      if (c.type === "attributes") label(c.target);
+      else c.addedNodes.forEach((n5) => {
+        if (n5 instanceof Element) labelAll(n5);
+      });
+    }
+  }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["title"] });
 
   // src/lib/colors.ts
   var ctx = null;
@@ -3713,18 +3738,18 @@
       t2.textContent = "";
     }, 5e3);
   }
-  function working(label) {
+  function working(label2) {
     const el = $("#st-msg");
     clearTimeout(toastTimer);
     document.body.classList.add("working");
-    el.textContent = label;
+    el.textContent = label2;
     return {
       set: (f) => {
-        el.textContent = `${label} ${Math.round(f * 100)} %`;
+        el.textContent = `${label2} ${Math.round(f * 100)} %`;
       },
       done: () => {
         document.body.classList.remove("working");
-        if (el.textContent.startsWith(label)) el.textContent = "";
+        if (el.textContent.startsWith(label2)) el.textContent = "";
       }
     };
   }
@@ -3915,6 +3940,8 @@
       const N = host.names;
       d.title = c ? `#${num4}  ${c}${n5 ? " – " + t("used by {what}", { what: host.usage(n5) }) : ""}
 ` + t("Click: {fill} · Right-click: {stroke} · Double-click: edit", { fill: N.fill, stroke: N.stroke }) : N.none;
+      d.setAttribute("aria-label", c ? `#${num4} ${c}${n5 ? " – " + t("used by {what}", { what: host.usage(n5) }) : ""}` : N.none);
+      d.setAttribute("aria-pressed", String(c === st.fill));
       let b = d.querySelector(".count");
       if (n5 && !b) {
         b = document.createElement("span");
@@ -3940,6 +3967,8 @@
           e.stopPropagation();
           removeColor(c);
         };
+        x.tabIndex = -1;
+        x.setAttribute("aria-hidden", "true");
         d.append(x);
         d.ondblclick = () => editColor(c);
       }
@@ -3950,6 +3979,19 @@
       d.oncontextmenu = (e) => {
         e.preventDefault();
         setStroke2(c, true);
+      };
+      d.setAttribute("role", "button");
+      d.tabIndex = 0;
+      d.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          if (e.shiftKey) setStroke2(c, true);
+          else setFill2(c, true);
+        } else if ((e.key === "Delete" || e.key === "Backspace") && c) {
+          e.preventDefault();
+          e.stopPropagation();
+          removeColor(c);
+        }
       };
       return d;
     }
@@ -5744,31 +5786,31 @@
     return { vertices, triangles, levels };
   }
   function removeTowers(input, w, h, cell, s, o) {
-    const grid = Int16Array.from(input), n5 = w * h, label = new Int32Array(n5), dist2 = new Float32Array(n5);
+    const grid = Int16Array.from(input), n5 = w * h, label2 = new Int32Array(n5), dist2 = new Float32Array(n5);
     const heightOf = o.heightOf || ((lv) => lv === -2 ? 0 : (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight);
     let lowered = 0;
     for (let round = 0; round < 12; round++) {
-      label.fill(-1);
+      label2.fill(-1);
       const levels = [], stack = [];
       for (let p = 0; p < n5; p++) {
-        if (label[p] >= 0) continue;
+        if (label2[p] >= 0) continue;
         const id = levels.length, lv = grid[p];
         levels.push(lv);
-        label[p] = id;
+        label2[p] = id;
         stack.push(p);
         while (stack.length) {
           const q = stack.pop(), x = q % w;
           for (const r of [x > 0 ? q - 1 : -1, x < w - 1 ? q + 1 : -1, q - w, q + w]) {
-            if (r < 0 || r >= n5 || label[r] >= 0 || grid[r] !== lv) continue;
-            label[r] = id;
+            if (r < 0 || r >= n5 || label2[r] >= 0 || grid[r] !== lv) continue;
+            label2[r] = id;
             stack.push(r);
           }
         }
       }
       const D = Math.SQRT2;
       for (let p = 0; p < n5; p++) {
-        const x = p % w, y = p / w | 0, l = label[p];
-        const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label[p - 1] !== l || label[p + 1] !== l || label[p - w] !== l || label[p + w] !== l;
+        const x = p % w, y = p / w | 0, l = label2[p];
+        const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label2[p - 1] !== l || label2[p + 1] !== l || label2[p - w] !== l || label2[p + w] !== l;
         dist2[p] = edge ? 1 : 1e9;
       }
       for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
@@ -5782,11 +5824,11 @@
         dist2[p] = Math.min(dist2[p], dist2[p + 1] + 1, dist2[p + w] + 1, dist2[p + w + 1] + D, dist2[p + w - 1] + D);
       }
       const widest = new Float32Array(levels.length);
-      for (let p = 0; p < n5; p++) if (dist2[p] > widest[label[p]]) widest[label[p]] = dist2[p];
+      for (let p = 0; p < n5; p++) if (dist2[p] > widest[label2[p]]) widest[label2[p]] = dist2[p];
       const borders = levels.map(() => /* @__PURE__ */ new Map());
       const lowest = new Float64Array(levels.length).fill(Infinity);
       const meet = (a, b) => {
-        const la = label[a], lb = label[b];
+        const la = label2[a], lb = label2[b];
         if (la === lb) return;
         const ga = grid[a], gb = grid[b];
         lowest[la] = Math.min(lowest[la], heightOf(gb));
@@ -5816,7 +5858,7 @@
       });
       if (!changed) break;
       for (let p = 0; p < n5; p++) {
-        const tl = target[label[p]];
+        const tl = target[label2[p]];
         if (tl !== -32768) grid[p] = tl;
       }
       lowered += changed;
@@ -8004,8 +8046,8 @@ void main() {
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
       const marks = shade.map((r) => `<rect x="${n2(r[0])}" y="${n2(r[1])}" width="${n2(r[2])}" height="${n2(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n2(2 / k)} ${n2(2 / k)}" stroke-width="${n2(0.3 / k)}"/>`).join("");
-      const label = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title2;
-      return `<section class="sheet"><div class="label">${esc(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n2).join(" ")}" style="width:${n2(s.w * L.scale)}mm;height:${n2(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
+      const label2 = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title2;
+      return `<section class="sheet"><div class="label">${esc(label2)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n2).join(" ")}" style="width:${n2(s.w * L.scale)}mm;height:${n2(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
     });
   }
   function layoutInfo(L, mode2) {

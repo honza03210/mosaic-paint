@@ -1,6 +1,7 @@
 /* Mosaic Paint – entry point. The editor core starts when core/api.ts is evaluated; the feature
    modules are imported after it, in the order they build on each other. */
 import './shared/i18n-start.ts';
+import './shared/a11y.ts';
 import { MZ } from './core/api.ts';
 import * as Geo from './lib/geometry.ts';
 import * as Colors from './lib/colors.ts';

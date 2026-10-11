@@ -11,7 +11,7 @@
   - Chrome, Firefox and WebKit (Safari's engine) on desktop;
   - an Android phone (Pixel 7) and an iPhone 14, emulated with touch input.
 
-  They cover drawing, snapping, painting, painted areas following edits, palettes, files, autosave, migration, history, the examples and the guide, heavy work in a worker (and on the page without workers, and from a file), the 3D print dialog in both modes, printing (rendered to a real PDF and checked for paper size and page count), the photo tools, the phone layout, offline start, installability (Chrome), and the speed of a 2,500-tile mosaic.
+  They cover drawing, snapping, painting, painted areas following edits, palettes, files, autosave, migration, history, the examples and the guide, accessibility (axe-core finds no WCAG 2.1 A / AA problems in both apps and their main dialogs; the palette works from the keyboard), heavy work in a worker (and on the page without workers, and from a file), the 3D print dialog in both modes, printing (rendered to a real PDF and checked for paper size and page count), the photo tools, the phone layout, offline start, installability (Chrome), and the speed of a 2,500-tile mosaic.
 
 `npm run bench` prints timings for big mosaics; `node tests/perf/print-preview.js <folder>` writes a sample template PDF.
 

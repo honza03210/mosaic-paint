@@ -1552,4 +1552,6 @@ export const PL: Record<string, string> = {
     'Nazwij tę wersję',
   'Name of this version:':
     'Nazwa tej wersji:',
+  'Share link':
+    'Link do udostępnienia',
 };

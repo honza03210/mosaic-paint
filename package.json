@@ -15,6 +15,7 @@
     "check:slicer": "node --experimental-strip-types --no-warnings tests/slicer/check.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.64.0",
     "esbuild-wasm": "^0.28.2",

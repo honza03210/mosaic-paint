@@ -1552,4 +1552,6 @@ export const SK: Record<string, string> = {
     'Pomenovať túto verziu',
   'Name of this version:':
     'Názov tejto verzie:',
+  'Share link':
+    'Odkaz na zdieľanie',
 };
