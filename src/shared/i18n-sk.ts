@@ -1538,4 +1538,8 @@ export const SK: Record<string, string> = {
     'Čítam G-code… {p} %',
   'Could not read {name}.':
     '{name} sa nepodarilo prečítať.',
+  '{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?':
+    '{name} má {w} × {h} px – maľovanie a mozaiky na ňom budú pomalé. Zmenšiť ho na {W} × {H} px?',
+  'It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.':
+    'Má veľa farieb: „Previesť na paletu“ alebo „Vytvoriť mozaiku…“ z nich urobí pár farieb, v ktorých dlaždice kúpite.',
 };

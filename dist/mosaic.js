@@ -775,7 +775,9 @@
     "{name}: everything matches the plan": "{name}: vše odpovídá plánu",
     "Reading the G-code…": "Čtu G-code…",
     "Reading the G-code… {p} %": "Čtu G-code… {p} %",
-    "Could not read {name}.": "{name} se nepodařilo přečíst."
+    "Could not read {name}.": "{name} se nepodařilo přečíst.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} má {w} × {h} px – malování a mozaiky na něm budou pomalé. Zmenšit ho na {W} × {H} px?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má mnoho barev: „Převést na paletu“ nebo „Vytvořit mozaiku…“ z nich udělá pár barev, ve kterých dlaždice koupíte."
   };
 
   // src/shared/i18n-de.ts
@@ -1548,7 +1550,9 @@
     "{name}: everything matches the plan": "{name}: alles passt zum Plan",
     "Reading the G-code…": "G-Code wird gelesen…",
     "Reading the G-code… {p} %": "G-Code wird gelesen… {p} %",
-    "Could not read {name}.": "{name} lässt sich nicht lesen."
+    "Could not read {name}.": "{name} lässt sich nicht lesen.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} ist {w} × {h} px groß – Malen und Mosaike darauf werden langsam. Auf {W} × {H} px verkleinern?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Es hat viele Farben: „Auf Palette reduzieren“ oder „Mosaik erstellen…“ machen daraus wenige, in denen Sie Fliesen kaufen können."
   };
 
   // src/shared/i18n-sk.ts
@@ -2321,7 +2325,9 @@
     "{name}: everything matches the plan": "{name}: všetko zodpovedá plánu",
     "Reading the G-code…": "Čítam G-code…",
     "Reading the G-code… {p} %": "Čítam G-code… {p} %",
-    "Could not read {name}.": "{name} sa nepodarilo prečítať."
+    "Could not read {name}.": "{name} sa nepodarilo prečítať.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} má {w} × {h} px – maľovanie a mozaiky na ňom budú pomalé. Zmenšiť ho na {W} × {H} px?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má veľa farieb: „Previesť na paletu“ alebo „Vytvoriť mozaiku…“ z nich urobí pár farieb, v ktorých dlaždice kúpite."
   };
 
   // src/shared/i18n-pl.ts
@@ -3094,7 +3100,9 @@
     "{name}: everything matches the plan": "{name}: wszystko zgadza się z planem",
     "Reading the G-code…": "Odczytywanie G-code…",
     "Reading the G-code… {p} %": "Odczytywanie G-code… {p} %",
-    "Could not read {name}.": "Nie udało się odczytać {name}."
+    "Could not read {name}.": "Nie udało się odczytać {name}.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} ma {w} × {h} px – malowanie i mozaiki na nim będą powolne. Zmniejszyć go do {W} × {H} px?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Ma dużo kolorów: „Zredukuj do palety” lub „Utwórz mozaikę…” zrobią z nich kilka, w których kupisz płytki."
   };
 
   // src/shared/i18n.ts

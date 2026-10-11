@@ -157,3 +157,23 @@ test('mosaic tile shapes: hexagons and irregular tiles in palette colors with gr
     await page.keyboard.press('Control+z');
   }
 });
+
+test('opening a very big image offers to scale it down; a photo-like one gets a hint to reduce its colors', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  const big = h.png(2400, 600, (x) => (x < 1200 ? [200, 30, 30] : [30, 30, 200]));
+  // declined: kept as it is
+  page.once('dialog', d => d.dismiss());
+  await page.setInputFiles('#file-input', { name: 'big.png', mimeType: 'image/png', buffer: big });
+  await expect.poll(() => page.evaluate(() => RZ.doc.width)).toBe(2400);
+  await expect(page.locator('#st-msg')).not.toContainText('many colors');
+  // accepted: scaled to 1600 px on the long side
+  let asked = '';
+  page.once('dialog', d => { asked = d.message(); d.accept(); });
+  await page.setInputFiles('#file-input', { name: 'big2.png', mimeType: 'image/png', buffer: big });
+  await expect.poll(() => page.evaluate(() => [RZ.doc.width, RZ.doc.height])).toEqual([1600, 400]);
+  expect(asked).toContain('2,400 × 600 px');
+  // a smooth gradient: hundreds of colors
+  await page.setInputFiles('#file-input', { name: 'photo.png', mimeType: 'image/png', buffer: h.png(300, 20, (x, y) => [x % 256, (x * 3 + y) % 256, 100]) });
+  await expect(page.locator('#st-msg')).toContainText('It has many colors');
+});

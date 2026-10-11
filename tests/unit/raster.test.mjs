@@ -153,3 +153,9 @@ test('a mosaic from any tile polygons: one color per tile, grout along the edges
   assert.ok(R.detailAt(im, 0, 0, 4, 4) < 1e-9); // one color: no detail
   assert.ok(R.detailAt(im, 0, 0, 8, 4) > 10);
 });
+
+test('counting colors stops at the limit and leaves out transparent pixels', () => {
+  const img = { width: 4, height: 1, data: new Uint8ClampedArray([255, 0, 0, 255, 0, 255, 0, 255, 255, 0, 0, 255, 0, 0, 255, 0]) };
+  assert.equal(R.countColors(img, 100), 2);
+  assert.equal(R.countColors(img, 1), 1);
+});

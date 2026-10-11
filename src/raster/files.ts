@@ -1,4 +1,5 @@
 /* Files: new image, open (PNG, JPEG, WebP, GIF, SVG…), save as PNG, export JPEG / WebP, resizing. */
+import * as R from '../lib/raster.ts';
 import { $, toast, download, loadImg } from '../shared/ui.ts';
 import { canvasToPng, svgToCanvas, svgSize } from '../shared/clipboard.ts';
 import { state, rt } from './state.ts';
@@ -48,19 +49,37 @@ export async function fileToCanvas(f: Blob): Promise<HTMLCanvasElement | null> {
     } finally { URL.revokeObjectURL(url); }
   } catch { return null; }
 }
+/** Images bigger than this (px a side) are slow to paint on: opening one offers to scale it to FIT. */
+export const BIG = 2000, FIT = 1600;
+/** A picture with more colors than this is a photo: opening one suggests reducing it. */
+const MANY_COLORS = 256;
+/** The picture scaled by k (smoothly). */
+function scaled(c: HTMLCanvasElement, k: number): HTMLCanvasElement {
+  const out = makeCanvas(Math.max(1, Math.round(c.width * k)), Math.max(1, Math.round(c.height * k))), x = out.getContext('2d');
+  x.imageSmoothingQuality = 'high';
+  x.drawImage(c, 0, 0, out.width, out.height);
+  return out;
+}
 export async function openImageFile(f: File): Promise<boolean> {
-  const c = await fileToCanvas(f);
+  let c = await fileToCanvas(f);
   if (!c) { toast(t('Could not read {name} as an image.', { name: f.name })); return false; }
-  await openCanvas(c, f.name);
+  const side = Math.max(c.width, c.height);
+  if (side > BIG) {
+    const k = FIT / side, v = { name: f.name, w: c.width, h: c.height, W: Math.round(c.width * k), H: Math.round(c.height * k) };
+    if (confirm(t('{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?', v))) c = scaled(c, k);
+  }
+  const img = c.getContext('2d').getImageData(0, 0, c.width, c.height);
+  const many = R.countColors(img, MANY_COLORS + 1) > MANY_COLORS;
+  await openCanvas(c, f.name, many ? t('It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.') : '');
   return true;
 }
 /** Opens a picture as the image (the current one is kept in History). */
-export async function openCanvas(c: HTMLCanvasElement, name: string): Promise<void> {
+export async function openCanvas(c: HTMLCanvasElement, name: string, note = ''): Promise<void> {
   // the current image is copied right away (toBlob takes it as it is now); storing it can finish later
   saveVersion(t('Before opening {name}', { name }));
   loadCanvas(c, name);
   scheduleAutosave();
-  toast(t('Opened {name} ({w} × {h} px).', { name, w: c.width, h: c.height }));
+  toast(t('Opened {name} ({w} × {h} px).', { name, w: c.width, h: c.height }) + (note ? ' ' + note : ''));
 }
 export async function openFile(): Promise<void> {
   if (!confirmDiscard()) return;

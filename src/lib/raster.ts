@@ -452,3 +452,14 @@ export function colorRows(p: Pieces): ColorRow[] {
   });
   return [...m.values()].sort((a, b) => b.pixels - a.pixels).map((r, i) => ({ ...r, n: i + 1 }));
 }
+
+/** How many different (opaque) colors an image has – counting stops at `max`. */
+export function countColors(img: Img, max: number): number {
+  const seen = new Set<number>(), d = img.data;
+  for (let i = 0; i < d.length; i += 4) {
+    if (d[i + 3] < 128) continue;
+    seen.add((d[i] << 16) | (d[i + 1] << 8) | d[i + 2]);
+    if (seen.size >= max) return max;
+  }
+  return seen.size;
+}

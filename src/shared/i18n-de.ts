@@ -1538,4 +1538,8 @@ export const DE: Record<string, string> = {
     'G-Code wird gelesen… {p} %',
   'Could not read {name}.':
     '{name} lässt sich nicht lesen.',
+  '{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?':
+    '{name} ist {w} × {h} px groß – Malen und Mosaike darauf werden langsam. Auf {W} × {H} px verkleinern?',
+  'It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.':
+    'Es hat viele Farben: „Auf Palette reduzieren“ oder „Mosaik erstellen…“ machen daraus wenige, in denen Sie Fliesen kaufen können.',
 };

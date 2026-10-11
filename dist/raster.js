@@ -769,7 +769,9 @@
     "{name}: everything matches the plan": "{name}: vše odpovídá plánu",
     "Reading the G-code…": "Čtu G-code…",
     "Reading the G-code… {p} %": "Čtu G-code… {p} %",
-    "Could not read {name}.": "{name} se nepodařilo přečíst."
+    "Could not read {name}.": "{name} se nepodařilo přečíst.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} má {w} × {h} px – malování a mozaiky na něm budou pomalé. Zmenšit ho na {W} × {H} px?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má mnoho barev: „Převést na paletu“ nebo „Vytvořit mozaiku…“ z nich udělá pár barev, ve kterých dlaždice koupíte."
   };
 
   // src/shared/i18n-de.ts
@@ -1542,7 +1544,9 @@
     "{name}: everything matches the plan": "{name}: alles passt zum Plan",
     "Reading the G-code…": "G-Code wird gelesen…",
     "Reading the G-code… {p} %": "G-Code wird gelesen… {p} %",
-    "Could not read {name}.": "{name} lässt sich nicht lesen."
+    "Could not read {name}.": "{name} lässt sich nicht lesen.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} ist {w} × {h} px groß – Malen und Mosaike darauf werden langsam. Auf {W} × {H} px verkleinern?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Es hat viele Farben: „Auf Palette reduzieren“ oder „Mosaik erstellen…“ machen daraus wenige, in denen Sie Fliesen kaufen können."
   };
 
   // src/shared/i18n-sk.ts
@@ -2315,7 +2319,9 @@
     "{name}: everything matches the plan": "{name}: všetko zodpovedá plánu",
     "Reading the G-code…": "Čítam G-code…",
     "Reading the G-code… {p} %": "Čítam G-code… {p} %",
-    "Could not read {name}.": "{name} sa nepodarilo prečítať."
+    "Could not read {name}.": "{name} sa nepodarilo prečítať.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} má {w} × {h} px – maľovanie a mozaiky na ňom budú pomalé. Zmenšiť ho na {W} × {H} px?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má veľa farieb: „Previesť na paletu“ alebo „Vytvoriť mozaiku…“ z nich urobí pár farieb, v ktorých dlaždice kúpite."
   };
 
   // src/shared/i18n-pl.ts
@@ -3088,7 +3094,9 @@
     "{name}: everything matches the plan": "{name}: wszystko zgadza się z planem",
     "Reading the G-code…": "Odczytywanie G-code…",
     "Reading the G-code… {p} %": "Odczytywanie G-code… {p} %",
-    "Could not read {name}.": "Nie udało się odczytać {name}."
+    "Could not read {name}.": "Nie udało się odczytać {name}.",
+    "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} ma {w} × {h} px – malowanie i mozaiki na nim będą powolne. Zmniejszyć go do {W} × {H} px?",
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Ma dużo kolorów: „Zredukuj do palety” lub „Utwórz mozaikę…” zrobią z nich kilka, w których kupisz płytki."
   };
 
   // src/shared/i18n.ts
@@ -3661,6 +3669,15 @@
       m.set(c, r);
     });
     return [...m.values()].sort((a, b) => b.pixels - a.pixels).map((r, i) => ({ ...r, n: i + 1 }));
+  }
+  function countColors(img, max) {
+    const seen = /* @__PURE__ */ new Set(), d = img.data;
+    for (let i = 0; i < d.length; i += 4) {
+      if (d[i + 3] < 128) continue;
+      seen.add(d[i] << 16 | d[i + 1] << 8 | d[i + 2]);
+      if (seen.size >= max) return max;
+    }
+    return seen.size;
   }
 
   // src/shared/ui.ts
@@ -5376,20 +5393,36 @@
       return null;
     }
   }
+  var BIG = 2e3;
+  var FIT = 1600;
+  var MANY_COLORS = 256;
+  function scaled(c, k) {
+    const out = makeCanvas(Math.max(1, Math.round(c.width * k)), Math.max(1, Math.round(c.height * k))), x = out.getContext("2d");
+    x.imageSmoothingQuality = "high";
+    x.drawImage(c, 0, 0, out.width, out.height);
+    return out;
+  }
   async function openImageFile(f) {
-    const c = await fileToCanvas(f);
+    let c = await fileToCanvas(f);
     if (!c) {
       toast(t("Could not read {name} as an image.", { name: f.name }));
       return false;
     }
-    await openCanvas(c, f.name);
+    const side = Math.max(c.width, c.height);
+    if (side > BIG) {
+      const k = FIT / side, v = { name: f.name, w: c.width, h: c.height, W: Math.round(c.width * k), H: Math.round(c.height * k) };
+      if (confirm(t("{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?", v))) c = scaled(c, k);
+    }
+    const img = c.getContext("2d").getImageData(0, 0, c.width, c.height);
+    const many = countColors(img, MANY_COLORS + 1) > MANY_COLORS;
+    await openCanvas(c, f.name, many ? t("It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.") : "");
     return true;
   }
-  async function openCanvas(c, name) {
+  async function openCanvas(c, name, note = "") {
     saveVersion(t("Before opening {name}", { name }));
     loadCanvas(c, name);
     scheduleAutosave();
-    toast(t("Opened {name} ({w} × {h} px).", { name, w: c.width, h: c.height }));
+    toast(t("Opened {name} ({w} × {h} px).", { name, w: c.width, h: c.height }) + (note ? " " + note : ""));
   }
   async function openFile() {
     if (!confirmDiscard()) return;
@@ -7282,7 +7315,7 @@ void main() {
 
   // src/shared/export3d.ts
   var MAX_CELLS = 4e6;
-  var MANY_COLORS = 16;
+  var MANY_COLORS2 = 16;
   var MAX_RATIO = 2;
   var opts = {
     width: 150,
@@ -7483,7 +7516,7 @@ void main() {
       const s = settings(), list = m.list;
       const warn = [
         note,
-        !fl && list.length > MANY_COLORS ? t("{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).", { n: list.length }) : "",
+        !fl && list.length > MANY_COLORS2 ? t("{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).", { n: list.length }) : "",
         cell > opts.detail + 1e-9 ? t("Detail lowered to {d} mm for this size.", { d: num(+f2(cell)) }) : "",
         pocketNote(m)
       ].filter(Boolean).join(" ");
