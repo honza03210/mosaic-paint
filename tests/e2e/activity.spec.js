@@ -8,7 +8,7 @@ const { expect } = h;
 const fakeSdk = () => {
   window.__closed = null;
   window.__discordSdk = {
-    channelId: 'chan1', instanceId: 'inst1',
+    channelId: 'chan1',
     ready: async () => {},
     commands: {
       authorize: async (a) => { window.__authorized = a; return { code: 'good-code' }; },
@@ -18,7 +18,7 @@ const fakeSdk = () => {
   };
 };
 
-async function api(page, { pending = true } = {}) {
+async function api(page, { pending = true, postStatus = 200 } = {}) {
   const posted = [];
   await page.route('**/api/config', r => r.fulfill({ json: { clientId: 'app1' } }));
   await page.route('**/api/token', r => r.fulfill({ json: { access_token: 'tok-ann' } }));
@@ -28,7 +28,7 @@ async function api(page, { pending = true } = {}) {
     if (!pending) return r.fulfill({ status: 204 });
     return r.fulfill({ body: h.png(40, 30, (x) => (x < 20 ? [200, 30, 30] : [30, 30, 200])), headers: { 'content-type': 'image/png', 'x-filename': encodeURIComponent('cat photo.png') } });
   });
-  await page.route('**/api/post**', r => { posted.push({ url: r.request().url(), body: r.request().postDataBuffer(), auth: r.request().headers().authorization, type: r.request().headers()['content-type'] }); return r.fulfill({ json: { ok: true, messageId: 'posted1' } }); });
+  await page.route('**/api/post**', r => { posted.push({ url: r.request().url(), body: r.request().postDataBuffer(), auth: r.request().headers().authorization, type: r.request().headers()['content-type'] }); return r.fulfill(postStatus === 200 ? { json: { ok: true, messageId: 'posted1' } } : { status: postStatus, json: { error: 'x' } }); });
   return posted;
 }
 
@@ -50,7 +50,7 @@ test('opens the image picked in the chat and posts the edited picture back', asy
   await expect(page.locator('#st-msg')).toContainText('Posted to the channel.');
   expect(posted.length).toBe(1);
   const u = new URL(posted[0].url);
-  expect([u.searchParams.get('channel'), u.searchParams.get('instance')]).toEqual(['chan1', 'inst1']);
+  expect(u.searchParams.get('channel')).toBe('chan1');
   expect(posted[0].auth).toBe('Bearer tok-ann');
   expect(posted[0].type).toBe('image/png');
   // (WebKit does not show tests the bytes of a Blob it sends)
@@ -66,6 +66,18 @@ test('without a picked image it says how to pick one, and the editor works as us
   await page.waitForFunction(() => window.RZ && RZ.ready);
   await expect(page.locator('#st-msg')).toContainText('Apps › Edit image');
   await expect(page.locator('#btn-post-discord')).toBeVisible();
+});
+
+test('after Discord’s 15 minutes it says to copy and paste instead', async ({ page }) => {
+  await page.addInitScript(fakeSdk);
+  await api(page, { postStatus: 409 });
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && RZ.ready);
+  await expect.poll(() => page.evaluate(() => RZ.doc.width)).toBe(40);
+  await page.click('#btn-post-discord');
+  await expect(page.locator('#st-msg')).toContainText('More than 15 minutes have passed');
+  await expect(page.locator('#btn-post-discord')).toBeEnabled();
+  expect(await page.evaluate(() => window.__closed)).toBe(null);
 });
 
 test('outside Discord nothing changes', async ({ page }) => {

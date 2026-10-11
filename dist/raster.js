@@ -797,10 +797,11 @@
     "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Klikněte pravým tlačítkem na obrázek v chatu › Aplikace › Edit image a upravte ho tady – nebo nějaký otevřete či vložte.",
     "Posted to the channel.": "Posláno do kanálu.",
     "The picture is too big for Discord – make it smaller (Image › Resize image).": "Obrázek je pro Discord příliš velký – zmenšete ho (Obrázek › Změnit velikost obrázku).",
-    "Only someone in this channel’s Activity can post here.": "Sem může posílat jen někdo z aktivity tohoto kanálu.",
-    "Discord did not take the picture – does the bot have permission to post here?": "Discord obrázek nepřijal – má bot oprávnění sem psát?",
     "Could not reach the server.": "Server není dostupný.",
-    "Could not connect to Discord.": "Spojení s Discordem se nezdařilo."
+    "Could not connect to Discord.": "Spojení s Discordem se nezdařilo.",
+    "Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.": "Otevřete editor přes „Edit image“ (nebo tlačítko aplikace pro spuštění) v tomto chatu, abyste sem mohli poslat obrázek – nebo použijte Kopírovat a obrázek vložte.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.": "Uplynulo víc než 15 minut a Discord už aplikaci poslat obrázek nedovolí. Použijte Kopírovat a obrázek vložte do chatu.",
+    "Discord did not take the picture. Use Copy and paste it into the chat.": "Discord obrázek nepřijal. Použijte Kopírovat a vložte ho do chatu."
   };
 
   // src/shared/i18n-de.ts
@@ -1601,10 +1602,11 @@
     "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Rechtsklick auf ein Bild im Chat › Apps › Edit image, um es hier zu bearbeiten – oder öffnen oder fügen Sie eines ein.",
     "Posted to the channel.": "In den Kanal gepostet.",
     "The picture is too big for Discord – make it smaller (Image › Resize image).": "Das Bild ist zu groß für Discord – verkleinern Sie es (Bild › Bildgröße ändern).",
-    "Only someone in this channel’s Activity can post here.": "Nur jemand in der Aktivität dieses Kanals kann hier posten.",
-    "Discord did not take the picture – does the bot have permission to post here?": "Discord hat das Bild nicht angenommen – darf der Bot hier posten?",
     "Could not reach the server.": "Der Server ist nicht erreichbar.",
-    "Could not connect to Discord.": "Keine Verbindung zu Discord."
+    "Could not connect to Discord.": "Keine Verbindung zu Discord.",
+    "Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.": "Öffnen Sie den Editor mit „Edit image“ (oder der Startschaltfläche der App) in diesem Chat, um hier zu posten – oder nutzen Sie Kopieren und fügen Sie das Bild ein.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.": "Es sind mehr als 15 Minuten vergangen, und Discord lässt die App nicht mehr posten. Nutzen Sie Kopieren und fügen Sie das Bild in den Chat ein.",
+    "Discord did not take the picture. Use Copy and paste it into the chat.": "Discord hat das Bild nicht angenommen. Nutzen Sie Kopieren und fügen Sie es in den Chat ein."
   };
 
   // src/shared/i18n-sk.ts
@@ -2405,10 +2407,11 @@
     "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Kliknite pravým tlačidlom na obrázok v chate › Aplikácie › Edit image a upravte ho tu – alebo nejaký otvorte či vložte.",
     "Posted to the channel.": "Poslané do kanála.",
     "The picture is too big for Discord – make it smaller (Image › Resize image).": "Obrázok je pre Discord príliš veľký – zmenšite ho (Obrázok › Zmeniť veľkosť obrázka).",
-    "Only someone in this channel’s Activity can post here.": "Sem môže posielať len niekto z aktivity tohto kanála.",
-    "Discord did not take the picture – does the bot have permission to post here?": "Discord obrázok neprijal – má bot oprávnenie sem písať?",
     "Could not reach the server.": "Server nie je dostupný.",
-    "Could not connect to Discord.": "Spojenie s Discordom zlyhalo."
+    "Could not connect to Discord.": "Spojenie s Discordom zlyhalo.",
+    "Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.": "Otvorte editor cez „Edit image“ (alebo tlačidlo aplikácie na spustenie) v tomto chate, aby ste sem mohli poslať obrázok – alebo použite Kopírovať a obrázok vložte.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.": "Uplynulo viac ako 15 minút a Discord už aplikácii nedovolí poslať obrázok. Použite Kopírovať a obrázok vložte do chatu.",
+    "Discord did not take the picture. Use Copy and paste it into the chat.": "Discord obrázok neprijal. Použite Kopírovať a vložte ho do chatu."
   };
 
   // src/shared/i18n-pl.ts
@@ -3209,10 +3212,11 @@
     "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Kliknij prawym przyciskiem obraz na czacie › Aplikacje › Edit image, aby edytować go tutaj – albo otwórz lub wklej jakiś.",
     "Posted to the channel.": "Wysłano na kanał.",
     "The picture is too big for Discord – make it smaller (Image › Resize image).": "Obraz jest za duży dla Discorda – zmniejsz go (Obraz › Zmień rozmiar obrazu).",
-    "Only someone in this channel’s Activity can post here.": "Wysyłać tutaj może tylko ktoś z aktywności tego kanału.",
-    "Discord did not take the picture – does the bot have permission to post here?": "Discord nie przyjął obrazu – czy bot ma uprawnienia do pisania tutaj?",
     "Could not reach the server.": "Nie można połączyć się z serwerem.",
-    "Could not connect to Discord.": "Nie udało się połączyć z Discordem."
+    "Could not connect to Discord.": "Nie udało się połączyć z Discordem.",
+    "Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.": "Otwórz edytor przez „Edit image” (lub przycisk uruchamiania aplikacji) na tym czacie, aby tu wysłać – albo użyj Kopiuj i wklej obraz.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.": "Minęło ponad 15 minut i Discord nie pozwala już aplikacji wysłać obrazu. Użyj Kopiuj i wklej obraz na czat.",
+    "Discord did not take the picture. Use Copy and paste it into the chat.": "Discord nie przyjął obrazu. Użyj Kopiuj i wklej go na czat."
   };
 
   // src/shared/i18n.ts

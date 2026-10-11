@@ -1,31 +1,36 @@
 # Mosaic Paint for Discord
 
-Edit an image from a Discord chat and post it back – without leaving Discord.
+Edit an image from a Discord chat and post it back – without leaving Discord. Works in servers, DMs and
+group DMs, and needs no bot in the server.
 
 **Right-click a message with an image › Apps › Edit image.** The Mosaic Paint raster editor opens inside
 Discord (an *Activity*) with that image loaded. Draw on it with any of the tools, then **Post to the
-channel**: the bot posts the picture as a reply to the original message ("Edited by @you").
+channel**: the app posts the picture in the chat as an answer to your "Edit image" ("Edited by @you ·
+original", with a link to the message the image came from) – the way Wordle posts its results.
 
-Opened from Discord's App Launcher instead, the editor starts empty: open or paste an image there.
+Opened with the app's launch button (App Launcher) instead, the editor starts empty: open or paste an image
+there; it can be posted the same way.
 
 ## How it works
 
 ```
-Discord ──"Edit image"──▶ Worker /interactions ── notes the image (Durable Object) ──▶ "launch the Activity"
-Activity (editor) ──sign in──▶ /api/token ──▶ /api/pending (the image) … edit … ──▶ /api/post ──▶ bot posts it
+Discord ──"Edit image"──▶ Worker /interactions ── keeps the image + the command's token ──▶ "launch the Activity"
+Activity (editor) ──sign in──▶ /api/token ──▶ /api/pending (the image) … edit … ──▶ /api/post ──▶ answer to the command
 ```
 
 - `src/worker.ts` (entry) and `src/app.ts`: the Cloudflare Worker. It checks Discord's signatures, keeps
-  each user's pending edit for 15 minutes (only the image's address – the picture itself is fetched from
-  Discord when the editor asks), signs users in, and posts the result after checking with Discord that the
-  user really is in that channel's Activity.
+  each user's pending edit (a Durable Object: the image's address and the command's token – the picture
+  itself is fetched from Discord when the editor asks), signs users in, and posts the result as a
+  follow-up to the user's command.
+- Discord lets an app answer a command for **15 minutes**. A picture finished later can't be posted by the
+  app any more: the editor says so, and **Copy** + paste in the chat does it instead.
 - The editor is the raster app (`raster.html`), served by the same Worker; inside Discord it loads
   `dist/activity.js` (`src/discord/activity.ts` in the main project), which talks to the Discord client.
 - Everything runs on Cloudflare's **free plan** (Workers, static assets, SQLite Durable Objects).
 
 ## Setting it up
 
-You need a Discord account with a server where you can add apps, a Cloudflare account (free), and Node 20+.
+You need a Discord account, a Cloudflare account (free), and Node 20+.
 
 ### 1. Create the Discord app
 
@@ -34,8 +39,9 @@ On <https://discord.com/developers/applications> › **New Application**. Then n
 - **General Information:** *Application ID* and *Public Key*
 - **OAuth2:** *Client Secret* (Reset Secret); under *Redirects* add `https://127.0.0.1` (Discord wants one
   for the sign-in, it is never visited)
-- **Bot:** *Token* (Reset Token)
 - **Activities › Settings:** turn **Enable Activities** on (choose the platforms: desktop, web, mobile)
+- **Installation:** tick **User Install** and **Guild Install**; for both, the scope is
+  `applications.commands` only (no `bot`)
 
 ### 2. Put the Worker on Cloudflare
 
@@ -50,7 +56,6 @@ npx wrangler login
 npx wrangler secret put DISCORD_PUBLIC_KEY
 npx wrangler secret put DISCORD_CLIENT_ID
 npx wrangler secret put DISCORD_CLIENT_SECRET
-npx wrangler secret put DISCORD_BOT_TOKEN
 npm run deploy
 ```
 
@@ -65,28 +70,30 @@ In the Developer Portal:
   (Discord tests it when you save – it must say it is saved)
 - **Activities › URL Mappings:** prefix `/` → target `mosaic-paint-discord.<you>.workers.dev` (without https://)
 
-### 4. Register the "Edit image" command
+### 4. Register the commands
 
 Make `discord/.env` (it is ignored by git):
 
 ```
 DISCORD_CLIENT_ID=your application id
-DISCORD_BOT_TOKEN=your bot token
+DISCORD_CLIENT_SECRET=your client secret
 ```
 
-then `npm run register`.
+then `npm run register`. It registers "Edit image" and makes the app's launch button go through the Worker,
+both usable in servers, DMs and group DMs.
 
-### 5. Add the bot to your server
+### 5. Install it
 
-**OAuth2 › URL Generator:** scopes `bot` and `applications.commands`; bot permissions *View Channels*,
-*Send Messages*, *Attach Files* and *Read Message History* (to reply to the picked message). Open the
-generated link and pick your server.
+**Installation › Install Link** (Discord Provided Link): open it and choose **Add to My Apps** – then you
+can use it everywhere, also in servers without the app and in DMs. Or choose **Add to Server** so that
+everyone in a server can use it.
 
-Now right-click an image in that server › **Apps › Edit image**.
+Now right-click an image › **Apps › Edit image**.
 
 ## Updating
 
-After changing the editor: `npm run build` in the main folder, then `npm run deploy` here.
+After changing the editor: `npm run build` in the main folder, then `npm run deploy` here. After changing
+the commands: `npm run register`.
 
 ## Testing
 
@@ -97,8 +104,6 @@ values in `.dev.vars`); inside Discord it can only be tried once it is deployed 
 
 ## Limits and notes
 
-- Pictures up to 10 MB can be posted (Discord's limit in servers without boosts); bigger ones: Image ›
-  Resize image first.
-- The bot must be in the server and allowed to post in the channel. In DMs there is no channel to post
-  to – use Copy and paste the picture instead.
+- Pictures up to 10 MB can be posted (Discord's upload limit); bigger ones: Image › Resize image first.
+- 15 minutes from "Edit image" to posting (see above).
 - The free plan allows 100 000 requests a day; one edit takes about five.

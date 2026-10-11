@@ -1,7 +1,8 @@
 /* The raster editor as a Discord Activity (dist/activity.js – loaded by the raster app only inside Discord).
    It signs the user in, opens the image they picked in the chat ("Edit image"), and posts the edited
-   picture back to the channel. The backend is the Worker in discord/ (its API under /api). The app is
-   reached through window.RZ, so this bundle stays small (no second copy of the editor or its texts). */
+   picture back to the chat, as an answer to the user's command. The backend is the Worker in discord/
+   (its API under /api). The app is reached through window.RZ, so this bundle stays small (no second copy
+   of the editor or its texts). */
 import { DiscordSDK, RPCCloseCodes } from '@discord/embedded-app-sdk';
 
 /** What the raster app offers the Activity (see raster/main.ts). */
@@ -13,7 +14,7 @@ interface Editor {
   t(s: string, vars?: Record<string, string | number>): string;
 }
 /** The parts of the SDK used here (tests put a stand-in at window.__discordSdk). */
-type Sdk = Pick<DiscordSDK, 'ready' | 'commands' | 'channelId' | 'instanceId' | 'close'>;
+type Sdk = Pick<DiscordSDK, 'ready' | 'commands' | 'channelId' | 'close'>;
 
 // inside Discord every request goes through its proxy: /.proxy/… is this Activity's own address
 const API = (location.hostname.endsWith('discordsays.com') ? '/.proxy' : '') + '/api';
@@ -53,7 +54,7 @@ async function start(app: Editor): Promise<void> {
   post.onclick = async () => {
     post.disabled = true;
     try {
-      const sent = await call(`/post?channel=${encodeURIComponent(sdk.channelId || '')}&instance=${encodeURIComponent(sdk.instanceId)}`, {
+      const sent = await call(`/post?channel=${encodeURIComponent(sdk.channelId || '')}`, {
         method: 'POST', headers: { ...auth, 'content-type': 'image/png' }, body: await app.png(),
       });
       if (sent.ok) {
@@ -61,9 +62,11 @@ async function start(app: Editor): Promise<void> {
         setTimeout(() => sdk.close(RPCCloseCodes.CLOSE_NORMAL, 'posted'), 1200);
         return;
       }
+      // the picture is posted as an answer to the user's command, which Discord allows for 15 minutes
       app.toast(sent.status === 413 ? t('The picture is too big for Discord – make it smaller (Image › Resize image).')
-        : sent.status === 403 ? t('Only someone in this channel’s Activity can post here.')
-        : t('Discord did not take the picture – does the bot have permission to post here?'));
+        : sent.status === 403 ? t('Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.')
+        : sent.status === 409 ? t('More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.')
+        : t('Discord did not take the picture. Use Copy and paste it into the chat.'));
     } catch {
       app.toast(t('Could not reach the server.'));
     }

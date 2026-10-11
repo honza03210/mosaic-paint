@@ -13,7 +13,7 @@ To run it from a download instead, open `index.html` (or `raster.html`) in Chrom
 
 ## Discord
 
-The raster editor can also run inside Discord as an Activity: right-click a message with an image › Apps › **Edit image**, draw on it, and **Post to the channel**. The backend is a small Cloudflare Worker (free plan) in [`discord/`](discord/README.md), with step-by-step setup.
+The raster editor can also run inside Discord as an Activity: right-click a message with an image › Apps › **Edit image**, draw on it, and **Post to the channel** – in servers, DMs and group DMs, with no bot needed (the picture is posted as an answer to the command, like Wordle's results). The backend is a small Cloudflare Worker (free plan) in [`discord/`](discord/README.md), with step-by-step setup.
 
 ## Getting started
 

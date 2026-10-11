@@ -1592,12 +1592,14 @@ export const SK: Record<string, string> = {
     'Poslané do kanála.',
   'The picture is too big for Discord – make it smaller (Image › Resize image).':
     'Obrázok je pre Discord príliš veľký – zmenšite ho (Obrázok › Zmeniť veľkosť obrázka).',
-  'Only someone in this channel’s Activity can post here.':
-    'Sem môže posielať len niekto z aktivity tohto kanála.',
-  'Discord did not take the picture – does the bot have permission to post here?':
-    'Discord obrázok neprijal – má bot oprávnenie sem písať?',
   'Could not reach the server.':
     'Server nie je dostupný.',
   'Could not connect to Discord.':
     'Spojenie s Discordom zlyhalo.',
+  'Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.':
+    'Otvorte editor cez „Edit image“ (alebo tlačidlo aplikácie na spustenie) v tomto chate, aby ste sem mohli poslať obrázok – alebo použite Kopírovať a obrázok vložte.',
+  'More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.':
+    'Uplynulo viac ako 15 minút a Discord už aplikácii nedovolí poslať obrázok. Použite Kopírovať a obrázok vložte do chatu.',
+  'Discord did not take the picture. Use Copy and paste it into the chat.':
+    'Discord obrázok neprijal. Použite Kopírovať a vložte ho do chatu.',
 };

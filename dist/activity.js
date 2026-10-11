@@ -9645,7 +9645,7 @@
     post.onclick = async () => {
       post.disabled = true;
       try {
-        const sent = await call(`/post?channel=${encodeURIComponent(sdk.channelId || "")}&instance=${encodeURIComponent(sdk.instanceId)}`, {
+        const sent = await call(`/post?channel=${encodeURIComponent(sdk.channelId || "")}`, {
           method: "POST",
           headers: { ...auth, "content-type": "image/png" },
           body: await app.png()
@@ -9655,7 +9655,7 @@
           setTimeout(() => sdk.close(RPCCloseCodes.CLOSE_NORMAL, "posted"), 1200);
           return;
         }
-        app.toast(sent.status === 413 ? t2("The picture is too big for Discord – make it smaller (Image › Resize image).") : sent.status === 403 ? t2("Only someone in this channel’s Activity can post here.") : t2("Discord did not take the picture – does the bot have permission to post here?"));
+        app.toast(sent.status === 413 ? t2("The picture is too big for Discord – make it smaller (Image › Resize image).") : sent.status === 403 ? t2("Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.") : sent.status === 409 ? t2("More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.") : t2("Discord did not take the picture. Use Copy and paste it into the chat."));
       } catch {
         app.toast(t2("Could not reach the server."));
       }

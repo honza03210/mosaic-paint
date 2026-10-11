@@ -1,10 +1,14 @@
 /* Mosaic Paint for Discord – the Cloudflare Worker behind the Activity (its entry point is worker.ts).
 
-   Right-click a message with an image › Apps › "Edit image": Discord sends the command here (/interactions);
-   the Worker notes the image as the user's pending edit for that channel and answers "launch the Activity".
-   The Activity (the raster editor, served by this Worker as static files) signs the user in (/api/token),
-   loads the pending image (/api/pending) and, when the user is done, sends the PNG back (/api/post): the
-   bot posts it in the channel, as a reply to the original message.
+   Right-click a message with an image › Apps › "Edit image" (or the app's launch button): Discord sends the
+   command here (/interactions). The Worker keeps it as the user's pending edit – the image, if any, and the
+   command's token – and answers "launch the Activity". The Activity (the raster editor, served by this
+   Worker as static files) signs the user in (/api/token), loads the image (/api/pending) and, when the user
+   is done, sends the PNG back (/api/post).
+
+   The picture is posted the way Wordle posts its results: as a follow-up to the user's command, with the
+   command's token. So the app needs no bot in the server, and it works in DMs and group DMs too. Discord
+   keeps such a token for 15 minutes: later the editor says so (Copy and paste works instead).
 
    Pending edits live in a Durable Object per user (consistent everywhere – the command arrives from
    Discord's servers, the Activity's requests from near the user). Only the image's address is kept; the
@@ -15,7 +19,6 @@ export interface Env {
   DISCORD_PUBLIC_KEY: string;
   DISCORD_CLIENT_ID: string;
   DISCORD_CLIENT_SECRET: string;
-  DISCORD_BOT_TOKEN: string;
   PENDING: DurableObjectNamespaceLike;
   /** the editor's files (Workers static assets) */
   ASSETS?: { fetch(req: Request): Promise<Response> };
@@ -25,13 +28,17 @@ export interface DurableObjectNamespaceLike { idFromName(name: string): unknown;
 export interface StorageLike { get<T>(key: string): Promise<T | undefined>; put(key: string, value: unknown): Promise<void>; delete(key: string): Promise<boolean> }
 
 const API = 'https://discord.com/api/v10';
-/** how long a picked image waits for the Activity to load it */
+/** how long Discord lets an app answer a command – and so how long an edit can be posted */
 export const PENDING_MS = 15 * 60 * 1000;
-/** the largest picture posted back (Discord takes 10 MB in servers without boosts) */
+/** the largest picture posted back (Discord takes 10 MB without boosts) */
 export const MAX_POST = 10 * 1024 * 1024;
 
-/** A pending edit: which image, from which message, in which channel. */
-export interface Pending { channelId: string; guildId: string | null; messageId: string; url: string; filename: string; contentType: string; time: number }
+/** A pending edit: where the command was used, the picked image (if any), and the command's token. */
+export interface Pending {
+  channelId: string; guildId: string | null; time: number;
+  appId: string; token: string;
+  messageId: string | null; url: string | null; filename: string; contentType: string;
+}
 
 const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
 const hex = (s: string) => new Uint8Array((s.match(/../g) || []).map(b => parseInt(b, 16)));
@@ -50,8 +57,10 @@ export async function verifySignature(publicKey: string, signature: string | nul
   return false;
 }
 
-// ---- interactions (the "Edit image" command) -------------------------------------------------------------
+// ---- interactions (the commands) -----------------------------------------------------------------------
 const reply = (content: string) => json({ type: 4, data: { content, flags: 64 } }); // 64: only the user sees it
+/** command types: 3 a message command ("Edit image"), 4 the Activity's own launch command */
+const MESSAGE = 3, ENTRY_POINT = 4;
 
 async function interaction(req: Request, env: Env): Promise<Response> {
   const body = await req.text();
@@ -60,23 +69,31 @@ async function interaction(req: Request, env: Env): Promise<Response> {
   }
   const i = JSON.parse(body);
   if (i.type === 1) return json({ type: 1 }); // PING
-  if (i.type !== 2 || i.data?.type !== 3) return reply('Unknown command.');
-  // a message command: the clicked message comes with it
-  const msg = i.data.resolved?.messages?.[i.data.target_id];
-  const image = (msg?.attachments || []).find((a: { content_type?: string }) => /^image\//.test(a.content_type || ''))
-    || (msg?.embeds || []).map((e: { image?: { url: string }; thumbnail?: { url: string } }) => e.image || e.thumbnail).find(Boolean);
-  if (!image) return reply('That message has no image to edit.');
-  const user = i.member?.user?.id || i.user?.id;
+  if (i.type !== 2 || ![MESSAGE, ENTRY_POINT].includes(i.data?.type)) return reply('Unknown command.');
   const pending: Pending = {
-    channelId: i.channel_id || i.channel?.id, guildId: i.guild_id || null, messageId: msg.id,
-    url: image.url, filename: image.filename || 'image.png', contentType: image.content_type || 'image/png', time: Date.now(),
+    channelId: i.channel_id || i.channel?.id, guildId: i.guild_id || null, time: Date.now(),
+    appId: i.application_id, token: i.token,
+    messageId: null, url: null, filename: 'image.png', contentType: 'image/png',
   };
+  if (i.data.type === MESSAGE) {
+    // the clicked message comes with the command
+    const msg = i.data.resolved?.messages?.[i.data.target_id];
+    const image = (msg?.attachments || []).find((a: { content_type?: string }) => /^image\//.test(a.content_type || ''))
+      || (msg?.embeds || []).map((e: { image?: { url: string }; thumbnail?: { url: string } }) => e.image || e.thumbnail).find(Boolean);
+    if (!image) return reply('That message has no image to edit.');
+    Object.assign(pending, { messageId: msg.id, url: image.url, filename: image.filename || 'image.png', contentType: image.content_type || 'image/png' });
+  }
+  const user = i.member?.user?.id || i.user?.id;
   await store(env, user).fetch('https://pending/put', { method: 'PUT', body: JSON.stringify(pending) });
   return json({ type: 12 }); // LAUNCH_ACTIVITY
 }
 
 // ---- the Activity's API ------------------------------------------------------------------------------------
 const store = (env: Env, user: string) => env.PENDING.get(env.PENDING.idFromName(user));
+async function pendingOf(env: Env, user: string): Promise<Pending | null> {
+  const r = await store(env, user).fetch('https://pending/get');
+  return r.status === 200 ? await r.json() as Pending : null;
+}
 
 /** The user an Activity's access token belongs to. */
 async function userOf(req: Request): Promise<string | null> {
@@ -104,49 +121,38 @@ async function token(req: Request, env: Env): Promise<Response> {
 async function pending(req: Request, env: Env, url: URL): Promise<Response> {
   const user = await userOf(req);
   if (!user) return json({ error: 'not signed in' }, 401);
-  const r = await store(env, user).fetch('https://pending/get');
-  const p = r.status === 200 ? await r.json() as Pending : null;
-  if (!p || p.channelId !== url.searchParams.get('channel') || Date.now() - p.time > PENDING_MS) return new Response(null, { status: 204 });
+  const p = await pendingOf(env, user);
+  if (!p?.url || p.channelId !== url.searchParams.get('channel') || Date.now() - p.time > PENDING_MS) return new Response(null, { status: 204 });
   const img = await fetch(p.url);
   if (!img.ok) return json({ error: 'the image is no longer available' }, 410);
   return new Response(img.body, {
-    headers: { 'content-type': p.contentType, 'x-filename': encodeURIComponent(p.filename), 'x-message-id': p.messageId, 'cache-control': 'no-store' },
+    headers: { 'content-type': p.contentType, 'x-filename': encodeURIComponent(p.filename), 'cache-control': 'no-store' },
   });
 }
 
-/** Is the user in this Activity, and is it in this channel? (Discord knows; the Activity's word is not enough.) */
-async function inActivity(env: Env, instance: string, user: string, channel: string): Promise<boolean> {
-  const r = await fetch(`${API}/applications/${env.DISCORD_CLIENT_ID}/activity-instances/${encodeURIComponent(instance)}`, {
-    headers: { authorization: `Bot ${env.DISCORD_BOT_TOKEN}` },
-  });
-  if (!r.ok) return false;
-  const a = await r.json() as { users?: string[]; location?: { channel_id?: string } };
-  return !!a.users?.includes(user) && a.location?.channel_id === channel;
-}
-
-/** Posts the edited picture in the channel, as a reply to the message it came from. */
+/**
+ * Posts the edited picture as a follow-up to the user's command in this channel. 403: no command of the
+ * user's here; 409: too late (Discord's 15 minutes are over).
+ */
 async function post(req: Request, env: Env, url: URL): Promise<Response> {
   const user = await userOf(req);
   if (!user) return json({ error: 'not signed in' }, 401);
-  const channel = url.searchParams.get('channel') || '', instance = url.searchParams.get('instance') || '';
-  if (!channel || !await inActivity(env, instance, user, channel)) return json({ error: 'not in this channel' }, 403);
+  const p = await pendingOf(env, user), channel = url.searchParams.get('channel');
+  if (!p || p.channelId !== channel) return json({ error: 'no command of yours in this channel' }, 403);
+  if (Date.now() - p.time > PENDING_MS) return json({ error: 'too late' }, 409);
   const png = await req.arrayBuffer();
   if (!png.byteLength || png.byteLength > MAX_POST) return json({ error: 'too big' }, 413);
-  // the reply goes to the picked message, if the image came from this channel
-  const r = await store(env, user).fetch('https://pending/get');
-  const p = r.status === 200 ? await r.json() as Pending : null;
-  const replyTo = p && p.channelId === channel ? p.messageId : null;
+  // a link back to the picked message
+  const original = p.messageId ? ` · [original](https://discord.com/channels/${p.guildId || '@me'}/${p.channelId}/${p.messageId})` : '';
   const form = new FormData();
   form.append('payload_json', JSON.stringify({
-    content: `Edited by <@${user}>`,
+    content: `Edited by <@${user}>${original}`,
     allowed_mentions: { parse: [] },
-    ...(replyTo ? { message_reference: { message_id: replyTo, fail_if_not_exists: false } } : {}),
     attachments: [{ id: 0, filename: 'edited.png' }],
   }));
   form.append('files[0]', new Blob([png], { type: 'image/png' }), 'edited.png');
-  const sent = await fetch(`${API}/channels/${channel}/messages`, { method: 'POST', headers: { authorization: `Bot ${env.DISCORD_BOT_TOKEN}` }, body: form });
-  if (!sent.ok) return json({ error: 'Discord refused the message', status: sent.status }, 502);
-  if (replyTo) await store(env, user).fetch('https://pending/delete', { method: 'DELETE' });
+  const sent = await fetch(`${API}/webhooks/${p.appId}/${p.token}`, { method: 'POST', body: form });
+  if (!sent.ok) return json({ error: 'Discord refused the message', status: sent.status }, sent.status === 401 || sent.status === 404 ? 409 : 502);
   const m = await sent.json() as { id: string };
   return json({ ok: true, messageId: m.id });
 }

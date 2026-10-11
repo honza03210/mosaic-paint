@@ -1,5 +1,6 @@
-// The Discord Activity's Worker (discord/src/app.ts), against a pretend Discord: signed interactions,
-// the "Edit image" command, signing in, loading the picked image and posting the edited one.
+// The Discord Activity's Worker (discord/src/app.ts), against a pretend Discord: signed interactions, the
+// "Edit image" and launch commands, signing in, loading the picked image and posting the edited one as an
+// answer to the command (no bot needed).
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import worker, { PendingEdits, verifySignature, PENDING_MS } from '../../discord/src/app.ts';
@@ -32,11 +33,11 @@ function namespace() {
   };
 }
 
-// pretend Discord: users by token, an Activity instance, the image on its CDN, posted messages
+// pretend Discord: users by token, the image on its CDN, follow-up messages to commands
 let env, calls, realFetch;
 const PNG = new Uint8Array([137, 80, 78, 71, 1, 2, 3]);
 beforeEach(() => {
-  env = { DISCORD_PUBLIC_KEY: publicKey, DISCORD_CLIENT_ID: 'app1', DISCORD_CLIENT_SECRET: 'secret', DISCORD_BOT_TOKEN: 'bot', PENDING: namespace() };
+  env = { DISCORD_PUBLIC_KEY: publicKey, DISCORD_CLIENT_ID: 'app1', DISCORD_CLIENT_SECRET: 'secret', PENDING: namespace() };
   calls = [];
   realFetch = globalThis.fetch;
   globalThis.fetch = async (url, init = {}) => {
@@ -44,20 +45,23 @@ beforeEach(() => {
     calls.push({ url: u, init });
     if (u.endsWith('/oauth2/token')) return init.body.get('code') === 'good-code' ? Response.json({ access_token: 'tok-ann' }) : new Response('', { status: 400 });
     if (u.endsWith('/users/@me')) return auth === 'Bearer tok-ann' ? Response.json({ id: 'ann' }) : new Response('', { status: 401 });
-    if (u.includes('/activity-instances/inst1')) return auth === 'Bot bot' ? Response.json({ users: ['ann'], location: { channel_id: 'chan1' } }) : new Response('', { status: 401 });
-    if (u.includes('/activity-instances/')) return new Response('', { status: 404 });
     if (u === 'https://cdn.example/cat.png') return new Response(PNG, { headers: { 'content-type': 'image/png' } });
-    if (u.endsWith('/channels/chan1/messages')) return Response.json({ id: 'posted1' });
+    if (u.endsWith('/webhooks/app1/cmd-token')) return Response.json({ id: 'posted1' });
+    if (u.includes('/webhooks/')) return new Response('', { status: 404 });
     return new Response('unexpected ' + u, { status: 500 });
   };
 });
 afterEach(() => { globalThis.fetch = realFetch; });
 
-const editImage = (attachments) => ({
-  type: 2, channel_id: 'chan1', guild_id: 'g1', member: { user: { id: 'ann' } },
+const editImage = (attachments, { dm = false } = {}) => ({
+  type: 2, application_id: 'app1', token: 'cmd-token', channel_id: 'chan1',
+  ...(dm ? { user: { id: 'ann' } } : { guild_id: 'g1', member: { user: { id: 'ann' } } }),
   data: { type: 3, name: 'Edit image', target_id: 'm1', resolved: { messages: { m1: { id: 'm1', attachments, embeds: [] } } } },
 });
+const cat = [{ url: 'https://cdn.example/cat.png', filename: 'cat 1.png', content_type: 'image/png' }];
 const call = (path, init) => worker.fetch(new Request('https://w' + path, init), env);
+const auth = { authorization: 'Bearer tok-ann' };
+const edit = () => env.PENDING.objects.get('ann').data.get('edit');
 
 test('only requests signed by Discord are answered', async () => {
   assert.equal((await worker.fetch(await signed({ type: 1 }, { tamper: true }), env)).status, 401);
@@ -66,52 +70,59 @@ test('only requests signed by Discord are answered', async () => {
   assert.equal(await verifySignature(publicKey, 'zz', '1', 'x'), false);
 });
 
-test('"Edit image" notes the image as the user’s pending edit and opens the Activity', async () => {
-  const r = await worker.fetch(await signed(editImage([{ url: 'https://cdn.example/cat.png', filename: 'cat.png', content_type: 'image/png' }])), env);
+test('"Edit image" keeps the image and the command’s token, and opens the Activity', async () => {
+  const r = await worker.fetch(await signed(editImage(cat)), env);
   assert.deepEqual(await r.json(), { type: 12 });
-  const p = env.PENDING.objects.get('ann').data.get('edit');
-  assert.equal(p.channelId, 'chan1');
-  assert.equal(p.messageId, 'm1');
-  assert.equal(p.url, 'https://cdn.example/cat.png');
+  assert.deepEqual([edit().channelId, edit().messageId, edit().url, edit().appId, edit().token], ['chan1', 'm1', 'https://cdn.example/cat.png', 'app1', 'cmd-token']);
   // a message without an image: a note only the user sees
   const none = await (await worker.fetch(await signed(editImage([{ url: 'x', filename: 'a.txt', content_type: 'text/plain' }])), env)).json();
   assert.equal(none.type, 4);
   assert.equal(none.data.flags, 64);
+  // the launch button (from the App Launcher): no image, but a token to post with
+  await worker.fetch(await signed({ type: 2, application_id: 'app1', token: 'cmd-token', channel_id: 'chan2', user: { id: 'ann' }, data: { type: 4, name: 'launch' } }), env);
+  assert.deepEqual([edit().channelId, edit().url, edit().token], ['chan2', null, 'cmd-token']);
 });
 
 test('signing in, then loading the picked image in the same channel only', async () => {
-  await worker.fetch(await signed(editImage([{ url: 'https://cdn.example/cat.png', filename: 'cat 1.png', content_type: 'image/png' }])), env);
+  await worker.fetch(await signed(editImage(cat)), env);
   assert.equal((await call('/api/token', { method: 'POST', body: JSON.stringify({ code: 'bad' }) })).status, 401);
   const { access_token } = await (await call('/api/token', { method: 'POST', body: JSON.stringify({ code: 'good-code' }) })).json();
   assert.equal(access_token, 'tok-ann');
-  const tokenCall = calls.find(c => c.url.endsWith('/oauth2/token'));
-  assert.equal(tokenCall.init.body.get('client_secret'), 'secret');
-  const auth = { authorization: 'Bearer tok-ann' };
+  assert.equal(calls.find(c => c.url.endsWith('/oauth2/token')).init.body.get('client_secret'), 'secret');
   assert.equal((await call('/api/pending?channel=chan1')).status, 401);
   assert.equal((await call('/api/pending?channel=other', { headers: auth })).status, 204);
   const img = await call('/api/pending?channel=chan1', { headers: auth });
   assert.equal(img.status, 200);
   assert.deepEqual(new Uint8Array(await img.arrayBuffer()), PNG);
   assert.equal(decodeURIComponent(img.headers.get('x-filename')), 'cat 1.png');
-  // too old: gone
-  env.PENDING.objects.get('ann').data.get('edit').time -= PENDING_MS + 1;
+  edit().time -= PENDING_MS + 1;
   assert.equal((await call('/api/pending?channel=chan1', { headers: auth })).status, 204);
 });
 
-test('posting: only from inside the channel’s Activity; a reply to the picked message', async () => {
-  await worker.fetch(await signed(editImage([{ url: 'https://cdn.example/cat.png', filename: 'cat.png', content_type: 'image/png' }])), env);
-  const auth = { authorization: 'Bearer tok-ann' };
-  assert.equal((await call('/api/post?channel=chan1&instance=nope', { method: 'POST', headers: auth, body: PNG })).status, 403);
-  assert.equal((await call('/api/post?channel=chan2&instance=inst1', { method: 'POST', headers: auth, body: PNG })).status, 403);
-  const r = await call('/api/post?channel=chan1&instance=inst1', { method: 'POST', headers: auth, body: PNG });
+test('posting: an answer to the user’s command in that channel, with no bot', async () => {
+  await worker.fetch(await signed(editImage(cat)), env);
+  assert.equal((await call('/api/post?channel=chan1', { method: 'POST', body: PNG })).status, 401);
+  assert.equal((await call('/api/post?channel=elsewhere', { method: 'POST', headers: auth, body: PNG })).status, 403);
+  const r = await call('/api/post?channel=chan1', { method: 'POST', headers: auth, body: PNG });
   assert.deepEqual(await r.json(), { ok: true, messageId: 'posted1' });
-  const sent = calls.find(c => c.url.endsWith('/channels/chan1/messages'));
-  assert.equal(new Headers(sent.init.headers).get('authorization'), 'Bot bot');
+  const sent = calls.find(c => c.url.includes('/webhooks/'));
+  assert.equal(sent.url, 'https://discord.com/api/v10/webhooks/app1/cmd-token');
+  assert.equal(new Headers(sent.init.headers).get('authorization'), null); // the command's token is the permission
   const payload = JSON.parse(sent.init.body.get('payload_json'));
-  assert.equal(payload.content, 'Edited by <@ann>');
+  assert.equal(payload.content, 'Edited by <@ann> · [original](https://discord.com/channels/g1/chan1/m1)');
   assert.deepEqual(payload.allowed_mentions, { parse: [] });
-  assert.equal(payload.message_reference.message_id, 'm1');
   assert.deepEqual(new Uint8Array(await sent.init.body.get('files[0]').arrayBuffer()), PNG);
-  // the pending edit is done
-  assert.equal(env.PENDING.objects.get('ann').data.has('edit'), false);
+});
+
+test('in a DM the link points there; after 15 minutes Discord no longer takes it', async () => {
+  await worker.fetch(await signed(editImage(cat, { dm: true })), env);
+  await call('/api/post?channel=chan1', { method: 'POST', headers: auth, body: PNG });
+  const payload = JSON.parse(calls.find(c => c.url.includes('/webhooks/')).init.body.get('payload_json'));
+  assert.match(payload.content, /channels\/@me\/chan1\/m1/);
+  edit().time -= PENDING_MS + 1;
+  assert.equal((await call('/api/post?channel=chan1', { method: 'POST', headers: auth, body: PNG })).status, 409);
+  // and if Discord says the token is gone, the same answer
+  edit().time = Date.now();
+  edit().token = 'expired';
+  assert.equal((await call('/api/post?channel=chan1', { method: 'POST', headers: auth, body: PNG })).status, 409);
 });

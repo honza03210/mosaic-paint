@@ -1592,12 +1592,14 @@ export const PL: Record<string, string> = {
     'Wysłano na kanał.',
   'The picture is too big for Discord – make it smaller (Image › Resize image).':
     'Obraz jest za duży dla Discorda – zmniejsz go (Obraz › Zmień rozmiar obrazu).',
-  'Only someone in this channel’s Activity can post here.':
-    'Wysyłać tutaj może tylko ktoś z aktywności tego kanału.',
-  'Discord did not take the picture – does the bot have permission to post here?':
-    'Discord nie przyjął obrazu – czy bot ma uprawnienia do pisania tutaj?',
   'Could not reach the server.':
     'Nie można połączyć się z serwerem.',
   'Could not connect to Discord.':
     'Nie udało się połączyć z Discordem.',
+  'Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.':
+    'Otwórz edytor przez „Edit image” (lub przycisk uruchamiania aplikacji) na tym czacie, aby tu wysłać – albo użyj Kopiuj i wklej obraz.',
+  'More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.':
+    'Minęło ponad 15 minut i Discord nie pozwala już aplikacji wysłać obrazu. Użyj Kopiuj i wklej obraz na czat.',
+  'Discord did not take the picture. Use Copy and paste it into the chat.':
+    'Discord nie przyjął obrazu. Użyj Kopiuj i wklej go na czat.',
 };

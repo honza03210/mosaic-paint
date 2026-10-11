@@ -1592,12 +1592,14 @@ export const CS: Record<string, string> = {
     'Posláno do kanálu.',
   'The picture is too big for Discord – make it smaller (Image › Resize image).':
     'Obrázek je pro Discord příliš velký – zmenšete ho (Obrázek › Změnit velikost obrázku).',
-  'Only someone in this channel’s Activity can post here.':
-    'Sem může posílat jen někdo z aktivity tohoto kanálu.',
-  'Discord did not take the picture – does the bot have permission to post here?':
-    'Discord obrázek nepřijal – má bot oprávnění sem psát?',
   'Could not reach the server.':
     'Server není dostupný.',
   'Could not connect to Discord.':
     'Spojení s Discordem se nezdařilo.',
+  'Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.':
+    'Otevřete editor přes „Edit image“ (nebo tlačítko aplikace pro spuštění) v tomto chatu, abyste sem mohli poslat obrázek – nebo použijte Kopírovat a obrázek vložte.',
+  'More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.':
+    'Uplynulo víc než 15 minut a Discord už aplikaci poslat obrázek nedovolí. Použijte Kopírovat a obrázek vložte do chatu.',
+  'Discord did not take the picture. Use Copy and paste it into the chat.':
+    'Discord obrázek nepřijal. Použijte Kopírovat a vložte ho do chatu.',
 };
