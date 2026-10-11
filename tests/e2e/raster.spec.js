@@ -153,7 +153,8 @@ async function pasteImageEvent(page, w, hh, fill) {
     let dt;
     try { dt = new DataTransfer(); dt.items.add(new File([blob], 'pasted.png', { type: 'image/png' })); } catch { return false; }
     const e = new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true });
-    if (!e.clipboardData) return false; // this browser can't make a paste event with data
+    // some browsers (Firefox) make the event but leave out the file: then this can't be tested here
+    if (!e.clipboardData || !(e.clipboardData.files.length || e.clipboardData.items.length)) return false;
     document.dispatchEvent(e);
     return true;
   }, [w, hh, fill]);
