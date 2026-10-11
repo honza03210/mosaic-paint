@@ -112,7 +112,14 @@ async function token(req: Request, env: Env): Promise<Response> {
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ client_id: env.DISCORD_CLIENT_ID, client_secret: env.DISCORD_CLIENT_SECRET, grant_type: 'authorization_code', code }),
   });
-  if (!r.ok) return json({ error: 'could not sign in' }, 401);
+  if (!r.ok) {
+    // Discord's reason (e.g. invalid_client: a wrong or reset client secret) – in the logs (npx wrangler tail) and for the editor
+    const detail = await r.text();
+    console.error('sign-in failed', r.status, detail);
+    let reason = `HTTP ${r.status}`;
+    try { reason = (JSON.parse(detail) as { error?: string }).error || reason; } catch { /* not JSON */ }
+    return json({ error: 'could not sign in', reason }, 401);
+  }
   const { access_token } = await r.json() as { access_token: string };
   return json({ access_token });
 }

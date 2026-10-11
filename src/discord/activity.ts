@@ -31,7 +31,12 @@ async function start(app: Editor): Promise<void> {
   // sign in: Discord gives a one-time code, the Worker turns it into a token (it knows the app's secret)
   const { code } = await sdk.commands.authorize({ client_id: clientId, response_type: 'code', state: '', prompt: 'none', scope: ['identify'] });
   const signedIn = await call('/token', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ code }) });
-  if (!signedIn.ok) { app.toast(t('Could not sign in to Discord.')); return; }
+  if (!signedIn.ok) {
+    // Discord's reason, as it said it (e.g. invalid_client), to help setting the app up
+    const { reason } = await signedIn.json().catch(() => ({})) as { reason?: string };
+    app.toast(t('Could not sign in to Discord.') + (reason ? ` (${reason})` : ''));
+    return;
+  }
   const { access_token } = await signedIn.json() as { access_token: string };
   await sdk.commands.authenticate({ access_token });
   const auth = { authorization: `Bearer ${access_token}` };

@@ -9625,7 +9625,8 @@
     const { code } = await sdk.commands.authorize({ client_id: clientId, response_type: "code", state: "", prompt: "none", scope: ["identify"] });
     const signedIn = await call("/token", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code }) });
     if (!signedIn.ok) {
-      app.toast(t2("Could not sign in to Discord."));
+      const { reason } = await signedIn.json().catch(() => ({}));
+      app.toast(t2("Could not sign in to Discord.") + (reason ? ` (${reason})` : ""));
       return;
     }
     const { access_token } = await signedIn.json();
