@@ -1406,4 +1406,22 @@ export const CS: Record<string, string> = {
     'Rámeček široký {w} mm: pokračuje barvou {color} až do vrstvy {layer} (Z {z} mm).',
   'Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.':
     'Kapsy pro magnety ve spodku: 4 × {d} mm, hloubka {depth} mm – magnety vlepte po vytištění.',
+  'Making the mosaic…':
+    'Vytvářím mozaiku…',
+  'Could not make the mosaic.':
+    'Mozaiku se nepodařilo vytvořit.',
+  'Tracing the tiles…':
+    'Obkresluji dlaždice…',
+  'Could not trace the tiles.':
+    'Dlaždice se nepodařilo obkreslit.',
+  'Working out the model…':
+    'Počítám model…',
+  'Working out the model… {p} %':
+    'Počítám model… {p} %',
+  'Could not build the 3D model.':
+    '3D model se nepodařilo vytvořit.',
+  'Building the 3D model…':
+    'Vytvářím 3D model…',
+  'Building the 3D model… {p} %':
+    'Vytvářím 3D model… {p} %',
 };

@@ -2,9 +2,10 @@
    in the vector app, at the real size, so the vector app's print templates, laying plan and editing work
    on it. The grout color (if any) becomes the page background; tiles are the other pieces. */
 import * as R from '../lib/raster.ts';
-import { traceAll, ringArea } from '../lib/trace.ts';
+import { piecesSvg } from '../lib/vectorize.ts';
 import { Store } from '../lib/store.ts';
-import { $, toast } from '../shared/ui.ts';
+import { $, toast, working } from '../shared/ui.ts';
+import { run, isCancelled } from '../shared/work.ts';
 import { state, rt, savePrefs } from './state.ts';
 import { doc, getImage } from './canvas.ts';
 import { colorRows } from './report.ts';
@@ -13,36 +14,11 @@ import { t } from '../shared/i18n.ts';
 const MAX_TILES = 20000;
 const n = (v: number) => String(Math.round(v * 1000) / 1000);
 
+/** The palette's name in the vector app: the file's. */
+const paletteName = () => rt.fileName.replace(/\.[a-z0-9]+$/i, '');
 /** The image as a Mosaic Paint SVG: one filled polygon (or path, with holes) per piece. */
 export function vectorSVG(grout: string | null, widthMm: number): { svg: string; tiles: number } {
-  const W = doc.width, H = doc.height, k = widthMm / W, p = R.pieces(getImage());
-  // tiles: the pieces that are not grout, numbered 0…
-  const ids = new Int32Array(p.colors.length).fill(-1), colors: string[] = [];
-  p.colors.forEach((c, i) => { if (c !== grout) { ids[i] = colors.length; colors.push(c); } });
-  const labels = p.labels.map(l => (l < 0 ? -1 : ids[l]));
-  const rings = traceAll(labels, W, H, colors.length);
-  const shapes: string[] = [];
-  rings.forEach((list, i) => {
-    const pts = (r: { x: number; y: number }[]) => r.map(q => `${n(q.x * k)},${n(q.y * k)}`).join(' ');
-    if (list.length === 1) shapes.push(`<polygon points="${pts(list[0])}" fill="${colors[i]}" stroke="none"/>`);
-    else {
-      // outer edge first, then the holes
-      const sorted = [...list].sort((a, b) => Math.abs(ringArea(b)) - Math.abs(ringArea(a)));
-      const d = sorted.map(r => 'M' + pts(r).replace(/ /g, 'L') + 'Z').join('');
-      shapes.push(`<path d="${d}" fill="${colors[i]}" fill-rule="evenodd" stroke="none"/>`);
-    }
-  });
-  const w = n(widthMm), h = n(H * k), palette = [...new Set([...colorRows(p).map(r => r.color)])];
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">
-<metadata id="mosaic-palette">${JSON.stringify({ palette, paletteName: rt.fileName.replace(/\.[a-z0-9]+$/i, ''), unit: 'mm' })}</metadata>
-${grout ? `<rect id="mosaic-bg" x="0" y="0" width="${w}" height="${h}" fill="${grout}"/>` : ''}
-<g id="mosaic-fills"></g>
-<g id="mosaic-shapes">
-${shapes.join('\n')}
-</g>
-</svg>`;
-  return { svg, tiles: colors.length };
+  return piecesSvg(getImage(), grout, widthMm, paletteName());
 }
 
 function fillDialog(): void {
@@ -73,9 +49,20 @@ export function bindVectorize(): void {
     info();
   };
   $('#vz-go').onclick = async () => {
-    const { svg, tiles } = vectorSVG($('#vz-grout').value || null, state.realWidth);
+    $('#dlg-vectorize').close();
+    const job = working(t('Tracing the tiles…'));
+    let res: { svg: string; tiles: number };
     try {
-      await Store.set('handoff', { svg, name: rt.fileName.replace(/\.[a-z0-9]+$/i, '') + '.svg', time: Date.now(), tiles });
+      res = await run('vectorize', { img: getImage(), grout: $('#vz-grout').value || null, widthMm: state.realWidth, name: paletteName() }, { progress: job.set });
+    } catch (e) {
+      job.done();
+      if (!isCancelled(e)) toast(t('Could not trace the tiles.'));
+      return;
+    }
+    job.done();
+    const { svg, tiles } = res;
+    try {
+      await Store.set('handoff', { svg, name: paletteName() + '.svg', time: Date.now(), tiles });
     } catch { toast(t('Could not hand the tiles over (browser storage unavailable).')); return; }
     location.href = 'index.html#from-raster';
   };

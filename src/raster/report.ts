@@ -1,24 +1,15 @@
 /* The colors report: every color with its pieces (tiles), pixels and real area – a shopping list –
    recoloring a color everywhere, and a CSV download. Its color numbers are the ones on the print. */
 import * as R from '../lib/raster.ts';
+import { colorRows, type ColorRow } from '../lib/raster.ts';
 import { $, toast, download } from '../shared/ui.ts';
 import { state, rt, savePrefs } from './state.ts';
 import { doc, dctx, getImage } from './canvas.ts';
 import { commit } from './history.ts';
 import { t, num } from '../shared/i18n.ts';
 
-export interface ColorRow { n: number; color: string; pieces: number; pixels: number }
-/** The colors of the image with their pieces and pixels, most used first, numbered 1… */
-export function colorRows(p: R.Pieces): ColorRow[] {
-  const m = new Map<string, ColorRow>();
-  p.colors.forEach((c, i) => {
-    const r = m.get(c) || { n: 0, color: c, pieces: 0, pixels: 0 };
-    r.pieces++;
-    r.pixels += p.sizes[i];
-    m.set(c, r);
-  });
-  return [...m.values()].sort((a, b) => b.pixels - a.pixels).map((r, i) => ({ ...r, n: i + 1 }));
-}
+export { colorRows, type ColorRow };
+
 /** Millimetres per pixel at the real width. */
 export const mmPerPixel = (): number => state.realWidth / doc.width;
 const fmtN = (v: number) => num(v);

@@ -2,8 +2,8 @@
    where the picture has detail) with grout, colored from the palette (or a palette suggested from the
    picture), and reducing a picture to the palette's colors. The tile layouts are the vector app's. */
 import * as R from '../lib/raster.ts';
-import * as AutoMosaic from '../lib/automosaic.ts';
-import { $, toast } from '../shared/ui.ts';
+import { $, toast, working } from '../shared/ui.ts';
+import { run, isCancelled } from '../shared/work.ts';
 import { state, savePrefs } from './state.ts';
 import { doc, dctx } from './canvas.ts';
 import { commit } from './history.ts';
@@ -18,7 +18,8 @@ function region(): R.Box {
 }
 const total = (counts: Map<string, number>) => [...counts.values()].reduce((s, n) => s + n, 0);
 
-export function makeMosaic(): void {
+/** Makes the mosaic in a worker (the result replaces the area when it is done). */
+export async function makeMosaic(): Promise<void> {
   const m = state.mosaic, b = region();
   const img = dctx.getImageData(b.x, b.y, b.w, b.h);
   let palette: string[] | null = null;
@@ -30,24 +31,24 @@ export function makeMosaic(): void {
     if (!palette.length) { toast(t('There is nothing to make a mosaic from (the area is transparent).')); return; }
     addPalette(t('From picture'), palette);
   }
-  const res = tiles(img, palette);
-  dctx.putImageData(new ImageData(res.img.data, b.w, b.h), b.x, b.y);
-  commit();
-  toast(t('Made {n} {n|tile|tiles} in {c} {c|color|colors}.', { n: total(res.counts), c: res.counts.size }));
-}
-/** The mosaic of an image: the exact square grid when it can be, else the tile layout's polygons. */
-function tiles(img: ImageData, palette: string[] | null) {
-  const m = state.mosaic, adaptive = m.detail > 0 && ['square', 'brick', 'irregular'].includes(m.shape);
-  if (m.shape === 'offset' || (m.shape === 'square' && !adaptive)) {
-    return R.mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette, bricks: m.shape === 'offset' });
+  const job = working(t('Making the mosaic…'));
+  const buttons = [$('#btn-mosaic'), $('#btn-reduce')];
+  buttons.forEach(el => { el.disabled = true; });
+  try {
+    const res = await run('mosaic', {
+      img: { width: img.width, height: img.height, data: img.data }, palette,
+      shape: m.shape, tile: m.tile, grout: m.grout, groutColor: m.groutColor, detail: m.detail,
+    }, { progress: job.set });
+    dctx.putImageData(new ImageData(res.img.data, b.w, b.h), b.x, b.y);
+    commit();
+    job.done();
+    toast(t('Made {n} {n|tile|tiles} in {c} {c|color|colors}.', { n: total(res.counts), c: res.counts.size }));
+  } catch (e) {
+    job.done();
+    if (!isCancelled(e)) toast(t('Could not make the mosaic.'));
+  } finally {
+    buttons.forEach(el => { el.disabled = false; });
   }
-  // an area counts as detailed when its colors spread more than this (Lab units); more detail → lower bar
-  const bar = 4 + (1 - m.detail / 100) * 26;
-  const busy = (x: number, y: number, w: number, h: number) => R.detailAt(img, x, y, w, h) > bar;
-  // bricks are two squares wide: their size is the row height
-  const size = m.shape === 'brick' ? m.tile / 2 : m.tile;
-  const cells = AutoMosaic.cells({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
-  return R.mosaicCells(img, cells, { grout: m.grout, groutColor: m.groutColor, palette });
 }
 export function reduceToPalette(): void {
   if (!state.palette.length) { toast(t('The palette is empty.')); return; }

@@ -439,3 +439,16 @@ export function mosaicCells(src: Img, cells: P[][], o: { grout: number; groutCol
   }
   return { img: out, counts, tiles };
 }
+
+export interface ColorRow { n: number; color: string; pieces: number; pixels: number }
+/** The colors of the image with their pieces and pixels, most used first, numbered 1… */
+export function colorRows(p: Pieces): ColorRow[] {
+  const m = new Map<string, ColorRow>();
+  p.colors.forEach((c, i) => {
+    const r = m.get(c) || { n: 0, color: c, pieces: 0, pixels: 0 };
+    r.pieces++;
+    r.pixels += p.sizes[i];
+    m.set(c, r);
+  });
+  return [...m.values()].sort((a, b) => b.pixels - a.pixels).map((r, i) => ({ ...r, n: i + 1 }));
+}

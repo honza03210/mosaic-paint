@@ -13,6 +13,20 @@ export function toast(msg: string): void {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => { t.textContent = ''; }, 5000);
 }
+/** Work in progress, in the status bar: the label, then its share done (0…1); done() clears it. */
+export function working(label: string): { set(f: number): void; done(): void } {
+  const el = $('#st-msg');
+  clearTimeout(toastTimer);
+  document.body.classList.add('working');
+  el.textContent = label;
+  return {
+    set: (f) => { el.textContent = `${label} ${Math.round(f * 100)} %`; },
+    done: () => {
+      document.body.classList.remove('working');
+      if (el.textContent.startsWith(label)) el.textContent = '';
+    },
+  };
+}
 export function lsGet(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } }
 export function lsSet(k: string, v: string): boolean { try { localStorage.setItem(k, v); return true; } catch { return false; } }
 export function download(blob: Blob, name: string): void {

@@ -116,11 +116,12 @@ The raster app paints pixels. It has the same layout, palettes (shared with the 
 
 ## Files
 
-The apps are written in TypeScript and bundled into one script each: `dist/mosaic.js` (vector) and `dist/raster.js` (raster). The bundles are committed, so GitHub Pages and opening the pages straight from disk need no build step.
+The apps are written in TypeScript and bundled into one script each: `dist/mosaic.js` (vector) and `dist/raster.js` (raster). The bundles are committed, so GitHub Pages and opening the pages straight from disk need no build step. Heavy work – the mosaic effect, tracing raster tiles, and building the 3D model – runs in a worker, so the page stays responsive and shows progress: the worker (`src/worker/`) is bundled first and goes into each app as a string, which the app starts from a blob URL (so it works from disk too); without workers the same jobs run on the page.
 
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
-- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts)
+- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts), running jobs in the worker (`work.ts`)
+- `src/worker/`: the worker – its jobs (`jobs.ts`: plain data in and out) and its entry point (`worker.ts`)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket
   - `patterns.ts`: tiling patterns
@@ -133,6 +134,8 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `store.ts`: browser storage for the autosave and versions
   - `raster.ts`: pixel algorithms – flood fill, hard-edged lines and polygons, reducing to a palette, the mosaic effect, pieces (connected areas) with number spots and outlines, mosaics of any tile polygons
   - `model3d.ts`: the 3D print model – colors as height bands, one closed surface (no T-junctions), binary STL, 3MF with PrusaSlicer color changes, the filament-change plan; the flat multi-filament model (one part per color) as a PrusaSlicer or Bambu Studio 3MF; finishing (frame, rounded corners, hanging hole, magnet pockets)
+  - `build3d.ts`: the 3D model as the dialog builds it – thin towers lowered, finishing, the solids of either kind of model, the files
+  - `vectorize.ts`: raster tiles as a Mosaic Paint SVG (one polygon per piece)
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
   - `trace.ts`: outlines of pixel areas as polygons (corner points only, holes, diagonal pixels kept apart)
 - `src/core/`: the editor

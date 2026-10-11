@@ -703,7 +703,16 @@
     "The magnet pockets are only {d} mm deep – the model is thinner there.": "Kapsy pro magnety jsou hluboké jen {d} mm – model je tam tenčí.",
     "Frame {w} mm wide, up to layer {layer} (Z {z} mm), in filament 1.": "Rámeček široký {w} mm, až do vrstvy {layer} (Z {z} mm), filamentem 1.",
     "Frame {w} mm wide: it goes on in {color} up to layer {layer} (Z {z} mm).": "Rámeček široký {w} mm: pokračuje barvou {color} až do vrstvy {layer} (Z {z} mm).",
-    "Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.": "Kapsy pro magnety ve spodku: 4 × {d} mm, hloubka {depth} mm – magnety vlepte po vytištění."
+    "Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.": "Kapsy pro magnety ve spodku: 4 × {d} mm, hloubka {depth} mm – magnety vlepte po vytištění.",
+    "Making the mosaic…": "Vytvářím mozaiku…",
+    "Could not make the mosaic.": "Mozaiku se nepodařilo vytvořit.",
+    "Tracing the tiles…": "Obkresluji dlaždice…",
+    "Could not trace the tiles.": "Dlaždice se nepodařilo obkreslit.",
+    "Working out the model…": "Počítám model…",
+    "Working out the model… {p} %": "Počítám model… {p} %",
+    "Could not build the 3D model.": "3D model se nepodařilo vytvořit.",
+    "Building the 3D model…": "Vytvářím 3D model…",
+    "Building the 3D model… {p} %": "Vytvářím 3D model… {p} %"
   };
 
   // src/shared/i18n.ts
@@ -727,8 +736,8 @@
     }
     location.reload();
   }
-  function form(n4, forms) {
-    const i = lang === "cs" ? n4 === 1 ? 0 : Number.isInteger(n4) && n4 >= 2 && n4 <= 4 ? 1 : 2 : n4 === 1 ? 0 : 1;
+  function form(n5, forms) {
+    const i = lang === "cs" ? n5 === 1 ? 0 : Number.isInteger(n5) && n5 >= 2 && n5 <= 4 ? 1 : 2 : n5 === 1 ? 0 : 1;
     return forms[Math.min(i, forms.length - 1)];
   }
   var num = (v, digits) => v.toLocaleString(lang === "cs" ? "cs-CZ" : "en", digits == null ? void 0 : { minimumFractionDigits: digits, maximumFractionDigits: digits });
@@ -744,9 +753,9 @@
   function translateDom(root) {
     if (lang === "en") return;
     const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    for (let n4 = walk.nextNode(); n4; n4 = walk.nextNode()) {
-      const v = n4.nodeValue, key = v.trim();
-      if (key && dict[key] != null) n4.nodeValue = v.replace(key, dict[key]);
+    for (let n5 = walk.nextNode(); n5; n5 = walk.nextNode()) {
+      const v = n5.nodeValue, key = v.trim();
+      if (key && dict[key] != null) n5.nodeValue = v.replace(key, dict[key]);
     }
     for (const el of root.querySelectorAll ? [root, ...root.querySelectorAll("*")] : []) {
       if (!el.getAttribute) continue;
@@ -799,10 +808,10 @@
   }
   function toRgb(c) {
     if (Array.isArray(c)) return c;
-    const n4 = norm(c);
-    if (!n4) return null;
-    if (n4[0] === "#") return [1, 3, 5].map((i) => parseInt(n4.slice(i, i + 2), 16));
-    const m = n4.match(/[\d.]+/g);
+    const n5 = norm(c);
+    if (!n5) return null;
+    if (n5[0] === "#") return [1, 3, 5].map((i) => parseInt(n5.slice(i, i + 2), 16));
+    const m = n5.match(/[\d.]+/g);
     return m ? m.slice(0, 3).map(Number) : null;
   }
   function toLab([r, g, b]) {
@@ -948,22 +957,22 @@
     }
   }
   function discMask(size) {
-    const n4 = Math.max(1, Math.round(size)), r = n4 / 2, m = new Uint8Array(n4 * n4);
-    for (let j = 0; j < n4; j++) for (let i = 0; i < n4; i++) {
+    const n5 = Math.max(1, Math.round(size)), r = n5 / 2, m = new Uint8Array(n5 * n5);
+    for (let j = 0; j < n5; j++) for (let i = 0; i < n5; i++) {
       const dx = i + 0.5 - r, dy = j + 0.5 - r;
-      if (n4 <= 2 || dx * dx + dy * dy <= r * r + 0.25) m[j * n4 + i] = 1;
+      if (n5 <= 2 || dx * dx + dy * dy <= r * r + 0.25) m[j * n5 + i] = 1;
     }
     return m;
   }
   function fillPolygon(img, pts, color) {
-    const { width: W, height: H, data: d } = img, n4 = pts.length;
-    if (n4 < 3) return null;
+    const { width: W, height: H, data: d } = img, n5 = pts.length;
+    if (n5 < 3) return null;
     const b = { x0: W, y0: H, x1: -1, y1: -1 };
     const ys = pts.map((p) => p.y), top = Math.max(0, Math.floor(Math.min(...ys))), bottom = Math.min(H - 1, Math.ceil(Math.max(...ys)));
     for (let y = top; y <= bottom; y++) {
       const cy = y + 0.5, xs = [];
-      for (let i = 0; i < n4; i++) {
-        const a = pts[i], c = pts[(i + 1) % n4];
+      for (let i = 0; i < n5; i++) {
+        const a = pts[i], c = pts[(i + 1) % n5];
         if (a.y <= cy !== c.y <= cy) xs.push(a.x + (cy - a.y) * (c.x - a.x) / (c.y - a.y));
       }
       xs.sort((p, q) => p - q);
@@ -1002,8 +1011,8 @@
     }
     return [...m].sort((a, b) => b[1] - a[1]).map(([k]) => hex(k >> 16, k >> 8 & 255, k & 255));
   }
-  function samplePixels(img, n4) {
-    const out = [], d = img.data, total2 = img.width * img.height, step = Math.max(1, Math.floor(total2 / n4));
+  function samplePixels(img, n5) {
+    const out = [], d = img.data, total2 = img.width * img.height, step = Math.max(1, Math.floor(total2 / n5));
     for (let p = 0; p < total2; p += step) {
       const i = p * 4;
       if (d[i + 3] >= 128) out.push([d[i], d[i + 1], d[i + 2]]);
@@ -1012,14 +1021,14 @@
   }
   function replaceColor(img, from, to) {
     const [r, g, b] = rgba(from), d = img.data;
-    let n4 = 0;
+    let n5 = 0;
     for (let i = 0; i < d.length; i += 4) {
       if (d[i + 3] >= 128 && d[i] === r && d[i + 1] === g && d[i + 2] === b) {
         setPx(d, i, to);
-        n4++;
+        n5++;
       }
     }
-    return n4;
+    return n5;
   }
   function nearestCache(palette) {
     const labs = palette.map((c) => toLab(rgbOf(c)));
@@ -1054,12 +1063,12 @@
     const near = o.palette && o.palette.length ? nearestCache(o.palette) : null;
     const grout = rgba(o.groutColor);
     const counts2 = /* @__PURE__ */ new Map();
-    let tiles2 = 0;
+    let tiles = 0;
     for (let ty = 0, row = 0; ty < H; ty += T, row++) {
       const shift = o.bricks && row % 2 ? -Math.floor(T / 2) : 0;
       for (let tx = shift; tx < W; tx += T) {
         const x0 = Math.max(0, tx), x1 = Math.min(W, tx + T), y1 = Math.min(H, ty + T);
-        let r = 0, g = 0, b = 0, n4 = 0, all = 0;
+        let r = 0, g = 0, b = 0, n5 = 0, all = 0;
         for (let y = ty; y < y1 - (y1 === ty + T ? G : 0); y++) for (let x = x0; x < Math.min(x1, tx + T - G); x++) {
           const i = (y * W + x) * 4;
           all++;
@@ -1067,18 +1076,18 @@
           r += s[i];
           g += s[i + 1];
           b += s[i + 2];
-          n4++;
+          n5++;
         }
-        const filled = n4 > 0 && n4 >= all / 2;
+        const filled = n5 > 0 && n5 >= all / 2;
         let c = [0, 0, 0, 0];
         if (filled) {
-          r = Math.round(r / n4);
-          g = Math.round(g / n4);
-          b = Math.round(b / n4);
+          r = Math.round(r / n5);
+          g = Math.round(g / n5);
+          b = Math.round(b / n5);
           const name = near ? near(r, g, b) : hex(r, g, b);
           c = rgba(name);
           counts2.set(name, (counts2.get(name) || 0) + 1);
-          tiles2++;
+          tiles++;
         }
         for (let y = ty; y < y1; y++) for (let x = x0; x < x1; x++) {
           const inGrout = x >= tx + T - G || y >= ty + T - G;
@@ -1086,12 +1095,12 @@
         }
       }
     }
-    return { img: out, counts: counts2, tiles: tiles2 };
+    return { img: out, counts: counts2, tiles };
   }
   function classify(img, colors) {
     const near = nearestCache(colors), index2 = new Map(colors.map((c, i) => [c, i]));
-    const n4 = img.width * img.height, grid = new Int16Array(n4), counts2 = colors.map(() => 0), d = img.data;
-    for (let p = 0, i = 0; p < n4; p++, i += 4) {
+    const n5 = img.width * img.height, grid = new Int16Array(n5), counts2 = colors.map(() => 0), d = img.data;
+    for (let p = 0, i = 0; p < n5; p++, i += 4) {
       if (d[i + 3] < 128) {
         grid[p] = -1;
         continue;
@@ -1103,11 +1112,11 @@
     return { grid, counts: counts2 };
   }
   function pieces(img) {
-    const { width: W, height: H, data: d } = img, n4 = W * H;
-    const labels = new Int32Array(n4).fill(-1), colors = [], sizes = [];
+    const { width: W, height: H, data: d } = img, n5 = W * H;
+    const labels = new Int32Array(n5).fill(-1), colors = [], sizes = [];
     const key = (p) => d[p * 4 + 3] < 128 ? -1 : d[p * 4] << 16 | d[p * 4 + 1] << 8 | d[p * 4 + 2];
     const stack = [];
-    for (let p = 0; p < n4; p++) {
+    for (let p = 0; p < n5; p++) {
       if (labels[p] >= 0) continue;
       const k = key(p);
       if (k < 0) continue;
@@ -1119,7 +1128,7 @@
         const q = stack.pop(), x = q % W;
         size++;
         for (const r of [x > 0 ? q - 1 : -1, x < W - 1 ? q + 1 : -1, q - W, q + W]) {
-          if (r < 0 || r >= n4 || labels[r] >= 0 || key(r) !== k) continue;
+          if (r < 0 || r >= n5 || labels[r] >= 0 || key(r) !== k) continue;
           labels[r] = id;
           stack.push(r);
         }
@@ -1130,12 +1139,12 @@
     return { labels, colors, sizes };
   }
   function pieceCentres(p, W, H) {
-    const L = p.labels, n4 = W * H, dist2 = new Float32Array(n4);
+    const L = p.labels, n5 = W * H, dist2 = new Float32Array(n5);
     const edge = (i) => {
       const x = i % W, y = i / W | 0, l = L[i];
       return x === 0 || y === 0 || x === W - 1 || y === H - 1 || L[i - 1] !== l || L[i + 1] !== l || L[i - W] !== l || L[i + W] !== l;
     };
-    for (let i = 0; i < n4; i++) dist2[i] = L[i] < 0 ? 0 : edge(i) ? 1 : 1e9;
+    for (let i = 0; i < n5; i++) dist2[i] = L[i] < 0 ? 0 : edge(i) ? 1 : 1e9;
     const D = Math.SQRT2;
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       const i = y * W + x;
@@ -1154,7 +1163,7 @@
       dist2[i] = v;
     }
     const best = p.colors.map(() => ({ x: 0, y: 0, r: -1 }));
-    for (let i = 0; i < n4; i++) {
+    for (let i = 0; i < n5; i++) {
       const l = L[i];
       if (l >= 0 && dist2[i] > best[l].r) best[l] = { x: i % W + 0.5, y: (i / W | 0) + 0.5, r: dist2[i] };
     }
@@ -1202,12 +1211,12 @@
     return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
   }
   function polygonPixels(W, H, pts, fn) {
-    const n4 = pts.length, ys = pts.map((p) => p.y);
+    const n5 = pts.length, ys = pts.map((p) => p.y);
     const top = Math.max(0, Math.floor(Math.min(...ys))), bottom = Math.min(H - 1, Math.ceil(Math.max(...ys)));
     for (let y = top; y <= bottom; y++) {
       const cy = y + 0.5, xs = [];
-      for (let i = 0; i < n4; i++) {
-        const a = pts[i], c = pts[(i + 1) % n4];
+      for (let i = 0; i < n5; i++) {
+        const a = pts[i], c = pts[(i + 1) % n5];
         if (a.y <= cy !== c.y <= cy) xs.push(a.x + (cy - a.y) * (c.x - a.x) / (c.y - a.y));
       }
       xs.sort((p, q) => p - q);
@@ -1221,9 +1230,9 @@
     const { width: W, height: H } = src, s = src.data, out = makeImg(W, H), d = out.data;
     const near = o.palette && o.palette.length ? nearestCache(o.palette) : null;
     const counts2 = /* @__PURE__ */ new Map(), filled = [];
-    let tiles2 = 0;
+    let tiles = 0;
     for (const poly of cells3) {
-      let r = 0, g = 0, b = 0, n4 = 0, all = 0;
+      let r = 0, g = 0, b = 0, n5 = 0, all = 0;
       const px = [];
       polygonPixels(W, H, poly, (i) => {
         px.push(i);
@@ -1233,16 +1242,16 @@
         r += s[k];
         g += s[k + 1];
         b += s[k + 2];
-        n4++;
+        n5++;
       });
-      if (!n4 || n4 < all / 2) continue;
-      r = Math.round(r / n4);
-      g = Math.round(g / n4);
-      b = Math.round(b / n4);
+      if (!n5 || n5 < all / 2) continue;
+      r = Math.round(r / n5);
+      g = Math.round(g / n5);
+      b = Math.round(b / n5);
       const name = near ? near(r, g, b) : hex(r, g, b), c = rgba(name);
       for (const i of px) setPx(d, i * 4, c);
       counts2.set(name, (counts2.get(name) || 0) + 1);
-      tiles2++;
+      tiles++;
       filled.push(poly);
     }
     const half = Math.max(0, o.grout) / 2;
@@ -1259,7 +1268,17 @@
         }
       }
     }
-    return { img: out, counts: counts2, tiles: tiles2 };
+    return { img: out, counts: counts2, tiles };
+  }
+  function colorRows(p) {
+    const m = /* @__PURE__ */ new Map();
+    p.colors.forEach((c, i) => {
+      const r = m.get(c) || { n: 0, color: c, pieces: 0, pixels: 0 };
+      r.pieces++;
+      r.pixels += p.sizes[i];
+      m.set(c, r);
+    });
+    return [...m.values()].sort((a, b) => b.pixels - a.pixels).map((r, i) => ({ ...r, n: i + 1 }));
   }
 
   // src/shared/ui.ts
@@ -1274,6 +1293,21 @@
     toastTimer = setTimeout(() => {
       t2.textContent = "";
     }, 5e3);
+  }
+  function working(label) {
+    const el = $("#st-msg");
+    clearTimeout(toastTimer);
+    document.body.classList.add("working");
+    el.textContent = label;
+    return {
+      set: (f) => {
+        el.textContent = `${label} ${Math.round(f * 100)} %`;
+      },
+      done: () => {
+        document.body.classList.remove("working");
+        if (el.textContent.startsWith(label)) el.textContent = "";
+      }
+    };
   }
   function lsGet(k) {
     try {
@@ -1381,9 +1415,9 @@
   function createPaletteUI(host) {
     const st = host.state;
     function uniqueName(base) {
-      let n4 = base, i = 2;
-      while (st.palettes[n4]) n4 = `${base} ${i++}`;
-      return n4;
+      let n5 = base, i = 2;
+      while (st.palettes[n5]) n5 = `${base} ${i++}`;
+      return n5;
     }
     function renderSelect() {
       const sel = $("#pal-select");
@@ -1403,10 +1437,10 @@
       render3();
     }
     function addPalette2(name, colors) {
-      const n4 = uniqueName(name);
-      st.palettes[n4] = colors;
-      switchPalette(n4);
-      return n4;
+      const n5 = uniqueName(name);
+      st.palettes[n5] = colors;
+      switchPalette(n5);
+      return n5;
     }
     function addColors2(list) {
       let added = 0;
@@ -1441,19 +1475,19 @@
     function updateSwatch(d, c, counts2) {
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
-      const n4 = c ? counts2.get(c) || 0 : 0;
+      const n5 = c ? counts2.get(c) || 0 : 0;
       const num4 = c ? st.palette.indexOf(c) + 1 : 0;
       const N = host.names;
-      d.title = c ? `#${num4}  ${c}${n4 ? " – " + t("used by {what}", { what: host.usage(n4) }) : ""}
+      d.title = c ? `#${num4}  ${c}${n5 ? " – " + t("used by {what}", { what: host.usage(n5) }) : ""}
 ` + t("Click: {fill} · Right-click: {stroke} · Double-click: edit", { fill: N.fill, stroke: N.stroke }) : N.none;
       let b = d.querySelector(".count");
-      if (n4 && !b) {
+      if (n5 && !b) {
         b = document.createElement("span");
         b.className = "count";
         d.prepend(b);
       }
       if (b) {
-        if (n4) b.textContent = n4 > 9999 ? Math.round(n4 / 1e3) + "k" : String(n4);
+        if (n5) b.textContent = n5 > 9999 ? Math.round(n5 / 1e3) + "k" : String(n5);
         else b.remove();
       }
     }
@@ -1531,11 +1565,11 @@
         toast(t("No color found in: {text}", { text }));
         return;
       }
-      const n4 = addColors2(cols);
+      const n5 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
       inp.value = "";
       updatePreview();
-      toast(n4 ? t("Added {n} {n|color|colors}.", { n: n4 }) : t("Already in the palette."));
+      toast(n5 ? t("Added {n} {n|color|colors}.", { n: n5 }) : t("Already in the palette."));
     }
     function updatePreview() {
       const c = parse($("#color-input").value)[0];
@@ -1546,9 +1580,9 @@
     function pasteColors2(text) {
       const cols = parse(text);
       if (!cols.length) return false;
-      const n4 = addColors2(cols);
+      const n5 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
-      toast(n4 ? t("Added {n} {n|color|colors} from the clipboard.", { n: n4 }) : t("Those colors are already in the palette."));
+      toast(n5 ? t("Added {n} {n|color|colors} from the clipboard.", { n: n5 }) : t("Those colors are already in the palette."));
       return true;
     }
     function bind() {
@@ -1570,17 +1604,17 @@
       };
       $("#pal-select").onchange = (e) => switchPalette(e.target.value);
       $("#btn-pal-new").onclick = () => {
-        const n4 = prompt(t("Name of the new palette:"), uniqueName(t("Palette")));
-        if (!n4 || !n4.trim()) return;
-        const name = uniqueName(n4.trim());
+        const n5 = prompt(t("Name of the new palette:"), uniqueName(t("Palette")));
+        if (!n5 || !n5.trim()) return;
+        const name = uniqueName(n5.trim());
         st.palettes[name] = [];
         switchPalette(name);
         toast(t("Created “{name}”. Paste colors to fill it.", { name }));
       };
       $("#btn-pal-rename").onclick = () => {
-        const old = st.paletteName, n4 = prompt(t("Rename palette:"), old);
-        if (!n4 || !n4.trim() || n4.trim() === old) return;
-        const name = uniqueName(n4.trim()), next = {};
+        const old = st.paletteName, n5 = prompt(t("Rename palette:"), old);
+        if (!n5 || !n5.trim() || n5.trim() === old) return;
+        const name = uniqueName(n5.trim()), next = {};
         for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
         st.palettes = next;
         switchPalette(name);
@@ -1592,8 +1626,8 @@
         switchPalette(Object.keys(st.palettes)[0]);
       };
       $("#btn-pal-doc").onclick = () => {
-        const n4 = addColors2(host.docColors());
-        toast(n4 ? t("Added {n} {n|color|colors} from the drawing.", { n: n4 }) : t("No new colors in the drawing."));
+        const n5 = addColors2(host.docColors());
+        toast(n5 ? t("Added {n} {n|color|colors} from the drawing.", { n: n5 }) : t("No new colors in the drawing."));
       };
       $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
       $("#btn-pal-clear").onclick = () => {
@@ -1609,8 +1643,8 @@
         if (!f) return;
         const text = await f.text();
         e.target.value = "";
-        const n4 = addColors2(parse(text));
-        toast(n4 ? t("Imported {n} {n|color|colors}.", { n: n4 }) : t("No new colors found in {name}", { name: f.name }));
+        const n5 = addColors2(parse(text));
+        toast(n5 ? t("Imported {n} {n|color|colors}.", { n: n5 }) : t("No new colors found in {name}", { name: f.name }));
       };
       window.addEventListener("storage", (e) => {
         if (e.key !== SHARED_KEY) return;
@@ -1822,8 +1856,8 @@
       const r = state.size / 2;
       vctx.beginPath();
       if (state.tool === "pencil") {
-        const n4 = Math.max(1, Math.round(state.size)), x0 = Math.floor(c.x) - Math.floor((n4 - 1) / 2), y0 = Math.floor(c.y) - Math.floor((n4 - 1) / 2);
-        vctx.rect(x0, y0, n4, n4);
+        const n5 = Math.max(1, Math.round(state.size)), x0 = Math.floor(c.x) - Math.floor((n5 - 1) / 2), y0 = Math.floor(c.y) - Math.floor((n5 - 1) / 2);
+        vctx.rect(x0, y0, n5, n5);
       } else vctx.arc(c.x, c.y, Math.max(r, 0.5), 0, Math.PI * 2);
       vctx.lineWidth = 1 / k;
       vctx.strokeStyle = "rgba(0,0,0,.7)";
@@ -1969,16 +2003,16 @@
     const { w, h } = svgSize(svg), k = long / Math.max(w, h, 1e-9);
     const W = Math.max(1, Math.round(w * k)), H = Math.max(1, Math.round(h * k));
     const sized = svg.replace(/<svg\b([^>]*)>/, (m, a) => `<svg${a.replace(/\s(width|height)="[^"]*"/g, "")} width="${W}" height="${H}">`);
-    const url = URL.createObjectURL(new Blob([sized], { type: "image/svg+xml" }));
+    const url2 = URL.createObjectURL(new Blob([sized], { type: "image/svg+xml" }));
     try {
-      const img = await loadImg(url);
+      const img = await loadImg(url2);
       const c = document.createElement("canvas");
       c.width = W;
       c.height = H;
       c.getContext("2d").drawImage(img, 0, 0, W, H);
       return c;
     } finally {
-      URL.revokeObjectURL(url);
+      URL.revokeObjectURL(url2);
     }
   }
 
@@ -2088,10 +2122,10 @@
 
   // src/lib/geometry.ts
   var dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
-  function regularPolygon(n4, cx, cy, r, rot) {
+  function regularPolygon(n5, cx, cy, r, rot) {
     const out = [];
-    for (let i = 0; i < n4; i++) {
-      const a = rot + i * 2 * Math.PI / n4;
+    for (let i = 0; i < n5; i++) {
+      const a = rot + i * 2 * Math.PI / n5;
       out.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
     }
     return out;
@@ -2169,8 +2203,8 @@
   }
   function clipHalf(poly, f) {
     const out = [];
-    for (let i = 0, n4 = poly.length; i < n4; i++) {
-      const a = poly[i], b = poly[(i + 1) % n4], fa = f(a), fb = f(b);
+    for (let i = 0, n5 = poly.length; i < n5; i++) {
+      const a = poly[i], b = poly[(i + 1) % n5], fa = f(a), fb = f(b);
       if (fa <= 0) out.push(a);
       if (fa < 0 && fb > 0 || fa > 0 && fb < 0) {
         const t2 = fa / (fa - fb);
@@ -2200,7 +2234,7 @@
         }
         ring.sort((a, b) => dist(seeds[a], s) - dist(seeds[b], s));
         for (const o of ring) {
-          const n4 = seeds[o], nx = n4.x - s.x, ny = n4.y - s.y, mx = (s.x + n4.x) / 2, my = (s.y + n4.y) / 2;
+          const n5 = seeds[o], nx = n5.x - s.x, ny = n5.y - s.y, mx = (s.x + n5.x) / 2, my = (s.y + n5.y) / 2;
           poly = clipHalf(poly, (p) => (p.x - mx) * nx + (p.y - my) * ny);
           if (poly.length < 3) break;
         }
@@ -2284,26 +2318,26 @@
     }
     return counts;
   }
-  function suggestColors(img, n4) {
+  function suggestColors(img, n5) {
     const labs = samplePixels(img, 5e3).map(toLab);
-    return labs.length ? [...new Set(kmeans(labs, n4, 7).map(fromLab))] : [];
+    return labs.length ? [...new Set(kmeans(labs, n5, 7).map(fromLab))] : [];
   }
   var ui = createPaletteUI({
     state,
     save: savePrefs,
     counts: colorCounts,
-    usage: (n4) => t("{n} {n|pixel|pixels}", { n: n4 }),
+    usage: (n5) => t("{n} {n|pixel|pixels}", { n: n5 }),
     names: { fill: t("paint color"), stroke: t("outline color"), none: t("Transparent – paints and fills transparent pixels") },
     docColors() {
       const img = getImage();
       return uniqueColors(img, 64) || suggestColors(img, 16);
     },
     recolor(old, c) {
-      const img = getImage(), n4 = replaceColor(img, old, rgba(c));
-      if (!n4) return null;
+      const img = getImage(), n5 = replaceColor(img, old, rgba(c));
+      if (!n5) return null;
       dctx.putImageData(img, 0, 0);
       commit();
-      return t("Recolored {n} {n|pixel|pixels}.", { n: n4 });
+      return t("Recolored {n} {n|pixel|pixels}.", { n: n5 });
     }
   });
   var {
@@ -2461,14 +2495,14 @@
         const text = await blob.text(), { w, h } = svgSize(text);
         return await svgToCanvas(text, Math.max(16, Math.round(Math.max(w, h))));
       }
-      const url = URL.createObjectURL(blob);
+      const url2 = URL.createObjectURL(blob);
       try {
-        const img = await loadImg(url);
+        const img = await loadImg(url2);
         const c = makeCanvas(img.naturalWidth, img.naturalHeight);
         c.getContext("2d").drawImage(img, 0, 0);
         return c;
       } finally {
-        URL.revokeObjectURL(url);
+        URL.revokeObjectURL(url2);
       }
     } catch {
       return null;
@@ -2543,13 +2577,13 @@
   }
   var tips = /* @__PURE__ */ new Map();
   function tip(size, color) {
-    const n4 = Math.max(1, Math.round(size)), key = n4 + color;
+    const n5 = Math.max(1, Math.round(size)), key = n5 + color;
     let c = tips.get(key);
     if (!c) {
       if (tips.size > 40) tips.clear();
-      c = makeCanvas(n4, n4);
-      const x = c.getContext("2d"), im = x.createImageData(n4, n4), m = discMask(n4), rgba2 = rgba(color);
-      for (let i = 0; i < n4 * n4; i++) if (m[i]) im.data.set(rgba2, i * 4);
+      c = makeCanvas(n5, n5);
+      const x = c.getContext("2d"), im = x.createImageData(n5, n5), m = discMask(n5), rgba2 = rgba(color);
+      for (let i = 0; i < n5 * n5; i++) if (m[i]) im.data.set(rgba2, i * 4);
       x.putImageData(im, 0, 0);
       tips.set(key, c);
     }
@@ -2801,7 +2835,7 @@
   var MAX_SIDE = 8e3;
   var IMAGE_TYPES = [{ description: t("Images"), accept: { "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"] } }];
   var PNG_TYPES = [{ description: t("PNG image"), accept: { "image/png": [".png"] } }];
-  var baseName = (n4) => n4.replace(/\.[a-z0-9]+$/i, "");
+  var baseName = (n5) => n5.replace(/\.[a-z0-9]+$/i, "");
   function confirmDiscard() {
     return !rt.dirty || confirm(t("Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)"));
   }
@@ -2825,15 +2859,15 @@
         const text = await f.text(), { w, h } = svgSize(text);
         return await svgToCanvas(text, Math.min(MAX_SIDE, Math.max(512, Math.round(Math.max(w, h)))));
       }
-      const url = URL.createObjectURL(f);
+      const url2 = URL.createObjectURL(f);
       try {
-        const img = await loadImg(url);
+        const img = await loadImg(url2);
         const k = Math.min(1, MAX_SIDE / Math.max(img.naturalWidth, img.naturalHeight));
         const c = makeCanvas(Math.round(img.naturalWidth * k), Math.round(img.naturalHeight * k));
         c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
         return c;
       } finally {
-        URL.revokeObjectURL(url);
+        URL.revokeObjectURL(url2);
       }
     } catch {
       return null;
@@ -2969,13 +3003,921 @@
     fitView();
   }
 
+  // worker-source:worker-source
+  var worker_source_default = '(()=>{var _=null,W=new Map;function Zt(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(W.has(t))return W.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let o=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(_=_||document.createElement("canvas").getContext("2d"),_.fillStyle="#000",_.fillStyle=n,o=_.fillStyle),W.set(t,o),o}function tt(e){if(Array.isArray(e))return e;let t=Zt(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(o=>parseInt(t.slice(o,o+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function z([e,t,n]){let o=g=>(g/=255,g<=.04045?g/12.92:Math.pow((g+.055)/1.055,2.4)),a=o(e),s=o(t),r=o(n),m=(a*.4124+s*.3576+r*.1805)/.95047,i=a*.2126+s*.7152+r*.0722,l=(a*.0193+s*.1192+r*.9505)/1.08883,c=g=>g>216/24389?Math.cbrt(g):(24389/27*g+16)/116,u=c(m),f=c(i),p=c(l);return[116*f-16,500*(u-f),200*(f-p)]}function mt(e,t,n){n=n||t.map(r=>z(tt(r)));let o=z(e),a=null,s=1/0;return t.forEach((r,m)=>{let i=n[m],l=(o[0]-i[0])**2+(o[1]-i[1])**2+(o[2]-i[2])**2;l<s&&(s=l,a=r)}),a}var ft=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function ht(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:tt(e)}function N(e,t=255){let n=e?ht(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var et=e=>e.toString(16).padStart(2,"0"),rt=(e,t,n)=>"#"+et(e)+et(t)+et(n);function nt(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function pt(e){let t=e.map(o=>z(ht(o))),n=new Map;return(o,a,s)=>{let r=o<<16|a<<8|s,m=n.get(r);return m||(m=mt([o,a,s],e,t),n.set(r,m)),m}}function bt(e,t){let{width:n,height:o}=e,a=e.data,s=ft(n,o),r=s.data,m=Math.max(2,Math.round(t.tile)),i=Math.min(m-1,Math.max(0,Math.round(t.grout))),l=t.palette&&t.palette.length?pt(t.palette):null,c=N(t.groutColor),u=new Map,f=0;for(let p=0,g=0;p<o;p+=m,g++){let M=t.bricks&&g%2?-Math.floor(m/2):0;for(let P=M;P<n;P+=m){let v=Math.max(0,P),I=Math.min(n,P+m),w=Math.min(o,p+m),k=0,$=0,d=0,S=0,h=0;for(let x=p;x<w-(w===p+m?i:0);x++)for(let A=v;A<Math.min(I,P+m-i);A++){let R=(x*n+A)*4;h++,!(a[R+3]<128)&&(k+=a[R],$+=a[R+1],d+=a[R+2],S++)}let b=S>0&&S>=h/2,y=[0,0,0,0];if(b){k=Math.round(k/S),$=Math.round($/S),d=Math.round(d/S);let x=l?l(k,$,d):rt(k,$,d);y=N(x),u.set(x,(u.get(x)||0)+1),f++}for(let x=p;x<w;x++)for(let A=v;A<I;A++){let R=A>=P+m-i||x>=p+m-i;nt(r,(x*n+A)*4,R?b?c:[0,0,0,0]:y)}}}return{img:s,counts:u,tiles:f}}function gt(e){let{width:t,height:n,data:o}=e,a=t*n,s=new Int32Array(a).fill(-1),r=[],m=[],i=c=>o[c*4+3]<128?-1:o[c*4]<<16|o[c*4+1]<<8|o[c*4+2],l=[];for(let c=0;c<a;c++){if(s[c]>=0)continue;let u=i(c);if(u<0)continue;let f=r.length,p=0;for(s[c]=f,l.push(c);l.length;){let g=l.pop(),M=g%t;p++;for(let P of[M>0?g-1:-1,M<t-1?g+1:-1,g-t,g+t])P<0||P>=a||s[P]>=0||i(P)!==u||(s[P]=f,l.push(P))}r.push(rt(u>>16,u>>8&255,u&255)),m.push(p)}return{labels:s,colors:r,sizes:m}}function xt(e,t,n,o,a){let s=[],r=e.data;for(let i=0;i<5;i++)for(let l=0;l<5;l++){let c=Math.floor(t+o*(i+.5)/5),u=Math.floor(n+a*(l+.5)/5);if(c<0||u<0||c>=e.width||u>=e.height)continue;let f=(u*e.width+c)*4;r[f+3]>=128&&s.push(z([r[f],r[f+1],r[f+2]]))}if(s.length<2)return 0;let m=[0,1,2].map(i=>s.reduce((l,c)=>l+c[i],0)/s.length);return s.reduce((i,l)=>i+Math.hypot(l[0]-m[0],l[1]-m[1],l[2]-m[2]),0)/s.length}function Kt(e,t,n,o){let a=n.length,s=n.map(i=>i.y),r=Math.max(0,Math.floor(Math.min(...s))),m=Math.min(t-1,Math.ceil(Math.max(...s)));for(let i=r;i<=m;i++){let l=i+.5,c=[];for(let u=0;u<a;u++){let f=n[u],p=n[(u+1)%a];f.y<=l!=p.y<=l&&c.push(f.x+(l-f.y)*(p.x-f.x)/(p.y-f.y))}c.sort((u,f)=>u-f);for(let u=0;u+1<c.length;u+=2){let f=Math.max(0,Math.ceil(c[u]-.5)),p=Math.min(e-1,Math.floor(c[u+1]-.5));for(let g=f;g<=p;g++)o(i*e+g)}}}function yt(e,t,n){let{width:o,height:a}=e,s=e.data,r=ft(o,a),m=r.data,i=n.palette&&n.palette.length?pt(n.palette):null,l=new Map,c=[],u=0;for(let p of t){let g=0,M=0,P=0,v=0,I=0,w=[];if(Kt(o,a,p,d=>{w.push(d),I++;let S=d*4;s[S+3]<128||(g+=s[S],M+=s[S+1],P+=s[S+2],v++)}),!v||v<I/2)continue;g=Math.round(g/v),M=Math.round(M/v),P=Math.round(P/v);let k=i?i(g,M,P):rt(g,M,P),$=N(k);for(let d of w)nt(m,d*4,$);l.set(k,(l.get(k)||0)+1),u++,c.push(p)}let f=Math.max(0,n.grout)/2;if(f>0){let p=N(n.groutColor);for(let g of c)for(let M=0;M<g.length;M++){let P=g[M],v=g[(M+1)%g.length],I=v.x-P.x,w=v.y-P.y,k=I*I+w*w||1,$=Math.max(0,Math.floor(Math.min(P.x,v.x)-f)),d=Math.min(o-1,Math.ceil(Math.max(P.x,v.x)+f)),S=Math.max(0,Math.floor(Math.min(P.y,v.y)-f)),h=Math.min(a-1,Math.ceil(Math.max(P.y,v.y)+f));for(let b=S;b<=h;b++)for(let y=$;y<=d;y++){let x=y+.5,A=b+.5,R=Math.max(0,Math.min(1,((x-P.x)*I+(A-P.y)*w)/k)),B=P.x+R*I-x,U=P.y+R*w-A;B*B+U*U<=f*f&&nt(m,(b*o+y)*4,p)}}}return{img:r,counts:l,tiles:u}}function dt(e){let t=new Map;return e.colors.forEach((n,o)=>{let a=t.get(n)||{n:0,color:n,pieces:0,pixels:0};a.pieces++,a.pixels+=e.sizes[o],t.set(n,a)}),[...t.values()].sort((n,o)=>o.pixels-n.pixels).map((n,o)=>({...n,n:o+1}))}var J=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y);function wt(e,t,n,o,a){let s=[];for(let r=0;r<e;r++){let m=a+r*2*Math.PI/e;s.push({x:t+o*Math.cos(m),y:n+o*Math.sin(m)})}return s}var Y=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}],ot=e=>(e%2+2)%2===1,E=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function vt(e,t,n){let o=[];if(e==="square"){let[a,s]=E(n.x0,n.x1,t),[r,m]=E(n.y0,n.y1,t);for(let i=a;i<=s;i++)for(let l=r;l<=m;l++)o.push(Y(i*t,l*t,t,t))}else if(e==="brick"){let a=2*t,[s,r]=E(n.y0,n.y1,t);for(let m=s;m<=r;m++){let i=ot(m)?t:0,[l,c]=E(n.x0-i,n.x1-i,a);for(let u=l;u<=c;u++)o.push(Y(i+u*a,m*t,a,t))}}else if(e==="hex"){let a=Math.sqrt(3)*t,s=1.5*t,[r,m]=E(n.y0,n.y1,s);for(let i=r;i<=m;i++){let l=ot(i)?a/2:0,[c,u]=E(n.x0-l,n.x1-l,a);for(let f=c;f<=u;f++)o.push(wt(6,l+f*a,i*s,t,-Math.PI/2))}}else if(e==="triangle"){let a=t*Math.sqrt(3)/2,[s,r]=E(n.y0,n.y1,a);for(let m=s;m<=r;m++){let i=m*a,l=ot(m)?t/2:0,[c,u]=E(n.x0-l,n.x1-l,t);for(let f=c;f<=u;f++){let p=l+f*t;o.push([{x:p,y:i+a},{x:p+t/2,y:i},{x:p+t,y:i+a}]),o.push([{x:p+t/2,y:i},{x:p+1.5*t,y:i},{x:p+t,y:i+a}])}}}else if(e==="herringbone"){let a=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([u,f])=>[u/t,f/t]),s=a.map(([u,f])=>(u+f)/4),r=a.map(([u,f])=>(u-f)/2),m=Math.floor(Math.min(...s))-2,i=Math.ceil(Math.max(...s))+2,l=Math.floor(Math.min(...r))-2,c=Math.ceil(Math.max(...r))+2;for(let u=m;u<=i;u++)for(let f=l;f<=c;f++)o.push(Y((2*u+f)*t,(2*u-f)*t,t,2*t)),o.push(Y((2*u+1+f)*t,(2*u+1-f)*t,2*t,t))}return o}function ee(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var H=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}];function ne(e,t,n,o){let a=n?t*2:t,s=n?t/2:t,r=[],m=(i,l,c)=>{if(!(i>=e.x+e.w-1e-9||l>=e.y+e.h-1e-9))if(c>s*1.0001&&o(i,l,c,c)){let u=c/2;m(i,l,u),m(i+u,l,u),m(i,l+u,u),m(i+u,l+u,u)}else r.push({x:i,y:l,s:c})};for(let i=0;i*a<e.h;i++)for(let l=0;l*a<e.w;l++)m(e.x+l*a,e.y+i*a,a);return r}function re(e,t){let n=[];for(let o=0,a=e.length;o<a;o++){let s=e[o],r=e[(o+1)%a],m=t(s),i=t(r);if(m<=0&&n.push(s),m<0&&i>0||m>0&&i<0){let l=m/(m-i);n.push({x:s.x+(r.x-s.x)*l,y:s.y+(r.y-s.y)*l})}}return n}function oe(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,o=new Map,a=(r,m)=>r+","+m;e.forEach((r,m)=>{let i=a(Math.floor(r.x/n),Math.floor(r.y/n));(o.get(i)||o.set(i,[]).get(i)).push(m)});let s=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((r,m)=>{let i=Math.floor(r.x/n),l=Math.floor(r.y/n),c=H(t.x,t.y,t.w,t.h),u=()=>Math.max(...c.map(f=>J(f,r)));for(let f=0;f<=s&&c.length>=3&&!((f-1)*n>2*u());f++){let p=[];for(let g=i-f;g<=i+f;g++)for(let M=l-f;M<=l+f;M++)if(Math.max(Math.abs(g-i),Math.abs(M-l))===f)for(let P of o.get(a(g,M))||[])P!==m&&p.push(P);p.sort((g,M)=>J(e[g],r)-J(e[M],r));for(let g of p){let M=e[g],P=M.x-r.x,v=M.y-r.y,I=(r.x+M.x)/2,w=(r.y+M.y)/2;if(c=re(c,k=>(k.x-I)*P+(k.y-w)*v),c.length<3)break}}return c}).filter(r=>r.length>=3)}function At({style:e,box:t,size:n,detail:o=0,busy:a=()=>!1,seed:s=1}){let r=o>0;if(e==="hex"){let i=n/Math.sqrt(3);return vt("hex",i,{x0:-i,y0:-i,x1:t.w+i,y1:t.h+i}).map(l=>l.map(c=>({x:c.x+t.x,y:c.y+t.y})))}if(e==="brick"){let i=[];for(let l=0;l*n<t.h;l++){let c=l%2?-n:0;for(let u=t.x+c;u<t.x+t.w;u+=2*n){let f=t.y+l*n;r&&a(u,f,2*n,n)?i.push(H(u,f,n,n),H(u+n,f,n,n)):i.push(H(u,f,2*n,n))}}return i}let m=ne(t,n,r,a);if(e==="irregular"){let i=ee(s),l=m.map(c=>({x:c.x+c.s*(.5+(i()-.5)*.7),y:c.y+c.s*(.5+(i()-.5)*.7)})).filter(c=>c.x>=t.x&&c.y>=t.y&&c.x<=t.x+t.w&&c.y<=t.y+t.h);return oe(l,t)}return m.map(i=>H(i.x,i.y,i.s,i.s))}var q=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function ae(e,t,n){let o=new Uint8Array(t*n),a=[];for(let s=0;s<n;s++)for(let r=0;r<t;r++){let m=s*t+r,i=e[m];if(i<0||o[m])continue;let l=1;for(;r+l<t&&e[m+l]===i&&!o[m+l];)l++;let c=1;t:for(;s+c<n;){let u=(s+c)*t+r;for(let f=0;f<l;f++)if(e[u+f]!==i||o[u+f])break t;c++}for(let u=s;u<s+c;u++)o.fill(1,u*t+r,u*t+r+l);a.push({x:r,y:s,w:l,h:c,level:i})}return a}function ie(e,t){let n=new Int16Array(e.length);for(let o=0;o<e.length;o++)n[o]=e[o]===-2?0:e[o]<0?t.baseLayers:q(e[o],t);return n}function St(e,t){let n=e.length,o=ie(e,t),a=new Int16Array(n);for(let s=0;s<n;s++)a[s]=Math.max(0,e[s]);return{bottom:new Int16Array(n),top:o,level:a}}function st(e,t,n,o,a){let s=(h,b)=>h>=0&&b>=0&&h<t&&b<n,r=(h,b)=>s(h,b)?e.bottom[b*t+h]:0,m=(h,b)=>{if(!s(h,b))return 0;let y=b*t+h;return e.top[y]>e.bottom[y]?e.top[y]:e.bottom[y]},i=(h,b)=>m(h,b)>r(h,b),l=(h,b)=>s(h,b)?e.level[b*t+h]:0,c=[],u=h=>n-h,f=new Int16Array(t*n),p=h=>{let b=new Map,y=[];for(let x=0;x<n;x++)for(let A=0;A<t;A++){let R=x*t+A;if(!i(A,x)){f[R]=-1;continue}let B=h(A,x)*4096+l(A,x),U=b.get(B);U==null&&(U=y.length,b.set(B,U),y.push(B)),f[R]=U}return{rs:ae(f,t,n),vals:y}};{let{rs:h,vals:b}=p(m);for(let y of h){let x=b[y.level];c.push({o:[y.x,u(y.y+y.h),Math.floor(x/4096)],u:[y.w,0,0],v:[0,y.h,0],level:x%4096})}}{let{rs:h,vals:b}=p(r);for(let y of h){let x=b[y.level];c.push({o:[y.x,u(y.y+y.h),Math.floor(x/4096)],u:[0,y.h,0],v:[y.w,0,0],level:x%4096})}}let g=(h,b,y,x)=>{if(b<=h)return[];if(x<=y||x<=h||y>=b)return[[h,b]];let A=[];return y>h&&A.push([h,y]),x<b&&A.push([x,b]),A},M=(h,b)=>i(h,b)?[r(h,b),m(h,b)]:[0,0];for(let h=0;h<=n;h++)for(let b=0;b<t;){let[y,x]=M(b,h-1),[A,R]=M(b,h);if(y===A&&x===R){b++;continue}let B=b+1;for(;B<t;B++){let[j,L]=M(B,h-1),[T,C]=M(B,h);if(j!==y||L!==x||T!==A||C!==R)break}let U=u(h);for(let[j,L]of g(y,x,A,R))c.push({o:[b,U,j],u:[B-b,0,0],v:[0,0,L-j],level:l(b,h-1)});for(let[j,L]of g(A,R,y,x))c.push({o:[b,U,j],u:[0,0,L-j],v:[B-b,0,0],level:l(b,h)});b=B}for(let h=0;h<=t;h++)for(let b=n-1;b>=0;){let[y,x]=M(h-1,b),[A,R]=M(h,b);if(y===A&&x===R){b--;continue}let B=b-1;for(;B>=0;B--){let[L,T]=M(h-1,B),[C,O]=M(h,B);if(L!==y||T!==x||C!==A||O!==R)break}let U=u(b+1),j=b-B;for(let[L,T]of g(A,R,y,x))c.push({o:[h,U,L],u:[0,0,T-L],v:[0,j,0],level:l(h,b)});for(let[L,T]of g(y,x,A,R))c.push({o:[h,U,L],u:[0,j,0],v:[0,0,T-L],level:l(h-1,b)});b=B}let P=[new Map,new Map,new Map],v=(h,b,y)=>h.o.map((x,A)=>x+b*h.u[A]+y*h.v[A]),I=(h,b)=>b===0?h[1]*1e5+h[2]:b===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of c)for(let[b,y]of[[0,0],[1,0],[1,1],[0,1]]){let x=v(h,b,y);for(let A=0;A<3;A++){let R=I(x,A),B=P[A].get(R);B||P[A].set(R,B=[]),B.push(x[A])}}for(let h of P)for(let[b,y]of h)h.set(b,[...new Set(y)].sort((x,A)=>x-A));let w=[],k=[],$=[],d=new Map,S=h=>{let b=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,y=d.get(b);return y==null&&(y=w.length/3,d.set(b,y),w.push(h[0]*o,h[1]*o,h[2]*a)),y};for(let h of c){let b=[v(h,0,0),v(h,1,0),v(h,1,1),v(h,0,1)],y=[];for(let A=0;A<4;A++){let R=b[A],B=b[(A+1)%4],U=R.findIndex((C,O)=>C!==B[O]);y.push(R);let j=Math.min(R[U],B[U]),L=Math.max(R[U],B[U]),T=(P[U].get(I(R,U))||[]).filter(C=>C>j&&C<L);R[U]>B[U]&&T.reverse();for(let C of T){let O=[...R];O[U]=C,y.push(O)}}let x=y.map(S);if(x.length===4)k.push(x[0],x[1],x[2],x[0],x[2],x[3]),$.push(h.level,h.level);else{let A=S(v(h,.5,.5));for(let R=0;R<x.length;R++)k.push(A,x[R],x[(R+1)%x.length]),$.push(h.level)}}return{vertices:w,triangles:k,levels:$}}function kt(e,t,n,o,a,s){let r=Int16Array.from(e),m=t*n,i=new Int32Array(m),l=new Float32Array(m),c=s.heightOf||(f=>f===-2?0:(f<0?a.baseLayers:q(f,a))*a.layerHeight),u=0;for(let f=0;f<12;f++){i.fill(-1);let p=[],g=[];for(let d=0;d<m;d++){if(i[d]>=0)continue;let S=p.length,h=r[d];for(p.push(h),i[d]=S,g.push(d);g.length;){let b=g.pop(),y=b%t;for(let x of[y>0?b-1:-1,y<t-1?b+1:-1,b-t,b+t])x<0||x>=m||i[x]>=0||r[x]!==h||(i[x]=S,g.push(x))}}let M=Math.SQRT2;for(let d=0;d<m;d++){let S=d%t,h=d/t|0,b=i[d],y=S===0||h===0||S===t-1||h===n-1||i[d-1]!==b||i[d+1]!==b||i[d-t]!==b||i[d+t]!==b;l[d]=y?1:1e9}for(let d=0;d<n;d++)for(let S=0;S<t;S++){let h=d*t+S;l[h]<=1||(l[h]=Math.min(l[h],l[h-1]+1,l[h-t]+1,l[h-t-1]+M,l[h-t+1]+M))}for(let d=n-1;d>=0;d--)for(let S=t-1;S>=0;S--){let h=d*t+S;l[h]<=1||(l[h]=Math.min(l[h],l[h+1]+1,l[h+t]+1,l[h+t+1]+M,l[h+t-1]+M))}let P=new Float32Array(p.length);for(let d=0;d<m;d++)l[d]>P[i[d]]&&(P[i[d]]=l[d]);let v=p.map(()=>new Map),I=new Float64Array(p.length).fill(1/0),w=(d,S)=>{let h=i[d],b=i[S];if(h===b)return;let y=r[d],x=r[S];I[h]=Math.min(I[h],c(x)),I[b]=Math.min(I[b],c(y)),x<y&&v[h].set(x,(v[h].get(x)||0)+1),y<x&&v[b].set(y,(v[b].get(y)||0)+1)};for(let d=0;d<n;d++)for(let S=0;S<t;S++){let h=d*t+S;S<t-1&&w(h,h+1),d<n-1&&w(h,h+t)}let k=new Int16Array(p.length).fill(-32768),$=0;if(p.forEach((d,S)=>{let h=c(d)-I[S];if(!(h>1e-9)||!v[S].size)return;let b=Math.max(1,2*P[S]-1)*o;if(b>=s.minWidth&&h<=s.maxRatio*b)return;let y=-2,x=-1;for(let[A,R]of v[S])(R>x||R===x&&A>y)&&(y=A,x=R);k[S]=y,$++}),!$)break;for(let d=0;d<m;d++){let S=k[i[d]];S!==-32768&&(r[d]=S)}u+=$}return{grid:r,lowered:u}}function at(e,t="Mosaic Paint"){let n=e.vertices,o=e.triangles,a=o.length/3,s=new ArrayBuffer(84+a*50),r=new DataView(s),m=`${t} – multi-color by layer`.slice(0,80);for(let l=0;l<m.length;l++)r.setUint8(l,m.charCodeAt(l)&127);r.setUint32(80,a,!0);let i=84;for(let l=0;l<a;l++){let c=[0,1,2].map($=>o[l*3+$]*3),u=n[c[1]]-n[c[0]],f=n[c[1]+1]-n[c[0]+1],p=n[c[1]+2]-n[c[0]+2],g=n[c[2]]-n[c[0]],M=n[c[2]+1]-n[c[0]+1],P=n[c[2]+2]-n[c[0]+2],v=f*P-p*M,I=p*g-u*P,w=u*M-f*g,k=Math.hypot(v,I,w)||1;v/=k,I/=k,w/=k;for(let $ of[v,I,w])r.setFloat32(i,$,!0),i+=4;for(let $ of c)for(let d=0;d<3;d++)r.setFloat32(i,n[$+d],!0),i+=4;r.setUint16(i,0,!0),i+=2}return s}function Rt(e,t){return e.map((n,o)=>{let a=o===0?1:q(o-1,t)+1,s=q(o,t);return{color:n,fromLayer:a,toLayer:s,changeAtLayer:o===0?null:a,z:o===0?null:+(a*t.layerHeight).toFixed(3)}})}var G=-3,le=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function It(e,t,n,o,a){let s=Math.max(0,Math.round(o.frame)),r=t+2*s,m=n+2*s,i=new Int16Array(r*m).fill(G);for(let f=0;f<n;f++)for(let p=0;p<t;p++)i[(f+s)*r+p+s]=e[f*t+p];let l=Math.min(o.corner,r/2,m/2),c=o.hole/2,u=le(o,a);for(let f=0;f<m;f++)for(let p=0;p<r;p++){let g=p+.5,M=f+.5;if(l>0){let P=g<l?l:g>r-l?r-l:g,v=M<l?l:M>m-l?m-l:M;if((g-P)**2+(M-v)**2>l*l){i[f*r+p]=-2;continue}}c>0&&(g-r/2)**2+(M-u)**2<=c*c&&(i[f*r+p]=-2)}return{grid:i,w:r,h:m}}function $t(e,t,n,o){let a=new Uint8Array(e*t),s=n/2;if(s<=0)return a;let r=[o,e-o],m=[o,t-o];for(let i of r)for(let l of m)for(let c=Math.max(0,Math.floor(l-s));c<Math.min(t,Math.ceil(l+s));c++)for(let u=Math.max(0,Math.floor(i-s));u<Math.min(e,Math.ceil(i+s));u++)(u+.5-i)**2+(c+.5-l)**2<=s*s&&(a[c*e+u]=1);return a}function Bt(e,t,n,o=2){let a=n;for(let s=0;s<t.length;s++){if(!t[s])continue;let r=0;for(let m of e)m.top[s]>m.bottom[s]&&(r=Math.max(r,m.top[s]));r>0&&(a=Math.min(a,r-o))}if(a=Math.max(0,a),!a)return 0;for(let s=0;s<t.length;s++)if(t[s])for(let r of e)r.top[s]>r.bottom[s]&&r.bottom[s]<a&&(r.bottom[s]=a,r.top[s]<a&&(r.top[s]=a));return a}function Ut(e,t,n,o){let a=e.length,s={bottom:new Int16Array(a).fill(t),top:new Int16Array(a),level:new Int16Array(a).fill(o)};for(let r=0;r<a;r++)e[r]===G&&(s.top[r]=n);return s}var F=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),D=e=>String(+e.toFixed(4)),it=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,V=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function ue(e,t,n){let o=e.vertices,a=e.triangles,s=[];s.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${F(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let r of t)s.push(`<base name="${F(r)}" displaycolor="${r.toUpperCase()}FF"/>`);s.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${F(n)}">`,"<mesh>","<vertices>");for(let r=0;r<o.length;r+=3)s.push(`<vertex x="${D(o[r])}" y="${D(o[r+1])}" z="${D(o[r+2])}"/>`);s.push("</vertices>","<triangles>");for(let r=0;r<a.length;r+=3)s.push(`<triangle v1="${a[r]}" v2="${a[r+1]}" v3="${a[r+2]}" pid="1" p1="${Math.max(0,e.levels[r/3])}"/>`);return s.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),s.join(`\n`)}function ce(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Lt(e,t,n){return[{name:"[Content_Types].xml",data:it},{name:"_rels/.rels",data:V},{name:"3D/3dmodel.model",data:ue(e,t.map(o=>o.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:ce(t)}]}function jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,o=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return a=>a===-2?0:a<0?t.baseLayers*t.layerHeight:e[a]?o:n}function Ft(e,t,n,o,a,s){let r=t*n,m=[];if(s.baseLayers>0){let i=new Int16Array(r);for(let l=0;l<r;l++)e[l]!==-2&&(i[l]=s.baseLayers);m.push({part:-1,solid:{bottom:new Int16Array(r),top:i,level:new Int16Array(r)}})}for(let i=0;i<o;i++){let l=new Int16Array(r).fill(s.baseLayers),c=new Int16Array(r),u=new Int16Array(r).fill(i),f=s.baseLayers+(a[i]?Math.max(1,s.tileLayers-s.groutRecess):s.tileLayers),p=!1;for(let g=0;g<r;g++)e[g]===i&&(c[g]=f,p=!0);p&&m.push({part:i,solid:{bottom:l,top:c,level:u}})}return m}function Tt(e,t,n="prusa"){return n==="bambu"?me(e,t):fe(e,t)}function me(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',o=(l,c)=>`${l.toString(16).padStart(8,"0")}-0000-4000-8000-${c.toString(16).padStart(12,"0")}`,a=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((l,c)=>{let u=l.mesh.vertices,f=l.mesh.triangles;a.push(`<object id="${c+1}" p:UUID="${o(1,c)}" type="model">`,"<mesh>","<vertices>");for(let p=0;p<u.length;p+=3)a.push(`<vertex x="${D(u[p])}" y="${D(u[p+1])}" z="${D(u[p+2])}"/>`);a.push("</vertices>","<triangles>");for(let p=0;p<f.length;p+=3)a.push(`<triangle v1="${f[p]}" v2="${f[p+1]}" v3="${f[p+2]}"/>`);a.push("</triangles>","</mesh>","</object>")}),a.push("</resources>","<build/>","</model>");let s=e.length+1,r="/3D/Objects/object_1.model",m=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${F(t)}</metadata>`,"<resources>",`<object id="${s}" p:UUID="${o(2,0)}" type="model">`,"<components>"];e.forEach((l,c)=>m.push(`<component p:path="${r}" objectid="${c+1}" p:UUID="${o(3,c)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),m.push("</components>","</object>","</resources>",`<build p:UUID="${o(4,0)}">`,`<item objectid="${s}" p:UUID="${o(5,0)}" printable="1"/>`,"</build>","</model>");let i=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${s}">`,`<metadata key="name" value="${F(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((l,c)=>i.push(`<part id="${c+1}" subtype="normal_part">`,`<metadata key="name" value="${F(l.name)}"/>`,`<metadata key="extruder" value="${l.filament||c+1}"/>`,"</part>")),i.push("</object>","</config>"),[{name:"[Content_Types].xml",data:it},{name:"_rels/.rels",data:V},{name:"3D/3dmodel.model",data:m.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:V.replace("/3D/3dmodel.model",r)},{name:"3D/Objects/object_1.model",data:a.join(`\n`)},{name:"Metadata/model_settings.config",data:i.join(`\n`)}]}function fe(e,t){let n=[],o=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${F(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let r of e)n.push(`<base name="${F(r.name)}" displaycolor="${r.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${F(t)}">`,"<mesh>","<vertices>");for(let r of e){let m=r.mesh.vertices;for(let i=0;i<m.length;i+=3)n.push(`<vertex x="${D(m[i])}" y="${D(m[i+1])}" z="${D(m[i+2])}"/>`)}n.push("</vertices>","<triangles>"),o.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${F(t)}"/>`);let a=0,s=0;return e.forEach((r,m)=>{let i=r.mesh.triangles,l=i.length/3;for(let c=0;c<i.length;c+=3)n.push(`<triangle v1="${i[c]+a}" v2="${i[c+1]+a}" v3="${i[c+2]+a}" pid="2" p1="${m}"/>`);o.push(`<volume firstid="${s}" lastid="${s+l-1}">`,`<metadata type="volume" key="name" value="${F(r.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${r.filament||m+1}"/>`,"</volume>"),a+=r.mesh.vertices.length/3,s+=l}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),o.push("</object>","</config>"),[{name:"[Content_Types].xml",data:it},{name:"_rels/.rels",data:V},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:o.join(`\n`)}]}function Ct(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let o=t.vertices.length/3;for(let a of n.vertices)t.vertices.push(a);for(let a of n.triangles)t.triangles.push(a+o);for(let a of n.levels)t.levels.push(a)}return t}var Z=null;function pe(e){if(!Z){Z=new Uint32Array(256);for(let n=0;n<256;n++){let o=n;for(let a=0;a<8;a++)o=o&1?3988292384^o>>>1:o>>>1;Z[n]=o>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=Z[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function be(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function X(e,{compress:t=!0}={}){let n=new TextEncoder,o=[],a=[],s=0;for(let u of e){let f=n.encode(u.name),p=typeof u.data=="string"?n.encode(u.data):u.data,g=pe(p),M=t?await be(p):null,P=!!M&&M.length<p.length,v=P?M:p,I=new Uint8Array(30+f.length),w=new DataView(I.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,g,!0),w.setUint32(18,v.length,!0),w.setUint32(22,p.length,!0),w.setUint16(26,f.length,!0),I.set(f,30);let k=new Uint8Array(46+f.length),$=new DataView(k.buffer);$.setUint32(0,33639248,!0),$.setUint16(4,20,!0),$.setUint16(6,20,!0),$.setUint16(8,2048,!0),$.setUint16(10,P?8:0,!0),$.setUint16(12,0,!0),$.setUint16(14,33,!0),$.setUint32(16,g,!0),$.setUint32(20,v.length,!0),$.setUint32(24,p.length,!0),$.setUint16(28,f.length,!0),$.setUint32(42,s,!0),k.set(f,46),o.push(I,v),a.push(k),s+=I.length+v.length}let r=a.reduce((u,f)=>u+f.length,0),m=new Uint8Array(22),i=new DataView(m.buffer);i.setUint32(0,101010256,!0),i.setUint16(8,e.length,!0),i.setUint16(10,e.length,!0),i.setUint32(12,r,!0),i.setUint32(16,s,!0);let l=new Uint8Array(s+r+22),c=0;for(let u of[...o,...a,m])l.set(u,c),c+=u.length;return l}var Dt=2,ge=2,K=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Gt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),xe=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Ot(e,t,n,o,a,s,r,m,i){let l=a.filter(p=>s[p]>0),c={list:l,grid:new Int16Array(0),counts:[],lowered:0},u=Int16Array.from(e),f=0;for(let p=0;p<4;p++){i?.(p/4);let g=new Int16Array(r.length).fill(-1);l.forEach((w,k)=>{g[w]=k});let M=u.map(w=>w<0?-1:g[w]),P=m.mode==="flat"?jt(l.map(w=>r[w]),Gt(m)):void 0,v=kt(M,t,n,o,K(m),{minWidth:m.minWidth,maxRatio:m.maxRatio,heightOf:P});f+=v.lowered;let I=l.map(()=>0);for(let w=0;w<v.grid.length;w++){let k=v.grid[w];k>=0&&I[k]++,u[w]=k<0?-1:l[k]}if(c={list:l,grid:v.grid,counts:I,lowered:f},I.every(w=>w>0))break;l=l.filter((w,k)=>I[k]>0)}return c}var Et=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:q(Math.max(0,e-1),K(t)))+t.frameRaise;function qt(e,t,n,o,a){let s=It(e,t,n,{frame:a.frame/o,corner:a.corner/o,hole:a.hole/o},Dt/o),r=(a.magnet/2+Dt+a.corner*.3)/o;return{...s,mask:a.magnet>0?$t(s.w,s.h,a.magnet/o,r):null}}function _t(e,t,n){let o=t.length,a;if(n.mode==="flat")a=Ft(e.grid,e.w,e.h,o,t,Gt(n)),n.frame>0&&a.splice(n.baseLayers?1:0,0,{part:G,solid:Ut(e.grid,n.baseLayers,Et(o,n),0)});else{let s=St(e.grid,K(n)),r=Et(o,n);for(let m=0;m<e.grid.length;m++)e.grid[m]===G&&(s.top[m]=r,s.level[m]=o-1);a=[{part:0,solid:s}]}return e.mask&&Bt(a.map(s=>s.solid),e.mask,xe(n.magnetDepth,n),ge),a}function zt(e,t){let n=qt(e.grid,e.w,e.h,e.cell,t);return Ct(_t(n,e.grout,t).map(o=>st(o.solid,n.w,n.h,e.cell,t.layerHeight)))}async function Ht(e,t){let{shape:n,o}=e,a=qt(n.grid,n.w,n.h,n.cell,o);t?.(.05);let s=_t(a,n.grout,o);t?.(.15);let r=s.map((l,c)=>{let u=st(l.solid,a.w,a.h,n.cell,o.layerHeight);return t?.(.15+.7*(c+1)/s.length),u}),m=r.reduce((l,c)=>l+c.triangles.length/3,0),i=(l,c,u)=>({fileName:l,type:c,data:u,triangles:m,parts:r.length});if(o.mode==="flat"){let l=s.map((u,f)=>{let p=Math.max(0,u.part),g=e.colors[p];return{name:u.part===G?e.labels.frame:u.part<0?e.labels.base:`${u.part+1} ${g}`,color:g,mesh:r[f],filament:p+1}});if(e.kind==="3mf")return i(e.name+".3mf","model/3mf",await X(Tt(l,e.name,e.slicer)));let c=s.map((u,f)=>({name:`${e.name}-${u.part===G?"frame":u.part<0?"base":`${u.part+1}-${e.colors[u.part].slice(1)}`}.stl`,data:new Uint8Array(at(l[f].mesh,l[f].name))}));return i(e.name+"-stl.zip","application/zip",await X(c))}return e.kind==="3mf"?i(e.name+".3mf","model/3mf",await X(Lt(r[0],Rt(e.colors,K(o)),e.name))):i(e.name+".stl","model/stl",new Uint8Array(at(r[0],e.name)))}function Jt(e,t,n,o,a){let s=(u,f)=>u<0||f<0||u>=t||f>=n?-1:e[f*t+u],r=t+1,m=(u,f)=>f*r+u,i=Array.from({length:o},()=>new Map),l=(u,f,p,g,M)=>{let P=i[u],v=m(f,p),I=P.get(v);I?I.push(m(g,M)):P.set(v,[m(g,M)])};for(let u=0;u<n;u++)for(let f=0;f<t;f++){a&&f===0&&u%64===0&&a(.5*u/n);let p=e[u*t+f];p<0||(s(f,u-1)!==p&&l(p,f+1,u,f,u),s(f-1,u)!==p&&l(p,f,u,f,u+1),s(f,u+1)!==p&&l(p,f,u+1,f+1,u+1),s(f+1,u)!==p&&l(p,f+1,u+1,f+1,u))}let c=[];for(let u=0;u<o;u++){a&&u%256===0&&a(.5+.5*u/o);let f=i[u],p=[];for(let[g]of f)for(;f.get(g)&&f.get(g).length;){let M=[g],P=g,v=Nt(f,g,-1,r);for(;v!==g;){M.push(v);let I=Nt(f,v,P,r);P=v,v=I}p.push(de(M,r))}c.push(p)}return c}function Nt(e,t,n,o){let a=e.get(t),s=0;if(a.length>1&&n>=0){let m=t%o-n%o,i=Math.floor(t/o)-Math.floor(n/o),l=c=>{let u=c%o-t%o,f=Math.floor(c/o)-Math.floor(t/o);return u===i&&f===-m?0:u===m&&f===i?1:2};for(let c=1;c<a.length;c++)l(a[c])<l(a[s])&&(s=c)}let r=a[s];return a.splice(s,1),a.length||e.delete(t),r}function de(e,t){let n=e.map(s=>({x:s%t,y:Math.floor(s/t)})),o=n.length,a=[];for(let s=0;s<o;s++){let r=n[(s+o-1)%o],m=n[s],i=n[(s+1)%o];(m.x-r.x)*(i.y-m.y)-(m.y-r.y)*(i.x-m.x)!==0&&a.push(m)}return a}function lt(e){let t=0;for(let n=0,o=e.length;n<o;n++){let a=e[n],s=e[(n+1)%o];t+=a.x*s.y-s.x*a.y}return t/2}var Q=e=>String(Math.round(e*1e3)/1e3);function Yt(e,t,n,o,a){let s=e.width,r=e.height,m=n/s,i=gt(e);a?.(.15);let l=new Int32Array(i.colors.length).fill(-1),c=[];i.colors.forEach((w,k)=>{w!==t&&(l[k]=c.length,c.push(w))});let u=i.labels.map(w=>w<0?-1:l[w]),f=Jt(u,s,r,c.length,a&&(w=>a(.15+.8*w))),p=[],g=w=>w.map(k=>`${Q(k.x*m)},${Q(k.y*m)}`).join(" ");f.forEach((w,k)=>{if(w.length===1)p.push(`<polygon points="${g(w[0])}" fill="${c[k]}" stroke="none"/>`);else{let d=[...w].sort((S,h)=>Math.abs(lt(h))-Math.abs(lt(S))).map(S=>"M"+g(S).replace(/ /g,"L")+"Z").join("");p.push(`<path d="${d}" fill="${c[k]}" fill-rule="evenodd" stroke="none"/>`)}});let M=Q(n),P=Q(r*m),v=[...new Set(dt(i).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${M} ${P}" width="${M}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:v,paletteName:o,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${M}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${p.join(`\n`)}\n</g>\n</svg>`,tiles:c.length}}function Me(e,t){let n=e.img,o=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!o)return bt(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let a=4+(1-e.detail/100)*26,s=(i,l,c,u)=>xt(n,i,l,c,u)>a,r=e.shape==="brick"?e.tile/2:e.tile,m=At({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:r,detail:e.detail/100,busy:s,seed:7});return t(.5),yt(n,m,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var Vt={mosaic:(e,t)=>Me(e,t),vectorize:(e,t)=>Yt(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Ot(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),view3d:e=>zt(e.shape,e.o),export3d:(e,t)=>Ht(e,t)};function ut(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let o of Object.values(e))ut(o,t+1,n);return[...n]}var ct=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:o}=e.data,a=0,s=r=>{let m=Date.now();m-a>100&&(a=m,ct({id:t,progress:r}))};try{let r=await Vt[n](o,s);ct({id:t,result:r},ut(r))}catch(r){ct({id:t,error:String(r?.message||r)})}};})();\n';
+
+  // src/lib/model3d.ts
+  var topLayer = (i, s) => s.baseLayers + (i + 1) * s.layersPerColor;
+  function greedyRects(grid, w, h) {
+    const done = new Uint8Array(w * h), out = [];
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const i = y * w + x, lv = grid[i];
+      if (lv < 0 || done[i]) continue;
+      let rw = 1;
+      while (x + rw < w && grid[i + rw] === lv && !done[i + rw]) rw++;
+      let rh = 1;
+      grow: while (y + rh < h) {
+        const row = (y + rh) * w + x;
+        for (let k = 0; k < rw; k++) if (grid[row + k] !== lv || done[row + k]) break grow;
+        rh++;
+      }
+      for (let yy = y; yy < y + rh; yy++) done.fill(1, yy * w + x, yy * w + x + rw);
+      out.push({ x, y, w: rw, h: rh, level: lv });
+    }
+    return out;
+  }
+  function cellHeights(grid, s) {
+    const out = new Int16Array(grid.length);
+    for (let i = 0; i < grid.length; i++) out[i] = grid[i] === -2 ? 0 : grid[i] < 0 ? s.baseLayers : topLayer(grid[i], s);
+    return out;
+  }
+  function heightSolid(grid, s) {
+    const n5 = grid.length, top = cellHeights(grid, s), level = new Int16Array(n5);
+    for (let i = 0; i < n5; i++) level[i] = Math.max(0, grid[i]);
+    return { bottom: new Int16Array(n5), top, level };
+  }
+  function solidMesh(sol, w, h, cell, layerHeight) {
+    const inside2 = (x, y) => x >= 0 && y >= 0 && x < w && y < h;
+    const bot = (x, y) => inside2(x, y) ? sol.bottom[y * w + x] : 0;
+    const topOf = (x, y) => {
+      if (!inside2(x, y)) return 0;
+      const i = y * w + x;
+      return sol.top[i] > sol.bottom[i] ? sol.top[i] : sol.bottom[i];
+    };
+    const filled = (x, y) => topOf(x, y) > bot(x, y);
+    const level = (x, y) => inside2(x, y) ? sol.level[y * w + x] : 0;
+    const faces = [];
+    const Y = (y) => h - y;
+    const lv = new Int16Array(w * h);
+    const rects = (heightAt) => {
+      const ids = /* @__PURE__ */ new Map(), vals = [];
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const i = y * w + x;
+        if (!filled(x, y)) {
+          lv[i] = -1;
+          continue;
+        }
+        const k = heightAt(x, y) * 4096 + level(x, y);
+        let id = ids.get(k);
+        if (id == null) {
+          id = vals.length;
+          ids.set(k, id);
+          vals.push(k);
+        }
+        lv[i] = id;
+      }
+      return { rs: greedyRects(lv, w, h), vals };
+    };
+    {
+      const { rs, vals } = rects(topOf);
+      for (const r of rs) {
+        const k = vals[r.level];
+        faces.push({ o: [r.x, Y(r.y + r.h), Math.floor(k / 4096)], u: [r.w, 0, 0], v: [0, r.h, 0], level: k % 4096 });
+      }
+    }
+    {
+      const { rs, vals } = rects(bot);
+      for (const r of rs) {
+        const k = vals[r.level];
+        faces.push({ o: [r.x, Y(r.y + r.h), Math.floor(k / 4096)], u: [0, r.h, 0], v: [r.w, 0, 0], level: k % 4096 });
+      }
+    }
+    const diff = (a0, a1, b0, b1) => {
+      if (a1 <= a0) return [];
+      if (b1 <= b0 || b1 <= a0 || b0 >= a1) return [[a0, a1]];
+      const out = [];
+      if (b0 > a0) out.push([a0, b0]);
+      if (b1 < a1) out.push([b1, a1]);
+      return out;
+    };
+    const col = (x, y) => filled(x, y) ? [bot(x, y), topOf(x, y)] : [0, 0];
+    for (let y = 0; y <= h; y++) {
+      for (let x = 0; x < w; ) {
+        const [n0, n1] = col(x, y - 1), [s0, s1] = col(x, y);
+        if (n0 === s0 && n1 === s1) {
+          x++;
+          continue;
+        }
+        let x1 = x + 1;
+        for (; x1 < w; x1++) {
+          const [a0, a1] = col(x1, y - 1), [b0, b1] = col(x1, y);
+          if (a0 !== n0 || a1 !== n1 || b0 !== s0 || b1 !== s1) break;
+        }
+        const Y0 = Y(y);
+        for (const [z0, z1] of diff(n0, n1, s0, s1)) faces.push({ o: [x, Y0, z0], u: [x1 - x, 0, 0], v: [0, 0, z1 - z0], level: level(x, y - 1) });
+        for (const [z0, z1] of diff(s0, s1, n0, n1)) faces.push({ o: [x, Y0, z0], u: [0, 0, z1 - z0], v: [x1 - x, 0, 0], level: level(x, y) });
+        x = x1;
+      }
+    }
+    for (let x = 0; x <= w; x++) {
+      for (let y = h - 1; y >= 0; ) {
+        const [w0, w1] = col(x - 1, y), [e0, e1] = col(x, y);
+        if (w0 === e0 && w1 === e1) {
+          y--;
+          continue;
+        }
+        let y1 = y - 1;
+        for (; y1 >= 0; y1--) {
+          const [a0, a1] = col(x - 1, y1), [b0, b1] = col(x, y1);
+          if (a0 !== w0 || a1 !== w1 || b0 !== e0 || b1 !== e1) break;
+        }
+        const Y0 = Y(y + 1), dy = y - y1;
+        for (const [z0, z1] of diff(e0, e1, w0, w1)) faces.push({ o: [x, Y0, z0], u: [0, 0, z1 - z0], v: [0, dy, 0], level: level(x, y) });
+        for (const [z0, z1] of diff(w0, w1, e0, e1)) faces.push({ o: [x, Y0, z0], u: [0, dy, 0], v: [0, 0, z1 - z0], level: level(x - 1, y) });
+        y = y1;
+      }
+    }
+    const along = [/* @__PURE__ */ new Map(), /* @__PURE__ */ new Map(), /* @__PURE__ */ new Map()];
+    const corner = (f, a, b) => f.o.map((c, k) => c + a * f.u[k] + b * f.v[k]);
+    const lineKey = (p, axis) => axis === 0 ? p[1] * 1e5 + p[2] : axis === 1 ? p[0] * 1e5 + p[2] : p[0] * 1e5 + p[1];
+    for (const f of faces) for (const [a, b] of [[0, 0], [1, 0], [1, 1], [0, 1]]) {
+      const p = corner(f, a, b);
+      for (let axis = 0; axis < 3; axis++) {
+        const k = lineKey(p, axis);
+        let list = along[axis].get(k);
+        if (!list) along[axis].set(k, list = []);
+        list.push(p[axis]);
+      }
+    }
+    for (const m of along) for (const [k, list] of m) m.set(k, [...new Set(list)].sort((a, b) => a - b));
+    const vertices = [], triangles = [], levels = [], index2 = /* @__PURE__ */ new Map();
+    const vertex = (p) => {
+      const k = (p[0] * 2e5 + p[1] * 2) * 2e5 + p[2] * 2;
+      let i = index2.get(k);
+      if (i == null) {
+        i = vertices.length / 3;
+        index2.set(k, i);
+        vertices.push(p[0] * cell, p[1] * cell, p[2] * layerHeight);
+      }
+      return i;
+    };
+    for (const f of faces) {
+      const c = [corner(f, 0, 0), corner(f, 1, 0), corner(f, 1, 1), corner(f, 0, 1)];
+      const ring = [];
+      for (let e = 0; e < 4; e++) {
+        const a = c[e], b = c[(e + 1) % 4], axis = a.findIndex((v, k) => v !== b[k]);
+        ring.push(a);
+        const lo = Math.min(a[axis], b[axis]), hi = Math.max(a[axis], b[axis]);
+        const mid = (along[axis].get(lineKey(a, axis)) || []).filter((v) => v > lo && v < hi);
+        if (a[axis] > b[axis]) mid.reverse();
+        for (const v of mid) {
+          const p = [...a];
+          p[axis] = v;
+          ring.push(p);
+        }
+      }
+      const ids = ring.map(vertex);
+      if (ids.length === 4) {
+        triangles.push(ids[0], ids[1], ids[2], ids[0], ids[2], ids[3]);
+        levels.push(f.level, f.level);
+      } else {
+        const m = vertex(corner(f, 0.5, 0.5));
+        for (let i = 0; i < ids.length; i++) {
+          triangles.push(m, ids[i], ids[(i + 1) % ids.length]);
+          levels.push(f.level);
+        }
+      }
+    }
+    return { vertices, triangles, levels };
+  }
+  function removeTowers(input, w, h, cell, s, o) {
+    const grid = Int16Array.from(input), n5 = w * h, label = new Int32Array(n5), dist2 = new Float32Array(n5);
+    const heightOf = o.heightOf || ((lv) => lv === -2 ? 0 : (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight);
+    let lowered = 0;
+    for (let round = 0; round < 12; round++) {
+      label.fill(-1);
+      const levels = [], stack = [];
+      for (let p = 0; p < n5; p++) {
+        if (label[p] >= 0) continue;
+        const id = levels.length, lv = grid[p];
+        levels.push(lv);
+        label[p] = id;
+        stack.push(p);
+        while (stack.length) {
+          const q = stack.pop(), x = q % w;
+          for (const r of [x > 0 ? q - 1 : -1, x < w - 1 ? q + 1 : -1, q - w, q + w]) {
+            if (r < 0 || r >= n5 || label[r] >= 0 || grid[r] !== lv) continue;
+            label[r] = id;
+            stack.push(r);
+          }
+        }
+      }
+      const D = Math.SQRT2;
+      for (let p = 0; p < n5; p++) {
+        const x = p % w, y = p / w | 0, l = label[p];
+        const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label[p - 1] !== l || label[p + 1] !== l || label[p - w] !== l || label[p + w] !== l;
+        dist2[p] = edge ? 1 : 1e9;
+      }
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const p = y * w + x;
+        if (dist2[p] <= 1) continue;
+        dist2[p] = Math.min(dist2[p], dist2[p - 1] + 1, dist2[p - w] + 1, dist2[p - w - 1] + D, dist2[p - w + 1] + D);
+      }
+      for (let y = h - 1; y >= 0; y--) for (let x = w - 1; x >= 0; x--) {
+        const p = y * w + x;
+        if (dist2[p] <= 1) continue;
+        dist2[p] = Math.min(dist2[p], dist2[p + 1] + 1, dist2[p + w] + 1, dist2[p + w + 1] + D, dist2[p + w - 1] + D);
+      }
+      const widest = new Float32Array(levels.length);
+      for (let p = 0; p < n5; p++) if (dist2[p] > widest[label[p]]) widest[label[p]] = dist2[p];
+      const borders = levels.map(() => /* @__PURE__ */ new Map());
+      const lowest = new Float64Array(levels.length).fill(Infinity);
+      const meet = (a, b) => {
+        const la = label[a], lb = label[b];
+        if (la === lb) return;
+        const ga = grid[a], gb = grid[b];
+        lowest[la] = Math.min(lowest[la], heightOf(gb));
+        lowest[lb] = Math.min(lowest[lb], heightOf(ga));
+        if (gb < ga) borders[la].set(gb, (borders[la].get(gb) || 0) + 1);
+        if (ga < gb) borders[lb].set(ga, (borders[lb].get(ga) || 0) + 1);
+      };
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const p = y * w + x;
+        if (x < w - 1) meet(p, p + 1);
+        if (y < h - 1) meet(p, p + w);
+      }
+      const target = new Int16Array(levels.length).fill(-32768);
+      let changed = 0;
+      levels.forEach((lv, id) => {
+        const relief = heightOf(lv) - lowest[id];
+        if (!(relief > 1e-9) || !borders[id].size) return;
+        const width = Math.max(1, 2 * widest[id] - 1) * cell;
+        if (width >= o.minWidth && relief <= o.maxRatio * width) return;
+        let best = -2, bestN = -1;
+        for (const [nl, cnt] of borders[id]) if (cnt > bestN || cnt === bestN && nl > best) {
+          best = nl;
+          bestN = cnt;
+        }
+        target[id] = best;
+        changed++;
+      });
+      if (!changed) break;
+      for (let p = 0; p < n5; p++) {
+        const tl = target[label[p]];
+        if (tl !== -32768) grid[p] = tl;
+      }
+      lowered += changed;
+    }
+    return { grid, lowered };
+  }
+  function stl(mesh, name = "Mosaic Paint") {
+    const V = mesh.vertices, T = mesh.triangles, n5 = T.length / 3, buf = new ArrayBuffer(84 + n5 * 50), dv = new DataView(buf);
+    const header = `${name} – multi-color by layer`.slice(0, 80);
+    for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
+    dv.setUint32(80, n5, true);
+    let o = 84;
+    for (let t2 = 0; t2 < n5; t2++) {
+      const p = [0, 1, 2].map((k) => T[t2 * 3 + k] * 3);
+      const ux = V[p[1]] - V[p[0]], uy = V[p[1] + 1] - V[p[0] + 1], uz = V[p[1] + 2] - V[p[0] + 2];
+      const vx = V[p[2]] - V[p[0]], vy = V[p[2] + 1] - V[p[0] + 1], vz = V[p[2] + 2] - V[p[0] + 2];
+      let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+      const L = Math.hypot(nx, ny, nz) || 1;
+      nx /= L;
+      ny /= L;
+      nz /= L;
+      for (const v of [nx, ny, nz]) {
+        dv.setFloat32(o, v, true);
+        o += 4;
+      }
+      for (const q of p) for (let k = 0; k < 3; k++) {
+        dv.setFloat32(o, V[q + k], true);
+        o += 4;
+      }
+      dv.setUint16(o, 0, true);
+      o += 2;
+    }
+    return buf;
+  }
+  function colorPlan(colors, s) {
+    return colors.map((color, i) => {
+      const from = i === 0 ? 1 : topLayer(i - 1, s) + 1, to = topLayer(i, s);
+      return { color, fromLayer: from, toLayer: to, changeAtLayer: i === 0 ? null : from, z: i === 0 ? null : +(from * s.layerHeight).toFixed(3) };
+    });
+  }
+  var modelHeight = (nColors, s) => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
+  var FRAME = -3;
+  var holeCentre = (o, margin) => Math.max(o.hole / 2 + margin, o.frame / 2);
+  function finishGrid(grid, w, h, o, margin) {
+    const b = Math.max(0, Math.round(o.frame)), W = w + 2 * b, H = h + 2 * b, out = new Int16Array(W * H).fill(FRAME);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) out[(y + b) * W + x + b] = grid[y * w + x];
+    const r = Math.min(o.corner, W / 2, H / 2), hr = o.hole / 2, hy = holeCentre(o, margin);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const cx = x + 0.5, cy = y + 0.5;
+      if (r > 0) {
+        const ox = cx < r ? r : cx > W - r ? W - r : cx, oy = cy < r ? r : cy > H - r ? H - r : cy;
+        if ((cx - ox) ** 2 + (cy - oy) ** 2 > r * r) {
+          out[y * W + x] = -2;
+          continue;
+        }
+      }
+      if (hr > 0 && (cx - W / 2) ** 2 + (cy - hy) ** 2 <= hr * hr) out[y * W + x] = -2;
+    }
+    return { grid: out, w: W, h: H };
+  }
+  function pocketMask(w, h, d, inset) {
+    const mask = new Uint8Array(w * h), r = d / 2;
+    if (r <= 0) return mask;
+    const xs = [inset, w - inset], ys = [inset, h - inset];
+    for (const px of xs) for (const py of ys) {
+      for (let y = Math.max(0, Math.floor(py - r)); y < Math.min(h, Math.ceil(py + r)); y++) {
+        for (let x = Math.max(0, Math.floor(px - r)); x < Math.min(w, Math.ceil(px + r)); x++) {
+          if ((x + 0.5 - px) ** 2 + (y + 0.5 - py) ** 2 <= r * r) mask[y * w + x] = 1;
+        }
+      }
+    }
+    return mask;
+  }
+  function cutPockets(solids2, mask, depth, keep = 2) {
+    let used = depth;
+    for (let i = 0; i < mask.length; i++) {
+      if (!mask[i]) continue;
+      let top = 0;
+      for (const s of solids2) if (s.top[i] > s.bottom[i]) top = Math.max(top, s.top[i]);
+      if (top > 0) used = Math.min(used, top - keep);
+    }
+    used = Math.max(0, used);
+    if (!used) return 0;
+    for (let i = 0; i < mask.length; i++) {
+      if (!mask[i]) continue;
+      for (const s of solids2) if (s.top[i] > s.bottom[i] && s.bottom[i] < used) {
+        s.bottom[i] = used;
+        if (s.top[i] < used) s.top[i] = used;
+      }
+    }
+    return used;
+  }
+  function frameSolid(grid, bottom, top, level) {
+    const n5 = grid.length, s = { bottom: new Int16Array(n5).fill(bottom), top: new Int16Array(n5), level: new Int16Array(n5).fill(level) };
+    for (let i = 0; i < n5; i++) if (grid[i] === FRAME) s.top[i] = top;
+    return s;
+  }
+  var xmlAttr = (v) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  var num2 = (v) => String(+v.toFixed(4));
+  var CONTENT_TYPES = '<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>';
+  var RELS = '<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>';
+  function modelXml(mesh, colors, name) {
+    const V = mesh.vertices, T = mesh.triangles, out = [];
+    out.push(
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">',
+      `<metadata name="Title">${xmlAttr(name)}</metadata>`,
+      '<metadata name="Application">Mosaic Paint</metadata>',
+      "<resources>",
+      '<basematerials id="1">'
+    );
+    for (const c of colors) out.push(`<base name="${xmlAttr(c)}" displaycolor="${c.toUpperCase()}FF"/>`);
+    out.push("</basematerials>", `<object id="2" type="model" pid="1" pindex="0" name="${xmlAttr(name)}">`, "<mesh>", "<vertices>");
+    for (let i = 0; i < V.length; i += 3) out.push(`<vertex x="${num2(V[i])}" y="${num2(V[i + 1])}" z="${num2(V[i + 2])}"/>`);
+    out.push("</vertices>", "<triangles>");
+    for (let t2 = 0; t2 < T.length; t2 += 3) out.push(`<triangle v1="${T[t2]}" v2="${T[t2 + 1]}" v3="${T[t2 + 2]}" pid="1" p1="${Math.max(0, mesh.levels[t2 / 3])}"/>`);
+    out.push("</triangles>", "</mesh>", "</object>", "</resources>", "<build>", '<item objectid="2"/>', "</build>", "</model>");
+    return out.join("\n");
+  }
+  function colorChangeXml(plan) {
+    return [
+      '<?xml version="1.0" encoding="utf-8"?>',
+      "<custom_gcodes_per_print_z>",
+      ...plan.filter((p) => p.z != null).map((p) => `<code print_z="${p.z}" type="0" extruder="1" color="${p.color}" extra="" gcode="M600"/>`),
+      '<mode value="SingleExtruder"/>',
+      "</custom_gcodes_per_print_z>"
+    ].join("\n");
+  }
+  function threeMfFiles(mesh, plan, name) {
+    return [
+      { name: "[Content_Types].xml", data: CONTENT_TYPES },
+      { name: "_rels/.rels", data: RELS },
+      { name: "3D/3dmodel.model", data: modelXml(mesh, plan.map((p) => p.color), name) },
+      { name: "Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml", data: colorChangeXml(plan) }
+    ];
+  }
+  function flatHeights(grout, f) {
+    const tile = (f.baseLayers + f.tileLayers) * f.layerHeight, low = (f.baseLayers + Math.max(1, f.tileLayers - f.groutRecess)) * f.layerHeight;
+    return (lv) => lv === -2 ? 0 : lv < 0 ? f.baseLayers * f.layerHeight : grout[lv] ? low : tile;
+  }
+  function flatParts(grid, w, h, nLevels, grout, f) {
+    const n5 = w * h, out = [];
+    if (f.baseLayers > 0) {
+      const top = new Int16Array(n5);
+      for (let i = 0; i < n5; i++) if (grid[i] !== -2) top[i] = f.baseLayers;
+      out.push({ part: -1, solid: { bottom: new Int16Array(n5), top, level: new Int16Array(n5) } });
+    }
+    for (let k = 0; k < nLevels; k++) {
+      const bottom = new Int16Array(n5).fill(f.baseLayers), top = new Int16Array(n5), level = new Int16Array(n5).fill(k);
+      const up = f.baseLayers + (grout[k] ? Math.max(1, f.tileLayers - f.groutRecess) : f.tileLayers);
+      let any = false;
+      for (let i = 0; i < n5; i++) if (grid[i] === k) {
+        top[i] = up;
+        any = true;
+      }
+      if (any) out.push({ part: k, solid: { bottom, top, level } });
+    }
+    return out;
+  }
+  function threeMfPartsFiles(parts, name, slicer = "prusa") {
+    return slicer === "bambu" ? bambuPartsFiles(parts, name) : prusaPartsFiles(parts, name);
+  }
+  function bambuPartsFiles(parts, name) {
+    const NS = 'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"';
+    const uuid = (kind, k) => `${kind.toString(16).padStart(8, "0")}-0000-4000-8000-${k.toString(16).padStart(12, "0")}`;
+    const sub = [
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      `<model unit="millimeter" xml:lang="en-US" ${NS}>`,
+      '<metadata name="BambuStudio:3mfVersion">1</metadata>',
+      "<resources>"
+    ];
+    parts.forEach((p, k) => {
+      const V = p.mesh.vertices, T = p.mesh.triangles;
+      sub.push(`<object id="${k + 1}" p:UUID="${uuid(1, k)}" type="model">`, "<mesh>", "<vertices>");
+      for (let i = 0; i < V.length; i += 3) sub.push(`<vertex x="${num2(V[i])}" y="${num2(V[i + 1])}" z="${num2(V[i + 2])}"/>`);
+      sub.push("</vertices>", "<triangles>");
+      for (let t2 = 0; t2 < T.length; t2 += 3) sub.push(`<triangle v1="${T[t2]}" v2="${T[t2 + 1]}" v3="${T[t2 + 2]}"/>`);
+      sub.push("</triangles>", "</mesh>", "</object>");
+    });
+    sub.push("</resources>", "<build/>", "</model>");
+    const whole = parts.length + 1, path = "/3D/Objects/object_1.model";
+    const main = [
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      `<model unit="millimeter" xml:lang="en-US" ${NS}>`,
+      '<metadata name="Application">Mosaic Paint</metadata>',
+      '<metadata name="BambuStudio:3mfVersion">1</metadata>',
+      `<metadata name="Title">${xmlAttr(name)}</metadata>`,
+      "<resources>",
+      `<object id="${whole}" p:UUID="${uuid(2, 0)}" type="model">`,
+      "<components>"
+    ];
+    parts.forEach((_, k) => main.push(`<component p:path="${path}" objectid="${k + 1}" p:UUID="${uuid(3, k)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`));
+    main.push(
+      "</components>",
+      "</object>",
+      "</resources>",
+      `<build p:UUID="${uuid(4, 0)}">`,
+      `<item objectid="${whole}" p:UUID="${uuid(5, 0)}" printable="1"/>`,
+      "</build>",
+      "</model>"
+    );
+    const config = [
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      "<config>",
+      `<object id="${whole}">`,
+      `<metadata key="name" value="${xmlAttr(name)}"/>`,
+      '<metadata key="extruder" value="1"/>'
+    ];
+    parts.forEach((p, k) => config.push(
+      `<part id="${k + 1}" subtype="normal_part">`,
+      `<metadata key="name" value="${xmlAttr(p.name)}"/>`,
+      `<metadata key="extruder" value="${p.filament || k + 1}"/>`,
+      "</part>"
+    ));
+    config.push("</object>", "</config>");
+    return [
+      { name: "[Content_Types].xml", data: CONTENT_TYPES },
+      { name: "_rels/.rels", data: RELS },
+      { name: "3D/3dmodel.model", data: main.join("\n") },
+      { name: "3D/_rels/3dmodel.model.rels", data: RELS.replace("/3D/3dmodel.model", path) },
+      { name: "3D/Objects/object_1.model", data: sub.join("\n") },
+      { name: "Metadata/model_settings.config", data: config.join("\n") }
+    ];
+  }
+  function prusaPartsFiles(parts, name) {
+    const out = [], config = [];
+    out.push(
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">',
+      `<metadata name="Title">${xmlAttr(name)}</metadata>`,
+      '<metadata name="Application">Mosaic Paint</metadata>',
+      "<resources>",
+      '<basematerials id="2">'
+    );
+    for (const p of parts) out.push(`<base name="${xmlAttr(p.name)}" displaycolor="${p.color.toUpperCase()}FF"/>`);
+    out.push("</basematerials>", `<object id="1" type="model" pid="2" pindex="0" name="${xmlAttr(name)}">`, "<mesh>", "<vertices>");
+    for (const p of parts) {
+      const V = p.mesh.vertices;
+      for (let i = 0; i < V.length; i += 3) out.push(`<vertex x="${num2(V[i])}" y="${num2(V[i + 1])}" z="${num2(V[i + 2])}"/>`);
+    }
+    out.push("</vertices>", "<triangles>");
+    config.push('<?xml version="1.0" encoding="UTF-8"?>', "<config>", '<object id="1" instances_count="1">', `<metadata type="object" key="name" value="${xmlAttr(name)}"/>`);
+    let vOffset = 0, tOffset = 0;
+    parts.forEach((p, k) => {
+      const T = p.mesh.triangles, n5 = T.length / 3;
+      for (let t2 = 0; t2 < T.length; t2 += 3) out.push(`<triangle v1="${T[t2] + vOffset}" v2="${T[t2 + 1] + vOffset}" v3="${T[t2 + 2] + vOffset}" pid="2" p1="${k}"/>`);
+      config.push(
+        `<volume firstid="${tOffset}" lastid="${tOffset + n5 - 1}">`,
+        `<metadata type="volume" key="name" value="${xmlAttr(p.name)}"/>`,
+        '<metadata type="volume" key="volume_type" value="ModelPart"/>',
+        `<metadata type="volume" key="extruder" value="${p.filament || k + 1}"/>`,
+        "</volume>"
+      );
+      vOffset += p.mesh.vertices.length / 3;
+      tOffset += n5;
+    });
+    out.push("</triangles>", "</mesh>", "</object>", "</resources>", "<build>", '<item objectid="1"/>', "</build>", "</model>");
+    config.push("</object>", "</config>");
+    return [
+      { name: "[Content_Types].xml", data: CONTENT_TYPES },
+      { name: "_rels/.rels", data: RELS },
+      { name: "3D/3dmodel.model", data: out.join("\n") },
+      { name: "Metadata/Slic3r_PE_model.config", data: config.join("\n") }
+    ];
+  }
+  function mergeMeshes(meshes) {
+    const out = { vertices: [], triangles: [], levels: [] };
+    for (const m of meshes) {
+      const o = out.vertices.length / 3;
+      for (const v of m.vertices) out.vertices.push(v);
+      for (const i of m.triangles) out.triangles.push(i + o);
+      for (const l of m.levels) out.levels.push(l);
+    }
+    return out;
+  }
+
+  // src/lib/zip.ts
+  var crcTable = null;
+  function crc32(data) {
+    if (!crcTable) {
+      crcTable = new Uint32Array(256);
+      for (let n5 = 0; n5 < 256; n5++) {
+        let c2 = n5;
+        for (let k = 0; k < 8; k++) c2 = c2 & 1 ? 3988292384 ^ c2 >>> 1 : c2 >>> 1;
+        crcTable[n5] = c2 >>> 0;
+      }
+    }
+    let c = 4294967295;
+    for (let i = 0; i < data.length; i++) c = crcTable[(c ^ data[i]) & 255] ^ c >>> 8;
+    return (c ^ 4294967295) >>> 0;
+  }
+  async function deflateRaw(data) {
+    if (typeof CompressionStream === "undefined") return null;
+    try {
+      const s = new Blob([data]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+      return new Uint8Array(await new Response(s).arrayBuffer());
+    } catch {
+      return null;
+    }
+  }
+  async function zip(entries, { compress = true } = {}) {
+    const enc = new TextEncoder(), parts = [], central = [];
+    let offset = 0;
+    for (const e of entries) {
+      const name = enc.encode(e.name), raw = typeof e.data === "string" ? enc.encode(e.data) : e.data;
+      const crc = crc32(raw), packed = compress ? await deflateRaw(raw) : null;
+      const deflated = !!packed && packed.length < raw.length, body = deflated ? packed : raw;
+      const local = new Uint8Array(30 + name.length), lv = new DataView(local.buffer);
+      lv.setUint32(0, 67324752, true);
+      lv.setUint16(4, 20, true);
+      lv.setUint16(6, 2048, true);
+      lv.setUint16(8, deflated ? 8 : 0, true);
+      lv.setUint16(10, 0, true);
+      lv.setUint16(12, 33, true);
+      lv.setUint32(14, crc, true);
+      lv.setUint32(18, body.length, true);
+      lv.setUint32(22, raw.length, true);
+      lv.setUint16(26, name.length, true);
+      local.set(name, 30);
+      const cd = new Uint8Array(46 + name.length), cv = new DataView(cd.buffer);
+      cv.setUint32(0, 33639248, true);
+      cv.setUint16(4, 20, true);
+      cv.setUint16(6, 20, true);
+      cv.setUint16(8, 2048, true);
+      cv.setUint16(10, deflated ? 8 : 0, true);
+      cv.setUint16(12, 0, true);
+      cv.setUint16(14, 33, true);
+      cv.setUint32(16, crc, true);
+      cv.setUint32(20, body.length, true);
+      cv.setUint32(24, raw.length, true);
+      cv.setUint16(28, name.length, true);
+      cv.setUint32(42, offset, true);
+      cd.set(name, 46);
+      parts.push(local, body);
+      central.push(cd);
+      offset += local.length + body.length;
+    }
+    const cdSize = central.reduce((s, c) => s + c.length, 0), end = new Uint8Array(22), ev = new DataView(end.buffer);
+    ev.setUint32(0, 101010256, true);
+    ev.setUint16(8, entries.length, true);
+    ev.setUint16(10, entries.length, true);
+    ev.setUint32(12, cdSize, true);
+    ev.setUint32(16, offset, true);
+    const out = new Uint8Array(offset + cdSize + 22);
+    let o = 0;
+    for (const p of [...parts, ...central, end]) {
+      out.set(p, o);
+      o += p.length;
+    }
+    return out;
+  }
+
+  // src/lib/build3d.ts
+  var MARGIN = 2;
+  var KEEP = 2;
+  var printSettings = (o) => ({ layerHeight: o.layerHeight, layersPerColor: o.layersPerColor, baseLayers: o.baseLayers });
+  var flatSettings = (o) => ({ layerHeight: o.layerHeight, baseLayers: o.baseLayers, tileLayers: o.tileLayers, groutRecess: Math.min(o.groutRecess, o.tileLayers - 1) });
+  var layersOf = (mm, o) => Math.max(1, Math.round(mm / o.layerHeight));
+  function towers(colorGrid, w, h, cell, order, counts2, isLine, o, progress) {
+    let list = order.filter((i) => counts2[i] > 0), out = { list, grid: new Int16Array(0), counts: [], lowered: 0 };
+    const g = Int16Array.from(colorGrid);
+    let lowered = 0;
+    for (let round = 0; round < 4; round++) {
+      progress?.(round / 4);
+      const rank = new Int16Array(isLine.length).fill(-1);
+      list.forEach((ci, k) => {
+        rank[ci] = k;
+      });
+      const levels = g.map((v) => v < 0 ? -1 : rank[v]);
+      const heightOf = o.mode === "flat" ? flatHeights(list.map((ci) => isLine[ci]), flatSettings(o)) : void 0;
+      const res = removeTowers(levels, w, h, cell, printSettings(o), { minWidth: o.minWidth, maxRatio: o.maxRatio, heightOf });
+      lowered += res.lowered;
+      const c = list.map(() => 0);
+      for (let p = 0; p < res.grid.length; p++) {
+        const lv = res.grid[p];
+        if (lv >= 0) c[lv]++;
+        g[p] = lv < 0 ? -1 : list[lv];
+      }
+      out = { list, grid: res.grid, counts: c, lowered };
+      if (c.every((n5) => n5 > 0)) break;
+      list = list.filter((_, k) => c[k] > 0);
+    }
+    return out;
+  }
+  var frameTop = (n5, o) => (o.mode === "flat" ? o.baseLayers + o.tileLayers : topLayer(Math.max(0, n5 - 1), printSettings(o))) + o.frameRaise;
+  function layout(g, w, h, cell, o) {
+    const f = finishGrid(g, w, h, { frame: o.frame / cell, corner: o.corner / cell, hole: o.hole / cell }, MARGIN / cell);
+    const inset = (o.magnet / 2 + MARGIN + o.corner * 0.3) / cell;
+    return { ...f, mask: o.magnet > 0 ? pocketMask(f.w, f.h, o.magnet / cell, inset) : null };
+  }
+  function columnTop(lv, grout, o) {
+    if (lv === -2) return 0;
+    if (lv === FRAME) return frameTop(grout.length, o);
+    if (o.mode === "flat") return Math.round(flatHeights(grout, flatSettings(o))(lv) / o.layerHeight);
+    return lv < 0 ? o.baseLayers : topLayer(lv, printSettings(o));
+  }
+  function pocketDepth(lay, grout, o) {
+    if (!lay.mask) return 0;
+    let d = layersOf(o.magnetDepth, o);
+    for (let i = 0; i < lay.mask.length; i++) if (lay.mask[i]) {
+      const top = columnTop(lay.grid[i], grout, o);
+      if (top > 0) d = Math.min(d, top - KEEP);
+    }
+    return Math.max(0, d);
+  }
+  function solids(lay, grout, o) {
+    const n5 = grout.length;
+    let out;
+    if (o.mode === "flat") {
+      out = flatParts(lay.grid, lay.w, lay.h, n5, grout, flatSettings(o));
+      if (o.frame > 0) out.splice(o.baseLayers ? 1 : 0, 0, { part: FRAME, solid: frameSolid(lay.grid, o.baseLayers, frameTop(n5, o), 0) });
+    } else {
+      const sol = heightSolid(lay.grid, printSettings(o)), top = frameTop(n5, o);
+      for (let i = 0; i < lay.grid.length; i++) if (lay.grid[i] === FRAME) {
+        sol.top[i] = top;
+        sol.level[i] = n5 - 1;
+      }
+      out = [{ part: 0, solid: sol }];
+    }
+    if (lay.mask) cutPockets(out.map((p) => p.solid), lay.mask, layersOf(o.magnetDepth, o), KEEP);
+    return out;
+  }
+  function downsample(g, w, h, cell, maxCells) {
+    const f = Math.max(1, Math.ceil(Math.sqrt(w * h / maxCells)));
+    if (f === 1) return { grid: g, w, h, cell };
+    const W = Math.ceil(w / f), H = Math.ceil(h / f), out = new Int16Array(W * H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) out[y * W + x] = g[Math.min(h - 1, y * f) * w + Math.min(w - 1, x * f)];
+    return { grid: out, w: W, h: H, cell: cell * f };
+  }
+  function viewMesh(s, o) {
+    const lay = layout(s.grid, s.w, s.h, s.cell, o);
+    return mergeMeshes(solids(lay, s.grout, o).map((p) => solidMesh(p.solid, lay.w, lay.h, s.cell, o.layerHeight)));
+  }
+  async function exportModel(r, progress) {
+    const { shape: s, o } = r, lay = layout(s.grid, s.w, s.h, s.cell, o);
+    progress?.(0.05);
+    const sol = solids(lay, s.grout, o);
+    progress?.(0.15);
+    const meshes = sol.map((p, k) => {
+      const m = solidMesh(p.solid, lay.w, lay.h, s.cell, o.layerHeight);
+      progress?.(0.15 + 0.7 * (k + 1) / sol.length);
+      return m;
+    });
+    const triangles = meshes.reduce((t2, m) => t2 + m.triangles.length / 3, 0);
+    const done = (fileName, type, data) => ({ fileName, type, data, triangles, parts: meshes.length });
+    if (o.mode === "flat") {
+      const parts = sol.map((p, k) => {
+        const lv = Math.max(0, p.part), color = r.colors[lv];
+        const name = p.part === FRAME ? r.labels.frame : p.part < 0 ? r.labels.base : `${p.part + 1} ${color}`;
+        return { name, color, mesh: meshes[k], filament: lv + 1 };
+      });
+      if (r.kind === "3mf") return done(r.name + ".3mf", "model/3mf", await zip(threeMfPartsFiles(parts, r.name, r.slicer)));
+      const files = sol.map((p, k) => ({
+        name: `${r.name}-${p.part === FRAME ? "frame" : p.part < 0 ? "base" : `${p.part + 1}-${r.colors[p.part].slice(1)}`}.stl`,
+        data: new Uint8Array(stl(parts[k].mesh, parts[k].name))
+      }));
+      return done(r.name + "-stl.zip", "application/zip", await zip(files));
+    }
+    if (r.kind === "3mf") return done(r.name + ".3mf", "model/3mf", await zip(threeMfFiles(meshes[0], colorPlan(r.colors, printSettings(o)), r.name)));
+    return done(r.name + ".stl", "model/stl", new Uint8Array(stl(meshes[0], r.name)));
+  }
+
+  // src/lib/trace.ts
+  function traceAll(labels, W, H, count, progress) {
+    const at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x];
+    const V = W + 1, key = (x, y) => y * V + x;
+    const out = Array.from({ length: count }, () => /* @__PURE__ */ new Map());
+    const add = (l, x0, y0, x1, y1) => {
+      const m = out[l], k = key(x0, y0);
+      const list = m.get(k);
+      if (list) list.push(key(x1, y1));
+      else m.set(k, [key(x1, y1)]);
+    };
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      if (progress && x === 0 && y % 64 === 0) progress(0.5 * y / H);
+      const l = labels[y * W + x];
+      if (l < 0) continue;
+      if (at(x, y - 1) !== l) add(l, x + 1, y, x, y);
+      if (at(x - 1, y) !== l) add(l, x, y, x, y + 1);
+      if (at(x, y + 1) !== l) add(l, x, y + 1, x + 1, y + 1);
+      if (at(x + 1, y) !== l) add(l, x + 1, y + 1, x + 1, y);
+    }
+    const rings = [];
+    for (let l = 0; l < count; l++) {
+      if (progress && l % 256 === 0) progress(0.5 + 0.5 * l / count);
+      const m = out[l], list = [];
+      for (const [start] of m) {
+        while (m.get(start) && m.get(start).length) {
+          const ring = [start];
+          let prev = start, cur = take(m, start, -1, V);
+          while (cur !== start) {
+            ring.push(cur);
+            const next = take(m, cur, prev, V);
+            prev = cur;
+            cur = next;
+          }
+          list.push(simplify(ring, V));
+        }
+      }
+      rings.push(list);
+    }
+    return rings;
+  }
+  function take(m, from, prev, V) {
+    const list = m.get(from);
+    let i = 0;
+    if (list.length > 1 && prev >= 0) {
+      const dx = from % V - prev % V, dy = Math.floor(from / V) - Math.floor(prev / V);
+      const score = (to2) => {
+        const ex = to2 % V - from % V, ey = Math.floor(to2 / V) - Math.floor(from / V);
+        return ex === dy && ey === -dx ? 0 : ex === dx && ey === dy ? 1 : 2;
+      };
+      for (let k = 1; k < list.length; k++) if (score(list[k]) < score(list[i])) i = k;
+    }
+    const to = list[i];
+    list.splice(i, 1);
+    if (!list.length) m.delete(from);
+    return to;
+  }
+  function simplify(ring, V) {
+    const pts = ring.map((k) => ({ x: k % V, y: Math.floor(k / V) })), n5 = pts.length, out = [];
+    for (let i = 0; i < n5; i++) {
+      const a = pts[(i + n5 - 1) % n5], b = pts[i], c = pts[(i + 1) % n5];
+      if ((b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) !== 0) out.push(b);
+    }
+    return out;
+  }
+  function ringArea(r) {
+    let s = 0;
+    for (let i = 0, n5 = r.length; i < n5; i++) {
+      const a = r[i], b = r[(i + 1) % n5];
+      s += a.x * b.y - b.x * a.y;
+    }
+    return s / 2;
+  }
+
+  // src/lib/vectorize.ts
+  var n = (v) => String(Math.round(v * 1e3) / 1e3);
+  function piecesSvg(img, grout, widthMm, name, progress) {
+    const W = img.width, H = img.height, k = widthMm / W, p = pieces(img);
+    progress?.(0.15);
+    const ids = new Int32Array(p.colors.length).fill(-1), colors = [];
+    p.colors.forEach((c, i) => {
+      if (c !== grout) {
+        ids[i] = colors.length;
+        colors.push(c);
+      }
+    });
+    const labels = p.labels.map((l) => l < 0 ? -1 : ids[l]);
+    const rings = traceAll(labels, W, H, colors.length, progress && ((f) => progress(0.15 + 0.8 * f)));
+    const shapes = [];
+    const pts = (r) => r.map((q) => `${n(q.x * k)},${n(q.y * k)}`).join(" ");
+    rings.forEach((list, i) => {
+      if (list.length === 1) shapes.push(`<polygon points="${pts(list[0])}" fill="${colors[i]}" stroke="none"/>`);
+      else {
+        const sorted = [...list].sort((a, b) => Math.abs(ringArea(b)) - Math.abs(ringArea(a)));
+        const d = sorted.map((r) => "M" + pts(r).replace(/ /g, "L") + "Z").join("");
+        shapes.push(`<path d="${d}" fill="${colors[i]}" fill-rule="evenodd" stroke="none"/>`);
+      }
+    });
+    const w = n(widthMm), h = n(H * k), palette = [...new Set(colorRows(p).map((r) => r.color))];
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">
+<metadata id="mosaic-palette">${JSON.stringify({ palette, paletteName: name, unit: "mm" })}</metadata>
+${grout ? `<rect id="mosaic-bg" x="0" y="0" width="${w}" height="${h}" fill="${grout}"/>` : ""}
+<g id="mosaic-fills"></g>
+<g id="mosaic-shapes">
+${shapes.join("\n")}
+</g>
+</svg>`;
+    return { svg, tiles: colors.length };
+  }
+
+  // src/worker/jobs.ts
+  function mosaic2(m, progress) {
+    const img = m.img, adaptive = m.detail > 0 && ["square", "brick", "irregular"].includes(m.shape);
+    if (m.shape === "offset" || m.shape === "square" && !adaptive) {
+      return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette: m.palette, bricks: m.shape === "offset" });
+    }
+    const bar = 4 + (1 - m.detail / 100) * 26;
+    const busy = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
+    const size = m.shape === "brick" ? m.tile / 2 : m.tile;
+    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
+    progress(0.5);
+    return mosaicCells(img, cells3, { grout: m.grout, groutColor: m.groutColor, palette: m.palette });
+  }
+  var jobs = {
+    mosaic: (a, p) => mosaic2(a, p),
+    vectorize: (a, p) => piecesSvg(a.img, a.grout, a.widthMm, a.name, p),
+    towers: (a, p) => towers(a.colorGrid, a.w, a.h, a.cell, a.order, a.counts, a.isLine, a.o, p),
+    view3d: (a) => viewMesh(a.shape, a.o),
+    export3d: (a, p) => exportModel(a, p)
+  };
+
+  // src/shared/work.ts
+  var Cancelled = class extends Error {
+    constructor() {
+      super("cancelled");
+    }
+  };
+  var isCancelled = (e) => e instanceof Cancelled;
+  var lanes = /* @__PURE__ */ new Map();
+  var url = "";
+  var noWorkers = false;
+  var seq = 0;
+  function spawn() {
+    if (noWorkers || typeof Worker === "undefined") return null;
+    try {
+      url || (url = URL.createObjectURL(new Blob([worker_source_default], { type: "text/javascript" })));
+      return new Worker(url);
+    } catch {
+      noWorkers = true;
+      return null;
+    }
+  }
+  async function runHere(job, args, progress) {
+    await new Promise((r) => setTimeout(r, 0));
+    return jobs[job](args, progress || (() => {
+    }));
+  }
+  function run2(job, args, o = {}) {
+    const name = o.lane || job, old = lanes.get(name);
+    if (old) {
+      old.worker?.terminate();
+      old.reject(new Cancelled());
+      lanes.delete(name);
+    }
+    const worker = spawn();
+    if (!worker) return runHere(job, args, o.progress);
+    return new Promise((resolve, reject) => {
+      const lane = { worker, id: ++seq, resolve, reject, progress: o.progress, job, args };
+      lanes.set(name, lane);
+      const finish = () => {
+        worker.terminate();
+        if (lanes.get(name) === lane) lanes.delete(name);
+      };
+      worker.onmessage = (e) => {
+        const m = e.data;
+        if (m.id !== lane.id) return;
+        if (m.progress != null) {
+          lane.progress?.(m.progress);
+          return;
+        }
+        finish();
+        if (m.error != null) reject(new Error(m.error));
+        else resolve(m.result);
+      };
+      worker.onerror = (e) => {
+        e.preventDefault?.();
+        finish();
+        noWorkers = true;
+        runHere(job, args, o.progress).then(resolve, reject);
+      };
+      worker.postMessage({ id: lane.id, job, args });
+    });
+  }
+
   // src/raster/mosaic.ts
   function region() {
     if (state.floating) place();
     return state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
   }
-  var total = (counts2) => [...counts2.values()].reduce((s, n4) => s + n4, 0);
-  function makeMosaic() {
+  var total = (counts2) => [...counts2.values()].reduce((s, n5) => s + n5, 0);
+  async function makeMosaic() {
     const m = state.mosaic, b = region();
     const img = dctx.getImageData(b.x, b.y, b.w, b.h);
     let palette = null;
@@ -2993,21 +3935,33 @@
       }
       addPalette(t("From picture"), palette);
     }
-    const res = tiles(img, palette);
-    dctx.putImageData(new ImageData(res.img.data, b.w, b.h), b.x, b.y);
-    commit();
-    toast(t("Made {n} {n|tile|tiles} in {c} {c|color|colors}.", { n: total(res.counts), c: res.counts.size }));
-  }
-  function tiles(img, palette) {
-    const m = state.mosaic, adaptive = m.detail > 0 && ["square", "brick", "irregular"].includes(m.shape);
-    if (m.shape === "offset" || m.shape === "square" && !adaptive) {
-      return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette, bricks: m.shape === "offset" });
+    const job = working(t("Making the mosaic…"));
+    const buttons = [$("#btn-mosaic"), $("#btn-reduce")];
+    buttons.forEach((el) => {
+      el.disabled = true;
+    });
+    try {
+      const res = await run2("mosaic", {
+        img: { width: img.width, height: img.height, data: img.data },
+        palette,
+        shape: m.shape,
+        tile: m.tile,
+        grout: m.grout,
+        groutColor: m.groutColor,
+        detail: m.detail
+      }, { progress: job.set });
+      dctx.putImageData(new ImageData(res.img.data, b.w, b.h), b.x, b.y);
+      commit();
+      job.done();
+      toast(t("Made {n} {n|tile|tiles} in {c} {c|color|colors}.", { n: total(res.counts), c: res.counts.size }));
+    } catch (e) {
+      job.done();
+      if (!isCancelled(e)) toast(t("Could not make the mosaic."));
+    } finally {
+      buttons.forEach((el) => {
+        el.disabled = false;
+      });
     }
-    const bar = 4 + (1 - m.detail / 100) * 26;
-    const busy = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
-    const size = m.shape === "brick" ? m.tile / 2 : m.tile;
-    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
-    return mosaicCells(img, cells3, { grout: m.grout, groutColor: m.groutColor, palette });
   }
   function reduceToPalette() {
     if (!state.palette.length) {
@@ -3084,14 +4038,14 @@
   }
 
   // src/raster/panel.ts
-  function setSides(n4) {
-    state.sides = clamp(Math.round(n4) || 6, 3, 64);
+  function setSides(n5) {
+    state.sides = clamp(Math.round(n5) || 6, 3, 64);
     $("#opt-sides").value = state.sides;
     for (const b of $$("#quick-sides button")) b.classList.toggle("active", +b.dataset.sides === state.sides);
     savePrefs();
   }
-  function setBrushSize(n4) {
-    state.size = clamp(Math.round(n4) || 1, 1, 500);
+  function setBrushSize(n5) {
+    state.size = clamp(Math.round(n5) || 1, 1, 500);
     $("#opt-size").value = state.size;
     $("#opt-size-range").value = Math.min(100, state.size);
     savePrefs();
@@ -3503,606 +4457,6 @@
     });
   }
 
-  // src/lib/model3d.ts
-  var topLayer = (i, s) => s.baseLayers + (i + 1) * s.layersPerColor;
-  function greedyRects(grid, w, h) {
-    const done = new Uint8Array(w * h), out = [];
-    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-      const i = y * w + x, lv = grid[i];
-      if (lv < 0 || done[i]) continue;
-      let rw = 1;
-      while (x + rw < w && grid[i + rw] === lv && !done[i + rw]) rw++;
-      let rh = 1;
-      grow: while (y + rh < h) {
-        const row = (y + rh) * w + x;
-        for (let k = 0; k < rw; k++) if (grid[row + k] !== lv || done[row + k]) break grow;
-        rh++;
-      }
-      for (let yy = y; yy < y + rh; yy++) done.fill(1, yy * w + x, yy * w + x + rw);
-      out.push({ x, y, w: rw, h: rh, level: lv });
-    }
-    return out;
-  }
-  function cellHeights(grid, s) {
-    const out = new Int16Array(grid.length);
-    for (let i = 0; i < grid.length; i++) out[i] = grid[i] === -2 ? 0 : grid[i] < 0 ? s.baseLayers : topLayer(grid[i], s);
-    return out;
-  }
-  function heightSolid(grid, s) {
-    const n4 = grid.length, top = cellHeights(grid, s), level = new Int16Array(n4);
-    for (let i = 0; i < n4; i++) level[i] = Math.max(0, grid[i]);
-    return { bottom: new Int16Array(n4), top, level };
-  }
-  function solidMesh(sol, w, h, cell, layerHeight) {
-    const inside2 = (x, y) => x >= 0 && y >= 0 && x < w && y < h;
-    const bot = (x, y) => inside2(x, y) ? sol.bottom[y * w + x] : 0;
-    const topOf = (x, y) => {
-      if (!inside2(x, y)) return 0;
-      const i = y * w + x;
-      return sol.top[i] > sol.bottom[i] ? sol.top[i] : sol.bottom[i];
-    };
-    const filled = (x, y) => topOf(x, y) > bot(x, y);
-    const level = (x, y) => inside2(x, y) ? sol.level[y * w + x] : 0;
-    const faces = [];
-    const Y = (y) => h - y;
-    const lv = new Int16Array(w * h);
-    const rects = (heightAt) => {
-      const ids = /* @__PURE__ */ new Map(), vals = [];
-      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-        const i = y * w + x;
-        if (!filled(x, y)) {
-          lv[i] = -1;
-          continue;
-        }
-        const k = heightAt(x, y) * 4096 + level(x, y);
-        let id = ids.get(k);
-        if (id == null) {
-          id = vals.length;
-          ids.set(k, id);
-          vals.push(k);
-        }
-        lv[i] = id;
-      }
-      return { rs: greedyRects(lv, w, h), vals };
-    };
-    {
-      const { rs, vals } = rects(topOf);
-      for (const r of rs) {
-        const k = vals[r.level];
-        faces.push({ o: [r.x, Y(r.y + r.h), Math.floor(k / 4096)], u: [r.w, 0, 0], v: [0, r.h, 0], level: k % 4096 });
-      }
-    }
-    {
-      const { rs, vals } = rects(bot);
-      for (const r of rs) {
-        const k = vals[r.level];
-        faces.push({ o: [r.x, Y(r.y + r.h), Math.floor(k / 4096)], u: [0, r.h, 0], v: [r.w, 0, 0], level: k % 4096 });
-      }
-    }
-    const diff = (a0, a1, b0, b1) => {
-      if (a1 <= a0) return [];
-      if (b1 <= b0 || b1 <= a0 || b0 >= a1) return [[a0, a1]];
-      const out = [];
-      if (b0 > a0) out.push([a0, b0]);
-      if (b1 < a1) out.push([b1, a1]);
-      return out;
-    };
-    const col = (x, y) => filled(x, y) ? [bot(x, y), topOf(x, y)] : [0, 0];
-    for (let y = 0; y <= h; y++) {
-      for (let x = 0; x < w; ) {
-        const [n0, n1] = col(x, y - 1), [s0, s1] = col(x, y);
-        if (n0 === s0 && n1 === s1) {
-          x++;
-          continue;
-        }
-        let x1 = x + 1;
-        for (; x1 < w; x1++) {
-          const [a0, a1] = col(x1, y - 1), [b0, b1] = col(x1, y);
-          if (a0 !== n0 || a1 !== n1 || b0 !== s0 || b1 !== s1) break;
-        }
-        const Y0 = Y(y);
-        for (const [z0, z1] of diff(n0, n1, s0, s1)) faces.push({ o: [x, Y0, z0], u: [x1 - x, 0, 0], v: [0, 0, z1 - z0], level: level(x, y - 1) });
-        for (const [z0, z1] of diff(s0, s1, n0, n1)) faces.push({ o: [x, Y0, z0], u: [0, 0, z1 - z0], v: [x1 - x, 0, 0], level: level(x, y) });
-        x = x1;
-      }
-    }
-    for (let x = 0; x <= w; x++) {
-      for (let y = h - 1; y >= 0; ) {
-        const [w0, w1] = col(x - 1, y), [e0, e1] = col(x, y);
-        if (w0 === e0 && w1 === e1) {
-          y--;
-          continue;
-        }
-        let y1 = y - 1;
-        for (; y1 >= 0; y1--) {
-          const [a0, a1] = col(x - 1, y1), [b0, b1] = col(x, y1);
-          if (a0 !== w0 || a1 !== w1 || b0 !== e0 || b1 !== e1) break;
-        }
-        const Y0 = Y(y + 1), dy = y - y1;
-        for (const [z0, z1] of diff(e0, e1, w0, w1)) faces.push({ o: [x, Y0, z0], u: [0, 0, z1 - z0], v: [0, dy, 0], level: level(x, y) });
-        for (const [z0, z1] of diff(w0, w1, e0, e1)) faces.push({ o: [x, Y0, z0], u: [0, dy, 0], v: [0, 0, z1 - z0], level: level(x - 1, y) });
-        y = y1;
-      }
-    }
-    const along = [/* @__PURE__ */ new Map(), /* @__PURE__ */ new Map(), /* @__PURE__ */ new Map()];
-    const corner = (f, a, b) => f.o.map((c, k) => c + a * f.u[k] + b * f.v[k]);
-    const lineKey = (p, axis) => axis === 0 ? p[1] * 1e5 + p[2] : axis === 1 ? p[0] * 1e5 + p[2] : p[0] * 1e5 + p[1];
-    for (const f of faces) for (const [a, b] of [[0, 0], [1, 0], [1, 1], [0, 1]]) {
-      const p = corner(f, a, b);
-      for (let axis = 0; axis < 3; axis++) {
-        const k = lineKey(p, axis);
-        let list = along[axis].get(k);
-        if (!list) along[axis].set(k, list = []);
-        list.push(p[axis]);
-      }
-    }
-    for (const m of along) for (const [k, list] of m) m.set(k, [...new Set(list)].sort((a, b) => a - b));
-    const vertices = [], triangles = [], levels = [], index2 = /* @__PURE__ */ new Map();
-    const vertex = (p) => {
-      const k = (p[0] * 2e5 + p[1] * 2) * 2e5 + p[2] * 2;
-      let i = index2.get(k);
-      if (i == null) {
-        i = vertices.length / 3;
-        index2.set(k, i);
-        vertices.push(p[0] * cell, p[1] * cell, p[2] * layerHeight);
-      }
-      return i;
-    };
-    for (const f of faces) {
-      const c = [corner(f, 0, 0), corner(f, 1, 0), corner(f, 1, 1), corner(f, 0, 1)];
-      const ring = [];
-      for (let e = 0; e < 4; e++) {
-        const a = c[e], b = c[(e + 1) % 4], axis = a.findIndex((v, k) => v !== b[k]);
-        ring.push(a);
-        const lo = Math.min(a[axis], b[axis]), hi = Math.max(a[axis], b[axis]);
-        const mid = (along[axis].get(lineKey(a, axis)) || []).filter((v) => v > lo && v < hi);
-        if (a[axis] > b[axis]) mid.reverse();
-        for (const v of mid) {
-          const p = [...a];
-          p[axis] = v;
-          ring.push(p);
-        }
-      }
-      const ids = ring.map(vertex);
-      if (ids.length === 4) {
-        triangles.push(ids[0], ids[1], ids[2], ids[0], ids[2], ids[3]);
-        levels.push(f.level, f.level);
-      } else {
-        const m = vertex(corner(f, 0.5, 0.5));
-        for (let i = 0; i < ids.length; i++) {
-          triangles.push(m, ids[i], ids[(i + 1) % ids.length]);
-          levels.push(f.level);
-        }
-      }
-    }
-    return { vertices, triangles, levels };
-  }
-  function removeTowers(input, w, h, cell, s, o) {
-    const grid = Int16Array.from(input), n4 = w * h, label = new Int32Array(n4), dist2 = new Float32Array(n4);
-    const heightOf = o.heightOf || ((lv) => lv === -2 ? 0 : (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight);
-    let lowered = 0;
-    for (let round = 0; round < 12; round++) {
-      label.fill(-1);
-      const levels = [], stack = [];
-      for (let p = 0; p < n4; p++) {
-        if (label[p] >= 0) continue;
-        const id = levels.length, lv = grid[p];
-        levels.push(lv);
-        label[p] = id;
-        stack.push(p);
-        while (stack.length) {
-          const q = stack.pop(), x = q % w;
-          for (const r of [x > 0 ? q - 1 : -1, x < w - 1 ? q + 1 : -1, q - w, q + w]) {
-            if (r < 0 || r >= n4 || label[r] >= 0 || grid[r] !== lv) continue;
-            label[r] = id;
-            stack.push(r);
-          }
-        }
-      }
-      const D = Math.SQRT2;
-      for (let p = 0; p < n4; p++) {
-        const x = p % w, y = p / w | 0, l = label[p];
-        const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label[p - 1] !== l || label[p + 1] !== l || label[p - w] !== l || label[p + w] !== l;
-        dist2[p] = edge ? 1 : 1e9;
-      }
-      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-        const p = y * w + x;
-        if (dist2[p] <= 1) continue;
-        dist2[p] = Math.min(dist2[p], dist2[p - 1] + 1, dist2[p - w] + 1, dist2[p - w - 1] + D, dist2[p - w + 1] + D);
-      }
-      for (let y = h - 1; y >= 0; y--) for (let x = w - 1; x >= 0; x--) {
-        const p = y * w + x;
-        if (dist2[p] <= 1) continue;
-        dist2[p] = Math.min(dist2[p], dist2[p + 1] + 1, dist2[p + w] + 1, dist2[p + w + 1] + D, dist2[p + w - 1] + D);
-      }
-      const widest = new Float32Array(levels.length);
-      for (let p = 0; p < n4; p++) if (dist2[p] > widest[label[p]]) widest[label[p]] = dist2[p];
-      const borders = levels.map(() => /* @__PURE__ */ new Map());
-      const lowest = new Float64Array(levels.length).fill(Infinity);
-      const meet = (a, b) => {
-        const la = label[a], lb = label[b];
-        if (la === lb) return;
-        const ga = grid[a], gb = grid[b];
-        lowest[la] = Math.min(lowest[la], heightOf(gb));
-        lowest[lb] = Math.min(lowest[lb], heightOf(ga));
-        if (gb < ga) borders[la].set(gb, (borders[la].get(gb) || 0) + 1);
-        if (ga < gb) borders[lb].set(ga, (borders[lb].get(ga) || 0) + 1);
-      };
-      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
-        const p = y * w + x;
-        if (x < w - 1) meet(p, p + 1);
-        if (y < h - 1) meet(p, p + w);
-      }
-      const target = new Int16Array(levels.length).fill(-32768);
-      let changed = 0;
-      levels.forEach((lv, id) => {
-        const relief = heightOf(lv) - lowest[id];
-        if (!(relief > 1e-9) || !borders[id].size) return;
-        const width = Math.max(1, 2 * widest[id] - 1) * cell;
-        if (width >= o.minWidth && relief <= o.maxRatio * width) return;
-        let best = -2, bestN = -1;
-        for (const [nl, cnt] of borders[id]) if (cnt > bestN || cnt === bestN && nl > best) {
-          best = nl;
-          bestN = cnt;
-        }
-        target[id] = best;
-        changed++;
-      });
-      if (!changed) break;
-      for (let p = 0; p < n4; p++) {
-        const tl = target[label[p]];
-        if (tl !== -32768) grid[p] = tl;
-      }
-      lowered += changed;
-    }
-    return { grid, lowered };
-  }
-  function stl(mesh, name = "Mosaic Paint") {
-    const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3, buf = new ArrayBuffer(84 + n4 * 50), dv = new DataView(buf);
-    const header = `${name} – multi-color by layer`.slice(0, 80);
-    for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
-    dv.setUint32(80, n4, true);
-    let o = 84;
-    for (let t2 = 0; t2 < n4; t2++) {
-      const p = [0, 1, 2].map((k) => T[t2 * 3 + k] * 3);
-      const ux = V[p[1]] - V[p[0]], uy = V[p[1] + 1] - V[p[0] + 1], uz = V[p[1] + 2] - V[p[0] + 2];
-      const vx = V[p[2]] - V[p[0]], vy = V[p[2] + 1] - V[p[0] + 1], vz = V[p[2] + 2] - V[p[0] + 2];
-      let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
-      const L = Math.hypot(nx, ny, nz) || 1;
-      nx /= L;
-      ny /= L;
-      nz /= L;
-      for (const v of [nx, ny, nz]) {
-        dv.setFloat32(o, v, true);
-        o += 4;
-      }
-      for (const q of p) for (let k = 0; k < 3; k++) {
-        dv.setFloat32(o, V[q + k], true);
-        o += 4;
-      }
-      dv.setUint16(o, 0, true);
-      o += 2;
-    }
-    return buf;
-  }
-  function colorPlan(colors, s) {
-    return colors.map((color, i) => {
-      const from = i === 0 ? 1 : topLayer(i - 1, s) + 1, to = topLayer(i, s);
-      return { color, fromLayer: from, toLayer: to, changeAtLayer: i === 0 ? null : from, z: i === 0 ? null : +(from * s.layerHeight).toFixed(3) };
-    });
-  }
-  var modelHeight = (nColors, s) => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
-  var FRAME = -3;
-  var holeCentre = (o, margin) => Math.max(o.hole / 2 + margin, o.frame / 2);
-  function finishGrid(grid, w, h, o, margin) {
-    const b = Math.max(0, Math.round(o.frame)), W = w + 2 * b, H = h + 2 * b, out = new Int16Array(W * H).fill(FRAME);
-    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) out[(y + b) * W + x + b] = grid[y * w + x];
-    const r = Math.min(o.corner, W / 2, H / 2), hr = o.hole / 2, hy = holeCentre(o, margin);
-    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-      const cx = x + 0.5, cy = y + 0.5;
-      if (r > 0) {
-        const ox = cx < r ? r : cx > W - r ? W - r : cx, oy = cy < r ? r : cy > H - r ? H - r : cy;
-        if ((cx - ox) ** 2 + (cy - oy) ** 2 > r * r) {
-          out[y * W + x] = -2;
-          continue;
-        }
-      }
-      if (hr > 0 && (cx - W / 2) ** 2 + (cy - hy) ** 2 <= hr * hr) out[y * W + x] = -2;
-    }
-    return { grid: out, w: W, h: H };
-  }
-  function pocketMask(w, h, d, inset) {
-    const mask = new Uint8Array(w * h), r = d / 2;
-    if (r <= 0) return mask;
-    const xs = [inset, w - inset], ys = [inset, h - inset];
-    for (const px of xs) for (const py of ys) {
-      for (let y = Math.max(0, Math.floor(py - r)); y < Math.min(h, Math.ceil(py + r)); y++) {
-        for (let x = Math.max(0, Math.floor(px - r)); x < Math.min(w, Math.ceil(px + r)); x++) {
-          if ((x + 0.5 - px) ** 2 + (y + 0.5 - py) ** 2 <= r * r) mask[y * w + x] = 1;
-        }
-      }
-    }
-    return mask;
-  }
-  function cutPockets(solids, mask, depth, keep = 2) {
-    let used = depth;
-    for (let i = 0; i < mask.length; i++) {
-      if (!mask[i]) continue;
-      let top = 0;
-      for (const s of solids) if (s.top[i] > s.bottom[i]) top = Math.max(top, s.top[i]);
-      if (top > 0) used = Math.min(used, top - keep);
-    }
-    used = Math.max(0, used);
-    if (!used) return 0;
-    for (let i = 0; i < mask.length; i++) {
-      if (!mask[i]) continue;
-      for (const s of solids) if (s.top[i] > s.bottom[i] && s.bottom[i] < used) {
-        s.bottom[i] = used;
-        if (s.top[i] < used) s.top[i] = used;
-      }
-    }
-    return used;
-  }
-  function frameSolid(grid, bottom, top, level) {
-    const n4 = grid.length, s = { bottom: new Int16Array(n4).fill(bottom), top: new Int16Array(n4), level: new Int16Array(n4).fill(level) };
-    for (let i = 0; i < n4; i++) if (grid[i] === FRAME) s.top[i] = top;
-    return s;
-  }
-  var xmlAttr = (v) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  var num3 = (v) => String(+v.toFixed(4));
-  var CONTENT_TYPES = '<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>';
-  var RELS = '<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>';
-  function modelXml(mesh, colors, name) {
-    const V = mesh.vertices, T = mesh.triangles, out = [];
-    out.push(
-      '<?xml version="1.0" encoding="UTF-8"?>',
-      '<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">',
-      `<metadata name="Title">${xmlAttr(name)}</metadata>`,
-      '<metadata name="Application">Mosaic Paint</metadata>',
-      "<resources>",
-      '<basematerials id="1">'
-    );
-    for (const c of colors) out.push(`<base name="${xmlAttr(c)}" displaycolor="${c.toUpperCase()}FF"/>`);
-    out.push("</basematerials>", `<object id="2" type="model" pid="1" pindex="0" name="${xmlAttr(name)}">`, "<mesh>", "<vertices>");
-    for (let i = 0; i < V.length; i += 3) out.push(`<vertex x="${num3(V[i])}" y="${num3(V[i + 1])}" z="${num3(V[i + 2])}"/>`);
-    out.push("</vertices>", "<triangles>");
-    for (let t2 = 0; t2 < T.length; t2 += 3) out.push(`<triangle v1="${T[t2]}" v2="${T[t2 + 1]}" v3="${T[t2 + 2]}" pid="1" p1="${Math.max(0, mesh.levels[t2 / 3])}"/>`);
-    out.push("</triangles>", "</mesh>", "</object>", "</resources>", "<build>", '<item objectid="2"/>', "</build>", "</model>");
-    return out.join("\n");
-  }
-  function colorChangeXml(plan) {
-    return [
-      '<?xml version="1.0" encoding="utf-8"?>',
-      "<custom_gcodes_per_print_z>",
-      ...plan.filter((p) => p.z != null).map((p) => `<code print_z="${p.z}" type="0" extruder="1" color="${p.color}" extra="" gcode="M600"/>`),
-      '<mode value="SingleExtruder"/>',
-      "</custom_gcodes_per_print_z>"
-    ].join("\n");
-  }
-  function threeMfFiles(mesh, plan, name) {
-    return [
-      { name: "[Content_Types].xml", data: CONTENT_TYPES },
-      { name: "_rels/.rels", data: RELS },
-      { name: "3D/3dmodel.model", data: modelXml(mesh, plan.map((p) => p.color), name) },
-      { name: "Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml", data: colorChangeXml(plan) }
-    ];
-  }
-  function flatHeights(grout, f) {
-    const tile = (f.baseLayers + f.tileLayers) * f.layerHeight, low = (f.baseLayers + Math.max(1, f.tileLayers - f.groutRecess)) * f.layerHeight;
-    return (lv) => lv === -2 ? 0 : lv < 0 ? f.baseLayers * f.layerHeight : grout[lv] ? low : tile;
-  }
-  function flatParts(grid, w, h, nLevels, grout, f) {
-    const n4 = w * h, out = [];
-    if (f.baseLayers > 0) {
-      const top = new Int16Array(n4);
-      for (let i = 0; i < n4; i++) if (grid[i] !== -2) top[i] = f.baseLayers;
-      out.push({ part: -1, solid: { bottom: new Int16Array(n4), top, level: new Int16Array(n4) } });
-    }
-    for (let k = 0; k < nLevels; k++) {
-      const bottom = new Int16Array(n4).fill(f.baseLayers), top = new Int16Array(n4), level = new Int16Array(n4).fill(k);
-      const up = f.baseLayers + (grout[k] ? Math.max(1, f.tileLayers - f.groutRecess) : f.tileLayers);
-      let any = false;
-      for (let i = 0; i < n4; i++) if (grid[i] === k) {
-        top[i] = up;
-        any = true;
-      }
-      if (any) out.push({ part: k, solid: { bottom, top, level } });
-    }
-    return out;
-  }
-  function threeMfPartsFiles(parts, name, slicer = "prusa") {
-    return slicer === "bambu" ? bambuPartsFiles(parts, name) : prusaPartsFiles(parts, name);
-  }
-  function bambuPartsFiles(parts, name) {
-    const NS = 'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"';
-    const uuid = (kind, k) => `${kind.toString(16).padStart(8, "0")}-0000-4000-8000-${k.toString(16).padStart(12, "0")}`;
-    const sub = [
-      '<?xml version="1.0" encoding="UTF-8"?>',
-      `<model unit="millimeter" xml:lang="en-US" ${NS}>`,
-      '<metadata name="BambuStudio:3mfVersion">1</metadata>',
-      "<resources>"
-    ];
-    parts.forEach((p, k) => {
-      const V = p.mesh.vertices, T = p.mesh.triangles;
-      sub.push(`<object id="${k + 1}" p:UUID="${uuid(1, k)}" type="model">`, "<mesh>", "<vertices>");
-      for (let i = 0; i < V.length; i += 3) sub.push(`<vertex x="${num3(V[i])}" y="${num3(V[i + 1])}" z="${num3(V[i + 2])}"/>`);
-      sub.push("</vertices>", "<triangles>");
-      for (let t2 = 0; t2 < T.length; t2 += 3) sub.push(`<triangle v1="${T[t2]}" v2="${T[t2 + 1]}" v3="${T[t2 + 2]}"/>`);
-      sub.push("</triangles>", "</mesh>", "</object>");
-    });
-    sub.push("</resources>", "<build/>", "</model>");
-    const whole = parts.length + 1, path = "/3D/Objects/object_1.model";
-    const main = [
-      '<?xml version="1.0" encoding="UTF-8"?>',
-      `<model unit="millimeter" xml:lang="en-US" ${NS}>`,
-      '<metadata name="Application">Mosaic Paint</metadata>',
-      '<metadata name="BambuStudio:3mfVersion">1</metadata>',
-      `<metadata name="Title">${xmlAttr(name)}</metadata>`,
-      "<resources>",
-      `<object id="${whole}" p:UUID="${uuid(2, 0)}" type="model">`,
-      "<components>"
-    ];
-    parts.forEach((_, k) => main.push(`<component p:path="${path}" objectid="${k + 1}" p:UUID="${uuid(3, k)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`));
-    main.push(
-      "</components>",
-      "</object>",
-      "</resources>",
-      `<build p:UUID="${uuid(4, 0)}">`,
-      `<item objectid="${whole}" p:UUID="${uuid(5, 0)}" printable="1"/>`,
-      "</build>",
-      "</model>"
-    );
-    const config = [
-      '<?xml version="1.0" encoding="UTF-8"?>',
-      "<config>",
-      `<object id="${whole}">`,
-      `<metadata key="name" value="${xmlAttr(name)}"/>`,
-      '<metadata key="extruder" value="1"/>'
-    ];
-    parts.forEach((p, k) => config.push(
-      `<part id="${k + 1}" subtype="normal_part">`,
-      `<metadata key="name" value="${xmlAttr(p.name)}"/>`,
-      `<metadata key="extruder" value="${p.filament || k + 1}"/>`,
-      "</part>"
-    ));
-    config.push("</object>", "</config>");
-    return [
-      { name: "[Content_Types].xml", data: CONTENT_TYPES },
-      { name: "_rels/.rels", data: RELS },
-      { name: "3D/3dmodel.model", data: main.join("\n") },
-      { name: "3D/_rels/3dmodel.model.rels", data: RELS.replace("/3D/3dmodel.model", path) },
-      { name: "3D/Objects/object_1.model", data: sub.join("\n") },
-      { name: "Metadata/model_settings.config", data: config.join("\n") }
-    ];
-  }
-  function prusaPartsFiles(parts, name) {
-    const out = [], config = [];
-    out.push(
-      '<?xml version="1.0" encoding="UTF-8"?>',
-      '<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">',
-      `<metadata name="Title">${xmlAttr(name)}</metadata>`,
-      '<metadata name="Application">Mosaic Paint</metadata>',
-      "<resources>",
-      '<basematerials id="2">'
-    );
-    for (const p of parts) out.push(`<base name="${xmlAttr(p.name)}" displaycolor="${p.color.toUpperCase()}FF"/>`);
-    out.push("</basematerials>", `<object id="1" type="model" pid="2" pindex="0" name="${xmlAttr(name)}">`, "<mesh>", "<vertices>");
-    for (const p of parts) {
-      const V = p.mesh.vertices;
-      for (let i = 0; i < V.length; i += 3) out.push(`<vertex x="${num3(V[i])}" y="${num3(V[i + 1])}" z="${num3(V[i + 2])}"/>`);
-    }
-    out.push("</vertices>", "<triangles>");
-    config.push('<?xml version="1.0" encoding="UTF-8"?>', "<config>", '<object id="1" instances_count="1">', `<metadata type="object" key="name" value="${xmlAttr(name)}"/>`);
-    let vOffset = 0, tOffset = 0;
-    parts.forEach((p, k) => {
-      const T = p.mesh.triangles, n4 = T.length / 3;
-      for (let t2 = 0; t2 < T.length; t2 += 3) out.push(`<triangle v1="${T[t2] + vOffset}" v2="${T[t2 + 1] + vOffset}" v3="${T[t2 + 2] + vOffset}" pid="2" p1="${k}"/>`);
-      config.push(
-        `<volume firstid="${tOffset}" lastid="${tOffset + n4 - 1}">`,
-        `<metadata type="volume" key="name" value="${xmlAttr(p.name)}"/>`,
-        '<metadata type="volume" key="volume_type" value="ModelPart"/>',
-        `<metadata type="volume" key="extruder" value="${p.filament || k + 1}"/>`,
-        "</volume>"
-      );
-      vOffset += p.mesh.vertices.length / 3;
-      tOffset += n4;
-    });
-    out.push("</triangles>", "</mesh>", "</object>", "</resources>", "<build>", '<item objectid="1"/>', "</build>", "</model>");
-    config.push("</object>", "</config>");
-    return [
-      { name: "[Content_Types].xml", data: CONTENT_TYPES },
-      { name: "_rels/.rels", data: RELS },
-      { name: "3D/3dmodel.model", data: out.join("\n") },
-      { name: "Metadata/Slic3r_PE_model.config", data: config.join("\n") }
-    ];
-  }
-  function mergeMeshes(meshes) {
-    const out = { vertices: [], triangles: [], levels: [] };
-    for (const m of meshes) {
-      const o = out.vertices.length / 3;
-      for (const v of m.vertices) out.vertices.push(v);
-      for (const i of m.triangles) out.triangles.push(i + o);
-      for (const l of m.levels) out.levels.push(l);
-    }
-    return out;
-  }
-
-  // src/lib/zip.ts
-  var crcTable = null;
-  function crc32(data) {
-    if (!crcTable) {
-      crcTable = new Uint32Array(256);
-      for (let n4 = 0; n4 < 256; n4++) {
-        let c2 = n4;
-        for (let k = 0; k < 8; k++) c2 = c2 & 1 ? 3988292384 ^ c2 >>> 1 : c2 >>> 1;
-        crcTable[n4] = c2 >>> 0;
-      }
-    }
-    let c = 4294967295;
-    for (let i = 0; i < data.length; i++) c = crcTable[(c ^ data[i]) & 255] ^ c >>> 8;
-    return (c ^ 4294967295) >>> 0;
-  }
-  async function deflateRaw(data) {
-    if (typeof CompressionStream === "undefined") return null;
-    try {
-      const s = new Blob([data]).stream().pipeThrough(new CompressionStream("deflate-raw"));
-      return new Uint8Array(await new Response(s).arrayBuffer());
-    } catch {
-      return null;
-    }
-  }
-  async function zip(entries, { compress = true } = {}) {
-    const enc = new TextEncoder(), parts = [], central = [];
-    let offset = 0;
-    for (const e of entries) {
-      const name = enc.encode(e.name), raw = typeof e.data === "string" ? enc.encode(e.data) : e.data;
-      const crc = crc32(raw), packed = compress ? await deflateRaw(raw) : null;
-      const deflated = !!packed && packed.length < raw.length, body = deflated ? packed : raw;
-      const local = new Uint8Array(30 + name.length), lv = new DataView(local.buffer);
-      lv.setUint32(0, 67324752, true);
-      lv.setUint16(4, 20, true);
-      lv.setUint16(6, 2048, true);
-      lv.setUint16(8, deflated ? 8 : 0, true);
-      lv.setUint16(10, 0, true);
-      lv.setUint16(12, 33, true);
-      lv.setUint32(14, crc, true);
-      lv.setUint32(18, body.length, true);
-      lv.setUint32(22, raw.length, true);
-      lv.setUint16(26, name.length, true);
-      local.set(name, 30);
-      const cd = new Uint8Array(46 + name.length), cv = new DataView(cd.buffer);
-      cv.setUint32(0, 33639248, true);
-      cv.setUint16(4, 20, true);
-      cv.setUint16(6, 20, true);
-      cv.setUint16(8, 2048, true);
-      cv.setUint16(10, deflated ? 8 : 0, true);
-      cv.setUint16(12, 0, true);
-      cv.setUint16(14, 33, true);
-      cv.setUint32(16, crc, true);
-      cv.setUint32(20, body.length, true);
-      cv.setUint32(24, raw.length, true);
-      cv.setUint16(28, name.length, true);
-      cv.setUint32(42, offset, true);
-      cd.set(name, 46);
-      parts.push(local, body);
-      central.push(cd);
-      offset += local.length + body.length;
-    }
-    const cdSize = central.reduce((s, c) => s + c.length, 0), end = new Uint8Array(22), ev = new DataView(end.buffer);
-    ev.setUint32(0, 101010256, true);
-    ev.setUint16(8, entries.length, true);
-    ev.setUint16(10, entries.length, true);
-    ev.setUint32(12, cdSize, true);
-    ev.setUint32(16, offset, true);
-    const out = new Uint8Array(offset + cdSize + 22);
-    let o = 0;
-    for (const p of [...parts, ...central, end]) {
-      out.set(p, o);
-      o += p.length;
-    }
-    return out;
-  }
-
   // src/shared/view3d.ts
   var VS = `
 attribute vec3 aPos; attribute vec3 aNormal; attribute vec3 aColor;
@@ -4168,10 +4522,10 @@ void main() {
       gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
     }
     function show(mesh, colorOf) {
-      const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3;
-      const pos = new Float32Array(n4 * 9), nor = new Float32Array(n4 * 9), col = new Float32Array(n4 * 9);
+      const V = mesh.vertices, T = mesh.triangles, n5 = T.length / 3;
+      const pos = new Float32Array(n5 * 9), nor = new Float32Array(n5 * 9), col = new Float32Array(n5 * 9);
       let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = 0;
-      for (let t2 = 0; t2 < n4; t2++) {
+      for (let t2 = 0; t2 < n5; t2++) {
         const a = T[t2 * 3] * 3, b = T[t2 * 3 + 1] * 3, c = T[t2 * 3 + 2] * 3;
         const ux = V[b] - V[a], uy = V[b + 1] - V[a + 1], uz = V[b + 2] - V[a + 2];
         const vx = V[c] - V[a], vy = V[c + 1] - V[a + 1], vz = V[c + 2] - V[a + 2];
@@ -4203,7 +4557,7 @@ void main() {
       upload("pos", pos);
       upload("normal", nor);
       upload("color", col);
-      count = n4 * 3;
+      count = n5 * 3;
       center = [(x0 + x1) / 2, (y0 + y1) / 2, 0];
       radius = Math.max(1e-3, Math.hypot(x1 - x0, y1 - y0) / 2, z1);
       render3();
@@ -4365,11 +4719,13 @@ void main() {
 </div>
 <p class="note" id="m3-summary"></p>
 <div class="row dlg-foot">
+  <span id="m3-busy" class="note" aria-live="polite"></span>
   <button id="m3-plan" title="${t("Which filament to load at which layer, as a text file")}">${t("Plan")}</button>
   <button id="m3-stl" title="${t("Just the shape – add the filament changes from the plan in your slicer")}">STL</button>
   <label data-mode="flat">${t("3MF for")} <select id="m3-slicer"><option value="prusa">PrusaSlicer</option><option value="bambu">Bambu Studio, OrcaSlicer</option></select></label>
   <button id="m3-go" class="primary" title="${t("The model, with the filament changes for PrusaSlicer")}">${t("Download 3MF")}</button>
 </div>`;
+  var SMALL = 2e4;
   function initExport3D(host, button) {
     const dlg = document.createElement("dialog");
     dlg.id = "dlg-3d";
@@ -4382,8 +4738,9 @@ void main() {
     let order = [], note = "", lines = /* @__PURE__ */ new Set(), version = 0;
     const groutChoice = /* @__PURE__ */ new Map();
     const isLine = (ci) => lines.has(colors[ci]);
-    const settings = () => ({ layerHeight: opts.layerHeight, layersPerColor: opts.layersPerColor, baseLayers: opts.baseLayers });
-    const flat = () => ({ layerHeight: opts.layerHeight, baseLayers: opts.baseLayers, tileLayers: opts.tileLayers, groutRecess: Math.min(opts.groutRecess, opts.tileLayers - 1) });
+    const buildOpts = () => ({ ...opts, maxRatio: MAX_RATIO });
+    const settings = () => printSettings(buildOpts());
+    const flat = () => flatSettings(buildOpts());
     const isFlat = () => opts.mode === "flat";
     const size = () => {
       const a = host.aspect();
@@ -4392,35 +4749,37 @@ void main() {
     const normalize = () => {
       order = [...order.filter(isLine), ...order.filter((ci) => !isLine(ci))];
     };
-    let cached = null, cachedKey = "";
+    const busy = (text) => {
+      $("#m3-busy").textContent = text;
+    };
+    let cached = null, cachedKey = "", wanted = "";
     function model() {
+      if (!grid) return null;
       const key = [version, order.join(), [...lines].join(), opts.mode, opts.tileLayers, opts.groutRecess, opts.layerHeight, opts.layersPerColor, opts.baseLayers, opts.minWidth, cell].join("|");
       if (cached && key === cachedKey) return cached;
-      let list = order.filter((i) => counts2[i] > 0), out = { list, grid: new Int16Array(0), counts: [], lowered: 0 };
-      const colorGrid = Int16Array.from(grid);
-      let lowered = 0;
-      for (let round = 0; round < 4; round++) {
-        const rank = new Int16Array(colors.length).fill(-1);
-        list.forEach((ci, k) => {
-          rank[ci] = k;
-        });
-        const levels = colorGrid.map((v) => v < 0 ? -1 : rank[v]);
-        const heightOf = isFlat() ? flatHeights(list.map(isLine), flat()) : void 0;
-        const res = removeTowers(levels, gw, gh, cell, settings(), { minWidth: opts.minWidth, maxRatio: MAX_RATIO, heightOf });
-        lowered += res.lowered;
-        const c = list.map(() => 0);
-        for (let p = 0; p < res.grid.length; p++) {
-          const lv = res.grid[p];
-          if (lv >= 0) c[lv]++;
-          colorGrid[p] = lv < 0 ? -1 : list[lv];
-        }
-        out = { list, grid: res.grid, counts: c, lowered };
-        if (c.every((n4) => n4 > 0)) break;
-        list = list.filter((_, k) => c[k] > 0);
+      const job = { colorGrid: grid, w: gw, h: gh, cell, order, counts: counts2, isLine: colors.map((_, i) => isLine(i)), o: buildOpts() };
+      if (gw * gh <= SMALL) {
+        cached = towers(job.colorGrid, job.w, job.h, job.cell, job.order, job.counts, job.isLine, job.o);
+        cachedKey = key;
+        return cached;
       }
-      cached = out;
-      cachedKey = key;
-      return out;
+      if (wanted !== key) {
+        wanted = key;
+        busy(t("Working out the model…"));
+        run2("towers", job, { progress: (f) => busy(t("Working out the model… {p} %", { p: Math.round(f * 100) })) }).then((m) => {
+          if (wanted !== key) return;
+          cached = m;
+          cachedKey = key;
+          busy("");
+          render3();
+        }, (e) => {
+          if (isCancelled(e) || wanted !== key) return;
+          wanted = "";
+          busy("");
+          toast(t("Could not build the 3D model."));
+        });
+      }
+      return null;
     }
     const byBrightness = (lightFirst) => (a, b) => +isLine(b) - +isLine(a) || (luminance(colors[b]) - luminance(colors[a])) * (lightFirst ? 1 : -1);
     function sortBy(lightFirst) {
@@ -4454,7 +4813,9 @@ void main() {
     }
     const rows2 = /* @__PURE__ */ new Map();
     function move(c, d) {
-      const list = model().list, k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
+      const m = model();
+      if (!m) return;
+      const list = m.list, k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
       if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
       const a = order.indexOf(list[k]), b = order.indexOf(other);
       [order[a], order[b]] = [order[b], order[a]];
@@ -4469,7 +4830,7 @@ void main() {
       render3();
     }
     function render3() {
-      const s = settings(), m = model(), list = m.list, { w, h } = size(), fl = isFlat();
+      const { w, h } = size(), fl = isFlat();
       for (const el of dlg.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
       $("#m3-mode-flat").classList.toggle("active", fl);
@@ -4477,22 +4838,26 @@ void main() {
       $("#m3-stl").title = fl ? t("One STL file per color, in a ZIP – load them as parts of one object") : t("Just the shape – add the filament changes from the plan in your slicer");
       $("#m3-w").value = f2(w);
       $("#m3-h").value = f2(h);
+      const m = model();
+      $("#m3-go").disabled = $("#m3-stl").disabled = $("#m3-plan").disabled = !m || !m.list.length;
+      if (!m) return;
+      const s = settings(), list = m.list;
       const warn = [
         note,
         !fl && list.length > MANY_COLORS ? t("{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).", { n: list.length }) : "",
         cell > opts.detail + 1e-9 ? t("Detail lowered to {d} mm for this size.", { d: num(+f2(cell)) }) : "",
-        pocketNote()
+        pocketNote(m)
       ].filter(Boolean).join(" ");
       $("#m3-note").hidden = !warn;
       $("#m3-note").textContent = warn;
-      const plan2 = colorPlan(list.map((i) => colors[i]), s), total2 = gw * gh || 1, box = $("#m3-order");
+      const plan = colorPlan(list.map((i) => colors[i]), s), total2 = gw * gh || 1, box = $("#m3-order");
       const keep = new Set(list.map((ci) => colors[ci]));
       for (const [c, el] of rows2) if (!keep.has(c)) {
         el.remove();
         rows2.delete(c);
       }
       list.forEach((ci, k) => {
-        const c = colors[ci], p = plan2[k];
+        const c = colors[ci], p = plan[k];
         let row = rows2.get(c);
         if (!row) {
           row = document.createElement("div");
@@ -4514,71 +4879,32 @@ void main() {
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
       const fs = flat();
-      $("#m3-summary").textContent = !list.length ? t("Nothing is painted yet.") : fl ? t("{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})", { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers }) + (unpainted ? " · " + (opts.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t("unpainted parts are left open")) : "") + (m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "") : t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 }) + (unpainted ? " · " + (opts.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t("unpainted parts are left open")) : "") + (m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "");
+      const atBase = unpainted ? " · " + (opts.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t("unpainted parts are left open")) : "";
+      const lowered = m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "";
+      let summary = !list.length ? t("Nothing is painted yet.") : (fl ? t("{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})", { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers }) : t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 })) + atBase + lowered;
       if (list.length && opts.frame > 0) {
-        const f = finished();
-        $("#m3-summary").textContent += " · " + t("with the frame {w} × {h} mm, {z} mm high", { w: num(+f2(f.w * cell)), h: num(+f2(f.h * cell)), z: num(+f2(frameTop() * opts.layerHeight)) });
+        const f = finished(m);
+        summary += " · " + t("with the frame {w} × {h} mm, {z} mm high", { w: num(+f2(f.w * cell)), h: num(+f2(f.h * cell)), z: num(+f2(frameTop(list.length, buildOpts()) * opts.layerHeight)) });
       }
-      $("#m3-go").disabled = $("#m3-stl").disabled = $("#m3-plan").disabled = !list.length;
+      $("#m3-summary").textContent = summary;
       drawPreview(m);
       if (view2) schedule3d();
     }
-    const MARGIN2 = 2;
-    const layers = (mm) => Math.max(1, Math.round(mm / opts.layerHeight));
-    const frameTop = () => (isFlat() ? opts.baseLayers + opts.tileLayers : topLayer(Math.max(0, model().list.length - 1), settings())) + opts.frameRaise;
-    function layout2(g, w, h, c) {
-      const f = finishGrid(g, w, h, { frame: opts.frame / c, corner: opts.corner / c, hole: opts.hole / c }, MARGIN2 / c);
-      const inset = (opts.magnet / 2 + MARGIN2 + opts.corner * 0.3) / c;
-      return { ...f, mask: opts.magnet > 0 ? pocketMask(f.w, f.h, opts.magnet / c, inset) : null };
-    }
     let laid = null, laidKey = "";
-    function finished() {
-      model();
+    function finished(m) {
       const key = [cachedKey, opts.frame, opts.corner, opts.hole, opts.magnet].join("|");
       if (!laid || key !== laidKey) {
-        laid = layout2(model().grid, gw, gh, cell);
+        laid = layout(m.grid, gw, gh, cell, buildOpts());
         laidKey = key;
       }
       return laid;
     }
-    function columnTop(lv) {
-      if (lv === -2) return 0;
-      if (lv === FRAME) return frameTop();
-      if (isFlat()) return Math.round(flatHeights(model().list.map(isLine), flat())(lv) / opts.layerHeight);
-      return lv < 0 ? opts.baseLayers : topLayer(lv, settings());
-    }
-    function pocketDepth() {
-      const f = finished();
-      if (!f.mask) return 0;
-      let d = layers(opts.magnetDepth);
-      for (let i = 0; i < f.mask.length; i++) if (f.mask[i]) {
-        const top = columnTop(f.grid[i]);
-        if (top > 0) d = Math.min(d, top - 2);
-      }
-      return Math.max(0, d);
-    }
-    function solids(f) {
-      const list = model().list;
-      let out;
-      if (isFlat()) {
-        out = flatParts(f.grid, f.w, f.h, list.length, list.map(isLine), flat());
-        if (opts.frame > 0) out.splice(opts.baseLayers ? 1 : 0, 0, { part: FRAME, solid: frameSolid(f.grid, opts.baseLayers, frameTop(), 0) });
-      } else {
-        const sol = heightSolid(f.grid, settings()), top = frameTop();
-        for (let i = 0; i < f.grid.length; i++) if (f.grid[i] === FRAME) {
-          sol.top[i] = top;
-          sol.level[i] = list.length - 1;
-        }
-        out = [{ part: 0, solid: sol }];
-      }
-      if (f.mask) cutPockets(out.map((p) => p.solid), f.mask, layers(opts.magnetDepth));
-      return out;
-    }
-    function pocketNote() {
-      if (!opts.magnet || !model().list.length) return "";
-      const d = pocketDepth();
+    const pocketDepth2 = (m) => pocketDepth(finished(m), m.list.map(isLine), buildOpts());
+    function pocketNote(m) {
+      if (!opts.magnet || !m.list.length) return "";
+      const d = pocketDepth2(m);
       if (!d) return t("The model is too thin for magnet pockets.");
-      return d < layers(opts.magnetDepth) ? t("The magnet pockets are only {d} mm deep – the model is thinner there.", { d: num(+f2(d * opts.layerHeight)) }) : "";
+      return d < layersOf(opts.magnetDepth, buildOpts()) ? t("The magnet pockets are only {d} mm deep – the model is thinner there.", { d: num(+f2(d * opts.layerHeight)) }) : "";
     }
     let view2 = null, timer3d;
     const schedule3d = () => {
@@ -4586,26 +4912,15 @@ void main() {
       timer3d = setTimeout(update3d, 120);
     };
     function update3d() {
-      if (!view2 || $("#m3-3d").hidden || !grid) return;
-      const m = model(), f = Math.max(1, Math.ceil(Math.sqrt(gw * gh / 16e4)));
-      let g = m.grid, w = gw, h = gh;
-      if (f > 1) {
-        w = Math.ceil(gw / f);
-        h = Math.ceil(gh / f);
-        g = new Int16Array(w * h);
-        for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) g[y * w + x] = m.grid[Math.min(gh - 1, y * f) * gw + Math.min(gw - 1, x * f)];
-      }
+      if (!view2 || $("#m3-3d").hidden) return;
+      const m = model();
+      if (!m || !m.list.length) return;
+      const d = downsample(m.grid, gw, gh, cell, 16e4);
       const rgb = m.list.map((ci) => rgba(colors[ci]).slice(0, 3));
-      const lay = layout2(g, w, h, cell * f);
-      const shape = mergeMeshes(solids(lay).map((p) => solidMesh(p.solid, lay.w, lay.h, cell * f, opts.layerHeight)));
-      view2.show(shape, (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
-    }
-    function parts() {
-      const list = model().list, f = finished();
-      return solids(f).map((p) => {
-        const k = Math.max(0, p.part), color = colors[list[k]];
-        const name = p.part === FRAME ? t("Frame") : p.part < 0 ? t("Base") : `${p.part + 1} ${color}`;
-        return { name, color, mesh: solidMesh(p.solid, f.w, f.h, cell, opts.layerHeight), filament: k + 1 };
+      run2("view3d", { shape: { ...d, grout: m.list.map(isLine) }, o: buildOpts() }).then((mesh) => {
+        view2.show(mesh, (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
+      }, (e) => {
+        if (!isCancelled(e)) toast(t("Could not build the 3D model."));
       });
     }
     function showTab(three) {
@@ -4626,8 +4941,8 @@ void main() {
     }
     function drawPreview(m) {
       const cv = $("#m3-preview");
-      if (!grid || !m.list.length) return;
-      const f = finished(), k = Math.min(1, 300 / Math.max(f.w, f.h));
+      if (!m.list.length) return;
+      const f = finished(m), k = Math.min(1, 300 / Math.max(f.w, f.h));
       cv.width = Math.max(1, Math.round(f.w * k));
       cv.height = Math.max(1, Math.round(f.h * k));
       const small = document.createElement("canvas");
@@ -4646,23 +4961,18 @@ void main() {
       x.drawImage(small, 0, 0, cv.width, cv.height);
     }
     const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
-    const plan = () => colorPlan(model().list.map((i) => colors[i]), settings());
-    const mesh = () => {
-      const f = finished();
-      return solidMesh(solids(f)[0].solid, f.w, f.h, cell, opts.layerHeight);
-    };
-    function finishLines() {
-      const out = [], list = model().list;
+    function finishLines(m) {
+      const out = [], list = m.list;
       if (opts.frame > 0) {
-        const top = frameTop(), v = { w: num(opts.frame), layer: top, z: (top * opts.layerHeight).toFixed(2) };
+        const top = frameTop(list.length, buildOpts()), v = { w: num(opts.frame), layer: top, z: (top * opts.layerHeight).toFixed(2) };
         out.push(isFlat() ? t("Frame {w} mm wide, up to layer {layer} (Z {z} mm), in filament 1.", v) : t("Frame {w} mm wide: it goes on in {color} up to layer {layer} (Z {z} mm).", { ...v, color: colors[list[list.length - 1]] }));
       }
-      const d = pocketDepth();
+      const d = pocketDepth2(m);
       if (d) out.push(t("Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.", { d: num(opts.magnet), depth: (d * opts.layerHeight).toFixed(2) }));
       return out;
     }
-    function flatPlanText() {
-      const fs = flat(), list = model().list, { w, h } = size(), slicer2 = opts.slicer === "bambu" ? "Bambu Studio / OrcaSlicer" : "PrusaSlicer";
+    function flatPlanText(m) {
+      const fs = flat(), list = m.list, { w, h } = size(), slicer2 = opts.slicer === "bambu" ? "Bambu Studio / OrcaSlicer" : "PrusaSlicer";
       const v = { name: base(), w: f2(w), h: f2(h), lh: fs.layerHeight, base: fs.baseLayers, tile: fs.tileLayers, recess: fs.groutRecess, total: f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight), slicer: slicer2 };
       const lines2 = [
         t("Mosaic Paint – multi-filament plan for {name}.3mf", v),
@@ -4670,7 +4980,7 @@ void main() {
         t("Total height {total} mm.", v),
         "",
         ...list.map((ci, k) => k === 0 && fs.baseLayers ? t("Filament {k}: {color} (also the base plate)", { k: k + 1, color: colors[ci] }) : t("Filament {k}: {color}", { k: k + 1, color: colors[ci] })),
-        ...finishLines(),
+        ...finishLines(m),
         "",
         t("{slicer}: open the 3MF – every color is a part of one object with its filament already assigned. Load the filaments in this order (AMS slots, MMU…).", v),
         t("The 3MF is made for {slicer}: other slicers may read it as one part – then use the STL files.", v),
@@ -4678,19 +4988,19 @@ void main() {
       ];
       return lines2.join("\n") + "\n";
     }
-    function planText() {
-      if (isFlat()) return flatPlanText();
-      const s = settings(), list = model().list, plan2 = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
+    function planText(m) {
+      if (isFlat()) return flatPlanText(m);
+      const s = settings(), list = m.list, plan = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
       const v = { name: base(), w: f2(w), h: f2(h), lh: s.layerHeight, lpc: s.layersPerColor, base: s.baseLayers, total: modelHeight(list.length, s), layers: topLayer(list.length - 1, s) };
-      const first = plan2[0];
+      const first = plan[0];
       const lines2 = [
         t("Mosaic Paint – 3D print plan for {name}.3mf / {name}.stl", v),
         t("Size {w} × {h} mm · layer height {lh} mm · {lpc} layers per color · base {base} layers", v),
         t("Total height {total} mm ({layers} layers). Set the slicer’s first layer height to {lh} mm too.", v),
         "",
         s.baseLayers ? t("Start with {color} – layers {from}–{to} (base plate included)", { color: first.color, from: first.fromLayer, to: first.toLayer }) : t("Start with {color} – layers {from}–{to}", { color: first.color, from: first.fromLayer, to: first.toLayer }),
-        ...plan2.slice(1).map((p) => t("Layer {layer} (Z {z} mm): change to {color} – layers {from}–{to}", { layer: p.changeAtLayer, z: p.z.toFixed(2), color: p.color, from: p.fromLayer, to: p.toLayer })),
-        ...finishLines(),
+        ...plan.slice(1).map((p) => t("Layer {layer} (Z {z} mm): change to {color} – layers {from}–{to}", { layer: p.changeAtLayer, z: p.z.toFixed(2), color: p.color, from: p.fromLayer, to: p.toLayer })),
+        ...finishLines(m),
         "",
         t("PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider."),
         t("Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:"),
@@ -4700,10 +5010,40 @@ void main() {
       ];
       return lines2.join("\n") + "\n";
     }
-    let busy;
+    async function save2(kind) {
+      const m = model();
+      if (!m || !m.list.length) return;
+      const btn = $(kind === "3mf" ? "#m3-go" : "#m3-stl");
+      btn.disabled = true;
+      busy(t("Building the 3D model…"));
+      try {
+        const r = await run2("export3d", {
+          kind,
+          shape: { grid: m.grid, w: gw, h: gh, cell, grout: m.list.map(isLine) },
+          o: buildOpts(),
+          colors: m.list.map((ci) => colors[ci]),
+          name: base(),
+          slicer: opts.slicer,
+          labels: { base: t("Base"), frame: t("Frame") }
+        }, { progress: (f) => busy(t("Building the 3D model… {p} %", { p: Math.round(f * 100) })) });
+        download(new Blob([r.data], { type: r.type }), r.fileName);
+        const v = { name: base(), n: r.triangles, c: m.list.length - 1 };
+        if (isFlat()) {
+          toast(kind === "3mf" ? t("Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.", { name: base(), slicer: opts.slicer === "bambu" ? "Bambu Studio" : "PrusaSlicer", n: r.parts }) : t("Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.", { name: base(), n: r.parts }));
+        } else {
+          toast(kind === "3mf" ? t("Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).", v) : t("Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.", v));
+        }
+      } catch (e) {
+        if (!isCancelled(e)) toast(t("Could not build the 3D model."));
+      } finally {
+        busy("");
+        btn.disabled = false;
+      }
+    }
+    let timer2;
     const reanalyse = () => {
-      clearTimeout(busy);
-      busy = setTimeout(() => analyse().catch(() => toast(t("Could not read the picture."))), 50);
+      clearTimeout(timer2);
+      timer2 = setTimeout(() => analyse().catch(() => toast(t("Could not read the picture."))), 50);
     };
     const CAN_BE_0 = ["baseLayers", "minWidth", "groutRecess", "frame", "frameRaise", "corner", "hole", "magnet"];
     const bindNum = (id, key, min, max, whole, again) => {
@@ -4771,41 +5111,12 @@ void main() {
     };
     $("#m3-light").onclick = () => sortBy(true);
     $("#m3-dark").onclick = () => sortBy(false);
-    const triangles = (m) => m.triangles.length / 3;
-    $("#m3-go").onclick = async () => {
-      $("#m3-go").disabled = true;
-      try {
-        if (isFlat()) {
-          const ps = parts(), slicer2 = opts.slicer === "bambu" ? "Bambu Studio" : "PrusaSlicer";
-          const data2 = await zip(threeMfPartsFiles(ps, base(), opts.slicer));
-          download(new Blob([data2], { type: "model/3mf" }), base() + ".3mf");
-          toast(t("Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.", { name: base(), slicer: slicer2, n: ps.length }));
-          return;
-        }
-        const m = mesh(), p = plan();
-        const data = await zip(threeMfFiles(m, p, base()));
-        download(new Blob([data], { type: "model/3mf" }), base() + ".3mf");
-        toast(t("Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).", { name: base(), n: triangles(m), c: p.length - 1 }));
-      } finally {
-        $("#m3-go").disabled = false;
-      }
+    $("#m3-go").onclick = () => save2("3mf");
+    $("#m3-stl").onclick = () => save2("stl");
+    $("#m3-plan").onclick = () => {
+      const m = model();
+      if (m && m.list.length) download(new Blob([planText(m)], { type: "text/plain" }), base() + "-3d-plan.txt");
     };
-    $("#m3-stl").onclick = async () => {
-      if (isFlat()) {
-        const ps = parts();
-        const files = ps.map((p, k) => ({
-          name: k === 0 && opts.baseLayers ? `${base()}-base.stl` : `${base()}-${p.filament}-${p.color.slice(1)}.stl`,
-          data: new Uint8Array(stl(p.mesh, p.name))
-        }));
-        download(new Blob([await zip(files)], { type: "application/zip" }), base() + "-stl.zip");
-        toast(t("Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.", { name: base(), n: files.length }));
-        return;
-      }
-      const m = mesh();
-      download(new Blob([stl(m, base())], { type: "model/stl" }), base() + ".stl");
-      toast(t("Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.", { name: base(), n: triangles(m) }));
-    };
-    $("#m3-plan").onclick = () => download(new Blob([planText()], { type: "text/plain" }), base() + "-3d-plan.txt");
     button.onclick = async () => {
       const real = host.realSize();
       if (real) opts.width = +real.w.toFixed(2);
@@ -4839,16 +5150,6 @@ void main() {
   }
 
   // src/raster/report.ts
-  function colorRows(p) {
-    const m = /* @__PURE__ */ new Map();
-    p.colors.forEach((c, i) => {
-      const r = m.get(c) || { n: 0, color: c, pieces: 0, pixels: 0 };
-      r.pieces++;
-      r.pixels += p.sizes[i];
-      m.set(c, r);
-    });
-    return [...m.values()].sort((a, b) => b.pixels - a.pixels).map((r, i) => ({ ...r, n: i + 1 }));
-  }
   var mmPerPixel = () => state.realWidth / doc.width;
   var fmtN = (v) => num(v);
   var area = (px) => {
@@ -4872,10 +5173,10 @@ void main() {
       sel.innerHTML = '<option value="">–</option>' + state.palette.filter((c) => c !== r.color).map((c) => `<option value="${c}">${c}</option>`).join("") + `<option value="none">${t("transparent")}</option>`;
       sel.onchange = () => {
         if (!sel.value) return;
-        const img = getImage(), n4 = replaceColor(img, r.color, rgba(sel.value === "none" ? null : sel.value));
+        const img = getImage(), n5 = replaceColor(img, r.color, rgba(sel.value === "none" ? null : sel.value));
         dctx.putImageData(img, 0, 0);
         commit();
-        toast(t("Recolored {n} {n|pixel|pixels}.", { n: n4 }));
+        toast(t("Recolored {n} {n|pixel|pixels}.", { n: n5 }));
         render2();
       };
       tr.lastElementChild.append(sel);
@@ -4911,16 +5212,16 @@ void main() {
     tabloid: { w: 279.4, h: 431.8, name: "Tabloid" }
   };
   var MM = { mm: 1, cm: 10, in: 25.4, px: 25.4 / 96 };
-  var MARGIN = 10;
+  var MARGIN2 = 10;
   var LABEL = 7;
   var OVERLAP = 10;
   var rowName = (r) => (r >= 26 ? rowName(Math.floor(r / 26) - 1) : "") + String.fromCharCode(65 + r % 26);
   var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  var n = (v) => String(Math.round(v * 1e3) / 1e3);
+  var n2 = (v) => String(Math.round(v * 1e3) / 1e3);
   function area2(paperKey, orientation) {
     const p = PAPERS[paperKey] || PAPERS.a4;
     const [pw, ph] = orientation === "landscape" ? [p.h, p.w] : [p.w, p.h];
-    return { paper: p, orientation, aw: pw - 2 * MARGIN, ah: ph - 2 * MARGIN - LABEL };
+    return { paper: p, orientation, aw: pw - 2 * MARGIN2, ah: ph - 2 * MARGIN2 - LABEL };
   }
   function sheetsFor(wmm, hmm, A, mode2) {
     if (mode2 === "fit") {
@@ -4935,7 +5236,7 @@ void main() {
     }
     return { ...A, scale: 1, rows: rows2, cols, sheets, cost: rows2 * cols };
   }
-  function layout(wmm, hmm, paperKey = "a4", mode2 = "real", orientation = null) {
+  function layout2(wmm, hmm, paperKey = "a4", mode2 = "real", orientation = null) {
     const opts2 = (orientation ? [orientation] : ["portrait", "landscape"]).map((o) => sheetsFor(wmm, hmm, area2(paperKey, o), mode2));
     return opts2.length > 1 && opts2[1].cost < opts2[0].cost ? opts2[1] : opts2[0];
   }
@@ -4946,9 +5247,9 @@ void main() {
       const shade = [];
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
-      const marks = shade.map((r) => `<rect x="${n(r[0])}" y="${n(r[1])}" width="${n(r[2])}" height="${n(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n(2 / k)} ${n(2 / k)}" stroke-width="${n(0.3 / k)}"/>`).join("");
+      const marks = shade.map((r) => `<rect x="${n2(r[0])}" y="${n2(r[1])}" width="${n2(r[2])}" height="${n2(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n2(2 / k)} ${n2(2 / k)}" stroke-width="${n2(0.3 / k)}"/>`).join("");
       const label = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title2;
-      return `<section class="sheet"><div class="label">${esc(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(" ")}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
+      return `<section class="sheet"><div class="label">${esc(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n2).join(" ")}" style="width:${n2(s.w * L.scale)}mm;height:${n2(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
     });
   }
   function layoutInfo(L, mode2) {
@@ -4960,13 +5261,13 @@ void main() {
   function overviewSection(box, k, A, rects, heading, extra = "") {
     const s = Math.min(A.aw / (box.w * k), (A.ah - 20) / (box.h * k));
     const stroke = 0.6 / k / s;
-    const marks = rects.map((r) => `<rect x="${n(r.x)}" y="${n(r.y)}" width="${n(r.w)}" height="${n(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n(stroke)}"/><text x="${n(r.x + r.w / 2)}" y="${n(r.y + r.h / 2)}" font-size="${n(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
-    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box.x, box.y, box.w, box.h].map(n).join(" ")}" style="width:${n(box.w * k * s)}mm;height:${n(box.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
+    const marks = rects.map((r) => `<rect x="${n2(r.x)}" y="${n2(r.y)}" width="${n2(r.w)}" height="${n2(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n2(stroke)}"/><text x="${n2(r.x + r.w / 2)}" y="${n2(r.y + r.h / 2)}" font-size="${n2(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
+    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box.x, box.y, box.w, box.h].map(n2).join(" ")}" style="width:${n2(box.w * k * s)}mm;height:${n2(box.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
   }
   function page({ art, sections, paper = "a4", orientation = "portrait", title: title2 = "Mosaic" }) {
     const p = PAPERS[paper] || PAPERS.a4;
     return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title2)}</title><style>
-@page { size: ${p.name} ${orientation}; margin: ${MARGIN}mm; }
+@page { size: ${p.name} ${orientation}; margin: ${MARGIN2}mm; }
 html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
 .sheet { page-break-after: always; break-after: page; }
 .sheet:last-child { page-break-after: auto; break-after: auto; }
@@ -4986,7 +5287,7 @@ ${sections.join("\n")}
   }
   function html({ art, box, unit, mmPerUnit = 0, paper = "a4", mode: mode2 = "real", legend = "", title: title2 = "Mosaic" }) {
     const k = mmPerUnit || MM[unit] || MM.px;
-    const L = layout(box.w * k, box.h * k, paper, mode2);
+    const L = layout2(box.w * k, box.h * k, paper, mode2);
     const sections = [];
     if (L.sheets.length > 1) {
       sections.push(overviewSection(
@@ -4994,7 +5295,7 @@ ${sections.join("\n")}
         k,
         L,
         L.sheets.map((s) => ({ x: box.x + s.x / k, y: box.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
-        `${title2} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n(box.w * k / 10)), h: num(+n(box.h * k / 10)) })
+        `${title2} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n2(box.w * k / 10)), h: num(+n2(box.h * k / 10)) })
       ));
     }
     sections.push(...sheetSections(box, k, L, { title: title2 }));
@@ -5005,7 +5306,7 @@ ${sections.join("\n")}
   // src/raster/print.ts
   var MAX_PIECES = 2e4;
   var esc2 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  var n2 = (v) => String(Math.round(v * 1e3) / 1e3);
+  var n3 = (v) => String(Math.round(v * 1e3) / 1e3);
   var title = () => rt.fileName.replace(/\.[a-z0-9]+$/i, "");
   function printArt(style) {
     const W = doc.width, H = doc.height, p = pieces(getImage()), rows2 = colorRows(p), k = mmPerPixel();
@@ -5017,13 +5318,13 @@ ${sections.join("\n")}
     if (style === "numbers") parts.push(`<rect width="${W}" height="${H}" fill="#ffffff"/>`);
     else parts.push(`<image href="${doc.toDataURL("image/png")}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none" style="image-rendering:pixelated"/>`);
     if (style !== "colors") {
-      if (style === "numbers") parts.push(`<path d="${pieceOutlines(p, W, H)}" fill="none" stroke="#444444" stroke-width="${n2(0.25 / k)}"/>`);
+      if (style === "numbers") parts.push(`<path d="${pieceOutlines(p, W, H)}" fill="none" stroke="#444444" stroke-width="${n3(0.25 / k)}"/>`);
       const num4 = new Map(rows2.map((r) => [r.color, r.n])), centres = pieceCentres(p, W, H), labels = [];
       centres.forEach((c, i) => {
         if (c.r * k < 1.3) return;
         const size = Math.min(c.r * 1.2, 4 / k);
-        const halo = style === "both" ? ` stroke="#ffffff" stroke-width="${n2(size * 0.18)}" paint-order="stroke"` : "";
-        labels.push(`<text x="${n2(c.x)}" y="${n2(c.y)}" font-size="${n2(size)}"${halo}>${num4.get(p.colors[i])}</text>`);
+        const halo = style === "both" ? ` stroke="#ffffff" stroke-width="${n3(size * 0.18)}" paint-order="stroke"` : "";
+        labels.push(`<text x="${n3(c.x)}" y="${n3(c.y)}" font-size="${n3(size)}"${halo}>${num4.get(p.colors[i])}</text>`);
       });
       parts.push(`<g font-family="Arial" text-anchor="middle" dominant-baseline="central" fill="#111111">${labels.join("")}</g>`);
     }
@@ -5034,17 +5335,17 @@ ${sections.join("\n")}
     return rows2.length ? `<h2>${esc2(title())} – ${t("colors")}</h2><table>` + rows2.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${t("{n} {n|piece|pieces}", { n: r.pieces })}</td><td>${area3(r.pixels)}</td></tr>`).join("") + "</table>" : "";
   }
   function openPrintPage(html2) {
-    const url = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
-    const w = window.open(url, "_blank");
+    const url2 = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
+    const w = window.open(url2, "_blank");
     if (!w) {
       toast(t("The browser blocked the print window – allow pop-ups for this page."));
       return;
     }
-    setTimeout(() => URL.revokeObjectURL(url), 6e4);
+    setTimeout(() => URL.revokeObjectURL(url2), 6e4);
   }
   var mode = () => document.querySelector("input[name=print-size]:checked").value;
   function updateInfo() {
-    const L = layout(state.realWidth, state.realWidth * doc.height / doc.width, $("#print-paper").value, mode());
+    const L = layout2(state.realWidth, state.realWidth * doc.height / doc.width, $("#print-paper").value, mode());
     $("#print-info").textContent = layoutInfo(L, mode());
   }
   function printPage(style) {
@@ -5188,113 +5489,12 @@ ${sections.join("\n")}
     if (m) openShared(m[1]);
   }
 
-  // src/lib/trace.ts
-  function traceAll(labels, W, H, count) {
-    const at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x];
-    const V = W + 1, key = (x, y) => y * V + x;
-    const out = Array.from({ length: count }, () => /* @__PURE__ */ new Map());
-    const add = (l, x0, y0, x1, y1) => {
-      const m = out[l], k = key(x0, y0);
-      const list = m.get(k);
-      if (list) list.push(key(x1, y1));
-      else m.set(k, [key(x1, y1)]);
-    };
-    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-      const l = labels[y * W + x];
-      if (l < 0) continue;
-      if (at(x, y - 1) !== l) add(l, x + 1, y, x, y);
-      if (at(x - 1, y) !== l) add(l, x, y, x, y + 1);
-      if (at(x, y + 1) !== l) add(l, x, y + 1, x + 1, y + 1);
-      if (at(x + 1, y) !== l) add(l, x + 1, y + 1, x + 1, y);
-    }
-    const rings = [];
-    for (let l = 0; l < count; l++) {
-      const m = out[l], list = [];
-      for (const [start] of m) {
-        while (m.get(start) && m.get(start).length) {
-          const ring = [start];
-          let prev = start, cur = take(m, start, -1, V);
-          while (cur !== start) {
-            ring.push(cur);
-            const next = take(m, cur, prev, V);
-            prev = cur;
-            cur = next;
-          }
-          list.push(simplify(ring, V));
-        }
-      }
-      rings.push(list);
-    }
-    return rings;
-  }
-  function take(m, from, prev, V) {
-    const list = m.get(from);
-    let i = 0;
-    if (list.length > 1 && prev >= 0) {
-      const dx = from % V - prev % V, dy = Math.floor(from / V) - Math.floor(prev / V);
-      const score = (to2) => {
-        const ex = to2 % V - from % V, ey = Math.floor(to2 / V) - Math.floor(from / V);
-        return ex === dy && ey === -dx ? 0 : ex === dx && ey === dy ? 1 : 2;
-      };
-      for (let k = 1; k < list.length; k++) if (score(list[k]) < score(list[i])) i = k;
-    }
-    const to = list[i];
-    list.splice(i, 1);
-    if (!list.length) m.delete(from);
-    return to;
-  }
-  function simplify(ring, V) {
-    const pts = ring.map((k) => ({ x: k % V, y: Math.floor(k / V) })), n4 = pts.length, out = [];
-    for (let i = 0; i < n4; i++) {
-      const a = pts[(i + n4 - 1) % n4], b = pts[i], c = pts[(i + 1) % n4];
-      if ((b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) !== 0) out.push(b);
-    }
-    return out;
-  }
-  function ringArea(r) {
-    let s = 0;
-    for (let i = 0, n4 = r.length; i < n4; i++) {
-      const a = r[i], b = r[(i + 1) % n4];
-      s += a.x * b.y - b.x * a.y;
-    }
-    return s / 2;
-  }
-
   // src/raster/vectorize.ts
   var MAX_TILES = 2e4;
-  var n3 = (v) => String(Math.round(v * 1e3) / 1e3);
+  var n4 = (v) => String(Math.round(v * 1e3) / 1e3);
+  var paletteName = () => rt.fileName.replace(/\.[a-z0-9]+$/i, "");
   function vectorSVG(grout, widthMm) {
-    const W = doc.width, H = doc.height, k = widthMm / W, p = pieces(getImage());
-    const ids = new Int32Array(p.colors.length).fill(-1), colors = [];
-    p.colors.forEach((c, i) => {
-      if (c !== grout) {
-        ids[i] = colors.length;
-        colors.push(c);
-      }
-    });
-    const labels = p.labels.map((l) => l < 0 ? -1 : ids[l]);
-    const rings = traceAll(labels, W, H, colors.length);
-    const shapes = [];
-    rings.forEach((list, i) => {
-      const pts = (r) => r.map((q) => `${n3(q.x * k)},${n3(q.y * k)}`).join(" ");
-      if (list.length === 1) shapes.push(`<polygon points="${pts(list[0])}" fill="${colors[i]}" stroke="none"/>`);
-      else {
-        const sorted = [...list].sort((a, b) => Math.abs(ringArea(b)) - Math.abs(ringArea(a)));
-        const d = sorted.map((r) => "M" + pts(r).replace(/ /g, "L") + "Z").join("");
-        shapes.push(`<path d="${d}" fill="${colors[i]}" fill-rule="evenodd" stroke="none"/>`);
-      }
-    });
-    const w = n3(widthMm), h = n3(H * k), palette = [.../* @__PURE__ */ new Set([...colorRows(p).map((r) => r.color)])];
-    const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">
-<metadata id="mosaic-palette">${JSON.stringify({ palette, paletteName: rt.fileName.replace(/\.[a-z0-9]+$/i, ""), unit: "mm" })}</metadata>
-${grout ? `<rect id="mosaic-bg" x="0" y="0" width="${w}" height="${h}" fill="${grout}"/>` : ""}
-<g id="mosaic-fills"></g>
-<g id="mosaic-shapes">
-${shapes.join("\n")}
-</g>
-</svg>`;
-    return { svg, tiles: colors.length };
+    return piecesSvg(getImage(), grout, widthMm, paletteName());
   }
   function fillDialog() {
     const rows2 = colorRows(pieces(getImage())), sel = $("#vz-grout");
@@ -5305,10 +5505,10 @@ ${shapes.join("\n")}
   }
   function info() {
     const grout = $("#vz-grout").value || null, rows2 = colorRows(pieces(getImage()));
-    const tiles2 = rows2.filter((r) => r.color !== grout).reduce((s, r) => s + r.pieces, 0);
-    const size = { n: tiles2, w: n3(state.realWidth), h: n3(state.realWidth * doc.height / doc.width) };
-    $("#vz-info").textContent = tiles2 > MAX_TILES ? t("{n} {n|tile|tiles} at {w} × {h} mm – too many: make a mosaic or reduce the picture to the palette first.", size) : t("{n} {n|tile|tiles} at {w} × {h} mm.", size);
-    $("#vz-go").disabled = tiles2 > MAX_TILES || !tiles2;
+    const tiles = rows2.filter((r) => r.color !== grout).reduce((s, r) => s + r.pieces, 0);
+    const size = { n: tiles, w: n4(state.realWidth), h: n4(state.realWidth * doc.height / doc.width) };
+    $("#vz-info").textContent = tiles > MAX_TILES ? t("{n} {n|tile|tiles} at {w} × {h} mm – too many: make a mosaic or reduce the picture to the palette first.", size) : t("{n} {n|tile|tiles} at {w} × {h} mm.", size);
+    $("#vz-go").disabled = tiles > MAX_TILES || !tiles;
   }
   function bindVectorize() {
     $("#btn-vectorize").onclick = () => {
@@ -5326,9 +5526,20 @@ ${shapes.join("\n")}
       info();
     };
     $("#vz-go").onclick = async () => {
-      const { svg, tiles: tiles2 } = vectorSVG($("#vz-grout").value || null, state.realWidth);
+      $("#dlg-vectorize").close();
+      const job = working(t("Tracing the tiles…"));
+      let res;
       try {
-        await Store.set("handoff", { svg, name: rt.fileName.replace(/\.[a-z0-9]+$/i, "") + ".svg", time: Date.now(), tiles: tiles2 });
+        res = await run2("vectorize", { img: getImage(), grout: $("#vz-grout").value || null, widthMm: state.realWidth, name: paletteName() }, { progress: job.set });
+      } catch (e) {
+        job.done();
+        if (!isCancelled(e)) toast(t("Could not trace the tiles."));
+        return;
+      }
+      job.done();
+      const { svg, tiles } = res;
+      try {
+        await Store.set("handoff", { svg, name: paletteName() + ".svg", time: Date.now(), tiles });
       } catch {
         toast(t("Could not hand the tiles over (browser storage unavailable)."));
         return;
@@ -5370,10 +5581,10 @@ ${shapes.join("\n")}
       for (const v of versions) {
         const row = document.createElement("div");
         row.className = "hist-row";
-        const url = URL.createObjectURL(host.thumbnail(v));
-        thumbs.push(url);
+        const url2 = URL.createObjectURL(host.thumbnail(v));
+        thumbs.push(url2);
         const detail = host.detail(v);
-        row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc3(v.name || "")} · ${esc3(v.note || "")}${detail ? ` · ${esc3(detail)}` : ""}</span></div>`;
+        row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc3(v.name || "")} · ${esc3(v.note || "")}${detail ? ` · ${esc3(detail)}` : ""}</span></div>`;
         const b = document.createElement("button");
         b.textContent = t("Restore");
         b.onclick = async () => {

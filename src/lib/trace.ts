@@ -6,9 +6,9 @@ export type Ring = { x: number; y: number }[];
 /**
  * The outline rings of every label in a label grid (labels[y * W + x], -1 = nothing), in pixel
  * coordinates (y down). Result: rings[label] = list of rings; the outer ring runs one way, holes the other
- * (see ringArea). Pixels that only touch at a corner belong to separate rings.
+ * (see ringArea). Pixels that only touch at a corner belong to separate rings. progress: 0…1, now and then.
  */
-export function traceAll(labels: Int32Array, W: number, H: number, count: number): Ring[][] {
+export function traceAll(labels: Int32Array, W: number, H: number, count: number, progress?: (f: number) => void): Ring[][] {
   const at = (x: number, y: number) => (x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x]);
   // directed boundary edges of each label, interior on the left (seen on screen, y down): a pixel's
   // outline runs left along its top, down its left side, right along its bottom and up its right side
@@ -20,6 +20,7 @@ export function traceAll(labels: Int32Array, W: number, H: number, count: number
     if (list) list.push(key(x1, y1)); else m.set(k, [key(x1, y1)]);
   };
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (progress && x === 0 && y % 64 === 0) progress(0.5 * y / H);
     const l = labels[y * W + x];
     if (l < 0) continue;
     if (at(x, y - 1) !== l) add(l, x + 1, y, x, y);
@@ -29,6 +30,7 @@ export function traceAll(labels: Int32Array, W: number, H: number, count: number
   }
   const rings: Ring[][] = [];
   for (let l = 0; l < count; l++) {
+    if (progress && l % 256 === 0) progress(0.5 + 0.5 * l / count);
     const m = out[l], list: Ring[] = [];
     for (const [start] of m) {
       while (m.get(start) && m.get(start).length) {

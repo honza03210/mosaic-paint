@@ -10,10 +10,12 @@
 import * as Colors from '../lib/colors.ts';
 import * as R from '../lib/raster.ts';
 import * as M from '../lib/model3d.ts';
-import { zip } from '../lib/zip.ts';
+import * as B from '../lib/build3d.ts';
 import { $, clamp, toast, download, lsGet, lsSet } from './ui.ts';
 import { t, num } from './i18n.ts';
 import { createView3D, type View3D } from './view3d.ts';
+import { run, isCancelled } from './work.ts';
+import type { JobArgs } from '../worker/jobs.ts';
 
 export interface Export3DHost {
   /** width / height of the picture */
@@ -93,13 +95,15 @@ const DIALOG = `
 </div>
 <p class="note" id="m3-summary"></p>
 <div class="row dlg-foot">
+  <span id="m3-busy" class="note" aria-live="polite"></span>
   <button id="m3-plan" title="${t('Which filament to load at which layer, as a text file')}">${t('Plan')}</button>
   <button id="m3-stl" title="${t('Just the shape – add the filament changes from the plan in your slicer')}">STL</button>
   <label data-mode="flat">${t('3MF for')} <select id="m3-slicer"><option value="prusa">PrusaSlicer</option><option value="bambu">Bambu Studio, OrcaSlicer</option></select></label>
   <button id="m3-go" class="primary" title="${t('The model, with the filament changes for PrusaSlicer')}">${t('Download 3MF')}</button>
 </div>`;
 
-interface Model { list: number[]; grid: Int16Array; counts: number[]; lowered: number }
+/** Grids up to this many cells are worked out right here; bigger ones in a worker. */
+const SMALL = 20000;
 
 export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   const dlg = document.createElement('dialog');
@@ -114,8 +118,9 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   /** grout choices made in the dialog win over what the app suggests */
   const groutChoice = new Map<string, boolean>();
   const isLine = (ci: number) => lines.has(colors[ci]);
-  const settings = (): M.PrintSettings => ({ layerHeight: opts.layerHeight, layersPerColor: opts.layersPerColor, baseLayers: opts.baseLayers });
-  const flat = (): M.FlatSettings => ({ layerHeight: opts.layerHeight, baseLayers: opts.baseLayers, tileLayers: opts.tileLayers, groutRecess: Math.min(opts.groutRecess, opts.tileLayers - 1) });
+  const buildOpts = (): B.Build3DOptions => ({ ...opts, maxRatio: MAX_RATIO });
+  const settings = () => B.printSettings(buildOpts());
+  const flat = () => B.flatSettings(buildOpts());
   const isFlat = () => opts.mode === 'flat';
   const size = () => {
     const a = host.aspect();
@@ -123,40 +128,41 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   };
   /** Grout first, always: the lines between the tiles stay the lowest part. */
   const normalize = () => { order = [...order.filter(isLine), ...order.filter(ci => !isLine(ci))]; };
+  /** Work going on, under the dialog's buttons (the status bar is hidden behind the dialog). */
+  const busy = (text: string) => { $('#m3-busy').textContent = text; };
 
   /**
-   * The model as it will be printed: colors in print order (those that still have pieces), and the grid of
-   * levels after thin towers were lowered. Lowering can empty a color, which moves the ones above it down:
-   * so this repeats until it settles.
+   * The model as it will be printed (see build3d.ts `towers`) – if it is ready for the current settings.
+   * If not, it is worked out (in a worker for big pictures) and the dialog redrawn when it is ready.
    */
-  let cached: Model | null = null, cachedKey = '';
-  function model(): Model {
+  let cached: B.Model3D | null = null, cachedKey = '', wanted = '';
+  function model(): B.Model3D | null {
+    if (!grid) return null;
     const key = [version, order.join(), [...lines].join(), opts.mode, opts.tileLayers, opts.groutRecess, opts.layerHeight, opts.layersPerColor, opts.baseLayers, opts.minWidth, cell].join('|');
     if (cached && key === cachedKey) return cached;
-    let list = order.filter(i => counts[i] > 0), out: Model = { list, grid: new Int16Array(0), counts: [], lowered: 0 };
-    // the picture as color indexes, with each round's lowering kept for the next
-    const colorGrid = Int16Array.from(grid);
-    let lowered = 0;
-    for (let round = 0; round < 4; round++) {
-      const rank = new Int16Array(colors.length).fill(-1);
-      list.forEach((ci, k) => { rank[ci] = k; });
-      const levels = colorGrid.map(v => (v < 0 ? -1 : rank[v]));
-      const heightOf = isFlat() ? M.flatHeights(list.map(isLine), flat()) : undefined;
-      const res = M.removeTowers(levels, gw, gh, cell, settings(), { minWidth: opts.minWidth, maxRatio: MAX_RATIO, heightOf });
-      lowered += res.lowered;
-      const c = list.map(() => 0);
-      for (let p = 0; p < res.grid.length; p++) {
-        const lv = res.grid[p];
-        if (lv >= 0) c[lv]++;
-        colorGrid[p] = lv < 0 ? -1 : list[lv];
-      }
-      out = { list, grid: res.grid, counts: c, lowered };
-      if (c.every(n => n > 0)) break;
-      list = list.filter((_, k) => c[k] > 0);
+    const job: JobArgs<'towers'> = { colorGrid: grid, w: gw, h: gh, cell, order, counts, isLine: colors.map((_, i) => isLine(i)), o: buildOpts() };
+    if (gw * gh <= SMALL) {
+      cached = B.towers(job.colorGrid, job.w, job.h, job.cell, job.order, job.counts, job.isLine, job.o);
+      cachedKey = key;
+      return cached;
     }
-    cached = out;
-    cachedKey = key;
-    return out;
+    if (wanted !== key) {
+      wanted = key;
+      busy(t('Working out the model…'));
+      run('towers', job, { progress: f => busy(t('Working out the model… {p} %', { p: Math.round(f * 100) })) }).then((m) => {
+        if (wanted !== key) return;
+        cached = m;
+        cachedKey = key;
+        busy('');
+        render();
+      }, (e) => {
+        if (isCancelled(e) || wanted !== key) return;
+        wanted = '';
+        busy('');
+        toast(t('Could not build the 3D model.'));
+      });
+    }
+    return null;
   }
 
   /** Grout first, then the others by brightness. */
@@ -193,7 +199,9 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   const rows = new Map<string, HTMLElement>();
   /** Moves a color one step earlier (-1) or later (+1) in the print order – grout stays below the tiles. */
   function move(c: string, d: number): void {
-    const list = model().list, k = list.findIndex(ci => colors[ci] === c), other = list[k + d];
+    const m = model();
+    if (!m) return;
+    const list = m.list, k = list.findIndex(ci => colors[ci] === c), other = list[k + d];
     if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
     const a = order.indexOf(list[k]), b = order.indexOf(other);
     [order[a], order[b]] = [order[b], order[a]];
@@ -207,7 +215,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     render();
   }
   function render(): void {
-    const s = settings(), m = model(), list = m.list, { w, h } = size(), fl = isFlat();
+    const { w, h } = size(), fl = isFlat();
     for (const el of dlg.querySelectorAll<HTMLElement>('[data-mode]')) el.hidden = el.dataset.mode !== opts.mode;
     $('#m3-mode-height').classList.toggle('active', !fl);
     $('#m3-mode-flat').classList.toggle('active', fl);
@@ -215,8 +223,12 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     $('#m3-stl').title = fl ? t('One STL file per color, in a ZIP – load them as parts of one object') : t('Just the shape – add the filament changes from the plan in your slicer');
     $('#m3-w').value = f2(w);
     $('#m3-h').value = f2(h);
+    const m = model();
+    $('#m3-go').disabled = $('#m3-stl').disabled = $('#m3-plan').disabled = !m || !m.list.length;
+    if (!m) return;
+    const s = settings(), list = m.list;
     const warn = [note, !fl && list.length > MANY_COLORS ? t('{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).', { n: list.length }) : '',
-      cell > opts.detail + 1e-9 ? t('Detail lowered to {d} mm for this size.', { d: num(+f2(cell)) }) : '', pocketNote()].filter(Boolean).join(' ');
+      cell > opts.detail + 1e-9 ? t('Detail lowered to {d} mm for this size.', { d: num(+f2(cell)) }) : '', pocketNote(m)].filter(Boolean).join(' ');
     $('#m3-note').hidden = !warn;
     $('#m3-note').textContent = warn;
     // the print order, with the layers of each color
@@ -252,110 +264,51 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     });
     const unpainted = grid ? grid.filter(v => v < 0).length : 0;
     const fs = flat();
-    $('#m3-summary').textContent = !list.length ? t('Nothing is painted yet.') : fl
+    const atBase = unpainted ? ' · ' + (opts.baseLayers ? t('unpainted parts stay at the base ({h} mm)', { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t('unpainted parts are left open')) : '';
+    const lowered = m.lowered ? ' · ' + t('{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower', { n: m.lowered }) : '';
+    let summary = !list.length ? t('Nothing is painted yet.') : (fl
       ? t('{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})', { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers })
-        + (unpainted ? ' · ' + (opts.baseLayers ? t('unpainted parts stay at the base ({h} mm)', { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t('unpainted parts are left open')) : '')
-        + (m.lowered ? ' · ' + t('{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower', { n: m.lowered }) : '')
-      : t('{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}', { n: list.length, h: num(M.modelHeight(list.length, s)), layers: M.topLayer(list.length - 1, s), c: list.length - 1 })
-        + (unpainted ? ' · ' + (opts.baseLayers ? t('unpainted parts stay at the base ({h} mm)', { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t('unpainted parts are left open')) : '')
-        + (m.lowered ? ' · ' + t('{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower', { n: m.lowered }) : '');
+      : t('{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}', { n: list.length, h: num(M.modelHeight(list.length, s)), layers: M.topLayer(list.length - 1, s), c: list.length - 1 }))
+      + atBase + lowered;
     if (list.length && opts.frame > 0) {
-      const f = finished();
-      $('#m3-summary').textContent += ' · ' + t('with the frame {w} × {h} mm, {z} mm high', { w: num(+f2(f.w * cell)), h: num(+f2(f.h * cell)), z: num(+f2(frameTop() * opts.layerHeight)) });
+      const f = finished(m);
+      summary += ' · ' + t('with the frame {w} × {h} mm, {z} mm high', { w: num(+f2(f.w * cell)), h: num(+f2(f.h * cell)), z: num(+f2(B.frameTop(list.length, buildOpts()) * opts.layerHeight)) });
     }
-    $('#m3-go').disabled = $('#m3-stl').disabled = $('#m3-plan').disabled = !list.length;
+    $('#m3-summary').textContent = summary;
     drawPreview(m);
     if (view) schedule3d();
   }
 
-  // ---- finishing and the solids ------------------------------------------------------------------------
-  /** Material kept around the hanging hole and the magnets, mm. */
-  const MARGIN = 2;
-  const layers = (mm: number) => Math.max(1, Math.round(mm / opts.layerHeight));
-  /** Top of the frame, in layers: above the tiles by "raised by". */
-  const frameTop = () => (isFlat() ? opts.baseLayers + opts.tileLayers : M.topLayer(Math.max(0, model().list.length - 1), settings())) + opts.frameRaise;
-  /** The picture with its frame, rounded corners and hanging hole (grid of levels), and where the magnets go. */
-  function layout(g: Int16Array, w: number, h: number, c: number): { grid: Int16Array; w: number; h: number; mask: Uint8Array | null } {
-    const f = M.finishGrid(g, w, h, { frame: opts.frame / c, corner: opts.corner / c, hole: opts.hole / c }, MARGIN / c);
-    const inset = (opts.magnet / 2 + MARGIN + opts.corner * 0.3) / c;
-    return { ...f, mask: opts.magnet > 0 ? M.pocketMask(f.w, f.h, opts.magnet / c, inset) : null };
-  }
-  let laid: ReturnType<typeof layout> | null = null, laidKey = '';
+  // ---- finishing -------------------------------------------------------------------------------------
+  let laid: B.Layout | null = null, laidKey = '';
   /** The finished picture at full detail (kept until something changes). */
-  function finished(): ReturnType<typeof layout> {
-    model();
+  function finished(m: B.Model3D): B.Layout {
     const key = [cachedKey, opts.frame, opts.corner, opts.hole, opts.magnet].join('|');
-    if (!laid || key !== laidKey) { laid = layout(model().grid, gw, gh, cell); laidKey = key; }
+    if (!laid || key !== laidKey) { laid = B.layout(m.grid, gw, gh, cell, buildOpts()); laidKey = key; }
     return laid;
   }
-  /** Height of a cell's column (layers), as the solids will have it – for the magnets' depth. */
-  function columnTop(lv: number): number {
-    if (lv === -2) return 0;
-    if (lv === M.FRAME) return frameTop();
-    if (isFlat()) return Math.round(M.flatHeights(model().list.map(isLine), flat())(lv) / opts.layerHeight);
-    return lv < 0 ? opts.baseLayers : M.topLayer(lv, settings());
-  }
-  /** How deep the magnet pockets can be (layers): at least two layers stay above them. */
-  function pocketDepth(): number {
-    const f = finished();
-    if (!f.mask) return 0;
-    let d = layers(opts.magnetDepth);
-    for (let i = 0; i < f.mask.length; i++) if (f.mask[i]) { const top = columnTop(f.grid[i]); if (top > 0) d = Math.min(d, top - 2); }
-    return Math.max(0, d);
-  }
-  /**
-   * The model's solids: one for a single nozzle (the frame in the top color), or the parts of the flat model
-   * (base plate, frame, one per color) – with the magnet pockets cut into the bottom.
-   */
-  function solids(f: ReturnType<typeof layout>): { part: number; solid: M.Solid }[] {
-    const list = model().list;
-    let out: { part: number; solid: M.Solid }[];
-    if (isFlat()) {
-      out = M.flatParts(f.grid, f.w, f.h, list.length, list.map(isLine), flat());
-      if (opts.frame > 0) out.splice(opts.baseLayers ? 1 : 0, 0, { part: M.FRAME, solid: M.frameSolid(f.grid, opts.baseLayers, frameTop(), 0) });
-    } else {
-      const sol = M.heightSolid(f.grid, settings()), top = frameTop();
-      for (let i = 0; i < f.grid.length; i++) if (f.grid[i] === M.FRAME) { sol.top[i] = top; sol.level[i] = list.length - 1; }
-      out = [{ part: 0, solid: sol }];
-    }
-    if (f.mask) M.cutPockets(out.map(p => p.solid), f.mask, layers(opts.magnetDepth));
-    return out;
-  }
-
+  const pocketDepth = (m: B.Model3D) => B.pocketDepth(finished(m), m.list.map(isLine), buildOpts());
   /** A warning when the magnet pockets can't be as deep as asked. */
-  function pocketNote(): string {
-    if (!opts.magnet || !model().list.length) return '';
-    const d = pocketDepth();
+  function pocketNote(m: B.Model3D): string {
+    if (!opts.magnet || !m.list.length) return '';
+    const d = pocketDepth(m);
     if (!d) return t('The model is too thin for magnet pockets.');
-    return d < layers(opts.magnetDepth) ? t('The magnet pockets are only {d} mm deep – the model is thinner there.', { d: num(+f2(d * opts.layerHeight)) }) : '';
+    return d < B.layersOf(opts.magnetDepth, buildOpts()) ? t('The magnet pockets are only {d} mm deep – the model is thinner there.', { d: num(+f2(d * opts.layerHeight)) }) : '';
   }
 
   // ---- the 3D view ----------------------------------------------------------------------------
   let view: View3D | null = null, timer3d: any;
   const schedule3d = () => { clearTimeout(timer3d); timer3d = setTimeout(update3d, 120); };
-  /** The model in the 3D view (very big ones thinned out, for the view only). */
+  /** The model in the 3D view (very big ones thinned out, for the view only), built in a worker. */
   function update3d(): void {
-    if (!view || $('#m3-3d').hidden || !grid) return;
-    const m = model(), f = Math.max(1, Math.ceil(Math.sqrt(gw * gh / 160000)));
-    let g = m.grid, w = gw, h = gh;
-    if (f > 1) {
-      w = Math.ceil(gw / f); h = Math.ceil(gh / f);
-      g = new Int16Array(w * h);
-      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) g[y * w + x] = m.grid[Math.min(gh - 1, y * f) * gw + Math.min(gw - 1, x * f)];
-    }
+    if (!view || $('#m3-3d').hidden) return;
+    const m = model();
+    if (!m || !m.list.length) return;
+    const d = B.downsample(m.grid, gw, gh, cell, 160000);
     const rgb = m.list.map(ci => R.rgba(colors[ci]).slice(0, 3) as [number, number, number]);
-    const lay = layout(g, w, h, cell * f);
-    const shape = M.mergeMeshes(solids(lay).map(p => M.solidMesh(p.solid, lay.w, lay.h, cell * f, opts.layerHeight)));
-    view.show(shape, (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
-  }
-  /** The flat model's parts: the base plate and the frame (filament 1, like the first color), then one per color. */
-  function parts(): M.ModelPart[] {
-    const list = model().list, f = finished();
-    return solids(f).map(p => {
-      const k = Math.max(0, p.part), color = colors[list[k]];
-      const name = p.part === M.FRAME ? t('Frame') : p.part < 0 ? t('Base') : `${p.part + 1} ${color}`;
-      return { name, color, mesh: M.solidMesh(p.solid, f.w, f.h, cell, opts.layerHeight), filament: k + 1 };
-    });
+    run('view3d', { shape: { ...d, grout: m.list.map(isLine) }, o: buildOpts() }).then((mesh) => {
+      view.show(mesh, (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
+    }, (e) => { if (!isCancelled(e)) toast(t('Could not build the 3D model.')); });
   }
   function showTab(three: boolean): void {
     if (three && !view) {
@@ -371,10 +324,10 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     if (three) update3d();
   }
   /** The top view of the model as it will print (after thin towers were lowered, with the finishing). */
-  function drawPreview(m: Model): void {
+  function drawPreview(m: B.Model3D): void {
     const cv = $('#m3-preview') as HTMLCanvasElement;
-    if (!grid || !m.list.length) return;
-    const f = finished(), k = Math.min(1, 300 / Math.max(f.w, f.h));
+    if (!m.list.length) return;
+    const f = finished(m), k = Math.min(1, 300 / Math.max(f.w, f.h));
     cv.width = Math.max(1, Math.round(f.w * k));
     cv.height = Math.max(1, Math.round(f.h * k));
     const small = document.createElement('canvas');
@@ -392,23 +345,23 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     x.imageSmoothingEnabled = k < 1;
     x.drawImage(small, 0, 0, cv.width, cv.height);
   }
+
+  // ---- the plan ----------------------------------------------------------------------------------------
   const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, '');
-  const plan = () => M.colorPlan(model().list.map(i => colors[i]), settings());
-  const mesh = () => { const f = finished(); return M.solidMesh(solids(f)[0].solid, f.w, f.h, cell, opts.layerHeight); };
   /** The plan's lines about the frame and the magnet pockets. */
-  function finishLines(): string[] {
-    const out: string[] = [], list = model().list;
+  function finishLines(m: B.Model3D): string[] {
+    const out: string[] = [], list = m.list;
     if (opts.frame > 0) {
-      const top = frameTop(), v = { w: num(opts.frame), layer: top, z: (top * opts.layerHeight).toFixed(2) };
+      const top = B.frameTop(list.length, buildOpts()), v = { w: num(opts.frame), layer: top, z: (top * opts.layerHeight).toFixed(2) };
       out.push(isFlat() ? t('Frame {w} mm wide, up to layer {layer} (Z {z} mm), in filament 1.', v)
         : t('Frame {w} mm wide: it goes on in {color} up to layer {layer} (Z {z} mm).', { ...v, color: colors[list[list.length - 1]] }));
     }
-    const d = pocketDepth();
+    const d = pocketDepth(m);
     if (d) out.push(t('Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.', { d: num(opts.magnet), depth: (d * opts.layerHeight).toFixed(2) }));
     return out;
   }
-  function flatPlanText(): string {
-    const fs = flat(), list = model().list, { w, h } = size(), slicer = opts.slicer === 'bambu' ? 'Bambu Studio / OrcaSlicer' : 'PrusaSlicer';
+  function flatPlanText(m: B.Model3D): string {
+    const fs = flat(), list = m.list, { w, h } = size(), slicer = opts.slicer === 'bambu' ? 'Bambu Studio / OrcaSlicer' : 'PrusaSlicer';
     const v = { name: base(), w: f2(w), h: f2(h), lh: fs.layerHeight, base: fs.baseLayers, tile: fs.tileLayers, recess: fs.groutRecess, total: f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight), slicer };
     const lines = [
       t('Mosaic Paint – multi-filament plan for {name}.3mf', v),
@@ -418,7 +371,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       ...list.map((ci, k) => (k === 0 && fs.baseLayers
         ? t('Filament {k}: {color} (also the base plate)', { k: k + 1, color: colors[ci] })
         : t('Filament {k}: {color}', { k: k + 1, color: colors[ci] }))),
-      ...finishLines(),
+      ...finishLines(m),
       '',
       t('{slicer}: open the 3MF – every color is a part of one object with its filament already assigned. Load the filaments in this order (AMS slots, MMU…).', v),
       t('The 3MF is made for {slicer}: other slicers may read it as one part – then use the STL files.', v),
@@ -426,9 +379,9 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     ];
     return lines.join('\n') + '\n';
   }
-  function planText(): string {
-    if (isFlat()) return flatPlanText();
-    const s = settings(), list = model().list, plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
+  function planText(m: B.Model3D): string {
+    if (isFlat()) return flatPlanText(m);
+    const s = settings(), list = m.list, plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
     const v = { name: base(), w: f2(w), h: f2(h), lh: s.layerHeight, lpc: s.layersPerColor, base: s.baseLayers, total: M.modelHeight(list.length, s), layers: M.topLayer(list.length - 1, s) };
     // the plan is a file: plain numbers (2.40), whatever the language
     const first = plan[0];
@@ -440,7 +393,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       (s.baseLayers ? t('Start with {color} – layers {from}–{to} (base plate included)', { color: first.color, from: first.fromLayer, to: first.toLayer })
         : t('Start with {color} – layers {from}–{to}', { color: first.color, from: first.fromLayer, to: first.toLayer })),
       ...plan.slice(1).map(p => t('Layer {layer} (Z {z} mm): change to {color} – layers {from}–{to}', { layer: p.changeAtLayer, z: p.z.toFixed(2), color: p.color, from: p.fromLayer, to: p.toLayer })),
-      ...finishLines(),
+      ...finishLines(m),
       '',
       t('PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider.'),
       t('Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:'),
@@ -451,9 +404,41 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     return lines.join('\n') + '\n';
   }
 
+  // ---- the files -------------------------------------------------------------------------------------
+  /** Builds the model's file in a worker and downloads it. */
+  async function save(kind: '3mf' | 'stl'): Promise<void> {
+    const m = model();
+    if (!m || !m.list.length) return;
+    const btn = $(kind === '3mf' ? '#m3-go' : '#m3-stl');
+    btn.disabled = true;
+    busy(t('Building the 3D model…'));
+    try {
+      const r = await run('export3d', {
+        kind, shape: { grid: m.grid, w: gw, h: gh, cell, grout: m.list.map(isLine) }, o: buildOpts(),
+        colors: m.list.map(ci => colors[ci]), name: base(), slicer: opts.slicer, labels: { base: t('Base'), frame: t('Frame') },
+      }, { progress: f => busy(t('Building the 3D model… {p} %', { p: Math.round(f * 100) })) });
+      download(new Blob([r.data as BlobPart], { type: r.type }), r.fileName);
+      const v = { name: base(), n: r.triangles, c: m.list.length - 1 };
+      if (isFlat()) {
+        toast(kind === '3mf'
+          ? t('Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.', { name: base(), slicer: opts.slicer === 'bambu' ? 'Bambu Studio' : 'PrusaSlicer', n: r.parts })
+          : t('Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.', { name: base(), n: r.parts }));
+      } else {
+        toast(kind === '3mf'
+          ? t('Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).', v)
+          : t('Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.', v));
+      }
+    } catch (e) {
+      if (!isCancelled(e)) toast(t('Could not build the 3D model.'));
+    } finally {
+      busy('');
+      btn.disabled = false;
+    }
+  }
+
   // ---- controls --------------------------------------------------------------------------------------
-  let busy: any;
-  const reanalyse = () => { clearTimeout(busy); busy = setTimeout(() => analyse().catch(() => toast(t('Could not read the picture.'))), 50); };
+  let timer: any;
+  const reanalyse = () => { clearTimeout(timer); timer = setTimeout(() => analyse().catch(() => toast(t('Could not read the picture.'))), 50); };
   /** settings where 0 means none */
   const CAN_BE_0 = ['baseLayers', 'minWidth', 'groutRecess', 'frame', 'frameRaise', 'corner', 'hole', 'magnet'];
   const bindNum = (id: string, key: string, min: number, max: number, whole: boolean, again: boolean) => {
@@ -497,40 +482,12 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   $('#m3-z').oninput = () => { if (view) view.setExaggeration(+$('#m3-z').value); };
   $('#m3-light').onclick = () => sortBy(true);
   $('#m3-dark').onclick = () => sortBy(false);
-  const triangles = (m: M.Mesh) => m.triangles.length / 3;
-  $('#m3-go').onclick = async () => {
-    $('#m3-go').disabled = true;
-    try {
-      if (isFlat()) {
-        const ps = parts(), slicer = opts.slicer === 'bambu' ? 'Bambu Studio' : 'PrusaSlicer';
-        const data = await zip(M.threeMfPartsFiles(ps, base(), opts.slicer));
-        download(new Blob([data as BlobPart], { type: 'model/3mf' }), base() + '.3mf');
-        toast(t('Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.', { name: base(), slicer, n: ps.length }));
-        return;
-      }
-      const m = mesh(), p = plan();
-      const data = await zip(M.threeMfFiles(m, p, base()));
-      download(new Blob([data as BlobPart], { type: 'model/3mf' }), base() + '.3mf');
-      toast(t('Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).', { name: base(), n: triangles(m), c: p.length - 1 }));
-    } finally { $('#m3-go').disabled = false; }
+  $('#m3-go').onclick = () => save('3mf');
+  $('#m3-stl').onclick = () => save('stl');
+  $('#m3-plan').onclick = () => {
+    const m = model();
+    if (m && m.list.length) download(new Blob([planText(m)], { type: 'text/plain' }), base() + '-3d-plan.txt');
   };
-  $('#m3-stl').onclick = async () => {
-    if (isFlat()) {
-      const ps = parts();
-      // the base plate comes first (when there is one), then filament 1, 2, …
-      const files = ps.map((p, k) => ({
-        name: k === 0 && opts.baseLayers ? `${base()}-base.stl` : `${base()}-${p.filament}-${p.color.slice(1)}.stl`,
-        data: new Uint8Array(M.stl(p.mesh, p.name)),
-      }));
-      download(new Blob([await zip(files) as BlobPart], { type: 'application/zip' }), base() + '-stl.zip');
-      toast(t('Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.', { name: base(), n: files.length }));
-      return;
-    }
-    const m = mesh();
-    download(new Blob([M.stl(m, base())], { type: 'model/stl' }), base() + '.stl');
-    toast(t('Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.', { name: base(), n: triangles(m) }));
-  };
-  $('#m3-plan').onclick = () => download(new Blob([planText()], { type: 'text/plain' }), base() + '-3d-plan.txt');
 
   button.onclick = async () => {
     const real = host.realSize();

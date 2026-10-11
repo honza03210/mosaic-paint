@@ -326,3 +326,5 @@ body.viewer #mode-switch, body.viewer #btn-panel { display: none !important; }
 .m3-row code { font-size: 12px; }
 .m3-row .tag { font-size: 11px; padding: 0 5px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); background: none; }
 .m3-row .tag.on { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+body.working, body.working * { cursor: progress !important; }
