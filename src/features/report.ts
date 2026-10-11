@@ -2,6 +2,7 @@
 import { MZ } from '../core/api.ts';
 import * as Geo from '../lib/geometry.ts';
 import { Vision } from './vision.ts';
+import { t } from '../shared/i18n.ts';
 
 const $ = (s: string): any => document.querySelector<any>(s);
 const { state } = MZ;
@@ -59,34 +60,34 @@ function renderReport() {
   const expert = state.mode === 'expert';
   const tiles = rows.reduce((s, r) => s + r.tiles, 0);
   const free = unpaintedCount();
-  $('#rep-summary').innerHTML = `<b>${tiles}</b> painted area${tiles === 1 ? '' : 's'} in <b>${rows.length}</b> color${rows.length === 1 ? '' : 's'}`
-    + (free ? ` · <b>${free}</b> not painted yet` : ' · everything is painted')
-    + ` · page ${MZ.fmt(d.w)} × ${MZ.fmt(d.h)} ${u}`;
+  $('#rep-summary').innerHTML = t('<b>{n}</b> painted {n|area|areas} in <b>{c}</b> {c|color|colors}', { n: tiles, c: rows.length })
+    + (free ? ' · ' + t('<b>{n}</b> not painted yet', { n: free }) : ' · ' + t('everything is painted'))
+    + ' · ' + t('page {w} × {h} {unit}', { w: MZ.fmt(d.w), h: MZ.fmt(d.h), unit: u });
   const palOpts = state.palette.map((c, i) => `<option value="${c}" style="background:${c}">#${i + 1} ${c}</option>`).join('');
-  $('#rep-table').innerHTML = `<thead><tr><th>#</th><th></th><th>Color</th><th>Areas</th><th>Total area</th><th>Share</th>`
-    + (expert ? `<th title="Pieces of the size set above, plus waste">Pieces to buy</th>` : '')
-    + `<th>Replace with</th></tr></thead><tbody>`
+  $('#rep-table').innerHTML = `<thead><tr><th>#</th><th></th><th>${t('Color')}</th><th>${t('Areas')}</th><th>${t('Total area')}</th><th>${t('Share of area')}</th>`
+    + (expert ? `<th title="${t('Pieces of the size set above, plus waste')}">${t('Pieces to buy')}</th>` : '')
+    + `<th>${t('Replace with')}</th></tr></thead><tbody>`
     + rows.map(r => `<tr><td>${r.n}</td><td><span class="mini" style="background:${r.c}"></span></td><td>${r.c}</td>`
       + `<td>${r.tiles}</td><td>${MZ.fmtArea(r.area)}</td><td>${r.share.toFixed(1)} %</td>`
       + (expert ? `<td>${r.pieces || '–'}</td>` : '')
-      + `<td><select data-from="${r.c}"><option value="">—</option>${palOpts}<option value="none">Erase</option></select></td></tr>`).join('')
+      + `<td><select data-from="${r.c}"><option value="">—</option>${palOpts}<option value="none">${t('Erase')}</option></select></td></tr>`).join('')
     + `</tbody>`;
-  if (!rows.length) $('#rep-table').innerHTML = '<tbody><tr><td>Nothing is painted yet. Use the paint bucket, or “Color tiles from photo”.</td></tr></tbody>';
+  if (!rows.length) $('#rep-table').innerHTML = `<tbody><tr><td>${t('Nothing is painted yet. Use the paint bucket, or “Color tiles from photo”.')}</td></tr></tbody>`;
   for (const s of document.querySelectorAll<any>('#rep-table select')) {
     s.onchange = () => {
       if (!s.value) return;
       const to = s.value === 'none' ? null : s.value;
       const n = MZ.replaceColor(s.dataset.from, to);
       MZ.commit(true);
-      MZ.toast(`${to ? 'Recolored' : 'Erased'} ${n} area${n === 1 ? '' : 's'}.`);
+      MZ.toast(to ? t('Recolored {n} {n|area|areas}.', { n }) : t('Erased {n} {n|area|areas}.', { n }));
       renderReport();
     };
   }
   for (const el of document.querySelectorAll<any>('.unit-label')) el.textContent = u;
   // colors that are hard to tell apart (vision.js)
   const alike = Vision.similarPairs(rows.map(r => r.c));
-  $('#rep-alike').innerHTML = alike.length ? '<h3>Colors that may look alike</h3><ul>'
-    + alike.map(p => `<li><span class="mini" style="background:${p.a}"></span> <span class="mini" style="background:${p.b}"></span> ${p.a} and ${p.b} ${esc(Vision.describe(p.views))}</li>`).join('') + '</ul>' : '';
+  $('#rep-alike').innerHTML = alike.length ? `<h3>${t('Colors that may look alike')}</h3><ul>`
+    + alike.map(p => `<li><span class="mini" style="background:${p.a}"></span> <span class="mini" style="background:${p.b}"></span> ${esc(t('{a} and {b} {how}', { a: p.a, b: p.b, how: Vision.describe(p.views) }))}</li>`).join('') + '</ul>' : '';
 }
 function reportCSV() {
   const rows = reportRows(), u = MZ.unit();

@@ -9,17 +9,14 @@ import { doc, dctx } from './canvas.ts';
 import { commit } from './history.ts';
 import { place } from './select.ts';
 import { addPalette, suggestColors } from './palette.ts';
+import { t, num } from '../shared/i18n.ts';
 
 /** The area to work on: the selection, or the whole image. */
 function region(): R.Box {
   if (state.floating) place();
   return state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
 }
-const fmtN = (n: number) => n.toLocaleString('en');
-function summary(counts: Map<string, number>, unit: string): string {
-  const total = [...counts.values()].reduce((s, n) => s + n, 0);
-  return `${fmtN(total)} ${unit}${total === 1 ? '' : 's'} in ${counts.size} color${counts.size === 1 ? '' : 's'}`;
-}
+const total = (counts: Map<string, number>) => [...counts.values()].reduce((s, n) => s + n, 0);
 
 export function makeMosaic(): void {
   const m = state.mosaic, b = region();
@@ -27,16 +24,16 @@ export function makeMosaic(): void {
   let palette: string[] | null = null;
   if (m.colors === 'palette') {
     palette = state.palette;
-    if (!palette.length) { toast('The palette is empty – add colors, or let the mosaic suggest some.'); return; }
+    if (!palette.length) { toast(t('The palette is empty – add colors, or let the mosaic suggest some.')); return; }
   } else if (m.colors === 'suggest') {
     palette = suggestColors(img, m.count);
-    if (!palette.length) { toast('There is nothing to make a mosaic from (the area is transparent).'); return; }
-    addPalette('From picture', palette);
+    if (!palette.length) { toast(t('There is nothing to make a mosaic from (the area is transparent).')); return; }
+    addPalette(t('From picture'), palette);
   }
   const res = tiles(img, palette);
   dctx.putImageData(new ImageData(res.img.data, b.w, b.h), b.x, b.y);
   commit();
-  toast(`Made ${summary(res.counts, 'tile')}.`);
+  toast(t('Made {n} {n|tile|tiles} in {c} {c|color|colors}.', { n: total(res.counts), c: res.counts.size }));
 }
 /** The mosaic of an image: the exact square grid when it can be, else the tile layout's polygons. */
 function tiles(img: ImageData, palette: string[] | null) {
@@ -53,25 +50,25 @@ function tiles(img: ImageData, palette: string[] | null) {
   return R.mosaicCells(img, cells, { grout: m.grout, groutColor: m.groutColor, palette });
 }
 export function reduceToPalette(): void {
-  if (!state.palette.length) { toast('The palette is empty.'); return; }
+  if (!state.palette.length) { toast(t('The palette is empty.')); return; }
   const b = region(), img = dctx.getImageData(b.x, b.y, b.w, b.h);
   const counts = R.quantize(img, state.palette);
   dctx.putImageData(img, b.x, b.y);
   commit();
-  toast(`Every pixel now has a palette color: ${summary(counts, 'pixel')}.`);
+  toast(t('Every pixel now has a palette color: {n} {n|pixel|pixels} in {c} {c|color|colors}.', { n: total(counts), c: counts.size }));
 }
 
 // ---- dialog ------------------------------------------------------------------------------------------
 function estimate(): void {
-  const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height }, t = Math.max(2, m.tile);
-  // area of one tile in t² (a hexagon t wide covers t² × √3/2; a brick t wide is half as high)
+  const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height }, ts = Math.max(2, m.tile);
+  // area of one tile in ts² (a hexagon ts wide covers ts² × √3/2; a brick ts wide is half as high)
   const per = { hex: Math.sqrt(3) / 2, brick: 0.5 }[m.shape] || 1;
-  const base = (b.w * b.h) / (t * t * per);
+  const base = (b.w * b.h) / (ts * ts * per);
   // with detail, calm parts get bigger tiles: the size is the smallest tile
   const adaptive = m.detail > 0 && ['square', 'brick', 'irregular'].includes(m.shape);
   $('#mo-estimate').textContent = adaptive
-    ? `At most about ${fmtN(Math.round(base))} tiles${state.sel ? ' in the selection' : ''} – bigger ones where the picture is calm.`
-    : `About ${fmtN(Math.round(base))} tiles${state.sel ? ' in the selection' : ''}.`;
+    ? (state.sel ? t('At most about {n} tiles in the selection – bigger ones where the picture is calm.', { n: Math.round(base) }) : t('At most about {n} tiles – bigger ones where the picture is calm.', { n: Math.round(base) }))
+    : (state.sel ? t('About {n} tiles in the selection.', { n: Math.round(base) }) : t('About {n} tiles.', { n: Math.round(base) }));
   $('#mo-detail-row').hidden = m.shape === 'hex' || m.shape === 'offset';
 }
 export function bindMosaic(): void {

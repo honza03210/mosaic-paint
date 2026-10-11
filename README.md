@@ -11,6 +11,10 @@ Switch between them with **Vector | Raster** in the top bar. They look and work 
 It can be installed as an app ("Install app" button, or the browser's install icon), and then it also works offline.
 To run it from a download instead, open `index.html` (or `raster.html`) in Chrome / Edge / Firefox; there's no build step.
 
+## Languages
+
+Both apps are in English and Czech (čeština). They follow the browser’s language; the language menu in the top bar switches it.
+
 ## Simple and Expert mode
 
 The switch in the top-left corner chooses how much of the app you see.
@@ -113,7 +117,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
-- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`)
+- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket
   - `patterns.ts`: tiling patterns

@@ -5,6 +5,7 @@
 `npm test` builds `dist/mosaic.js`, type-checks the TypeScript (`tsc`), then runs:
 
 - **Unit tests** (`tests/unit/`): geometry (closed areas, holes, T-junctions), tiling patterns, print sheet layout, and that the offline cache lists every file.
+- **Translations:** every text people see (in the code and on both pages) has a Czech version with the same placeholders.
 - **Unit tests** of the 3D print model (heights, merged boxes, a closed outward-facing STL, the filament plan) and of the raster app's pixel algorithms (flood fill, lines, polygons, palette reduction, the mosaic effect).
 - **End-to-end tests** (`tests/e2e/`), driving both apps in:
   - Chrome, Firefox and WebKit (Safari's engine) on desktop;

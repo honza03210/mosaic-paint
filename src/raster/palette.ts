@@ -7,6 +7,7 @@ import { createPaletteUI } from '../shared/palette-ui.ts';
 import { state, savePrefs, on } from './state.ts';
 import { getImage, dctx } from './canvas.ts';
 import { commit } from './history.ts';
+import { t } from '../shared/i18n.ts';
 
 // counting means reading every pixel: only redo it when the image or the palette changed
 let counts: Map<string, number> | null = null, countsKey = '';
@@ -26,8 +27,8 @@ const ui = createPaletteUI({
   state,
   save: savePrefs,
   counts: colorCounts,
-  usage: (n) => `${n} pixel${n > 1 ? 's' : ''}`,
-  names: { fill: 'paint color', stroke: 'outline color', none: 'Transparent – paints and fills transparent pixels' },
+  usage: (n) => t('{n} {n|pixel|pixels}', { n }),
+  names: { fill: t('paint color'), stroke: t('outline color'), none: t('Transparent – paints and fills transparent pixels') },
   docColors() {
     const img = getImage();
     // a drawing has few colors: take them all; a photo has thousands: suggest 16
@@ -38,7 +39,7 @@ const ui = createPaletteUI({
     if (!n) return null;
     dctx.putImageData(img, 0, 0);
     commit();
-    return `Recolored ${n} pixel${n > 1 ? 's' : ''}.`;
+    return t('Recolored {n} {n|pixel|pixels}.', { n });
   },
 });
 export const {

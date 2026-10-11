@@ -6,14 +6,15 @@ import { doc, dctx, makeCanvas, setSize, fitView } from './canvas.ts';
 import { Store, type Version } from '../lib/store.ts';
 import { commit, resetHistory, afterChange, updateTitle, saveVersion, scheduleAutosave } from './history.ts';
 import { selectionChanged } from './select.ts';
+import { t, lang } from '../shared/i18n.ts';
 
 export const MAX_SIDE = 8000;
-const IMAGE_TYPES = [{ description: 'Images', accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.svg'] } }];
-const PNG_TYPES = [{ description: 'PNG image', accept: { 'image/png': ['.png'] } }];
+const IMAGE_TYPES = [{ description: t('Images'), accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.svg'] } }];
+const PNG_TYPES = [{ description: t('PNG image'), accept: { 'image/png': ['.png'] } }];
 const baseName = (n: string) => n.replace(/\.[a-z0-9]+$/i, '');
 
 export function confirmDiscard(): boolean {
-  return !rt.dirty || confirm('Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)');
+  return !rt.dirty || confirm(t('Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)'));
 }
 /** Replaces the image with a canvas (opened file, new image) and starts a fresh undo history. */
 export function loadCanvas(c: HTMLCanvasElement, name: string): void {
@@ -49,11 +50,11 @@ export async function fileToCanvas(f: Blob): Promise<HTMLCanvasElement | null> {
 }
 export async function openImageFile(f: File): Promise<boolean> {
   const c = await fileToCanvas(f);
-  if (!c) { toast('Could not read ' + f.name + ' as an image.'); return false; }
-  await saveVersion('Before opening ' + f.name);
+  if (!c) { toast(t('Could not read {name} as an image.', { name: f.name })); return false; }
+  await saveVersion(t('Before opening {name}', { name: f.name }));
   loadCanvas(c, f.name);
   scheduleAutosave();
-  toast(`Opened ${f.name} (${c.width} × ${c.height} px).`);
+  toast(t('Opened {name} ({w} × {h} px).', { name: f.name, w: c.width, h: c.height }));
   return true;
 }
 export async function openFile(): Promise<void> {
@@ -80,26 +81,26 @@ export function parseSize(s: string): { w: number; h: number } | null {
 }
 export function newImage(): void {
   if (!confirmDiscard()) return;
-  const ans = prompt('Size of the new image in pixels (width × height):', `${doc.width} × ${doc.height}`);
+  const ans = prompt(t('Size of the new image in pixels (width × height):'), `${doc.width} × ${doc.height}`);
   if (ans == null) return;
   const s = parseSize(ans);
-  if (!s) { toast(`Enter a size like 800 × 600 (at most ${MAX_SIDE} px a side).`); return; }
+  if (!s) { toast(t('Enter a size like 800 × 600 (at most {max} px a side).', { max: MAX_SIDE })); return; }
   const c = makeCanvas(s.w, s.h), x = c.getContext('2d');
   x.fillStyle = '#ffffff';
   x.fillRect(0, 0, s.w, s.h);
-  saveVersion('Before starting a new image').then(() => { loadCanvas(c, 'mosaic.png'); scheduleAutosave(); });
+  saveVersion(t('Before starting a new image')).then(() => { loadCanvas(c, 'mosaic.png'); scheduleAutosave(); });
 }
 /** The versions of the raster app, newest first. */
 export const listVersions = () => Store.listVersions('raster');
 export async function restoreVersion(v: Version): Promise<void> {
   const c = v.png && await fileToCanvas(new Blob([v.png], { type: 'image/png' }));
-  if (!c) { toast('That version could not be read.'); return; }
-  await saveVersion('Before restoring an older version');
+  if (!c) { toast(t('That version could not be read.')); return; }
+  await saveVersion(t('Before restoring an older version'));
   loadCanvas(c, v.name || 'mosaic.png');
   rt.dirty = true;
   updateTitle();
   scheduleAutosave();
-  toast('Restored the version from ' + new Date(v.time).toLocaleString());
+  toast(t('Restored the version from {time}', { time: new Date(v.time).toLocaleString(lang) }));
 }
 export async function save(): Promise<void> {
   const png = await canvasToPng(doc), w = window as any;
@@ -112,7 +113,7 @@ export async function save(): Promise<void> {
       rt.fileName = rt.fileHandle.name;
       rt.dirty = false;
       updateTitle();
-      toast('Saved ' + rt.fileName);
+      toast(t('Saved {name}', { name: rt.fileName }));
       return;
     } catch (err) {
       if (err.name === 'AbortError') return;
@@ -134,7 +135,7 @@ export function exportAs(type: string, quality: number): void {
     x.drawImage(doc, 0, 0);
   }
   const ext = { 'image/jpeg': '.jpg', 'image/webp': '.webp', 'image/png': '.png' }[type] || '.png';
-  c.toBlob(b => (b ? download(b, baseName(rt.fileName) + ext) : toast('Export failed.')), type, quality);
+  c.toBlob(b => (b ? download(b, baseName(rt.fileName) + ext) : toast(t('Export failed.'))), type, quality);
 }
 
 /** Scales the picture to w × h (smooth when shrinking, sharp pixels when enlarging). */

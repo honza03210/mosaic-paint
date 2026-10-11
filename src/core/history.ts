@@ -8,6 +8,7 @@ import { renderPalette } from './palette.ts';
 import { applyGrout } from './grout.ts';
 import { buildSVGString, loadSVGText } from './files.ts';
 import { cancelPending } from './tools.ts';
+import { t, lang } from '../shared/i18n.ts';
 
 interface Snapshot { defs: string; fills: string; shapes: string; doc: Doc }
 let history: Snapshot[] = [], hIndex = -1;
@@ -83,9 +84,9 @@ async function autosaveNow(): Promise<void> {
   try {
     await Store.set('current', { svg: svgText, fileName: rt.fileName, time: Date.now() });
   } catch {
-    if (!lsSet('mz-autosave', svgText)) toast('Autosave failed – remember to save your file.');
+    if (!lsSet('mz-autosave', svgText)) toast(t('Autosave failed – remember to save your file.'));
   }
-  if (hasContent() && Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion('Autosave');
+  if (hasContent() && Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion(t('Autosave'));
 }
 
 // ---- versions --------------------------------------------------------------------------------
@@ -98,13 +99,13 @@ export async function saveVersion(note: string): Promise<boolean> {
   } catch { return false; }
 }
 export async function restoreVersion(rec: { svg: string; name?: string; time: number }): Promise<void> {
-  if (hasContent()) await saveVersion('Before restoring an older version');
+  if (hasContent()) await saveVersion(t('Before restoring an older version'));
   if (loadSVGText(rec.svg, { restore: true })) {
     rt.fileName = rec.name || 'mosaic.svg';
     rt.fileHandle = null;
     rt.dirty = true;
     updateTitle();
     scheduleAutosave();
-    toast('Restored the version from ' + new Date(rec.time).toLocaleString());
+    toast(t('Restored the version from {time}', { time: new Date(rec.time).toLocaleString(lang) }));
   }
 }

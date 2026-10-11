@@ -15,6 +15,7 @@ import { regionIndex, showGaps, insideRegion, bucketAt, paintCtx, commitGeometry
 import { commit, docChanged } from './history.ts';
 import { savePrefs } from './palette.ts';
 import { refImage, inRef } from './photo.ts';
+import { t } from '../shared/i18n.ts';
 
 export interface Tool {
   down(e: PointerEvent, raw: Pt): void;
@@ -79,7 +80,7 @@ export function cancelPending(): void {
 export function updateStageActions(): void {
   $('#stage-actions').hidden = !(state.lineStart || state.freePts);
   $('#sa-back').hidden = !state.freePts;
-  $('#sa-finish').textContent = state.freePts ? 'Close shape' : 'Done';
+  $('#sa-finish').textContent = state.freePts ? t('Close shape') : t('Done');
 }
 
 // ---- line ------------------------------------------------------------------------------------------
@@ -254,7 +255,7 @@ const knifeTool: Tool = {
   down(e, raw) {
     if (!canDraw()) return;
     state.action = { type: 'knife', a: raw, b: raw, ix: regionIndex(), sx: e.clientX, sy: e.clientY, moved: false, cuts: [] };
-    if (!state.action.ix.locate(raw)) { state.action = null; toast('Start the cut inside a closed area.'); showGaps(); }
+    if (!state.action.ix.locate(raw)) { state.action = null; toast(t('Start the cut inside a closed area.')); showGaps(); }
   },
   move(e, raw) {
     const a = state.action;
@@ -282,7 +283,7 @@ export function applyPattern(p: Pt | null): void {
   let region: Region;
   if (p) {
     const ix = regionIndex(), f = ix.locate(p);
-    if (!f) { toast('Click inside a closed area (or use “Fill whole page”).'); showGaps(); return; }
+    if (!f) { toast(t('Click inside a closed area (or use “Fill whole page”).')); showGaps(); return; }
     region = ix.region(f);
   } else {
     const pts = pagePts();
@@ -297,24 +298,24 @@ export function applyPattern(p: Pt | null): void {
     type: P.type, size: P.size, angle: P.angle, origin, rings: [region.outer, ...region.holes],
     inside: (q: Pt) => insideRegion(region, q), eps: Geo.eps,
   });
-  if (res.error) { toast(`That would be about ${res.estimate} tiles – make the tile size bigger.`); return; }
+  if (res.error) { toast(t('That would be about {n} tiles – make the tile size bigger.', { n: res.estimate })); return; }
   const segs = res.segments;
-  if (!segs.length) { toast('The tiles are bigger than this area.'); return; }
-  if (segs.length > 3000 && !confirm(`This adds ${segs.length} lines, which may make editing slow. Continue?`)) return;
+  if (!segs.length) { toast(t('The tiles are bigger than this area.')); return; }
+  if (segs.length > 3000 && !confirm(t('This adds {n} lines, which may make editing slow. Continue?', { n: segs.length }))) return;
   addLineSegments(segs);
   commitGeometry();
-  toast(`Added a ${Patterns.TYPES.find(t => t[0] === P.type)[1].toLowerCase()} pattern (${segs.length} lines).`);
+  toast(t('Added the pattern “{type}” ({n} {n|line|lines}).', { type: t(Patterns.TYPES.find(p => p[0] === P.type)[1]), n: segs.length }));
 }
 /** Rows of tiles following the area's outline (and around any shapes inside it). */
 function applyRows(region: Region, P: any): void {
   const span = Math.max(region.bb.x1 - region.bb.x0, region.bb.y1 - region.bb.y0);
-  if (P.size * 2 > span) { toast('The rows are wider than this area – use a smaller size.'); return; }
+  if (P.size * 2 > span) { toast(t('The rows are wider than this area – use a smaller size.')); return; }
   const { loops, cuts } = Contour.build({ rings: [region.outer, ...region.holes], width: P.size, length: P.size, rows: P.rows || 0 });
-  if (!loops.length) { toast('This area is too narrow for a row of that width.'); return; }
+  if (!loops.length) { toast(t('This area is too narrow for a row of that width.')); return; }
   for (const l of loops) mk('polygon', { points: ptsStr(l), fill: 'none', ...shapeStyle() }, shapesG);
   addLineSegments(cuts);
   commitGeometry();
-  toast(`Added ${loops.length} row line${loops.length === 1 ? '' : 's'} and ${cuts.length} cuts following the outline.`);
+  toast(t('Added {rows} {rows|row line|row lines} and {cuts} {cuts|cut|cuts} following the outline.', { rows: loops.length, cuts: cuts.length }));
 }
 const patternTool: Tool = {
   // applied on release, so a pinch / drag that starts here doesn't add a pattern
@@ -345,14 +346,14 @@ function paintPoints(p: Pt, ctx: PaintCtx): void {
 const bucketTool: Tool = {
   down(e, raw) {
     if (e.altKey) { eyedrop(raw); return; }
-    if (!editable('fills')) { toast('Painted areas are locked or hidden (see Layers).'); return; }
+    if (!editable('fills')) { toast(t('Painted areas are locked or hidden (see Layers).')); return; }
     const ctx = paintCtx();
     ctx.done = new Set();
     paintPoints(raw, ctx);
     state.action = { type: 'paint', ctx };
     if (!ctx.found) {
       const n = showGaps();
-      toast(n ? 'No closed area here. The red circles show line ends that don’t touch anything.' : 'No closed area here – make sure the lines meet.');
+      toast(n ? t('No closed area here. The red circles show line ends that don’t touch anything.') : t('No closed area here – make sure the lines meet.'));
     }
   },
   move(e, raw) {
@@ -482,23 +483,23 @@ export const tools: Record<string, Tool> = {
   pattern: patternTool, bucket: bucketTool, pan: { down() {}, move() {}, up() {} },
 };
 const HINTS: Record<string, string> = {
-  select: 'Click to select (Shift adds) · drag to move – the nearest corner snaps · drag handles to edit; shared corners move together (Alt detaches) · yellow handles resize a polygon',
-  line: 'Click–click or drag · ends snap to points and onto other lines · Shift: 15° steps · Alt: no snap · Esc: stop',
-  free: 'Click corner by corner · click the first corner, double-click or press Enter to close · Backspace removes the last corner · Esc cancels',
-  ngon: 'Drag from the center (or along an edge in “From edge” mode) · click = last size · Shift: 15° rotation · Ctrl: flip side · keys 3–9: sides',
-  knife: 'Drag across a tile to cut it straight through, edge to edge · Shift: 15° steps',
-  pattern: 'Click inside a closed area to fill it with the chosen pattern',
-  bucket: 'Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color',
-  pan: 'Drag to pan · mouse wheel zooms',
+  select: t('Click to select (Shift adds) · drag to move – the nearest corner snaps · drag handles to edit; shared corners move together (Alt detaches) · yellow handles resize a polygon'),
+  line: t('Click–click or drag · ends snap to points and onto other lines · Shift: 15° steps · Alt: no snap · Esc: stop'),
+  free: t('Click corner by corner · click the first corner, double-click or press Enter to close · Backspace removes the last corner · Esc cancels'),
+  ngon: t('Drag from the center (or along an edge in “From edge” mode) · click = last size · Shift: 15° rotation · Ctrl: flip side · keys 3–9: sides'),
+  knife: t('Drag across a tile to cut it straight through, edge to edge · Shift: 15° steps'),
+  pattern: t('Click inside a closed area to fill it with the chosen pattern'),
+  bucket: t('Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color'),
+  pan: t('Drag to pan · mouse wheel zooms'),
 };
 /** Adds a tool that has no button (e.g. placing a motif). */
 export function registerTool(name: string, handlers: Tool, hint: string): void { tools[name] = handlers; HINTS[name] = hint; }
-export function setTool(t: string): void {
-  if (EXPERT_TOOLS.has(t) && state.mode !== 'expert') t = 'select';
+export function setTool(tool: string): void {
+  if (EXPERT_TOOLS.has(tool) && state.mode !== 'expert') tool = 'select';
   cancelPending();
-  state.tool = t;
-  stage.dataset.tool = t;
-  for (const b of $$('#tools button')) b.classList.toggle('active', b.dataset.tool === t);
-  for (const s of $$('.tool-opts')) s.hidden = s.dataset.for !== t;
-  $('#st-hint').textContent = HINTS[t];
+  state.tool = tool;
+  stage.dataset.tool = tool;
+  for (const b of $$('#tools button')) b.classList.toggle('active', b.dataset.tool === tool);
+  for (const s of $$('.tool-opts')) s.hidden = s.dataset.for !== tool;
+  $('#st-hint').textContent = HINTS[tool];
 }

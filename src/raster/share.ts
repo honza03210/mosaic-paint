@@ -8,6 +8,7 @@ import { doc, fitView } from './canvas.ts';
 import { pauseAutosave, saveVersion, scheduleAutosave, updateTitle } from './history.ts';
 import { setTool } from './tools.ts';
 import { loadCanvas, fileToCanvas } from './files.ts';
+import { t } from '../shared/i18n.ts';
 
 const LONG = 64 * 1024, MAX = 2 * 1024 * 1024; // links get unwieldy above ~64 KB; browsers stop at a few MB
 let link = '', viewing = false;
@@ -18,23 +19,23 @@ async function makeLink(): Promise<void> {
   const kb = Math.round(link.length / 1024);
   $('#share-link').value = link;
   $('#share-size').textContent = link.length > MAX
-    ? `The link would be ${kb} KB – too long. Share the file instead (or make the image smaller).`
-    : `The link is ${kb} KB${link.length > LONG ? ' – long links can get cut off in some messengers; sharing the file is safer' : ''}. Anyone with it can view the image and make their own copy.`;
+    ? t('The link would be {kb} KB – too long. Share the file instead (or make the image smaller).', { kb })
+    : (link.length > LONG ? t('The link is {kb} KB – long links can get cut off in some messengers; sharing the file is safer. Anyone with it can view the image and make their own copy.', { kb }) : t('The link is {kb} KB. Anyone with it can view the image and make their own copy.', { kb }));
   $('#share-copy').disabled = link.length > MAX;
 }
 async function shareFile(): Promise<void> {
   const file = new File([await canvasToPng(doc)], rt.fileName, { type: 'image/png' });
-  try { await navigator.share({ files: [file], title: rt.fileName }); } catch (e) { if (e.name !== 'AbortError') toast('Sharing failed.'); }
+  try { await navigator.share({ files: [file], title: rt.fileName }); } catch (e) { if (e.name !== 'AbortError') toast(t('Sharing failed.')); }
 }
 
 // ---- opening a shared link: read-only viewer -------------------------------------------------------
 async function openShared(packed: string): Promise<void> {
   let c: HTMLCanvasElement | null = null;
   try { c = await fileToCanvas(new Blob([unpackBytes(packed) as BlobPart], { type: 'image/png' })); } catch { /* damaged */ }
-  if (!c) { toast('This share link is damaged or incomplete.'); return; }
+  if (!c) { toast(t('This share link is damaged or incomplete.')); return; }
   // the visitor's own image stays untouched: autosave pauses, and a copy goes into History
   pauseAutosave(true);
-  await saveVersion('Before opening a shared image');
+  await saveVersion(t('Before opening a shared image'));
   loadCanvas(c, 'shared.png');
   viewing = true;
   document.body.classList.add('viewer');
@@ -50,7 +51,7 @@ function makeCopy(): void {
   rt.dirty = true;
   updateTitle();
   scheduleAutosave();
-  toast('This is now your own copy – it is saved in this browser like any image.');
+  toast(t('This is now your own copy – it is saved in this browser like any image.'));
 }
 function closeViewer(): void {
   history.replaceState(null, '', location.pathname + location.search);
@@ -62,7 +63,7 @@ export function bindShare(): void {
   $('#btn-share').onclick = async () => { $('#dlg-share').showModal(); await makeLink(); };
   $('#share-copy').onclick = async () => {
     try { await navigator.clipboard.writeText(link); } catch { $('#share-link').select(); document.execCommand('copy'); }
-    toast('Link copied.');
+    toast(t('Link copied.'));
   };
   const canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.png', { type: 'image/png' })] }));
   $('#share-file').hidden = !canShareFiles;

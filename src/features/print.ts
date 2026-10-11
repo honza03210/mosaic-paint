@@ -4,6 +4,7 @@ import * as Geo from '../lib/geometry.ts';
 import * as Colors from '../lib/colors.ts';
 import * as Printing from '../lib/print.ts';
 import { colorStats, colorNumbers } from './report.ts';
+import { t } from '../shared/i18n.ts';
 
 const $ = (s: string): any => document.querySelector<any>(s);
 const { state } = MZ;
@@ -75,8 +76,8 @@ function printArt(style) {
   return { art, rows, nums };
 }
 function legendHTML(rows) {
-  return rows.length ? `<h2>${esc(MZ.fileName)} – colors</h2><table>`
-    + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles} area${r.tiles === 1 ? '' : 's'}</td><td>${esc(MZ.fmtArea(r.area))}</td></tr>`).join('')
+  return rows.length ? `<h2>${esc(MZ.fileName)} – ${t('colors')}</h2><table>`
+    + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${t('{n} {n|area|areas}', { n: r.tiles })}</td><td>${esc(MZ.fmtArea(r.area))}</td></tr>`).join('')
     + '</table>' : '';
 }
 function printTemplate() {
@@ -90,16 +91,14 @@ function printTemplate() {
 function openPrintPage(html) {
   const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
   const w = window.open(url, '_blank');
-  if (!w) { MZ.toast('The browser blocked the print window – allow pop-ups for this page.'); return; }
+  if (!w) { MZ.toast(t('The browser blocked the print window – allow pop-ups for this page.')); return; }
   setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 function updatePrintInfo() {
   const d = state.doc, k = Printing.MM[MZ.unit()] || Printing.MM.px;
   const mode = document.querySelector<any>('input[name=print-size]:checked').value;
   const L = Printing.layout(d.w * k, d.h * k, $('#print-paper').value, mode);
-  $('#print-info').textContent = mode === 'fit'
-    ? `One ${L.paper.name} sheet (${L.orientation}), at ${Math.round(L.scale * 100)} % of the real size.`
-    : `${L.sheets.length} ${L.paper.name} sheet${L.sheets.length > 1 ? 's' : ''} (${L.orientation}${L.sheets.length > 1 ? `, ${L.rows} × ${L.cols}, overlapping ${Printing.OVERLAP} mm` : ''}) at real size.`;
+  $('#print-info').textContent = Printing.layoutInfo(L, mode);
 }
 $('#btn-print').onclick = () => { updatePrintInfo(); $('#dlg-print').showModal(); };
 // shared with the laying plan (layplan.js)

@@ -261,6 +261,7 @@ dialog hr { border: 0; border-top: 1px solid var(--border); margin: 10px 0; }
 #rep-alike .mini { display: inline-block; width: 16px; height: 14px; vertical-align: middle; }
 #rep-alike h3 { margin: 12px 0 0; font-size: 13px; color: var(--warn); }
 #view-filter { max-width: 150px; }
+#lang-select { max-width: 92px; }
 
 /* ---- pages ---- */
 #pagebar {

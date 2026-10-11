@@ -3,6 +3,7 @@
 import type { Pt } from '../lib/geometry.ts';
 import { $ } from '../shared/ui.ts';
 import { DEFAULT_PALETTE } from '../shared/palette-ui.ts';
+import { t } from '../shared/i18n.ts';
 export { DEFAULT_PALETTE };
 export { $, $$, clamp, toast, lsGet, lsSet, download, typingIn } from '../shared/ui.ts';
 
@@ -31,7 +32,7 @@ export const state = {
   mode: 'simple',
   tool: 'select',
   fill: '#e9c46a' as string | null, stroke: '#222222' as string | null, strokeWidth: 2,
-  palettes: { 'My palette': [...DEFAULT_PALETTE] } as Record<string, string[]>, paletteName: 'My palette',
+  palettes: { [t('My palette')]: [...DEFAULT_PALETTE] } as Record<string, string[]>, paletteName: t('My palette'),
   snap: true, link: true, grid: false, gridSize: 10, border: true, gapPct: 0.4,
   chain: false, sides: 6, ngonMode: 'center', newFill: false,
   lastRadius: 20, lastRot: -90,

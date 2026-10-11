@@ -1,5 +1,6 @@
 /* Mosaic Paint Raster – entry point: paints mosaics pixel by pixel. Shares the look, the palettes,
    the palette panel, the color tools and the app shell with the vector app (src/shared, src/lib). */
+import '../shared/i18n-start.ts';
 import * as R from '../lib/raster.ts';
 import { $$ } from '../shared/ui.ts';
 import { initShell } from '../shared/shell.ts';
@@ -20,6 +21,7 @@ import { bindVectorize, vectorSVG } from './vectorize.ts';
 import { initHistoryUI } from '../shared/history-ui.ts';
 import { listVersions, restoreVersion } from './files.ts';
 import { saveVersion } from './history.ts';
+import { t } from '../shared/i18n.ts';
 
 loadPrefs();
 bindPanel();
@@ -30,12 +32,15 @@ bindPrint();
 bindShare();
 bindVectorize();
 initHistoryUI({
-  noun: 'image',
+  texts: {
+    intro: t('Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another image. Restoring keeps your current image as a version too.'),
+    empty: t('No versions yet. A version is kept every few minutes while you work, and before you open or start another image.'),
+  },
   list: listVersions,
   thumbnail: (v) => new Blob([v.png], { type: 'image/png' }),
   detail: (v) => '',
   restore: restoreVersion,
-  saveNow: () => saveVersion('Saved by hand'),
+  saveNow: () => saveVersion(t('Saved by hand')),
 }, document.querySelector('#btn-history'));
 initShell(stage);
 renderPaletteSelect();

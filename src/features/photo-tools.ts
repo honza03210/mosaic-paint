@@ -3,6 +3,7 @@
 import { MZ } from '../core/api.ts';
 import * as Colors from '../lib/colors.ts';
 import * as AutoMosaic from '../lib/automosaic.ts';
+import { t } from '../shared/i18n.ts';
 
 export const PhotoTools = (() => {
   /** The photo's pixels in drawing coordinates: at(p) → [r, g, b] or null outside the photo. */
@@ -67,9 +68,9 @@ export const PhotoTools = (() => {
    */
   async function colorTiles({ onlyUnpainted = true, commit = true, quiet = false } = {}) {
     const px = await pixels();
-    if (!px) { MZ.toast('Load a photo first (Photo section).'); return null; }
+    if (!px) { MZ.toast(t('Load a photo first (Photo section).')); return null; }
     const pal = MZ.state.palette;
-    if (!pal.length) { MZ.toast('The palette is empty – add colors first.'); return null; }
+    if (!pal.length) { MZ.toast(t('The palette is empty – add colors first.')); return null; }
     const labs = pal.map(c => Colors.toLab(Colors.toRgb(c)));
     const ctx = { ix: MZ.regionIndex() };
     let painted = 0, skipped = 0, outside = 0;
@@ -84,9 +85,9 @@ export const PhotoTools = (() => {
     }
     if (commit && painted) MZ.commit(true);
     if (!quiet) {
-      MZ.toast(`Colored ${painted} area${painted === 1 ? '' : 's'} with the closest palette colors`
-        + (skipped ? ` · ${skipped} already painted (left as they were)` : '')
-        + (outside ? ` · ${outside} outside the photo` : '') + '.');
+      MZ.toast(t('Colored {n} {n|area|areas} with the closest palette colors', { n: painted })
+        + (skipped ? ' · ' + t('{n} already painted (left as they were)', { n: skipped }) : '')
+        + (outside ? ' · ' + t('{n} outside the photo', { n: outside }) : '') + '.');
     }
     return { painted, skipped, outside };
   }

@@ -11,6 +11,7 @@ import { pasteColors, renderPalette } from './palette.ts';
 import { tools, setTool } from './tools.ts';
 import { save, openFile, openImageFile, confirmDiscard } from './files.ts';
 import { setSides, setBrushSize } from './panel.ts';
+import { t } from '../shared/i18n.ts';
 
 // ---- pointer & pinch ------------------------------------------------------------------------------------
 const pointers = new Map<number, Pt>();
@@ -183,7 +184,7 @@ export function bindInput(): void {
     if (/data-mosaic-snippet/.test(text)) { e.preventDefault(); setTool('select'); pasteImage(new Blob([text], { type: 'image/svg+xml' })); return; }
     if (text && pasteColors(text)) { e.preventDefault(); return; }
     if (pasteInternal()) { e.preventDefault(); setTool('select'); return; }
-    toast('The clipboard has no image or color codes.');
+    toast(t('The clipboard has no image or color codes.'));
   });
   on('paste-start', () => { if (state.tool !== 'select') setTool('select'); });
 

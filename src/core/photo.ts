@@ -6,6 +6,7 @@ export { readAsDataURL, loadImg };
 import { applyLayers } from './view.ts';
 import { savePrefs } from './palette.ts';
 import { docChanged } from './history.ts';
+import { t } from '../shared/i18n.ts';
 
 export const refImage = (): SVGImageElement | null => refG.querySelector('image');
 export function inRef(p: Pt): boolean {
@@ -16,7 +17,7 @@ export function inRef(p: Pt): boolean {
 }
 export async function loadPhoto(file: Blob): Promise<void> {
   let img: HTMLImageElement;
-  try { img = await loadImg(await readAsDataURL(file)); } catch { toast('Could not read that image.'); return; }
+  try { img = await loadImg(await readAsDataURL(file)); } catch { toast(t('Could not read that image.')); return; }
   // keep the saved file reasonably small
   const k = Math.min(1, 2400 / Math.max(img.naturalWidth, img.naturalHeight));
   const c = document.createElement('canvas');
@@ -30,13 +31,13 @@ export async function loadPhoto(file: Blob): Promise<void> {
   applyLayers();
   savePrefs();
   docChanged();
-  toast('Photo loaded and locked. Unlock it to move it with the Select tool.');
+  toast(t('Photo loaded and locked. Unlock it to move it with the Select tool.'));
 }
 /** A pasted image becomes the photo to trace (after asking, if there already is one). */
 export async function pastePhoto(file: Blob): Promise<void> {
-  if (refImage() && !confirm('Replace the photo to trace with the pasted image?')) return;
+  if (refImage() && !confirm(t('Replace the photo to trace with the pasted image?'))) return;
   await loadPhoto(file);
-  if (refImage()) toast('The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles.');
+  if (refImage()) toast(t('The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles.'));
 }
 export function setPhoto(href: string | null, nw?: number, nh?: number): void {
   refG.innerHTML = '';
@@ -69,7 +70,7 @@ export function setPhotoSize(pct: number): void {
 export function renderPhotoUI(): void {
   const im = refImage();
   $('#ref-controls').hidden = !im;
-  $('#btn-ref-load').textContent = im ? 'Replace photo…' : 'Load photo…';
+  $('#btn-ref-load').textContent = im ? t('Replace photo…') : t('Load photo…');
   if (im) $('#ref-size').value = Math.round(+im.getAttribute('width') / (+im.dataset.nw * fitScale()) * 100);
   $('#ref-opacity').value = Math.round(state.refOpacity * 100);
 }

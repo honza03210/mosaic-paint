@@ -6,6 +6,7 @@ import { $, toast } from '../shared/ui.ts';
 import { state, rt, savePrefs } from './state.ts';
 import { doc, getImage } from './canvas.ts';
 import { colorRows, mmPerPixel, type ColorRow } from './report.ts';
+import { t, num } from '../shared/i18n.ts';
 
 const MAX_PIECES = 20000;
 const esc = (s: unknown) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -16,7 +17,7 @@ const title = () => rt.fileName.replace(/\.[a-z0-9]+$/i, '');
 function printArt(style: string): { art: string; rows: ColorRow[] } | null {
   const W = doc.width, H = doc.height, p = R.pieces(getImage()), rows = colorRows(p), k = mmPerPixel();
   if (style !== 'colors' && p.colors.length > MAX_PIECES) {
-    toast(`This picture has ${p.colors.length.toLocaleString('en')} pieces – too many to number. Make a mosaic or reduce it to the palette first.`);
+    toast(t('This picture has {n} pieces – too many to number. Make a mosaic or reduce it to the palette first.', { n: p.colors.length }));
     return null;
   }
   const parts: string[] = [];
@@ -37,23 +38,21 @@ function printArt(style: string): { art: string; rows: ColorRow[] } | null {
   return { art: parts.join(''), rows };
 }
 function legendHTML(rows: ColorRow[]): string {
-  const area = (px: number) => `${(px * mmPerPixel() ** 2 / 100).toFixed(1)} cm²`;
-  return rows.length ? `<h2>${esc(title())} – colors</h2><table>`
-    + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${r.pieces} piece${r.pieces === 1 ? '' : 's'}</td><td>${area(r.pixels)}</td></tr>`).join('')
+  const area = (px: number) => `${num(px * mmPerPixel() ** 2 / 100, 1)} cm²`;
+  return rows.length ? `<h2>${esc(title())} – ${t('colors')}</h2><table>`
+    + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${t('{n} {n|piece|pieces}', { n: r.pieces })}</td><td>${area(r.pixels)}</td></tr>`).join('')
     + '</table>' : '';
 }
 function openPrintPage(html: string): void {
   const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
   const w = window.open(url, '_blank');
-  if (!w) { toast('The browser blocked the print window – allow pop-ups for this page.'); return; }
+  if (!w) { toast(t('The browser blocked the print window – allow pop-ups for this page.')); return; }
   setTimeout(() => URL.revokeObjectURL(url), 60000);
 }
 const mode = () => (document.querySelector('input[name=print-size]:checked') as HTMLInputElement).value;
 function updateInfo(): void {
   const L = Printing.layout(state.realWidth, state.realWidth * doc.height / doc.width, $('#print-paper').value, mode());
-  $('#print-info').textContent = mode() === 'fit'
-    ? `One ${L.paper.name} sheet (${L.orientation}), at ${Math.round(L.scale * 100)} % of the real size.`
-    : `${L.sheets.length} ${L.paper.name} sheet${L.sheets.length > 1 ? 's' : ''} (${L.orientation}${L.sheets.length > 1 ? `, ${L.rows} × ${L.cols}, overlapping ${Printing.OVERLAP} mm` : ''}) at real size.`;
+  $('#print-info').textContent = Printing.layoutInfo(L, mode());
 }
 /** Builds the print page (also used by the tests). */
 export function printPage(style: string): string | null {

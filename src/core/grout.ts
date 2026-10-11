@@ -3,6 +3,7 @@ import { $, state, shapesG, isFill, toast } from './env.ts';
 import { allShapes, setPaint } from './doc.ts';
 import { savePrefs } from './palette.ts';
 import { commit } from './history.ts';
+import { t } from '../shared/i18n.ts';
 
 export function applyGrout(): void {
   const g = state.grout;
@@ -28,5 +29,5 @@ export function bakeGrout(): void {
   applyGrout();
   savePrefs();
   commit(true);
-  toast(`Applied the grout color and width to ${n} lines.`);
+  toast(t('Applied the grout color and width to {n} {n|line|lines}.', { n }));
 }

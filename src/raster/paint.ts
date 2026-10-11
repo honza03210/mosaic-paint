@@ -9,6 +9,7 @@ import { state } from './state.ts';
 import { doc, dctx, makeCanvas, getImage, requestRender } from './canvas.ts';
 import { commit } from './history.ts';
 import { setFill } from './palette.ts';
+import { t } from '../shared/i18n.ts';
 
 export interface Tool {
   down(e: PointerEvent, p: Pt): void;
@@ -208,7 +209,7 @@ const ngonTool: Tool = {
     state.preview = null;
     requestRender();
     if (!a || a.type !== 'ngon' || Math.hypot(a.b.x - a.a.x, a.b.y - a.a.y) < 1) return;
-    if (!state.ngonFill && !state.ngonOutline) { toast('Turn on “Fill” or “Outline” for polygons.'); return; }
+    if (!state.ngonFill && !state.ngonOutline) { toast(t('Turn on “Fill” or “Outline” for polygons.')); return; }
     drawPolygon(ngonPoints(a));
     commit();
   },
@@ -230,7 +231,7 @@ export function pickAt(p: Pt): void {
   if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
   const c = R.colorAt(getImage(x, y, 1, 1), 0, 0);
   setFill(c, false);
-  toast(c ? `Picked ${c}${state.palette.includes(c) ? '' : ' (not in the palette – add it with “From image”)'}` : 'Picked “transparent”.');
+  toast(!c ? t('Picked “transparent”.') : state.palette.includes(c) ? t('Picked {c}.', { c }) : t('Picked {c} (not in the palette – add it with “From image”).', { c }));
 }
 const bucketTool: Tool = {
   down(e, p) { if (e.altKey) pickAt(p); else bucketAt(p); },

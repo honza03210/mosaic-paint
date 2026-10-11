@@ -5,6 +5,7 @@ import { MZ } from '../core/api.ts';
 import * as Printing from '../lib/print.ts';
 import { PrintTools } from './print.ts';
 import { panels, panelAt, countByPanel } from '../lib/layplan.ts';
+import { t } from '../shared/i18n.ts';
 
 export const LayPlan = (() => {
   // ---- dialog & print page (in the app) ---------------------------------------------------
@@ -48,8 +49,7 @@ export const LayPlan = (() => {
     $('#lp-grid').checked = opts.grid;
     $('#lp-paper').value = opts.paper;
     const L = Printing.layout(s.w * k(), s.h * k(), opts.paper, 'real');
-    $('#lp-info').textContent = `${P.panels.length} panel${P.panels.length === 1 ? '' : 's'} (${P.rows} × ${P.cols})`
-      + ` · each printed at real size on ${L.sheets.length} ${L.paper.name} sheet${L.sheets.length === 1 ? '' : 's'}.`;
+    $('#lp-info').textContent = t('{n} {n|panel|panels} ({rows} × {cols}) · each printed at real size on {s} {paper} {s|sheet|sheets}.', { n: P.panels.length, rows: P.rows, cols: P.cols, s: L.sheets.length, paper: L.paper.name });
     drawGrid(opts.grid);
   }
 
@@ -74,22 +74,22 @@ export const LayPlan = (() => {
     const orientation = sheetsFor('landscape') < sheetsFor('portrait') ? 'landscape' : 'portrait';
     const A = Printing.area(opts.paper, orientation);
     const sections = [Printing.overviewSection(B, K, A, P.panels.map(q => ({ ...q, label: String(q.index) })),
-      `${title} – laying plan: ${P.panels.length} panels (${P.rows} rows × ${P.cols} columns) of ${MZ.fmt(panelSize().w)} × ${MZ.fmt(panelSize().h)} ${u}`)];
+      `${title} – ` + t('laying plan: {n} {n|panel|panels} ({rows} rows × {cols} columns) of {w} × {h} {unit}', { n: P.panels.length, rows: P.rows, cols: P.cols, w: MZ.fmt(panelSize().w), h: MZ.fmt(panelSize().h), unit: u }))];
     for (const q of P.panels) {
       const L = Printing.layout(q.w * K, q.h * K, opts.paper, 'real', orientation);
       sections.push(...Printing.sheetSections({ x: q.x, y: q.y, w: q.w, h: q.h }, K, L, {
-        title: `Panel ${q.index} – row ${q.row + 1}, column ${q.col + 1}`, prefix: `Panel ${q.index} · `,
+        title: t('Panel {n} – row {row}, column {col}', { n: q.index, row: q.row + 1, col: q.col + 1 }), prefix: t('Panel {n}', { n: q.index }) + ' · ',
       }));
     }
     // tiles of each color per panel: what to sort out before laying each one
     const counts = countByPanel(P, tiles());
     const chip = (c) => `<span style="background:${c}"></span>`;
-    const table = `<table class="counts"><tr><td class="n">Panel</td>${rows.map(r => `<td class="n">${chip(r.c)} ${r.n}</td>`).join('')}</tr>`
+    const table = `<table class="counts"><tr><td class="n">${t('Panel')}</td>${rows.map(r => `<td class="n">${chip(r.c)} ${r.n}</td>`).join('')}</tr>`
       + P.panels.map(q => `<tr><td class="n">${q.index}</td>${rows.map(r => `<td>${counts.get(q.index).get(r.c) || ''}</td>`).join('')}</tr>`).join('')
       + '</table>';
-    sections.push(`<section class="sheet"><div class="label">${esc(title)} – tiles per panel and color</div>${table}</section>`);
+    sections.push(`<section class="sheet"><div class="label">${esc(title)} – ${t('tiles per panel and color')}</div>${table}</section>`);
     if (rows.length) sections.push(`<section class="sheet legend">${PrintTools.legend(rows)}</section>`);
-    PrintTools.open(Printing.page({ art, sections, paper: opts.paper, orientation, title: `${title} – laying plan` }));
+    PrintTools.open(Printing.page({ art, sections, paper: opts.paper, orientation, title: `${title} – ${t('laying plan')}` }));
     void nums;
   }
 

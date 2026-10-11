@@ -4,6 +4,7 @@ import { $, toast } from '../shared/ui.ts';
 import { canvasToPng } from '../shared/clipboard.ts';
 import { state, rt, emit } from './state.ts';
 import { doc, dctx, setSize, requestRender } from './canvas.ts';
+import { t } from '../shared/i18n.ts';
 
 let history: ImageData[] = [], index = -1;
 /** Snapshots take width × height × 4 bytes: big images get fewer undo steps. */
@@ -70,9 +71,9 @@ async function autosaveNow(): Promise<void> {
     const png = await (await canvasToPng(doc)).arrayBuffer();
     await Store.set('raster', { png, fileName: rt.fileName, time: Date.now() });
   } catch {
-    toast('Autosave failed – remember to save your image.');
+    toast(t('Autosave failed – remember to save your image.'));
   }
-  if (Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion('Autosave');
+  if (Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion(t('Autosave'));
 }
 
 // ---- versions (History) -------------------------------------------------------------------------------

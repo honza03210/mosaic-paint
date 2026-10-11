@@ -5,6 +5,7 @@ import { Store } from '../lib/store.ts';
 import { Snippets } from './snippets.ts';
 import { canCopyImages, copyImage, svgToPng, svgSize } from '../shared/clipboard.ts';
 import { imageSize } from './image-clipboard.ts';
+import { t } from '../shared/i18n.ts';
 
 const $ = (s) => document.querySelector<any>(s);
 const { state } = MZ;
@@ -44,7 +45,7 @@ export function copySelection(cut, viaKey = true) {
     MZ.setSelection([]);
     MZ.commitGeometry();
   }
-  MZ.toast(`${cut ? 'Cut' : 'Copied'} ${n} shape${n === 1 ? '' : 's'}. Paste with Ctrl+V – also in another page or drawing.`);
+  MZ.toast(cut ? t('Cut {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.', { n }) : t('Copied {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.', { n }));
 }
 document.addEventListener('keydown', (e) => {
   const k = e.key.toLowerCase();
@@ -82,7 +83,7 @@ function pasteSnippet(text) {
   if (state.tool !== 'select') MZ.setTool('select');
   MZ.commitGeometry();
   MZ.setSelection(els.filter(el => el.isConnected));
-  MZ.toast(`Pasted ${els.length} shape${els.length === 1 ? '' : 's'}.`);
+  MZ.toast(t('Pasted {n} {n|shape|shapes}.', { n: els.length }));
   return true;
 }
 MZ.on('pasteText', (text) => {
@@ -100,7 +101,7 @@ async function load() {
   render();
 }
 async function persist() {
-  try { await Store.set('motifs', motifs); } catch { try { localStorage.setItem('mz-motifs', JSON.stringify(motifs)); } catch { MZ.toast('Could not store the motifs.'); } }
+  try { await Store.set('motifs', motifs); } catch { try { localStorage.setItem('mz-motifs', JSON.stringify(motifs)); } catch { MZ.toast(t('Could not store the motifs.')); } }
 }
 let thumbs = [];
 function render() {
@@ -108,19 +109,19 @@ function render() {
   thumbs = [];
   const list = $('#motif-list');
   list.innerHTML = '';
-  if (!motifs.length) { list.innerHTML = '<p class="note">No motifs yet. Select some shapes and save them.</p>'; return; }
+  if (!motifs.length) { list.innerHTML = `<p class="note">${t('No motifs yet. Select some shapes and save them.')}</p>`; return; }
   for (const m of motifs) {
     const item = document.createElement('div');
     item.className = 'motif' + (placing && placing.id === m.id ? ' active' : '');
-    item.title = `${m.name} – click, then click on the drawing to place it`;
+    item.title = t('{name} – click, then click on the drawing to place it', { name: m.name });
     const url = URL.createObjectURL(new Blob([m.svg], { type: 'image/svg+xml' }));
     thumbs.push(url);
-    item.innerHTML = `<img src="${url}" alt=""><span></span><button class="del" title="Delete this motif">×</button>`;
+    item.innerHTML = `<img src="${url}" alt=""><span></span><button class="del" title="${t('Delete this motif')}">×</button>`;
     item.querySelector<any>('span').textContent = m.name;
     item.onclick = () => startPlacing(m);
     item.querySelector<any>('.del').onclick = async (e) => {
       e.stopPropagation();
-      if (!confirm(`Delete the motif “${m.name}”?`)) return;
+      if (!confirm(t('Delete the motif “{name}”?', { name: m.name }))) return;
       motifs = motifs.filter(x => x !== m);
       await persist();
       render();
@@ -129,20 +130,20 @@ function render() {
   }
 }
 async function saveSelection() {
-  if (!state.selection.size) { MZ.toast('Select the shapes of the motif first (Select tool).'); return; }
+  if (!state.selection.size) { MZ.toast(t('Select the shapes of the motif first (Select tool).')); return; }
   const svg = Snippets.fromElements(state.selection);
-  const name = prompt('Name of the motif:', `Motif ${motifs.length + 1}`);
+  const name = prompt(t('Name of the motif:'), t('Motif {n}', { n: motifs.length + 1 }));
   if (!name || !name.trim()) return;
   motifs.push({ id: Date.now().toString(36), name: name.trim(), svg, created: Date.now() });
   await persist();
   render();
-  MZ.toast(`Saved the motif “${name.trim()}”.`);
+  MZ.toast(t('Saved the motif “{name}”.', { name: name.trim() }));
 }
 
 // placing: a preview follows the mouse; click to place, R to turn, Esc to stop
 function startPlacing(m) {
   const snip = Snippets.parse(m.svg);
-  if (!snip) { MZ.toast('This motif could not be read.'); return; }
+  if (!snip) { MZ.toast(t('This motif could not be read.')); return; }
   placing = { id: m.id, name: m.name, snip, angle: 0 };
   MZ.setTool('place-motif');
   render();
@@ -164,12 +165,12 @@ MZ.registerTool('place-motif', {
     if (!placing) return;
     const els = Snippets.place(placing.snip, MZ.snapPoint(raw, {}), placing.angle);
     MZ.commitGeometry();
-    MZ.toast(`Placed “${placing.name}”. Click again for another one, R turns it, Esc stops.`);
+    MZ.toast(t('Placed “{name}”. Click again for another one, R turns it, Esc stops.', { name: placing.name }));
     return els;
   },
   move(e, raw) { preview(raw); },
   up() {},
-}, 'Click to place the motif · R: turn it by 15° (Shift+R: 90°) · Esc: stop');
+}, t('Click to place the motif · R: turn it by 15° (Shift+R: 90°) · Esc: stop'));
 document.addEventListener('keydown', (e) => {
   if (state.tool !== 'place-motif' || MZ.typingIn(e.target)) return;
   if (e.key === 'Escape') { placing = null; MZ.setTool('select'); render(); }
@@ -188,7 +189,7 @@ document.addEventListener('pointerdown', (e) => {
 // import / export the library as a file
 $('#btn-motif-save').onclick = saveSelection;
 $('#btn-motif-export').onclick = () => {
-  if (!motifs.length) { MZ.toast('There are no motifs to export yet.'); return; }
+  if (!motifs.length) { MZ.toast(t('There are no motifs to export yet.')); return; }
   MZ.download(new Blob([JSON.stringify({ mosaicMotifs: 1, motifs }, null, 1)], { type: 'application/json' }), 'motifs.json');
 };
 $('#btn-motif-import').onclick = () => $('#motif-file').click();
@@ -207,8 +208,8 @@ $('#motif-file').onchange = async (e) => {
     }
     await persist();
     render();
-    MZ.toast(n ? `Imported ${n} motif${n === 1 ? '' : 's'}.` : 'No motifs found in that file.');
-  } catch (err) { console.warn(err); MZ.toast('That file is not a motif library.'); }
+    MZ.toast(n ? t('Imported {n} {n|motif|motifs}.', { n }) : t('No motifs found in that file.'));
+  } catch (err) { console.warn(err); MZ.toast(t('That file is not a motif library.')); }
 };
 
 load();

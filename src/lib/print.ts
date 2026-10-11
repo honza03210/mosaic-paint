@@ -1,5 +1,6 @@
 /* Printing: splitting a drawing onto paper sheets and building print pages.
-   Pure functions (no DOM); the dialogs live in features/print.ts and features/layplan.ts. */
+   Pure functions (no DOM); the dialogs live in features/print.ts, features/layplan.ts and raster/print.ts. */
+import { t, num } from '../shared/i18n.ts';
 export const PAPERS: Record<string, { w: number; h: number; name: string }> = {
   a4: { w: 210, h: 297, name: 'A4' },
   letter: { w: 215.9, h: 279.4, name: 'Letter' },
@@ -60,11 +61,19 @@ export function sheetSections(box, k, L, { title = '', prefix = '' } = {}) {
     if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
     if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
     const marks = shade.map(r => `<rect x="${n(r[0])}" y="${n(r[1])}" width="${n(r[2])}" height="${n(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n(2 / k)} ${n(2 / k)}" stroke-width="${n(0.3 / k)}"/>`).join('');
-    const label = multi ? `${prefix}Sheet ${s.label} – row ${s.label.replace(/\d+$/, '')}, column ${s.col + 1} of ${L.cols} · blue strips are covered by the next sheet` : (prefix + title);
+    const label = multi ? prefix + t('Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet', { sheet: s.label, row: s.label.replace(/\d+$/, ''), col: s.col + 1, cols: L.cols }) : (prefix + title);
     return `<section class="sheet"><div class="label">${esc(label)}</div>`
       + `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(' ')}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm">`
       + `<use href="#art"/>${marks}</svg></section>`;
   });
+}
+
+/** How the drawing goes onto paper, in words (for the print dialogs). */
+export function layoutInfo(L, mode: string): string {
+  const o = t(L.orientation);
+  if (mode === 'fit') return t('One {paper} sheet ({orientation}), at {pct} % of the real size.', { paper: L.paper.name, orientation: o, pct: Math.round(L.scale * 100) });
+  if (L.sheets.length === 1) return t('One {paper} sheet ({orientation}) at real size.', { paper: L.paper.name, orientation: o });
+  return t('{n} {paper} {n|sheet|sheets} ({orientation}, {rows} × {cols}, overlapping {overlap} mm) at real size.', { n: L.sheets.length, paper: L.paper.name, orientation: o, rows: L.rows, cols: L.cols, overlap: OVERLAP });
 }
 
 /** A sheet showing the whole box with labelled rectangles on top (sheets or panels). */
@@ -111,7 +120,7 @@ export function html({ art, box, unit, mmPerUnit = 0, paper = 'a4', mode = 'real
   if (L.sheets.length > 1) {
     // an overview of how the sheets fit together
     sections.push(overviewSection(box, k, L, L.sheets.map(s => ({ x: box.x + s.x / k, y: box.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
-      `${title} – ${L.sheets.length} sheets (${L.rows} × ${L.cols}), real size ${n(box.w * k / 10)} × ${n(box.h * k / 10)} cm`));
+      `${title} – ` + t('{n} sheets ({rows} × {cols}), real size {w} × {h} cm', { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n(box.w * k / 10)), h: num(+n(box.h * k / 10)) })));
   }
   sections.push(...sheetSections(box, k, L, { title }));
   if (legend) sections.push(`<section class="sheet legend">${legend}</section>`);

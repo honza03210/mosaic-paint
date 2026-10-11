@@ -15,6 +15,8 @@ module.exports = defineConfig({
     baseURL: `http://localhost:${PORT}/`,
     viewport: { width: 1400, height: 860 },
     serviceWorkers: 'block',
+    // the apps follow the browser's language: the tests check the English texts
+    locale: 'en-US',
   },
   // Chrome, Firefox and Safari's engine (WebKit) on desktop; an Android phone and an iPhone for the touch tests
   projects: [

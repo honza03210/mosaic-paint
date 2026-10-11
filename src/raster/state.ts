@@ -3,6 +3,7 @@ import type { Pt } from '../lib/geometry.ts';
 import type { Box } from '../lib/raster.ts';
 import { lsGet, lsSet } from '../shared/ui.ts';
 import { DEFAULT_PALETTE, loadSharedPalettes, saveSharedPalettes } from '../shared/palette-ui.ts';
+import { t } from '../shared/i18n.ts';
 
 /** Pixels lifted off the image (moved selection) or pasted, not yet placed. */
 export interface Floating { canvas: HTMLCanvasElement; x: number; y: number }
@@ -11,7 +12,7 @@ export const state = {
   mode: 'simple',
   tool: 'brush',
   fill: '#e76f51' as string | null, stroke: '#222222' as string | null,
-  palettes: { 'My palette': [...DEFAULT_PALETTE] } as Record<string, string[]>, paletteName: 'My palette',
+  palettes: { [t('My palette')]: [...DEFAULT_PALETTE] } as Record<string, string[]>, paletteName: t('My palette'),
   size: 8, opacity: 1, smooth: true,
   sides: 6, ngonFill: true, ngonOutline: false,
   tolerance: 24, contiguous: true,
@@ -63,7 +64,7 @@ export function loadPrefs(): void {
     } else state[k] = o[k];
   }
   loadSharedPalettes(state);
-  if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || 'My palette';
+  if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || t('My palette');
 }
 
 // ---- events between modules -------------------------------------------------------------------------

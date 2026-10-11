@@ -11,6 +11,7 @@ import { applyGrout, bakeGrout } from './grout.ts';
 import { refImage, loadPhoto, setPhoto, fitPhoto, setPhotoSize } from './photo.ts';
 import { newDoc, openFile, loadFile, save, exportPNG, setMode } from './files.ts';
 import { setTool, cancelPending, finishFree, freeBack, applyPattern } from './tools.ts';
+import { t } from '../shared/i18n.ts';
 
 export function setSides(n: number): void {
   state.sides = clamp(Math.round(n) || 6, 3, 64);
@@ -66,7 +67,7 @@ export function bindPanel(): void {
   bindCheck('#opt-newfill2', 'newFill', () => { $('#opt-newfill').checked = state.newFill; });
   $('#opt-newfill').addEventListener('change', () => { $('#opt-newfill2').checked = state.newFill; });
   const pt = $('#pat-type');
-  for (const [v, label] of Patterns.TYPES) { const o = document.createElement('option'); o.value = v; o.textContent = label; pt.append(o); }
+  for (const [v, label] of Patterns.TYPES) { const o = document.createElement('option'); o.value = v; o.textContent = t(label); pt.append(o); }
   pt.value = state.pattern.type;
   const patUI = () => { $('#pat-rows-row').hidden = state.pattern.type !== 'rows'; $('#pat-angle-row').hidden = state.pattern.type === 'rows'; };
   pt.onchange = () => { state.pattern.type = pt.value; savePrefs(); patUI(); };
@@ -99,7 +100,7 @@ export function bindPanel(): void {
   $('#btn-sym-center').onclick = () => {
     state.pickCenter = !state.pickCenter;
     $('#btn-sym-center').classList.toggle('active', state.pickCenter);
-    if (state.pickCenter) toast('Click on the canvas to place the symmetry center.');
+    if (state.pickCenter) toast(t('Click on the canvas to place the symmetry center.'));
   };
   $('#btn-sym-reset').onclick = () => { state.sym.cx = state.sym.cy = null; savePrefs(); drawGuides(); };
   symUI();
@@ -126,11 +127,11 @@ export function bindPanel(): void {
     state.layers.ref.locked = e.target.checked;
     savePrefs();
     applyLayers();
-    if (!e.target.checked) toast('Photo unlocked: drag it with the Select tool (where there are no shapes).');
+    if (!e.target.checked) toast(t('Photo unlocked: drag it with the Select tool (where there are no shapes).'));
   };
   $('#ref-size').onchange = (e: any) => setPhotoSize(clamp(+e.target.value || 100, 5, 1000));
   $('#btn-ref-fit').onclick = () => { fitPhoto(); docChanged(); };
-  $('#btn-ref-remove').onclick = () => { if (confirm('Remove the tracing photo?')) { setPhoto(null); docChanged(); } };
+  $('#btn-ref-remove').onclick = () => { if (confirm(t('Remove the tracing photo?'))) { setPhoto(null); docChanged(); } };
   bindCheck('#ref-save', 'savePhoto', docChanged);
   bindCheck('#opt-unpainted', 'onlyUnpainted');
 
@@ -173,7 +174,7 @@ export function bindPanel(): void {
   // page
   $('#btn-doc-size').onclick = () => {
     const w = parseFloat($('#doc-w').value), h = parseFloat($('#doc-h').value);
-    if (!(w > 0 && h > 0)) { toast('Invalid page size.'); return; }
+    if (!(w > 0 && h > 0)) { toast(t('Invalid page size.')); return; }
     state.doc.w = w;
     state.doc.h = h;
     applyDoc();
@@ -184,7 +185,7 @@ export function bindPanel(): void {
     state.doc.unit = e.target.value;
     applyDoc();
     commit();
-    toast(`1 drawing unit = 1 ${unit()}. Set the page size to the real size of your mosaic.`);
+    toast(t('1 drawing unit = 1 {unit}. Set the page size to the real size of your mosaic.', { unit: unit() }));
   };
   $('#doc-bg').onchange = () => { state.doc.bg = $('#doc-bg').value; applyDoc(); commit(); };
   $('#doc-bg-none').onchange = () => { state.doc.bg = $('#doc-bg-none').checked ? null : $('#doc-bg').value; applyDoc(); commit(); };

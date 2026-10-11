@@ -5,6 +5,712 @@
       __defProp(target2, name, { get: all[name], enumerable: true });
   };
 
+  // src/shared/i18n-cs.ts
+  var CS = {
+    "Picked {c}.": "Vybrána barva {c}.",
+    "Picked {c} (not in the palette – add it with “From drawing”).": "Vybrána barva {c} (není v paletě – přidejte ji tlačítkem „Z kresby“).",
+    "No painted area under the cursor.": "Pod kurzorem není žádná vybarvená plocha.",
+    "My palette": "Moje paleta",
+    "Could not read this file as SVG.": "Tento soubor nelze načíst jako SVG.",
+    "From file": "Ze souboru",
+    "The file’s colors were added as the palette “{name}”.": "Barvy ze souboru byly přidány jako paleta „{name}“.",
+    "Discard unsaved changes to the current drawing?\n(A copy is kept in History.)": "Zahodit neuložené změny v aktuální kresbě?\n(Kopie zůstane v Historii.)",
+    "Before opening {name}": "Před otevřením {name}",
+    "Opened {name}": "Otevřeno: {name}",
+    "Saved {name}": "Uloženo: {name}",
+    "File name:": "Název souboru:",
+    "PNG width in pixels:": "Šířka PNG v pixelech:",
+    "Invalid width.": "Neplatná šířka.",
+    "PNG export failed.": "Export do PNG se nezdařil.",
+    "Before starting a new drawing": "Před založením nové kresby",
+    "Applied the grout color and width to {n} {n|line|lines}.": "Barva a šířka spár byla použita na {n} {n|čáru|čáry|čar}.",
+    "Autosave failed – remember to save your file.": "Automatické ukládání selhalo – nezapomeňte soubor uložit.",
+    "Autosave": "Automatické uložení",
+    "Before restoring an older version": "Před obnovením starší verze",
+    "Restored the version from {time}": "Obnovena verze z {time}",
+    "Symmetry center set.": "Střed symetrie je nastaven.",
+    "Snapping on": "Přichytávání zapnuto",
+    "Snapping off": "Přichytávání vypnuto",
+    "The clipboard has no color codes.": "Ve schránce nejsou žádné kódy barev.",
+    "{n} {n|area|areas}": "{n} {n|plocha|plochy|ploch}",
+    "fill": "výplň",
+    "stroke": "obrys",
+    "No color – the bucket erases with it": "Bez barvy – kbelík s ní maže",
+    "Recolored {n} {n|element|elements}.": "Přebarveno: {n} {n|prvek|prvky|prvků}.",
+    "Click on the canvas to place the symmetry center.": "Klikněte na plátno a umístěte střed symetrie.",
+    "Photo unlocked: drag it with the Select tool (where there are no shapes).": "Fotka je odemčená: přetáhněte ji nástrojem Výběr (tam, kde nejsou tvary).",
+    "Remove the tracing photo?": "Odstranit fotku k obkreslení?",
+    "Invalid page size.": "Neplatná velikost stránky.",
+    "1 drawing unit = 1 {unit}. Set the page size to the real size of your mosaic.": "1 jednotka kresby = 1 {unit}. Nastavte velikost stránky na skutečnou velikost mozaiky.",
+    "Could not read that image.": "Obrázek nelze načíst.",
+    "Photo loaded and locked. Unlock it to move it with the Select tool.": "Fotka je načtená a zamčená. Odemkněte ji, chcete-li ji posunout nástrojem Výběr.",
+    "Replace the photo to trace with the pasted image?": "Nahradit fotku k obkreslení vloženým obrázkem?",
+    "The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles.": "Vložený obrázek je teď fotkou k obkreslení – „Vytvořit mozaiku z fotky“ z něj udělá dlaždice.",
+    "Replace photo…": "Nahradit fotku…",
+    "Load photo…": "Načíst fotku…",
+    "Close shape": "Uzavřít tvar",
+    "Done": "Hotovo",
+    "Start the cut inside a closed area.": "Řez začněte uvnitř uzavřené plochy.",
+    "Click inside a closed area (or use “Fill whole page”).": "Klikněte dovnitř uzavřené plochy (nebo použijte „Vyplnit celou stránku“).",
+    "That would be about {n} tiles – make the tile size bigger.": "To by bylo asi {n} {n|dlaždice|dlaždice|dlaždic} – zvětšete velikost dlaždic.",
+    "The tiles are bigger than this area.": "Dlaždice jsou větší než tato plocha.",
+    "This adds {n} lines, which may make editing slow. Continue?": "Přibude {n} {n|čára|čáry|čar}, což může zpomalit úpravy. Pokračovat?",
+    "Added the pattern “{type}” ({n} {n|line|lines}).": "Přidán vzor „{type}“ ({n} {n|čára|čáry|čar}).",
+    "The rows are wider than this area – use a smaller size.": "Řady jsou širší než tato plocha – použijte menší velikost.",
+    "This area is too narrow for a row of that width.": "Tato plocha je na řadu takové šířky příliš úzká.",
+    "Added {rows} {rows|row line|row lines} and {cuts} {cuts|cut|cuts} following the outline.": "Přidáno {rows} {rows|čára řady|čáry řad|čar řad} a {cuts} {cuts|řez|řezy|řezů} podél obrysu.",
+    "Painted areas are locked or hidden (see Layers).": "Vybarvené plochy jsou zamčené nebo skryté (viz Vrstvy).",
+    "No closed area here. The red circles show line ends that don’t touch anything.": "Tady není uzavřená plocha. Červené kroužky ukazují konce čar, které se ničeho nedotýkají.",
+    "No closed area here – make sure the lines meet.": "Tady není uzavřená plocha – zkontrolujte, že se čáry stýkají.",
+    "Click to select (Shift adds) · drag to move – the nearest corner snaps · drag handles to edit; shared corners move together (Alt detaches) · yellow handles resize a polygon": "Kliknutím vyberete (Shift přidá) · tažením posunete – přichytí se nejbližší roh · tažením úchytů upravíte; společné rohy se posouvají spolu (Alt je oddělí) · žluté úchyty mění velikost mnohoúhelníku",
+    "Click–click or drag · ends snap to points and onto other lines · Shift: 15° steps · Alt: no snap · Esc: stop": "Klik–klik nebo tažení · konce se přichytí k bodům a na jiné čáry · Shift: kroky po 15° · Alt: bez přichytávání · Esc: konec",
+    "Click corner by corner · click the first corner, double-click or press Enter to close · Backspace removes the last corner · Esc cancels": "Klikejte roh po rohu · tvar uzavřete kliknutím na první roh, dvojklikem nebo klávesou Enter · Backspace odebere poslední roh · Esc zruší",
+    "Drag from the center (or along an edge in “From edge” mode) · click = last size · Shift: 15° rotation · Ctrl: flip side · keys 3–9: sides": "Táhněte ze středu (nebo podél hrany v režimu „Od hrany“) · kliknutí = poslední velikost · Shift: otočení po 15° · Ctrl: převrátit stranu · klávesy 3–9: počet stran",
+    "Drag across a tile to cut it straight through, edge to edge · Shift: 15° steps": "Táhněte přes dlaždici a rozřízněte ji rovně od hrany k hraně · Shift: kroky po 15°",
+    "Click inside a closed area to fill it with the chosen pattern": "Klikněte dovnitř uzavřené plochy a vyplňte ji zvoleným vzorem",
+    "Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color": "Kliknutím nebo tažením přes dlaždice je vybarvíte · dalším kliknutím přebarvíte · vzorník ∅ maže · Alt+klik: vybrat barvu",
+    "Drag to pan · mouse wheel zooms": "Tažením posunete pohled · kolečko myši přibližuje",
+    "The lines layer is locked or hidden (see Layers).": "Vrstva čar je zamčená nebo skrytá (viz Vrstvy).",
+    "About {n} tiles – too many, use a bigger tile size.": "Asi {n} {n|dlaždice|dlaždice|dlaždic} – příliš mnoho, použijte větší dlaždice.",
+    "About {n} tiles.": "Asi {n} {n|dlaždice|dlaždice|dlaždic}.",
+    "Load a photo first.": "Nejdřív načtěte fotku.",
+    "That gives {n} tiles – use a bigger tile size.": "To dává {n} {n|dlaždici|dlaždice|dlaždic} – použijte větší dlaždice.",
+    "Before making a mosaic from the photo": "Před vytvořením mozaiky z fotky",
+    "From photo": "Z fotky",
+    "New palette “{name}” with {n} {n|color|colors}.": "Nová paleta „{name}“ {n|s|se|s} {n} {n|barvou|barvami|barvami}.",
+    "Made a mosaic of {n} tiles from the photo.": "Z fotky vznikla mozaika z {n} {n|dlaždice|dlaždic|dlaždic}.",
+    "Working…": "Pracuji…",
+    "Make mosaic": "Vytvořit mozaiku",
+    "Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another drawing. Restoring keeps your current drawing as a version too.": "Verze se ukládají v tomto prohlížeči: během práce každých pár minut a také předtím, než otevřete, založíte nebo obnovíte jinou kresbu. Při obnovení se i aktuální kresba uloží jako verze.",
+    "No versions yet. A version is kept every few minutes while you work, and before you open or start another drawing.": "Zatím žádné verze. Verze se ukládá během práce každých pár minut a předtím, než otevřete nebo založíte jinou kresbu.",
+    "{n} painted {n|area|areas}": "{n} {n|vybarvená plocha|vybarvené plochy|vybarvených ploch}",
+    "Saved by hand": "Uloženo ručně",
+    "This browser can’t copy images – use PNG to save one instead.": "Tento prohlížeč neumí kopírovat obrázky – uložte si místo toho PNG.",
+    "Copied the drawing as an image – paste it into the raster app or any other program.": "Kresba je zkopírovaná jako obrázek – vložte ji do rastrové aplikace nebo do jakéhokoli programu.",
+    "Could not copy the image (the browser refused).": "Obrázek nelze zkopírovat (prohlížeč to odmítl).",
+    "{n} {n|panel|panels} ({rows} × {cols}) · each printed at real size on {s} {paper} {s|sheet|sheets}.": "{n} {n|panel|panely|panelů} ({rows} × {cols}) · každý vytištěný ve skutečné velikosti na {s} {s|list|listy|listů} {paper}.",
+    "laying plan: {n} {n|panel|panels} ({rows} rows × {cols} columns) of {w} × {h} {unit}": "plán pokládky: {n} {n|panel|panely|panelů} ({rows} řad × {cols} sloupců) o velikosti {w} × {h} {unit}",
+    "Panel {n} – row {row}, column {col}": "Panel {n} – řada {row}, sloupec {col}",
+    "Panel {n}": "Panel {n}",
+    "Panel": "Panel",
+    "tiles per panel and color": "dlaždice podle panelů a barev",
+    "laying plan": "plán pokládky",
+    "{c} – click to remove from the mix": "{c} – kliknutím odeberete ze směsi",
+    "Shift+click two or more swatches to put them in the mix.": "Shift+klikněte na dva nebo více vzorníků a přidejte je do směsi.",
+    "Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.": "Každá dlaždice dostane náhodně jednu z těchto {n} barev. Shift+klikem na vzorníky směs změníte.",
+    "Put at least two colors in the mix first (Shift+click swatches).": "Nejdřív dejte do směsi aspoň dvě barvy (Shift+klik na vzorníky).",
+    "Mixed the colors of {n} {n|area|areas}.": "Promíchány barvy {n} {n|plochy|ploch|ploch}.",
+    "Select painted areas first.": "Nejdřív vyberte vybarvené plochy.",
+    "Cut {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.": "Vyjmuto: {n} {n|tvar|tvary|tvarů}. Vložte pomocí Ctrl+V – i na jinou stránku nebo do jiné kresby.",
+    "Copied {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.": "Zkopírováno: {n} {n|tvar|tvary|tvarů}. Vložte pomocí Ctrl+V – i na jinou stránku nebo do jiné kresby.",
+    "Pasted {n} {n|shape|shapes}.": "Vloženo: {n} {n|tvar|tvary|tvarů}.",
+    "Could not store the motifs.": "Motivy nelze uložit.",
+    "No motifs yet. Select some shapes and save them.": "Zatím žádné motivy. Vyberte nějaké tvary a uložte je.",
+    "{name} – click, then click on the drawing to place it": "{name} – klikněte a pak kliknutím do kresby motiv umístěte",
+    "Delete this motif": "Smazat tento motiv",
+    "Delete the motif “{name}”?": "Smazat motiv „{name}“?",
+    "Select the shapes of the motif first (Select tool).": "Nejdřív vyberte tvary motivu (nástroj Výběr).",
+    "Name of the motif:": "Název motivu:",
+    "Motif {n}": "Motiv {n}",
+    "Saved the motif “{name}”.": "Motiv „{name}“ je uložen.",
+    "This motif could not be read.": "Tento motiv nelze načíst.",
+    "Placed “{name}”. Click again for another one, R turns it, Esc stops.": "Umístěn motiv „{name}“. Dalším kliknutím přidáte další, R otáčí, Esc končí.",
+    "Click to place the motif · R: turn it by 15° (Shift+R: 90°) · Esc: stop": "Kliknutím umístíte motiv · R: otočit o 15° (Shift+R: o 90°) · Esc: konec",
+    "There are no motifs to export yet.": "Zatím nejsou žádné motivy k exportu.",
+    "Imported {n} {n|motif|motifs}.": "Importováno: {n} {n|motiv|motivy|motivů}.",
+    "No motifs found in that file.": "V tom souboru nejsou žádné motivy.",
+    "That file is not a motif library.": "Ten soubor není knihovna motivů.",
+    "Page {n}": "Stránka {n}",
+    "{name} copy": "{name} – kopie",
+    "Page name:": "Název stránky:",
+    "A project needs at least one page.": "Projekt musí mít aspoň jednu stránku.",
+    "Delete the page “{name}”? (A copy of the project is kept in History.)": "Smazat stránku „{name}“? (Kopie projektu zůstane v Historii.)",
+    "Before deleting the page {name}": "Před smazáním stránky {name}",
+    "Rename…": "Přejmenovat…",
+    "Duplicate": "Duplikovat",
+    "Move left": "Posunout doleva",
+    "Move right": "Posunout doprava",
+    "Delete…": "Smazat…",
+    "Double-click to rename": "Dvojklikem přejmenujete",
+    "Switch to this page": "Přepnout na tuto stránku",
+    "Page options": "Možnosti stránky",
+    "Load a photo first (Photo section).": "Nejdřív načtěte fotku (sekce Fotka k obkreslení).",
+    "The palette is empty – add colors first.": "Paleta je prázdná – nejdřív přidejte barvy.",
+    "Colored {n} {n|area|areas} with the closest palette colors": "Vybarveno {n} {n|plocha|plochy|ploch} nejbližšími barvami palety",
+    "{n} already painted (left as they were)": "{n} už {n|byla vybarvená|byly vybarvené|bylo vybarvených} (beze změny)",
+    "{n} outside the photo": "{n} mimo fotku",
+    "colors": "barvy",
+    "The browser blocked the print window – allow pop-ups for this page.": "Prohlížeč zablokoval okno tisku – povolte pro tuto stránku vyskakovací okna.",
+    "Nothing to import from the raster app.": "Z rastrové aplikace není co importovat.",
+    "Opened {n} tiles from the raster app – your previous drawing is in History.": "Otevřeno {n} {n|dlaždice|dlaždice|dlaždic} z rastrové aplikace – předchozí kresba je v Historii.",
+    "<b>{n}</b> painted {n|area|areas} in <b>{c}</b> {c|color|colors}": "<b>{n}</b> {n|vybarvená plocha|vybarvené plochy|vybarvených ploch} {c|v|ve|v} <b>{c}</b> {c|barvě|barvách|barvách}",
+    "<b>{n}</b> not painted yet": "<b>{n}</b> ještě nevybarveno",
+    "everything is painted": "vše je vybarvené",
+    "page {w} × {h} {unit}": "stránka {w} × {h} {unit}",
+    "Color": "Barva",
+    "Areas": "Plochy",
+    "Total area": "Celková plocha",
+    "Share": "Sdílet",
+    "Pieces of the size set above, plus waste": "Kusy o výše nastavené velikosti, včetně prořezu",
+    "Pieces to buy": "Kusů ke koupi",
+    "Replace with": "Nahradit za",
+    "Erase": "Smazat",
+    "Nothing is painted yet. Use the paint bucket, or “Color tiles from photo”.": "Zatím není nic vybarveno. Použijte kbelík nebo „Vybarvit dlaždice z fotky“.",
+    "Recolored {n} {n|area|areas}.": "Přebarveno: {n} {n|plocha|plochy|ploch}.",
+    "Erased {n} {n|area|areas}.": "Smazáno: {n} {n|plocha|plochy|ploch}.",
+    "Colors that may look alike": "Barvy, které mohou vypadat podobně",
+    "{a} and {b} {how}": "{a} a {b} {how}",
+    "The link would be {kb} KB – too long. Share the file instead, or leave out the photo.": "Odkaz by měl {kb} KB – to je příliš. Sdílejte raději soubor, nebo vynechte fotku.",
+    "The link is {kb} KB – long links can get cut off in some messengers; sharing the file is safer. Anyone with it can view the mosaic and make their own copy.": "Odkaz má {kb} KB – dlouhé odkazy některé chatovací aplikace zkracují; bezpečnější je sdílet soubor. Kdokoli s odkazem si mozaiku prohlédne a může si udělat vlastní kopii.",
+    "The link is {kb} KB. Anyone with it can view the mosaic and make their own copy.": "Odkaz má {kb} KB. Kdokoli s odkazem si mozaiku prohlédne a může si udělat vlastní kopii.",
+    "Sharing failed.": "Sdílení se nezdařilo.",
+    "Link copied.": "Odkaz je zkopírován.",
+    "This share link is damaged or incomplete.": "Tento odkaz je poškozený nebo neúplný.",
+    "Before opening a shared mosaic": "Před otevřením sdílené mozaiky",
+    "This is now your own copy – it is saved in this browser like any drawing.": "Teď je to vaše vlastní kopie – ukládá se v tomto prohlížeči jako každá kresba.",
+    "Normal colors": "Běžné barvy",
+    "Black & white": "Černobíle",
+    "Red-blind (protanopia)": "Necitlivost na červenou (protanopie)",
+    "Green-blind (deuteranopia)": "Necitlivost na zelenou (deuteranopie)",
+    "Blue-blind (tritanopia)": "Necitlivost na modrou (tritanopie)",
+    "look almost the same": "vypadají skoro stejně",
+    "in black & white": "černobíle",
+    "for red-blind viewers": "pro lidi necitlivé na červenou",
+    "for green-blind viewers": "pro lidi necitlivé na zelenou",
+    "for blue-blind viewers": "pro lidi necitlivé na modrou",
+    "look alike {who}": "vypadají podobně {who}",
+    "{n} {n|tile blends|tiles blend} into a neighbour of another color.": "{n} {n|dlaždice splývá|dlaždice splývají|dlaždic splývá} se sousední dlaždicí jiné barvy.",
+    "{n} {n|tile blends|tiles blend} into a neighbour of another color (in this view).": "{n} {n|dlaždice splývá|dlaždice splývají|dlaždic splývá} se sousední dlaždicí jiné barvy (v tomto zobrazení).",
+    "No tile blends into its neighbours.": "Žádná dlaždice nesplývá se sousedními.",
+    "Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet": "List {sheet} – řada {row}, sloupec {col} z {cols} · modré pruhy překryje další list",
+    "One {paper} sheet ({orientation}), at {pct} % of the real size.": "Jeden list {paper} ({orientation}), {pct} % skutečné velikosti.",
+    "One {paper} sheet ({orientation}) at real size.": "Jeden list {paper} ({orientation}) ve skutečné velikosti.",
+    "{n} {paper} {n|sheet|sheets} ({orientation}, {rows} × {cols}, overlapping {overlap} mm) at real size.": "{n} {n|list|listy|listů} {paper} ({orientation}, {rows} × {cols}, s překryvem {overlap} mm) ve skutečné velikosti.",
+    "{n} sheets ({rows} × {cols}), real size {w} × {h} cm": "{n} listů ({rows} × {cols}), skutečná velikost {w} × {h} cm",
+    "The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).": "Obrázek má mnoho barev: převede se na aktuální paletu (výsledek si nejdřív můžete prohlédnout přes „Převést na paletu“).",
+    "The picture has many colors: it is snapped to 8 colors suggested from it.": "Obrázek má mnoho barev: převede se na 8 barev navržených z něj.",
+    "Images": "Obrázky",
+    "PNG image": "Obrázek PNG",
+    "Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)": "Zahodit neuložené změny v aktuálním obrázku?\n(Pokud si ho chcete ponechat, nejdřív ho uložte.)",
+    "Could not read {name} as an image.": "Soubor {name} nelze načíst jako obrázek.",
+    "Opened {name} ({w} × {h} px).": "Otevřeno: {name} ({w} × {h} px).",
+    "Size of the new image in pixels (width × height):": "Velikost nového obrázku v pixelech (šířka × výška):",
+    "Enter a size like 800 × 600 (at most {max} px a side).": "Zadejte velikost jako 800 × 600 (nejvýš {max} px na stranu).",
+    "Before starting a new image": "Před založením nového obrázku",
+    "That version could not be read.": "Tuto verzi nelze načíst.",
+    "Export failed.": "Export se nezdařil.",
+    "Autosave failed – remember to save your image.": "Automatické ukládání selhalo – nezapomeňte obrázek uložit.",
+    "The clipboard has no image or color codes.": "Ve schránce není obrázek ani kódy barev.",
+    "Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another image. Restoring keeps your current image as a version too.": "Verze se ukládají v tomto prohlížeči: během práce každých pár minut a také předtím, než otevřete, založíte nebo obnovíte jiný obrázek. Při obnovení se i aktuální obrázek uloží jako verze.",
+    "No versions yet. A version is kept every few minutes while you work, and before you open or start another image.": "Zatím žádné verze. Verze se ukládá během práce každých pár minut a předtím, než otevřete nebo založíte jiný obrázek.",
+    "The palette is empty – add colors, or let the mosaic suggest some.": "Paleta je prázdná – přidejte barvy, nebo nechte mozaiku nějaké navrhnout.",
+    "There is nothing to make a mosaic from (the area is transparent).": "Není z čeho udělat mozaiku (plocha je průhledná).",
+    "From picture": "Z obrázku",
+    "Made {n} {n|tile|tiles} in {c} {c|color|colors}.": "Vytvořeno {n} {n|dlaždice|dlaždice|dlaždic} {c|v|ve|v} {c} {c|barvě|barvách|barvách}.",
+    "The palette is empty.": "Paleta je prázdná.",
+    "Every pixel now has a palette color: {n} {n|pixel|pixels} in {c} {c|color|colors}.": "Každý pixel má teď barvu z palety: {n} {n|pixel|pixely|pixelů} {c|v|ve|v} {c} {c|barvě|barvách|barvách}.",
+    "At most about {n} tiles in the selection – bigger ones where the picture is calm.": "Nejvýš asi {n} {n|dlaždice|dlaždice|dlaždic} ve výběru – kde je obrázek klidný, budou větší.",
+    "At most about {n} tiles – bigger ones where the picture is calm.": "Nejvýš asi {n} {n|dlaždice|dlaždice|dlaždic} – kde je obrázek klidný, budou větší.",
+    "About {n} tiles in the selection.": "Asi {n} {n|dlaždice|dlaždice|dlaždic} ve výběru.",
+    "Turn on “Fill” or “Outline” for polygons.": "U mnohoúhelníků zapněte „Výplň“ nebo „Obrys“.",
+    "Picked “transparent”.": "Vybrána „průhledná“.",
+    "Picked {c} (not in the palette – add it with “From image”).": "Vybrána barva {c} (není v paletě – přidejte ji tlačítkem „Z obrázku“).",
+    "{n} {n|pixel|pixels}": "{n} {n|pixel|pixely|pixelů}",
+    "paint color": "barva malování",
+    "outline color": "barva obrysu",
+    "Transparent – paints and fills transparent pixels": "Průhledná – maluje a vyplňuje průhlednými pixely",
+    "Recolored {n} {n|pixel|pixels}.": "Přebarveno: {n} {n|pixel|pixely|pixelů}.",
+    "Nothing to paste – or the browser didn’t allow reading the clipboard (try Ctrl+V).": "Není co vložit – nebo prohlížeč nepovolil čtení schránky (zkuste Ctrl+V).",
+    "Enter a size from 1 to {max} px.": "Zadejte velikost od 1 do {max} px.",
+    "This picture has {n} pieces – too many to number. Make a mosaic or reduce it to the palette first.": "Obrázek má {n} {n|dílek|dílky|dílků} – to je na číslování příliš. Nejdřív z něj udělejte mozaiku nebo ho převeďte na paletu.",
+    "{n} {n|piece|pieces}": "{n} {n|dílek|dílky|dílků}",
+    "{n} {n|piece|pieces} in {c} {c|color|colors} · {w} × {h} px": "{n} {n|dílek|dílky|dílků} {c|v|ve|v} {c} {c|barvě|barvách|barvách} · {w} × {h} px",
+    "Nothing is painted yet.": "Zatím není nic vybarveno.",
+    "{w} × {h} mm · {k} mm per pixel": "{w} × {h} mm · {k} mm na pixel",
+    "Pieces": "Dílky",
+    "Pixels": "Pixely",
+    "Area": "Plocha",
+    "transparent": "průhledná",
+    "({w} × {h} px, not placed yet)": "({w} × {h} px, ještě neumístěno)",
+    "Cut the selection – paste it here, into the vector app or any other program.": "Výběr je vyjmutý – vložte ho sem, do vektorové aplikace nebo do jakéhokoli programu.",
+    "Cut the image – paste it here, into the vector app or any other program.": "Obrázek je vyjmutý – vložte ho sem, do vektorové aplikace nebo do jakéhokoli programu.",
+    "Copied the selection – paste it here, into the vector app or any other program.": "Výběr je zkopírovaný – vložte ho sem, do vektorové aplikace nebo do jakéhokoli programu.",
+    "Copied the image – paste it here, into the vector app or any other program.": "Obrázek je zkopírovaný – vložte ho sem, do vektorové aplikace nebo do jakéhokoli programu.",
+    "Cut the selection (this browser keeps it for pasting here only).": "Výběr je vyjmutý (tento prohlížeč ho uchová jen pro vložení sem).",
+    "Cut the image (this browser keeps it for pasting here only).": "Obrázek je vyjmutý (tento prohlížeč ho uchová jen pro vložení sem).",
+    "Copied the selection (this browser keeps it for pasting here only).": "Výběr je zkopírovaný (tento prohlížeč ho uchová jen pro vložení sem).",
+    "Copied the image (this browser keeps it for pasting here only).": "Obrázek je zkopírovaný (tento prohlížeč ho uchová jen pro vložení sem).",
+    "Select the part to keep first.": "Nejdřív vyberte část, kterou chcete ponechat.",
+    "Could not read the pasted image.": "Vložený obrázek nelze načíst.",
+    "The pasted image ({w} × {h}) is bigger than this one ({W} × {H}). Enlarge the canvas to fit it?": "Vložený obrázek ({w} × {h}) je větší než tento ({W} × {H}). Zvětšit plátno, aby se vešel?",
+    "Pasted {w} × {h} px – drag it into place, then press Enter (or click outside it).": "Vloženo {w} × {h} px – přetáhněte na místo a stiskněte Enter (nebo klikněte mimo).",
+    "The link would be {kb} KB – too long. Share the file instead (or make the image smaller).": "Odkaz by měl {kb} KB – to je příliš. Sdílejte raději soubor (nebo obrázek zmenšete).",
+    "The link is {kb} KB – long links can get cut off in some messengers; sharing the file is safer. Anyone with it can view the image and make their own copy.": "Odkaz má {kb} KB – dlouhé odkazy některé chatovací aplikace zkracují; bezpečnější je sdílet soubor. Kdokoli s odkazem si obrázek prohlédne a může si udělat vlastní kopii.",
+    "The link is {kb} KB. Anyone with it can view the image and make their own copy.": "Odkaz má {kb} KB. Kdokoli s odkazem si obrázek prohlédne a může si udělat vlastní kopii.",
+    "Before opening a shared image": "Před otevřením sdíleného obrázku",
+    "This is now your own copy – it is saved in this browser like any image.": "Teď je to vaše vlastní kopie – ukládá se v tomto prohlížeči jako každý obrázek.",
+    "Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste": "Tažením vyberete · tažením uvnitř výběru ho posunete (Alt: kopii) · Enter ho umístí · Ctrl+C / X / V kopírovat, vyjmout, vložit",
+    "Drag to paint · Shift: straight line · [ ] size · Alt+click: pick a color": "Tažením malujete · Shift: rovná čára · [ ] velikost · Alt+klik: vybrat barvu",
+    "Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color": "Ostré pixely v přesných barvách · Shift: rovná čára · [ ] velikost · Alt+klik: vybrat barvu",
+    "Drag to erase to transparent · Shift: straight line · [ ] size": "Tažením mažete do průhlednosti · Shift: rovná čára · [ ] velikost",
+    "Drag a line · Shift: 15° steps": "Táhněte čáru · Shift: kroky po 15°",
+    "Drag from the center · Shift: 15° rotation · keys 3–9: sides": "Táhněte ze středu · Shift: otočení po 15° · klávesy 3–9: počet stran",
+    "Click to fill the area of similar color · Alt+click: pick a color": "Kliknutím vyplníte plochu podobné barvy · Alt+klik: vybrat barvu",
+    "Click to take a color from the image": "Kliknutím vezmete barvu z obrázku",
+    "No grout – every piece is a tile": "Bez spár – každý dílek je dlaždice",
+    "{n} {n|tile|tiles} at {w} × {h} mm – too many: make a mosaic or reduce the picture to the palette first.": "{n} {n|dlaždice|dlaždice|dlaždic} na {w} × {h} mm – příliš mnoho: nejdřív udělejte mozaiku nebo převeďte obrázek na paletu.",
+    "{n} {n|tile|tiles} at {w} × {h} mm.": "{n} {n|dlaždice|dlaždice|dlaždic} na {w} × {h} mm.",
+    "Could not hand the tiles over (browser storage unavailable).": "Dlaždice nelze předat (úložiště prohlížeče není dostupné).",
+    "3D print": "3D tisk",
+    "Close": "Zavřít",
+    "A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.": "Model, ve kterém má každá barva svou výšku. Vytiskněte ho jednou tryskou a ve vrstvách uvedených níže vyměňte filament – horní plocha každé dlaždice pak má svou barvu. Soubor 3MF už výměny filamentu obsahuje pro PrusaSlicer; pro jiné sliceře je najdete v plánu.",
+    "Size": "Velikost",
+    "Size of the model’s smallest step – about your nozzle width": "Velikost nejmenšího kroku modelu – zhruba šířka vaší trysky",
+    "Detail": "Detail",
+    "Layer height": "Výška vrstvy",
+    "How many layers each color gets – more layers cover the color below better": "Kolik vrstev dostane každá barva – víc vrstev lépe překryje barvu pod ní",
+    "Layers per color": "Vrstev na barvu",
+    "A plate under everything, printed in the first color. 0: unpainted parts are left open": "Deska pod vším, tištěná první barvou. 0: nevybarvená místa zůstanou otevřená",
+    "Base layers": "Vrstev základu",
+    "Top view of the model": "Pohled na model shora",
+    "Print order (bottom first):": "Pořadí tisku (odspodu):",
+    "Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom": "Světlejší barvy níž: tmavší vrstva světlejší dobře překryje. Čáry (spáry) zůstávají dole",
+    "Light → dark": "Světlé → tmavé",
+    "Dark → light": "Tmavé → světlé",
+    "Which filament to load at which layer, as a text file": "Který filament ve které vrstvě založit, jako textový soubor",
+    "Plan": "Plán",
+    "Just the shape – add the filament changes from the plan in your slicer": "Jen tvar – výměny filamentu podle plánu přidejte ve sliceru",
+    "The model, with the filament changes for PrusaSlicer": "Model i s výměnami filamentu pro PrusaSlicer",
+    "Download 3MF": "Stáhnout 3MF",
+    "{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).": "{n} {n|barva dává|barvy dávají|barev dává} vysoký výtisk s mnoha výměnami filamentu – nejdřív snižte počet barev (Rastr: „Převést na paletu“).",
+    "Detail lowered to {d} mm for this size.": "Detail snížen na {d} mm kvůli této velikosti.",
+    "lines": "čáry",
+    "Print earlier (lower)": "Tisknout dřív (níž)",
+    "Print later (higher)": "Tisknout později (výš)",
+    "{share} % · layers {from}–{to}": "{share} % · vrstvy {from}–{to}",
+    "{share} % · layers {from}–{to} · change at Z {z}": "{share} % · vrstvy {from}–{to} · výměna ve výšce Z {z}",
+    "{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}": "{n} {n|barva|barvy|barev} · výška {h} mm ({layers} {layers|vrstva|vrstvy|vrstev}) · {c} {c|výměna|výměny|výměn} filamentu",
+    "unpainted parts stay at the base ({h} mm)": "nevybarvená místa zůstanou ve výšce základu ({h} mm)",
+    "unpainted parts are left open": "nevybarvená místa zůstanou otevřená",
+    "Mosaic Paint – 3D print plan for {name}.3mf / {name}.stl": "Mosaic Paint – plán 3D tisku pro {name}.3mf / {name}.stl",
+    "Size {w} × {h} mm · layer height {lh} mm · {lpc} layers per color · base {base} layers": "Velikost {w} × {h} mm · výška vrstvy {lh} mm · {lpc} vrstev na barvu · základ {base} vrstev",
+    "Total height {total} mm ({layers} layers). Set the slicer’s first layer height to {lh} mm too.": "Celková výška {total} mm ({layers} vrstev). Výšku první vrstvy ve sliceru nastavte také na {lh} mm.",
+    "Start with {color} – layers {from}–{to} (base plate included)": "Začněte barvou {color} – vrstvy {from}–{to} (včetně základní desky)",
+    "Start with {color} – layers {from}–{to}": "Začněte barvou {color} – vrstvy {from}–{to}",
+    "Layer {layer} (Z {z} mm): change to {color} – layers {from}–{to}": "Vrstva {layer} (Z {z} mm): vyměňte za {color} – vrstvy {from}–{to}",
+    "PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider.": "PrusaSlicer: soubor 3MF už tyto výměny obsahuje – otevřete ho a zkontrolujte posuvník vrstev.",
+    "Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:": "Jiné sliceře (z 3MF nebo STL načtou jen tvar) – výměny přidejte ručně:",
+    "- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click “+” (Add color change, M600).": "- PrusaSlicer, Bambu Studio, OrcaSlicer: v náhledu posuňte posuvník vrstev na každou výšku Z výše a klikněte na „+“ (Přidat změnu barvy, M600).",
+    "- Cura: Extensions › Post Processing › Modify G-Code › “Filament Change” at each layer number above.": "- Cura: Rozšíření › Postprocessing › Upravit G-kód › „Filament Change“ u každého čísla vrstvy výše.",
+    "- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer.": "- Tiskárny pro více materiálů (AMS, MMU): fungují stejné výměny; nebo přiřaďte filamenty ke změnám barvy ve sliceru.",
+    "Could not read the picture.": "Obrázek nelze načíst.",
+    "Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).": "Uloženo {name}.3mf ({n} trojúhelníků; PrusaSlicer načte {c} {c|výměnu|výměny|výměn} filamentu, jiné sliceře potřebují plán).",
+    "Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.": "Uloženo {name}.stl ({n} trojúhelníků). Výměny filamentu podle plánu přidejte ve sliceru.",
+    "Reading the picture…": "Načítám obrázek…",
+    "History": "Historie",
+    "Save a version now": "Uložit verzi teď",
+    "Version history needs browser storage (IndexedDB), which is not available here.": "Historie verzí potřebuje úložiště prohlížeče (IndexedDB), které tu není dostupné.",
+    "Restore": "Obnovit",
+    "Version saved.": "Verze je uložena.",
+    "Could not save a version (browser storage unavailable).": "Verzi nelze uložit (úložiště prohlížeče není dostupné).",
+    "used by {what}": "použito: {what}",
+    "Click: {fill} · Right-click: {stroke} · Double-click: edit": "Klik: {fill} · Pravý klik: {stroke} · Dvojklik: upravit",
+    "Remove from palette": "Odebrat z palety",
+    "Edit color (hex or any CSS color).\nThe drawing is recolored too.": "Upravit barvu (hex nebo jakákoli barva CSS).\nPřebarví se i kresba.",
+    "Not a valid color: {v}": "Neplatná barva: {v}",
+    "Paste a color code (or several) into the box, then press Enter.": "Vložte do pole kód barvy (nebo několik) a stiskněte Enter.",
+    "No color found in: {text}": "Nenalezena žádná barva v: {text}",
+    "Added {n} {n|color|colors}.": "Přidáno: {n} {n|barva|barvy|barev}.",
+    "Already in the palette.": "Už je v paletě.",
+    "Added {n} {n|color|colors} from the clipboard.": "Ze schránky přidáno: {n} {n|barva|barvy|barev}.",
+    "Those colors are already in the palette.": "Tyto barvy už v paletě jsou.",
+    "Name of the new palette:": "Název nové palety:",
+    "Palette": "Paleta",
+    "Created “{name}”. Paste colors to fill it.": "Vytvořena paleta „{name}“. Naplňte ji vložením barev.",
+    "Rename palette:": "Přejmenovat paletu:",
+    "Delete the palette “{name}”? (The drawing is not changed.)": "Smazat paletu „{name}“? (Kresba se nezmění.)",
+    "Added {n} {n|color|colors} from the drawing.": "Z kresby přidáno: {n} {n|barva|barvy|barev}.",
+    "No new colors in the drawing.": "V kresbě nejsou žádné nové barvy.",
+    "Remove all colors from this palette? (The drawing is not changed.)": "Odebrat z této palety všechny barvy? (Kresba se nezmění.)",
+    "Imported {n} {n|color|colors}.": "Importováno: {n} {n|barva|barvy|barev}.",
+    "No new colors found in {name}": "V souboru {name} nejsou žádné nové barvy",
+    "Installed – Mosaic Paint now works offline too.": "Nainstalováno – Mosaic Paint teď funguje i offline.",
+    "Simple": "Jednoduchý",
+    "Expert": "Expert",
+    "New": "Nový",
+    "Open…": "Otevřít…",
+    "Save": "Uložit",
+    "Save as…": "Uložit jako…",
+    "Copy image": "Kopírovat obrázek",
+    "Print…": "Tisk…",
+    "Plan…": "Plán…",
+    "Report": "Přehled",
+    "Contrast": "Kontrast",
+    "Share of area": "Podíl plochy",
+    "Install app": "Nainstalovat aplikaci",
+    "You are looking at a shared mosaic.": "Prohlížíte si sdílenou mozaiku.",
+    "Make my own copy": "Udělat si vlastní kopii",
+    "Back to my drawing": "Zpět k mé kresbě",
+    "Remove last corner": "Odebrat poslední roh",
+    "Cancel": "Zrušit",
+    "Colors": "Barvy",
+    "Fill": "Výplň",
+    "Stroke": "Obrys",
+    "Width": "Šířka",
+    "Add color": "Přidat barvu",
+    "Import…": "Importovat…",
+    "From drawing": "Z kresby",
+    "Export": "Exportovat",
+    "Clear": "Vymazat",
+    "Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing) · Shift+click = add to the color mix. Ctrl+V on the canvas adds copied colors.": "Klik na vzorník = výplň · pravý klik = obrys · dvojklik = upravit (přebarví i kresbu) · Shift+klik = přidat do směsi barev. Ctrl+V na plátně přidá zkopírované barvy.",
+    "Line": "Čára",
+    "Chain lines (next line starts at the last end)": "Navazovat čáry (další čára začne na konci předchozí)",
+    "Free polygon": "Volný mnohoúhelník",
+    "Click each corner. Click the first corner again, double-click or press Enter to close it.": "Klikněte na každý roh. Tvar uzavřete kliknutím na první roh, dvojklikem nebo klávesou Enter.",
+    "Fill new shapes with the fill color": "Nové tvary vyplnit barvou výplně",
+    "Regular polygon": "Pravidelný mnohoúhelník",
+    "Sides": "Strany",
+    "From center": "Ze středu",
+    "From edge": "Od hrany",
+    "Knife": "Nůž",
+    "Press inside a tile and drag in the direction of the cut. The tile is cut straight across, from edge to edge.": "Stiskněte uvnitř dlaždice a táhněte ve směru řezu. Dlaždice se rozřízne rovně od hrany k hraně.",
+    "Pattern": "Vzor",
+    "Angle": "Úhel",
+    "Rows": "Řady",
+    "Fill whole page": "Vyplnit celou stránku",
+    "Click inside a closed area to fill it with tiles. Painted areas keep their color in every new tile. “Rows following the outline” lays rows along the area’s edge and around shapes inside it (Rows 0 = fill it).": "Klikněte dovnitř uzavřené plochy a vyplňte ji dlaždicemi. Vybarvené plochy si barvu ponechají v každé nové dlaždici. „Řady podél obrysu“ kladou řady podél okraje plochy a kolem tvarů uvnitř ní (Řady 0 = vyplnit celou).",
+    "Paint bucket": "Kbelík",
+    "Click inside any closed area, or drag across many tiles. Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.": "Klikněte do libovolné uzavřené plochy nebo táhněte přes víc dlaždic. Dalším kliknutím vybarvenou plochu přebarvíte. Vzorník ∅ maže. Alt+klik vybere barvu.",
+    "Mix colors (a random one per tile)": "Míchat barvy (každá dlaždice náhodnou)",
+    "Avoid the same color next to itself": "Nedávat stejnou barvu vedle sebe",
+    "Close gaps up to": "Uzavírat mezery do",
+    "Photo to trace": "Fotka k obkreslení",
+    "Opacity": "Krytí",
+    "Show": "Zobrazit",
+    "Locked": "Zamčeno",
+    "Fit to page": "Přizpůsobit stránce",
+    "Remove": "Odstranit",
+    "Keep the photo in saved files": "Ukládat fotku do souborů",
+    "Make a mosaic from the photo…": "Vytvořit mozaiku z fotky…",
+    "Color my tiles from the photo": "Vybarvit mé dlaždice podle fotky",
+    "Only tiles that aren’t painted yet": "Jen dlaždice, které ještě nejsou vybarvené",
+    "Each tile gets the palette color closest to the photo underneath it. Draw the tile lines first.": "Každá dlaždice dostane barvu z palety nejbližší fotce pod ní. Nejdřív nakreslete čáry dlaždic.",
+    "Grout preview": "Náhled spár",
+    "Preview": "Náhled",
+    "Apply to all lines": "Použít na všechny čáry",
+    "Motifs": "Motivy",
+    "Save selection…": "Uložit výběr…",
+    "Click a motif, then click on the drawing to place it (R turns it, Esc stops). Ctrl+C / Ctrl+X / Ctrl+V copy shapes between pages, drawings and browser tabs.": "Klikněte na motiv a pak kliknutím do kresby ho umístěte (R otáčí, Esc končí). Ctrl+C / Ctrl+X / Ctrl+V kopírují tvary mezi stránkami, kresbami i panely prohlížeče.",
+    "Symmetry": "Symetrie",
+    "Off": "Vypnuto",
+    "Mirror left ↔ right": "Zrcadlit vlevo ↔ vpravo",
+    "Mirror top ↕ bottom": "Zrcadlit nahoře ↕ dole",
+    "Mirror both ways": "Zrcadlit oběma směry",
+    "Rotate around center": "Otáčet kolem středu",
+    "Copies": "Kopie",
+    "also mirrored": "i zrcadlově",
+    "Pick center": "Vybrat střed",
+    "Page center": "Střed stránky",
+    "Lines, polygons, knife cuts and painting are repeated around the guides.": "Čáry, mnohoúhelníky, řezy nožem i vybarvování se opakují kolem vodítek.",
+    "Layers": "Vrstvy",
+    "Lines & shapes": "Čáry a tvary",
+    "Painted areas": "Vybarvené plochy",
+    "Photo": "Fotka",
+    "Lock the lines while painting so they can’t be moved by accident.": "Při vybarvování čáry zamkněte, aby se omylem neposunuly.",
+    "Snapping": "Přichytávání",
+    "Snap to points & lines": "Přichytávat k bodům a čarám",
+    "Shared corners move together": "Společné rohy se posouvají spolu",
+    "Page edge counts as a line": "Okraj stránky se počítá jako čára",
+    "Grid, size": "Mřížka, velikost",
+    "Snaps to ends & corners ▢, crossings ✕, midpoints △, anywhere along a line ◇, centers ○. Hold Alt to place freely.": "Přichytává ke koncům a rohům ▢, průsečíkům ✕, středům úseček △, kamkoli na čáru ◇ a středům ○. Se stisknutým Alt umisťujete volně.",
+    "Selection": "Výběr",
+    "Radius": "Poloměr",
+    "Rotation°": "Otočení°",
+    "Line width": "Šířka čáry",
+    "Delete": "Smazat",
+    "To front": "Dopředu",
+    "To back": "Dozadu",
+    "Mix colors": "Promíchat barvy",
+    "Page": "Stránka",
+    "Apply": "Použít",
+    "Background": "Pozadí",
+    "Show rulers": "Zobrazit pravítka",
+    "Keyboard & mouse": "Klávesnice a myš",
+    "Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan": "Výběr, Čára, Volný mnohoúhelník, Mnohoúhelník, Vzor, Kbelík, Posun",
+    "Polygon sides": "Počet stran mnohoúhelníku",
+    "Toggle snapping": "Zapnout / vypnout přichytávání",
+    "Alt": "Alt",
+    "Draw / drag without snapping; detach a shared corner; Alt+click with the bucket picks a color": "Kreslit / táhnout bez přichytávání; oddělit společný roh; Alt+klik kbelíkem vybere barvu",
+    "Shift": "Shift",
+    "15° steps; add to selection": "Kroky po 15°; přidat k výběru",
+    "Ctrl (polygon tool)": "Ctrl (nástroj mnohoúhelník)",
+    "Flip side when drawing from an edge": "Při kreslení od hrany převrátit stranu",
+    "Ctrl + drag handle": "Ctrl + tažení úchytu",
+    "Freely move a polygon corner (it stops being regular)": "Volně posunout roh mnohoúhelníku (přestane být pravidelný)",
+    "Enter / Esc": "Enter / Esc",
+    "Finish / cancel the current shape": "Dokončit / zrušit rozkreslený tvar",
+    "Del": "Del",
+    "Delete selection (or the last corner of a free polygon)": "Smazat výběr (nebo poslední roh volného mnohoúhelníku)",
+    "Arrows": "Šipky",
+    "Nudge (Shift = ×10)": "Posunout (Shift = ×10)",
+    "Undo / redo": "Zpět / znovu",
+    "Copy, cut, paste shapes (also between pages and drawings). Ctrl+C with nothing selected copies the drawing as an image; pasting an image makes it the photo to trace": "Kopírovat, vyjmout, vložit tvary (i mezi stránkami a kresbami). Ctrl+C bez výběru zkopíruje kresbu jako obrázek; vložený obrázek se stane fotkou k obkreslení",
+    "Duplicate, select all": "Duplikovat, vybrat vše",
+    "Wheel, Space+drag": "Kolečko, mezerník+tažení",
+    "Zoom, pan (two fingers on touch screens)": "Přiblížení, posun (na dotykových displejích dvěma prsty)",
+    "Fit page": "Celá stránka",
+    "＋ Page": "＋ Stránka",
+    "Colors & shopping list": "Barvy a nákupní seznam",
+    "Piece size": "Velikost kusu",
+    "Waste": "Prořez",
+    "“Replace with” recolors every area of that color.": "„Nahradit za“ přebarví všechny plochy té barvy.",
+    "Download CSV": "Stáhnout CSV",
+    "Print template": "Tisková šablona",
+    "Opens a print page to use as a cutting or laying template.": "Otevře stránku k tisku, kterou použijete jako šablonu pro řezání nebo pokládku.",
+    "Paper": "Papír",
+    "Letter": "Letter",
+    "Tabloid (11×17 in)": "Tabloid (11×17 palců)",
+    "Real size (split across several sheets if needed)": "Skutečná velikost (v případě potřeby na více listů)",
+    "Fit on one sheet": "Na jeden list",
+    "In color": "Barevně",
+    "In color, with color numbers": "Barevně, s čísly barev",
+    "Outlines with color numbers (paint by number)": "Obrysy s čísly barev (omalovánka podle čísel)",
+    "Add a page with the color legend": "Přidat stránku s legendou barev",
+    "Mosaic from photo": "Mozaika z fotky",
+    "Lays out tiles over the whole page and gives each tile the color of the photo underneath it.": "Rozloží dlaždice po celé stránce a každé dá barvu fotky pod ní.",
+    "First load a photo:": "Nejdřív načtěte fotku:",
+    "Tiles": "Dlaždice",
+    "Smaller tiles where the photo has detail": "Menší dlaždice tam, kde má fotka detaily",
+    "Use the current palette": "Použít aktuální paletu",
+    "Suggest": "Navrhnout",
+    "colors from the photo (new palette)": "barev z fotky (nová paleta)",
+    "Replace the current drawing (it is kept in History)": "Nahradit aktuální kresbu (zůstane v Historii)",
+    "Laying plan": "Plán pokládky",
+    "Splits the mosaic into numbered panels – the size of your work surface or of the mesh sheets you lay the tiles on. The print has an overview, every panel at real size and the number of tiles of each color per panel.": "Rozdělí mozaiku na očíslované panely – o velikosti vaší pracovní plochy nebo sítí, na které dlaždice kladete. Výtisk obsahuje přehled, každý panel ve skutečné velikosti a počet dlaždic každé barvy v panelu.",
+    "Panel size": "Velikost panelu",
+    "Tabloid": "Tabloid",
+    "Color numbers on the tiles": "Čísla barev na dlaždicích",
+    "Show the panels on the drawing": "Zobrazit panely v kresbě",
+    "The whole drawing is packed into the link itself – nothing is uploaded. Whoever opens it sees the mosaic and can make their own copy to edit.": "Celá kresba je zabalená přímo v odkazu – nic se nikam nenahrává. Kdo ho otevře, uvidí mozaiku a může si udělat vlastní kopii k úpravám.",
+    "Include the tracing photo (makes the link much longer)": "Přibalit fotku k obkreslení (odkaz bude mnohem delší)",
+    "Share file…": "Sdílet soubor…",
+    "Copy link": "Kopírovat odkaz",
+    "Switch app": "Přepnout aplikaci",
+    "Vector: tiles as shapes. Raster: paint with pixels. Palettes are shared; copy and paste images between them.": "Vektor: dlaždice jako tvary. Rastr: malování pixely. Palety jsou společné; obrázky mezi nimi kopírujte a vkládejte.",
+    "Simple shows the essentials; Expert adds symmetry, layers, rulers, the knife, printing and fine settings": "Jednoduchý ukazuje to podstatné; Expert přidává symetrii, vrstvy, pravítka, nůž, tisk a jemná nastavení",
+    "New drawing": "Nová kresba",
+    "Open SVG (Ctrl+O) – you can also drop a file on the canvas": "Otevřít SVG (Ctrl+O) – soubor můžete také přetáhnout na plátno",
+    "Save SVG (Ctrl+S)": "Uložit SVG (Ctrl+S)",
+    "Save as (Ctrl+Shift+S)": "Uložit jako (Ctrl+Shift+S)",
+    "Export a PNG image": "Exportovat obrázek PNG",
+    "Export a 3D model for printing with filament changes – each color at its own height": "Exportovat 3D model pro tisk s výměnami filamentu – každá barva ve své výšce",
+    "Copy the drawing (or the selected shapes) as an image – paste it into the raster app or any other program (Ctrl+C)": "Zkopírovat kresbu (nebo vybrané tvary) jako obrázek – vložíte ho do rastrové aplikace nebo jakéhokoli programu (Ctrl+C)",
+    "Print a real-size template with color numbers": "Vytisknout šablonu ve skutečné velikosti s čísly barev",
+    "Split the mosaic into numbered panels and print a laying plan": "Rozdělit mozaiku na očíslované panely a vytisknout plán pokládky",
+    "Colors used, areas and a shopping list": "Použité barvy, plochy a nákupní seznam",
+    "Earlier versions of your drawing": "Starší verze vaší kresby",
+    "Share the mosaic as a link": "Sdílet mozaiku jako odkaz",
+    "Undo (Ctrl+Z)": "Zpět (Ctrl+Z)",
+    "Redo (Ctrl+Y)": "Znovu (Ctrl+Y)",
+    "Zoom out (-)": "Oddálit (-)",
+    "Zoom in (+)": "Přiblížit (+)",
+    "Fit page (0)": "Celá stránka (0)",
+    "See the mosaic in black & white or as color-blind people see it (screen only)": "Zobrazit mozaiku černobíle nebo tak, jak ji vidí lidé s poruchou barvocitu (jen na obrazovce)",
+    "Mark tiles that blend into a neighbouring tile of another color": "Označit dlaždice, které splývají se sousední dlaždicí jiné barvy",
+    "Language": "Jazyk",
+    "Install as an app that also works offline": "Nainstalovat jako aplikaci, která funguje i offline",
+    "Show the side panel": "Zobrazit boční panel",
+    "Select / edit (V)": "Výběr / úpravy (V)",
+    "Line (L)": "Čára (L)",
+    "Free polygon – click corner by corner (P)": "Volný mnohoúhelník – klikání roh po rohu (P)",
+    "Regular polygon (G)": "Pravidelný mnohoúhelník (G)",
+    "Knife – cut a tile straight across (K)": "Nůž – rozříznout dlaždici napříč (K)",
+    "Pattern – fill an area with tiles (T)": "Vzor – vyplnit plochu dlaždicemi (T)",
+    "Paint bucket – click or drag across tiles (B)": "Kbelík – klik nebo tažení přes dlaždice (B)",
+    "Pan (H, or hold Space / middle mouse / two fingers)": "Posun (H, nebo podržte mezerník / prostřední tlačítko myši / dva prsty)",
+    "Your saved palettes": "Vaše uložené palety",
+    "New palette": "Nová paleta",
+    "Rename this palette": "Přejmenovat tuto paletu",
+    "Delete this palette": "Smazat tuto paletu",
+    "Fill color – used by the paint bucket": "Barva výplně – používá ji kbelík",
+    "Stroke color – used for new lines and polygons": "Barva obrysu – pro nové čáry a mnohoúhelníky",
+    "Swap fill and stroke": "Prohodit výplň a obrys",
+    "Line width for new lines and polygons": "Šířka čáry pro nové čáry a mnohoúhelníky",
+    "Paste #hex, rgb(), name…": "Vložte #hex, rgb(), název…",
+    "Load colors from a .txt / .gpl / .css file": "Načíst barvy ze souboru .txt / .gpl / .css",
+    "Add every color used in the drawing": "Přidat všechny barvy použité v kresbě",
+    "Download the palette as a list of hex codes": "Stáhnout paletu jako seznam kódů hex",
+    "0 = as many rows as fit": "0 = tolik řad, kolik se vejde",
+    "Lay out tiles over the whole page and color them from the photo": "Rozložit dlaždice po celé stránce a vybarvit je podle fotky",
+    "Color the tiles you have drawn": "Vybarvit dlaždice, které jste nakreslili",
+    "Grout color": "Barva spár",
+    "Give every line this color and width for real": "Opravdu dát všem čarám tuto barvu a šířku",
+    "Save the selected shapes as a motif": "Uložit vybrané tvary jako motiv",
+    "Load motifs from a file": "Načíst motivy ze souboru",
+    "Download all motifs as a file": "Stáhnout všechny motivy jako soubor",
+    "Give the selected painted areas random colors from the mix": "Dát vybraným vybarveným plochám náhodné barvy ze směsi",
+    "Real-world unit: 1 drawing unit = 1 mm / cm / inch": "Skutečná jednotka: 1 jednotka kresby = 1 mm / cm / palec",
+    "Add a page (front, back, a color variant…)": "Přidat stránku (přední strana, zadní strana, barevná varianta…)",
+    "Export…": "Exportovat…",
+    "Copy": "Kopírovat",
+    "Paste": "Vložit",
+    "You are looking at a shared image.": "Prohlížíte si sdílený obrázek.",
+    "Back to my image": "Zpět k mému obrázku",
+    "Place": "Umístit",
+    "Paint": "Malování",
+    "Outline": "Obrys",
+    "From image": "Z obrázku",
+    "Click a swatch = paint color · right-click = outline color · double-click = edit (also recolors the image). The ∅ swatch paints transparent. Palettes are shared with the vector app.": "Klik na vzorník = barva malování · pravý klik = barva obrysu · dvojklik = upravit (přebarví i obrázek). Vzorník ∅ maluje průhledně. Palety jsou společné s vektorovou aplikací.",
+    "Brush": "Štětec",
+    "Smooth edges for lines and polygons": "Hladké okraje čar a mnohoúhelníků",
+    "The pencil always paints hard pixels in exact palette colors – best for pixel mosaics. Shift: straight lines in 15° steps.": "Tužka vždy kreslí ostré pixely v přesných barvách palety – nejlepší pro pixelové mozaiky. Shift: rovné čáry v krocích po 15°.",
+    "Fill with the paint color": "Vyplnit barvou malování",
+    "Outline in the outline color": "Obrys v barvě obrysu",
+    "Drag from the center. Shift: 15° rotation steps.": "Táhněte ze středu. Shift: otáčení po 15°.",
+    "Tolerance": "Tolerance",
+    "Only connected pixels": "Jen souvislé pixely",
+    "Fills the area of similar color under the click. Alt+click picks a color.": "Vyplní plochu podobné barvy pod kliknutím. Alt+klik vybere barvu.",
+    "Cut": "Vyjmout",
+    "Crop": "Oříznout",
+    "Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.": "Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii). Enter ho umístí, Esc zruší.",
+    "Mosaic": "Mozaika",
+    "Make a mosaic…": "Vytvořit mozaiku…",
+    "Reduce to palette": "Převést na paletu",
+    "Open as vector tiles…": "Otevřít jako vektorové dlaždice…",
+    "Works on the selection, or on the whole image when nothing is selected.": "Pracuje s výběrem, nebo s celým obrázkem, když není nic vybráno.",
+    "Image": "Obrázek",
+    "Resize image": "Změnit velikost obrázku",
+    "Canvas size": "Velikost plátna",
+    "Pixel grid when zoomed in": "Mřížka pixelů při přiblížení",
+    "Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Čára, Mnohoúhelník, Kbelík, Kapátko, Posun",
+    "Smaller / bigger brush": "Menší / větší štětec",
+    "Swap paint and outline colors": "Prohodit barvu malování a obrysu",
+    "Alt+click": "Alt+klik",
+    "Pick a color": "Vybrat barvu",
+    "Straight lines, 15° steps": "Rovné čáry, kroky po 15°",
+    "Copy, cut, paste images (also between the two apps and other programs)": "Kopírovat, vyjmout, vložit obrázky (i mezi oběma aplikacemi a jinými programy)",
+    "Select all, clear the selection": "Vybrat vše, vymazat výběr",
+    "Place / cancel a moved or pasted image": "Umístit / zrušit posunutý nebo vložený obrázek",
+    "Fit image, actual pixels": "Celý obrázek, skutečné pixely",
+    "Real width": "Skutečná šířka",
+    "Pieces are areas of one color (tiles). “Replace with” recolors every pixel of that color.": "Dílky jsou plochy jedné barvy (dlaždice). „Nahradit za“ přebarví všechny pixely té barvy.",
+    "The image is packed into the link itself – nothing is uploaded. Whoever opens it sees the image and can make their own copy to edit.": "Obrázek je zabalený přímo v odkazu – nic se nikam nenahrává. Kdo ho otevře, uvidí obrázek a může si udělat vlastní kopii k úpravám.",
+    "Make a mosaic": "Vytvořit mozaiku",
+    "Splits the picture into tiles and gives each tile the color underneath it, with grout between the tiles.": "Rozdělí obrázek na dlaždice, každé dá barvu, která je pod ní, a mezi dlaždice dá spáry.",
+    "Squares": "Čtverce",
+    "Squares, offset rows": "Čtverce, posunuté řady",
+    "Bricks": "Cihly",
+    "Hexagons": "Šestiúhelníky",
+    "Irregular (crazy paving)": "Nepravidelné (mozaika z úlomků)",
+    "Grout": "Spáry",
+    "Smaller tiles where the picture has detail": "Menší dlaždice tam, kde má obrázek detaily",
+    "colors from the picture (new palette)": "barev z obrázku (nová paleta)",
+    "Keep the picture’s colors": "Zachovat barvy obrázku",
+    "Open as vector tiles": "Otevřít jako vektorové dlaždice",
+    "Every piece of the picture (an area of one color) becomes a tile shape in the vector app, at the real size – ready for its print templates, laying plan, 3D print and editing. Your current vector drawing is kept in its History.": "Každý dílek obrázku (plocha jedné barvy) se stane tvarem dlaždice ve vektorové aplikaci, ve skutečné velikosti – připravený pro tiskové šablony, plán pokládky, 3D tisk i úpravy. Vaše aktuální vektorová kresba zůstane v její Historii.",
+    "The grout color becomes the page background; every other piece becomes a tile.": "Barva spár se stane pozadím stránky; každý další dílek se stane dlaždicí.",
+    "Open in the vector app": "Otevřít ve vektorové aplikaci",
+    "Format": "Formát",
+    "JPEG": "JPEG",
+    "WebP": "WebP",
+    "Quality": "Kvalita",
+    "JPEG has no transparency: transparent parts become white.": "JPEG nemá průhlednost: průhledná místa budou bílá.",
+    "Simple shows the essentials; Expert adds opacity, tolerance, resizing and more": "Jednoduchý ukazuje to podstatné; Expert přidává krytí, toleranci, změnu velikosti a další",
+    "New image": "Nový obrázek",
+    "Open an image (Ctrl+O) – you can also drop one on the canvas": "Otevřít obrázek (Ctrl+O) – můžete ho také přetáhnout na plátno",
+    "Save as PNG (Ctrl+S)": "Uložit jako PNG (Ctrl+S)",
+    "Export as JPEG or WebP": "Exportovat jako JPEG nebo WebP",
+    "Colors used, pieces and a shopping list": "Použité barvy, dílky a nákupní seznam",
+    "Earlier versions of your image": "Starší verze vašeho obrázku",
+    "Share the image as a link": "Sdílet obrázek jako odkaz",
+    "Copy the selection (or the whole image) to the clipboard (Ctrl+C)": "Zkopírovat výběr (nebo celý obrázek) do schránky (Ctrl+C)",
+    "Paste an image from the clipboard (Ctrl+V)": "Vložit obrázek ze schránky (Ctrl+V)",
+    "Fit image (0)": "Celý obrázek (0)",
+    "Actual pixels (1)": "Skutečné pixely (1)",
+    "Select – drag a rectangle, then drag it to move (V)": "Výběr – táhněte obdélník a tažením ho posuňte (V)",
+    "Brush – soft edges (B)": "Štětec – měkké okraje (B)",
+    "Pencil – hard pixels in exact colors (P)": "Tužka – ostré pixely v přesných barvách (P)",
+    "Eraser (E)": "Guma (E)",
+    "Paint bucket – fill an area (F)": "Kbelík – vyplnit plochu (F)",
+    "Pick a color (I, or Alt+click with any paint tool)": "Kapátko (I, nebo Alt+klik s jakýmkoli nástrojem malování)",
+    "Your saved palettes (shared with the vector app)": "Vaše uložené palety (společné s vektorovou aplikací)",
+    "Paint color – brush, pencil, lines, polygons and the bucket": "Barva malování – štětec, tužka, čáry, mnohoúhelníky a kbelík",
+    "Outline color – the outline of polygons": "Barva obrysu – obrys mnohoúhelníků",
+    "Swap paint and outline colors (X)": "Prohodit barvu malování a obrysu (X)",
+    "Brush, pencil, eraser and line size in pixels ( [ and ] )": "Velikost štětce, tužky, gumy a čáry v pixelech ( [ a ] )",
+    "Add the colors used in the image (or suggest some for a photo)": "Přidat barvy použité v obrázku (nebo u fotky nějaké navrhnout)",
+    "Turn the image (or the selection) into tiles with grout": "Převést obrázek (nebo výběr) na dlaždice se spárami",
+    "Give every pixel the closest palette color": "Dát každému pixelu nejbližší barvu z palety",
+    "Every tile becomes a shape in the vector app – for its templates, laying plan and editing": "Každá dlaždice se stane tvarem ve vektorové aplikaci – pro její šablony, plán pokládky a úpravy",
+    "Scale the picture to this size": "Zmenšit / zvětšit obrázek na tuto velikost",
+    "Change the canvas size, keeping the picture centered": "Změnit velikost plátna, obrázek zůstane uprostřed",
+    "The width of the finished mosaic": "Šířka hotové mozaiky",
+    "Herringbone": "Rybí kost",
+    "Triangles": "Trojúhelníky",
+    "Rings (around the click)": "Kruhy (kolem kliknutí)",
+    "Rows following the outline": "Řady podél obrysu",
+    "portrait": "na výšku",
+    "landscape": "na šířku",
+    "Vector": "Vektor",
+    "Raster": "Rastr",
+    "Fit": "Vše"
+  };
+
+  // src/shared/i18n.ts
+  var LANGS = [["en", "English"], ["cs", "Čeština"]];
+  var KEY = "mz-lang";
+  function detect() {
+    try {
+      const saved = typeof localStorage !== "undefined" && localStorage.getItem(KEY);
+      if (saved === "en" || saved === "cs") return saved;
+    } catch {
+    }
+    const nav = typeof window !== "undefined" && typeof navigator !== "undefined" ? navigator.language || "" : "";
+    return /^(cs|sk)\b/i.test(nav) ? "cs" : "en";
+  }
+  var lang = detect();
+  var dict = lang === "cs" ? CS : {};
+  function setLang(l) {
+    try {
+      localStorage.setItem(KEY, l);
+    } catch {
+    }
+    location.reload();
+  }
+  function form(n2, forms) {
+    const i = lang === "cs" ? n2 === 1 ? 0 : Number.isInteger(n2) && n2 >= 2 && n2 <= 4 ? 1 : 2 : n2 === 1 ? 0 : 1;
+    return forms[Math.min(i, forms.length - 1)];
+  }
+  var num = (v, digits) => v.toLocaleString(lang === "cs" ? "cs-CZ" : "en", digits == null ? void 0 : { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  function t(s, vars) {
+    let out = dict[s] ?? s;
+    if (vars) {
+      out = out.replace(/\{(\w+)\|([^}]*)\}/g, (m, k, forms) => k in vars ? form(+vars[k], forms.split("|")) : m);
+      out = out.replace(/\{(\w+)\}/g, (m, k) => k in vars ? typeof vars[k] === "number" ? num(vars[k]) : String(vars[k]) : m);
+    }
+    return out;
+  }
+  var ATTRS = ["title", "placeholder", "aria-label"];
+  function translateDom(root) {
+    if (lang === "en") return;
+    const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    for (let n2 = walk.nextNode(); n2; n2 = walk.nextNode()) {
+      const v = n2.nodeValue, key = v.trim();
+      if (key && dict[key] != null) n2.nodeValue = v.replace(key, dict[key]);
+    }
+    for (const el of root.querySelectorAll ? [root, ...root.querySelectorAll("*")] : []) {
+      if (!el.getAttribute) continue;
+      for (const a of ATTRS) {
+        const v = el.getAttribute(a);
+        if (v && dict[v.trim()] != null) el.setAttribute(a, dict[v.trim()]);
+      }
+    }
+    if (root === document.body || root === document) document.documentElement.lang = lang;
+  }
+
+  // src/shared/i18n-start.ts
+  translateDom(document.body);
+
   // src/lib/store.ts
   var appOf = (v) => v.app || "vector";
   var dbp = null;
@@ -33,9 +739,9 @@
   async function run(name, mode, fn) {
     const d = await open();
     return new Promise((resolve, reject) => {
-      const t = d.transaction(name, mode), req = fn(t.objectStore(name));
-      t.oncomplete = () => resolve(req ? req.result : void 0);
-      t.onerror = t.onabort = () => reject(t.error);
+      const t2 = d.transaction(name, mode), req = fn(t2.objectStore(name));
+      t2.oncomplete = () => resolve(req ? req.result : void 0);
+      t2.onerror = t2.onabort = () => reject(t2.error);
     });
   }
   var Store = {
@@ -59,11 +765,11 @@
   var clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   var toastTimer;
   function toast(msg) {
-    const t = $("#st-msg");
-    t.textContent = msg;
+    const t2 = $("#st-msg");
+    t2.textContent = msg;
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
-      t.textContent = "";
+      t2.textContent = "";
     }, 5e3);
   }
   function lsGet(k) {
@@ -92,10 +798,10 @@
       URL.revokeObjectURL(a.href);
     }, 3e4);
   }
-  function typingIn(t) {
-    if (!t) return false;
-    if (t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable) return true;
-    return t.tagName === "INPUT" && !["checkbox", "radio", "range", "color", "button", "file"].includes(t.type);
+  function typingIn(t2) {
+    if (!t2) return false;
+    if (t2.tagName === "TEXTAREA" || t2.tagName === "SELECT" || t2.isContentEditable) return true;
+    return t2.tagName === "INPUT" && !["checkbox", "radio", "range", "color", "button", "file"].includes(t2.type);
   }
   function readAsDataURL(file) {
     return new Promise((res, rej) => {
@@ -135,13 +841,13 @@
     const str = String(s).trim();
     if (!str || str === "none") return null;
     if (cache.has(str)) return cache.get(str);
-    let t = str;
-    if (/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(t)) t = "#" + t;
+    let t2 = str;
+    if (/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(t2)) t2 = "#" + t2;
     let out = null;
-    if (CSS.supports("color", t) && !/^(inherit|initial|unset|revert|currentcolor)$/i.test(t)) {
+    if (CSS.supports("color", t2) && !/^(inherit|initial|unset|revert|currentcolor)$/i.test(t2)) {
       ctx = ctx || document.createElement("canvas").getContext("2d");
       ctx.fillStyle = "#000";
-      ctx.fillStyle = t;
+      ctx.fillStyle = t2;
       out = ctx.fillStyle;
     }
     cache.set(str, out);
@@ -180,13 +886,13 @@
     const X = (R * 0.4124 + G * 0.3576 + B * 0.1805) / 0.95047;
     const Y = R * 0.2126 + G * 0.7152 + B * 0.0722;
     const Z = (R * 0.0193 + G * 0.1192 + B * 0.9505) / 1.08883;
-    const f = (t) => t > 216 / 24389 ? Math.cbrt(t) : (24389 / 27 * t + 16) / 116;
+    const f = (t2) => t2 > 216 / 24389 ? Math.cbrt(t2) : (24389 / 27 * t2 + 16) / 116;
     const fx = f(X), fy = f(Y), fz = f(Z);
     return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
   }
   function fromLab([L, a, b]) {
     const fy = (L + 16) / 116, fx = fy + a / 500, fz = fy - b / 200;
-    const inv = (t) => t ** 3 > 216 / 24389 ? t ** 3 : (116 * t - 16) / (24389 / 27);
+    const inv = (t2) => t2 ** 3 > 216 / 24389 ? t2 ** 3 : (116 * t2 - 16) / (24389 / 27);
     const X = 0.95047 * inv(fx), Y = inv(fy), Z = 1.08883 * inv(fz);
     const gam = (v) => v <= 31308e-7 ? 12.92 * v : 1.055 * Math.pow(v, 1 / 2.4) - 0.055;
     const rgb = [
@@ -314,10 +1020,10 @@
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
       const n2 = c ? counts.get(c) || 0 : 0;
-      const num2 = c ? st.palette.indexOf(c) + 1 : 0;
+      const num3 = c ? st.palette.indexOf(c) + 1 : 0;
       const N = host.names;
-      d.title = c ? `#${num2}  ${c}${n2 ? ` – used by ${host.usage(n2)}` : ""}
-Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
+      d.title = c ? `#${num3}  ${c}${n2 ? " – " + t("used by {what}", { what: host.usage(n2) }) : ""}
+` + t("Click: {fill} · Right-click: {stroke} · Double-click: edit", { fill: N.fill, stroke: N.stroke }) : N.none;
       let b = d.querySelector(".count");
       if (n2 && !b) {
         b = document.createElement("span");
@@ -338,7 +1044,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         const x = document.createElement("button");
         x.className = "del";
         x.textContent = "×";
-        x.title = "Remove from palette";
+        x.title = t("Remove from palette");
         x.onclick = (e) => {
           e.stopPropagation();
           removeColor(c);
@@ -372,11 +1078,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       render3();
     }
     function editColor(old) {
-      const v = prompt("Edit color (hex or any CSS color).\nThe drawing is recolored too.", old);
+      const v = prompt(t("Edit color (hex or any CSS color).\nThe drawing is recolored too."), old);
       if (v == null) return;
       const c = norm(v);
       if (!c) {
-        toast("Not a valid color: " + v);
+        toast(t("Not a valid color: {v}", { v }));
         return;
       }
       if (c === old) return;
@@ -395,19 +1101,19 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       const text = inp.value.trim();
       if (!text) {
         inp.focus();
-        toast("Paste a color code (or several) into the box, then press Enter.");
+        toast(t("Paste a color code (or several) into the box, then press Enter."));
         return;
       }
       const cols = parse(text);
       if (!cols.length) {
-        toast("No color found in: " + text);
+        toast(t("No color found in: {text}", { text }));
         return;
       }
       const n2 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
       inp.value = "";
       updatePreview();
-      toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""}.` : "Already in the palette.");
+      toast(n2 ? t("Added {n} {n|color|colors}.", { n: n2 }) : t("Already in the palette."));
     }
     function updatePreview() {
       const c = parse($("#color-input").value)[0];
@@ -420,7 +1126,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       if (!cols.length) return false;
       const n2 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
-      toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""} from the clipboard.` : "Those colors are already in the palette.");
+      toast(n2 ? t("Added {n} {n|color|colors} from the clipboard.", { n: n2 }) : t("Those colors are already in the palette."));
       return true;
     }
     function bind() {
@@ -442,15 +1148,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       };
       $("#pal-select").onchange = (e) => switchPalette2(e.target.value);
       $("#btn-pal-new").onclick = () => {
-        const n2 = prompt("Name of the new palette:", uniqueName2("Palette"));
+        const n2 = prompt(t("Name of the new palette:"), uniqueName2(t("Palette")));
         if (!n2 || !n2.trim()) return;
         const name = uniqueName2(n2.trim());
         st.palettes[name] = [];
         switchPalette2(name);
-        toast(`Created “${name}”. Paste colors to fill it.`);
+        toast(t("Created “{name}”. Paste colors to fill it.", { name }));
       };
       $("#btn-pal-rename").onclick = () => {
-        const old = st.paletteName, n2 = prompt("Rename palette:", old);
+        const old = st.paletteName, n2 = prompt(t("Rename palette:"), old);
         if (!n2 || !n2.trim() || n2.trim() === old) return;
         const name = uniqueName2(n2.trim()), next = {};
         for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
@@ -458,18 +1164,18 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         switchPalette2(name);
       };
       $("#btn-pal-delete").onclick = () => {
-        if (!confirm(`Delete the palette “${st.paletteName}”? (The drawing is not changed.)`)) return;
+        if (!confirm(t("Delete the palette “{name}”? (The drawing is not changed.)", { name: st.paletteName }))) return;
         delete st.palettes[st.paletteName];
-        if (!Object.keys(st.palettes).length) st.palettes["My palette"] = [];
+        if (!Object.keys(st.palettes).length) st.palettes[t("My palette")] = [];
         switchPalette2(Object.keys(st.palettes)[0]);
       };
       $("#btn-pal-doc").onclick = () => {
         const n2 = addColors2(host.docColors());
-        toast(n2 ? `Added ${n2} color${n2 > 1 ? "s" : ""} from the drawing.` : "No new colors in the drawing.");
+        toast(n2 ? t("Added {n} {n|color|colors} from the drawing.", { n: n2 }) : t("No new colors in the drawing."));
       };
       $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
       $("#btn-pal-clear").onclick = () => {
-        if (confirm("Remove all colors from this palette? (The drawing is not changed.)")) {
+        if (confirm(t("Remove all colors from this palette? (The drawing is not changed.)"))) {
           st.palette = [];
           host.save();
           render3();
@@ -482,7 +1188,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         const text = await f.text();
         e.target.value = "";
         const n2 = addColors2(parse(text));
-        toast(n2 ? `Imported ${n2} color${n2 > 1 ? "s" : ""}.` : "No new colors found in " + f.name);
+        toast(n2 ? t("Imported {n} {n|color|colors}.", { n: n2 }) : t("No new colors found in {name}", { name: f.name }));
       };
       window.addEventListener("storage", (e) => {
         if (e.key !== SHARED_KEY) return;
@@ -524,8 +1230,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     fill: "#e9c46a",
     stroke: "#222222",
     strokeWidth: 2,
-    palettes: { "My palette": [...DEFAULT_PALETTE] },
-    paletteName: "My palette",
+    palettes: { [t("My palette")]: [...DEFAULT_PALETTE] },
+    paletteName: t("My palette"),
     snap: true,
     link: true,
     grid: false,
@@ -645,19 +1351,19 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   function project(p, a, b) {
     const dx = b.x - a.x, dy = b.y - a.y;
     const len2 = dx * dx + dy * dy;
-    let t = len2 ? ((p.x - a.x) * dx + (p.y - a.y) * dy) / len2 : 0;
-    t = Math.max(0, Math.min(1, t));
-    return { x: a.x + dx * t, y: a.y + dy * t, t };
+    let t2 = len2 ? ((p.x - a.x) * dx + (p.y - a.y) * dy) / len2 : 0;
+    t2 = Math.max(0, Math.min(1, t2));
+    return { x: a.x + dx * t2, y: a.y + dy * t2, t: t2 };
   }
   function segIntersect(a, b, c, d) {
     const rx2 = b.x - a.x, ry2 = b.y - a.y, sx = d.x - c.x, sy = d.y - c.y;
     const den = cross(rx2, ry2, sx, sy);
     if (Math.abs(den) < 1e-12) return null;
     const qx = c.x - a.x, qy = c.y - a.y;
-    const t = cross(qx, qy, sx, sy) / den;
+    const t2 = cross(qx, qy, sx, sy) / den;
     const u = cross(qx, qy, rx2, ry2) / den;
-    if (t < 0 || t > 1 || u < 0 || u > 1) return null;
-    return { x: a.x + rx2 * t, y: a.y + ry2 * t, t, u };
+    if (t2 < 0 || t2 > 1 || u < 0 || u > 1) return null;
+    return { x: a.x + rx2 * t2, y: a.y + ry2 * t2, t: t2, u };
   }
   function polygonArea(pts) {
     let s = 0;
@@ -876,7 +1582,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       if (x) ts.push(x.t);
     }
     ts.sort((p, q) => p - q);
-    const at = (t) => ({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
+    const at = (t2) => ({ x: a.x + (b.x - a.x) * t2, y: a.y + (b.y - a.y) * t2 });
     const out = [];
     let start = null, end = 0;
     for (let i = 0; i + 1 < ts.length; i++) {
@@ -905,10 +1611,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       const den = cross(dir.x, dir.y, ex, ey);
       if (Math.abs(den) < 1e-12) continue;
       const qx = a.x - p.x, qy = a.y - p.y;
-      const t = cross(qx, qy, ex, ey) / den, u = cross(qx, qy, dir.x, dir.y) / den;
+      const t2 = cross(qx, qy, ex, ey) / den, u = cross(qx, qy, dir.x, dir.y) / den;
       if (u < -1e-9 || u > 1 + 1e-9) continue;
-      if (t > 1e-9 && t < tmax) tmax = t;
-      if (t < -1e-9 && t > tmin) tmin = t;
+      if (t2 > 1e-9 && t2 < tmax) tmax = t2;
+      if (t2 < -1e-9 && t2 > tmin) tmin = t2;
     }
     if (!Number.isFinite(tmin) || !Number.isFinite(tmax)) return null;
     return { a: { x: p.x + dir.x * tmin, y: p.y + dir.y * tmin }, b: { x: p.x + dir.x * tmax, y: p.y + dir.y * tmax } };
@@ -955,7 +1661,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     } catch {
       return;
     }
-    if (Array.isArray(o.palette) && !o.palettes) o.palettes = { "My palette": o.palette };
+    if (Array.isArray(o.palette) && !o.palettes) o.palettes = { [t("My palette")]: o.palette };
     if ("ngonFill" in o && !("newFill" in o)) o.newFill = o.ngonFill;
     for (const k of PREF_KEYS) {
       if (!(k in o)) continue;
@@ -963,7 +1669,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       else if (["pattern", "sym", "grout"].includes(k)) Object.assign(state[k], o[k]);
       else state[k] = o[k];
     }
-    if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || "My palette";
+    if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || t("My palette");
   }
   function colorCounts() {
     const m = /* @__PURE__ */ new Map();
@@ -988,8 +1694,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     state,
     save: savePrefs,
     counts: colorCounts,
-    usage: (n2) => `${n2} area${n2 > 1 ? "s" : ""}`,
-    names: { fill: "fill", stroke: "stroke", none: "No color – the bucket erases with it" },
+    usage: (n2) => t("{n} {n|area|areas}", { n: n2 }),
+    names: { fill: t("fill"), stroke: t("stroke"), none: t("No color – the bucket erases with it") },
     docColors() {
       const cols = [];
       for (const el of allShapes()) {
@@ -1026,7 +1732,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       }
       if (!n2) return null;
       commit(true);
-      return `Recolored ${n2} element${n2 > 1 ? "s" : ""}.`;
+      return t("Recolored {n} {n|element|elements}.", { n: n2 });
     },
     // Shift+click is left to add-on modules (the color mix)
     shiftClick: (c, e) => emit("swatch-shift", c, e),
@@ -1069,7 +1775,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     applyGrout();
     savePrefs();
     commit(true);
-    toast(`Applied the grout color and width to ${n2} lines.`);
+    toast(t("Applied the grout color and width to {n} {n|line|lines}.", { n: n2 }));
   }
 
   // src/core/photo.ts
@@ -1085,7 +1791,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     try {
       img = await loadImg(await readAsDataURL(file));
     } catch {
-      toast("Could not read that image.");
+      toast(t("Could not read that image."));
       return;
     }
     const k = Math.min(1, 2400 / Math.max(img.naturalWidth, img.naturalHeight));
@@ -1100,12 +1806,12 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     applyLayers();
     savePrefs();
     docChanged();
-    toast("Photo loaded and locked. Unlock it to move it with the Select tool.");
+    toast(t("Photo loaded and locked. Unlock it to move it with the Select tool."));
   }
   async function pastePhoto(file) {
-    if (refImage() && !confirm("Replace the photo to trace with the pasted image?")) return;
+    if (refImage() && !confirm(t("Replace the photo to trace with the pasted image?"))) return;
     await loadPhoto(file);
-    if (refImage()) toast("The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles.");
+    if (refImage()) toast(t("The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles."));
   }
   function setPhoto(href, nw, nh) {
     refG.innerHTML = "";
@@ -1145,7 +1851,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   function renderPhotoUI() {
     const im = refImage();
     $("#ref-controls").hidden = !im;
-    $("#btn-ref-load").textContent = im ? "Replace photo…" : "Load photo…";
+    $("#btn-ref-load").textContent = im ? t("Replace photo…") : t("Load photo…");
     if (im) $("#ref-size").value = Math.round(+im.getAttribute("width") / (+im.dataset.nw * fitScale()) * 100);
     $("#ref-opacity").value = Math.round(state.refOpacity * 100);
   }
@@ -1239,7 +1945,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const out = [];
     for (const g of groups.values()) {
       g.list.sort((a, b) => a[0] - b[0]);
-      const pt = (t) => ({ x: g.dx * t - g.dy * g.off, y: g.dy * t + g.dx * g.off });
+      const pt = (t2) => ({ x: g.dx * t2 - g.dy * g.off, y: g.dy * t2 + g.dx * g.off });
       let [c0, c1] = g.list[0];
       for (let i = 1; i <= g.list.length; i++) {
         const iv = g.list[i];
@@ -1357,8 +2063,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const edgeKey = (i, j, e) => e === 0 ? `h${i},${j}` : e === 2 ? `h${i},${j + 1}` : e === 3 ? `v${i},${j}` : `v${i + 1},${j}`;
     const edgePoint = (i, j, e) => {
       const [ax, ay, bx, by] = e === 0 ? [i, j, i + 1, j] : e === 1 ? [i + 1, j, i + 1, j + 1] : e === 2 ? [i, j + 1, i + 1, j + 1] : [i, j, i, j + 1];
-      const va = at(ax, ay), vb = at(bx, by), t = (level - va) / (vb - va);
-      return { x: ax + (bx - ax) * t, y: ay + (by - ay) * t };
+      const va = at(ax, ay), vb = at(bx, by), t2 = (level - va) / (vb - va);
+      return { x: ax + (bx - ax) * t2, y: ay + (by - ay) * t2 };
     };
     const add = (k1, k2) => {
       (link.get(k1) || link.set(k1, []).get(k1)).push(k2);
@@ -1426,8 +2132,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     while (out.length < n2 && i < loop.length) {
       const a = loop[i], b = loop[(i + 1) % loop.length], s = dist(a, b);
       if (acc + s >= target2) {
-        const t = (target2 - acc) / s;
-        out.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
+        const t2 = (target2 - acc) / s;
+        out.push({ x: a.x + (b.x - a.x) * t2, y: a.y + (b.y - a.y) * t2 });
         target2 += step;
       } else {
         acc += s;
@@ -1585,12 +2291,12 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         d = `M${x - s} ${y}H${x + s}M${x} ${y - s}V${y + s}`;
     }
     mk("path", { d, class: "snap-mark" }, snapG);
-    const t = mk("text", { x: x + s * 1.6, y: y - s * 1.2, class: "snap-label", "font-size": px(11) }, snapG);
-    t.textContent = SNAP_LABEL[r.kind];
+    const t2 = mk("text", { x: x + s * 1.6, y: y - s * 1.2, class: "snap-label", "font-size": px(11) }, snapG);
+    t2.textContent = SNAP_LABEL[r.kind];
   }
   function drawMeasure(p, text) {
-    const t = mk("text", { x: p.x + px(14), y: p.y + px(22), class: "measure", "font-size": px(11.5) }, previewG);
-    t.textContent = text;
+    const t2 = mk("text", { x: p.x + px(14), y: p.y + px(22), class: "measure", "font-size": px(11.5) }, previewG);
+    t2.textContent = text;
   }
 
   // src/core/tools.ts
@@ -1611,9 +2317,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   function addNgons(s) {
     const seen = /* @__PURE__ */ new Set();
-    symTransforms().forEach((t, k) => {
-      const c = t({ x: s.cx, y: s.cy }), v0 = t(s.pts[0]);
-      const key = ptKey(c) + "|" + s.pts.map(t).map(ptKey).sort().join(" ");
+    symTransforms().forEach((t2, k) => {
+      const c = t2({ x: s.cx, y: s.cy }), v0 = t2(s.pts[0]);
+      const key = ptKey(c) + "|" + s.pts.map(t2).map(ptKey).sort().join(" ");
       if (seen.has(key)) return;
       seen.add(key);
       const rot = Math.atan2(v0.y - c.y, v0.x - c.x) * 180 / Math.PI;
@@ -1642,7 +2348,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   function updateStageActions() {
     $("#stage-actions").hidden = !(state.lineStart || state.freePts);
     $("#sa-back").hidden = !state.freePts;
-    $("#sa-finish").textContent = state.freePts ? "Close shape" : "Done";
+    $("#sa-finish").textContent = state.freePts ? t("Close shape") : t("Done");
   }
   function finishLine(a, b) {
     if (dist(a, b) > px(1)) {
@@ -1805,8 +2511,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   };
   function knifeCuts(a) {
     const out = [], seen = /* @__PURE__ */ new Set();
-    for (const t of symTransforms()) {
-      const A = t(a.a), B = t(a.b), dir = { x: B.x - A.x, y: B.y - A.y };
+    for (const t2 of symTransforms()) {
+      const A = t2(a.a), B = t2(a.b), dir = { x: B.x - A.x, y: B.y - A.y };
       if (Math.hypot(dir.x, dir.y) < 1e-9) continue;
       const f = a.ix.locate(A);
       if (!f) continue;
@@ -1825,7 +2531,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       state.action = { type: "knife", a: raw, b: raw, ix: regionIndex2(), sx: e.clientX, sy: e.clientY, moved: false, cuts: [] };
       if (!state.action.ix.locate(raw)) {
         state.action = null;
-        toast("Start the cut inside a closed area.");
+        toast(t("Start the cut inside a closed area."));
         showGaps();
       }
     },
@@ -1854,7 +2560,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     if (p) {
       const ix = regionIndex2(), f = ix.locate(p);
       if (!f) {
-        toast("Click inside a closed area (or use “Fill whole page”).");
+        toast(t("Click inside a closed area (or use “Fill whole page”)."));
         showGaps();
         return;
       }
@@ -1879,34 +2585,34 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       eps
     });
     if (res.error) {
-      toast(`That would be about ${res.estimate} tiles – make the tile size bigger.`);
+      toast(t("That would be about {n} tiles – make the tile size bigger.", { n: res.estimate }));
       return;
     }
     const segs = res.segments;
     if (!segs.length) {
-      toast("The tiles are bigger than this area.");
+      toast(t("The tiles are bigger than this area."));
       return;
     }
-    if (segs.length > 3e3 && !confirm(`This adds ${segs.length} lines, which may make editing slow. Continue?`)) return;
+    if (segs.length > 3e3 && !confirm(t("This adds {n} lines, which may make editing slow. Continue?", { n: segs.length }))) return;
     addLineSegments(segs);
     commitGeometry();
-    toast(`Added a ${TYPES.find((t) => t[0] === P.type)[1].toLowerCase()} pattern (${segs.length} lines).`);
+    toast(t("Added the pattern “{type}” ({n} {n|line|lines}).", { type: t(TYPES.find((p2) => p2[0] === P.type)[1]), n: segs.length }));
   }
   function applyRows(region, P) {
     const span = Math.max(region.bb.x1 - region.bb.x0, region.bb.y1 - region.bb.y0);
     if (P.size * 2 > span) {
-      toast("The rows are wider than this area – use a smaller size.");
+      toast(t("The rows are wider than this area – use a smaller size."));
       return;
     }
     const { loops, cuts } = build2({ rings: [region.outer, ...region.holes], width: P.size, length: P.size, rows: P.rows || 0 });
     if (!loops.length) {
-      toast("This area is too narrow for a row of that width.");
+      toast(t("This area is too narrow for a row of that width."));
       return;
     }
     for (const l of loops) mk("polygon", { points: ptsStr(l), fill: "none", ...shapeStyle() }, shapesG);
     addLineSegments(cuts);
     commitGeometry();
-    toast(`Added ${loops.length} row line${loops.length === 1 ? "" : "s"} and ${cuts.length} cuts following the outline.`);
+    toast(t("Added {rows} {rows|row line|row lines} and {cuts} {cuts|cut|cuts} following the outline.", { rows: loops.length, cuts: cuts.length }));
   }
   var patternTool = {
     // applied on release, so a pinch / drag that starts here doesn't add a pattern
@@ -1926,8 +2632,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     fillChooser = fn;
   }
   function paintPoints(p, ctx2) {
-    for (const t of symTransforms()) {
-      const q = t(p), f = ctx2.ix.locate(q);
+    for (const t2 of symTransforms()) {
+      const q = t2(p), f = ctx2.ix.locate(q);
       if (f && ctx2.done.has(f)) continue;
       if (f) ctx2.done.add(f);
       const r = bucketAt(q, fillChooser ? fillChooser(q, f, ctx2) : state.fill, ctx2, f);
@@ -1942,7 +2648,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         return;
       }
       if (!editable("fills")) {
-        toast("Painted areas are locked or hidden (see Layers).");
+        toast(t("Painted areas are locked or hidden (see Layers)."));
         return;
       }
       const ctx2 = paintCtx();
@@ -1951,7 +2657,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       state.action = { type: "paint", ctx: ctx2 };
       if (!ctx2.found) {
         const n2 = showGaps();
-        toast(n2 ? "No closed area here. The red circles show line ends that don’t touch anything." : "No closed area here – make sure the lines meet.");
+        toast(n2 ? t("No closed area here. The red circles show line ends that don’t touch anything.") : t("No closed area here – make sure the lines meet."));
       }
     },
     move(e, raw) {
@@ -1983,8 +2689,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         }
         const targets = state.link && !e.altKey ? verticesAt(h) : [{ el: h.el, idx: h.idx }];
         if (!targets.length) targets.push({ el: h.el, idx: h.idx });
-        for (const t of targets) t.inv = elMatrix(t.el).inverse();
-        state.action = { ...base, type: "vertex", targets, exclude: new Set(targets.map((t) => t.el)) };
+        for (const t2 of targets) t2.inv = elMatrix(t2.el).inverse();
+        state.action = { ...base, type: "vertex", targets, exclude: new Set(targets.map((t2) => t2.el)) };
         return;
       }
       const hit = hitTest(raw);
@@ -2030,7 +2736,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       a.moved = true;
       if (a.type === "vertex") {
         const p = resolvePoint(e, raw, { exclude: a.exclude });
-        for (const t of a.targets) setVertex(t.el, t.idx, applyM(t.inv, p));
+        for (const t2 of a.targets) setVertex(t2.el, t2.idx, applyM(t2.inv, p));
         renderSelection();
       } else if (a.type === "ngon-resize") {
         const p = resolvePoint(e, raw, { exclude: a.exclude });
@@ -2071,7 +2777,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       snapG.innerHTML = "";
       if (!a || !a.moved) return;
       if (a.type === "vertex") {
-        for (const t of a.targets) t.el.removeAttribute("data-ngon");
+        for (const t2 of a.targets) t2.el.removeAttribute("data-ngon");
         commitGeometry();
       } else if (a.type === "ngon-resize") commitGeometry();
       else if (a.type === "move") commitFor(a.caps.map((c) => c.el));
@@ -2102,27 +2808,27 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     } }
   };
   var HINTS = {
-    select: "Click to select (Shift adds) · drag to move – the nearest corner snaps · drag handles to edit; shared corners move together (Alt detaches) · yellow handles resize a polygon",
-    line: "Click–click or drag · ends snap to points and onto other lines · Shift: 15° steps · Alt: no snap · Esc: stop",
-    free: "Click corner by corner · click the first corner, double-click or press Enter to close · Backspace removes the last corner · Esc cancels",
-    ngon: "Drag from the center (or along an edge in “From edge” mode) · click = last size · Shift: 15° rotation · Ctrl: flip side · keys 3–9: sides",
-    knife: "Drag across a tile to cut it straight through, edge to edge · Shift: 15° steps",
-    pattern: "Click inside a closed area to fill it with the chosen pattern",
-    bucket: "Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color",
-    pan: "Drag to pan · mouse wheel zooms"
+    select: t("Click to select (Shift adds) · drag to move – the nearest corner snaps · drag handles to edit; shared corners move together (Alt detaches) · yellow handles resize a polygon"),
+    line: t("Click–click or drag · ends snap to points and onto other lines · Shift: 15° steps · Alt: no snap · Esc: stop"),
+    free: t("Click corner by corner · click the first corner, double-click or press Enter to close · Backspace removes the last corner · Esc cancels"),
+    ngon: t("Drag from the center (or along an edge in “From edge” mode) · click = last size · Shift: 15° rotation · Ctrl: flip side · keys 3–9: sides"),
+    knife: t("Drag across a tile to cut it straight through, edge to edge · Shift: 15° steps"),
+    pattern: t("Click inside a closed area to fill it with the chosen pattern"),
+    bucket: t("Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color"),
+    pan: t("Drag to pan · mouse wheel zooms")
   };
   function registerTool(name, handlers2, hint) {
     tools[name] = handlers2;
     HINTS[name] = hint;
   }
-  function setTool(t) {
-    if (EXPERT_TOOLS.has(t) && state.mode !== "expert") t = "select";
+  function setTool(tool) {
+    if (EXPERT_TOOLS.has(tool) && state.mode !== "expert") tool = "select";
     cancelPending();
-    state.tool = t;
-    stage.dataset.tool = t;
-    for (const b of $$("#tools button")) b.classList.toggle("active", b.dataset.tool === t);
-    for (const s of $$(".tool-opts")) s.hidden = s.dataset.for !== t;
-    $("#st-hint").textContent = HINTS[t];
+    state.tool = tool;
+    stage.dataset.tool = tool;
+    for (const b of $$("#tools button")) b.classList.toggle("active", b.dataset.tool === tool);
+    for (const s of $$(".tool-opts")) s.hidden = s.dataset.for !== tool;
+    $("#st-hint").textContent = HINTS[tool];
   }
 
   // src/core/files.ts
@@ -2175,7 +2881,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const xml = new DOMParser().parseFromString(text, "image/svg+xml");
     const root = xml.documentElement;
     if (!root || root.localName !== "svg" || xml.getElementsByTagName("parsererror").length) {
-      if (!opts3.quiet) toast("Could not read this file as SVG.");
+      if (!opts3.quiet) toast(t("Could not read this file as SVG."));
       return false;
     }
     sanitize(root);
@@ -2264,13 +2970,13 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       switchPalette(existing);
       return;
     }
-    const n2 = uniqueName((name || "From file").replace(/\.svg$/i, ""));
+    const n2 = uniqueName((name || t("From file")).replace(/\.svg$/i, ""));
     state.palettes[n2] = colors;
     switchPalette(n2);
-    toast(`The file’s colors were added as the palette “${n2}”.`);
+    toast(t("The file’s colors were added as the palette “{name}”.", { name: n2 }));
   }
   function confirmDiscard() {
-    return !rt.dirty || confirm("Discard unsaved changes to the current drawing?\n(A copy is kept in History.)");
+    return !rt.dirty || confirm(t("Discard unsaved changes to the current drawing?\n(A copy is kept in History.)"));
   }
   var SVG_TYPES = [{ description: "SVG image", accept: { "image/svg+xml": [".svg"] } }];
   async function openFile() {
@@ -2289,13 +2995,13 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     $("#file-input").click();
   }
   async function openText(text, name) {
-    if (hasContent()) await saveVersion("Before opening " + name);
+    if (hasContent()) await saveVersion(t("Before opening {name}", { name }));
     if (!loadSVGText(text, { name })) return false;
     rt.fileHandle = null;
     rt.fileName = name;
     updateTitle();
     scheduleAutosave();
-    toast("Opened " + name);
+    toast(t("Opened {name}", { name }));
     return true;
   }
   async function loadFile(f) {
@@ -2313,7 +3019,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         rt.dirty = false;
         updateTitle();
         scheduleAutosave();
-        toast("Saved " + rt.fileName);
+        toast(t("Saved {name}", { name: rt.fileName }));
         return;
       } catch (err) {
         if (err.name === "AbortError") return;
@@ -2321,7 +3027,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       }
     }
     if (as) {
-      const n2 = prompt("File name:", rt.fileName);
+      const n2 = prompt(t("File name:"), rt.fileName);
       if (!n2) return;
       rt.fileName = /\.svg$/i.test(n2) ? n2 : n2 + ".svg";
     }
@@ -2332,11 +3038,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   function exportPNG() {
     const d = state.doc;
     const def = unit() === "px" ? Math.max(d.w, 2e3) : 3e3;
-    const ans = prompt("PNG width in pixels:", String(Math.round(def)));
+    const ans = prompt(t("PNG width in pixels:"), String(Math.round(def)));
     if (!ans) return;
     const W = Math.round(+ans);
     if (!(W > 0 && W <= 16e3)) {
-      toast("Invalid width.");
+      toast(t("Invalid width."));
       return;
     }
     const H = Math.max(1, Math.round(W * d.h / d.w));
@@ -2348,11 +3054,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       c.height = H;
       c.getContext("2d").drawImage(img, 0, 0, W, H);
       URL.revokeObjectURL(url);
-      c.toBlob((b) => b ? download(b, rt.fileName.replace(/\.svg$/i, "") + ".png") : toast("PNG export failed."), "image/png");
+      c.toBlob((b) => b ? download(b, rt.fileName.replace(/\.svg$/i, "") + ".png") : toast(t("PNG export failed.")), "image/png");
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      toast("PNG export failed.");
+      toast(t("PNG export failed."));
     };
     img.src = url;
   }
@@ -2378,7 +3084,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   async function newDoc() {
     if (!confirmDiscard()) return;
-    if (hasContent()) await saveVersion("Before starting a new drawing");
+    if (hasContent()) await saveVersion(t("Before starting a new drawing"));
     resetDoc(true);
   }
   function clearDrawing() {
@@ -2420,7 +3126,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     history2.splice(hIndex + 1);
     history2.push(snapshot());
     const size = (s) => s.fills.length + s.shapes.length + s.defs.length;
-    let total = history2.reduce((t, s) => t + size(s), 0) * 2;
+    let total = history2.reduce((t2, s) => t2 + size(s), 0) * 2;
     while (history2.length > 2 && (history2.length > 200 || total > 6e7)) total -= size(history2.shift()) * 2;
     hIndex = history2.length - 1;
     rt.dirty = true;
@@ -2494,9 +3200,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     try {
       await Store.set("current", { svg: svgText, fileName: rt.fileName, time: Date.now() });
     } catch {
-      if (!lsSet("mz-autosave", svgText)) toast("Autosave failed – remember to save your file.");
+      if (!lsSet("mz-autosave", svgText)) toast(t("Autosave failed – remember to save your file."));
     }
-    if (hasContent() && Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion("Autosave");
+    if (hasContent() && Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion(t("Autosave"));
   }
   async function saveVersion(note) {
     lastVersionAt = Date.now();
@@ -2509,14 +3215,14 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }
   }
   async function restoreVersion(rec) {
-    if (hasContent()) await saveVersion("Before restoring an older version");
+    if (hasContent()) await saveVersion(t("Before restoring an older version"));
     if (loadSVGText(rec.svg, { restore: true })) {
       rt.fileName = rec.name || "mosaic.svg";
       rt.fileHandle = null;
       rt.dirty = true;
       updateTitle();
       scheduleAutosave();
-      toast("Restored the version from " + new Date(rec.time).toLocaleString());
+      toast(t("Restored the version from {time}", { time: new Date(rec.time).toLocaleString(lang) }));
     }
   }
 
@@ -2746,16 +3452,16 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     else commitGeometry();
   }
   function eyedrop(p) {
-    for (const t of shapesAt(p)) {
-      if (!insideEl(t, p)) continue;
-      const c = fillOf(t);
+    for (const el of shapesAt(p)) {
+      if (!insideEl(el, p)) continue;
+      const c = fillOf(el);
       if (c) {
         setFill(c, false);
-        toast(`Picked ${c}${state.palette.includes(c) ? "" : " (not in the palette – add it with “From drawing”)"}`);
+        toast(state.palette.includes(c) ? t("Picked {c}.", { c }) : t("Picked {c} (not in the palette – add it with “From drawing”).", { c }));
         return;
       }
     }
-    toast("No painted area under the cursor.");
+    toast(t("No painted area under the cursor."));
   }
   function neighbourColors(reg) {
     const out = /* @__PURE__ */ new Set(), d = eps * 50;
@@ -2778,11 +3484,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const tol = px(rt.hitPx), list = shapesAt(p, tol + Math.max(state.doc.w, state.doc.h) / 100).filter(selectable);
     for (const el of list) {
       if (isFill(el)) continue;
-      const g = geomOf(el), b = g.bbox, t = Math.max(tol, strokeW(el) / 2);
-      if (p.x < b.x0 - t || p.x > b.x1 + t || p.y < b.y0 - t || p.y > b.y1 + t) continue;
+      const g = geomOf(el), b = g.bbox, t2 = Math.max(tol, strokeW(el) / 2);
+      if (p.x < b.x0 - t2 || p.x > b.x1 + t2 || p.y < b.y0 - t2 || p.y > b.y1 + t2) continue;
       for (const pl of g.polys) {
         const n2 = pl.pts.length, m = pl.closed ? n2 : n2 - 1;
-        for (let i = 0; i < m; i++) if (dist(p, project(p, pl.pts[i], pl.pts[(i + 1) % n2])) <= t) return el;
+        for (let i = 0; i < m; i++) if (dist(p, project(p, pl.pts[i], pl.pts[(i + 1) % n2])) <= t2) return el;
       }
     }
     for (const el of list) if ((isFill(el) || hasFill(el)) && insideEl(el, p)) return el;
@@ -2995,7 +3701,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   function canDraw() {
     if (editable("shapes")) return true;
-    toast("The lines layer is locked or hidden (see Layers).");
+    toast(t("The lines layer is locked or hidden (see Layers)."));
     return false;
   }
   var symOn = () => state.mode === "expert" && state.sym.type !== "none";
@@ -3026,8 +3732,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   var ptKey = (p) => Math.round(p.x / (eps * 10)) + "," + Math.round(p.y / (eps * 10));
   function symCopies(pts) {
     const seen = /* @__PURE__ */ new Set(), out = [];
-    for (const t of symTransforms()) {
-      const q = pts.map(t), key = q.map(ptKey).sort().join(" ");
+    for (const t2 of symTransforms()) {
+      const q = pts.map(t2), key = q.map(ptKey).sort().join(" ");
       if (seen.has(key)) continue;
       seen.add(key);
       out.push(q);
@@ -3159,12 +3865,12 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   function computeGeom(el) {
     const tag = el.tagName;
-    const num2 = (n2) => parseFloat(el.getAttribute(n2)) || 0;
+    const num3 = (n2) => parseFloat(el.getAttribute(n2)) || 0;
     let polys = [];
-    if (tag === "line") polys = [{ pts: [{ x: num2("x1"), y: num2("y1") }, { x: num2("x2"), y: num2("y2") }], closed: false }];
+    if (tag === "line") polys = [{ pts: [{ x: num3("x1"), y: num3("y1") }, { x: num3("x2"), y: num3("y2") }], closed: false }];
     else if (tag === "polyline" || tag === "polygon") polys = [{ pts: parsePoints(el.getAttribute("points")), closed: tag === "polygon" }];
     else if (tag === "rect") {
-      const x = num2("x"), y = num2("y"), w = num2("width"), h = num2("height");
+      const x = num3("x"), y = num3("y"), w = num3("width"), h = num3("height");
       if (w > 0 && h > 0) polys = [{ pts: [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }], closed: true }];
     } else if (tag === "path") polys = linearPath(el.getAttribute("d") || "") || samplePath(el, false);
     else polys = samplePath(el, true);
@@ -3178,8 +3884,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     if (!toks) return [];
     const polys = [];
     let i = 0, cmd = null, x = 0, y = 0, sx = 0, sy = 0, cur = null;
-    const isCmd = (t) => /^[a-z]$/i.test(t);
-    const num2 = () => {
+    const isCmd = (t2) => /^[a-z]$/i.test(t2);
+    const num3 = () => {
       const v = parseFloat(toks[i++]);
       if (!Number.isFinite(v)) throw 0;
       return v;
@@ -3205,7 +3911,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         }
         if (i >= toks.length || isCmd(toks[i])) return null;
         if (C === "M") {
-          let nx = num2(), ny = num2();
+          let nx = num3(), ny = num3();
           if (rel) {
             nx += x;
             ny += y;
@@ -3216,7 +3922,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
           polys.push(cur);
           cmd = rel ? "l" : "L";
         } else if (C === "L") {
-          let nx = num2(), ny = num2();
+          let nx = num3(), ny = num3();
           if (rel) {
             nx += x;
             ny += y;
@@ -3225,11 +3931,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
           y = ny;
           push();
         } else if (C === "H") {
-          const v = num2();
+          const v = num3();
           x = rel ? x + v : v;
           push();
         } else if (C === "V") {
-          const v = num2();
+          const v = num3();
           y = rel ? y + v : v;
           push();
         } else return null;
@@ -3430,7 +4136,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     for (const [v, label] of TYPES) {
       const o = document.createElement("option");
       o.value = v;
-      o.textContent = label;
+      o.textContent = t(label);
       pt.append(o);
     }
     pt.value = state.pattern.type;
@@ -3495,7 +4201,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     $("#btn-sym-center").onclick = () => {
       state.pickCenter = !state.pickCenter;
       $("#btn-sym-center").classList.toggle("active", state.pickCenter);
-      if (state.pickCenter) toast("Click on the canvas to place the symmetry center.");
+      if (state.pickCenter) toast(t("Click on the canvas to place the symmetry center."));
     };
     $("#btn-sym-reset").onclick = () => {
       state.sym.cx = state.sym.cy = null;
@@ -3533,7 +4239,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       state.layers.ref.locked = e.target.checked;
       savePrefs();
       applyLayers();
-      if (!e.target.checked) toast("Photo unlocked: drag it with the Select tool (where there are no shapes).");
+      if (!e.target.checked) toast(t("Photo unlocked: drag it with the Select tool (where there are no shapes)."));
     };
     $("#ref-size").onchange = (e) => setPhotoSize(clamp(+e.target.value || 100, 5, 1e3));
     $("#btn-ref-fit").onclick = () => {
@@ -3541,7 +4247,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       docChanged();
     };
     $("#btn-ref-remove").onclick = () => {
-      if (confirm("Remove the tracing photo?")) {
+      if (confirm(t("Remove the tracing photo?"))) {
         setPhoto(null);
         docChanged();
       }
@@ -3594,7 +4300,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     $("#btn-doc-size").onclick = () => {
       const w = parseFloat($("#doc-w").value), h = parseFloat($("#doc-h").value);
       if (!(w > 0 && h > 0)) {
-        toast("Invalid page size.");
+        toast(t("Invalid page size."));
         return;
       }
       state.doc.w = w;
@@ -3607,7 +4313,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       state.doc.unit = e.target.value;
       applyDoc();
       commit();
-      toast(`1 drawing unit = 1 ${unit()}. Set the page size to the real size of your mosaic.`);
+      toast(t("1 drawing unit = 1 {unit}. Set the page size to the real size of your mosaic.", { unit: unit() }));
     };
     $("#doc-bg").onchange = () => {
       state.doc.bg = $("#doc-bg").value;
@@ -3747,7 +4453,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         $("#btn-sym-center").classList.remove("active");
         savePrefs();
         drawGuides();
-        toast("Symmetry center set.");
+        toast(t("Symmetry center set."));
         return;
       }
       if (e.button === 1 || state.space || state.tool === "pan") {
@@ -3880,7 +4586,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         state.snap = !state.snap;
         $("#opt-snap").checked = state.snap;
         savePrefs();
-        toast("Snapping " + (state.snap ? "on" : "off"));
+        toast(state.snap ? t("Snapping on") : t("Snapping off"));
         break;
       case "enter":
         if (state.freePts) finishFree();
@@ -3960,7 +4666,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         return;
       }
       if (!text) return;
-      if (!pasteColors(text)) toast("The clipboard has no color codes.");
+      if (!pasteColors(text)) toast(t("The clipboard has no color codes."));
     });
     stage.addEventListener("dragover", (e) => {
       e.preventDefault();
@@ -4090,9 +4796,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     let a = seed >>> 0 || 1;
     return () => {
       a = a + 1831565813 | 0;
-      let t = Math.imul(a ^ a >>> 15, 1 | a);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      let t2 = Math.imul(a ^ a >>> 15, 1 | a);
+      t2 = t2 + Math.imul(t2 ^ t2 >>> 7, 61 | t2) ^ t2;
+      return ((t2 ^ t2 >>> 14) >>> 0) / 4294967296;
     };
   }
   var rect2 = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
@@ -4117,8 +4823,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       const a = poly[i], b = poly[(i + 1) % n2], fa = f(a), fb = f(b);
       if (fa <= 0) out.push(a);
       if (fa < 0 && fb > 0 || fa > 0 && fb < 0) {
-        const t = fa / (fa - fb);
-        out.push({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
+        const t2 = fa / (fa - fb);
+        out.push({ x: a.x + (b.x - a.x) * t2, y: a.y + (b.y - a.y) * t2 });
       }
     }
     return out;
@@ -4287,12 +4993,12 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     async function colorTiles({ onlyUnpainted = true, commit: commit2 = true, quiet = false } = {}) {
       const px2 = await pixels();
       if (!px2) {
-        MZ.toast("Load a photo first (Photo section).");
+        MZ.toast(t("Load a photo first (Photo section)."));
         return null;
       }
       const pal = MZ.state.palette;
       if (!pal.length) {
-        MZ.toast("The palette is empty – add colors first.");
+        MZ.toast(t("The palette is empty – add colors first."));
         return null;
       }
       const labs = pal.map((c) => toLab(toRgb(c)));
@@ -4315,7 +5021,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       }
       if (commit2 && painted) MZ.commit(true);
       if (!quiet) {
-        MZ.toast(`Colored ${painted} area${painted === 1 ? "" : "s"} with the closest palette colors` + (skipped ? ` · ${skipped} already painted (left as they were)` : "") + (outside ? ` · ${outside} outside the photo` : "") + ".");
+        MZ.toast(t("Colored {n} {n|area|areas} with the closest palette colors", { n: painted }) + (skipped ? " · " + t("{n} already painted (left as they were)", { n: skipped }) : "") + (outside ? " · " + t("{n} outside the photo", { n: outside }) : "") + ".");
       }
       return { painted, skipped, outside };
     }
@@ -4323,15 +5029,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   })();
 
   // src/features/vision.ts
-  var Vision = /* @__PURE__ */ (() => {
+  var Vision = (() => {
     const $10 = (s) => document.querySelector(s);
     const NS = "http://www.w3.org/2000/svg";
     const VIEWS = [
-      ["none", "Normal colors"],
-      ["gray", "Black & white"],
-      ["protan", "Red-blind (protanopia)"],
-      ["deutan", "Green-blind (deuteranopia)"],
-      ["tritan", "Blue-blind (tritanopia)"]
+      ["none", t("Normal colors")],
+      ["gray", t("Black & white")],
+      ["protan", t("Red-blind (protanopia)")],
+      ["deutan", t("Green-blind (deuteranopia)")],
+      ["tritan", t("Blue-blind (tritanopia)")]
     ];
     const ALIKE = 10;
     let view = "none", marking = false;
@@ -4339,22 +5045,22 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       const out = [];
       for (let i = 0; i < colors.length; i++) for (let j = i + 1; j < colors.length; j++) {
         const a = colors[i], b = colors[j];
-        const seen = VIEWS.filter(([t]) => deltaE(simulate(a, t), simulate(b, t)) < ALIKE).map(([t]) => t);
+        const seen = VIEWS.filter(([t2]) => deltaE(simulate(a, t2), simulate(b, t2)) < ALIKE).map(([t2]) => t2);
         if (seen.length) out.push({ a, b, views: seen, d: deltaE(a, b) });
       }
       return out;
     }
     function describe2(views) {
-      if (views.includes("none")) return "look almost the same";
-      const who = { gray: "in black & white", protan: "for red-blind viewers", deutan: "for green-blind viewers", tritan: "for blue-blind viewers" };
-      return "look alike " + views.map((v) => who[v]).join(", ");
+      if (views.includes("none")) return t("look almost the same");
+      const who = { gray: t("in black & white"), protan: t("for red-blind viewers"), deutan: t("for green-blind viewers"), tritan: t("for blue-blind viewers") };
+      return t("look alike {who}", { who: views.map((v) => who[v]).join(", ") });
     }
     function buildFilters() {
       const defs = $10("#mz-uidefs");
-      for (const [t] of VIEWS) {
-        if (t === "none") continue;
-        const m = VISION[t], f = document.createElementNS(NS, "filter"), c = document.createElementNS(NS, "feColorMatrix");
-        f.id = "mz-vision-" + t;
+      for (const [t2] of VIEWS) {
+        if (t2 === "none") continue;
+        const m = VISION[t2], f = document.createElementNS(NS, "filter"), c = document.createElementNS(NS, "feColorMatrix");
+        f.id = "mz-vision-" + t2;
         f.setAttribute("color-interpolation-filters", "linearRGB");
         c.setAttribute("type", "matrix");
         c.setAttribute("values", `${m[0]} ${m[1]} ${m[2]} 0 0  ${m[3]} ${m[4]} ${m[5]} 0 0  ${m[6]} ${m[7]} ${m[8]} 0 0  0 0 0 1 0`);
@@ -4363,7 +5069,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       }
     }
     function setView(v) {
-      view = VIEWS.some(([t]) => t === v) ? v : "none";
+      view = VIEWS.some(([t2]) => t2 === v) ? v : "none";
       const f = view === "none" ? null : `url(#mz-vision-${view})`;
       for (const id of ["#mz-doc", "#mz-page", "#mz-ref"]) {
         const el = $10(id);
@@ -4399,7 +5105,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       marking = on2;
       $10("#btn-contrast").classList.toggle("active", on2);
       const n2 = markLowContrast();
-      if (on2) MZ.toast(n2 ? `${n2} tile${n2 === 1 ? "" : "s"} blend into a neighbour of another color${view === "none" ? "" : " (in this view)"}.` : "No tile blends into its neighbours.");
+      if (on2) MZ.toast(n2 ? view === "none" ? t("{n} {n|tile blends|tiles blend} into a neighbour of another color.", { n: n2 }) : t("{n} {n|tile blends|tiles blend} into a neighbour of another color (in this view).", { n: n2 }) : t("No tile blends into its neighbours."));
     }
     function init() {
       buildFilters();
@@ -4483,23 +5189,23 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const expert = state2.mode === "expert";
     const tiles = rows.reduce((s, r) => s + r.tiles, 0);
     const free = unpaintedCount();
-    $2("#rep-summary").innerHTML = `<b>${tiles}</b> painted area${tiles === 1 ? "" : "s"} in <b>${rows.length}</b> color${rows.length === 1 ? "" : "s"}` + (free ? ` · <b>${free}</b> not painted yet` : " · everything is painted") + ` · page ${MZ.fmt(d.w)} × ${MZ.fmt(d.h)} ${u}`;
+    $2("#rep-summary").innerHTML = t("<b>{n}</b> painted {n|area|areas} in <b>{c}</b> {c|color|colors}", { n: tiles, c: rows.length }) + (free ? " · " + t("<b>{n}</b> not painted yet", { n: free }) : " · " + t("everything is painted")) + " · " + t("page {w} × {h} {unit}", { w: MZ.fmt(d.w), h: MZ.fmt(d.h), unit: u });
     const palOpts = state2.palette.map((c, i) => `<option value="${c}" style="background:${c}">#${i + 1} ${c}</option>`).join("");
-    $2("#rep-table").innerHTML = `<thead><tr><th>#</th><th></th><th>Color</th><th>Areas</th><th>Total area</th><th>Share</th>` + (expert ? `<th title="Pieces of the size set above, plus waste">Pieces to buy</th>` : "") + `<th>Replace with</th></tr></thead><tbody>` + rows.map((r) => `<tr><td>${r.n}</td><td><span class="mini" style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles}</td><td>${MZ.fmtArea(r.area)}</td><td>${r.share.toFixed(1)} %</td>` + (expert ? `<td>${r.pieces || "–"}</td>` : "") + `<td><select data-from="${r.c}"><option value="">—</option>${palOpts}<option value="none">Erase</option></select></td></tr>`).join("") + `</tbody>`;
-    if (!rows.length) $2("#rep-table").innerHTML = "<tbody><tr><td>Nothing is painted yet. Use the paint bucket, or “Color tiles from photo”.</td></tr></tbody>";
+    $2("#rep-table").innerHTML = `<thead><tr><th>#</th><th></th><th>${t("Color")}</th><th>${t("Areas")}</th><th>${t("Total area")}</th><th>${t("Share of area")}</th>` + (expert ? `<th title="${t("Pieces of the size set above, plus waste")}">${t("Pieces to buy")}</th>` : "") + `<th>${t("Replace with")}</th></tr></thead><tbody>` + rows.map((r) => `<tr><td>${r.n}</td><td><span class="mini" style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles}</td><td>${MZ.fmtArea(r.area)}</td><td>${r.share.toFixed(1)} %</td>` + (expert ? `<td>${r.pieces || "–"}</td>` : "") + `<td><select data-from="${r.c}"><option value="">—</option>${palOpts}<option value="none">${t("Erase")}</option></select></td></tr>`).join("") + `</tbody>`;
+    if (!rows.length) $2("#rep-table").innerHTML = `<tbody><tr><td>${t("Nothing is painted yet. Use the paint bucket, or “Color tiles from photo”.")}</td></tr></tbody>`;
     for (const s of document.querySelectorAll("#rep-table select")) {
       s.onchange = () => {
         if (!s.value) return;
         const to = s.value === "none" ? null : s.value;
         const n2 = MZ.replaceColor(s.dataset.from, to);
         MZ.commit(true);
-        MZ.toast(`${to ? "Recolored" : "Erased"} ${n2} area${n2 === 1 ? "" : "s"}.`);
+        MZ.toast(to ? t("Recolored {n} {n|area|areas}.", { n: n2 }) : t("Erased {n} {n|area|areas}.", { n: n2 }));
         renderReport();
       };
     }
     for (const el of document.querySelectorAll(".unit-label")) el.textContent = u;
     const alike = Vision.similarPairs(rows.map((r) => r.c));
-    $2("#rep-alike").innerHTML = alike.length ? "<h3>Colors that may look alike</h3><ul>" + alike.map((p) => `<li><span class="mini" style="background:${p.a}"></span> <span class="mini" style="background:${p.b}"></span> ${p.a} and ${p.b} ${esc(Vision.describe(p.views))}</li>`).join("") + "</ul>" : "";
+    $2("#rep-alike").innerHTML = alike.length ? `<h3>${t("Colors that may look alike")}</h3><ul>` + alike.map((p) => `<li><span class="mini" style="background:${p.a}"></span> <span class="mini" style="background:${p.b}"></span> ${esc(t("{a} and {b} {how}", { a: p.a, b: p.b, how: Vision.describe(p.views) }))}</li>`).join("") + "</ul>" : "";
   }
   function reportCSV() {
     const rows = reportRows(), u = MZ.unit();
@@ -4572,9 +5278,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
       const marks = shade.map((r) => `<rect x="${n(r[0])}" y="${n(r[1])}" width="${n(r[2])}" height="${n(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n(2 / k)} ${n(2 / k)}" stroke-width="${n(0.3 / k)}"/>`).join("");
-      const label = multi ? `${prefix}Sheet ${s.label} – row ${s.label.replace(/\d+$/, "")}, column ${s.col + 1} of ${L.cols} · blue strips are covered by the next sheet` : prefix + title;
+      const label = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title;
       return `<section class="sheet"><div class="label">${esc2(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(" ")}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
     });
+  }
+  function layoutInfo(L, mode) {
+    const o = t(L.orientation);
+    if (mode === "fit") return t("One {paper} sheet ({orientation}), at {pct} % of the real size.", { paper: L.paper.name, orientation: o, pct: Math.round(L.scale * 100) });
+    if (L.sheets.length === 1) return t("One {paper} sheet ({orientation}) at real size.", { paper: L.paper.name, orientation: o });
+    return t("{n} {paper} {n|sheet|sheets} ({orientation}, {rows} × {cols}, overlapping {overlap} mm) at real size.", { n: L.sheets.length, paper: L.paper.name, orientation: o, rows: L.rows, cols: L.cols, overlap: OVERLAP });
   }
   function overviewSection(box, k, A, rects, heading, extra = "") {
     const s = Math.min(A.aw / (box.w * k), (A.ah - 20) / (box.h * k));
@@ -4613,7 +5325,7 @@ ${sections.join("\n")}
         k,
         L,
         L.sheets.map((s) => ({ x: box.x + s.x / k, y: box.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
-        `${title} – ${L.sheets.length} sheets (${L.rows} × ${L.cols}), real size ${n(box.w * k / 10)} × ${n(box.h * k / 10)} cm`
+        `${title} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n(box.w * k / 10)), h: num(+n(box.h * k / 10)) })
       ));
     }
     sections.push(...sheetSections(box, k, L, { title }));
@@ -4671,13 +5383,13 @@ ${sections.join("\n")}
       g.setAttribute("font-family", "Arial, sans-serif");
       g.setAttribute("text-anchor", "middle");
       for (const l of labels) {
-        const t = doc.createElementNS(NS, "text");
-        t.setAttribute("x", MZ.fmt(l.x));
-        t.setAttribute("y", MZ.fmt(l.y + l.size * 0.36));
-        t.setAttribute("font-size", MZ.fmt(l.size));
-        t.setAttribute("fill", style === "numbers" || luminance(l.c) > 140 ? "#000" : "#fff");
-        t.textContent = l.n;
-        g.appendChild(t);
+        const t2 = doc.createElementNS(NS, "text");
+        t2.setAttribute("x", MZ.fmt(l.x));
+        t2.setAttribute("y", MZ.fmt(l.y + l.size * 0.36));
+        t2.setAttribute("font-size", MZ.fmt(l.size));
+        t2.setAttribute("fill", style === "numbers" || luminance(l.c) > 140 ? "#000" : "#fff");
+        t2.textContent = l.n;
+        g.appendChild(t2);
       }
       root.appendChild(g);
     }
@@ -4686,7 +5398,7 @@ ${sections.join("\n")}
     return { art, rows, nums };
   }
   function legendHTML(rows) {
-    return rows.length ? `<h2>${esc3(MZ.fileName)} – colors</h2><table>` + rows.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles} area${r.tiles === 1 ? "" : "s"}</td><td>${esc3(MZ.fmtArea(r.area))}</td></tr>`).join("") + "</table>" : "";
+    return rows.length ? `<h2>${esc3(MZ.fileName)} – ${t("colors")}</h2><table>` + rows.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${t("{n} {n|area|areas}", { n: r.tiles })}</td><td>${esc3(MZ.fmtArea(r.area))}</td></tr>`).join("") + "</table>" : "";
   }
   function printTemplate() {
     const { art, rows } = printArt(document.querySelector("input[name=print-style]:checked").value);
@@ -4705,7 +5417,7 @@ ${sections.join("\n")}
     const url = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
     const w = window.open(url, "_blank");
     if (!w) {
-      MZ.toast("The browser blocked the print window – allow pop-ups for this page.");
+      MZ.toast(t("The browser blocked the print window – allow pop-ups for this page."));
       return;
     }
     setTimeout(() => URL.revokeObjectURL(url), 6e4);
@@ -4714,7 +5426,7 @@ ${sections.join("\n")}
     const d = state3.doc, k = MM[MZ.unit()] || MM.px;
     const mode = document.querySelector("input[name=print-size]:checked").value;
     const L = layout(d.w * k, d.h * k, $3("#print-paper").value, mode);
-    $3("#print-info").textContent = mode === "fit" ? `One ${L.paper.name} sheet (${L.orientation}), at ${Math.round(L.scale * 100)} % of the real size.` : `${L.sheets.length} ${L.paper.name} sheet${L.sheets.length > 1 ? "s" : ""} (${L.orientation}${L.sheets.length > 1 ? `, ${L.rows} × ${L.cols}, overlapping ${OVERLAP} mm` : ""}) at real size.`;
+    $3("#print-info").textContent = layoutInfo(L, mode);
   }
   $3("#btn-print").onclick = () => {
     updatePrintInfo();
@@ -4732,9 +5444,9 @@ ${sections.join("\n")}
   function initHistoryUI(host, button) {
     const dlg = document.createElement("dialog");
     dlg.id = "dlg-history";
-    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>History</h2><button title="Close">✕</button></form>
-<p class="note">Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another ${host.noun}. Restoring keeps your current ${host.noun} as a version too.</p>
-<div class="row"><button id="hist-save">Save a version now</button></div>
+    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
+<p class="note">${esc4(host.texts.intro)}</p>
+<div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
     document.body.append(dlg);
     dlg.addEventListener("click", (e) => {
@@ -4749,11 +5461,11 @@ ${sections.join("\n")}
       try {
         versions = await host.list();
       } catch {
-        list.innerHTML = '<p class="note">Version history needs browser storage (IndexedDB), which is not available here.</p>';
+        list.innerHTML = `<p class="note">${t("Version history needs browser storage (IndexedDB), which is not available here.")}</p>`;
         return;
       }
       if (!versions.length) {
-        list.innerHTML = `<p class="note">No versions yet. A version is kept every few minutes while you work, and before you open or start another ${host.noun}.</p>`;
+        list.innerHTML = `<p class="note">${esc4(host.texts.empty)}</p>`;
         return;
       }
       list.innerHTML = "";
@@ -4763,9 +5475,9 @@ ${sections.join("\n")}
         const url = URL.createObjectURL(host.thumbnail(v));
         thumbs2.push(url);
         const detail = host.detail(v);
-        row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString()}</b><span>${esc4(v.name || "")} · ${esc4(v.note || "")}${detail ? ` · ${esc4(detail)}` : ""}</span></div>`;
+        row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc4(v.name || "")} · ${esc4(v.note || "")}${detail ? ` · ${esc4(detail)}` : ""}</span></div>`;
         const b = document.createElement("button");
-        b.textContent = "Restore";
+        b.textContent = t("Restore");
         b.onclick = async () => {
           dlg.close();
           await host.restore(v);
@@ -4779,7 +5491,7 @@ ${sections.join("\n")}
       dlg.showModal();
     };
     dlg.querySelector("#hist-save").onclick = async () => {
-      toast(await host.saveNow() ? "Version saved." : "Could not save a version (browser storage unavailable).");
+      toast(await host.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
   }
@@ -4788,12 +5500,15 @@ ${sections.join("\n")}
   var $4 = (s) => document.querySelector(s);
   var { state: state4 } = MZ;
   initHistoryUI({
-    noun: "drawing",
+    texts: {
+      intro: t("Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another drawing. Restoring keeps your current drawing as a version too."),
+      empty: t("No versions yet. A version is kept every few minutes while you work, and before you open or start another drawing.")
+    },
     list: () => Store.listVersions("vector"),
     thumbnail: (v) => new Blob([v.svg || ""], { type: "image/svg+xml" }),
-    detail: (v) => v.tiles ? `${v.tiles} painted areas` : "",
+    detail: (v) => v.tiles ? t("{n} painted {n|area|areas}", { n: v.tiles }) : "",
     restore: (v) => MZ.restoreVersion(v),
-    saveNow: () => MZ.saveVersion("Saved by hand")
+    saveNow: () => MZ.saveVersion(t("Saved by hand"))
   }, $4("#btn-history"));
   $4("#btn-autocolor").onclick = () => PhotoTools.colorTiles({ onlyUnpainted: state4.onlyUnpainted });
 
@@ -4825,11 +5540,11 @@ ${sections.join("\n")}
     const { step, minor } = niceStep(60 / v.s);
     const first = Math.floor((start - origin) / step) * step;
     c.beginPath();
-    for (let t = first; ; t += step / minor) {
-      const s = (origin + t - start) * v.s;
+    for (let t2 = first; ; t2 += step / minor) {
+      const s = (origin + t2 - start) * v.s;
       if (s > len) break;
       if (s < 0) continue;
-      const major = Math.abs(t / step - Math.round(t / step)) < 1e-6;
+      const major = Math.abs(t2 / step - Math.round(t2 / step)) < 1e-6;
       const tick = major ? h * 0.6 : h * 0.25;
       if (horizontal) {
         c.moveTo(s + 0.5, h);
@@ -4839,7 +5554,7 @@ ${sections.join("\n")}
         c.lineTo(w - tick, s + 0.5);
       }
       if (major) {
-        const label = String(+t.toFixed(6));
+        const label = String(+t2.toFixed(6));
         if (horizontal) c.fillText(label, s + 3, 10);
         else {
           c.save();
@@ -4867,6 +5582,15 @@ ${sections.join("\n")}
 
   // src/shared/shell.ts
   function initShell(stage2) {
+    const ls = $("#lang-select");
+    for (const [code, name] of LANGS) {
+      const o = document.createElement("option");
+      o.value = code;
+      o.textContent = name;
+      ls.append(o);
+    }
+    ls.value = lang;
+    ls.onchange = () => setLang(ls.value);
     $("#btn-panel").onclick = () => document.body.classList.toggle("panel-open");
     new ResizeObserver(([e]) => document.documentElement.style.setProperty("--topbar-h", e.target.offsetHeight + "px")).observe($("#topbar"));
     stage2.addEventListener("pointerdown", () => document.body.classList.remove("panel-open"));
@@ -4890,7 +5614,7 @@ ${sections.join("\n")}
     };
     window.addEventListener("appinstalled", () => {
       $("#btn-install").hidden = true;
-      toast("Installed – Mosaic Paint now works offline too.");
+      toast(t("Installed – Mosaic Paint now works offline too."));
     });
     if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
       navigator.serviceWorker.register("sw.js").catch(() => {
@@ -4931,13 +5655,13 @@ ${sections.join("\n")}
     $6("#am-replace").checked = opts.replace;
     $6("#am-photo-missing").hidden = !!MZ.refImage();
     const n2 = estimate();
-    $6("#am-estimate").textContent = `About ${n2.toLocaleString()} tiles${n2 > MAX_TILES ? " – too many, use a bigger tile size" : ""}.`;
+    $6("#am-estimate").textContent = n2 > MAX_TILES ? t("About {n} tiles – too many, use a bigger tile size.", { n: n2 }) : t("About {n} tiles.", { n: n2 });
     $6("#am-go").disabled = !MZ.refImage() || n2 > MAX_TILES;
   }
   async function generate() {
     const px2 = await PhotoTools.pixels();
     if (!px2) {
-      MZ.toast("Load a photo first.");
+      MZ.toast(t("Load a photo first."));
       return;
     }
     const d = state6.doc, box = { x: d.x, y: d.y, w: d.w, h: d.h };
@@ -4946,23 +5670,23 @@ ${sections.join("\n")}
     const busy = (x, y, w, h) => PhotoTools.detailAt(px2, x, y, w, h) > bar;
     const cells3 = cells2({ style: opts.style, box, size: opts.size, detail: opts.detail / 100, busy, seed: (Date.now() & 65535) + 1 });
     if (cells3.length > MAX_TILES * 1.5) {
-      MZ.toast(`That gives ${cells3.length} tiles – use a bigger tile size.`);
+      MZ.toast(t("That gives {n} tiles – use a bigger tile size.", { n: cells3.length }));
       return;
     }
     const segs = lines(cells3, [page2], (p) => pointInPolygon(p, page2), eps);
     if (opts.replace) {
-      if (MZ.hasContent()) await MZ.saveVersion("Before making a mosaic from the photo");
+      if (MZ.hasContent()) await MZ.saveVersion(t("Before making a mosaic from the photo"));
       MZ.clearDrawing();
     }
     if (opts.colors === "suggest") {
       const cols = PhotoTools.suggestPalette(px2, px2.box, Math.max(2, Math.min(64, opts.count)));
-      const name = MZ.addPalette("From photo", cols);
-      MZ.toast(`New palette “${name}” with ${cols.length} colors.`);
+      const name = MZ.addPalette(t("From photo"), cols);
+      MZ.toast(t("New palette “{name}” with {n} {n|color|colors}.", { name, n: cols.length }));
     }
     MZ.addLineSegments(segs);
     const r = await PhotoTools.colorTiles({ onlyUnpainted: false, commit: false, quiet: true });
     MZ.commit();
-    MZ.toast(`Made a mosaic of ${(r ? r.painted : 0).toLocaleString()} tiles from the photo.`);
+    MZ.toast(t("Made a mosaic of {n} tiles from the photo.", { n: r ? r.painted : 0 }));
   }
   $6("#btn-automosaic").onclick = () => {
     renderUI();
@@ -4972,7 +5696,7 @@ ${sections.join("\n")}
   for (const [v, label] of STYLES) {
     const o = document.createElement("option");
     o.value = v;
-    o.textContent = label;
+    o.textContent = t(label);
     sel.append(o);
   }
   sel.onchange = () => {
@@ -5011,12 +5735,12 @@ ${sections.join("\n")}
   $6("#ref-file").addEventListener("change", () => setTimeout(renderUI, 600));
   $6("#am-go").onclick = async () => {
     $6("#am-go").disabled = true;
-    $6("#am-go").textContent = "Working…";
+    $6("#am-go").textContent = t("Working…");
     await new Promise((r) => setTimeout(r, 30));
     try {
       await generate();
     } finally {
-      $6("#am-go").textContent = "Make mosaic";
+      $6("#am-go").textContent = t("Make mosaic");
       $6("#dlg-automosaic").close();
     }
   };
@@ -5035,11 +5759,11 @@ ${sections.join("\n")}
   }
   function countByPanel(plan, tiles) {
     const out = new Map(plan.panels.map((q) => [q.index, /* @__PURE__ */ new Map()]));
-    for (const t of tiles) {
-      const q = panelAt(plan, t.p);
+    for (const t2 of tiles) {
+      const q = panelAt(plan, t2.p);
       if (!q) continue;
       const m = out.get(q.index);
-      m.set(t.color, (m.get(t.color) || 0) + 1);
+      m.set(t2.color, (m.get(t2.color) || 0) + 1);
     }
     return out;
   }
@@ -5077,13 +5801,13 @@ ${sections.join("\n")}
         for (const [a, v] of [["x", q.x], ["y", q.y], ["width", q.w], ["height", q.h]]) r.setAttribute(a, String(v));
         r.setAttribute("class", "panel-rect");
         g.appendChild(r);
-        const t = document.createElementNS(NS, "text");
-        t.setAttribute("x", String(q.x + q.w / 2));
-        t.setAttribute("y", String(q.y + q.h / 2));
-        t.setAttribute("font-size", String(Math.min(q.w, q.h) / 5));
-        t.setAttribute("class", "panel-label");
-        t.textContent = String(q.index);
-        g.appendChild(t);
+        const t2 = document.createElementNS(NS, "text");
+        t2.setAttribute("x", String(q.x + q.w / 2));
+        t2.setAttribute("y", String(q.y + q.h / 2));
+        t2.setAttribute("font-size", String(Math.min(q.w, q.h) / 5));
+        t2.setAttribute("class", "panel-label");
+        t2.textContent = String(q.index);
+        g.appendChild(t2);
       }
     }
     function renderUI2() {
@@ -5095,7 +5819,7 @@ ${sections.join("\n")}
       $10("#lp-grid").checked = opts3.grid;
       $10("#lp-paper").value = opts3.paper;
       const L = layout(s.w * k(), s.h * k(), opts3.paper, "real");
-      $10("#lp-info").textContent = `${P.panels.length} panel${P.panels.length === 1 ? "" : "s"} (${P.rows} × ${P.cols}) · each printed at real size on ${L.sheets.length} ${L.paper.name} sheet${L.sheets.length === 1 ? "" : "s"}.`;
+      $10("#lp-info").textContent = t("{n} {n|panel|panels} ({rows} × {cols}) · each printed at real size on {s} {paper} {s|sheet|sheets}.", { n: P.panels.length, rows: P.rows, cols: P.cols, s: L.sheets.length, paper: L.paper.name });
       drawGrid(opts3.grid);
     }
     function tiles() {
@@ -5120,21 +5844,21 @@ ${sections.join("\n")}
         K,
         A,
         P.panels.map((q) => ({ ...q, label: String(q.index) })),
-        `${title} – laying plan: ${P.panels.length} panels (${P.rows} rows × ${P.cols} columns) of ${MZ.fmt(panelSize().w)} × ${MZ.fmt(panelSize().h)} ${u}`
+        `${title} – ` + t("laying plan: {n} {n|panel|panels} ({rows} rows × {cols} columns) of {w} × {h} {unit}", { n: P.panels.length, rows: P.rows, cols: P.cols, w: MZ.fmt(panelSize().w), h: MZ.fmt(panelSize().h), unit: u })
       )];
       for (const q of P.panels) {
         const L = layout(q.w * K, q.h * K, opts3.paper, "real", orientation);
         sections.push(...sheetSections({ x: q.x, y: q.y, w: q.w, h: q.h }, K, L, {
-          title: `Panel ${q.index} – row ${q.row + 1}, column ${q.col + 1}`,
-          prefix: `Panel ${q.index} · `
+          title: t("Panel {n} – row {row}, column {col}", { n: q.index, row: q.row + 1, col: q.col + 1 }),
+          prefix: t("Panel {n}", { n: q.index }) + " · "
         }));
       }
       const counts = countByPanel(P, tiles());
       const chip = (c) => `<span style="background:${c}"></span>`;
-      const table = `<table class="counts"><tr><td class="n">Panel</td>${rows.map((r) => `<td class="n">${chip(r.c)} ${r.n}</td>`).join("")}</tr>` + P.panels.map((q) => `<tr><td class="n">${q.index}</td>${rows.map((r) => `<td>${counts.get(q.index).get(r.c) || ""}</td>`).join("")}</tr>`).join("") + "</table>";
-      sections.push(`<section class="sheet"><div class="label">${esc5(title)} – tiles per panel and color</div>${table}</section>`);
+      const table = `<table class="counts"><tr><td class="n">${t("Panel")}</td>${rows.map((r) => `<td class="n">${chip(r.c)} ${r.n}</td>`).join("")}</tr>` + P.panels.map((q) => `<tr><td class="n">${q.index}</td>${rows.map((r) => `<td>${counts.get(q.index).get(r.c) || ""}</td>`).join("")}</tr>`).join("") + "</table>";
+      sections.push(`<section class="sheet"><div class="label">${esc5(title)} – ${t("tiles per panel and color")}</div>${table}</section>`);
       if (rows.length) sections.push(`<section class="sheet legend">${PrintTools.legend(rows)}</section>`);
-      PrintTools.open(page({ art, sections, paper: opts3.paper, orientation, title: `${title} – laying plan` }));
+      PrintTools.open(page({ art, sections, paper: opts3.paper, orientation, title: `${title} – ${t("laying plan")}` }));
       void nums;
     }
     $10("#btn-layplan").onclick = () => {
@@ -5207,11 +5931,11 @@ ${sections.join("\n")}
       const chip = document.createElement("span");
       chip.className = "mix-chip";
       chip.style.background = c;
-      chip.title = `${c} – click to remove from the mix`;
+      chip.title = t("{c} – click to remove from the mix", { c });
       chip.onclick = () => toggle(c);
       box.append(chip);
     }
-    $7("#mix-hint").textContent = mix.colors.length < 2 ? "Shift+click two or more swatches to put them in the mix." : `Each tile gets one of these ${mix.colors.length} colors at random. Shift+click swatches to change the mix.`;
+    $7("#mix-hint").textContent = mix.colors.length < 2 ? t("Shift+click two or more swatches to put them in the mix.") : t("Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.", { n: mix.colors.length });
     $7("#btn-mix-sel").hidden = mix.colors.length < 2;
     markSwatches();
     save3();
@@ -5229,7 +5953,7 @@ ${sections.join("\n")}
   }
   function mixSelection() {
     if (!active()) {
-      MZ.toast("Put at least two colors in the mix first (Shift+click swatches).");
+      MZ.toast(t("Put at least two colors in the mix first (Shift+click swatches)."));
       return;
     }
     const ix = MZ.regionIndex();
@@ -5241,7 +5965,7 @@ ${sections.join("\n")}
       n2++;
     }
     if (n2) MZ.commit(true);
-    MZ.toast(n2 ? `Mixed the colors of ${n2} area${n2 === 1 ? "" : "s"}.` : "Select painted areas first.");
+    MZ.toast(n2 ? t("Mixed the colors of {n} {n|area|areas}.", { n: n2 }) : t("Select painted areas first."));
   }
   MZ.on("swatch-shift", (c) => {
     if (c) toggle(c);
@@ -5249,7 +5973,7 @@ ${sections.join("\n")}
   MZ.on("palette", markSwatches);
   $7("#mix-on").onchange = (e) => {
     mix.on = e.target.checked;
-    if (mix.on && mix.colors.length < 2) MZ.toast("Shift+click two or more swatches to put them in the mix.");
+    if (mix.on && mix.colors.length < 2) MZ.toast(t("Shift+click two or more swatches to put them in the mix."));
     render();
   };
   $7("#mix-avoid").onchange = (e) => {
@@ -5265,7 +5989,7 @@ ${sections.join("\n")}
     const { state: state11 } = MZ;
     const attr = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     const XML = '<?xml version="1.0" encoding="UTF-8"?>\n';
-    let pages = [{ name: "Page 1", svg: null, history: null, view: null }], cur = 0, switching = false;
+    let pages = [{ name: t("Page {n}", { n: 1 }), svg: null, history: null, view: null }], cur = 0, switching = false;
     function tag(svg2, name, index) {
       return svg2.replace(/^<\?xml[^>]*>\s*/, "").replace(/<svg\b([^>]*)>/, (m, attrs) => `<svg${attrs.replace(/\s+data-page-(name|index)="[^"]*"/g, "")} data-page-name="${attr(name)}" data-page-index="${index}">`);
     }
@@ -5280,7 +6004,7 @@ ${others}
     });
     MZ.on("deserialize", (root) => {
       if (switching) return;
-      const list = [{ index: +root.getAttribute("data-page-index") || 0, name: root.getAttribute("data-page-name") || "Page 1", svg: null }];
+      const list = [{ index: +root.getAttribute("data-page-index") || 0, name: root.getAttribute("data-page-name") || t("Page {n}", { n: 1 }), svg: null }];
       const group = root.querySelector('[id="mosaic-pages"]');
       if (group) {
         for (const s of group.children) {
@@ -5294,7 +6018,7 @@ ${others}
       render3();
     });
     MZ.on("reset", () => {
-      pages = [{ name: "Page 1", svg: null, history: null, view: null }];
+      pages = [{ name: t("Page {n}", { n: 1 }), svg: null, history: null, view: null }];
       cur = 0;
       render3();
     });
@@ -5335,7 +6059,7 @@ ${others}
       capture2();
       const src = pages[cur];
       pages.splice(cur + 1, 0, {
-        name: duplicate2 ? `${src.name} copy` : `Page ${pages.length + 1}`,
+        name: duplicate2 ? t("{name} copy", { name: src.name }) : t("Page {n}", { n: pages.length + 1 }),
         svg: duplicate2 ? src.svg : blankPage(),
         history: null,
         view: duplicate2 ? { ...src.view } : null
@@ -5344,7 +6068,7 @@ ${others}
       if (!duplicate2) MZ.fitView();
     }
     function rename(i) {
-      const n2 = prompt("Page name:", pages[i].name);
+      const n2 = prompt(t("Page name:"), pages[i].name);
       if (!n2 || !n2.trim()) return;
       pages[i].name = n2.trim();
       render3();
@@ -5352,11 +6076,11 @@ ${others}
     }
     function remove(i) {
       if (pages.length < 2) {
-        MZ.toast("A project needs at least one page.");
+        MZ.toast(t("A project needs at least one page."));
         return;
       }
-      if (!confirm(`Delete the page “${pages[i].name}”? (A copy of the project is kept in History.)`)) return;
-      MZ.saveVersion(`Before deleting the page ${pages[i].name}`);
+      if (!confirm(t("Delete the page “{name}”? (A copy of the project is kept in History.)", { name: pages[i].name }))) return;
+      MZ.saveVersion(t("Before deleting the page {name}", { name: pages[i].name }));
       if (i === cur) {
         pages.splice(i, 1);
         show(Math.min(i, pages.length - 1));
@@ -5385,11 +6109,11 @@ ${others}
       const m = document.createElement("div");
       m.id = "page-menu";
       for (const [label, fn, ok] of [
-        ["Rename…", () => rename(i), true],
-        ["Duplicate", () => add(true), true],
-        ["Move left", () => move(i, -1), i > 0],
-        ["Move right", () => move(i, 1), i < pages.length - 1],
-        ["Delete…", () => remove(i), pages.length > 1]
+        [t("Rename…"), () => rename(i), true],
+        [t("Duplicate"), () => add(true), true],
+        [t("Move left"), () => move(i, -1), i > 0],
+        [t("Move right"), () => move(i, 1), i < pages.length - 1],
+        [t("Delete…"), () => remove(i), pages.length > 1]
       ]) {
         const b = document.createElement("button");
         b.textContent = label;
@@ -5412,23 +6136,23 @@ ${others}
       const box = $10("#page-tabs");
       box.innerHTML = "";
       pages.forEach((p, i) => {
-        const t = document.createElement("div");
-        t.className = "page-tab" + (i === cur ? " active" : "");
+        const tab = document.createElement("div");
+        tab.className = "page-tab" + (i === cur ? " active" : "");
         const b = document.createElement("button");
         b.textContent = p.name;
-        b.title = i === cur ? "Double-click to rename" : "Switch to this page";
+        b.title = i === cur ? t("Double-click to rename") : t("Switch to this page");
         b.onclick = () => switchTo(i);
         b.ondblclick = () => rename(i);
-        t.append(b);
+        tab.append(b);
         if (i === cur) {
           const more = document.createElement("button");
           more.className = "page-more";
           more.textContent = "⋯";
-          more.title = "Page options";
+          more.title = t("Page options");
           more.onclick = () => openMenu(i, more);
-          t.append(more);
+          tab.append(more);
         }
-        box.append(t);
+        box.append(tab);
       });
     }
     $10("#page-add").onclick = () => add(false);
@@ -5552,12 +6276,12 @@ ${others}
   }
   async function copyDrawing() {
     if (!canCopyImages()) {
-      MZ.toast("This browser can’t copy images – use PNG to save one instead.");
+      MZ.toast(t("This browser can’t copy images – use PNG to save one instead."));
       return;
     }
     const svg2 = MZ.buildSVGString({ photo: false, grout: state8.grout.on, pageOnly: true });
     const ok = await copyImage(svgToPng(svg2, imageSize(state8.doc.w, state8.doc.h)));
-    MZ.toast(ok ? "Copied the drawing as an image – paste it into the raster app or any other program." : "Could not copy the image (the browser refused).");
+    MZ.toast(ok ? t("Copied the drawing as an image – paste it into the raster app or any other program.") : t("Could not copy the image (the browser refused)."));
   }
   $8("#btn-copy-img").onclick = () => {
     if (state8.selection.size) copySelection(false, false);
@@ -5613,7 +6337,7 @@ ${others}
       MZ.setSelection([]);
       MZ.commitGeometry();
     }
-    MZ.toast(`${cut ? "Cut" : "Copied"} ${n2} shape${n2 === 1 ? "" : "s"}. Paste with Ctrl+V – also in another page or drawing.`);
+    MZ.toast(cut ? t("Cut {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n2 }) : t("Copied {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n2 }));
   }
   document.addEventListener("keydown", (e) => {
     const k = e.key.toLowerCase();
@@ -5655,7 +6379,7 @@ ${others}
     if (state9.tool !== "select") MZ.setTool("select");
     MZ.commitGeometry();
     MZ.setSelection(els.filter((el) => el.isConnected));
-    MZ.toast(`Pasted ${els.length} shape${els.length === 1 ? "" : "s"}.`);
+    MZ.toast(t("Pasted {n} {n|shape|shapes}.", { n: els.length }));
     return true;
   }
   MZ.on("pasteText", (text) => {
@@ -5681,7 +6405,7 @@ ${others}
       try {
         localStorage.setItem("mz-motifs", JSON.stringify(motifs));
       } catch {
-        MZ.toast("Could not store the motifs.");
+        MZ.toast(t("Could not store the motifs."));
       }
     }
   }
@@ -5692,21 +6416,21 @@ ${others}
     const list = $9("#motif-list");
     list.innerHTML = "";
     if (!motifs.length) {
-      list.innerHTML = '<p class="note">No motifs yet. Select some shapes and save them.</p>';
+      list.innerHTML = `<p class="note">${t("No motifs yet. Select some shapes and save them.")}</p>`;
       return;
     }
     for (const m of motifs) {
       const item = document.createElement("div");
       item.className = "motif" + (placing && placing.id === m.id ? " active" : "");
-      item.title = `${m.name} – click, then click on the drawing to place it`;
+      item.title = t("{name} – click, then click on the drawing to place it", { name: m.name });
       const url = URL.createObjectURL(new Blob([m.svg], { type: "image/svg+xml" }));
       thumbs.push(url);
-      item.innerHTML = `<img src="${url}" alt=""><span></span><button class="del" title="Delete this motif">×</button>`;
+      item.innerHTML = `<img src="${url}" alt=""><span></span><button class="del" title="${t("Delete this motif")}">×</button>`;
       item.querySelector("span").textContent = m.name;
       item.onclick = () => startPlacing(m);
       item.querySelector(".del").onclick = async (e) => {
         e.stopPropagation();
-        if (!confirm(`Delete the motif “${m.name}”?`)) return;
+        if (!confirm(t("Delete the motif “{name}”?", { name: m.name }))) return;
         motifs = motifs.filter((x) => x !== m);
         await persist();
         render2();
@@ -5716,21 +6440,21 @@ ${others}
   }
   async function saveSelection() {
     if (!state9.selection.size) {
-      MZ.toast("Select the shapes of the motif first (Select tool).");
+      MZ.toast(t("Select the shapes of the motif first (Select tool)."));
       return;
     }
     const svg2 = Snippets.fromElements(state9.selection);
-    const name = prompt("Name of the motif:", `Motif ${motifs.length + 1}`);
+    const name = prompt(t("Name of the motif:"), t("Motif {n}", { n: motifs.length + 1 }));
     if (!name || !name.trim()) return;
     motifs.push({ id: Date.now().toString(36), name: name.trim(), svg: svg2, created: Date.now() });
     await persist();
     render2();
-    MZ.toast(`Saved the motif “${name.trim()}”.`);
+    MZ.toast(t("Saved the motif “{name}”.", { name: name.trim() }));
   }
   function startPlacing(m) {
     const snip = Snippets.parse(m.svg);
     if (!snip) {
-      MZ.toast("This motif could not be read.");
+      MZ.toast(t("This motif could not be read."));
       return;
     }
     placing = { id: m.id, name: m.name, snip, angle: 0 };
@@ -5754,7 +6478,7 @@ ${others}
       if (!placing) return;
       const els = Snippets.place(placing.snip, MZ.snapPoint(raw, {}), placing.angle);
       MZ.commitGeometry();
-      MZ.toast(`Placed “${placing.name}”. Click again for another one, R turns it, Esc stops.`);
+      MZ.toast(t("Placed “{name}”. Click again for another one, R turns it, Esc stops.", { name: placing.name }));
       return els;
     },
     move(e, raw) {
@@ -5762,7 +6486,7 @@ ${others}
     },
     up() {
     }
-  }, "Click to place the motif · R: turn it by 15° (Shift+R: 90°) · Esc: stop");
+  }, t("Click to place the motif · R: turn it by 15° (Shift+R: 90°) · Esc: stop"));
   document.addEventListener("keydown", (e) => {
     if (state9.tool !== "place-motif" || MZ.typingIn(e.target)) return;
     if (e.key === "Escape") {
@@ -5785,7 +6509,7 @@ ${others}
   $9("#btn-motif-save").onclick = saveSelection;
   $9("#btn-motif-export").onclick = () => {
     if (!motifs.length) {
-      MZ.toast("There are no motifs to export yet.");
+      MZ.toast(t("There are no motifs to export yet."));
       return;
     }
     MZ.download(new Blob([JSON.stringify({ mosaicMotifs: 1, motifs }, null, 1)], { type: "application/json" }), "motifs.json");
@@ -5806,10 +6530,10 @@ ${others}
       }
       await persist();
       render2();
-      MZ.toast(n2 ? `Imported ${n2} motif${n2 === 1 ? "" : "s"}.` : "No motifs found in that file.");
+      MZ.toast(n2 ? t("Imported {n} {n|motif|motifs}.", { n: n2 }) : t("No motifs found in that file."));
     } catch (err) {
       console.warn(err);
-      MZ.toast("That file is not a motif library.");
+      MZ.toast(t("That file is not a motif library."));
     }
   };
   load();
@@ -5980,8 +6704,8 @@ ${others}
     for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
     dv.setUint32(80, n2, true);
     let o = 84;
-    for (let t = 0; t < n2; t++) {
-      const p = [0, 1, 2].map((k) => T[t * 3 + k] * 3);
+    for (let t2 = 0; t2 < n2; t2++) {
+      const p = [0, 1, 2].map((k) => T[t2 * 3 + k] * 3);
       const ux = V[p[1]] - V[p[0]], uy = V[p[1] + 1] - V[p[0] + 1], uz = V[p[1] + 2] - V[p[0] + 2];
       const vx = V[p[2]] - V[p[0]], vy = V[p[2] + 1] - V[p[0] + 1], vz = V[p[2] + 2] - V[p[0] + 2];
       let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
@@ -6010,7 +6734,7 @@ ${others}
   }
   var modelHeight = (nColors, s) => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
   var xmlAttr = (v) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  var num = (v) => String(+v.toFixed(4));
+  var num2 = (v) => String(+v.toFixed(4));
   function modelXml(mesh, colors, name) {
     const V = mesh.vertices, T = mesh.triangles, out = [];
     out.push(
@@ -6023,9 +6747,9 @@ ${others}
     );
     for (const c of colors) out.push(`<base name="${xmlAttr(c)}" displaycolor="${c.toUpperCase()}FF"/>`);
     out.push("</basematerials>", `<object id="2" type="model" pid="1" pindex="0" name="${xmlAttr(name)}">`, "<mesh>", "<vertices>");
-    for (let i = 0; i < V.length; i += 3) out.push(`<vertex x="${num(V[i])}" y="${num(V[i + 1])}" z="${num(V[i + 2])}"/>`);
+    for (let i = 0; i < V.length; i += 3) out.push(`<vertex x="${num2(V[i])}" y="${num2(V[i + 1])}" z="${num2(V[i + 2])}"/>`);
     out.push("</vertices>", "<triangles>");
-    for (let t = 0; t < T.length; t += 3) out.push(`<triangle v1="${T[t]}" v2="${T[t + 1]}" v3="${T[t + 2]}" pid="1" p1="${Math.max(0, mesh.levels[t / 3])}"/>`);
+    for (let t2 = 0; t2 < T.length; t2 += 3) out.push(`<triangle v1="${T[t2]}" v2="${T[t2 + 1]}" v3="${T[t2 + 2]}" pid="1" p1="${Math.max(0, mesh.levels[t2 / 3])}"/>`);
     out.push("</triangles>", "</mesh>", "</object>", "</resources>", "<build>", '<item objectid="2"/>', "</build>", "</model>");
     return out.join("\n");
   }
@@ -6134,33 +6858,33 @@ ${others}
   var saveOpts = () => lsSet("mz-3d", JSON.stringify(opts2));
   var f2 = (v) => String(+v.toFixed(2));
   var DIALOG = `
-<form method="dialog" class="dlg-head"><h2>3D print</h2><button title="Close">✕</button></form>
-<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.</p>
+<form method="dialog" class="dlg-head"><h2>${t("3D print")}</h2><button title="${t("Close")}">✕</button></form>
+<p class="note">${t("A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.")}</p>
 <div class="row">
-  <label>Size <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
-  <label title="Size of the model's smallest step – about your nozzle width">Detail <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
+  <label>${t("Size")} <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
+  <label title="${t("Size of the model’s smallest step – about your nozzle width")}">${t("Detail")} <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
 </div>
 <div class="row">
-  <label>Layer height <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
-  <label title="How many layers each color gets – more layers cover the color below better">Layers per color <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
-  <label title="A plate under everything, printed in the first color. 0: unpainted parts are left open">Base layers <input id="m3-base" type="number" min="0" max="50" step="1"></label>
+  <label>${t("Layer height")} <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
+  <label title="${t("How many layers each color gets – more layers cover the color below better")}">${t("Layers per color")} <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
+  <label title="${t("A plate under everything, printed in the first color. 0: unpainted parts are left open")}">${t("Base layers")} <input id="m3-base" type="number" min="0" max="50" step="1"></label>
 </div>
 <p class="note warn" id="m3-note" hidden></p>
 <div class="m3-body">
-  <canvas id="m3-preview" title="Top view of the model"></canvas>
+  <canvas id="m3-preview" title="${t("Top view of the model")}"></canvas>
   <div class="m3-side">
-    <div class="row small"><span class="note">Print order (bottom first):</span>
-      <button id="m3-light" title="Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom">Light → dark</button>
-      <button id="m3-dark">Dark → light</button>
+    <div class="row small"><span class="note">${t("Print order (bottom first):")}</span>
+      <button id="m3-light" title="${t("Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom")}">${t("Light → dark")}</button>
+      <button id="m3-dark">${t("Dark → light")}</button>
     </div>
     <div id="m3-order"></div>
   </div>
 </div>
 <p class="note" id="m3-summary"></p>
 <div class="row dlg-foot">
-  <button id="m3-plan" title="Which filament to load at which layer, as a text file">Plan</button>
-  <button id="m3-stl" title="Just the shape – add the filament changes from the plan in your slicer">STL</button>
-  <button id="m3-go" class="primary" title="The model, with the filament changes for PrusaSlicer">Download 3MF</button>
+  <button id="m3-plan" title="${t("Which filament to load at which layer, as a text file")}">${t("Plan")}</button>
+  <button id="m3-stl" title="${t("Just the shape – add the filament changes from the plan in your slicer")}">STL</button>
+  <button id="m3-go" class="primary" title="${t("The model, with the filament changes for PrusaSlicer")}">${t("Download 3MF")}</button>
 </div>`;
   function initExport3D(host, button) {
     const dlg = document.createElement("dialog");
@@ -6216,8 +6940,8 @@ ${others}
       $("#m3-h").value = f2(h);
       const warn = [
         note,
-        list.length > MANY_COLORS ? `${list.length} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).` : "",
-        cell > opts2.detail + 1e-9 ? `Detail lowered to ${f2(cell)} mm for this size.` : ""
+        list.length > MANY_COLORS ? t("{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).", { n: list.length }) : "",
+        cell > opts2.detail + 1e-9 ? t("Detail lowered to {d} mm for this size.", { d: num(+f2(cell)) }) : ""
       ].filter(Boolean).join(" ");
       $("#m3-note").hidden = !warn;
       $("#m3-note").textContent = warn;
@@ -6233,20 +6957,21 @@ ${others}
         if (!row) {
           row = document.createElement("div");
           row.className = "m3-row";
-          row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines2.has(c) ? '<span class="tag">lines</span>' : ""}<span class="note"></span><button title="Print earlier (lower)">↑</button><button title="Print later (higher)">↓</button>`;
+          row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines2.has(c) ? `<span class="tag">${t("lines")}</span>` : ""}<span class="note"></span><button title="${t("Print earlier (lower)")}">↑</button><button title="${t("Print later (higher)")}">↓</button>`;
           const [up2, down2] = row.querySelectorAll("button");
           up2.onclick = () => move(c, -1);
           down2.onclick = () => move(c, 1);
           rows.set(c, row);
         }
-        row.querySelector(".note").textContent = `${Math.max(0.1, +(counts[ci] / total * 100).toFixed(1))} % · layers ${p.fromLayer}–${p.toLayer}${p.z == null ? "" : ` · change at Z ${p.z.toFixed(2)}`}`;
+        const share = num(Math.max(0.1, +(counts[ci] / total * 100).toFixed(1)));
+        row.querySelector(".note").textContent = p.z == null ? t("{share} % · layers {from}–{to}", { share, from: p.fromLayer, to: p.toLayer }) : t("{share} % · layers {from}–{to} · change at Z {z}", { share, from: p.fromLayer, to: p.toLayer, z: num(p.z, 2) });
         const [up, down] = row.querySelectorAll("button");
         up.disabled = k === 0;
         down.disabled = k === list.length - 1;
         if (box.children[k] !== row) box.insertBefore(row, box.children[k] || null);
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
-      $("#m3-summary").textContent = list.length ? `${list.length} color${list.length === 1 ? "" : "s"} · height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers) · ${list.length - 1} filament change${list.length === 2 ? "" : "s"}` + (unpainted ? ` · unpainted parts ${opts2.baseLayers ? `stay at the base (${f2(opts2.baseLayers * opts2.layerHeight)} mm)` : "are left open"}` : "") : "Nothing is painted yet.";
+      $("#m3-summary").textContent = list.length ? t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 }) + (unpainted ? " · " + (opts2.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts2.baseLayers * opts2.layerHeight)) }) : t("unpainted parts are left open")) : "") : t("Nothing is painted yet.");
       $("#m3-go").disabled = $("#m3-stl").disabled = $("#m3-plan").disabled = !list.length;
       drawPreview();
     }
@@ -6278,26 +7003,28 @@ ${others}
     const mesh = () => closedMesh(levels(), gw, gh, cell, settings());
     function planText() {
       const s = settings(), list = used(), plan2 = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
+      const v = { name: base(), w: f2(w), h: f2(h), lh: s.layerHeight, lpc: s.layersPerColor, base: s.baseLayers, total: modelHeight(list.length, s), layers: topLayer(list.length - 1, s) };
+      const first = plan2[0];
       const lines3 = [
-        `Mosaic Paint – 3D print plan for ${base()}.3mf / ${base()}.stl`,
-        `Size ${f2(w)} × ${f2(h)} mm · layer height ${s.layerHeight} mm · ${s.layersPerColor} layers per color · base ${s.baseLayers} layers`,
-        `Total height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers). Set the slicer's first layer height to ${s.layerHeight} mm too.`,
+        t("Mosaic Paint – 3D print plan for {name}.3mf / {name}.stl", v),
+        t("Size {w} × {h} mm · layer height {lh} mm · {lpc} layers per color · base {base} layers", v),
+        t("Total height {total} mm ({layers} layers). Set the slicer’s first layer height to {lh} mm too.", v),
         "",
-        `Start with ${plan2[0].color} – layers ${plan2[0].fromLayer}–${plan2[0].toLayer}${s.baseLayers ? " (base plate included)" : ""}`,
-        ...plan2.slice(1).map((p) => `Layer ${p.changeAtLayer} (Z ${p.z.toFixed(2)} mm): change to ${p.color} – layers ${p.fromLayer}–${p.toLayer}`),
+        s.baseLayers ? t("Start with {color} – layers {from}–{to} (base plate included)", { color: first.color, from: first.fromLayer, to: first.toLayer }) : t("Start with {color} – layers {from}–{to}", { color: first.color, from: first.fromLayer, to: first.toLayer }),
+        ...plan2.slice(1).map((p) => t("Layer {layer} (Z {z} mm): change to {color} – layers {from}–{to}", { layer: p.changeAtLayer, z: p.z.toFixed(2), color: p.color, from: p.fromLayer, to: p.toLayer })),
         "",
-        "PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider.",
-        "Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:",
-        '- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click "+" (Add color change, M600).',
-        '- Cura: Extensions › Post Processing › Modify G-Code › "Filament Change" at each layer number above.',
-        "- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer."
+        t("PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider."),
+        t("Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:"),
+        t("- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click “+” (Add color change, M600)."),
+        t("- Cura: Extensions › Post Processing › Modify G-Code › “Filament Change” at each layer number above."),
+        t("- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer.")
       ];
       return lines3.join("\n") + "\n";
     }
     let busy;
     const reanalyse = () => {
       clearTimeout(busy);
-      busy = setTimeout(() => analyse().catch(() => toast("Could not read the picture.")), 50);
+      busy = setTimeout(() => analyse().catch(() => toast(t("Could not read the picture."))), 50);
     };
     const bindNum = (id, key, min, max, whole, again) => {
       const i = $(id);
@@ -6336,14 +7063,14 @@ ${others}
     };
     $("#m3-light").onclick = () => sortBy(true);
     $("#m3-dark").onclick = () => sortBy(false);
-    const triangles = (m) => (m.triangles.length / 3).toLocaleString("en");
+    const triangles = (m) => m.triangles.length / 3;
     $("#m3-go").onclick = async () => {
       const m = mesh(), p = plan();
       $("#m3-go").disabled = true;
       try {
         const data = await zip(threeMfFiles(m, p, base()));
         download(new Blob([data], { type: "model/3mf" }), base() + ".3mf");
-        toast(`Saved ${base()}.3mf (${triangles(m)} triangles; PrusaSlicer reads its ${p.length - 1} filament change${p.length === 2 ? "" : "s"}, other slicers need the plan).`);
+        toast(t("Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).", { name: base(), n: triangles(m), c: p.length - 1 }));
       } finally {
         $("#m3-go").disabled = false;
       }
@@ -6351,15 +7078,15 @@ ${others}
     $("#m3-stl").onclick = () => {
       const m = mesh();
       download(new Blob([stl(m, base())], { type: "model/stl" }), base() + ".stl");
-      toast(`Saved ${base()}.stl (${triangles(m)} triangles). Add the filament changes from the plan in your slicer.`);
+      toast(t("Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.", { name: base(), n: triangles(m) }));
     };
     $("#m3-plan").onclick = () => download(new Blob([planText()], { type: "text/plain" }), base() + "-3d-plan.txt");
     button.onclick = async () => {
       const real = host.realSize();
       if (real) opts2.width = +real.w.toFixed(2);
-      $("#m3-summary").textContent = "Reading the picture…";
+      $("#m3-summary").textContent = t("Reading the picture…");
       dlg.showModal();
-      await analyse().catch(() => toast("Could not read the picture."));
+      await analyse().catch(() => toast(t("Could not read the picture.")));
     };
   }
 
@@ -6406,13 +7133,13 @@ ${others}
     } catch {
     }
     if (!rec || !rec.svg) {
-      MZ.toast("Nothing to import from the raster app.");
+      MZ.toast(t("Nothing to import from the raster app."));
       return;
     }
     await Store.set("handoff", null).catch(() => {
     });
     if (await MZ.openText(rec.svg, rec.name)) {
-      MZ.toast(`Opened ${rec.tiles.toLocaleString("en")} tiles from the raster app – your previous drawing is in History.`);
+      MZ.toast(t("Opened {n} tiles from the raster app – your previous drawing is in History.", { n: rec.tiles }));
     }
   }
   MZ.on("ready", importFromRaster);
@@ -6452,7 +7179,7 @@ ${others}
       link = `${location.origin}${location.pathname}#view=${packed}`;
       const kb = Math.round(link.length / 1024);
       $10("#share-link").value = link;
-      $10("#share-size").textContent = link.length > MAX ? `The link would be ${kb} KB – too long. Share the file instead, or leave out the photo.` : `The link is ${kb} KB${link.length > LONG ? " – long links can get cut off in some messengers; sharing the file is safer" : ""}. Anyone with it can view the mosaic and make their own copy.`;
+      $10("#share-size").textContent = link.length > MAX ? t("The link would be {kb} KB – too long. Share the file instead, or leave out the photo.", { kb }) : link.length > LONG ? t("The link is {kb} KB – long links can get cut off in some messengers; sharing the file is safer. Anyone with it can view the mosaic and make their own copy.", { kb }) : t("The link is {kb} KB. Anyone with it can view the mosaic and make their own copy.", { kb });
       $10("#share-copy").disabled = link.length > MAX;
     }
     async function shareFile() {
@@ -6460,7 +7187,7 @@ ${others}
       try {
         await navigator.share({ files: [file], title: MZ.fileName });
       } catch (e) {
-        if (e.name !== "AbortError") MZ.toast("Sharing failed.");
+        if (e.name !== "AbortError") MZ.toast(t("Sharing failed."));
       }
     }
     $10("#btn-share").onclick = async () => {
@@ -6471,11 +7198,11 @@ ${others}
     $10("#share-copy").onclick = async () => {
       try {
         await navigator.clipboard.writeText(link);
-        MZ.toast("Link copied.");
+        MZ.toast(t("Link copied."));
       } catch {
         $10("#share-link").select();
         document.execCommand("copy");
-        MZ.toast("Link copied.");
+        MZ.toast(t("Link copied."));
       }
     };
     const canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [new File(["x"], "x.svg", { type: "image/svg+xml" })] }));
@@ -6498,11 +7225,11 @@ ${others}
       try {
         svg2 = await unpack(packed);
       } catch {
-        MZ.toast("This share link is damaged or incomplete.");
+        MZ.toast(t("This share link is damaged or incomplete."));
         return;
       }
       MZ.pauseAutosave(true);
-      if (MZ.hasContent()) await MZ.saveVersion("Before opening a shared mosaic");
+      if (MZ.hasContent()) await MZ.saveVersion(t("Before opening a shared mosaic"));
       if (!MZ.loadSVGText(svg2, { restore: true, name: "shared.svg" })) {
         MZ.pauseAutosave(false);
         return;
@@ -6519,7 +7246,7 @@ ${others}
       MZ.pauseAutosave(false);
       MZ.setTool("select");
       MZ.docChanged();
-      MZ.toast("This is now your own copy – it is saved in this browser like any drawing.");
+      MZ.toast(t("This is now your own copy – it is saved in this browser like any drawing."));
     }
     function closeViewer() {
       history.replaceState(null, "", location.pathname + location.search);

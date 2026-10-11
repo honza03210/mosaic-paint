@@ -3,6 +3,7 @@
    the mosaic read-only; "Make my own copy" turns it into an editable drawing. */
 import { MZ } from '../core/api.ts';
 import { pack, unpack } from '../lib/pack.ts';
+import { t } from '../shared/i18n.ts';
 
 export const Share = (() => {
   const LONG = 64 * 1024, MAX = 2 * 1024 * 1024; // links get unwieldy above ~64 KB; browsers stop at a few MB
@@ -17,18 +18,18 @@ export const Share = (() => {
     const kb = Math.round(link.length / 1024);
     $('#share-link').value = link;
     $('#share-size').textContent = link.length > MAX
-      ? `The link would be ${kb} KB – too long. Share the file instead, or leave out the photo.`
-      : `The link is ${kb} KB${link.length > LONG ? ' – long links can get cut off in some messengers; sharing the file is safer' : ''}. Anyone with it can view the mosaic and make their own copy.`;
+      ? t('The link would be {kb} KB – too long. Share the file instead, or leave out the photo.', { kb })
+      : (link.length > LONG ? t('The link is {kb} KB – long links can get cut off in some messengers; sharing the file is safer. Anyone with it can view the mosaic and make their own copy.', { kb }) : t('The link is {kb} KB. Anyone with it can view the mosaic and make their own copy.', { kb }));
     $('#share-copy').disabled = link.length > MAX;
   }
   async function shareFile() {
     const file = new File([MZ.buildSVGString()], MZ.fileName, { type: 'image/svg+xml' });
-    try { await navigator.share({ files: [file], title: MZ.fileName }); } catch (e) { if (e.name !== 'AbortError') MZ.toast('Sharing failed.'); }
+    try { await navigator.share({ files: [file], title: MZ.fileName }); } catch (e) { if (e.name !== 'AbortError') MZ.toast(t('Sharing failed.')); }
   }
   $('#btn-share').onclick = async () => { $('#dlg-share').showModal(); await makeLink(); };
   $('#share-photo').onchange = makeLink;
   $('#share-copy').onclick = async () => {
-    try { await navigator.clipboard.writeText(link); MZ.toast('Link copied.'); } catch { $('#share-link').select(); document.execCommand('copy'); MZ.toast('Link copied.'); }
+    try { await navigator.clipboard.writeText(link); MZ.toast(t('Link copied.')); } catch { $('#share-link').select(); document.execCommand('copy'); MZ.toast(t('Link copied.')); }
   };
   const canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [new File(['x'], 'x.svg', { type: 'image/svg+xml' })] }));
   $('#share-file').hidden = !canShareFiles;
@@ -49,10 +50,10 @@ export const Share = (() => {
 
   async function openShared(packed) {
     let svg;
-    try { svg = await unpack(packed); } catch { MZ.toast('This share link is damaged or incomplete.'); return; }
+    try { svg = await unpack(packed); } catch { MZ.toast(t('This share link is damaged or incomplete.')); return; }
     // the visitor's own drawing stays untouched: autosave pauses, and a copy goes into History
     MZ.pauseAutosave(true);
-    if (MZ.hasContent()) await MZ.saveVersion('Before opening a shared mosaic');
+    if (MZ.hasContent()) await MZ.saveVersion(t('Before opening a shared mosaic'));
     if (!MZ.loadSVGText(svg, { restore: true, name: 'shared.svg' })) { MZ.pauseAutosave(false); return; }
     viewing = true;
     document.body.classList.add('viewer');
@@ -66,7 +67,7 @@ export const Share = (() => {
     MZ.pauseAutosave(false);
     MZ.setTool('select');
     MZ.docChanged();
-    MZ.toast('This is now your own copy – it is saved in this browser like any drawing.');
+    MZ.toast(t('This is now your own copy – it is saved in this browser like any drawing.'));
   }
   function closeViewer() {
     history.replaceState(null, '', location.pathname + location.search);

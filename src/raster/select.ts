@@ -8,6 +8,7 @@ import { state, emit } from './state.ts';
 import { doc, dctx, view, makeCanvas, setSize, toDoc, requestRender, fitView } from './canvas.ts';
 import { commit, restoreCurrent, afterChange } from './history.ts';
 import type { Tool } from './paint.ts';
+import { t } from '../shared/i18n.ts';
 
 const inside = (b: Box, p: Pt) => p.x >= b.x && p.y >= b.y && p.x < b.x + b.w && p.y < b.y + b.h;
 const floatBox = (): Box | null => {
@@ -22,7 +23,7 @@ function clip(b: Box): Box | null {
 export function selectionChanged(): void {
   const b = floatBox() || state.sel;
   $('#sel-section').hidden = !b;
-  if (b) $('#sel-info').textContent = `(${b.w} × ${b.h} px${state.floating ? ', not placed yet' : ''})`;
+  if (b) $('#sel-info').textContent = state.floating ? t('({w} × {h} px, not placed yet)', { w: b.w, h: b.h }) : `(${b.w} × ${b.h} px)`;
   $('#stage-actions').hidden = !state.floating;
   requestRender();
   emit('selection');
@@ -115,13 +116,17 @@ function copySource(): HTMLCanvasElement {
 /** Kept for pasting here when the browser can't put images on the system clipboard. */
 let internalClip: HTMLCanvasElement | null = null;
 export async function copy(cut: boolean): Promise<void> {
-  const c = copySource(), what = state.floating || state.sel ? 'the selection' : 'the image';
+  const c = copySource(), part = !!(state.floating || state.sel);
   internalClip = c;
   // ask for the clipboard right away (the PNG is made in the meantime): Safari only allows it during the click
   const ok = canCopyImages() ? await copyImage(canvasToPng(c)) : false;
   if (cut) clearSelection();
-  toast(ok ? `${cut ? 'Cut' : 'Copied'} ${what} – paste it here, into the vector app or any other program.`
-    : `${cut ? 'Cut' : 'Copied'} ${what} (this browser keeps it for pasting here only).`);
+  const msg = ok
+    ? (cut ? (part ? t('Cut the selection – paste it here, into the vector app or any other program.') : t('Cut the image – paste it here, into the vector app or any other program.'))
+      : (part ? t('Copied the selection – paste it here, into the vector app or any other program.') : t('Copied the image – paste it here, into the vector app or any other program.')))
+    : (cut ? (part ? t('Cut the selection (this browser keeps it for pasting here only).') : t('Cut the image (this browser keeps it for pasting here only).'))
+      : (part ? t('Copied the selection (this browser keeps it for pasting here only).') : t('Copied the image (this browser keeps it for pasting here only).')));
+  toast(msg);
 }
 /** Clears the selected pixels to transparent (or drops floating pixels). */
 export function clearSelection(): void {
@@ -134,7 +139,7 @@ export function clearSelection(): void {
 export function crop(): void {
   if (state.floating) place();
   const b = state.sel;
-  if (!b) { toast('Select the part to keep first.'); return; }
+  if (!b) { toast(t('Select the part to keep first.')); return; }
   const c = copySource();
   setSize(b.w, b.h);
   dctx.drawImage(c, 0, 0);
@@ -167,10 +172,10 @@ async function toCanvas(blob: Blob): Promise<HTMLCanvasElement | null> {
 /** Pastes an image as floating pixels: under the mouse if it's over the image, else in the middle of the view. */
 export async function pasteImage(src: Blob | HTMLCanvasElement): Promise<void> {
   const c = src instanceof HTMLCanvasElement ? src : await toCanvas(src);
-  if (!c) { toast('Could not read the pasted image.'); return; }
+  if (!c) { toast(t('Could not read the pasted image.')); return; }
   if (state.floating) place();
   if ((c.width > doc.width || c.height > doc.height)
-    && confirm(`The pasted image (${c.width} × ${c.height}) is bigger than this one (${doc.width} × ${doc.height}). Enlarge the canvas to fit it?`)) {
+    && confirm(t('The pasted image ({w} × {h}) is bigger than this one ({W} × {H}). Enlarge the canvas to fit it?', { w: c.width, h: c.height, W: doc.width, H: doc.height }))) {
     const keep = makeCanvas(doc.width, doc.height);
     keep.getContext('2d').drawImage(doc, 0, 0);
     setSize(Math.max(doc.width, c.width), Math.max(doc.height, c.height));
@@ -191,7 +196,7 @@ export async function pasteImage(src: Blob | HTMLCanvasElement): Promise<void> {
   state.sel = null;
   afterChange();
   selectionChanged();
-  toast(`Pasted ${c.width} × ${c.height} px – drag it into place, then press Enter (or click outside it).`);
+  toast(t('Pasted {w} × {h} px – drag it into place, then press Enter (or click outside it).', { w: c.width, h: c.height }));
 }
 /** Ctrl+V with nothing on the system clipboard the browser lets us read: what was copied here. */
 export function pasteInternal(): boolean {

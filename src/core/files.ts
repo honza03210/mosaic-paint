@@ -8,6 +8,7 @@ import { savePrefs, switchPalette, uniqueName } from './palette.ts';
 import { applyGrout, groutCSS } from './grout.ts';
 import { refImage, setPhoto, renderPhotoUI } from './photo.ts';
 import { cancelPending, setTool } from './tools.ts';
+import { t } from '../shared/i18n.ts';
 
 export interface BuildOptions { photo?: boolean; grout?: boolean; pageOnly?: boolean }
 /** opts.photo: include the reference photo (default: the user's setting). opts.grout: bake in the grout preview. */
@@ -65,7 +66,7 @@ export function loadSVGText(text: string, opts: LoadOptions = {}): boolean {
   const xml = new DOMParser().parseFromString(text, 'image/svg+xml');
   const root = xml.documentElement;
   if (!root || root.localName !== 'svg' || xml.getElementsByTagName('parsererror').length) {
-    if (!opts.quiet) toast('Could not read this file as SVG.');
+    if (!opts.quiet) toast(t('Could not read this file as SVG.'));
     return false;
   }
   sanitize(root);
@@ -140,13 +141,13 @@ function importPalette(colors: string[], name?: string): void {
   const same = (a: string[]) => a.length === colors.length && colors.every(c => a.includes(c));
   const existing = Object.keys(state.palettes).find(k => same(state.palettes[k]));
   if (existing) { switchPalette(existing); return; }
-  const n = uniqueName((name || 'From file').replace(/\.svg$/i, ''));
+  const n = uniqueName((name || t('From file')).replace(/\.svg$/i, ''));
   state.palettes[n] = colors;
   switchPalette(n);
-  toast(`The file’s colors were added as the palette “${n}”.`);
+  toast(t('The file’s colors were added as the palette “{name}”.', { name: n }));
 }
 export function confirmDiscard(): boolean {
-  return !rt.dirty || confirm('Discard unsaved changes to the current drawing?\n(A copy is kept in History.)');
+  return !rt.dirty || confirm(t('Discard unsaved changes to the current drawing?\n(A copy is kept in History.)'));
 }
 const SVG_TYPES = [{ description: 'SVG image', accept: { 'image/svg+xml': ['.svg'] } }];
 export async function openFile(): Promise<void> {
@@ -166,13 +167,13 @@ export async function openFile(): Promise<void> {
 }
 /** Opens SVG text as the drawing (the current one is kept in History). */
 export async function openText(text: string, name: string): Promise<boolean> {
-  if (hasContent()) await saveVersion('Before opening ' + name);
+  if (hasContent()) await saveVersion(t('Before opening {name}', { name }));
   if (!loadSVGText(text, { name })) return false;
   rt.fileHandle = null;
   rt.fileName = name;
   updateTitle();
   scheduleAutosave();
-  toast('Opened ' + name);
+  toast(t('Opened {name}', { name }));
   return true;
 }
 export async function loadFile(f: File | undefined): Promise<void> {
@@ -190,7 +191,7 @@ export async function save(as: boolean): Promise<void> {
       rt.dirty = false;
       updateTitle();
       scheduleAutosave();
-      toast('Saved ' + rt.fileName);
+      toast(t('Saved {name}', { name: rt.fileName }));
       return;
     } catch (err) {
       if (err.name === 'AbortError') return;
@@ -198,7 +199,7 @@ export async function save(as: boolean): Promise<void> {
     }
   }
   if (as) {
-    const n = prompt('File name:', rt.fileName);
+    const n = prompt(t('File name:'), rt.fileName);
     if (!n) return;
     rt.fileName = /\.svg$/i.test(n) ? n : n + '.svg';
   }
@@ -209,10 +210,10 @@ export async function save(as: boolean): Promise<void> {
 export function exportPNG(): void {
   const d = state.doc;
   const def = unit() === 'px' ? Math.max(d.w, 2000) : 3000;
-  const ans = prompt('PNG width in pixels:', String(Math.round(def)));
+  const ans = prompt(t('PNG width in pixels:'), String(Math.round(def)));
   if (!ans) return;
   const W = Math.round(+ans);
-  if (!(W > 0 && W <= 16000)) { toast('Invalid width.'); return; }
+  if (!(W > 0 && W <= 16000)) { toast(t('Invalid width.')); return; }
   const H = Math.max(1, Math.round(W * d.h / d.w));
   const url = URL.createObjectURL(new Blob([buildSVGString({ photo: false, grout: state.grout.on, pageOnly: true })], { type: 'image/svg+xml' }));
   const img = new Image();
@@ -222,9 +223,9 @@ export function exportPNG(): void {
     c.height = H;
     c.getContext('2d').drawImage(img, 0, 0, W, H);
     URL.revokeObjectURL(url);
-    c.toBlob(b => b ? download(b, rt.fileName.replace(/\.svg$/i, '') + '.png') : toast('PNG export failed.'), 'image/png');
+    c.toBlob(b => b ? download(b, rt.fileName.replace(/\.svg$/i, '') + '.png') : toast(t('PNG export failed.')), 'image/png');
   };
-  img.onerror = () => { URL.revokeObjectURL(url); toast('PNG export failed.'); };
+  img.onerror = () => { URL.revokeObjectURL(url); toast(t('PNG export failed.')); };
   img.src = url;
 }
 function resetDoc(keepSize: boolean): void {
@@ -249,7 +250,7 @@ function resetDoc(keepSize: boolean): void {
 }
 export async function newDoc(): Promise<void> {
   if (!confirmDiscard()) return;
-  if (hasContent()) await saveVersion('Before starting a new drawing');
+  if (hasContent()) await saveVersion(t('Before starting a new drawing'));
   resetDoc(true);
 }
 /** Removes all lines, shapes and painted areas (the page and photo stay). Does not commit. */

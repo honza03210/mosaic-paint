@@ -6,6 +6,7 @@ import { initExport3D } from '../shared/export3d.ts';
 import { state, rt } from './state.ts';
 import { doc, getImage, makeCanvas } from './canvas.ts';
 import { suggestColors } from './palette.ts';
+import { t } from '../shared/i18n.ts';
 
 const MAX_COLORS = 24;
 
@@ -23,8 +24,8 @@ export function bindExport3D(): void {
     colors() {
       const img = getImage(), own = R.uniqueColors(img, MAX_COLORS);
       if (own) return { colors: own };
-      if (state.palette.length) return { colors: [...state.palette], note: 'The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).' };
-      return { colors: suggestColors(img, 8), note: 'The picture has many colors: it is snapped to 8 colors suggested from it.' };
+      if (state.palette.length) return { colors: [...state.palette], note: t('The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).') };
+      return { colors: suggestColors(img, 8), note: t('The picture has many colors: it is snapped to 8 colors suggested from it.') };
     },
     fileName: () => rt.fileName,
   }, $('#btn-3d'));

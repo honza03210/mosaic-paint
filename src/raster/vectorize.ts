@@ -8,6 +8,7 @@ import { $, toast } from '../shared/ui.ts';
 import { state, rt, savePrefs } from './state.ts';
 import { doc, getImage } from './canvas.ts';
 import { colorRows } from './report.ts';
+import { t } from '../shared/i18n.ts';
 
 const MAX_TILES = 20000;
 const n = (v: number) => String(Math.round(v * 1000) / 1000);
@@ -46,8 +47,8 @@ ${shapes.join('\n')}
 
 function fillDialog(): void {
   const rows = colorRows(R.pieces(getImage())), sel = $('#vz-grout');
-  sel.innerHTML = '<option value="">No grout – every piece is a tile</option>'
-    + rows.map(r => `<option value="${r.color}">${r.color} – ${r.pieces} piece${r.pieces === 1 ? '' : 's'}</option>`).join('');
+  sel.innerHTML = `<option value="">${t('No grout – every piece is a tile')}</option>`
+    + rows.map(r => `<option value="${r.color}">${r.color} – ${t('{n} {n|piece|pieces}', { n: r.pieces })}</option>`).join('');
   // a mosaic made here has grout in the mosaic's grout color
   sel.value = rows.some(r => r.color === state.mosaic.groutColor) ? state.mosaic.groutColor : '';
   $('#vz-width').value = state.realWidth;
@@ -56,8 +57,10 @@ function fillDialog(): void {
 function info(): void {
   const grout = $('#vz-grout').value || null, rows = colorRows(R.pieces(getImage()));
   const tiles = rows.filter(r => r.color !== grout).reduce((s, r) => s + r.pieces, 0);
-  $('#vz-info').textContent = `${tiles.toLocaleString('en')} tile${tiles === 1 ? '' : 's'} at ${n(state.realWidth)} × ${n(state.realWidth * doc.height / doc.width)} mm`
-    + (tiles > MAX_TILES ? ' – too many: make a mosaic or reduce the picture to the palette first.' : '.');
+  const size = { n: tiles, w: n(state.realWidth), h: n(state.realWidth * doc.height / doc.width) };
+  $('#vz-info').textContent = tiles > MAX_TILES
+    ? t('{n} {n|tile|tiles} at {w} × {h} mm – too many: make a mosaic or reduce the picture to the palette first.', size)
+    : t('{n} {n|tile|tiles} at {w} × {h} mm.', size);
   $('#vz-go').disabled = tiles > MAX_TILES || !tiles;
 }
 export function bindVectorize(): void {
@@ -73,7 +76,7 @@ export function bindVectorize(): void {
     const { svg, tiles } = vectorSVG($('#vz-grout').value || null, state.realWidth);
     try {
       await Store.set('handoff', { svg, name: rt.fileName.replace(/\.[a-z0-9]+$/i, '') + '.svg', time: Date.now(), tiles });
-    } catch { toast('Could not hand the tiles over (browser storage unavailable).'); return; }
+    } catch { toast(t('Could not hand the tiles over (browser storage unavailable).')); return; }
     location.href = 'index.html#from-raster';
   };
 }

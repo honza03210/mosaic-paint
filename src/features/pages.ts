@@ -2,13 +2,14 @@
    The page being edited lives in the editor; the others are kept as SVG text with their own
    undo history and view. A saved file is the current page, with the others in a hidden group. */
 import { MZ } from '../core/api.ts';
+import { t } from '../shared/i18n.ts';
 
 export const Pages = (() => {
   const $ = (s) => document.querySelector<any>(s);
   const { state } = MZ;
   const attr = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const XML = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  let pages = [{ name: 'Page 1', svg: null, history: null, view: null }], cur = 0, switching = false;
+  let pages = [{ name: t('Page {n}', { n: 1 }), svg: null, history: null, view: null }], cur = 0, switching = false;
 
   /** Puts name / index attributes on the outer <svg> of a page's text (replacing old ones). */
   function tag(svg, name, index) {
@@ -27,7 +28,7 @@ export const Pages = (() => {
   // opening a file (or the autosave, or a version): read its pages
   MZ.on('deserialize', (root) => {
     if (switching) return;
-    const list = [{ index: +root.getAttribute('data-page-index') || 0, name: root.getAttribute('data-page-name') || 'Page 1', svg: null }];
+    const list = [{ index: +root.getAttribute('data-page-index') || 0, name: root.getAttribute('data-page-name') || t('Page {n}', { n: 1 }), svg: null }];
     const group = root.querySelector('[id="mosaic-pages"]');
     if (group) {
       for (const s of group.children) {
@@ -41,7 +42,7 @@ export const Pages = (() => {
     render();
   });
   MZ.on('reset', () => {
-    pages = [{ name: 'Page 1', svg: null, history: null, view: null }];
+    pages = [{ name: t('Page {n}', { n: 1 }), svg: null, history: null, view: null }];
     cur = 0;
     render();
   });
@@ -79,23 +80,23 @@ export const Pages = (() => {
     capture();
     const src = pages[cur];
     pages.splice(cur + 1, 0, {
-      name: duplicate ? `${src.name} copy` : `Page ${pages.length + 1}`,
+      name: duplicate ? t('{name} copy', { name: src.name }) : t('Page {n}', { n: pages.length + 1 }),
       svg: duplicate ? src.svg : blankPage(), history: null, view: duplicate ? { ...src.view } : null,
     });
     show(cur + 1);
     if (!duplicate) MZ.fitView();
   }
   function rename(i) {
-    const n = prompt('Page name:', pages[i].name);
+    const n = prompt(t('Page name:'), pages[i].name);
     if (!n || !n.trim()) return;
     pages[i].name = n.trim();
     render();
     MZ.docChanged();
   }
   function remove(i) {
-    if (pages.length < 2) { MZ.toast('A project needs at least one page.'); return; }
-    if (!confirm(`Delete the page “${pages[i].name}”? (A copy of the project is kept in History.)`)) return;
-    MZ.saveVersion(`Before deleting the page ${pages[i].name}`);
+    if (pages.length < 2) { MZ.toast(t('A project needs at least one page.')); return; }
+    if (!confirm(t('Delete the page “{name}”? (A copy of the project is kept in History.)', { name: pages[i].name }))) return;
+    MZ.saveVersion(t('Before deleting the page {name}', { name: pages[i].name }));
     if (i === cur) {
       pages.splice(i, 1);
       show(Math.min(i, pages.length - 1));
@@ -121,9 +122,9 @@ export const Pages = (() => {
     const m = document.createElement('div');
     m.id = 'page-menu';
     for (const [label, fn, ok] of [
-      ['Rename…', () => rename(i), true], ['Duplicate', () => add(true), true],
-      ['Move left', () => move(i, -1), i > 0], ['Move right', () => move(i, 1), i < pages.length - 1],
-      ['Delete…', () => remove(i), pages.length > 1],
+      [t('Rename…'), () => rename(i), true], [t('Duplicate'), () => add(true), true],
+      [t('Move left'), () => move(i, -1), i > 0], [t('Move right'), () => move(i, 1), i < pages.length - 1],
+      [t('Delete…'), () => remove(i), pages.length > 1],
     ] as [string, () => void, boolean][]) {
       const b = document.createElement('button');
       b.textContent = label;
@@ -142,23 +143,23 @@ export const Pages = (() => {
     const box = $('#page-tabs');
     box.innerHTML = '';
     pages.forEach((p, i) => {
-      const t = document.createElement('div');
-      t.className = 'page-tab' + (i === cur ? ' active' : '');
+      const tab = document.createElement('div');
+      tab.className = 'page-tab' + (i === cur ? ' active' : '');
       const b = document.createElement('button');
       b.textContent = p.name;
-      b.title = i === cur ? 'Double-click to rename' : 'Switch to this page';
+      b.title = i === cur ? t('Double-click to rename') : t('Switch to this page');
       b.onclick = () => switchTo(i);
       b.ondblclick = () => rename(i);
-      t.append(b);
+      tab.append(b);
       if (i === cur) {
         const more = document.createElement('button');
         more.className = 'page-more';
         more.textContent = '⋯';
-        more.title = 'Page options';
+        more.title = t('Page options');
         more.onclick = () => openMenu(i, more);
-        t.append(more);
+        tab.append(more);
       }
-      box.append(t);
+      box.append(tab);
     });
   }
 

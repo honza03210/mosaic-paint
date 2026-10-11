@@ -8,6 +8,7 @@ import {
 } from './env.ts';
 import { renderSelection, renderProps } from './selection.ts';
 import { gapTol } from './areas.ts';
+import { t } from '../shared/i18n.ts';
 
 // ---- zoom & pan -----------------------------------------------------------------------------
 export function toDoc(cx: number, cy: number): Pt {
@@ -100,7 +101,7 @@ export function applyLayers(): void {
 }
 export function canDraw(): boolean {
   if (editable('shapes')) return true;
-  toast('The lines layer is locked or hidden (see Layers).');
+  toast(t('The lines layer is locked or hidden (see Layers).'));
   return false;
 }
 

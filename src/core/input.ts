@@ -12,6 +12,7 @@ import { imageFromPaste } from '../shared/clipboard.ts';
 import { save, openFile, loadFile, confirmDiscard } from './files.ts';
 import { tools, setTool, cancelPending, updateStageActions, finishFree, freeBack } from './tools.ts';
 import { setSides } from './panel.ts';
+import { t } from '../shared/i18n.ts';
 
 function setTouch(on: boolean): void {
   rt.snapPx = on ? 18 : 10;
@@ -77,7 +78,7 @@ function bindPointer(): void {
       $('#btn-sym-center').classList.remove('active');
       savePrefs();
       drawGuides();
-      toast('Symmetry center set.');
+      toast(t('Symmetry center set.'));
       return;
     }
     if (e.button === 1 || state.space || state.tool === 'pan') {
@@ -176,7 +177,7 @@ function onKey(e: KeyboardEvent): void {
     case 't': setTool('pattern'); break;
     case 'b': case 'f': setTool('bucket'); break;
     case 'h': setTool('pan'); break;
-    case 's': state.snap = !state.snap; $('#opt-snap').checked = state.snap; savePrefs(); toast('Snapping ' + (state.snap ? 'on' : 'off')); break;
+    case 's': state.snap = !state.snap; $('#opt-snap').checked = state.snap; savePrefs(); toast(state.snap ? t('Snapping on') : t('Snapping off')); break;
     case 'enter': if (state.freePts) finishFree(); else if (state.lineStart) cancelPending(); break;
     case 'delete': case 'backspace':
       if (state.freePts) freeBack(); else deleteSel();
@@ -218,7 +219,7 @@ export function bindInput(): void {
     // modules get the first look (motifs pastes copied shapes), even with an empty clipboard
     for (const fn of handlers('pasteText')) if (fn(text)) { e.preventDefault(); return; }
     if (!text) return;
-    if (!pasteColors(text)) toast('The clipboard has no color codes.');
+    if (!pasteColors(text)) toast(t('The clipboard has no color codes.'));
   });
 
   // drag & drop an SVG (opens it) or a photo (becomes the tracing photo)

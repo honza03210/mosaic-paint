@@ -4,6 +4,7 @@ import { state, isFill, emit, lsGet, lsSet } from './env.ts';
 import { allShapes, fillOf, paintFill, setPaint } from './doc.ts';
 import { commit } from './history.ts';
 import { createPaletteUI } from '../shared/palette-ui.ts';
+import { t } from '../shared/i18n.ts';
 
 // ---- remembered settings ------------------------------------------------------------------------
 const PREF_KEYS = ['mode', 'fill', 'stroke', 'strokeWidth', 'palettes', 'paletteName', 'snap', 'link', 'grid', 'gridSize', 'border', 'gapPct',
@@ -17,7 +18,7 @@ export function loadPrefs(): void {
   let o: any;
   try { o = JSON.parse(lsGet('mz-prefs') || '{}'); } catch { return; }
   // settings from the first versions
-  if (Array.isArray(o.palette) && !o.palettes) o.palettes = { 'My palette': o.palette };
+  if (Array.isArray(o.palette) && !o.palettes) o.palettes = { [t('My palette')]: o.palette };
   if ('ngonFill' in o && !('newFill' in o)) o.newFill = o.ngonFill;
   for (const k of PREF_KEYS) {
     if (!(k in o)) continue;
@@ -25,7 +26,7 @@ export function loadPrefs(): void {
     else if (['pattern', 'sym', 'grout'].includes(k)) Object.assign(state[k], o[k]);
     else state[k] = o[k];
   }
-  if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || 'My palette';
+  if (!state.palettes[state.paletteName]) state.paletteName = Object.keys(state.palettes)[0] || t('My palette');
 }
 
 // ---- the palette panel ------------------------------------------------------------------------------
@@ -53,8 +54,8 @@ const ui = createPaletteUI({
   state,
   save: savePrefs,
   counts: colorCounts,
-  usage: (n) => `${n} area${n > 1 ? 's' : ''}`,
-  names: { fill: 'fill', stroke: 'stroke', none: 'No color – the bucket erases with it' },
+  usage: (n) => t('{n} {n|area|areas}', { n }),
+  names: { fill: t('fill'), stroke: t('stroke'), none: t('No color – the bucket erases with it') },
   docColors() {
     const cols: (string | null)[] = [];
     for (const el of allShapes()) {
@@ -85,7 +86,7 @@ const ui = createPaletteUI({
     }
     if (!n) return null;
     commit(true);
-    return `Recolored ${n} element${n > 1 ? 's' : ''}.`;
+    return t('Recolored {n} {n|element|elements}.', { n });
   },
   // Shift+click is left to add-on modules (the color mix)
   shiftClick: (c, e) => emit('swatch-shift', c, e),

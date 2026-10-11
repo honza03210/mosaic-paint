@@ -2,13 +2,14 @@
    pairs of colors that are hard to tell apart, and marks on tiles that blend into a neighbour. */
 import { MZ } from '../core/api.ts';
 import * as Colors from '../lib/colors.ts';
+import { t } from '../shared/i18n.ts';
 
 export const Vision = (() => {
   const $ = (s) => document.querySelector<any>(s);
   const NS = 'http://www.w3.org/2000/svg';
   const VIEWS = [
-    ['none', 'Normal colors'], ['gray', 'Black & white'], ['protan', 'Red-blind (protanopia)'],
-    ['deutan', 'Green-blind (deuteranopia)'], ['tritan', 'Blue-blind (tritanopia)'],
+    ['none', t('Normal colors')], ['gray', t('Black & white')], ['protan', t('Red-blind (protanopia)')],
+    ['deutan', t('Green-blind (deuteranopia)')], ['tritan', t('Blue-blind (tritanopia)')],
   ];
   const ALIKE = 10; // ΔE below this: easy to confuse
   let view = 'none', marking = false;
@@ -24,9 +25,9 @@ export const Vision = (() => {
     return out;
   }
   function describe(views) {
-    if (views.includes('none')) return 'look almost the same';
-    const who = { gray: 'in black & white', protan: 'for red-blind viewers', deutan: 'for green-blind viewers', tritan: 'for blue-blind viewers' };
-    return 'look alike ' + views.map(v => who[v]).join(', ');
+    if (views.includes('none')) return t('look almost the same');
+    const who = { gray: t('in black & white'), protan: t('for red-blind viewers'), deutan: t('for green-blind viewers'), tritan: t('for blue-blind viewers') };
+    return t('look alike {who}', { who: views.map(v => who[v]).join(', ') });
   }
 
   // ---- on-screen filters --------------------------------------------------------------
@@ -81,7 +82,7 @@ export const Vision = (() => {
     marking = on;
     $('#btn-contrast').classList.toggle('active', on);
     const n = markLowContrast();
-    if (on) MZ.toast(n ? `${n} tile${n === 1 ? '' : 's'} blend into a neighbour of another color${view === 'none' ? '' : ' (in this view)'}.` : 'No tile blends into its neighbours.');
+    if (on) MZ.toast(n ? (view === 'none' ? t('{n} {n|tile blends|tiles blend} into a neighbour of another color.', { n }) : t('{n} {n|tile blends|tiles blend} into a neighbour of another color (in this view).', { n })) : t('No tile blends into its neighbours.'));
   }
 
   function init() {

@@ -7,6 +7,7 @@ import * as R from '../lib/raster.ts';
 import * as M from '../lib/model3d.ts';
 import { zip } from '../lib/zip.ts';
 import { $, clamp, toast, download, lsGet, lsSet } from './ui.ts';
+import { t, num } from './i18n.ts';
 
 export interface Export3DHost {
   /** width / height of the picture */
@@ -30,33 +31,33 @@ const saveOpts = () => lsSet('mz-3d', JSON.stringify(opts));
 const f2 = (v: number) => String(+v.toFixed(2));
 
 const DIALOG = `
-<form method="dialog" class="dlg-head"><h2>3D print</h2><button title="Close">✕</button></form>
-<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.</p>
+<form method="dialog" class="dlg-head"><h2>${t('3D print')}</h2><button title="${t('Close')}">✕</button></form>
+<p class="note">${t('A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.')}</p>
 <div class="row">
-  <label>Size <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
-  <label title="Size of the model's smallest step – about your nozzle width">Detail <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
+  <label>${t('Size')} <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
+  <label title="${t('Size of the model’s smallest step – about your nozzle width')}">${t('Detail')} <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
 </div>
 <div class="row">
-  <label>Layer height <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
-  <label title="How many layers each color gets – more layers cover the color below better">Layers per color <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
-  <label title="A plate under everything, printed in the first color. 0: unpainted parts are left open">Base layers <input id="m3-base" type="number" min="0" max="50" step="1"></label>
+  <label>${t('Layer height')} <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
+  <label title="${t('How many layers each color gets – more layers cover the color below better')}">${t('Layers per color')} <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
+  <label title="${t('A plate under everything, printed in the first color. 0: unpainted parts are left open')}">${t('Base layers')} <input id="m3-base" type="number" min="0" max="50" step="1"></label>
 </div>
 <p class="note warn" id="m3-note" hidden></p>
 <div class="m3-body">
-  <canvas id="m3-preview" title="Top view of the model"></canvas>
+  <canvas id="m3-preview" title="${t('Top view of the model')}"></canvas>
   <div class="m3-side">
-    <div class="row small"><span class="note">Print order (bottom first):</span>
-      <button id="m3-light" title="Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom">Light → dark</button>
-      <button id="m3-dark">Dark → light</button>
+    <div class="row small"><span class="note">${t('Print order (bottom first):')}</span>
+      <button id="m3-light" title="${t('Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom')}">${t('Light → dark')}</button>
+      <button id="m3-dark">${t('Dark → light')}</button>
     </div>
     <div id="m3-order"></div>
   </div>
 </div>
 <p class="note" id="m3-summary"></p>
 <div class="row dlg-foot">
-  <button id="m3-plan" title="Which filament to load at which layer, as a text file">Plan</button>
-  <button id="m3-stl" title="Just the shape – add the filament changes from the plan in your slicer">STL</button>
-  <button id="m3-go" class="primary" title="The model, with the filament changes for PrusaSlicer">Download 3MF</button>
+  <button id="m3-plan" title="${t('Which filament to load at which layer, as a text file')}">${t('Plan')}</button>
+  <button id="m3-stl" title="${t('Just the shape – add the filament changes from the plan in your slicer')}">STL</button>
+  <button id="m3-go" class="primary" title="${t('The model, with the filament changes for PrusaSlicer')}">${t('Download 3MF')}</button>
 </div>`;
 
 export function initExport3D(host: Export3DHost, button: HTMLElement): void {
@@ -117,8 +118,8 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     const s = settings(), list = used(), { w, h } = size();
     $('#m3-w').value = f2(w);
     $('#m3-h').value = f2(h);
-    const warn = [note, list.length > MANY_COLORS ? `${list.length} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).` : '',
-      cell > opts.detail + 1e-9 ? `Detail lowered to ${f2(cell)} mm for this size.` : ''].filter(Boolean).join(' ');
+    const warn = [note, list.length > MANY_COLORS ? t('{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).', { n: list.length }) : '',
+      cell > opts.detail + 1e-9 ? t('Detail lowered to {d} mm for this size.', { d: num(+f2(cell)) }) : ''].filter(Boolean).join(' ');
     $('#m3-note').hidden = !warn;
     $('#m3-note').textContent = warn;
     // the print order, with the layers of each color
@@ -132,14 +133,17 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       if (!row) {
         row = document.createElement('div');
         row.className = 'm3-row';
-        row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines.has(c) ? '<span class="tag">lines</span>' : ''}<span class="note"></span>`
-          + '<button title="Print earlier (lower)">↑</button><button title="Print later (higher)">↓</button>';
+        row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines.has(c) ? `<span class="tag">${t('lines')}</span>` : ''}<span class="note"></span>`
+          + `<button title="${t('Print earlier (lower)')}">↑</button><button title="${t('Print later (higher)')}">↓</button>`;
         const [up, down] = row.querySelectorAll('button');
         up.onclick = () => move(c, -1);
         down.onclick = () => move(c, 1);
         rows.set(c, row);
       }
-      row.querySelector('.note').textContent = `${Math.max(0.1, +(counts[ci] / total * 100).toFixed(1))} % · layers ${p.fromLayer}–${p.toLayer}${p.z == null ? '' : ` · change at Z ${p.z.toFixed(2)}`}`;
+      const share = num(Math.max(0.1, +(counts[ci] / total * 100).toFixed(1)));
+      row.querySelector('.note').textContent = p.z == null
+        ? t('{share} % · layers {from}–{to}', { share, from: p.fromLayer, to: p.toLayer })
+        : t('{share} % · layers {from}–{to} · change at Z {z}', { share, from: p.fromLayer, to: p.toLayer, z: num(p.z, 2) });
       const [up, down] = row.querySelectorAll('button');
       up.disabled = k === 0;
       down.disabled = k === list.length - 1;
@@ -147,10 +151,9 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     });
     const unpainted = grid ? grid.filter(v => v < 0).length : 0;
     $('#m3-summary').textContent = list.length
-      ? `${list.length} color${list.length === 1 ? '' : 's'} · height ${M.modelHeight(list.length, s)} mm (${M.topLayer(list.length - 1, s)} layers)`
-        + ` · ${list.length - 1} filament change${list.length === 2 ? '' : 's'}`
-        + (unpainted ? ` · unpainted parts ${opts.baseLayers ? `stay at the base (${f2(opts.baseLayers * opts.layerHeight)} mm)` : 'are left open'}` : '')
-      : 'Nothing is painted yet.';
+      ? t('{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}', { n: list.length, h: num(M.modelHeight(list.length, s)), layers: M.topLayer(list.length - 1, s), c: list.length - 1 })
+        + (unpainted ? ' · ' + (opts.baseLayers ? t('unpainted parts stay at the base ({h} mm)', { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t('unpainted parts are left open')) : '')
+      : t('Nothing is painted yet.');
     $('#m3-go').disabled = $('#m3-stl').disabled = $('#m3-plan').disabled = !list.length;
     drawPreview();
   }
@@ -181,26 +184,30 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   const mesh = () => M.closedMesh(levels(), gw, gh, cell, settings());
   function planText(): string {
     const s = settings(), list = used(), plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
+    const v = { name: base(), w: f2(w), h: f2(h), lh: s.layerHeight, lpc: s.layersPerColor, base: s.baseLayers, total: M.modelHeight(list.length, s), layers: M.topLayer(list.length - 1, s) };
+    // the plan is a file: plain numbers (2.40), whatever the language
+    const first = plan[0];
     const lines = [
-      `Mosaic Paint – 3D print plan for ${base()}.3mf / ${base()}.stl`,
-      `Size ${f2(w)} × ${f2(h)} mm · layer height ${s.layerHeight} mm · ${s.layersPerColor} layers per color · base ${s.baseLayers} layers`,
-      `Total height ${M.modelHeight(list.length, s)} mm (${M.topLayer(list.length - 1, s)} layers). Set the slicer's first layer height to ${s.layerHeight} mm too.`,
+      t('Mosaic Paint – 3D print plan for {name}.3mf / {name}.stl', v),
+      t('Size {w} × {h} mm · layer height {lh} mm · {lpc} layers per color · base {base} layers', v),
+      t('Total height {total} mm ({layers} layers). Set the slicer’s first layer height to {lh} mm too.', v),
       '',
-      `Start with ${plan[0].color} – layers ${plan[0].fromLayer}–${plan[0].toLayer}${s.baseLayers ? ' (base plate included)' : ''}`,
-      ...plan.slice(1).map(p => `Layer ${p.changeAtLayer} (Z ${p.z.toFixed(2)} mm): change to ${p.color} – layers ${p.fromLayer}–${p.toLayer}`),
+      (s.baseLayers ? t('Start with {color} – layers {from}–{to} (base plate included)', { color: first.color, from: first.fromLayer, to: first.toLayer })
+        : t('Start with {color} – layers {from}–{to}', { color: first.color, from: first.fromLayer, to: first.toLayer })),
+      ...plan.slice(1).map(p => t('Layer {layer} (Z {z} mm): change to {color} – layers {from}–{to}', { layer: p.changeAtLayer, z: p.z.toFixed(2), color: p.color, from: p.fromLayer, to: p.toLayer })),
       '',
-      'PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider.',
-      'Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:',
-      '- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click "+" (Add color change, M600).',
-      '- Cura: Extensions › Post Processing › Modify G-Code › "Filament Change" at each layer number above.',
-      '- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer.',
+      t('PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider.'),
+      t('Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:'),
+      t('- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click “+” (Add color change, M600).'),
+      t('- Cura: Extensions › Post Processing › Modify G-Code › “Filament Change” at each layer number above.'),
+      t('- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer.'),
     ];
     return lines.join('\n') + '\n';
   }
 
   // ---- controls --------------------------------------------------------------------------------------
   let busy: any;
-  const reanalyse = () => { clearTimeout(busy); busy = setTimeout(() => analyse().catch(() => toast('Could not read the picture.')), 50); };
+  const reanalyse = () => { clearTimeout(busy); busy = setTimeout(() => analyse().catch(() => toast(t('Could not read the picture.'))), 50); };
   const bindNum = (id: string, key: string, min: number, max: number, whole: boolean, again: boolean) => {
     const i = $(id);
     i.value = opts[key];
@@ -223,28 +230,28 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   $('#m3-h').onchange = () => { const v = +$('#m3-h').value; if (v >= 5 && v <= 2000) { opts.width = v * host.aspect(); saveOpts(); } reanalyse(); };
   $('#m3-light').onclick = () => sortBy(true);
   $('#m3-dark').onclick = () => sortBy(false);
-  const triangles = (m: M.Mesh) => (m.triangles.length / 3).toLocaleString('en');
+  const triangles = (m: M.Mesh) => m.triangles.length / 3;
   $('#m3-go').onclick = async () => {
     const m = mesh(), p = plan();
     $('#m3-go').disabled = true;
     try {
       const data = await zip(M.threeMfFiles(m, p, base()));
       download(new Blob([data as BlobPart], { type: 'model/3mf' }), base() + '.3mf');
-      toast(`Saved ${base()}.3mf (${triangles(m)} triangles; PrusaSlicer reads its ${p.length - 1} filament change${p.length === 2 ? '' : 's'}, other slicers need the plan).`);
+      toast(t('Saved {name}.3mf ({n} triangles; PrusaSlicer reads its {c} filament {c|change|changes}, other slicers need the plan).', { name: base(), n: triangles(m), c: p.length - 1 }));
     } finally { $('#m3-go').disabled = false; }
   };
   $('#m3-stl').onclick = () => {
     const m = mesh();
     download(new Blob([M.stl(m, base())], { type: 'model/stl' }), base() + '.stl');
-    toast(`Saved ${base()}.stl (${triangles(m)} triangles). Add the filament changes from the plan in your slicer.`);
+    toast(t('Saved {name}.stl ({n} triangles). Add the filament changes from the plan in your slicer.', { name: base(), n: triangles(m) }));
   };
   $('#m3-plan').onclick = () => download(new Blob([planText()], { type: 'text/plain' }), base() + '-3d-plan.txt');
 
   button.onclick = async () => {
     const real = host.realSize();
     if (real) opts.width = +real.w.toFixed(2);
-    $('#m3-summary').textContent = 'Reading the picture…';
+    $('#m3-summary').textContent = t('Reading the picture…');
     dlg.showModal();
-    await analyse().catch(() => toast('Could not read the picture.'));
+    await analyse().catch(() => toast(t('Could not read the picture.')));
   };
 }

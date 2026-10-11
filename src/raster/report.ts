@@ -5,6 +5,7 @@ import { $, toast, download } from '../shared/ui.ts';
 import { state, rt, savePrefs } from './state.ts';
 import { doc, dctx, getImage } from './canvas.ts';
 import { commit } from './history.ts';
+import { t, num } from '../shared/i18n.ts';
 
 export interface ColorRow { n: number; color: string; pieces: number; pixels: number }
 /** The colors of the image with their pieces and pixels, most used first, numbered 1… */
@@ -20,10 +21,10 @@ export function colorRows(p: R.Pieces): ColorRow[] {
 }
 /** Millimetres per pixel at the real width. */
 export const mmPerPixel = (): number => state.realWidth / doc.width;
-const fmtN = (v: number) => v.toLocaleString('en');
+const fmtN = (v: number) => num(v);
 const area = (px: number) => {
   const cm2 = px * mmPerPixel() ** 2 / 100;
-  return cm2 >= 100 ? `${(cm2 / 100).toFixed(2)} dm²` : `${cm2.toFixed(1)} cm²`;
+  return cm2 >= 100 ? `${num(cm2 / 100, 2)} dm²` : `${num(cm2, 1)} cm²`;
 };
 
 let rows: ColorRow[] = [];
@@ -32,29 +33,29 @@ function render(): void {
   rows = colorRows(p);
   const total = rows.reduce((s, r) => s + r.pixels, 0) || 1, pieces = rows.reduce((s, r) => s + r.pieces, 0);
   $('#rep-summary').textContent = rows.length
-    ? `${fmtN(pieces)} piece${pieces === 1 ? '' : 's'} in ${rows.length} color${rows.length === 1 ? '' : 's'} · ${doc.width} × ${doc.height} px`
-    : 'Nothing is painted yet.';
+    ? t('{n} {n|piece|pieces} in {c} {c|color|colors} · {w} × {h} px', { n: pieces, c: rows.length, w: doc.width, h: doc.height })
+    : t('Nothing is painted yet.');
   $('#rep-width').value = state.realWidth;
-  $('#rep-size').textContent = `${Math.round(state.realWidth)} × ${Math.round(state.realWidth * doc.height / doc.width)} mm · ${mmPerPixel().toFixed(2)} mm per pixel`;
-  const t = $('#rep-table');
-  t.innerHTML = '<tr><th>#</th><th>Color</th><th>Pieces</th><th>Pixels</th><th>Share</th><th>Area</th><th>Replace with</th></tr>';
+  $('#rep-size').textContent = t('{w} × {h} mm · {k} mm per pixel', { w: Math.round(state.realWidth), h: Math.round(state.realWidth * doc.height / doc.width), k: num(mmPerPixel(), 2) });
+  const table = $('#rep-table');
+  table.innerHTML = `<tr><th>#</th><th>${t('Color')}</th><th>${t('Pieces')}</th><th>${t('Pixels')}</th><th>${t('Share of area')}</th><th>${t('Area')}</th><th>${t('Replace with')}</th></tr>`;
   for (const r of rows) {
     const tr = document.createElement('tr');
     tr.innerHTML = `<td>${r.n}</td><td><span class="mini" style="background:${r.color}"></span> ${r.color}</td><td>${fmtN(r.pieces)}</td>`
-      + `<td>${fmtN(r.pixels)}</td><td>${(r.pixels / total * 100).toFixed(1)} %</td><td>${area(r.pixels)}</td><td></td>`;
+      + `<td>${fmtN(r.pixels)}</td><td>${num(r.pixels / total * 100, 1)} %</td><td>${area(r.pixels)}</td><td></td>`;
     const sel = document.createElement('select');
     sel.innerHTML = '<option value="">–</option>' + state.palette.filter(c => c !== r.color).map(c => `<option value="${c}">${c}</option>`).join('')
-      + '<option value="none">transparent</option>';
+      + `<option value="none">${t('transparent')}</option>`;
     sel.onchange = () => {
       if (!sel.value) return;
       const img = getImage(), n = R.replaceColor(img, r.color, R.rgba(sel.value === 'none' ? null : sel.value));
       dctx.putImageData(img, 0, 0);
       commit();
-      toast(`Recolored ${fmtN(n)} pixel${n === 1 ? '' : 's'}.`);
+      toast(t('Recolored {n} {n|pixel|pixels}.', { n }));
       render();
     };
     tr.lastElementChild.append(sel);
-    t.append(tr);
+    table.append(tr);
   }
 }
 function csv(): string {

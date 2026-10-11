@@ -9,6 +9,7 @@ import { bindPalette, pasteColors } from './palette.ts';
 import { setTool, setMode } from './tools.ts';
 import { newImage, openFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
 import { bindMosaic } from './mosaic.ts';
+import { t } from '../shared/i18n.ts';
 
 export function setSides(n: number): void {
   state.sides = clamp(Math.round(n) || 6, 3, 64);
@@ -39,7 +40,7 @@ async function pasteButton(): Promise<void> {
   if (text && /data-mosaic-snippet/.test(text)) { setTool('select'); await pasteImage(new Blob([text], { type: 'image/svg+xml' })); return; }
   if (text && pasteColors(text)) return;
   if (pasteInternal()) return;
-  toast('Nothing to paste – or the browser didn’t allow reading the clipboard (try Ctrl+V).');
+  toast(t('Nothing to paste – or the browser didn’t allow reading the clipboard (try Ctrl+V).'));
 }
 
 export function bindPanel(): void {
@@ -102,7 +103,7 @@ export function bindPanel(): void {
   on('size', showImageSize);
   const askedSize = () => {
     const w = Math.round(+$('#img-w').value), h = Math.round(+$('#img-h').value);
-    if (!(w >= 1 && h >= 1 && w <= MAX_SIDE && h <= MAX_SIDE)) { toast(`Enter a size from 1 to ${MAX_SIDE} px.`); showImageSize(); return null; }
+    if (!(w >= 1 && h >= 1 && w <= MAX_SIDE && h <= MAX_SIDE)) { toast(t('Enter a size from 1 to {max} px.', { max: MAX_SIDE })); showImageSize(); return null; }
     return { w, h };
   };
   $('#btn-resize').onclick = () => { const s = askedSize(); if (s) resizeImage(s.w, s.h); };

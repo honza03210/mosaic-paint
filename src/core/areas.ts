@@ -9,6 +9,7 @@ import {
 } from './doc.ts';
 import { commit } from './history.ts';
 import { setFill } from './palette.ts';
+import { t } from '../shared/i18n.ts';
 
 export const gapTol = (): number => Math.max(state.doc.w, state.doc.h) * (state.mode === 'expert' ? state.gapPct : 0.4) / 100;
 let lastOpenEnds: Pt[] = [];
@@ -243,16 +244,16 @@ export function commitFor(els: Iterable<Element>): void {
 
 /** Picks the color under p as the fill color. */
 export function eyedrop(p: Pt): void {
-  for (const t of shapesAt(p)) {
-    if (!insideEl(t, p)) continue;
-    const c = fillOf(t);
+  for (const el of shapesAt(p)) {
+    if (!insideEl(el, p)) continue;
+    const c = fillOf(el);
     if (c) {
       setFill(c, false);
-      toast(`Picked ${c}${state.palette.includes(c) ? '' : ' (not in the palette – add it with “From drawing”)'}`);
+      toast(state.palette.includes(c) ? t('Picked {c}.', { c }) : t('Picked {c} (not in the palette – add it with “From drawing”).', { c }));
       return;
     }
   }
-  toast('No painted area under the cursor.');
+  toast(t('No painted area under the cursor.'));
 }
 /** Colors of the painted areas touching a region (looked up just outside each of its edges). */
 export function neighbourColors(reg: Region): Set<string> {
