@@ -11,6 +11,10 @@ Switch between them with **Vector | Raster** in the top bar. They look and work 
 It can be installed as an app ("Install app" button, or the browser's install icon), and then it also works offline.
 To run it from a download instead, open `index.html` (or `raster.html`) in Chrome / Edge / Firefox; there's no build step.
 
+## Getting started
+
+The first time you open an app, a short guide points out its parts; the **?** button in the top bar shows it again. **Examples…** opens ready-made projects to look at or start from: a coaster and a sign in the vector app, a pixel-art heart and a sunset mosaic in the raster app (your current work is kept in History).
+
 ## Languages
 
 Both apps are in English and Czech (čeština). They follow the browser’s language; the language menu in the top bar switches it.
@@ -120,7 +124,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
-- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts), running jobs in the worker (`work.ts`)
+- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the examples dialog (`examples-ui.ts`) and the guide (`guide.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts), running jobs in the worker (`work.ts`)
 - `src/worker/`: the worker – its jobs (`jobs.ts`: plain data in and out) and its entry point (`worker.ts`)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket
@@ -136,6 +140,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `model3d.ts`: the 3D print model – colors as height bands, one closed surface (no T-junctions), binary STL, 3MF with PrusaSlicer color changes, the filament-change plan; the flat multi-filament model (one part per color) as a PrusaSlicer or Bambu Studio 3MF; finishing (frame, rounded corners, hanging hole, magnet pockets)
   - `build3d.ts`: the 3D model as the dialog builds it – thin towers lowered, finishing, the solids of either kind of model, the files
   - `vectorize.ts`: raster tiles as a Mosaic Paint SVG (one polygon per piece)
+  - `examples.ts`: the example projects, made on the spot
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
   - `trace.ts`: outlines of pixel areas as polygons (corner points only, holes, diagonal pixels kept apart)
 - `src/core/`: the editor

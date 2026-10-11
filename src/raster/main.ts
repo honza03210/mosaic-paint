@@ -18,6 +18,7 @@ import { bindReport } from './report.ts';
 import { bindPrint, printPage } from './print.ts';
 import { bindShare, fromHash } from './share.ts';
 import { bindVectorize, vectorSVG } from './vectorize.ts';
+import { bindExamples } from './examples.ts';
 import { initHistoryUI } from '../shared/history-ui.ts';
 import { listVersions, restoreVersion } from './files.ts';
 import { saveVersion } from './history.ts';
@@ -31,6 +32,7 @@ bindReport();
 bindPrint();
 bindShare();
 bindVectorize();
+bindExamples();
 initHistoryUI({
   texts: {
     intro: t('Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another image. Restoring keeps your current image as a version too.'),

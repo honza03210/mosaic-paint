@@ -199,9 +199,9 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   const rows = new Map<string, HTMLElement>();
   /** Moves a color one step earlier (-1) or later (+1) in the print order – grout stays below the tiles. */
   function move(c: string, d: number): void {
-    const m = model();
-    if (!m) return;
-    const list = m.list, k = list.findIndex(ci => colors[ci] === c), other = list[k + d];
+    // while the model is being worked out, the colors as the rows show them
+    const m = model(), list = m ? m.list : order.filter(i => counts[i] > 0);
+    const k = list.findIndex(ci => colors[ci] === c), other = list[k + d];
     if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
     const a = order.indexOf(list[k]), b = order.indexOf(other);
     [order[a], order[b]] = [order[b], order[a]];

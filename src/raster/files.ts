@@ -51,11 +51,15 @@ export async function fileToCanvas(f: Blob): Promise<HTMLCanvasElement | null> {
 export async function openImageFile(f: File): Promise<boolean> {
   const c = await fileToCanvas(f);
   if (!c) { toast(t('Could not read {name} as an image.', { name: f.name })); return false; }
-  await saveVersion(t('Before opening {name}', { name: f.name }));
-  loadCanvas(c, f.name);
-  scheduleAutosave();
-  toast(t('Opened {name} ({w} × {h} px).', { name: f.name, w: c.width, h: c.height }));
+  await openCanvas(c, f.name);
   return true;
+}
+/** Opens a picture as the image (the current one is kept in History). */
+export async function openCanvas(c: HTMLCanvasElement, name: string): Promise<void> {
+  await saveVersion(t('Before opening {name}', { name }));
+  loadCanvas(c, name);
+  scheduleAutosave();
+  toast(t('Opened {name} ({w} × {h} px).', { name, w: c.width, h: c.height }));
 }
 export async function openFile(): Promise<void> {
   if (!confirmDiscard()) return;

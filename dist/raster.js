@@ -712,7 +712,45 @@
     "Working out the model… {p} %": "Počítám model… {p} %",
     "Could not build the 3D model.": "3D model se nepodařilo vytvořit.",
     "Building the 3D model…": "Vytvářím 3D model…",
-    "Building the 3D model… {p} %": "Vytvářím 3D model… {p} %"
+    "Building the 3D model… {p} %": "Vytvářím 3D model… {p} %",
+    "Coaster": "Podtácek",
+    "HOME": "DOMOV",
+    "Sign": "Cedulka",
+    "100 × 100 mm, square tiles in rings of color – try 3D… with rounded corners.": "100 × 100 mm, čtvercové dlaždice v barevných prstencích – zkuste 3D… se zaoblenými rohy.",
+    "coaster": "podtacek",
+    "A word in tiles with a border – try Report for a shopping list.": "Slovo z dlaždic s okrajem – v Přehledu najdete nákupní seznam.",
+    "sign": "cedulka",
+    "Welcome to Mosaic Paint": "Vítejte v Mosaic Paint",
+    "Design a mosaic: draw lines or lay a tile pattern, then paint the tiles. Everything is measured in real millimetres.": "Navrhněte mozaiku: nakreslete čáry nebo položte vzor dlaždic a pak dlaždice vybarvěte. Vše se měří ve skutečných milimetrech.",
+    "Draw": "Kreslení",
+    "The tools are on the left: lines and shapes, the tile pattern, and the paint bucket that fills a tile with one click.": "Nástroje jsou vlevo: čáry a tvary, vzor dlaždic a kbelík, který jedním kliknutím vybarví dlaždici.",
+    "Pick a color in the palette, then click tiles with the bucket. Palettes are shared with the raster app.": "Vyberte barvu v paletě a klikejte kbelíkem na dlaždice. Palety jsou společné s rastrovou aplikací.",
+    "When it is done": "Až bude hotovo",
+    "Report gives a shopping list, 3D… a model to print, Share a link. Expert mode adds printing at real size and laying plans.": "Přehled dá nákupní seznam, 3D… model k tisku, Sdílet odkaz. Režim Expert přidá tisk ve skutečné velikosti a plány kladení.",
+    "Start from an example": "Začněte od příkladu",
+    "Not sure where to begin? Open an example. The ? button shows this guide again.": "Nevíte, kde začít? Otevřete příklad. Tlačítko ? ukáže tohoto průvodce znovu.",
+    "Pixel heart": "Pixelové srdce",
+    "16 × 16 pixel art – every pixel a tile. Try 3D… or Print.": "Pixel art 16 × 16 – každý pixel je dlaždice. Zkuste 3D… nebo Tisk.",
+    "heart": "srdce",
+    "Heart": "Srdce",
+    "Sunset mosaic": "Mozaika se západem slunce",
+    "A picture made into tiles with grout by “Make a mosaic…”. Try Open as vector tiles.": "Obrázek proměněný v dlaždice se spárami pomocí „Vytvořit mozaiku…“. Zkuste Otevřít jako vektorové dlaždice.",
+    "sunset": "zapad-slunce",
+    "Sunset": "Západ slunce",
+    "Welcome to Mosaic Paint Raster": "Vítejte v Mosaic Paint Raster",
+    "Paint with pixels: pixel art, or a photo turned into a mosaic. Each pixel can become a tile.": "Malujte pixely: pixel art nebo fotku proměněnou v mozaiku. Každý pixel se může stát dlaždicí.",
+    "The tools are on the left: pencil, brush, bucket, lines, shapes and selection.": "Nástroje jsou vlevo: tužka, štětec, kbelík, čáry, tvary a výběr.",
+    "Pick a color in the palette. Palettes are shared with the vector app.": "Vyberte barvu v paletě. Palety jsou společné s vektorovou aplikací.",
+    "Open a photo, then “Make a mosaic…” turns it into tiles with grout in your palette’s colors.": "Otevřete fotku a „Vytvořit mozaiku…“ z ní udělá dlaždice se spárami v barvách vaší palety.",
+    "Examples": "Příklady",
+    "Open an example to see how it is made, or to start from it. Your current work is kept in History.": "Otevřete příklad a podívejte se, jak je udělaný, nebo z něj vyjděte. Vaše současná práce zůstane v Historii.",
+    "Back": "Zpět",
+    "{k} of {n}": "{k} z {n}",
+    "Next": "Další",
+    "Examples…": "Příklady…",
+    "Example projects to open": "Ukázkové projekty k otevření",
+    "A short guide to the app": "Krátký průvodce aplikací",
+    "Guide": "Průvodce"
   };
 
   // src/shared/i18n.ts
@@ -2879,11 +2917,14 @@
       toast(t("Could not read {name} as an image.", { name: f.name }));
       return false;
     }
-    await saveVersion(t("Before opening {name}", { name: f.name }));
-    loadCanvas(c, f.name);
-    scheduleAutosave();
-    toast(t("Opened {name} ({w} × {h} px).", { name: f.name, w: c.width, h: c.height }));
+    await openCanvas(c, f.name);
     return true;
+  }
+  async function openCanvas(c, name) {
+    await saveVersion(t("Before opening {name}", { name }));
+    loadCanvas(c, name);
+    scheduleAutosave();
+    toast(t("Opened {name} ({w} × {h} px).", { name, w: c.width, h: c.height }));
   }
   async function openFile() {
     if (!confirmDiscard()) return;
@@ -4813,9 +4854,8 @@ void main() {
     }
     const rows2 = /* @__PURE__ */ new Map();
     function move(c, d) {
-      const m = model();
-      if (!m) return;
-      const list = m.list, k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
+      const m = model(), list = m ? m.list : order.filter((i) => counts2[i] > 0);
+      const k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
       if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
       const a = order.indexOf(list[k]), b = order.indexOf(other);
       [order[a], order[b]] = [order[b], order[a]];
@@ -5548,6 +5588,199 @@ ${sections.join("\n")}
     };
   }
 
+  // src/lib/examples.ts
+  var FONT = {
+    A: [".###.", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
+    D: ["####.", "#...#", "#...#", "#...#", "#...#", "#...#", "####."],
+    E: ["#####", "#....", "#....", "####.", "#....", "#....", "#####"],
+    H: ["#...#", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
+    J: ["..###", "...#.", "...#.", "...#.", "#..#.", "#..#.", ".##.."],
+    M: ["#...#", "##.##", "#.#.#", "#.#.#", "#...#", "#...#", "#...#"],
+    O: [".###.", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."],
+    V: ["#...#", "#...#", "#...#", "#...#", "#...#", ".#.#.", "..#.."]
+  };
+  var signLetters = Object.keys(FONT).join("");
+  var hex2 = (c) => [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)];
+  var HEART = [
+    "................",
+    "................",
+    "...ooo....ooo...",
+    "..oRRRo..oRRRo..",
+    ".oR**RRooRRRRRo.",
+    ".oR*RRRRRRRRRRo.",
+    ".oRRRRRRRRRRRro.",
+    ".oRRRRRRRRRRRro.",
+    "..oRRRRRRRRRro..",
+    "...oRRRRRRRro...",
+    "....oRRRRRro....",
+    ".....oRRRro.....",
+    "......oRro......",
+    ".......oo.......",
+    "................",
+    "................"
+  ];
+  var HEART_COLORS = { o: "#6b1d2a", R: "#e63946", r: "#c1121f", "*": "#ffd6dc" };
+  var HEART_PALETTE = Object.values(HEART_COLORS);
+  function heartImage() {
+    const W = 16, H = 16, data = new Uint8ClampedArray(W * H * 4);
+    HEART.forEach((row, y) => [...row].forEach((ch, x) => {
+      if (HEART_COLORS[ch]) data.set([...hex2(HEART_COLORS[ch]), 255], (y * W + x) * 4);
+    }));
+    return { width: W, height: H, data };
+  }
+  var SUNSET_COLORS = ["#2b2d5c", "#6b3e75", "#c0566b", "#f28a4a", "#ffd27a", "#1d3557", "#457b9d", "#f4a261"];
+  function sunsetImage(W = 240, H = 160) {
+    const data = new Uint8ClampedArray(W * H * 4), horizon = Math.round(H * 0.58);
+    const mix = (a, b, f) => a.map((v, i) => v + (b[i] - v) * f);
+    const sky = ["#2b2d5c", "#6b3e75", "#c0566b", "#f28a4a"].map(hex2), sea = ["#457b9d", "#1d3557"].map(hex2);
+    const sun = { x: W / 2, y: horizon, r: H * 0.2 };
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      let c;
+      if (y < horizon) {
+        const f = y / horizon * (sky.length - 1), k = Math.min(sky.length - 2, Math.floor(f));
+        c = mix(sky[k], sky[k + 1], f - k);
+        if ((x - sun.x) ** 2 + (y - sun.y) ** 2 < sun.r ** 2) c = hex2("#ffd27a");
+      } else {
+        c = mix(sea[0], sea[1], (y - horizon) / (H - horizon));
+        const half = sun.r * (1 - 0.6 * (y - horizon) / (H - horizon));
+        if (Math.abs(x - sun.x) < half && Math.floor((y - horizon) / 6) % 2 === 0) c = hex2("#f4a261");
+      }
+      data.set([...c.map(Math.round), 255], (y * W + x) * 4);
+    }
+    return { width: W, height: H, data };
+  }
+
+  // src/shared/examples-ui.ts
+  function initExamples(button, examples) {
+    const dlg = document.createElement("dialog");
+    dlg.id = "dlg-examples";
+    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+<p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
+<div class="ex-list"></div>`;
+    document.body.append(dlg);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    const list = dlg.querySelector(".ex-list");
+    for (const ex of examples) {
+      const card = document.createElement("button");
+      card.className = "ex-card";
+      card.dataset.example = ex.id;
+      card.innerHTML = `<img alt=""><b></b><span class="note"></span>`;
+      card.querySelector("b").textContent = ex.title;
+      card.querySelector(".note").textContent = ex.text;
+      card.onclick = async () => {
+        dlg.close();
+        await ex.open();
+      };
+      list.append(card);
+    }
+    button.onclick = () => {
+      list.querySelectorAll("img").forEach((img, k) => {
+        if (!img.src) img.src = examples[k].preview();
+      });
+      dlg.showModal();
+    };
+  }
+
+  // src/shared/guide.ts
+  function initGuide(button, steps, key) {
+    const card = document.createElement("dialog");
+    card.id = "guide";
+    card.innerHTML = `<div class="dlg-head"><h2></h2><button class="guide-close" title="${t("Close")}">✕</button></div>
+<p class="guide-text"></p>
+<div class="row dlg-foot"><span class="note guide-count"></span><button class="guide-back">${t("Back")}</button><button class="guide-next primary"></button></div>`;
+    document.body.append(card);
+    let at = 0, marked = null;
+    const mark = (el) => {
+      marked?.classList.remove("guide-target");
+      marked = el;
+      marked?.classList.add("guide-target");
+    };
+    function draw() {
+      const s = steps[at];
+      card.querySelector("h2").textContent = s.title;
+      card.querySelector(".guide-text").textContent = s.text;
+      card.querySelector(".guide-count").textContent = t("{k} of {n}", { k: at + 1, n: steps.length });
+      card.querySelector(".guide-back").disabled = at === 0;
+      card.querySelector(".guide-next").textContent = at === steps.length - 1 ? t("Done") : t("Next");
+      const el = s.target ? document.querySelector(s.target) : null;
+      mark(el && el.offsetParent ? el : null);
+      marked?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
+    function close() {
+      mark(null);
+      card.close();
+      lsSet(key, "1");
+    }
+    function show() {
+      at = 0;
+      draw();
+      if (!card.open) card.show();
+    }
+    card.querySelector(".guide-close").onclick = close;
+    card.querySelector(".guide-back").onclick = () => {
+      at = Math.max(0, at - 1);
+      draw();
+    };
+    card.querySelector(".guide-next").onclick = () => {
+      if (at === steps.length - 1) close();
+      else {
+        at++;
+        draw();
+      }
+    };
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      }
+    });
+    button.onclick = show;
+    if (!lsGet(key) && !location.hash && !navigator.webdriver) setTimeout(show, 600);
+    return { show };
+  }
+
+  // src/raster/examples.ts
+  function toCanvas2(img) {
+    const c = document.createElement("canvas");
+    c.width = img.width;
+    c.height = img.height;
+    c.getContext("2d").putImageData(new ImageData(img.data, img.width, img.height), 0, 0);
+    return c;
+  }
+  var sunset = () => mosaic(sunsetImage(), { tile: 8, grout: 1, groutColor: "#e9e4dc", palette: SUNSET_COLORS, bricks: false }).img;
+  async function open2(img, name, palette, colors) {
+    if (!confirmDiscard()) return;
+    await openCanvas(toCanvas2(img), name);
+    addPalette(palette, colors);
+  }
+  function bindExamples() {
+    initExamples(document.querySelector("#btn-examples"), [
+      {
+        id: "heart",
+        title: t("Pixel heart"),
+        text: t("16 × 16 pixel art – every pixel a tile. Try 3D… or Print."),
+        preview: () => toCanvas2(heartImage()).toDataURL(),
+        open: () => open2(heartImage(), t("heart") + ".png", t("Heart"), HEART_PALETTE)
+      },
+      {
+        id: "sunset",
+        title: t("Sunset mosaic"),
+        text: t("A picture made into tiles with grout by “Make a mosaic…”. Try Open as vector tiles."),
+        preview: () => toCanvas2(sunset()).toDataURL(),
+        open: () => open2(sunset(), t("sunset") + ".png", t("Sunset"), [...SUNSET_COLORS, "#e9e4dc"])
+      }
+    ]);
+    initGuide(document.querySelector("#btn-guide"), [
+      { title: t("Welcome to Mosaic Paint Raster"), text: t("Paint with pixels: pixel art, or a photo turned into a mosaic. Each pixel can become a tile.") },
+      { title: t("Paint"), text: t("The tools are on the left: pencil, brush, bucket, lines, shapes and selection."), target: "#tools" },
+      { title: t("Colors"), text: t("Pick a color in the palette. Palettes are shared with the vector app."), target: "#palette" },
+      { title: t("Make a mosaic"), text: t("Open a photo, then “Make a mosaic…” turns it into tiles with grout in your palette’s colors."), target: "#btn-mosaic" },
+      { title: t("Start from an example"), text: t("Not sure where to begin? Open an example. The ? button shows this guide again."), target: "#btn-examples" }
+    ], "mz-guide-raster");
+  }
+
   // src/shared/history-ui.ts
   var esc3 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   function initHistoryUI(host, button) {
@@ -5614,6 +5847,7 @@ ${sections.join("\n")}
   bindPrint();
   bindShare();
   bindVectorize();
+  bindExamples();
   initHistoryUI({
     texts: {
       intro: t("Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another image. Restoring keeps your current image as a version too."),

@@ -22,6 +22,7 @@ import './features/image-clipboard.ts';
 import './features/export3d.ts';
 import './features/raster-import.ts';
 import { Share } from './features/share.ts';
+import './features/examples.ts';
 
 // for the end-to-end tests and for poking around in the browser console
 Object.assign(window, { MZ, Geo, Colors, Store, PhotoTools, LayPlan, Vision, Pages, Snippets, Share });

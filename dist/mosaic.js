@@ -718,7 +718,45 @@
     "Working out the model… {p} %": "Počítám model… {p} %",
     "Could not build the 3D model.": "3D model se nepodařilo vytvořit.",
     "Building the 3D model…": "Vytvářím 3D model…",
-    "Building the 3D model… {p} %": "Vytvářím 3D model… {p} %"
+    "Building the 3D model… {p} %": "Vytvářím 3D model… {p} %",
+    "Coaster": "Podtácek",
+    "HOME": "DOMOV",
+    "Sign": "Cedulka",
+    "100 × 100 mm, square tiles in rings of color – try 3D… with rounded corners.": "100 × 100 mm, čtvercové dlaždice v barevných prstencích – zkuste 3D… se zaoblenými rohy.",
+    "coaster": "podtacek",
+    "A word in tiles with a border – try Report for a shopping list.": "Slovo z dlaždic s okrajem – v Přehledu najdete nákupní seznam.",
+    "sign": "cedulka",
+    "Welcome to Mosaic Paint": "Vítejte v Mosaic Paint",
+    "Design a mosaic: draw lines or lay a tile pattern, then paint the tiles. Everything is measured in real millimetres.": "Navrhněte mozaiku: nakreslete čáry nebo položte vzor dlaždic a pak dlaždice vybarvěte. Vše se měří ve skutečných milimetrech.",
+    "Draw": "Kreslení",
+    "The tools are on the left: lines and shapes, the tile pattern, and the paint bucket that fills a tile with one click.": "Nástroje jsou vlevo: čáry a tvary, vzor dlaždic a kbelík, který jedním kliknutím vybarví dlaždici.",
+    "Pick a color in the palette, then click tiles with the bucket. Palettes are shared with the raster app.": "Vyberte barvu v paletě a klikejte kbelíkem na dlaždice. Palety jsou společné s rastrovou aplikací.",
+    "When it is done": "Až bude hotovo",
+    "Report gives a shopping list, 3D… a model to print, Share a link. Expert mode adds printing at real size and laying plans.": "Přehled dá nákupní seznam, 3D… model k tisku, Sdílet odkaz. Režim Expert přidá tisk ve skutečné velikosti a plány kladení.",
+    "Start from an example": "Začněte od příkladu",
+    "Not sure where to begin? Open an example. The ? button shows this guide again.": "Nevíte, kde začít? Otevřete příklad. Tlačítko ? ukáže tohoto průvodce znovu.",
+    "Pixel heart": "Pixelové srdce",
+    "16 × 16 pixel art – every pixel a tile. Try 3D… or Print.": "Pixel art 16 × 16 – každý pixel je dlaždice. Zkuste 3D… nebo Tisk.",
+    "heart": "srdce",
+    "Heart": "Srdce",
+    "Sunset mosaic": "Mozaika se západem slunce",
+    "A picture made into tiles with grout by “Make a mosaic…”. Try Open as vector tiles.": "Obrázek proměněný v dlaždice se spárami pomocí „Vytvořit mozaiku…“. Zkuste Otevřít jako vektorové dlaždice.",
+    "sunset": "zapad-slunce",
+    "Sunset": "Západ slunce",
+    "Welcome to Mosaic Paint Raster": "Vítejte v Mosaic Paint Raster",
+    "Paint with pixels: pixel art, or a photo turned into a mosaic. Each pixel can become a tile.": "Malujte pixely: pixel art nebo fotku proměněnou v mozaiku. Každý pixel se může stát dlaždicí.",
+    "The tools are on the left: pencil, brush, bucket, lines, shapes and selection.": "Nástroje jsou vlevo: tužka, štětec, kbelík, čáry, tvary a výběr.",
+    "Pick a color in the palette. Palettes are shared with the vector app.": "Vyberte barvu v paletě. Palety jsou společné s vektorovou aplikací.",
+    "Open a photo, then “Make a mosaic…” turns it into tiles with grout in your palette’s colors.": "Otevřete fotku a „Vytvořit mozaiku…“ z ní udělá dlaždice se spárami v barvách vaší palety.",
+    "Examples": "Příklady",
+    "Open an example to see how it is made, or to start from it. Your current work is kept in History.": "Otevřete příklad a podívejte se, jak je udělaný, nebo z něj vyjděte. Vaše současná práce zůstane v Historii.",
+    "Back": "Zpět",
+    "{k} of {n}": "{k} z {n}",
+    "Next": "Další",
+    "Examples…": "Příklady…",
+    "Example projects to open": "Ukázkové projekty k otevření",
+    "A short guide to the app": "Krátký průvodce aplikací",
+    "Guide": "Průvodce"
   };
 
   // src/shared/i18n.ts
@@ -742,8 +780,8 @@
     }
     location.reload();
   }
-  function form(n3, forms) {
-    const i = lang === "cs" ? n3 === 1 ? 0 : Number.isInteger(n3) && n3 >= 2 && n3 <= 4 ? 1 : 2 : n3 === 1 ? 0 : 1;
+  function form(n4, forms) {
+    const i = lang === "cs" ? n4 === 1 ? 0 : Number.isInteger(n4) && n4 >= 2 && n4 <= 4 ? 1 : 2 : n4 === 1 ? 0 : 1;
     return forms[Math.min(i, forms.length - 1)];
   }
   var num = (v, digits) => v.toLocaleString(lang === "cs" ? "cs-CZ" : "en", digits == null ? void 0 : { minimumFractionDigits: digits, maximumFractionDigits: digits });
@@ -759,9 +797,9 @@
   function translateDom(root) {
     if (lang === "en") return;
     const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    for (let n3 = walk.nextNode(); n3; n3 = walk.nextNode()) {
-      const v = n3.nodeValue, key = v.trim();
-      if (key && dict[key] != null) n3.nodeValue = v.replace(key, dict[key]);
+    for (let n4 = walk.nextNode(); n4; n4 = walk.nextNode()) {
+      const v = n4.nodeValue, key = v.trim();
+      if (key && dict[key] != null) n4.nodeValue = v.replace(key, dict[key]);
     }
     for (const el of root.querySelectorAll ? [root, ...root.querySelectorAll("*")] : []) {
       if (!el.getAttribute) continue;
@@ -936,10 +974,10 @@
   }
   function toRgb(c) {
     if (Array.isArray(c)) return c;
-    const n3 = norm(c);
-    if (!n3) return null;
-    if (n3[0] === "#") return [1, 3, 5].map((i) => parseInt(n3.slice(i, i + 2), 16));
-    const m = n3.match(/[\d.]+/g);
+    const n4 = norm(c);
+    if (!n4) return null;
+    if (n4[0] === "#") return [1, 3, 5].map((i) => parseInt(n4.slice(i, i + 2), 16));
+    const m = n4.match(/[\d.]+/g);
     return m ? m.slice(0, 3).map(Number) : null;
   }
   function toLab([r, g, b]) {
@@ -1024,9 +1062,9 @@
   function createPaletteUI(host) {
     const st = host.state;
     function uniqueName2(base) {
-      let n3 = base, i = 2;
-      while (st.palettes[n3]) n3 = `${base} ${i++}`;
-      return n3;
+      let n4 = base, i = 2;
+      while (st.palettes[n4]) n4 = `${base} ${i++}`;
+      return n4;
     }
     function renderSelect() {
       const sel2 = $("#pal-select");
@@ -1046,10 +1084,10 @@
       render3();
     }
     function addPalette2(name, colors) {
-      const n3 = uniqueName2(name);
-      st.palettes[n3] = colors;
-      switchPalette2(n3);
-      return n3;
+      const n4 = uniqueName2(name);
+      st.palettes[n4] = colors;
+      switchPalette2(n4);
+      return n4;
     }
     function addColors2(list) {
       let added = 0;
@@ -1084,19 +1122,19 @@
     function updateSwatch(d, c, counts) {
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
-      const n3 = c ? counts.get(c) || 0 : 0;
+      const n4 = c ? counts.get(c) || 0 : 0;
       const num3 = c ? st.palette.indexOf(c) + 1 : 0;
       const N = host.names;
-      d.title = c ? `#${num3}  ${c}${n3 ? " – " + t("used by {what}", { what: host.usage(n3) }) : ""}
+      d.title = c ? `#${num3}  ${c}${n4 ? " – " + t("used by {what}", { what: host.usage(n4) }) : ""}
 ` + t("Click: {fill} · Right-click: {stroke} · Double-click: edit", { fill: N.fill, stroke: N.stroke }) : N.none;
       let b = d.querySelector(".count");
-      if (n3 && !b) {
+      if (n4 && !b) {
         b = document.createElement("span");
         b.className = "count";
         d.prepend(b);
       }
       if (b) {
-        if (n3) b.textContent = n3 > 9999 ? Math.round(n3 / 1e3) + "k" : String(n3);
+        if (n4) b.textContent = n4 > 9999 ? Math.round(n4 / 1e3) + "k" : String(n4);
         else b.remove();
       }
     }
@@ -1174,11 +1212,11 @@
         toast(t("No color found in: {text}", { text }));
         return;
       }
-      const n3 = addColors2(cols);
+      const n4 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
       inp.value = "";
       updatePreview();
-      toast(n3 ? t("Added {n} {n|color|colors}.", { n: n3 }) : t("Already in the palette."));
+      toast(n4 ? t("Added {n} {n|color|colors}.", { n: n4 }) : t("Already in the palette."));
     }
     function updatePreview() {
       const c = parse($("#color-input").value)[0];
@@ -1189,9 +1227,9 @@
     function pasteColors2(text) {
       const cols = parse(text);
       if (!cols.length) return false;
-      const n3 = addColors2(cols);
+      const n4 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
-      toast(n3 ? t("Added {n} {n|color|colors} from the clipboard.", { n: n3 }) : t("Those colors are already in the palette."));
+      toast(n4 ? t("Added {n} {n|color|colors} from the clipboard.", { n: n4 }) : t("Those colors are already in the palette."));
       return true;
     }
     function bind() {
@@ -1213,17 +1251,17 @@
       };
       $("#pal-select").onchange = (e) => switchPalette2(e.target.value);
       $("#btn-pal-new").onclick = () => {
-        const n3 = prompt(t("Name of the new palette:"), uniqueName2(t("Palette")));
-        if (!n3 || !n3.trim()) return;
-        const name = uniqueName2(n3.trim());
+        const n4 = prompt(t("Name of the new palette:"), uniqueName2(t("Palette")));
+        if (!n4 || !n4.trim()) return;
+        const name = uniqueName2(n4.trim());
         st.palettes[name] = [];
         switchPalette2(name);
         toast(t("Created “{name}”. Paste colors to fill it.", { name }));
       };
       $("#btn-pal-rename").onclick = () => {
-        const old = st.paletteName, n3 = prompt(t("Rename palette:"), old);
-        if (!n3 || !n3.trim() || n3.trim() === old) return;
-        const name = uniqueName2(n3.trim()), next = {};
+        const old = st.paletteName, n4 = prompt(t("Rename palette:"), old);
+        if (!n4 || !n4.trim() || n4.trim() === old) return;
+        const name = uniqueName2(n4.trim()), next = {};
         for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
         st.palettes = next;
         switchPalette2(name);
@@ -1235,8 +1273,8 @@
         switchPalette2(Object.keys(st.palettes)[0]);
       };
       $("#btn-pal-doc").onclick = () => {
-        const n3 = addColors2(host.docColors());
-        toast(n3 ? t("Added {n} {n|color|colors} from the drawing.", { n: n3 }) : t("No new colors in the drawing."));
+        const n4 = addColors2(host.docColors());
+        toast(n4 ? t("Added {n} {n|color|colors} from the drawing.", { n: n4 }) : t("No new colors in the drawing."));
       };
       $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
       $("#btn-pal-clear").onclick = () => {
@@ -1252,8 +1290,8 @@
         if (!f) return;
         const text = await f.text();
         e.target.value = "";
-        const n3 = addColors2(parse(text));
-        toast(n3 ? t("Imported {n} {n|color|colors}.", { n: n3 }) : t("No new colors found in {name}", { name: f.name }));
+        const n4 = addColors2(parse(text));
+        toast(n4 ? t("Imported {n} {n|color|colors}.", { n: n4 }) : t("No new colors found in {name}", { name: f.name }));
       };
       window.addEventListener("storage", (e) => {
         if (e.key !== SHARED_KEY) return;
@@ -1355,8 +1393,8 @@
     }
   });
   var handlers = (name) => hooks[name] || [];
-  var fmt = (n3) => String(Math.round(n3 * 1e3) / 1e3);
-  var px = (n3) => n3 / state.view.s;
+  var fmt = (n4) => String(Math.round(n4 * 1e3) / 1e3);
+  var px = (n4) => n4 / state.view.s;
   var applyM = (m, p) => ({ x: m.a * p.x + m.c * p.y + m.e, y: m.b * p.x + m.d * p.y + m.f });
   var linM = (m, d) => ({ x: m.a * d.x + m.c * d.y, y: m.b * d.x + m.d * d.y });
   var ptsStr = (pts) => pts.map((p) => fmt(p.x) + "," + fmt(p.y)).join(" ");
@@ -1369,9 +1407,9 @@
     return e;
   }
   function parsePoints(s) {
-    const n3 = (s || "").match(NUM_RE) || [];
+    const n4 = (s || "").match(NUM_RE) || [];
     const out = [];
-    for (let i = 0; i + 1 < n3.length; i += 2) out.push({ x: +n3[i], y: +n3[i + 1] });
+    for (let i = 0; i + 1 < n4.length; i += 2) out.push({ x: +n4[i], y: +n4[i + 1] });
     return out;
   }
   var unit = () => state.doc.unit || "px";
@@ -1432,8 +1470,8 @@
   }
   function polygonArea(pts) {
     let s = 0;
-    for (let i = 0, n3 = pts.length; i < n3; i++) {
-      const p = pts[i], q = pts[(i + 1) % n3];
+    for (let i = 0, n4 = pts.length; i < n4; i++) {
+      const p = pts[i], q = pts[(i + 1) % n4];
       s += p.x * q.y - q.x * p.y;
     }
     return s / 2;
@@ -1446,10 +1484,10 @@
     }
     return inside;
   }
-  function regularPolygon(n3, cx, cy, r, rot) {
+  function regularPolygon(n4, cx, cy, r, rot) {
     const out = [];
-    for (let i = 0; i < n3; i++) {
-      const a = rot + i * 2 * Math.PI / n3;
+    for (let i = 0; i < n4; i++) {
+      const a = rot + i * 2 * Math.PI / n4;
       out.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
     }
     return out;
@@ -1498,7 +1536,7 @@
     }
   };
   function planarFaces(segs) {
-    const n3 = segs.length;
+    const n4 = segs.length;
     const splits = segs.map((s) => [{ t: 0, p: s.a }, { t: 1, p: s.b }]);
     const bb = segs.map((s) => ({
       x0: Math.min(s.a.x, s.b.x) - eps,
@@ -1513,9 +1551,9 @@
         if (pr.t > 0 && pr.t < 1 && dist(pr, q) < eps) list.push({ t: pr.t, p: q });
       }
     };
-    for (let oi = 0; oi < n3; oi++) {
+    for (let oi = 0; oi < n4; oi++) {
       const i = order[oi], bi = bb[i], A = segs[i];
-      for (let oj = oi + 1; oj < n3; oj++) {
+      for (let oj = oi + 1; oj < n4; oj++) {
         const j = order[oj], bj = bb[j];
         if (bj.x0 > bi.x1) break;
         if (bj.y0 > bi.y1 || bj.y1 < bi.y0) continue;
@@ -1642,8 +1680,8 @@
   }
   function clipSegment(a, b, rings, keep) {
     const ts = [0, 1];
-    for (const r of rings) for (let i = 0, n3 = r.length; i < n3; i++) {
-      const x = segIntersect(a, b, r[i], r[(i + 1) % n3]);
+    for (const r of rings) for (let i = 0, n4 = r.length; i < n4; i++) {
+      const x = segIntersect(a, b, r[i], r[(i + 1) % n4]);
       if (x) ts.push(x.t);
     }
     ts.sort((p, q) => p - q);
@@ -1666,13 +1704,13 @@
   }
   function distToRings(p, rings) {
     let d = Infinity;
-    for (const r of rings) for (let i = 0, n3 = r.length; i < n3; i++) d = Math.min(d, dist(p, project(p, r[i], r[(i + 1) % n3])));
+    for (const r of rings) for (let i = 0, n4 = r.length; i < n4; i++) d = Math.min(d, dist(p, project(p, r[i], r[(i + 1) % n4])));
     return d;
   }
   function chordThrough(p, dir, rings) {
     let tmin = -Infinity, tmax = Infinity;
-    for (const r of rings) for (let i = 0, n3 = r.length; i < n3; i++) {
-      const a = r[i], b = r[(i + 1) % n3], ex = b.x - a.x, ey = b.y - a.y;
+    for (const r of rings) for (let i = 0, n4 = r.length; i < n4; i++) {
+      const a = r[i], b = r[(i + 1) % n4], ex = b.x - a.x, ey = b.y - a.y;
       const den = cross(dir.x, dir.y, ex, ey);
       if (Math.abs(den) < 1e-12) continue;
       const qx = a.x - p.x, qy = a.y - p.y;
@@ -1730,7 +1768,7 @@
     if ("ngonFill" in o && !("newFill" in o)) o.newFill = o.ngonFill;
     for (const k of PREF_KEYS) {
       if (!(k in o)) continue;
-      if (k === "layers") for (const n3 in state.layers) Object.assign(state.layers[n3], o.layers[n3] || {});
+      if (k === "layers") for (const n4 in state.layers) Object.assign(state.layers[n4], o.layers[n4] || {});
       else if (["pattern", "sym", "grout"].includes(k)) Object.assign(state[k], o[k]);
       else state[k] = o[k];
     }
@@ -1745,21 +1783,21 @@
     return m;
   }
   function replaceColor(from, to) {
-    let n3 = 0;
+    let n4 = 0;
     for (const el of allShapes()) {
       if (fillOf(el) !== from) continue;
       if (!to && isFill(el)) el.remove();
       else paintFill(el, to);
-      n3++;
+      n4++;
     }
-    return n3;
+    return n4;
   }
   var applyToSelection = () => state.tool === "select" && state.selection.size > 0;
   var ui = createPaletteUI({
     state,
     save: savePrefs,
     counts: colorCounts,
-    usage: (n3) => t("{n} {n|area|areas}", { n: n3 }),
+    usage: (n4) => t("{n} {n|area|areas}", { n: n4 }),
     names: { fill: t("fill"), stroke: t("stroke"), none: t("No color – the bucket erases with it") },
     docColors() {
       const cols = [];
@@ -1788,16 +1826,16 @@
       return true;
     },
     recolor(old, c) {
-      let n3 = replaceColor(old, c);
+      let n4 = replaceColor(old, c);
       for (const el of allShapes()) {
         if (!isFill(el) && norm(getComputedStyle(el).stroke) === old) {
           setPaint(el, "stroke", c);
-          n3++;
+          n4++;
         }
       }
-      if (!n3) return null;
+      if (!n4) return null;
       commit(true);
-      return t("Recolored {n} {n|element|elements}.", { n: n3 });
+      return t("Recolored {n} {n|element|elements}.", { n: n4 });
     },
     // Shift+click is left to add-on modules (the color mix)
     shiftClick: (c, e) => emit("swatch-shift", c, e),
@@ -1827,20 +1865,20 @@
   }
   var groutCSS = () => `#mosaic-shapes :not(.mz-fill):not(g){stroke:${state.grout.color}!important;stroke-width:${state.grout.width}px!important;stroke-linecap:round}`;
   function bakeGrout() {
-    let n3 = 0;
+    let n4 = 0;
     for (const el of allShapes()) {
       if (isFill(el)) continue;
       setPaint(el, "stroke", state.grout.color);
       el.setAttribute("stroke-width", String(state.grout.width));
       el.style.removeProperty("stroke-width");
-      n3++;
+      n4++;
     }
     state.grout.on = false;
     $("#grout-on").checked = false;
     applyGrout();
     savePrefs();
     commit(true);
-    toast(t("Applied the grout color and width to {n} {n|line|lines}.", { n: n3 }));
+    toast(t("Applied the grout color and width to {n} {n|line|lines}.", { n: n4 }));
   }
 
   // src/core/photo.ts
@@ -2058,8 +2096,8 @@
     const m = new Uint8Array(nx * ny);
     for (let j = 0; j < ny; j++) {
       const y = y0 + (j + 0.5) * h, xs = [];
-      for (const r of rings) for (let i = 0, n3 = r.length; i < n3; i++) {
-        const a = r[i], b = r[(i + 1) % n3];
+      for (const r of rings) for (let i = 0, n4 = r.length; i < n4; i++) {
+        const a = r[i], b = r[(i + 1) % n4];
         if (a.y > y !== b.y > y) xs.push(a.x + (y - a.y) * (b.x - a.x) / (b.y - a.y));
       }
       xs.sort((p, q) => p - q);
@@ -2070,12 +2108,12 @@
     }
     return m;
   }
-  function edt1d(f, n3, d, v, z) {
+  function edt1d(f, n4, d, v, z) {
     let k = 0;
     v[0] = 0;
     z[0] = -INF;
     z[1] = INF;
-    for (let q = 1; q < n3; q++) {
+    for (let q = 1; q < n4; q++) {
       let s = (f[q] + q * q - (f[v[k]] + v[k] * v[k])) / (2 * q - 2 * v[k]);
       while (s <= z[k]) {
         k--;
@@ -2087,14 +2125,14 @@
       z[k + 1] = INF;
     }
     k = 0;
-    for (let q = 0; q < n3; q++) {
+    for (let q = 0; q < n4; q++) {
       while (z[k + 1] < q) k++;
       d[q] = (q - v[k]) * (q - v[k]) + f[v[k]];
     }
   }
   function distanceField(mask, nx, ny) {
-    const g = new Float64Array(nx * ny), n3 = Math.max(nx, ny);
-    const f = new Float64Array(n3), d = new Float64Array(n3), v = new Int32Array(n3), z = new Float64Array(n3 + 1);
+    const g = new Float64Array(nx * ny), n4 = Math.max(nx, ny);
+    const f = new Float64Array(n4), d = new Float64Array(n4), v = new Int32Array(n4), z = new Float64Array(n4 + 1);
     for (let i = 0; i < nx * ny; i++) g[i] = mask[i] ? INF : 0;
     for (let x = 0; x < nx; x++) {
       for (let y = 0; y < ny; y++) f[y] = g[y * nx + x];
@@ -2192,9 +2230,9 @@
   }
   var perimeter = (loop) => loop.reduce((s, p, i) => s + dist(p, loop[(i + 1) % loop.length]), 0);
   function along(loop, len) {
-    const total = perimeter(loop), n3 = Math.max(3, Math.round(total / len)), step = total / n3, out = [];
+    const total = perimeter(loop), n4 = Math.max(3, Math.round(total / len)), step = total / n4, out = [];
     let i = 0, acc = 0, target2 = step / 2;
-    while (out.length < n3 && i < loop.length) {
+    while (out.length < n4 && i < loop.length) {
       const a = loop[i], b = loop[(i + 1) % loop.length], s = dist(a, b);
       if (acc + s >= target2) {
         const t2 = (target2 - acc) / s;
@@ -2273,10 +2311,10 @@
       const b = g.bbox;
       if (p.x < b.x0 - r || p.x > b.x1 + r || p.y < b.y0 - r || p.y > b.y1 + r) return;
       for (const pl of g.polys) {
-        const pts = pl.pts, n3 = pts.length, m = pl.closed ? n3 : n3 - 1;
+        const pts = pl.pts, n4 = pts.length, m = pl.closed ? n4 : n4 - 1;
         for (const q of pts) consider(q, "vertex");
         for (let i = 0; i < m; i++) {
-          const a = pts[i], c = pts[(i + 1) % n3], pr = project(p, a, c), d = dist(p, pr);
+          const a = pts[i], c = pts[(i + 1) % n4], pr = project(p, a, c), d = dist(p, pr);
           if (d < r) near.push({ a, b: c, pr, d });
         }
       }
@@ -2509,11 +2547,11 @@
     }
   };
   function specFromCenter(c, r, rotDeg) {
-    const n3 = state.sides;
-    return { n: n3, cx: c.x, cy: c.y, r, rot: rotDeg, pts: regularPolygon(n3, c.x, c.y, r, rotDeg * Math.PI / 180) };
+    const n4 = state.sides;
+    return { n: n4, cx: c.x, cy: c.y, r, rot: rotDeg, pts: regularPolygon(n4, c.x, c.y, r, rotDeg * Math.PI / 180) };
   }
   function ngonSpec(a) {
-    const n3 = state.sides;
+    const n4 = state.sides;
     if (state.ngonMode === "center") {
       let rot = Math.atan2(a.b.y - a.a.y, a.b.x - a.a.x) * 180 / Math.PI;
       if (a.shift) rot = Math.round(rot / 15) * 15;
@@ -2523,7 +2561,7 @@
     }
     const L = dist(a.a, a.b);
     if (L < 1e-9) return null;
-    const R = L / (2 * Math.sin(Math.PI / n3)), ap = L / (2 * Math.tan(Math.PI / n3));
+    const R = L / (2 * Math.sin(Math.PI / n4)), ap = L / (2 * Math.tan(Math.PI / n4));
     const ux = (a.b.x - a.a.x) / L, uy = (a.b.y - a.a.y) / L;
     const centerOn = (side2) => ({ x: (a.a.x + a.b.x) / 2 - uy * ap * side2, y: (a.a.y + a.b.y) / 2 + ux * ap * side2 });
     const occupied = (p) => shapesAt(p).some((e) => !isFill(e) && insideEl(e, p));
@@ -2533,7 +2571,7 @@
     const c = centerOn(side);
     const s = specFromCenter(c, R, Math.atan2(a.a.y - c.y, a.a.x - c.x) * 180 / Math.PI);
     s.pts[0] = { x: a.a.x, y: a.a.y };
-    const i = dist(s.pts[1], a.b) < dist(s.pts[n3 - 1], a.b) ? 1 : n3 - 1;
+    const i = dist(s.pts[1], a.b) < dist(s.pts[n4 - 1], a.b) ? 1 : n4 - 1;
     s.pts[i] = { x: a.b.x, y: a.b.y };
     return s;
   }
@@ -2721,8 +2759,8 @@
       paintPoints(raw, ctx2);
       state.action = { type: "paint", ctx: ctx2 };
       if (!ctx2.found) {
-        const n3 = showGaps();
-        toast(n3 ? t("No closed area here. The red circles show line ends that don’t touch anything.") : t("No closed area here – make sure the lines meet."));
+        const n4 = showGaps();
+        toast(n4 ? t("No closed area here. The red circles show line ends that don’t touch anything.") : t("No closed area here – make sure the lines meet."));
       }
     },
     move(e, raw) {
@@ -2924,10 +2962,10 @@
     return out;
   }
   function sanitize(root) {
-    root.querySelectorAll("script,foreignObject").forEach((n3) => n3.remove());
-    for (const n3 of [root, ...root.querySelectorAll("*")]) {
-      for (const a of [...n3.attributes]) {
-        if (/^on/i.test(a.name) || /href$/i.test(a.name) && /^\s*javascript:/i.test(a.value)) n3.removeAttribute(a.name);
+    root.querySelectorAll("script,foreignObject").forEach((n4) => n4.remove());
+    for (const n4 of [root, ...root.querySelectorAll("*")]) {
+      for (const a of [...n4.attributes]) {
+        if (/^on/i.test(a.name) || /href$/i.test(a.name) && /^\s*javascript:/i.test(a.value)) n4.removeAttribute(a.name);
       }
     }
   }
@@ -2936,10 +2974,10 @@
       if (p.closest("defs,clipPath,mask,pattern,symbol,marker") || isFill(p)) continue;
       const polys = linearPath(p.getAttribute("d") || "");
       if (!polys || polys.length !== 1 || polys[0].pts.length < 2) continue;
-      const n3 = document.createElementNS(SVGNS, polys[0].closed ? "polygon" : "polyline");
-      for (const a of p.attributes) if (a.name !== "d") n3.setAttributeNS(a.namespaceURI, a.name, a.value);
-      n3.setAttribute("points", ptsStr(polys[0].pts));
-      p.replaceWith(n3);
+      const n4 = document.createElementNS(SVGNS, polys[0].closed ? "polygon" : "polyline");
+      for (const a of p.attributes) if (a.name !== "d") n4.setAttributeNS(a.namespaceURI, a.name, a.value);
+      n4.setAttribute("points", ptsStr(polys[0].pts));
+      p.replaceWith(n4);
     }
   }
   function loadSVGText(text, opts3 = {}) {
@@ -3035,10 +3073,10 @@
       switchPalette(existing);
       return;
     }
-    const n3 = uniqueName((name || t("From file")).replace(/\.svg$/i, ""));
-    state.palettes[n3] = colors;
-    switchPalette(n3);
-    toast(t("The file’s colors were added as the palette “{name}”.", { name: n3 }));
+    const n4 = uniqueName((name || t("From file")).replace(/\.svg$/i, ""));
+    state.palettes[n4] = colors;
+    switchPalette(n4);
+    toast(t("The file’s colors were added as the palette “{name}”.", { name: n4 }));
   }
   function confirmDiscard() {
     return !rt.dirty || confirm(t("Discard unsaved changes to the current drawing?\n(A copy is kept in History.)"));
@@ -3092,9 +3130,9 @@
       }
     }
     if (as) {
-      const n3 = prompt(t("File name:"), rt.fileName);
-      if (!n3) return;
-      rt.fileName = /\.svg$/i.test(n3) ? n3 : n3 + ".svg";
+      const n4 = prompt(t("File name:"), rt.fileName);
+      if (!n4) return;
+      rt.fileName = /\.svg$/i.test(n4) ? n4 : n4 + ".svg";
     }
     download(new Blob([text], { type: "image/svg+xml" }), rt.fileName);
     rt.dirty = false;
@@ -3298,11 +3336,11 @@
     const segs = [], ends = [];
     const add = (g) => {
       for (const pl of g.polys) {
-        const p = pl.pts, n3 = p.length, m = pl.closed ? n3 : n3 - 1, base = segs.length;
-        for (let i = 0; i < m; i++) segs.push({ a: p[i], b: p[(i + 1) % n3] });
+        const p = pl.pts, n4 = p.length, m = pl.closed ? n4 : n4 - 1, base = segs.length;
+        for (let i = 0; i < m; i++) segs.push({ a: p[i], b: p[(i + 1) % n4] });
         if (!pl.closed && m > 0) {
           ends.push({ p: p[0], seg: base });
-          ends.push({ p: p[n3 - 1], seg: base + m - 1 });
+          ends.push({ p: p[n4 - 1], seg: base + m - 1 });
         }
       }
     };
@@ -3435,13 +3473,13 @@
     return { found: false, changed: false };
   }
   function gridSample(bb, inside, max) {
-    for (const n3 of [8, 20, 48]) {
+    for (const n4 of [8, 20, 48]) {
       const pts = [];
-      for (let i = 0; i < n3; i++) for (let j = 0; j < n3; j++) {
-        const p = { x: bb.x0 + (bb.x1 - bb.x0) * (i + 0.5) / n3, y: bb.y0 + (bb.y1 - bb.y0) * (j + 0.5) / n3 };
+      for (let i = 0; i < n4; i++) for (let j = 0; j < n4; j++) {
+        const p = { x: bb.x0 + (bb.x1 - bb.x0) * (i + 0.5) / n4, y: bb.y0 + (bb.y1 - bb.y0) * (j + 0.5) / n4 };
         if (inside(p)) pts.push(p);
       }
-      if (pts.length >= 6 || n3 === 48) {
+      if (pts.length >= 6 || n4 === 48) {
         const step = Math.max(1, Math.floor(pts.length / max));
         return pts.filter((_, k) => k % step === 0);
       }
@@ -3465,7 +3503,7 @@
     const sameBox = (a, b) => Math.abs(a.x0 - b.x0) < tol && Math.abs(a.y0 - b.y0) < tol && Math.abs(a.x1 - b.x1) < tol && Math.abs(a.y1 - b.y1) < tol;
     for (const el of fills) {
       const g = geomOf(el), rings = g.polys.filter((p) => p.closed).map((p) => p.pts);
-      const inside = (p) => rings.reduce((n3, r) => n3 + (pointInPolygon(p, r) ? 1 : 0), 0) % 2 === 1;
+      const inside = (p) => rings.reduce((n4, r) => n4 + (pointInPolygon(p, r) ? 1 : 0), 0) % 2 === 1;
       const area2 = Math.abs(+el.dataset.area) || rings.reduce((s, r) => s + Math.abs(polygonArea(r)), 0);
       const probe = gridSample(g.bbox, inside, 1)[0], pf = probe && ix.locate(probe);
       if (pf && !owner.has(pf) && nearArea(ix.region(pf).area, area2) && sameBox(pf.bb, g.bbox)) {
@@ -3530,8 +3568,8 @@
   }
   function neighbourColors(reg) {
     const out = /* @__PURE__ */ new Set(), d = eps * 50;
-    for (const r of [reg.outer, ...reg.holes]) for (let i = 0, n3 = r.length; i < n3; i++) {
-      const a = r[i], b = r[(i + 1) % n3], len = dist(a, b);
+    for (const r of [reg.outer, ...reg.holes]) for (let i = 0, n4 = r.length; i < n4; i++) {
+      const a = r[i], b = r[(i + 1) % n4], len = dist(a, b);
       if (len < d * 4) continue;
       const m = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, nx = -(b.y - a.y) / len, ny = (b.x - a.x) / len;
       for (const s of [1, -1]) {
@@ -3552,8 +3590,8 @@
       const g = geomOf(el), b = g.bbox, t2 = Math.max(tol, strokeW(el) / 2);
       if (p.x < b.x0 - t2 || p.x > b.x1 + t2 || p.y < b.y0 - t2 || p.y > b.y1 + t2) continue;
       for (const pl of g.polys) {
-        const n3 = pl.pts.length, m = pl.closed ? n3 : n3 - 1;
-        for (let i = 0; i < m; i++) if (dist(p, project(p, pl.pts[i], pl.pts[(i + 1) % n3])) <= t2) return el;
+        const n4 = pl.pts.length, m = pl.closed ? n4 : n4 - 1;
+        for (let i = 0; i < m; i++) if (dist(p, project(p, pl.pts[i], pl.pts[(i + 1) % n4])) <= t2) return el;
       }
     }
     for (const el of list) if ((isFill(el) || hasFill(el)) && insideEl(el, p)) return el;
@@ -3786,10 +3824,10 @@
     if (s.type === "mirror-v") return [id, mx];
     if (s.type === "mirror-h") return [id, my];
     if (s.type === "mirror-hv") return [id, mx, my, (p) => mx(my(p))];
-    const n3 = clamp(Math.round(s.n) || 2, 2, 64), out = [];
-    for (let k = 0; k < n3; k++) out.push(rot(k * 2 * Math.PI / n3));
-    if (s.mirror) for (let k = 0; k < n3; k++) {
-      const r = rot(k * 2 * Math.PI / n3);
+    const n4 = clamp(Math.round(s.n) || 2, 2, 64), out = [];
+    for (let k = 0; k < n4; k++) out.push(rot(k * 2 * Math.PI / n4));
+    if (s.mirror) for (let k = 0; k < n4; k++) {
+      const r = rot(k * 2 * Math.PI / n4);
       out.push((p) => r(mx(p)));
     }
     return out;
@@ -3819,8 +3857,8 @@
       ray(Math.PI);
     }
     if (s.type === "radial") {
-      const n3 = clamp(Math.round(s.n) || 2, 2, 64);
-      for (let k = 0; k < n3; k++) ray(-Math.PI / 2 + k * 2 * Math.PI / n3);
+      const n4 = clamp(Math.round(s.n) || 2, 2, 64);
+      for (let k = 0; k < n4; k++) ray(-Math.PI / 2 + k * 2 * Math.PI / n4);
     }
     mk("circle", { cx: c.x, cy: c.y, r: px(5), class: "sym-center" }, guidesG);
   }
@@ -3864,15 +3902,15 @@
   function applyDocChanges(recs) {
     if (!recs.length || !shapeList) return;
     for (const r of recs) {
-      for (const n3 of r.removedNodes) if (n3.nodeType === 1) {
+      for (const n4 of r.removedNodes) if (n4.nodeType === 1) {
         shapeList = null;
         shapeGrid = null;
         return;
       }
     }
-    for (const r of recs) for (const n3 of r.addedNodes) {
-      if (n3.nodeType !== 1 || !n3.isConnected) continue;
-      for (const el of [n3, ...n3.querySelectorAll(SHAPE_SEL)]) {
+    for (const r of recs) for (const n4 of r.addedNodes) {
+      if (n4.nodeType !== 1 || !n4.isConnected) continue;
+      for (const el of [n4, ...n4.querySelectorAll(SHAPE_SEL)]) {
         if (!isShape(el) || shapeSet.has(el)) continue;
         shapeSet.add(el);
         shapeList.push(el);
@@ -3930,7 +3968,7 @@
   }
   function computeGeom(el) {
     const tag = el.tagName;
-    const num3 = (n3) => parseFloat(el.getAttribute(n3)) || 0;
+    const num3 = (n4) => parseFloat(el.getAttribute(n4)) || 0;
     let polys = [];
     if (tag === "line") polys = [{ pts: [{ x: num3("x1"), y: num3("y1") }, { x: num3("x2"), y: num3("y2") }], closed: false }];
     else if (tag === "polyline" || tag === "polygon") polys = [{ pts: parsePoints(el.getAttribute("points")), closed: tag === "polygon" }];
@@ -4055,9 +4093,9 @@
   function insideEl(el, p) {
     const g = geomOf(el), b = g.bbox;
     if (p.x < b.x0 || p.x > b.x1 || p.y < b.y0 || p.y > b.y1) return false;
-    let n3 = 0;
-    for (const pl of g.polys) if (pl.closed && pointInPolygon(p, pl.pts)) n3++;
-    return n3 % 2 === 1;
+    let n4 = 0;
+    for (const pl of g.polys) if (pl.closed && pointInPolygon(p, pl.pts)) n4++;
+    return n4 % 2 === 1;
   }
   function strokeW(el) {
     return parseFloat(getComputedStyle(el).strokeWidth) || 0;
@@ -4071,8 +4109,8 @@
   }
   function localVerts(el) {
     if (el.tagName === "line") {
-      const n3 = (k) => parseFloat(el.getAttribute(k)) || 0;
-      return [{ x: n3("x1"), y: n3("y1") }, { x: n3("x2"), y: n3("y2") }];
+      const n4 = (k) => parseFloat(el.getAttribute(k)) || 0;
+      return [{ x: n4("x1"), y: n4("y1") }, { x: n4("x2"), y: n4("y2") }];
     }
     return parsePoints(el.getAttribute("points"));
   }
@@ -4106,9 +4144,9 @@
   function ngonData(el) {
     const s = el && el.getAttribute && el.getAttribute("data-ngon");
     if (!s || el.tagName !== "polygon") return null;
-    const [n3, cx, cy, r, rot] = s.split(/[\s,]+/).map(Number);
-    if (!(n3 >= 3) || ![cx, cy, r, rot].every(Number.isFinite)) return null;
-    return { n: n3, cx, cy, r, rot };
+    const [n4, cx, cy, r, rot] = s.split(/[\s,]+/).map(Number);
+    if (!(n4 >= 3) || ![cx, cy, r, rot].every(Number.isFinite)) return null;
+    return { n: n4, cx, cy, r, rot };
   }
   function setNgonData(el, g) {
     el.setAttribute("data-ngon", [g.n, fmt(g.cx), fmt(g.cy), fmt(g.r), fmt(g.rot)].join(" "));
@@ -4122,8 +4160,8 @@
   }
 
   // src/core/panel.ts
-  function setSides(n3) {
-    state.sides = clamp(Math.round(n3) || 6, 3, 64);
+  function setSides(n4) {
+    state.sides = clamp(Math.round(n4) || 6, 3, 64);
     $("#opt-sides").value = state.sides;
     for (const b of $$("#quick-sides button")) b.classList.toggle("active", +b.dataset.sides === state.sides);
     savePrefs();
@@ -4341,10 +4379,10 @@
     const ngonInput = () => {
       const el = [...state.selection][0], gd = ngonData(el);
       if (!gd) return;
-      const n3 = clamp(Math.round(+$("#sel-sides").value) || gd.n, 3, 64);
+      const n4 = clamp(Math.round(+$("#sel-sides").value) || gd.n, 3, 64);
       const r = +$("#sel-radius").value > 0 ? +$("#sel-radius").value : gd.r;
       const rot = Number.isFinite(+$("#sel-rot").value) ? +$("#sel-rot").value : gd.rot;
-      setNgon(el, { ...gd, n: n3, r, rot });
+      setNgon(el, { ...gd, n: n4, r, rot });
       commitGeometry();
     };
     for (const id of ["#sel-sides", "#sel-radius", "#sel-rot"]) $(id).onchange = ngonInput;
@@ -4884,8 +4922,8 @@
   }
   function clipHalf(poly, f) {
     const out = [];
-    for (let i = 0, n3 = poly.length; i < n3; i++) {
-      const a = poly[i], b = poly[(i + 1) % n3], fa = f(a), fb = f(b);
+    for (let i = 0, n4 = poly.length; i < n4; i++) {
+      const a = poly[i], b = poly[(i + 1) % n4], fa = f(a), fb = f(b);
       if (fa <= 0) out.push(a);
       if (fa < 0 && fb > 0 || fa > 0 && fb < 0) {
         const t2 = fa / (fa - fb);
@@ -4915,7 +4953,7 @@
         }
         ring.sort((a, b) => dist(seeds[a], s) - dist(seeds[b], s));
         for (const o of ring) {
-          const n3 = seeds[o], nx = n3.x - s.x, ny = n3.y - s.y, mx = (s.x + n3.x) / 2, my = (s.y + n3.y) / 2;
+          const n4 = seeds[o], nx = n4.x - s.x, ny = n4.y - s.y, mx = (s.x + n4.x) / 2, my = (s.y + n4.y) / 2;
           poly = clipHalf(poly, (p) => (p.x - mx) * nx + (p.y - my) * ny);
           if (poly.length < 3) break;
         }
@@ -5026,16 +5064,16 @@
       return { at, box };
     }
     function average(px2, pts) {
-      let r = 0, g = 0, b = 0, n3 = 0;
+      let r = 0, g = 0, b = 0, n4 = 0;
       for (const p of pts) {
         const c = px2.at(p);
         if (!c) continue;
         r += c[0];
         g += c[1];
         b += c[2];
-        n3++;
+        n4++;
       }
-      return n3 ? [r / n3, g / n3, b / n3] : null;
+      return n4 ? [r / n4, g / n4, b / n4] : null;
     }
     function detailAt2(px2, x, y, w, h) {
       const labs = [];
@@ -5047,13 +5085,13 @@
       const m = [0, 1, 2].map((k) => labs.reduce((s, l) => s + l[k], 0) / labs.length);
       return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
     }
-    function suggestPalette(px2, box, n3) {
+    function suggestPalette(px2, box, n4) {
       const labs = [];
       for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
         const c = px2.at({ x: box.x + box.w * (i + 0.5) / 70, y: box.y + box.h * (j + 0.5) / 70 });
         if (c) labs.push(toLab(c));
       }
-      return [...new Set(kmeans(labs, n3, 7).map(fromLab))];
+      return [...new Set(kmeans(labs, n4, 7).map(fromLab))];
     }
     async function colorTiles({ onlyUnpainted = true, commit: commit2 = true, quiet = false } = {}) {
       const px2 = await pixels();
@@ -5150,7 +5188,7 @@
       g.innerHTML = "";
       if (!marking) return 0;
       const ix = MZ.regionIndex();
-      let n3 = 0;
+      let n4 = 0;
       for (const f of ix.faces) {
         const reg = ix.region(f), p = MZ.gridSample(reg.bb, (q) => MZ.insideRegion(reg, q), 1)[0];
         const c = p && MZ.paintedColorAt(p);
@@ -5162,15 +5200,15 @@
         path.setAttribute("d", [reg.outer, ...reg.holes].map((r) => "M" + r.map((q) => `${q.x} ${q.y}`).join("L") + "Z").join(""));
         path.setAttribute("class", "contrast-mark");
         g.appendChild(path);
-        n3++;
+        n4++;
       }
-      return n3;
+      return n4;
     }
     function setMarking(on2) {
       marking = on2;
       $10("#btn-contrast").classList.toggle("active", on2);
-      const n3 = markLowContrast();
-      if (on2) MZ.toast(n3 ? view === "none" ? t("{n} {n|tile blends|tiles blend} into a neighbour of another color.", { n: n3 }) : t("{n} {n|tile blends|tiles blend} into a neighbour of another color (in this view).", { n: n3 }) : t("No tile blends into its neighbours."));
+      const n4 = markLowContrast();
+      if (on2) MZ.toast(n4 ? view === "none" ? t("{n} {n|tile blends|tiles blend} into a neighbour of another color.", { n: n4 }) : t("{n} {n|tile blends|tiles blend} into a neighbour of another color (in this view).", { n: n4 }) : t("No tile blends into its neighbours."));
     }
     function init() {
       buildFilters();
@@ -5224,12 +5262,12 @@
   }
   function unpaintedCount() {
     const ix = MZ.regionIndex();
-    let n3 = 0;
+    let n4 = 0;
     for (const f of ix.faces) {
       const r = ix.region(f), p = MZ.gridSample(r.bb, (q) => MZ.insideRegion(r, q), 1)[0];
-      if (p && !MZ.isPaintedAt(p)) n3++;
+      if (p && !MZ.isPaintedAt(p)) n4++;
     }
-    return n3;
+    return n4;
   }
   var report = { tileW: 10, tileH: 10, waste: 10 };
   try {
@@ -5262,9 +5300,9 @@
       s.onchange = () => {
         if (!s.value) return;
         const to = s.value === "none" ? null : s.value;
-        const n3 = MZ.replaceColor(s.dataset.from, to);
+        const n4 = MZ.replaceColor(s.dataset.from, to);
         MZ.commit(true);
-        MZ.toast(to ? t("Recolored {n} {n|area|areas}.", { n: n3 }) : t("Erased {n} {n|area|areas}.", { n: n3 }));
+        MZ.toast(to ? t("Recolored {n} {n|area|areas}.", { n: n4 }) : t("Erased {n} {n|area|areas}.", { n: n4 }));
         renderReport();
       };
     }
@@ -5408,7 +5446,7 @@ ${sections.join("\n")}
     let best = null, bd = 0;
     for (const p of pts) {
       let d = Infinity;
-      for (const pl of polys) for (let i = 0, n3 = pl.pts.length; i < n3; i++) d = Math.min(d, dist(p, project(p, pl.pts[i], pl.pts[(i + 1) % n3])));
+      for (const pl of polys) for (let i = 0, n4 = pl.pts.length; i < n4; i++) d = Math.min(d, dist(p, project(p, pl.pts[i], pl.pts[(i + 1) % n4])));
       if (d > bd) {
         bd = d;
         best = p;
@@ -5719,9 +5757,9 @@ ${sections.join("\n")}
     for (const r of document.querySelectorAll("input[name=am-colors]")) r.checked = r.value === opts.colors;
     $6("#am-replace").checked = opts.replace;
     $6("#am-photo-missing").hidden = !!MZ.refImage();
-    const n3 = estimate();
-    $6("#am-estimate").textContent = n3 > MAX_TILES ? t("About {n} tiles – too many, use a bigger tile size.", { n: n3 }) : t("About {n} tiles.", { n: n3 });
-    $6("#am-go").disabled = !MZ.refImage() || n3 > MAX_TILES;
+    const n4 = estimate();
+    $6("#am-estimate").textContent = n4 > MAX_TILES ? t("About {n} tiles – too many, use a bigger tile size.", { n: n4 }) : t("About {n} tiles.", { n: n4 });
+    $6("#am-go").disabled = !MZ.refImage() || n4 > MAX_TILES;
   }
   async function generate() {
     const px2 = await PhotoTools.pixels();
@@ -6022,15 +6060,15 @@ ${sections.join("\n")}
       return;
     }
     const ix = MZ.regionIndex();
-    let n3 = 0;
+    let n4 = 0;
     for (const el of state7.selection) {
       if (!MZ.fillOf(el)) continue;
       const g = MZ.geomOf(el), p = MZ.gridSample(g.bbox, (q) => MZ.insideEl(el, q), 1)[0], f = p && ix.locate(p);
       MZ.paintFill(el, pick(f ? ix.region(f) : null));
-      n3++;
+      n4++;
     }
-    if (n3) MZ.commit(true);
-    MZ.toast(n3 ? t("Mixed the colors of {n} {n|area|areas}.", { n: n3 }) : t("Select painted areas first."));
+    if (n4) MZ.commit(true);
+    MZ.toast(n4 ? t("Mixed the colors of {n} {n|area|areas}.", { n: n4 }) : t("Select painted areas first."));
   }
   MZ.on("swatch-shift", (c) => {
     if (c) toggle(c);
@@ -6133,9 +6171,9 @@ ${others}
       if (!duplicate2) MZ.fitView();
     }
     function rename(i) {
-      const n3 = prompt(t("Page name:"), pages[i].name);
-      if (!n3 || !n3.trim()) return;
-      pages[i].name = n3.trim();
+      const n4 = prompt(t("Page name:"), pages[i].name);
+      if (!n4 || !n4.trim()) return;
+      pages[i].name = n4.trim();
       render3();
       MZ.docChanged();
     }
@@ -6235,7 +6273,7 @@ ${others}
   var Snippets = (() => {
     const NS = "http://www.w3.org/2000/svg";
     const MM2 = { mm: 1, cm: 10, in: 25.4, px: 25.4 / 96 };
-    const n3 = (v) => String(Math.round(v * 1e3) / 1e3);
+    const n4 = (v) => String(Math.round(v * 1e3) / 1e3);
     function fromElements(els) {
       const fills = [], shapes = [];
       let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
@@ -6257,7 +6295,7 @@ ${others}
       const root = document.createElementNS(NS, "svg");
       root.setAttribute("data-mosaic-snippet", "1");
       root.setAttribute("data-unit", MZ.unit());
-      root.setAttribute("viewBox", [x0, y0, x1 - x0, y1 - y0].map(n3).join(" "));
+      root.setAttribute("viewBox", [x0, y0, x1 - x0, y1 - y0].map(n4).join(" "));
       for (const [layer2, list] of [["fills", fills], ["shapes", shapes]]) {
         const g = document.createElementNS(NS, "g");
         g.setAttribute("data-layer", layer2);
@@ -6284,37 +6322,37 @@ ${others}
       const has = el.hasAttribute("transform"), tag = el.localName;
       if (!has && tag === "line") {
         const a = mapPt(m, +el.getAttribute("x1"), +el.getAttribute("y1")), b = mapPt(m, +el.getAttribute("x2"), +el.getAttribute("y2"));
-        el.setAttribute("x1", n3(a.x));
-        el.setAttribute("y1", n3(a.y));
-        el.setAttribute("x2", n3(b.x));
-        el.setAttribute("y2", n3(b.y));
+        el.setAttribute("x1", n4(a.x));
+        el.setAttribute("y1", n4(a.y));
+        el.setAttribute("x2", n4(b.x));
+        el.setAttribute("y2", n4(b.y));
       } else if (!has && (tag === "polygon" || tag === "polyline")) {
         const nums = (el.getAttribute("points") || "").match(/[-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?/gi) || [];
         const pts = [];
         for (let i = 0; i + 1 < nums.length; i += 2) {
           const p = mapPt(m, +nums[i], +nums[i + 1]);
-          pts.push(n3(p.x) + "," + n3(p.y));
+          pts.push(n4(p.x) + "," + n4(p.y));
         }
         el.setAttribute("points", pts.join(" "));
         const ng = (el.getAttribute("data-ngon") || "").split(/\s+/).map(Number);
         if (ng.length === 5 && ng.every(Number.isFinite)) {
           const c = mapPt(m, ng[1], ng[2]);
-          el.setAttribute("data-ngon", [ng[0], n3(c.x), n3(c.y), n3(ng[3] * scale), n3(ng[4] + angle)].join(" "));
+          el.setAttribute("data-ngon", [ng[0], n4(c.x), n4(c.y), n4(ng[3] * scale), n4(ng[4] + angle)].join(" "));
         }
       } else if (!has && tag === "path" && /^[\s\dMLZmlz.,eE+-]*$/.test(el.getAttribute("d") || "") && !/[mlz]/.test(el.getAttribute("d"))) {
         el.setAttribute("d", el.getAttribute("d").replace(
           /([-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?)[\s,]+([-+]?(?:\d*\.\d+|\d+\.?)(?:e[-+]?\d+)?)/gi,
           (s, x, y) => {
             const p = mapPt(m, +x, +y);
-            return n3(p.x) + " " + n3(p.y);
+            return n4(p.x) + " " + n4(p.y);
           }
         ));
-        if (el.hasAttribute("data-area")) el.setAttribute("data-area", n3(+el.getAttribute("data-area") * scale * scale));
+        if (el.hasAttribute("data-area")) el.setAttribute("data-area", n4(+el.getAttribute("data-area") * scale * scale));
       } else {
         el.setAttribute("transform", `${m.toString()} ${el.getAttribute("transform") || ""}`.trim());
         return;
       }
-      if (scale !== 1 && el.hasAttribute("stroke-width")) el.setAttribute("stroke-width", n3(+el.getAttribute("stroke-width") * scale));
+      if (scale !== 1 && el.hasAttribute("stroke-width")) el.setAttribute("stroke-width", n4(+el.getAttribute("stroke-width") * scale));
     }
     function place(snip, at, angle = 0) {
       const m = placement(snip, at, angle), out = [];
@@ -6396,13 +6434,13 @@ ${others}
       clipboardOk = true;
     }, () => {
     });
-    const n3 = state9.selection.size;
+    const n4 = state9.selection.size;
     if (cut) {
       for (const el of state9.selection) el.remove();
       MZ.setSelection([]);
       MZ.commitGeometry();
     }
-    MZ.toast(cut ? t("Cut {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n3 }) : t("Copied {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n3 }));
+    MZ.toast(cut ? t("Cut {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n4 }) : t("Copied {n} {n|shape|shapes}. Paste with Ctrl+V – also in another page or drawing.", { n: n4 }));
   }
   document.addEventListener("keydown", (e) => {
     const k = e.key.toLowerCase();
@@ -6587,15 +6625,15 @@ ${others}
     e.target.value = "";
     try {
       const data = JSON.parse(text), list = Array.isArray(data) ? data : data.motifs;
-      let n3 = 0;
+      let n4 = 0;
       for (const m of list || []) {
         if (!m || typeof m.svg !== "string" || !Snippets.parse(m.svg)) continue;
-        motifs.push({ id: Date.now().toString(36) + n3, name: String(m.name || "Motif"), svg: m.svg, created: Date.now() });
-        n3++;
+        motifs.push({ id: Date.now().toString(36) + n4, name: String(m.name || "Motif"), svg: m.svg, created: Date.now() });
+        n4++;
       }
       await persist();
       render2();
-      MZ.toast(n3 ? t("Imported {n} {n|motif|motifs}.", { n: n3 }) : t("No motifs found in that file."));
+      MZ.toast(n4 ? t("Imported {n} {n|motif|motifs}.", { n: n4 }) : t("No motifs found in that file."));
     } catch (err) {
       console.warn(err);
       MZ.toast(t("That file is not a motif library."));
@@ -6645,7 +6683,7 @@ ${others}
       const shift = o.bricks && row % 2 ? -Math.floor(T / 2) : 0;
       for (let tx = shift; tx < W; tx += T) {
         const x0 = Math.max(0, tx), x1 = Math.min(W, tx + T), y1 = Math.min(H, ty + T);
-        let r = 0, g = 0, b = 0, n3 = 0, all = 0;
+        let r = 0, g = 0, b = 0, n4 = 0, all = 0;
         for (let y = ty; y < y1 - (y1 === ty + T ? G : 0); y++) for (let x = x0; x < Math.min(x1, tx + T - G); x++) {
           const i = (y * W + x) * 4;
           all++;
@@ -6653,14 +6691,14 @@ ${others}
           r += s[i];
           g += s[i + 1];
           b += s[i + 2];
-          n3++;
+          n4++;
         }
-        const filled = n3 > 0 && n3 >= all / 2;
+        const filled = n4 > 0 && n4 >= all / 2;
         let c = [0, 0, 0, 0];
         if (filled) {
-          r = Math.round(r / n3);
-          g = Math.round(g / n3);
-          b = Math.round(b / n3);
+          r = Math.round(r / n4);
+          g = Math.round(g / n4);
+          b = Math.round(b / n4);
           const name = near ? near(r, g, b) : hex(r, g, b);
           c = rgba(name);
           counts.set(name, (counts.get(name) || 0) + 1);
@@ -6676,8 +6714,8 @@ ${others}
   }
   function classify(img, colors) {
     const near = nearestCache(colors), index = new Map(colors.map((c, i) => [c, i]));
-    const n3 = img.width * img.height, grid = new Int16Array(n3), counts = colors.map(() => 0), d = img.data;
-    for (let p = 0, i = 0; p < n3; p++, i += 4) {
+    const n4 = img.width * img.height, grid = new Int16Array(n4), counts = colors.map(() => 0), d = img.data;
+    for (let p = 0, i = 0; p < n4; p++, i += 4) {
       if (d[i + 3] < 128) {
         grid[p] = -1;
         continue;
@@ -6689,11 +6727,11 @@ ${others}
     return { grid, counts };
   }
   function pieces(img) {
-    const { width: W, height: H, data: d } = img, n3 = W * H;
-    const labels = new Int32Array(n3).fill(-1), colors = [], sizes = [];
+    const { width: W, height: H, data: d } = img, n4 = W * H;
+    const labels = new Int32Array(n4).fill(-1), colors = [], sizes = [];
     const key = (p) => d[p * 4 + 3] < 128 ? -1 : d[p * 4] << 16 | d[p * 4 + 1] << 8 | d[p * 4 + 2];
     const stack = [];
-    for (let p = 0; p < n3; p++) {
+    for (let p = 0; p < n4; p++) {
       if (labels[p] >= 0) continue;
       const k = key(p);
       if (k < 0) continue;
@@ -6705,7 +6743,7 @@ ${others}
         const q = stack.pop(), x = q % W;
         size++;
         for (const r of [x > 0 ? q - 1 : -1, x < W - 1 ? q + 1 : -1, q - W, q + W]) {
-          if (r < 0 || r >= n3 || labels[r] >= 0 || key(r) !== k) continue;
+          if (r < 0 || r >= n4 || labels[r] >= 0 || key(r) !== k) continue;
           labels[r] = id;
           stack.push(r);
         }
@@ -6728,12 +6766,12 @@ ${others}
     return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
   }
   function polygonPixels(W, H, pts, fn) {
-    const n3 = pts.length, ys = pts.map((p) => p.y);
+    const n4 = pts.length, ys = pts.map((p) => p.y);
     const top = Math.max(0, Math.floor(Math.min(...ys))), bottom = Math.min(H - 1, Math.ceil(Math.max(...ys)));
     for (let y = top; y <= bottom; y++) {
       const cy = y + 0.5, xs = [];
-      for (let i = 0; i < n3; i++) {
-        const a = pts[i], c = pts[(i + 1) % n3];
+      for (let i = 0; i < n4; i++) {
+        const a = pts[i], c = pts[(i + 1) % n4];
         if (a.y <= cy !== c.y <= cy) xs.push(a.x + (cy - a.y) * (c.x - a.x) / (c.y - a.y));
       }
       xs.sort((p, q) => p - q);
@@ -6749,7 +6787,7 @@ ${others}
     const counts = /* @__PURE__ */ new Map(), filled = [];
     let tiles = 0;
     for (const poly of cells3) {
-      let r = 0, g = 0, b = 0, n3 = 0, all = 0;
+      let r = 0, g = 0, b = 0, n4 = 0, all = 0;
       const px2 = [];
       polygonPixels(W, H, poly, (i) => {
         px2.push(i);
@@ -6759,12 +6797,12 @@ ${others}
         r += s[k];
         g += s[k + 1];
         b += s[k + 2];
-        n3++;
+        n4++;
       });
-      if (!n3 || n3 < all / 2) continue;
-      r = Math.round(r / n3);
-      g = Math.round(g / n3);
-      b = Math.round(b / n3);
+      if (!n4 || n4 < all / 2) continue;
+      r = Math.round(r / n4);
+      g = Math.round(g / n4);
+      b = Math.round(b / n4);
       const name = near ? near(r, g, b) : hex(r, g, b), c = rgba(name);
       for (const i of px2) setPx(d, i * 4, c);
       counts.set(name, (counts.get(name) || 0) + 1);
@@ -6824,9 +6862,9 @@ ${others}
     return out;
   }
   function heightSolid(grid, s) {
-    const n3 = grid.length, top = cellHeights(grid, s), level = new Int16Array(n3);
-    for (let i = 0; i < n3; i++) level[i] = Math.max(0, grid[i]);
-    return { bottom: new Int16Array(n3), top, level };
+    const n4 = grid.length, top = cellHeights(grid, s), level = new Int16Array(n4);
+    for (let i = 0; i < n4; i++) level[i] = Math.max(0, grid[i]);
+    return { bottom: new Int16Array(n4), top, level };
   }
   function solidMesh(sol, w, h, cell, layerHeight) {
     const inside = (x, y) => x >= 0 && y >= 0 && x < w && y < h;
@@ -6973,13 +7011,13 @@ ${others}
     return { vertices, triangles, levels };
   }
   function removeTowers(input, w, h, cell, s, o) {
-    const grid = Int16Array.from(input), n3 = w * h, label = new Int32Array(n3), dist2 = new Float32Array(n3);
+    const grid = Int16Array.from(input), n4 = w * h, label = new Int32Array(n4), dist2 = new Float32Array(n4);
     const heightOf = o.heightOf || ((lv) => lv === -2 ? 0 : (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight);
     let lowered = 0;
     for (let round = 0; round < 12; round++) {
       label.fill(-1);
       const levels = [], stack = [];
-      for (let p = 0; p < n3; p++) {
+      for (let p = 0; p < n4; p++) {
         if (label[p] >= 0) continue;
         const id = levels.length, lv = grid[p];
         levels.push(lv);
@@ -6988,14 +7026,14 @@ ${others}
         while (stack.length) {
           const q = stack.pop(), x = q % w;
           for (const r of [x > 0 ? q - 1 : -1, x < w - 1 ? q + 1 : -1, q - w, q + w]) {
-            if (r < 0 || r >= n3 || label[r] >= 0 || grid[r] !== lv) continue;
+            if (r < 0 || r >= n4 || label[r] >= 0 || grid[r] !== lv) continue;
             label[r] = id;
             stack.push(r);
           }
         }
       }
       const D = Math.SQRT2;
-      for (let p = 0; p < n3; p++) {
+      for (let p = 0; p < n4; p++) {
         const x = p % w, y = p / w | 0, l = label[p];
         const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label[p - 1] !== l || label[p + 1] !== l || label[p - w] !== l || label[p + w] !== l;
         dist2[p] = edge ? 1 : 1e9;
@@ -7011,7 +7049,7 @@ ${others}
         dist2[p] = Math.min(dist2[p], dist2[p + 1] + 1, dist2[p + w] + 1, dist2[p + w + 1] + D, dist2[p + w - 1] + D);
       }
       const widest = new Float32Array(levels.length);
-      for (let p = 0; p < n3; p++) if (dist2[p] > widest[label[p]]) widest[label[p]] = dist2[p];
+      for (let p = 0; p < n4; p++) if (dist2[p] > widest[label[p]]) widest[label[p]] = dist2[p];
       const borders = levels.map(() => /* @__PURE__ */ new Map());
       const lowest = new Float64Array(levels.length).fill(Infinity);
       const meet = (a, b) => {
@@ -7044,7 +7082,7 @@ ${others}
         changed++;
       });
       if (!changed) break;
-      for (let p = 0; p < n3; p++) {
+      for (let p = 0; p < n4; p++) {
         const tl = target2[label[p]];
         if (tl !== -32768) grid[p] = tl;
       }
@@ -7053,12 +7091,12 @@ ${others}
     return { grid, lowered };
   }
   function stl(mesh, name = "Mosaic Paint") {
-    const V = mesh.vertices, T = mesh.triangles, n3 = T.length / 3, buf = new ArrayBuffer(84 + n3 * 50), dv = new DataView(buf);
+    const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3, buf = new ArrayBuffer(84 + n4 * 50), dv = new DataView(buf);
     const header = `${name} – multi-color by layer`.slice(0, 80);
     for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
-    dv.setUint32(80, n3, true);
+    dv.setUint32(80, n4, true);
     let o = 84;
-    for (let t2 = 0; t2 < n3; t2++) {
+    for (let t2 = 0; t2 < n4; t2++) {
       const p = [0, 1, 2].map((k) => T[t2 * 3 + k] * 3);
       const ux = V[p[1]] - V[p[0]], uy = V[p[1] + 1] - V[p[0] + 1], uz = V[p[1] + 2] - V[p[0] + 2];
       const vx = V[p[2]] - V[p[0]], vy = V[p[2] + 1] - V[p[0] + 1], vz = V[p[2] + 2] - V[p[0] + 2];
@@ -7139,8 +7177,8 @@ ${others}
     return used;
   }
   function frameSolid(grid, bottom, top, level) {
-    const n3 = grid.length, s = { bottom: new Int16Array(n3).fill(bottom), top: new Int16Array(n3), level: new Int16Array(n3).fill(level) };
-    for (let i = 0; i < n3; i++) if (grid[i] === FRAME) s.top[i] = top;
+    const n4 = grid.length, s = { bottom: new Int16Array(n4).fill(bottom), top: new Int16Array(n4), level: new Int16Array(n4).fill(level) };
+    for (let i = 0; i < n4; i++) if (grid[i] === FRAME) s.top[i] = top;
     return s;
   }
   var xmlAttr = (v) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -7187,17 +7225,17 @@ ${others}
     return (lv) => lv === -2 ? 0 : lv < 0 ? f.baseLayers * f.layerHeight : grout[lv] ? low : tile;
   }
   function flatParts(grid, w, h, nLevels, grout, f) {
-    const n3 = w * h, out = [];
+    const n4 = w * h, out = [];
     if (f.baseLayers > 0) {
-      const top = new Int16Array(n3);
-      for (let i = 0; i < n3; i++) if (grid[i] !== -2) top[i] = f.baseLayers;
-      out.push({ part: -1, solid: { bottom: new Int16Array(n3), top, level: new Int16Array(n3) } });
+      const top = new Int16Array(n4);
+      for (let i = 0; i < n4; i++) if (grid[i] !== -2) top[i] = f.baseLayers;
+      out.push({ part: -1, solid: { bottom: new Int16Array(n4), top, level: new Int16Array(n4) } });
     }
     for (let k = 0; k < nLevels; k++) {
-      const bottom = new Int16Array(n3).fill(f.baseLayers), top = new Int16Array(n3), level = new Int16Array(n3).fill(k);
+      const bottom = new Int16Array(n4).fill(f.baseLayers), top = new Int16Array(n4), level = new Int16Array(n4).fill(k);
       const up = f.baseLayers + (grout[k] ? Math.max(1, f.tileLayers - f.groutRecess) : f.tileLayers);
       let any = false;
-      for (let i = 0; i < n3; i++) if (grid[i] === k) {
+      for (let i = 0; i < n4; i++) if (grid[i] === k) {
         top[i] = up;
         any = true;
       }
@@ -7290,17 +7328,17 @@ ${others}
     config.push('<?xml version="1.0" encoding="UTF-8"?>', "<config>", '<object id="1" instances_count="1">', `<metadata type="object" key="name" value="${xmlAttr(name)}"/>`);
     let vOffset = 0, tOffset = 0;
     parts.forEach((p, k) => {
-      const T = p.mesh.triangles, n3 = T.length / 3;
+      const T = p.mesh.triangles, n4 = T.length / 3;
       for (let t2 = 0; t2 < T.length; t2 += 3) out.push(`<triangle v1="${T[t2] + vOffset}" v2="${T[t2 + 1] + vOffset}" v3="${T[t2 + 2] + vOffset}" pid="2" p1="${k}"/>`);
       config.push(
-        `<volume firstid="${tOffset}" lastid="${tOffset + n3 - 1}">`,
+        `<volume firstid="${tOffset}" lastid="${tOffset + n4 - 1}">`,
         `<metadata type="volume" key="name" value="${xmlAttr(p.name)}"/>`,
         '<metadata type="volume" key="volume_type" value="ModelPart"/>',
         `<metadata type="volume" key="extruder" value="${p.filament || k + 1}"/>`,
         "</volume>"
       );
       vOffset += p.mesh.vertices.length / 3;
-      tOffset += n3;
+      tOffset += n4;
     });
     out.push("</triangles>", "</mesh>", "</object>", "</resources>", "<build>", '<item objectid="1"/>', "</build>", "</model>");
     config.push("</object>", "</config>");
@@ -7327,10 +7365,10 @@ ${others}
   function crc32(data) {
     if (!crcTable) {
       crcTable = new Uint32Array(256);
-      for (let n3 = 0; n3 < 256; n3++) {
-        let c2 = n3;
+      for (let n4 = 0; n4 < 256; n4++) {
+        let c2 = n4;
         for (let k = 0; k < 8; k++) c2 = c2 & 1 ? 3988292384 ^ c2 >>> 1 : c2 >>> 1;
-        crcTable[n3] = c2 >>> 0;
+        crcTable[n4] = c2 >>> 0;
       }
     }
     let c = 4294967295;
@@ -7425,12 +7463,12 @@ ${others}
         g[p] = lv < 0 ? -1 : list[lv];
       }
       out = { list, grid: res.grid, counts: c, lowered };
-      if (c.every((n3) => n3 > 0)) break;
+      if (c.every((n4) => n4 > 0)) break;
       list = list.filter((_, k) => c[k] > 0);
     }
     return out;
   }
-  var frameTop = (n3, o) => (o.mode === "flat" ? o.baseLayers + o.tileLayers : topLayer(Math.max(0, n3 - 1), printSettings(o))) + o.frameRaise;
+  var frameTop = (n4, o) => (o.mode === "flat" ? o.baseLayers + o.tileLayers : topLayer(Math.max(0, n4 - 1), printSettings(o))) + o.frameRaise;
   function layout2(g, w, h, cell, o) {
     const f = finishGrid(g, w, h, { frame: o.frame / cell, corner: o.corner / cell, hole: o.hole / cell }, MARGIN2 / cell);
     const inset = (o.magnet / 2 + MARGIN2 + o.corner * 0.3) / cell;
@@ -7452,16 +7490,16 @@ ${others}
     return Math.max(0, d);
   }
   function solids(lay, grout, o) {
-    const n3 = grout.length;
+    const n4 = grout.length;
     let out;
     if (o.mode === "flat") {
-      out = flatParts(lay.grid, lay.w, lay.h, n3, grout, flatSettings(o));
-      if (o.frame > 0) out.splice(o.baseLayers ? 1 : 0, 0, { part: FRAME, solid: frameSolid(lay.grid, o.baseLayers, frameTop(n3, o), 0) });
+      out = flatParts(lay.grid, lay.w, lay.h, n4, grout, flatSettings(o));
+      if (o.frame > 0) out.splice(o.baseLayers ? 1 : 0, 0, { part: FRAME, solid: frameSolid(lay.grid, o.baseLayers, frameTop(n4, o), 0) });
     } else {
-      const sol = heightSolid(lay.grid, printSettings(o)), top = frameTop(n3, o);
+      const sol = heightSolid(lay.grid, printSettings(o)), top = frameTop(n4, o);
       for (let i = 0; i < lay.grid.length; i++) if (lay.grid[i] === FRAME) {
         sol.top[i] = top;
-        sol.level[i] = n3 - 1;
+        sol.level[i] = n4 - 1;
       }
       out = [{ part: 0, solid: sol }];
     }
@@ -7573,10 +7611,10 @@ void main() {
       gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
     }
     function show(mesh, colorOf) {
-      const V = mesh.vertices, T = mesh.triangles, n3 = T.length / 3;
-      const pos = new Float32Array(n3 * 9), nor = new Float32Array(n3 * 9), col = new Float32Array(n3 * 9);
+      const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3;
+      const pos = new Float32Array(n4 * 9), nor = new Float32Array(n4 * 9), col = new Float32Array(n4 * 9);
       let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = 0;
-      for (let t2 = 0; t2 < n3; t2++) {
+      for (let t2 = 0; t2 < n4; t2++) {
         const a = T[t2 * 3] * 3, b = T[t2 * 3 + 1] * 3, c = T[t2 * 3 + 2] * 3;
         const ux = V[b] - V[a], uy = V[b + 1] - V[a + 1], uz = V[b + 2] - V[a + 2];
         const vx = V[c] - V[a], vy = V[c + 1] - V[a + 1], vz = V[c + 2] - V[a + 2];
@@ -7608,7 +7646,7 @@ void main() {
       upload("pos", pos);
       upload("normal", nor);
       upload("color", col);
-      count = n3 * 3;
+      count = n4 * 3;
       center = [(x0 + x1) / 2, (y0 + y1) / 2, 0];
       radius = Math.max(1e-3, Math.hypot(x1 - x0, y1 - y0) / 2, z1);
       render3();
@@ -7752,17 +7790,17 @@ void main() {
     return to;
   }
   function simplify2(ring, V) {
-    const pts = ring.map((k) => ({ x: k % V, y: Math.floor(k / V) })), n3 = pts.length, out = [];
-    for (let i = 0; i < n3; i++) {
-      const a = pts[(i + n3 - 1) % n3], b = pts[i], c = pts[(i + 1) % n3];
+    const pts = ring.map((k) => ({ x: k % V, y: Math.floor(k / V) })), n4 = pts.length, out = [];
+    for (let i = 0; i < n4; i++) {
+      const a = pts[(i + n4 - 1) % n4], b = pts[i], c = pts[(i + 1) % n4];
       if ((b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) !== 0) out.push(b);
     }
     return out;
   }
   function ringArea(r) {
     let s = 0;
-    for (let i = 0, n3 = r.length; i < n3; i++) {
-      const a = r[i], b = r[(i + 1) % n3];
+    for (let i = 0, n4 = r.length; i < n4; i++) {
+      const a = r[i], b = r[(i + 1) % n4];
       s += a.x * b.y - b.x * a.y;
     }
     return s / 2;
@@ -8062,9 +8100,8 @@ ${shapes.join("\n")}
     }
     const rows = /* @__PURE__ */ new Map();
     function move(c, d) {
-      const m = model();
-      if (!m) return;
-      const list = m.list, k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
+      const m = model(), list = m ? m.list : order.filter((i) => counts[i] > 0);
+      const k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
       if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
       const a = order.indexOf(list[k]), b = order.indexOf(other);
       [order[a], order[b]] = [order[b], order[a]];
@@ -8549,6 +8586,177 @@ ${shapes.join("\n")}
       return viewing;
     } };
   })();
+
+  // src/lib/examples.ts
+  var n3 = (v) => String(Math.round(v * 1e3) / 1e3);
+  var GROUT = "#d9d4cb";
+  function tileSvg(w, h, tiles, paletteName) {
+    const palette = [...new Set(tiles.map((t2) => t2[3]))];
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">
+<metadata id="mosaic-palette">${JSON.stringify({ palette: [...palette, GROUT], paletteName, unit: "mm" })}</metadata>
+<rect id="mosaic-bg" x="0" y="0" width="${w}" height="${h}" fill="${GROUT}"/>
+<g id="mosaic-fills"></g>
+<g id="mosaic-shapes">
+${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" height="${n3(s)}" fill="${c}" stroke="none"/>`).join("\n")}
+</g>
+</svg>`;
+  }
+  function coasterSvg(paletteName) {
+    const rings = ["#e76f51", "#f4a261", "#e9c46a", "#2a9d8f", "#264653"], tiles = [];
+    for (let j = 0; j < 10; j++) for (let i = 0; i < 10; i++) {
+      const ring = Math.floor(Math.max(Math.abs(i - 4.5), Math.abs(j - 4.5)));
+      tiles.push([i * 10 + 0.75, j * 10 + 0.75, 8.5, rings[ring]]);
+    }
+    return tileSvg(100, 100, tiles, paletteName);
+  }
+  var FONT = {
+    A: [".###.", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
+    D: ["####.", "#...#", "#...#", "#...#", "#...#", "#...#", "####."],
+    E: ["#####", "#....", "#....", "####.", "#....", "#....", "#####"],
+    H: ["#...#", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
+    J: ["..###", "...#.", "...#.", "...#.", "#..#.", "#..#.", ".##.."],
+    M: ["#...#", "##.##", "#.#.#", "#.#.#", "#...#", "#...#", "#...#"],
+    O: [".###.", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."],
+    V: ["#...#", "#...#", "#...#", "#...#", "#...#", ".#.#.", "..#.."]
+  };
+  var signLetters = Object.keys(FONT).join("");
+  function signSvg(word, paletteName) {
+    const letters = [...word.toUpperCase()].filter((c) => FONT[c]), pitch = 6, cols = letters.length * 6 + 3, rows = 11;
+    const tiles = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      let color = r === 0 || c === 0 || r === rows - 1 || c === cols - 1 ? "#e76f51" : "#f1e3c6";
+      const li = Math.floor((c - 2) / 6), lc = (c - 2) % 6, lr = r - 2;
+      if (lr >= 0 && lr < 7 && li >= 0 && li < letters.length && lc < 5 && FONT[letters[li]][lr][lc] === "#") color = "#264653";
+      tiles.push([c * pitch + 0.5, r * pitch + 0.5, pitch - 1, color]);
+    }
+    return tileSvg(cols * pitch, rows * pitch, tiles, paletteName);
+  }
+  var HEART_COLORS = { o: "#6b1d2a", R: "#e63946", r: "#c1121f", "*": "#ffd6dc" };
+  var HEART_PALETTE = Object.values(HEART_COLORS);
+
+  // src/shared/examples-ui.ts
+  function initExamples(button, examples) {
+    const dlg = document.createElement("dialog");
+    dlg.id = "dlg-examples";
+    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+<p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
+<div class="ex-list"></div>`;
+    document.body.append(dlg);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    const list = dlg.querySelector(".ex-list");
+    for (const ex of examples) {
+      const card = document.createElement("button");
+      card.className = "ex-card";
+      card.dataset.example = ex.id;
+      card.innerHTML = `<img alt=""><b></b><span class="note"></span>`;
+      card.querySelector("b").textContent = ex.title;
+      card.querySelector(".note").textContent = ex.text;
+      card.onclick = async () => {
+        dlg.close();
+        await ex.open();
+      };
+      list.append(card);
+    }
+    button.onclick = () => {
+      list.querySelectorAll("img").forEach((img, k) => {
+        if (!img.src) img.src = examples[k].preview();
+      });
+      dlg.showModal();
+    };
+  }
+
+  // src/shared/guide.ts
+  function initGuide(button, steps, key) {
+    const card = document.createElement("dialog");
+    card.id = "guide";
+    card.innerHTML = `<div class="dlg-head"><h2></h2><button class="guide-close" title="${t("Close")}">✕</button></div>
+<p class="guide-text"></p>
+<div class="row dlg-foot"><span class="note guide-count"></span><button class="guide-back">${t("Back")}</button><button class="guide-next primary"></button></div>`;
+    document.body.append(card);
+    let at = 0, marked = null;
+    const mark = (el) => {
+      marked?.classList.remove("guide-target");
+      marked = el;
+      marked?.classList.add("guide-target");
+    };
+    function draw() {
+      const s = steps[at];
+      card.querySelector("h2").textContent = s.title;
+      card.querySelector(".guide-text").textContent = s.text;
+      card.querySelector(".guide-count").textContent = t("{k} of {n}", { k: at + 1, n: steps.length });
+      card.querySelector(".guide-back").disabled = at === 0;
+      card.querySelector(".guide-next").textContent = at === steps.length - 1 ? t("Done") : t("Next");
+      const el = s.target ? document.querySelector(s.target) : null;
+      mark(el && el.offsetParent ? el : null);
+      marked?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
+    function close() {
+      mark(null);
+      card.close();
+      lsSet(key, "1");
+    }
+    function show() {
+      at = 0;
+      draw();
+      if (!card.open) card.show();
+    }
+    card.querySelector(".guide-close").onclick = close;
+    card.querySelector(".guide-back").onclick = () => {
+      at = Math.max(0, at - 1);
+      draw();
+    };
+    card.querySelector(".guide-next").onclick = () => {
+      if (at === steps.length - 1) close();
+      else {
+        at++;
+        draw();
+      }
+    };
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      }
+    });
+    button.onclick = show;
+    if (!lsGet(key) && !location.hash && !navigator.webdriver) setTimeout(show, 600);
+    return { show };
+  }
+
+  // src/features/examples.ts
+  var svgUrl = (svg2) => "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg2);
+  async function open2(svg2, name) {
+    if (!MZ.confirmDiscard()) return;
+    await MZ.openText(svg2, name);
+  }
+  var coaster = () => coasterSvg(t("Coaster"));
+  var sign = () => signSvg(t("HOME"), t("Sign"));
+  initExamples(document.querySelector("#btn-examples"), [
+    {
+      id: "coaster",
+      title: t("Coaster"),
+      text: t("100 × 100 mm, square tiles in rings of color – try 3D… with rounded corners."),
+      preview: () => svgUrl(coaster()),
+      open: () => open2(coaster(), t("coaster") + ".svg")
+    },
+    {
+      id: "sign",
+      title: t("Sign"),
+      text: t("A word in tiles with a border – try Report for a shopping list."),
+      preview: () => svgUrl(sign()),
+      open: () => open2(sign(), t("sign") + ".svg")
+    }
+  ]);
+  initGuide(document.querySelector("#btn-guide"), [
+    { title: t("Welcome to Mosaic Paint"), text: t("Design a mosaic: draw lines or lay a tile pattern, then paint the tiles. Everything is measured in real millimetres.") },
+    { title: t("Draw"), text: t("The tools are on the left: lines and shapes, the tile pattern, and the paint bucket that fills a tile with one click."), target: "#tools" },
+    { title: t("Colors"), text: t("Pick a color in the palette, then click tiles with the bucket. Palettes are shared with the raster app."), target: "#palette" },
+    { title: t("When it is done"), text: t("Report gives a shopping list, 3D… a model to print, Share a link. Expert mode adds printing at real size and laying plans."), target: "#btn-report" },
+    { title: t("Start from an example"), text: t("Not sure where to begin? Open an example. The ? button shows this guide again."), target: "#btn-examples" }
+  ], "mz-guide-vector");
 
   // src/main.ts
   Object.assign(window, { MZ, Geo: geometry_exports, Colors: colors_exports, Store, PhotoTools, LayPlan, Vision, Pages, Snippets, Share });

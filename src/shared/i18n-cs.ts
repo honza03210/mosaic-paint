@@ -1424,4 +1424,80 @@ export const CS: Record<string, string> = {
     'Vytvářím 3D model…',
   'Building the 3D model… {p} %':
     'Vytvářím 3D model… {p} %',
+  'Coaster':
+    'Podtácek',
+  'HOME':
+    'DOMOV',
+  'Sign':
+    'Cedulka',
+  '100 × 100 mm, square tiles in rings of color – try 3D… with rounded corners.':
+    '100 × 100 mm, čtvercové dlaždice v barevných prstencích – zkuste 3D… se zaoblenými rohy.',
+  'coaster':
+    'podtacek',
+  'A word in tiles with a border – try Report for a shopping list.':
+    'Slovo z dlaždic s okrajem – v Přehledu najdete nákupní seznam.',
+  'sign':
+    'cedulka',
+  'Welcome to Mosaic Paint':
+    'Vítejte v Mosaic Paint',
+  'Design a mosaic: draw lines or lay a tile pattern, then paint the tiles. Everything is measured in real millimetres.':
+    'Navrhněte mozaiku: nakreslete čáry nebo položte vzor dlaždic a pak dlaždice vybarvěte. Vše se měří ve skutečných milimetrech.',
+  'Draw':
+    'Kreslení',
+  'The tools are on the left: lines and shapes, the tile pattern, and the paint bucket that fills a tile with one click.':
+    'Nástroje jsou vlevo: čáry a tvary, vzor dlaždic a kbelík, který jedním kliknutím vybarví dlaždici.',
+  'Pick a color in the palette, then click tiles with the bucket. Palettes are shared with the raster app.':
+    'Vyberte barvu v paletě a klikejte kbelíkem na dlaždice. Palety jsou společné s rastrovou aplikací.',
+  'When it is done':
+    'Až bude hotovo',
+  'Report gives a shopping list, 3D… a model to print, Share a link. Expert mode adds printing at real size and laying plans.':
+    'Přehled dá nákupní seznam, 3D… model k tisku, Sdílet odkaz. Režim Expert přidá tisk ve skutečné velikosti a plány kladení.',
+  'Start from an example':
+    'Začněte od příkladu',
+  'Not sure where to begin? Open an example. The ? button shows this guide again.':
+    'Nevíte, kde začít? Otevřete příklad. Tlačítko ? ukáže tohoto průvodce znovu.',
+  'Pixel heart':
+    'Pixelové srdce',
+  '16 × 16 pixel art – every pixel a tile. Try 3D… or Print.':
+    'Pixel art 16 × 16 – každý pixel je dlaždice. Zkuste 3D… nebo Tisk.',
+  'heart':
+    'srdce',
+  'Heart':
+    'Srdce',
+  'Sunset mosaic':
+    'Mozaika se západem slunce',
+  'A picture made into tiles with grout by “Make a mosaic…”. Try Open as vector tiles.':
+    'Obrázek proměněný v dlaždice se spárami pomocí „Vytvořit mozaiku…“. Zkuste Otevřít jako vektorové dlaždice.',
+  'sunset':
+    'zapad-slunce',
+  'Sunset':
+    'Západ slunce',
+  'Welcome to Mosaic Paint Raster':
+    'Vítejte v Mosaic Paint Raster',
+  'Paint with pixels: pixel art, or a photo turned into a mosaic. Each pixel can become a tile.':
+    'Malujte pixely: pixel art nebo fotku proměněnou v mozaiku. Každý pixel se může stát dlaždicí.',
+  'The tools are on the left: pencil, brush, bucket, lines, shapes and selection.':
+    'Nástroje jsou vlevo: tužka, štětec, kbelík, čáry, tvary a výběr.',
+  'Pick a color in the palette. Palettes are shared with the vector app.':
+    'Vyberte barvu v paletě. Palety jsou společné s vektorovou aplikací.',
+  'Open a photo, then “Make a mosaic…” turns it into tiles with grout in your palette’s colors.':
+    'Otevřete fotku a „Vytvořit mozaiku…“ z ní udělá dlaždice se spárami v barvách vaší palety.',
+  'Examples':
+    'Příklady',
+  'Open an example to see how it is made, or to start from it. Your current work is kept in History.':
+    'Otevřete příklad a podívejte se, jak je udělaný, nebo z něj vyjděte. Vaše současná práce zůstane v Historii.',
+  'Back':
+    'Zpět',
+  '{k} of {n}':
+    '{k} z {n}',
+  'Next':
+    'Další',
+  'Examples…':
+    'Příklady…',
+  'Example projects to open':
+    'Ukázkové projekty k otevření',
+  'A short guide to the app':
+    'Krátký průvodce aplikací',
+  'Guide':
+    'Průvodce',
 };
