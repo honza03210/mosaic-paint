@@ -5,7 +5,7 @@
 `npm test` builds `dist/mosaic.js`, type-checks the TypeScript (`tsc`), then runs:
 
 - **Unit tests** (`tests/unit/`): geometry (closed areas, holes, T-junctions), tiling patterns, print sheet layout, and that the offline cache lists every file.
-- **Unit tests** of the raster app's pixel algorithms (flood fill, lines, polygons, palette reduction, the mosaic effect).
+- **Unit tests** of the 3D print model (heights, merged boxes, a closed outward-facing STL, the filament plan) and of the raster app's pixel algorithms (flood fill, lines, polygons, palette reduction, the mosaic effect).
 - **End-to-end tests** (`tests/e2e/`), driving both apps in:
   - Chrome, Firefox and WebKit (Safari's engine) on desktop;
   - an Android phone (Pixel 7) and an iPhone 14, emulated with touch input.
@@ -26,6 +26,11 @@ Emulation can't cover everything. Before relying on a new version, check these:
 - [ ] Load a photo from the camera roll; "Color tiles from photo" works.
 - [ ] Save: the file is offered for download / sharing.
 - [ ] Moving the finger over a big mosaic (2,000+ tiles) feels smooth. (Playwright's WebKit renders in software and is slow here; real Safari uses the GPU.)
+
+### 3D print
+- [ ] Export a small mosaic (e.g. 60 × 60 mm, 3 colors); the STL opens in the slicer as one flat object of the expected size and height.
+- [ ] Add the color changes from the plan; the slicer preview shows each color starting at the listed layer.
+- [ ] Print it: every tile's top shows its color, the grout is the lowest band.
 
 ### Clipboard between the apps and other programs
 - [ ] Vector: Ctrl+C with nothing selected → paste into the raster app, an image editor, a chat: the drawing appears.

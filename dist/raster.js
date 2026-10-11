@@ -81,6 +81,10 @@
     });
     return best;
   }
+  function luminance(c) {
+    const [r, g, b] = toRgb(c) || [255, 255, 255];
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  }
 
   // src/lib/raster.ts
   var makeImg = (width, height) => ({ width, height, data: new Uint8ClampedArray(width * height * 4) });
@@ -321,6 +325,20 @@
       }
     }
     return { img: out, counts: counts2, tiles };
+  }
+  function classify(img, colors) {
+    const near = nearestCache(colors), index2 = new Map(colors.map((c, i) => [c, i]));
+    const n = img.width * img.height, grid = new Int16Array(n), counts2 = colors.map(() => 0), d = img.data;
+    for (let p = 0, i = 0; p < n; p++, i += 4) {
+      if (d[i + 3] < 128) {
+        grid[p] = -1;
+        continue;
+      }
+      const k = index2.get(near(d[i], d[i + 1], d[i + 2]));
+      grid[p] = k;
+      counts2[k]++;
+    }
+    return { grid, counts: counts2 };
   }
 
   // src/shared/ui.ts
@@ -2363,10 +2381,333 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     });
   }
 
+  // src/lib/model3d.ts
+  var topLayer = (i, s) => s.baseLayers + (i + 1) * s.layersPerColor;
+  function greedyRects(grid, w, h) {
+    const done = new Uint8Array(w * h), out = [];
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const i = y * w + x, lv = grid[i];
+      if (lv < 0 || done[i]) continue;
+      let rw = 1;
+      while (x + rw < w && grid[i + rw] === lv && !done[i + rw]) rw++;
+      let rh = 1;
+      grow: while (y + rh < h) {
+        const row = (y + rh) * w + x;
+        for (let k = 0; k < rw; k++) if (grid[row + k] !== lv || done[row + k]) break grow;
+        rh++;
+      }
+      for (let yy = y; yy < y + rh; yy++) done.fill(1, yy * w + x, yy * w + x + rw);
+      out.push({ x, y, w: rw, h: rh, level: lv });
+    }
+    return out;
+  }
+  function modelBoxes(grid, w, h, cell, s) {
+    const lh = s.layerHeight, base = s.baseLayers * lh, H = h * cell, out = [];
+    if (base > 0) out.push({ x0: 0, y0: 0, z0: 0, x1: w * cell, y1: H, z1: base });
+    for (const r of greedyRects(grid, w, h)) {
+      out.push({
+        x0: r.x * cell,
+        x1: (r.x + r.w) * cell,
+        y0: H - (r.y + r.h) * cell,
+        y1: H - r.y * cell,
+        z0: base,
+        z1: topLayer(r.level, s) * lh
+      });
+    }
+    return out;
+  }
+  function boxTriangles(b) {
+    const { x0, y0, z0, x1, y1, z1 } = b;
+    return [
+      [0, 0, -1, x0, y0, z0, x0, y1, z0, x1, y1, z0],
+      [0, 0, -1, x0, y0, z0, x1, y1, z0, x1, y0, z0],
+      [0, 0, 1, x0, y0, z1, x1, y0, z1, x1, y1, z1],
+      [0, 0, 1, x0, y0, z1, x1, y1, z1, x0, y1, z1],
+      [0, -1, 0, x0, y0, z0, x1, y0, z0, x1, y0, z1],
+      [0, -1, 0, x0, y0, z0, x1, y0, z1, x0, y0, z1],
+      [0, 1, 0, x0, y1, z0, x0, y1, z1, x1, y1, z1],
+      [0, 1, 0, x0, y1, z0, x1, y1, z1, x1, y1, z0],
+      [-1, 0, 0, x0, y0, z0, x0, y0, z1, x0, y1, z1],
+      [-1, 0, 0, x0, y0, z0, x0, y1, z1, x0, y1, z0],
+      [1, 0, 0, x1, y0, z0, x1, y1, z0, x1, y1, z1],
+      [1, 0, 0, x1, y0, z0, x1, y1, z1, x1, y0, z1]
+    ];
+  }
+  function stl(boxes, name = "Mosaic Paint") {
+    const n = boxes.length * 12, buf = new ArrayBuffer(84 + n * 50), dv = new DataView(buf);
+    const header = `${name} – multi-color by layer`.slice(0, 80);
+    for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
+    dv.setUint32(80, n, true);
+    let o = 84;
+    for (const b of boxes) for (const t of boxTriangles(b)) {
+      for (let k = 0; k < 12; k++) {
+        dv.setFloat32(o, t[k], true);
+        o += 4;
+      }
+      dv.setUint16(o, 0, true);
+      o += 2;
+    }
+    return buf;
+  }
+  function colorPlan(colors, s) {
+    return colors.map((color, i) => {
+      const from = i === 0 ? 1 : topLayer(i - 1, s) + 1, to = topLayer(i, s);
+      return { color, fromLayer: from, toLayer: to, changeAtLayer: i === 0 ? null : from, z: i === 0 ? null : +(from * s.layerHeight).toFixed(3) };
+    });
+  }
+  var modelHeight = (nColors, s) => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
+
+  // src/shared/export3d.ts
+  var MAX_CELLS = 4e6;
+  var MANY_COLORS = 16;
+  var opts = { width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3 };
+  try {
+    Object.assign(opts, JSON.parse(lsGet("mz-3d") || "{}"));
+  } catch {
+  }
+  var saveOpts = () => lsSet("mz-3d", JSON.stringify(opts));
+  var f2 = (v) => String(+v.toFixed(2));
+  var DIALOG = `
+<form method="dialog" class="dlg-head"><h2>3D print</h2><button title="Close">✕</button></form>
+<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color.</p>
+<div class="row">
+  <label>Size <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
+  <label title="Size of the model's smallest step – about your nozzle width">Detail <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
+</div>
+<div class="row">
+  <label>Layer height <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
+  <label title="How many layers each color gets – more layers cover the color below better">Layers per color <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
+  <label title="A plate under everything, printed in the first color. 0: unpainted parts are left open">Base layers <input id="m3-base" type="number" min="0" max="50" step="1"></label>
+</div>
+<p class="note warn" id="m3-note" hidden></p>
+<div class="m3-body">
+  <canvas id="m3-preview" title="Top view of the model"></canvas>
+  <div class="m3-side">
+    <div class="row small"><span class="note">Print order (bottom first):</span>
+      <button id="m3-light" title="Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom">Light → dark</button>
+      <button id="m3-dark">Dark → light</button>
+    </div>
+    <div id="m3-order"></div>
+  </div>
+</div>
+<p class="note" id="m3-summary"></p>
+<div class="row dlg-foot">
+  <button id="m3-plan">Download plan</button>
+  <button id="m3-go" class="primary">Download STL</button>
+</div>`;
+  function initExport3D(host, button) {
+    const dlg = document.createElement("dialog");
+    dlg.id = "dlg-3d";
+    dlg.innerHTML = DIALOG;
+    document.body.append(dlg);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    let colors = [], counts2 = [], grid = null, gw = 0, gh = 0, cell = opts.detail;
+    let order = [], note = "", lines = /* @__PURE__ */ new Set();
+    const settings = () => ({ layerHeight: opts.layerHeight, layersPerColor: opts.layersPerColor, baseLayers: opts.baseLayers });
+    const used = () => order.filter((i) => counts2[i] > 0);
+    const size = () => {
+      const a = host.aspect();
+      return { w: opts.width, h: opts.width / a };
+    };
+    const byBrightness = (lightFirst) => (a, b) => +lines.has(colors[b]) - +lines.has(colors[a]) || (luminance(colors[b]) - luminance(colors[a])) * (lightFirst ? 1 : -1);
+    function sortBy(lightFirst) {
+      order.sort(byBrightness(lightFirst));
+      render2();
+    }
+    async function analyse() {
+      const { w, h } = size();
+      cell = opts.detail;
+      if (w / cell * (h / cell) > MAX_CELLS) cell = Math.sqrt(w * h / MAX_CELLS);
+      gw = Math.max(1, Math.round(w / cell));
+      gh = Math.max(1, Math.round(h / cell));
+      const c = await host.render(gw, gh);
+      const img = c.getContext("2d").getImageData(0, 0, gw, gh);
+      const cs = host.colors();
+      const prev = order.map((i) => colors[i]);
+      colors = cs.colors;
+      note = cs.note || "";
+      lines = new Set(cs.lines || []);
+      ({ grid, counts: counts2 } = classify(img, colors));
+      const known = prev.filter((c2) => colors.includes(c2)).map((c2) => colors.indexOf(c2));
+      const fresh = colors.map((_, i) => i).filter((i) => !known.includes(i)).sort(byBrightness(true));
+      order = [...known, ...fresh];
+      render2();
+    }
+    const rows = /* @__PURE__ */ new Map();
+    function move(c, d) {
+      const list = used(), k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
+      if (k < 0 || other == null) return;
+      const a = order.indexOf(list[k]), b = order.indexOf(other);
+      [order[a], order[b]] = [order[b], order[a]];
+      render2();
+    }
+    function render2() {
+      const s = settings(), list = used(), { w, h } = size();
+      $("#m3-w").value = f2(w);
+      $("#m3-h").value = f2(h);
+      const warn = [
+        note,
+        list.length > MANY_COLORS ? `${list.length} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).` : "",
+        cell > opts.detail + 1e-9 ? `Detail lowered to ${f2(cell)} mm for this size.` : ""
+      ].filter(Boolean).join(" ");
+      $("#m3-note").hidden = !warn;
+      $("#m3-note").textContent = warn;
+      const plan = colorPlan(list.map((i) => colors[i]), s), total = gw * gh || 1, box = $("#m3-order");
+      const keep = new Set(list.map((ci) => colors[ci]));
+      for (const [c, el] of rows) if (!keep.has(c)) {
+        el.remove();
+        rows.delete(c);
+      }
+      list.forEach((ci, k) => {
+        const c = colors[ci], p = plan[k];
+        let row = rows.get(c);
+        if (!row) {
+          row = document.createElement("div");
+          row.className = "m3-row";
+          row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines.has(c) ? '<span class="tag">lines</span>' : ""}<span class="note"></span><button title="Print earlier (lower)">↑</button><button title="Print later (higher)">↓</button>`;
+          const [up2, down2] = row.querySelectorAll("button");
+          up2.onclick = () => move(c, -1);
+          down2.onclick = () => move(c, 1);
+          rows.set(c, row);
+        }
+        row.querySelector(".note").textContent = `${Math.max(0.1, +(counts2[ci] / total * 100).toFixed(1))} % · layers ${p.fromLayer}–${p.toLayer}${p.z == null ? "" : ` · change at Z ${p.z.toFixed(2)}`}`;
+        const [up, down] = row.querySelectorAll("button");
+        up.disabled = k === 0;
+        down.disabled = k === list.length - 1;
+        if (box.children[k] !== row) box.insertBefore(row, box.children[k] || null);
+      });
+      const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
+      $("#m3-summary").textContent = list.length ? `${list.length} color${list.length === 1 ? "" : "s"} · height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers) · ${list.length - 1} filament change${list.length === 2 ? "" : "s"}` + (unpainted ? ` · unpainted parts ${opts.baseLayers ? `stay at the base (${f2(opts.baseLayers * opts.layerHeight)} mm)` : "are left open"}` : "") : "Nothing is painted yet.";
+      $("#m3-go").disabled = $("#m3-plan").disabled = !list.length;
+      drawPreview();
+    }
+    function drawPreview() {
+      const cv = $("#m3-preview");
+      if (!grid) return;
+      const k = Math.min(1, 300 / Math.max(gw, gh));
+      cv.width = Math.max(1, Math.round(gw * k));
+      cv.height = Math.max(1, Math.round(gh * k));
+      const small = document.createElement("canvas");
+      small.width = gw;
+      small.height = gh;
+      const sx = small.getContext("2d"), im = sx.createImageData(gw, gh), rgb = colors.map((c) => rgba(c));
+      for (let p = 0; p < grid.length; p++) if (grid[p] >= 0) im.data.set(rgb[grid[p]], p * 4);
+      sx.putImageData(im, 0, 0);
+      const x = cv.getContext("2d");
+      x.imageSmoothingEnabled = k < 1;
+      x.drawImage(small, 0, 0, cv.width, cv.height);
+    }
+    function levels() {
+      const rank = new Int16Array(colors.length).fill(-1);
+      used().forEach((ci, k) => {
+        rank[ci] = k;
+      });
+      return grid.map((v) => v < 0 ? -1 : rank[v]);
+    }
+    const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
+    function planText() {
+      const s = settings(), list = used(), plan = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
+      const lines2 = [
+        `Mosaic Paint – 3D print plan for ${base()}.stl`,
+        `Size ${f2(w)} × ${f2(h)} mm · layer height ${s.layerHeight} mm · ${s.layersPerColor} layers per color · base ${s.baseLayers} layers`,
+        `Total height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers). Set the slicer's first layer height to ${s.layerHeight} mm too.`,
+        "",
+        `Start with ${plan[0].color} – layers ${plan[0].fromLayer}–${plan[0].toLayer}${s.baseLayers ? " (base plate included)" : ""}`,
+        ...plan.slice(1).map((p) => `Layer ${p.changeAtLayer} (Z ${p.z.toFixed(2)} mm): change to ${p.color} – layers ${p.fromLayer}–${p.toLayer}`),
+        "",
+        "How to add the changes:",
+        '- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click "+" (Add color change, M600).',
+        '- Cura: Extensions › Post Processing › Modify G-Code › "Filament Change" at each layer number above.',
+        "- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer."
+      ];
+      return lines2.join("\n") + "\n";
+    }
+    let busy;
+    const reanalyse = () => {
+      clearTimeout(busy);
+      busy = setTimeout(() => analyse().catch(() => toast("Could not read the picture.")), 50);
+    };
+    const bindNum = (id, key, min, max, whole, again) => {
+      const i = $(id);
+      i.value = opts[key];
+      i.onchange = () => {
+        let v = +i.value;
+        if (Number.isFinite(v) && v > 0 || key === "baseLayers" && v === 0) {
+          v = clamp(whole ? Math.round(v) : v, min, max);
+          opts[key] = v;
+          saveOpts();
+        }
+        i.value = opts[key];
+        if (again) reanalyse();
+        else render2();
+      };
+    };
+    bindNum("#m3-detail", "detail", 0.1, 5, false, true);
+    bindNum("#m3-lh", "layerHeight", 0.04, 1, false, false);
+    bindNum("#m3-lpc", "layersPerColor", 1, 50, true, false);
+    bindNum("#m3-base", "baseLayers", 0, 50, true, false);
+    $("#m3-w").onchange = () => {
+      const v = +$("#m3-w").value;
+      if (v >= 5 && v <= 2e3) {
+        opts.width = v;
+        saveOpts();
+      }
+      reanalyse();
+    };
+    $("#m3-h").onchange = () => {
+      const v = +$("#m3-h").value;
+      if (v >= 5 && v <= 2e3) {
+        opts.width = v * host.aspect();
+        saveOpts();
+      }
+      reanalyse();
+    };
+    $("#m3-light").onclick = () => sortBy(true);
+    $("#m3-dark").onclick = () => sortBy(false);
+    $("#m3-go").onclick = () => {
+      const boxes = modelBoxes(levels(), gw, gh, cell, settings());
+      download(new Blob([stl(boxes, base())], { type: "model/stl" }), base() + ".stl");
+      toast(`Saved ${base()}.stl (${(boxes.length * 12).toLocaleString("en")} triangles). Add the filament changes from the plan in your slicer.`);
+    };
+    $("#m3-plan").onclick = () => download(new Blob([planText()], { type: "text/plain" }), base() + "-3d-plan.txt");
+    button.onclick = async () => {
+      const real = host.realSize();
+      if (real) opts.width = +real.w.toFixed(2);
+      $("#m3-summary").textContent = "Reading the picture…";
+      dlg.showModal();
+      await analyse().catch(() => toast("Could not read the picture."));
+    };
+  }
+
+  // src/raster/export3d.ts
+  var MAX_COLORS = 24;
+  function bindExport3D() {
+    initExport3D({
+      aspect: () => doc.width / doc.height,
+      realSize: () => null,
+      async render(w, h) {
+        const c = makeCanvas(w, h), x = c.getContext("2d");
+        x.imageSmoothingEnabled = w < doc.width;
+        x.drawImage(doc, 0, 0, w, h);
+        return c;
+      },
+      colors() {
+        const img = getImage(), own = uniqueColors(img, MAX_COLORS);
+        if (own) return { colors: own };
+        if (state.palette.length) return { colors: [...state.palette], note: "The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first)." };
+        return { colors: suggestColors(img, 8), note: "The picture has many colors: it is snapped to 8 colors suggested from it." };
+      },
+      fileName: () => rt.fileName
+    }, $("#btn-3d"));
+  }
+
   // src/raster/main.ts
   loadPrefs();
   bindPanel();
   bindInput();
+  bindExport3D();
   initShell(stage);
   renderPaletteSelect();
   document.body.dataset.mode = state.mode;

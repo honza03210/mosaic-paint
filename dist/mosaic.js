@@ -2124,7 +2124,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
 
   // src/core/files.ts
-  function buildSVGString(opts2 = {}) {
+  function buildSVGString(opts3 = {}) {
     const d = state.doc, u = unit();
     const root = document.createElementNS(SVGNS, "svg");
     root.setAttribute("viewBox", `${fmt(d.x)} ${fmt(d.y)} ${fmt(d.w)} ${fmt(d.h)}`);
@@ -2132,10 +2132,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     root.setAttribute("height", fmt(d.h) + (u === "px" ? "" : u));
     mk("metadata", { id: "mosaic-palette" }, root).textContent = JSON.stringify({ palette: state.palette, paletteName: state.paletteName, unit: u });
     for (const c of defsG.childNodes) root.appendChild(c.cloneNode(true));
-    if (opts2.grout) mk("style", {}, root).textContent = groutCSS();
+    if (opts3.grout) mk("style", {}, root).textContent = groutCSS();
     if (d.bg) mk("rect", { id: "mosaic-bg", x: d.x, y: d.y, width: d.w, height: d.h, fill: d.bg }, root);
     const im = refImage();
-    if (im && (opts2.photo ?? state.savePhoto)) {
+    if (im && (opts3.photo ?? state.savePhoto)) {
       const g = mk("g", { id: "mosaic-reference", visibility: "hidden" }, root);
       const c = im.cloneNode(true);
       c.removeAttribute("style");
@@ -2147,7 +2147,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const s = mk("g", { id: "mosaic-shapes" }, root);
     for (const c of shapesG.childNodes) s.appendChild(c.cloneNode(true));
     let out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root).replace(/></g, ">\n<");
-    for (const fn of handlers("serialize")) out = fn(out, opts2) || out;
+    for (const fn of handlers("serialize")) out = fn(out, opts3) || out;
     return out;
   }
   function sanitize(root) {
@@ -2169,15 +2169,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       p.replaceWith(n2);
     }
   }
-  function loadSVGText(text, opts2 = {}) {
+  function loadSVGText(text, opts3 = {}) {
     const xml = new DOMParser().parseFromString(text, "image/svg+xml");
     const root = xml.documentElement;
     if (!root || root.localName !== "svg" || xml.getElementsByTagName("parsererror").length) {
-      if (!opts2.quiet) toast("Could not read this file as SVG.");
+      if (!opts3.quiet) toast("Could not read this file as SVG.");
       return false;
     }
     sanitize(root);
-    emit("deserialize", root, opts2);
+    emit("deserialize", root, opts3);
     const vb = (root.getAttribute("viewBox") || "").trim().split(/[\s,]+/).map(Number);
     const hasVB = vb.length === 4 && vb.every(Number.isFinite) && vb[2] > 0 && vb[3] > 0;
     const box = hasVB ? { x: vb[0], y: vb[1], w: vb[2], h: vb[3] } : { x: 0, y: 0, w: parseFloat(root.getAttribute("width")) || 1e3, h: parseFloat(root.getAttribute("height")) || 1e3 };
@@ -2229,7 +2229,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     convertLinearPaths();
     if (Array.isArray(meta)) meta = { palette: meta };
     if (meta && meta.unit) docUnit = meta.unit;
-    if (meta && Array.isArray(meta.palette) && !opts2.restore) importPalette(meta.palette.map(norm).filter(Boolean), meta.paletteName || opts2.name);
+    if (meta && Array.isArray(meta.palette) && !opts3.restore) importPalette(meta.palette.map(norm).filter(Boolean), meta.paletteName || opts3.name);
     state.doc = { ...box, bg: ours ? bg : null, unit: docUnit };
     if (photo) {
       const href = photo.getAttribute("href") || photo.getAttributeNS("http://www.w3.org/1999/xlink", "href");
@@ -4558,8 +4558,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     return { ...A, scale: 1, rows, cols, sheets, cost: rows * cols };
   }
   function layout(wmm, hmm, paperKey = "a4", mode = "real", orientation = null) {
-    const opts2 = (orientation ? [orientation] : ["portrait", "landscape"]).map((o) => sheetsFor(wmm, hmm, area(paperKey, o), mode));
-    return opts2.length > 1 && opts2[1].cost < opts2[0].cost ? opts2[1] : opts2[0];
+    const opts3 = (orientation ? [orientation] : ["portrait", "landscape"]).map((o) => sheetsFor(wmm, hmm, area(paperKey, o), mode));
+    return opts3.length > 1 && opts3[1].cost < opts3[0].cost ? opts3[1] : opts3[0];
   }
   function sheetSections(box, k, L, { title = "", prefix = "" } = {}) {
     const multi = L.sheets.length > 1;
@@ -5021,22 +5021,22 @@ ${sections.join("\n")}
   // src/features/layplan.ts
   var LayPlan = (() => {
     const $10 = (s) => document.querySelector(s);
-    const { state: state10 } = MZ;
+    const { state: state11 } = MZ;
     const esc5 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-    const opts2 = { w: 0, h: 0, numbers: true, grid: true, paper: "a4" };
+    const opts3 = { w: 0, h: 0, numbers: true, grid: true, paper: "a4" };
     try {
-      Object.assign(opts2, JSON.parse(localStorage.getItem("mz-layplan") || "{}"));
+      Object.assign(opts3, JSON.parse(localStorage.getItem("mz-layplan") || "{}"));
     } catch {
     }
     const save4 = () => {
       try {
-        localStorage.setItem("mz-layplan", JSON.stringify(opts2));
+        localStorage.setItem("mz-layplan", JSON.stringify(opts3));
       } catch {
       }
     };
-    const box = () => ({ x: state10.doc.x, y: state10.doc.y, w: state10.doc.w, h: state10.doc.h });
+    const box = () => ({ x: state11.doc.x, y: state11.doc.y, w: state11.doc.w, h: state11.doc.h });
     const k = () => MM[MZ.unit()] || MM.px;
-    const panelSize = () => ({ w: opts2.w > 0 ? opts2.w : 300 / k(), h: opts2.h > 0 ? opts2.h : 300 / k() });
+    const panelSize = () => ({ w: opts3.w > 0 ? opts3.w : 300 / k(), h: opts3.h > 0 ? opts3.h : 300 / k() });
     const plan = () => {
       const s = panelSize();
       return panels(box(), s.w, s.h);
@@ -5065,12 +5065,12 @@ ${sections.join("\n")}
       $10("#lp-w").value = MZ.fmt(s.w);
       $10("#lp-h").value = MZ.fmt(s.h);
       for (const el of document.querySelectorAll("#dlg-layplan .unit-label")) el.textContent = u;
-      $10("#lp-numbers").checked = opts2.numbers;
-      $10("#lp-grid").checked = opts2.grid;
-      $10("#lp-paper").value = opts2.paper;
-      const L = layout(s.w * k(), s.h * k(), opts2.paper, "real");
+      $10("#lp-numbers").checked = opts3.numbers;
+      $10("#lp-grid").checked = opts3.grid;
+      $10("#lp-paper").value = opts3.paper;
+      const L = layout(s.w * k(), s.h * k(), opts3.paper, "real");
       $10("#lp-info").textContent = `${P.panels.length} panel${P.panels.length === 1 ? "" : "s"} (${P.rows} × ${P.cols}) · each printed at real size on ${L.sheets.length} ${L.paper.name} sheet${L.sheets.length === 1 ? "" : "s"}.`;
-      drawGrid(opts2.grid);
+      drawGrid(opts3.grid);
     }
     function tiles() {
       const out = [];
@@ -5084,11 +5084,11 @@ ${sections.join("\n")}
     }
     function printPlan() {
       const P = plan(), K = k(), B = box(), u = MZ.unit();
-      const { art, rows, nums } = PrintTools.art(opts2.numbers ? "both" : "colors");
+      const { art, rows, nums } = PrintTools.art(opts3.numbers ? "both" : "colors");
       const title = MZ.fileName.replace(/\.svg$/i, "");
-      const sheetsFor2 = (o) => P.panels.reduce((s, q) => s + layout(q.w * K, q.h * K, opts2.paper, "real", o).sheets.length, 0);
+      const sheetsFor2 = (o) => P.panels.reduce((s, q) => s + layout(q.w * K, q.h * K, opts3.paper, "real", o).sheets.length, 0);
       const orientation = sheetsFor2("landscape") < sheetsFor2("portrait") ? "landscape" : "portrait";
-      const A = area(opts2.paper, orientation);
+      const A = area(opts3.paper, orientation);
       const sections = [overviewSection(
         B,
         K,
@@ -5097,7 +5097,7 @@ ${sections.join("\n")}
         `${title} – laying plan: ${P.panels.length} panels (${P.rows} rows × ${P.cols} columns) of ${MZ.fmt(panelSize().w)} × ${MZ.fmt(panelSize().h)} ${u}`
       )];
       for (const q of P.panels) {
-        const L = layout(q.w * K, q.h * K, opts2.paper, "real", orientation);
+        const L = layout(q.w * K, q.h * K, opts3.paper, "real", orientation);
         sections.push(...sheetSections({ x: q.x, y: q.y, w: q.w, h: q.h }, K, L, {
           title: `Panel ${q.index} – row ${q.row + 1}, column ${q.col + 1}`,
           prefix: `Panel ${q.index} · `
@@ -5108,7 +5108,7 @@ ${sections.join("\n")}
       const table = `<table class="counts"><tr><td class="n">Panel</td>${rows.map((r) => `<td class="n">${chip(r.c)} ${r.n}</td>`).join("")}</tr>` + P.panels.map((q) => `<tr><td class="n">${q.index}</td>${rows.map((r) => `<td>${counts.get(q.index).get(r.c) || ""}</td>`).join("")}</tr>`).join("") + "</table>";
       sections.push(`<section class="sheet"><div class="label">${esc5(title)} – tiles per panel and color</div>${table}</section>`);
       if (rows.length) sections.push(`<section class="sheet legend">${PrintTools.legend(rows)}</section>`);
-      PrintTools.open(page({ art, sections, paper: opts2.paper, orientation, title: `${title} – laying plan` }));
+      PrintTools.open(page({ art, sections, paper: opts3.paper, orientation, title: `${title} – laying plan` }));
       void nums;
     }
     $10("#btn-layplan").onclick = () => {
@@ -5119,23 +5119,23 @@ ${sections.join("\n")}
     for (const id of ["#lp-w", "#lp-h"]) {
       $10(id).onchange = () => {
         const w = parseFloat($10("#lp-w").value), h = parseFloat($10("#lp-h").value);
-        if (w > 0) opts2.w = w;
-        if (h > 0) opts2.h = h;
+        if (w > 0) opts3.w = w;
+        if (h > 0) opts3.h = h;
         save4();
         renderUI2();
       };
     }
     $10("#lp-numbers").onchange = (e) => {
-      opts2.numbers = e.target.checked;
+      opts3.numbers = e.target.checked;
       save4();
     };
     $10("#lp-grid").onchange = (e) => {
-      opts2.grid = e.target.checked;
+      opts3.grid = e.target.checked;
       save4();
       renderUI2();
     };
     $10("#lp-paper").onchange = (e) => {
-      opts2.paper = e.target.value;
+      opts3.paper = e.target.value;
       save4();
       renderUI2();
     };
@@ -5236,16 +5236,16 @@ ${sections.join("\n")}
   // src/features/pages.ts
   var Pages = (() => {
     const $10 = (s) => document.querySelector(s);
-    const { state: state10 } = MZ;
+    const { state: state11 } = MZ;
     const attr = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     const XML = '<?xml version="1.0" encoding="UTF-8"?>\n';
     let pages = [{ name: "Page 1", svg: null, history: null, view: null }], cur = 0, switching = false;
     function tag(svg2, name, index) {
       return svg2.replace(/^<\?xml[^>]*>\s*/, "").replace(/<svg\b([^>]*)>/, (m, attrs) => `<svg${attrs.replace(/\s+data-page-(name|index)="[^"]*"/g, "")} data-page-name="${attr(name)}" data-page-index="${index}">`);
     }
-    MZ.on("serialize", (out, opts2) => {
+    MZ.on("serialize", (out, opts3) => {
       out = XML + tag(out, pages[cur].name, cur);
-      if (opts2.pageOnly || pages.length < 2) return out;
+      if (opts3.pageOnly || pages.length < 2) return out;
       const others = pages.map((p, i) => i === cur ? "" : tag(p.svg, p.name, i)).join("\n");
       return out.replace(/<\/svg>\s*$/, `<g id="mosaic-pages" display="none">
 ${others}
@@ -5276,7 +5276,7 @@ ${others}
       const p = pages[cur];
       p.svg = MZ.buildSVGString({ pageOnly: true });
       p.history = MZ.getHistory();
-      p.view = { ...state10.view };
+      p.view = { ...state11.view };
     }
     function show(i) {
       cur = i;
@@ -5290,7 +5290,7 @@ ${others}
       p.svg = null;
       if (p.history) MZ.setHistory(p.history);
       if (p.view) {
-        Object.assign(state10.view, p.view);
+        Object.assign(state11.view, p.view);
         MZ.updateView();
       }
       render3();
@@ -5302,7 +5302,7 @@ ${others}
       show(i);
     }
     function blankPage() {
-      const d = state10.doc, u = MZ.unit(), size = (v) => v + (u === "px" ? "" : u);
+      const d = state11.doc, u = MZ.unit(), size = (v) => v + (u === "px" ? "" : u);
       return `${XML}<svg xmlns="http://www.w3.org/2000/svg" viewBox="${d.x} ${d.y} ${d.w} ${d.h}" width="${size(d.w)}" height="${size(d.h)}"><metadata id="mosaic-palette">{"unit":"${u}"}</metadata><rect id="mosaic-bg" x="${d.x}" y="${d.y}" width="${d.w}" height="${d.h}" fill="#ffffff"/><g id="mosaic-fills"/><g id="mosaic-shapes"/></svg>`;
     }
     function add(duplicate2) {
@@ -5787,6 +5787,376 @@ ${others}
     }
   };
   load();
+
+  // src/lib/raster.ts
+  function rgbOf(c) {
+    const m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(c);
+    return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : toRgb(c);
+  }
+  function rgba(c, alpha = 255) {
+    const rgb = c ? rgbOf(c) : null;
+    return rgb ? [rgb[0], rgb[1], rgb[2], alpha] : [0, 0, 0, 0];
+  }
+  function nearestCache(palette) {
+    const labs = palette.map((c) => toLab(rgbOf(c)));
+    const cache2 = /* @__PURE__ */ new Map();
+    return (r, g, b) => {
+      const k = r << 16 | g << 8 | b;
+      let c = cache2.get(k);
+      if (!c) {
+        c = nearest([r, g, b], palette, labs);
+        cache2.set(k, c);
+      }
+      return c;
+    };
+  }
+  function classify(img, colors) {
+    const near = nearestCache(colors), index = new Map(colors.map((c, i) => [c, i]));
+    const n2 = img.width * img.height, grid = new Int16Array(n2), counts = colors.map(() => 0), d = img.data;
+    for (let p = 0, i = 0; p < n2; p++, i += 4) {
+      if (d[i + 3] < 128) {
+        grid[p] = -1;
+        continue;
+      }
+      const k = index.get(near(d[i], d[i + 1], d[i + 2]));
+      grid[p] = k;
+      counts[k]++;
+    }
+    return { grid, counts };
+  }
+
+  // src/lib/model3d.ts
+  var topLayer = (i, s) => s.baseLayers + (i + 1) * s.layersPerColor;
+  function greedyRects(grid, w, h) {
+    const done = new Uint8Array(w * h), out = [];
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const i = y * w + x, lv = grid[i];
+      if (lv < 0 || done[i]) continue;
+      let rw = 1;
+      while (x + rw < w && grid[i + rw] === lv && !done[i + rw]) rw++;
+      let rh = 1;
+      grow: while (y + rh < h) {
+        const row = (y + rh) * w + x;
+        for (let k = 0; k < rw; k++) if (grid[row + k] !== lv || done[row + k]) break grow;
+        rh++;
+      }
+      for (let yy = y; yy < y + rh; yy++) done.fill(1, yy * w + x, yy * w + x + rw);
+      out.push({ x, y, w: rw, h: rh, level: lv });
+    }
+    return out;
+  }
+  function modelBoxes(grid, w, h, cell, s) {
+    const lh = s.layerHeight, base = s.baseLayers * lh, H = h * cell, out = [];
+    if (base > 0) out.push({ x0: 0, y0: 0, z0: 0, x1: w * cell, y1: H, z1: base });
+    for (const r of greedyRects(grid, w, h)) {
+      out.push({
+        x0: r.x * cell,
+        x1: (r.x + r.w) * cell,
+        y0: H - (r.y + r.h) * cell,
+        y1: H - r.y * cell,
+        z0: base,
+        z1: topLayer(r.level, s) * lh
+      });
+    }
+    return out;
+  }
+  function boxTriangles(b) {
+    const { x0, y0, z0, x1, y1, z1 } = b;
+    return [
+      [0, 0, -1, x0, y0, z0, x0, y1, z0, x1, y1, z0],
+      [0, 0, -1, x0, y0, z0, x1, y1, z0, x1, y0, z0],
+      [0, 0, 1, x0, y0, z1, x1, y0, z1, x1, y1, z1],
+      [0, 0, 1, x0, y0, z1, x1, y1, z1, x0, y1, z1],
+      [0, -1, 0, x0, y0, z0, x1, y0, z0, x1, y0, z1],
+      [0, -1, 0, x0, y0, z0, x1, y0, z1, x0, y0, z1],
+      [0, 1, 0, x0, y1, z0, x0, y1, z1, x1, y1, z1],
+      [0, 1, 0, x0, y1, z0, x1, y1, z1, x1, y1, z0],
+      [-1, 0, 0, x0, y0, z0, x0, y0, z1, x0, y1, z1],
+      [-1, 0, 0, x0, y0, z0, x0, y1, z1, x0, y1, z0],
+      [1, 0, 0, x1, y0, z0, x1, y1, z0, x1, y1, z1],
+      [1, 0, 0, x1, y0, z0, x1, y1, z1, x1, y0, z1]
+    ];
+  }
+  function stl(boxes, name = "Mosaic Paint") {
+    const n2 = boxes.length * 12, buf = new ArrayBuffer(84 + n2 * 50), dv = new DataView(buf);
+    const header = `${name} – multi-color by layer`.slice(0, 80);
+    for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
+    dv.setUint32(80, n2, true);
+    let o = 84;
+    for (const b of boxes) for (const t of boxTriangles(b)) {
+      for (let k = 0; k < 12; k++) {
+        dv.setFloat32(o, t[k], true);
+        o += 4;
+      }
+      dv.setUint16(o, 0, true);
+      o += 2;
+    }
+    return buf;
+  }
+  function colorPlan(colors, s) {
+    return colors.map((color, i) => {
+      const from = i === 0 ? 1 : topLayer(i - 1, s) + 1, to = topLayer(i, s);
+      return { color, fromLayer: from, toLayer: to, changeAtLayer: i === 0 ? null : from, z: i === 0 ? null : +(from * s.layerHeight).toFixed(3) };
+    });
+  }
+  var modelHeight = (nColors, s) => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
+
+  // src/shared/export3d.ts
+  var MAX_CELLS = 4e6;
+  var MANY_COLORS = 16;
+  var opts2 = { width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3 };
+  try {
+    Object.assign(opts2, JSON.parse(lsGet("mz-3d") || "{}"));
+  } catch {
+  }
+  var saveOpts = () => lsSet("mz-3d", JSON.stringify(opts2));
+  var f2 = (v) => String(+v.toFixed(2));
+  var DIALOG = `
+<form method="dialog" class="dlg-head"><h2>3D print</h2><button title="Close">✕</button></form>
+<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color.</p>
+<div class="row">
+  <label>Size <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
+  <label title="Size of the model's smallest step – about your nozzle width">Detail <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
+</div>
+<div class="row">
+  <label>Layer height <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
+  <label title="How many layers each color gets – more layers cover the color below better">Layers per color <input id="m3-lpc" type="number" min="1" max="50" step="1"></label>
+  <label title="A plate under everything, printed in the first color. 0: unpainted parts are left open">Base layers <input id="m3-base" type="number" min="0" max="50" step="1"></label>
+</div>
+<p class="note warn" id="m3-note" hidden></p>
+<div class="m3-body">
+  <canvas id="m3-preview" title="Top view of the model"></canvas>
+  <div class="m3-side">
+    <div class="row small"><span class="note">Print order (bottom first):</span>
+      <button id="m3-light" title="Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom">Light → dark</button>
+      <button id="m3-dark">Dark → light</button>
+    </div>
+    <div id="m3-order"></div>
+  </div>
+</div>
+<p class="note" id="m3-summary"></p>
+<div class="row dlg-foot">
+  <button id="m3-plan">Download plan</button>
+  <button id="m3-go" class="primary">Download STL</button>
+</div>`;
+  function initExport3D(host, button) {
+    const dlg = document.createElement("dialog");
+    dlg.id = "dlg-3d";
+    dlg.innerHTML = DIALOG;
+    document.body.append(dlg);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    let colors = [], counts = [], grid = null, gw = 0, gh = 0, cell = opts2.detail;
+    let order = [], note = "", lines2 = /* @__PURE__ */ new Set();
+    const settings = () => ({ layerHeight: opts2.layerHeight, layersPerColor: opts2.layersPerColor, baseLayers: opts2.baseLayers });
+    const used = () => order.filter((i) => counts[i] > 0);
+    const size = () => {
+      const a = host.aspect();
+      return { w: opts2.width, h: opts2.width / a };
+    };
+    const byBrightness = (lightFirst) => (a, b) => +lines2.has(colors[b]) - +lines2.has(colors[a]) || (luminance(colors[b]) - luminance(colors[a])) * (lightFirst ? 1 : -1);
+    function sortBy(lightFirst) {
+      order.sort(byBrightness(lightFirst));
+      render3();
+    }
+    async function analyse() {
+      const { w, h } = size();
+      cell = opts2.detail;
+      if (w / cell * (h / cell) > MAX_CELLS) cell = Math.sqrt(w * h / MAX_CELLS);
+      gw = Math.max(1, Math.round(w / cell));
+      gh = Math.max(1, Math.round(h / cell));
+      const c = await host.render(gw, gh);
+      const img = c.getContext("2d").getImageData(0, 0, gw, gh);
+      const cs = host.colors();
+      const prev = order.map((i) => colors[i]);
+      colors = cs.colors;
+      note = cs.note || "";
+      lines2 = new Set(cs.lines || []);
+      ({ grid, counts } = classify(img, colors));
+      const known = prev.filter((c2) => colors.includes(c2)).map((c2) => colors.indexOf(c2));
+      const fresh = colors.map((_, i) => i).filter((i) => !known.includes(i)).sort(byBrightness(true));
+      order = [...known, ...fresh];
+      render3();
+    }
+    const rows = /* @__PURE__ */ new Map();
+    function move(c, d) {
+      const list = used(), k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
+      if (k < 0 || other == null) return;
+      const a = order.indexOf(list[k]), b = order.indexOf(other);
+      [order[a], order[b]] = [order[b], order[a]];
+      render3();
+    }
+    function render3() {
+      const s = settings(), list = used(), { w, h } = size();
+      $("#m3-w").value = f2(w);
+      $("#m3-h").value = f2(h);
+      const warn = [
+        note,
+        list.length > MANY_COLORS ? `${list.length} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).` : "",
+        cell > opts2.detail + 1e-9 ? `Detail lowered to ${f2(cell)} mm for this size.` : ""
+      ].filter(Boolean).join(" ");
+      $("#m3-note").hidden = !warn;
+      $("#m3-note").textContent = warn;
+      const plan = colorPlan(list.map((i) => colors[i]), s), total = gw * gh || 1, box = $("#m3-order");
+      const keep = new Set(list.map((ci) => colors[ci]));
+      for (const [c, el] of rows) if (!keep.has(c)) {
+        el.remove();
+        rows.delete(c);
+      }
+      list.forEach((ci, k) => {
+        const c = colors[ci], p = plan[k];
+        let row = rows.get(c);
+        if (!row) {
+          row = document.createElement("div");
+          row.className = "m3-row";
+          row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines2.has(c) ? '<span class="tag">lines</span>' : ""}<span class="note"></span><button title="Print earlier (lower)">↑</button><button title="Print later (higher)">↓</button>`;
+          const [up2, down2] = row.querySelectorAll("button");
+          up2.onclick = () => move(c, -1);
+          down2.onclick = () => move(c, 1);
+          rows.set(c, row);
+        }
+        row.querySelector(".note").textContent = `${Math.max(0.1, +(counts[ci] / total * 100).toFixed(1))} % · layers ${p.fromLayer}–${p.toLayer}${p.z == null ? "" : ` · change at Z ${p.z.toFixed(2)}`}`;
+        const [up, down] = row.querySelectorAll("button");
+        up.disabled = k === 0;
+        down.disabled = k === list.length - 1;
+        if (box.children[k] !== row) box.insertBefore(row, box.children[k] || null);
+      });
+      const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
+      $("#m3-summary").textContent = list.length ? `${list.length} color${list.length === 1 ? "" : "s"} · height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers) · ${list.length - 1} filament change${list.length === 2 ? "" : "s"}` + (unpainted ? ` · unpainted parts ${opts2.baseLayers ? `stay at the base (${f2(opts2.baseLayers * opts2.layerHeight)} mm)` : "are left open"}` : "") : "Nothing is painted yet.";
+      $("#m3-go").disabled = $("#m3-plan").disabled = !list.length;
+      drawPreview();
+    }
+    function drawPreview() {
+      const cv = $("#m3-preview");
+      if (!grid) return;
+      const k = Math.min(1, 300 / Math.max(gw, gh));
+      cv.width = Math.max(1, Math.round(gw * k));
+      cv.height = Math.max(1, Math.round(gh * k));
+      const small = document.createElement("canvas");
+      small.width = gw;
+      small.height = gh;
+      const sx = small.getContext("2d"), im = sx.createImageData(gw, gh), rgb = colors.map((c) => rgba(c));
+      for (let p = 0; p < grid.length; p++) if (grid[p] >= 0) im.data.set(rgb[grid[p]], p * 4);
+      sx.putImageData(im, 0, 0);
+      const x = cv.getContext("2d");
+      x.imageSmoothingEnabled = k < 1;
+      x.drawImage(small, 0, 0, cv.width, cv.height);
+    }
+    function levels() {
+      const rank = new Int16Array(colors.length).fill(-1);
+      used().forEach((ci, k) => {
+        rank[ci] = k;
+      });
+      return grid.map((v) => v < 0 ? -1 : rank[v]);
+    }
+    const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
+    function planText() {
+      const s = settings(), list = used(), plan = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
+      const lines3 = [
+        `Mosaic Paint – 3D print plan for ${base()}.stl`,
+        `Size ${f2(w)} × ${f2(h)} mm · layer height ${s.layerHeight} mm · ${s.layersPerColor} layers per color · base ${s.baseLayers} layers`,
+        `Total height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers). Set the slicer's first layer height to ${s.layerHeight} mm too.`,
+        "",
+        `Start with ${plan[0].color} – layers ${plan[0].fromLayer}–${plan[0].toLayer}${s.baseLayers ? " (base plate included)" : ""}`,
+        ...plan.slice(1).map((p) => `Layer ${p.changeAtLayer} (Z ${p.z.toFixed(2)} mm): change to ${p.color} – layers ${p.fromLayer}–${p.toLayer}`),
+        "",
+        "How to add the changes:",
+        '- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click "+" (Add color change, M600).',
+        '- Cura: Extensions › Post Processing › Modify G-Code › "Filament Change" at each layer number above.',
+        "- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer."
+      ];
+      return lines3.join("\n") + "\n";
+    }
+    let busy;
+    const reanalyse = () => {
+      clearTimeout(busy);
+      busy = setTimeout(() => analyse().catch(() => toast("Could not read the picture.")), 50);
+    };
+    const bindNum = (id, key, min, max, whole, again) => {
+      const i = $(id);
+      i.value = opts2[key];
+      i.onchange = () => {
+        let v = +i.value;
+        if (Number.isFinite(v) && v > 0 || key === "baseLayers" && v === 0) {
+          v = clamp(whole ? Math.round(v) : v, min, max);
+          opts2[key] = v;
+          saveOpts();
+        }
+        i.value = opts2[key];
+        if (again) reanalyse();
+        else render3();
+      };
+    };
+    bindNum("#m3-detail", "detail", 0.1, 5, false, true);
+    bindNum("#m3-lh", "layerHeight", 0.04, 1, false, false);
+    bindNum("#m3-lpc", "layersPerColor", 1, 50, true, false);
+    bindNum("#m3-base", "baseLayers", 0, 50, true, false);
+    $("#m3-w").onchange = () => {
+      const v = +$("#m3-w").value;
+      if (v >= 5 && v <= 2e3) {
+        opts2.width = v;
+        saveOpts();
+      }
+      reanalyse();
+    };
+    $("#m3-h").onchange = () => {
+      const v = +$("#m3-h").value;
+      if (v >= 5 && v <= 2e3) {
+        opts2.width = v * host.aspect();
+        saveOpts();
+      }
+      reanalyse();
+    };
+    $("#m3-light").onclick = () => sortBy(true);
+    $("#m3-dark").onclick = () => sortBy(false);
+    $("#m3-go").onclick = () => {
+      const boxes = modelBoxes(levels(), gw, gh, cell, settings());
+      download(new Blob([stl(boxes, base())], { type: "model/stl" }), base() + ".stl");
+      toast(`Saved ${base()}.stl (${(boxes.length * 12).toLocaleString("en")} triangles). Add the filament changes from the plan in your slicer.`);
+    };
+    $("#m3-plan").onclick = () => download(new Blob([planText()], { type: "text/plain" }), base() + "-3d-plan.txt");
+    button.onclick = async () => {
+      const real = host.realSize();
+      if (real) opts2.width = +real.w.toFixed(2);
+      $("#m3-summary").textContent = "Reading the picture…";
+      dlg.showModal();
+      await analyse().catch(() => toast("Could not read the picture."));
+    };
+  }
+
+  // src/features/export3d.ts
+  var { state: state10 } = MZ;
+  initExport3D({
+    aspect: () => state10.doc.w / state10.doc.h,
+    realSize() {
+      const k = MM[MZ.unit()] || MM.px;
+      return { w: state10.doc.w * k, h: state10.doc.h * k };
+    },
+    async render(w, h) {
+      const svg2 = MZ.buildSVGString({ photo: false, grout: state10.grout.on, pageOnly: true }).replace(/<rect id="mosaic-bg"[^>]*\/>/, "");
+      const pic = await svgToCanvas(svg2, Math.max(w, h));
+      const c = document.createElement("canvas");
+      c.width = w;
+      c.height = h;
+      c.getContext("2d").drawImage(pic, 0, 0, w, h);
+      return c;
+    },
+    colors() {
+      const fills = /* @__PURE__ */ new Set(), strokes = /* @__PURE__ */ new Set();
+      for (const el of MZ.allShapes()) {
+        const f = MZ.fillOf(el);
+        if (f) fills.add(f);
+        if (!MZ.isFill(el)) {
+          const cs = getComputedStyle(el), s = norm(cs.stroke);
+          if (s && parseFloat(cs.strokeWidth) > 0) strokes.add(s);
+        }
+      }
+      const lines2 = [...strokes].filter((c) => !fills.has(c));
+      return { colors: [...fills, ...lines2], lines: lines2 };
+    },
+    fileName: () => MZ.fileName
+  }, document.querySelector("#btn-3d"));
 
   // src/lib/pack.ts
   var b64url = (bytes) => {

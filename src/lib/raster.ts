@@ -248,3 +248,19 @@ export function mosaic(src: Img, o: MosaicOptions): { img: Img; counts: Map<stri
   }
   return { img: out, counts, tiles };
 }
+
+/**
+ * Which of `colors` each pixel is (its nearest one), as indexes; -1 where (nearly) transparent.
+ * Also counts the pixels of each color.
+ */
+export function classify(img: Img, colors: string[]): { grid: Int16Array; counts: number[] } {
+  const near = nearestCache(colors), index = new Map(colors.map((c, i) => [c, i]));
+  const n = img.width * img.height, grid = new Int16Array(n), counts = colors.map(() => 0), d = img.data;
+  for (let p = 0, i = 0; p < n; p++, i += 4) {
+    if (d[i + 3] < 128) { grid[p] = -1; continue; }
+    const k = index.get(near(d[i], d[i + 1], d[i + 2]));
+    grid[p] = k;
+    counts[k]++;
+  }
+  return { grid, counts };
+}

@@ -306,3 +306,15 @@ body.viewer #viewer-bar {
 body.viewer #tools, body.viewer #panel, body.viewer #page-add, body.viewer .page-more,
 body.viewer #topbar > button:not(#btn-fit):not(#btn-zoomin):not(#btn-zoomout):not(#btn-report),
 body.viewer #mode-switch, body.viewer #btn-panel { display: none !important; }
+
+/* 3D print dialog (both apps) */
+#dlg-3d { width: min(720px, 96vw); }
+.m3-body { display: flex; gap: 14px; margin-top: 10px; align-items: flex-start; flex-wrap: wrap; }
+#m3-preview { max-width: 300px; max-height: 300px; background: repeating-conic-gradient(#d9d9d9 0 25%, #fff 0 50%) 0 0 / 16px 16px; border-radius: 6px; image-rendering: pixelated; }
+.m3-side { flex: 1; min-width: 260px; }
+#m3-order { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; max-height: 260px; overflow: auto; }
+.m3-row { display: flex; align-items: center; gap: 6px; font-size: 12.5px; }
+.m3-row .note { margin: 0 auto 0 0; }
+.m3-row button { padding: 1px 7px; }
+.m3-row code { font-size: 12px; }
+.m3-row .tag { font-size: 11px; padding: 0 5px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); }

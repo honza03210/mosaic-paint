@@ -12,10 +12,12 @@ import { setTool, setMode } from './tools.ts';
 import { loadCanvas, fileToCanvas } from './files.ts';
 import { bindPanel } from './panel.ts';
 import { bindInput } from './input.ts';
+import { bindExport3D } from './export3d.ts';
 
 loadPrefs();
 bindPanel();
 bindInput();
+bindExport3D();
 initShell(stage);
 renderPaletteSelect();
 document.body.dataset.mode = state.mode;

@@ -111,3 +111,11 @@ test('the mosaic effect makes tiles of one color each, separated by grout', () =
   const avg = R.mosaic(im, { tile: 4, grout: 0, groutColor: null, palette: null });
   assert.equal(R.colorAt(avg.img, 0, 0), '#f01818');
 });
+
+test('classify maps pixels to the nearest of a few colors, transparent to -1', () => {
+  const key = { a: '#f01010', b: '#1010e0' };
+  const im = img(['ab', '.a'], key);
+  const { grid, counts } = R.classify(im, ['#0000ff', '#ff0000']);
+  assert.deepEqual([...grid], [1, 0, -1, 1]);
+  assert.deepEqual(counts, [1, 2]);
+});
