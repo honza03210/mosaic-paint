@@ -15,7 +15,7 @@ import {
 import { loadPrefs, renderPaletteSelect, addPalette, replaceColor } from './palette.ts';
 import { applyGrout } from './grout.ts';
 import { refImage, loadImg, renderPhotoUI } from './photo.ts';
-import { buildSVGString, loadSVGText, confirmDiscard, clearDrawing, setMode } from './files.ts';
+import { buildSVGString, loadSVGText, openText, confirmDiscard, clearDrawing, setMode } from './files.ts';
 import { setTool, registerTool, setFillChooser, addLineSegments } from './tools.ts';
 import { bindPanel } from './panel.ts';
 import { bindInput } from './input.ts';
@@ -29,7 +29,7 @@ export const MZ = {
   state, svg, stage, on, emit, toast, download, fmt, fmtLen, fmtArea, unit, mk,
   allShapes, geomOf, isFill, hasFill, fillOf, insideEl, isPaintedAt, paintFill, replaceColor,
   boundarySegments, regionIndex, bucketAt, gridSample, insideRegion, commit, commitGeometry, refImage, loadImg,
-  buildSVGString, loadSVGText, saveVersion, restoreVersion, confirmDiscard, hasContent, setMode, setTool,
+  buildSVGString, loadSVGText, openText, saveVersion, restoreVersion, confirmDiscard, hasContent, setMode, setTool,
   get fileName() { return rt.fileName; },
   /** true once the autosaved drawing has been restored */
   ready: false,

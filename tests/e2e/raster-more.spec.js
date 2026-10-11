@@ -101,3 +101,28 @@ test('share: the image travels in the link; it opens read-only and can become yo
   await expect(page.locator('#tools')).toBeVisible();
   expect(page.url()).not.toContain('#view=');
 });
+
+test('raster tiles open as vector tiles at real size; the grout becomes the page background', async ({ page }) => {
+  await open(page); // two red tiles and a blue one on white
+  await page.evaluate(() => { RZ.state.mosaic.groutColor = '#ffffff'; });
+  await page.click('#btn-vectorize');
+  await expect(page.locator('#vz-grout')).toHaveValue('#ffffff');
+  await expect(page.locator('#vz-info')).toContainText('3 tiles at 300 × 200 mm');
+  await page.click('#vz-go');
+  await page.waitForURL(/index\.html/);
+  await page.waitForFunction(() => window.MZ && window.MZ.ready);
+  await expect(page.locator('#st-msg')).toContainText('Opened 3 tiles from the raster app');
+  const doc = await page.evaluate(() => ({ ...MZ.state.doc }));
+  expect([doc.w, doc.h, doc.unit, doc.bg]).toEqual([300, 200, 'mm', '#ffffff']);
+  const shapes = await page.evaluate(() => [...document.querySelectorAll('#mz-shapes polygon')].map(p => [p.getAttribute('fill'), p.getAttribute('points')]));
+  expect(shapes.length).toBe(3);
+  expect(shapes.map(s => s[0]).sort()).toEqual(['#264653', '#e76f51', '#e76f51']);
+  // the blue tile: pixels 42–57 × 2–37 at 5 mm per pixel
+  const blue = shapes.find(s => s[0] === '#264653')[1].split(' ').map(p => p.split(',').map(Number));
+  expect(Math.min(...blue.map(p => p[0]))).toBe(210);
+  expect(Math.max(...blue.map(p => p[0]))).toBe(290);
+  expect(Math.max(...blue.map(p => p[1]))).toBe(190);
+  // the report sees painted tiles
+  expect(await page.evaluate(() => MZ.state.palette)).toEqual(expect.arrayContaining(['#e76f51', '#264653']));
+  expect(page.url()).not.toContain('#from-raster');
+});

@@ -167,6 +167,7 @@
       <h3>Mosaic</h3>
       <div class="row"><button id="btn-mosaic" class="primary" title="Turn the image (or the selection) into tiles with grout">Make a mosaic…</button></div>
       <div class="row"><button id="btn-reduce" title="Give every pixel the closest palette color">Reduce to palette</button></div>
+      <div class="row"><button id="btn-vectorize" title="Every tile becomes a shape in the vector app – for its templates, laying plan and editing">Open as vector tiles…</button></div>
       <p class="note">Works on the selection, or on the whole image when nothing is selected.</p>
     </section>
 
@@ -270,6 +271,18 @@
   <label class="chk"><input type="radio" name="mo-colors" value="keep"> Keep the picture’s colors</label>
   <p class="note" id="mo-estimate"></p>
   <div class="row dlg-foot"><button id="mo-go" class="primary">Make mosaic</button></div>
+</dialog>
+
+<dialog id="dlg-vectorize">
+  <form method="dialog" class="dlg-head"><h2>Open as vector tiles</h2><button title="Close">✕</button></form>
+  <p class="note">Every piece of the picture (an area of one color) becomes a tile shape in the vector app, at the real size – ready for its print templates, laying plan, 3D print and editing. Your current vector drawing is kept in its History.</p>
+  <div class="row">
+    <label>Real width <input id="vz-width" type="number" min="1" max="10000" step="1"> mm</label>
+  </div>
+  <div class="row"><label>Grout <select id="vz-grout"></select></label></div>
+  <p class="note">The grout color becomes the page background; every other piece becomes a tile.</p>
+  <p class="note" id="vz-info"></p>
+  <div class="row dlg-foot"><button id="vz-go" class="primary">Open in the vector app</button></div>
 </dialog>
 
 <dialog id="dlg-export">

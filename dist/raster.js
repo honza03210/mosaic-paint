@@ -37,10 +37,10 @@
   }
   function toRgb(c) {
     if (Array.isArray(c)) return c;
-    const n3 = norm(c);
-    if (!n3) return null;
-    if (n3[0] === "#") return [1, 3, 5].map((i) => parseInt(n3.slice(i, i + 2), 16));
-    const m = n3.match(/[\d.]+/g);
+    const n4 = norm(c);
+    if (!n4) return null;
+    if (n4[0] === "#") return [1, 3, 5].map((i) => parseInt(n4.slice(i, i + 2), 16));
+    const m = n4.match(/[\d.]+/g);
     return m ? m.slice(0, 3).map(Number) : null;
   }
   function toLab([r, g, b]) {
@@ -186,22 +186,22 @@
     }
   }
   function discMask(size) {
-    const n3 = Math.max(1, Math.round(size)), r = n3 / 2, m = new Uint8Array(n3 * n3);
-    for (let j = 0; j < n3; j++) for (let i = 0; i < n3; i++) {
+    const n4 = Math.max(1, Math.round(size)), r = n4 / 2, m = new Uint8Array(n4 * n4);
+    for (let j = 0; j < n4; j++) for (let i = 0; i < n4; i++) {
       const dx = i + 0.5 - r, dy = j + 0.5 - r;
-      if (n3 <= 2 || dx * dx + dy * dy <= r * r + 0.25) m[j * n3 + i] = 1;
+      if (n4 <= 2 || dx * dx + dy * dy <= r * r + 0.25) m[j * n4 + i] = 1;
     }
     return m;
   }
   function fillPolygon(img, pts, color) {
-    const { width: W, height: H, data: d } = img, n3 = pts.length;
-    if (n3 < 3) return null;
+    const { width: W, height: H, data: d } = img, n4 = pts.length;
+    if (n4 < 3) return null;
     const b = { x0: W, y0: H, x1: -1, y1: -1 };
     const ys = pts.map((p) => p.y), top = Math.max(0, Math.floor(Math.min(...ys))), bottom = Math.min(H - 1, Math.ceil(Math.max(...ys)));
     for (let y = top; y <= bottom; y++) {
       const cy = y + 0.5, xs = [];
-      for (let i = 0; i < n3; i++) {
-        const a = pts[i], c = pts[(i + 1) % n3];
+      for (let i = 0; i < n4; i++) {
+        const a = pts[i], c = pts[(i + 1) % n4];
         if (a.y <= cy !== c.y <= cy) xs.push(a.x + (cy - a.y) * (c.x - a.x) / (c.y - a.y));
       }
       xs.sort((p, q) => p - q);
@@ -240,8 +240,8 @@
     }
     return [...m].sort((a, b) => b[1] - a[1]).map(([k]) => hex(k >> 16, k >> 8 & 255, k & 255));
   }
-  function samplePixels(img, n3) {
-    const out = [], d = img.data, total = img.width * img.height, step = Math.max(1, Math.floor(total / n3));
+  function samplePixels(img, n4) {
+    const out = [], d = img.data, total = img.width * img.height, step = Math.max(1, Math.floor(total / n4));
     for (let p = 0; p < total; p += step) {
       const i = p * 4;
       if (d[i + 3] >= 128) out.push([d[i], d[i + 1], d[i + 2]]);
@@ -250,14 +250,14 @@
   }
   function replaceColor(img, from, to) {
     const [r, g, b] = rgba(from), d = img.data;
-    let n3 = 0;
+    let n4 = 0;
     for (let i = 0; i < d.length; i += 4) {
       if (d[i + 3] >= 128 && d[i] === r && d[i + 1] === g && d[i + 2] === b) {
         setPx(d, i, to);
-        n3++;
+        n4++;
       }
     }
-    return n3;
+    return n4;
   }
   function nearestCache(palette) {
     const labs = palette.map((c) => toLab(rgbOf(c)));
@@ -297,7 +297,7 @@
       const shift = o.bricks && row % 2 ? -Math.floor(T / 2) : 0;
       for (let tx = shift; tx < W; tx += T) {
         const x0 = Math.max(0, tx), x1 = Math.min(W, tx + T), y1 = Math.min(H, ty + T);
-        let r = 0, g = 0, b = 0, n3 = 0, all = 0;
+        let r = 0, g = 0, b = 0, n4 = 0, all = 0;
         for (let y = ty; y < y1 - (y1 === ty + T ? G : 0); y++) for (let x = x0; x < Math.min(x1, tx + T - G); x++) {
           const i = (y * W + x) * 4;
           all++;
@@ -305,14 +305,14 @@
           r += s[i];
           g += s[i + 1];
           b += s[i + 2];
-          n3++;
+          n4++;
         }
-        const filled = n3 > 0 && n3 >= all / 2;
+        const filled = n4 > 0 && n4 >= all / 2;
         let c = [0, 0, 0, 0];
         if (filled) {
-          r = Math.round(r / n3);
-          g = Math.round(g / n3);
-          b = Math.round(b / n3);
+          r = Math.round(r / n4);
+          g = Math.round(g / n4);
+          b = Math.round(b / n4);
           const name = near ? near(r, g, b) : hex(r, g, b);
           c = rgba(name);
           counts2.set(name, (counts2.get(name) || 0) + 1);
@@ -328,8 +328,8 @@
   }
   function classify(img, colors) {
     const near = nearestCache(colors), index2 = new Map(colors.map((c, i) => [c, i]));
-    const n3 = img.width * img.height, grid = new Int16Array(n3), counts2 = colors.map(() => 0), d = img.data;
-    for (let p = 0, i = 0; p < n3; p++, i += 4) {
+    const n4 = img.width * img.height, grid = new Int16Array(n4), counts2 = colors.map(() => 0), d = img.data;
+    for (let p = 0, i = 0; p < n4; p++, i += 4) {
       if (d[i + 3] < 128) {
         grid[p] = -1;
         continue;
@@ -341,11 +341,11 @@
     return { grid, counts: counts2 };
   }
   function pieces(img) {
-    const { width: W, height: H, data: d } = img, n3 = W * H;
-    const labels = new Int32Array(n3).fill(-1), colors = [], sizes = [];
+    const { width: W, height: H, data: d } = img, n4 = W * H;
+    const labels = new Int32Array(n4).fill(-1), colors = [], sizes = [];
     const key = (p) => d[p * 4 + 3] < 128 ? -1 : d[p * 4] << 16 | d[p * 4 + 1] << 8 | d[p * 4 + 2];
     const stack = [];
-    for (let p = 0; p < n3; p++) {
+    for (let p = 0; p < n4; p++) {
       if (labels[p] >= 0) continue;
       const k = key(p);
       if (k < 0) continue;
@@ -357,7 +357,7 @@
         const q = stack.pop(), x = q % W;
         size++;
         for (const r of [x > 0 ? q - 1 : -1, x < W - 1 ? q + 1 : -1, q - W, q + W]) {
-          if (r < 0 || r >= n3 || labels[r] >= 0 || key(r) !== k) continue;
+          if (r < 0 || r >= n4 || labels[r] >= 0 || key(r) !== k) continue;
           labels[r] = id;
           stack.push(r);
         }
@@ -368,12 +368,12 @@
     return { labels, colors, sizes };
   }
   function pieceCentres(p, W, H) {
-    const L = p.labels, n3 = W * H, dist2 = new Float32Array(n3);
+    const L = p.labels, n4 = W * H, dist2 = new Float32Array(n4);
     const edge = (i) => {
       const x = i % W, y = i / W | 0, l = L[i];
       return x === 0 || y === 0 || x === W - 1 || y === H - 1 || L[i - 1] !== l || L[i + 1] !== l || L[i - W] !== l || L[i + W] !== l;
     };
-    for (let i = 0; i < n3; i++) dist2[i] = L[i] < 0 ? 0 : edge(i) ? 1 : 1e9;
+    for (let i = 0; i < n4; i++) dist2[i] = L[i] < 0 ? 0 : edge(i) ? 1 : 1e9;
     const D = Math.SQRT2;
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       const i = y * W + x;
@@ -392,7 +392,7 @@
       dist2[i] = v;
     }
     const best = p.colors.map(() => ({ x: 0, y: 0, r: -1 }));
-    for (let i = 0; i < n3; i++) {
+    for (let i = 0; i < n4; i++) {
       const l = L[i];
       if (l >= 0 && dist2[i] > best[l].r) best[l] = { x: i % W + 0.5, y: (i / W | 0) + 0.5, r: dist2[i] };
     }
@@ -538,9 +538,9 @@
   function createPaletteUI(host) {
     const st = host.state;
     function uniqueName(base) {
-      let n3 = base, i = 2;
-      while (st.palettes[n3]) n3 = `${base} ${i++}`;
-      return n3;
+      let n4 = base, i = 2;
+      while (st.palettes[n4]) n4 = `${base} ${i++}`;
+      return n4;
     }
     function renderSelect() {
       const sel = $("#pal-select");
@@ -560,10 +560,10 @@
       render3();
     }
     function addPalette2(name, colors) {
-      const n3 = uniqueName(name);
-      st.palettes[n3] = colors;
-      switchPalette(n3);
-      return n3;
+      const n4 = uniqueName(name);
+      st.palettes[n4] = colors;
+      switchPalette(n4);
+      return n4;
     }
     function addColors2(list) {
       let added = 0;
@@ -598,19 +598,19 @@
     function updateSwatch(d, c, counts2) {
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
-      const n3 = c ? counts2.get(c) || 0 : 0;
+      const n4 = c ? counts2.get(c) || 0 : 0;
       const num2 = c ? st.palette.indexOf(c) + 1 : 0;
       const N = host.names;
-      d.title = c ? `#${num2}  ${c}${n3 ? ` – used by ${host.usage(n3)}` : ""}
+      d.title = c ? `#${num2}  ${c}${n4 ? ` – used by ${host.usage(n4)}` : ""}
 Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       let b = d.querySelector(".count");
-      if (n3 && !b) {
+      if (n4 && !b) {
         b = document.createElement("span");
         b.className = "count";
         d.prepend(b);
       }
       if (b) {
-        if (n3) b.textContent = n3 > 9999 ? Math.round(n3 / 1e3) + "k" : String(n3);
+        if (n4) b.textContent = n4 > 9999 ? Math.round(n4 / 1e3) + "k" : String(n4);
         else b.remove();
       }
     }
@@ -688,11 +688,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         toast("No color found in: " + text);
         return;
       }
-      const n3 = addColors2(cols);
+      const n4 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
       inp.value = "";
       updatePreview();
-      toast(n3 ? `Added ${n3} color${n3 > 1 ? "s" : ""}.` : "Already in the palette.");
+      toast(n4 ? `Added ${n4} color${n4 > 1 ? "s" : ""}.` : "Already in the palette.");
     }
     function updatePreview() {
       const c = parse($("#color-input").value)[0];
@@ -703,9 +703,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     function pasteColors2(text) {
       const cols = parse(text);
       if (!cols.length) return false;
-      const n3 = addColors2(cols);
+      const n4 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
-      toast(n3 ? `Added ${n3} color${n3 > 1 ? "s" : ""} from the clipboard.` : "Those colors are already in the palette.");
+      toast(n4 ? `Added ${n4} color${n4 > 1 ? "s" : ""} from the clipboard.` : "Those colors are already in the palette.");
       return true;
     }
     function bind() {
@@ -727,17 +727,17 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       };
       $("#pal-select").onchange = (e) => switchPalette(e.target.value);
       $("#btn-pal-new").onclick = () => {
-        const n3 = prompt("Name of the new palette:", uniqueName("Palette"));
-        if (!n3 || !n3.trim()) return;
-        const name = uniqueName(n3.trim());
+        const n4 = prompt("Name of the new palette:", uniqueName("Palette"));
+        if (!n4 || !n4.trim()) return;
+        const name = uniqueName(n4.trim());
         st.palettes[name] = [];
         switchPalette(name);
         toast(`Created “${name}”. Paste colors to fill it.`);
       };
       $("#btn-pal-rename").onclick = () => {
-        const old = st.paletteName, n3 = prompt("Rename palette:", old);
-        if (!n3 || !n3.trim() || n3.trim() === old) return;
-        const name = uniqueName(n3.trim()), next = {};
+        const old = st.paletteName, n4 = prompt("Rename palette:", old);
+        if (!n4 || !n4.trim() || n4.trim() === old) return;
+        const name = uniqueName(n4.trim()), next = {};
         for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
         st.palettes = next;
         switchPalette(name);
@@ -749,8 +749,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         switchPalette(Object.keys(st.palettes)[0]);
       };
       $("#btn-pal-doc").onclick = () => {
-        const n3 = addColors2(host.docColors());
-        toast(n3 ? `Added ${n3} color${n3 > 1 ? "s" : ""} from the drawing.` : "No new colors in the drawing.");
+        const n4 = addColors2(host.docColors());
+        toast(n4 ? `Added ${n4} color${n4 > 1 ? "s" : ""} from the drawing.` : "No new colors in the drawing.");
       };
       $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
       $("#btn-pal-clear").onclick = () => {
@@ -766,8 +766,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         if (!f) return;
         const text = await f.text();
         e.target.value = "";
-        const n3 = addColors2(parse(text));
-        toast(n3 ? `Imported ${n3} color${n3 > 1 ? "s" : ""}.` : "No new colors found in " + f.name);
+        const n4 = addColors2(parse(text));
+        toast(n4 ? `Imported ${n4} color${n4 > 1 ? "s" : ""}.` : "No new colors found in " + f.name);
       };
       window.addEventListener("storage", (e) => {
         if (e.key !== SHARED_KEY) return;
@@ -976,8 +976,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       const r = state.size / 2;
       vctx.beginPath();
       if (state.tool === "pencil") {
-        const n3 = Math.max(1, Math.round(state.size)), x0 = Math.floor(c.x) - Math.floor((n3 - 1) / 2), y0 = Math.floor(c.y) - Math.floor((n3 - 1) / 2);
-        vctx.rect(x0, y0, n3, n3);
+        const n4 = Math.max(1, Math.round(state.size)), x0 = Math.floor(c.x) - Math.floor((n4 - 1) / 2), y0 = Math.floor(c.y) - Math.floor((n4 - 1) / 2);
+        vctx.rect(x0, y0, n4, n4);
       } else vctx.arc(c.x, c.y, Math.max(r, 0.5), 0, Math.PI * 2);
       vctx.lineWidth = 1 / k;
       vctx.strokeStyle = "rgba(0,0,0,.7)";
@@ -1241,10 +1241,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
 
   // src/lib/geometry.ts
-  function regularPolygon(n3, cx, cy, r, rot) {
+  function regularPolygon(n4, cx, cy, r, rot) {
     const out = [];
-    for (let i = 0; i < n3; i++) {
-      const a = rot + i * 2 * Math.PI / n3;
+    for (let i = 0; i < n4; i++) {
+      const a = rot + i * 2 * Math.PI / n4;
       out.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
     }
     return out;
@@ -1310,26 +1310,26 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }
     return counts;
   }
-  function suggestColors(img, n3) {
+  function suggestColors(img, n4) {
     const labs = samplePixels(img, 5e3).map(toLab);
-    return labs.length ? [...new Set(kmeans(labs, n3, 7).map(fromLab))] : [];
+    return labs.length ? [...new Set(kmeans(labs, n4, 7).map(fromLab))] : [];
   }
   var ui = createPaletteUI({
     state,
     save: savePrefs,
     counts: colorCounts,
-    usage: (n3) => `${n3} pixel${n3 > 1 ? "s" : ""}`,
+    usage: (n4) => `${n4} pixel${n4 > 1 ? "s" : ""}`,
     names: { fill: "paint color", stroke: "outline color", none: "Transparent – paints and fills transparent pixels" },
     docColors() {
       const img = getImage();
       return uniqueColors(img, 64) || suggestColors(img, 16);
     },
     recolor(old, c) {
-      const img = getImage(), n3 = replaceColor(img, old, rgba(c));
-      if (!n3) return null;
+      const img = getImage(), n4 = replaceColor(img, old, rgba(c));
+      if (!n4) return null;
       dctx.putImageData(img, 0, 0);
       commit();
-      return `Recolored ${n3} pixel${n3 > 1 ? "s" : ""}.`;
+      return `Recolored ${n4} pixel${n4 > 1 ? "s" : ""}.`;
     }
   });
   var {
@@ -1568,13 +1568,13 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   var tips = /* @__PURE__ */ new Map();
   function tip(size, color) {
-    const n3 = Math.max(1, Math.round(size)), key = n3 + color;
+    const n4 = Math.max(1, Math.round(size)), key = n4 + color;
     let c = tips.get(key);
     if (!c) {
       if (tips.size > 40) tips.clear();
-      c = makeCanvas(n3, n3);
-      const x = c.getContext("2d"), im = x.createImageData(n3, n3), m = discMask(n3), rgba2 = rgba(color);
-      for (let i = 0; i < n3 * n3; i++) if (m[i]) im.data.set(rgba2, i * 4);
+      c = makeCanvas(n4, n4);
+      const x = c.getContext("2d"), im = x.createImageData(n4, n4), m = discMask(n4), rgba2 = rgba(color);
+      for (let i = 0; i < n4 * n4; i++) if (m[i]) im.data.set(rgba2, i * 4);
       x.putImageData(im, 0, 0);
       tips.set(key, c);
     }
@@ -1826,7 +1826,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   var MAX_SIDE = 8e3;
   var IMAGE_TYPES = [{ description: "Images", accept: { "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"] } }];
   var PNG_TYPES = [{ description: "PNG image", accept: { "image/png": [".png"] } }];
-  var baseName = (n3) => n3.replace(/\.[a-z0-9]+$/i, "");
+  var baseName = (n4) => n4.replace(/\.[a-z0-9]+$/i, "");
   function confirmDiscard() {
     return !rt.dirty || confirm("Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)");
   }
@@ -1999,9 +1999,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     if (state.floating) place();
     return state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
   }
-  var fmtN = (n3) => n3.toLocaleString("en");
+  var fmtN = (n4) => n4.toLocaleString("en");
   function summary(counts2, unit) {
-    const total = [...counts2.values()].reduce((s, n3) => s + n3, 0);
+    const total = [...counts2.values()].reduce((s, n4) => s + n4, 0);
     return `${fmtN(total)} ${unit}${total === 1 ? "" : "s"} in ${counts2.size} color${counts2.size === 1 ? "" : "s"}`;
   }
   function makeMosaic() {
@@ -2040,8 +2040,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   function estimate() {
     const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height };
-    const n3 = Math.ceil(b.w / Math.max(2, m.tile)) * Math.ceil(b.h / Math.max(2, m.tile));
-    $("#mo-estimate").textContent = `About ${fmtN(n3)} tiles${state.sel ? " in the selection" : ""}.`;
+    const n4 = Math.ceil(b.w / Math.max(2, m.tile)) * Math.ceil(b.h / Math.max(2, m.tile));
+    $("#mo-estimate").textContent = `About ${fmtN(n4)} tiles${state.sel ? " in the selection" : ""}.`;
   }
   function bindMosaic() {
     const m = state.mosaic;
@@ -2092,14 +2092,14 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
 
   // src/raster/panel.ts
-  function setSides(n3) {
-    state.sides = clamp(Math.round(n3) || 6, 3, 64);
+  function setSides(n4) {
+    state.sides = clamp(Math.round(n4) || 6, 3, 64);
     $("#opt-sides").value = state.sides;
     for (const b of $$("#quick-sides button")) b.classList.toggle("active", +b.dataset.sides === state.sides);
     savePrefs();
   }
-  function setBrushSize(n3) {
-    state.size = clamp(Math.round(n3) || 1, 1, 500);
+  function setBrushSize(n4) {
+    state.size = clamp(Math.round(n4) || 1, 1, 500);
     $("#opt-size").value = state.size;
     $("#opt-size-range").value = Math.min(100, state.size);
     savePrefs();
@@ -2553,15 +2553,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     for (const r of greedyRects(solid, w, h)) faces.push({ o: [r.x, Y(r.y + r.h), 0], u: [0, r.h, 0], v: [r.w, 0, 0], level: 0 });
     for (let y = 0; y <= h; y++) {
       for (let x = 0; x < w; ) {
-        const n3 = height(x, y - 1), so = height(x, y);
-        if (n3 === so) {
+        const n4 = height(x, y - 1), so = height(x, y);
+        if (n4 === so) {
           x++;
           continue;
         }
         let x1 = x + 1;
-        while (x1 < w && height(x1, y - 1) === n3 && height(x1, y) === so) x1++;
-        const lo = Math.min(n3, so), dz = Math.abs(n3 - so), Y0 = Y(y);
-        if (n3 > so) faces.push({ o: [x, Y0, lo], u: [x1 - x, 0, 0], v: [0, 0, dz], level: level(x, y - 1) });
+        while (x1 < w && height(x1, y - 1) === n4 && height(x1, y) === so) x1++;
+        const lo = Math.min(n4, so), dz = Math.abs(n4 - so), Y0 = Y(y);
+        if (n4 > so) faces.push({ o: [x, Y0, lo], u: [x1 - x, 0, 0], v: [0, 0, dz], level: level(x, y - 1) });
         else faces.push({ o: [x, Y0, lo], u: [0, 0, dz], v: [x1 - x, 0, 0], level: level(x, y) });
         x = x1;
       }
@@ -2635,12 +2635,12 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     return { vertices, triangles, levels };
   }
   function stl(mesh, name = "Mosaic Paint") {
-    const V = mesh.vertices, T = mesh.triangles, n3 = T.length / 3, buf = new ArrayBuffer(84 + n3 * 50), dv = new DataView(buf);
+    const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3, buf = new ArrayBuffer(84 + n4 * 50), dv = new DataView(buf);
     const header = `${name} – multi-color by layer`.slice(0, 80);
     for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
-    dv.setUint32(80, n3, true);
+    dv.setUint32(80, n4, true);
     let o = 84;
-    for (let t = 0; t < n3; t++) {
+    for (let t = 0; t < n4; t++) {
       const p = [0, 1, 2].map((k) => T[t * 3 + k] * 3);
       const ux = V[p[1]] - V[p[0]], uy = V[p[1] + 1] - V[p[0] + 1], uz = V[p[1] + 2] - V[p[0] + 2];
       const vx = V[p[2]] - V[p[0]], vy = V[p[2] + 1] - V[p[0] + 1], vz = V[p[2] + 2] - V[p[0] + 2];
@@ -2712,10 +2712,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   function crc32(data) {
     if (!crcTable) {
       crcTable = new Uint32Array(256);
-      for (let n3 = 0; n3 < 256; n3++) {
-        let c2 = n3;
+      for (let n4 = 0; n4 < 256; n4++) {
+        let c2 = n4;
         for (let k = 0; k < 8; k++) c2 = c2 & 1 ? 3988292384 ^ c2 >>> 1 : c2 >>> 1;
-        crcTable[n3] = c2 >>> 0;
+        crcTable[n4] = c2 >>> 0;
       }
     }
     let c = 4294967295;
@@ -3079,10 +3079,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       sel.innerHTML = '<option value="">–</option>' + state.palette.filter((c) => c !== r.color).map((c) => `<option value="${c}">${c}</option>`).join("") + '<option value="none">transparent</option>';
       sel.onchange = () => {
         if (!sel.value) return;
-        const img = getImage(), n3 = replaceColor(img, r.color, rgba(sel.value === "none" ? null : sel.value));
+        const img = getImage(), n4 = replaceColor(img, r.color, rgba(sel.value === "none" ? null : sel.value));
         dctx.putImageData(img, 0, 0);
         commit();
-        toast(`Recolored ${fmtN2(n3)} pixel${n3 === 1 ? "" : "s"}.`);
+        toast(`Recolored ${fmtN2(n4)} pixel${n4 === 1 ? "" : "s"}.`);
         render2();
       };
       tr.lastElementChild.append(sel);
@@ -3389,6 +3389,154 @@ ${sections.join("\n")}
     if (m) openShared(m[1]);
   }
 
+  // src/lib/trace.ts
+  function traceAll(labels, W, H, count) {
+    const at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x];
+    const V = W + 1, key = (x, y) => y * V + x;
+    const out = Array.from({ length: count }, () => /* @__PURE__ */ new Map());
+    const add = (l, x0, y0, x1, y1) => {
+      const m = out[l], k = key(x0, y0);
+      const list = m.get(k);
+      if (list) list.push(key(x1, y1));
+      else m.set(k, [key(x1, y1)]);
+    };
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const l = labels[y * W + x];
+      if (l < 0) continue;
+      if (at(x, y - 1) !== l) add(l, x + 1, y, x, y);
+      if (at(x - 1, y) !== l) add(l, x, y, x, y + 1);
+      if (at(x, y + 1) !== l) add(l, x, y + 1, x + 1, y + 1);
+      if (at(x + 1, y) !== l) add(l, x + 1, y + 1, x + 1, y);
+    }
+    const rings = [];
+    for (let l = 0; l < count; l++) {
+      const m = out[l], list = [];
+      for (const [start] of m) {
+        while (m.get(start) && m.get(start).length) {
+          const ring = [start];
+          let prev = start, cur = take(m, start, -1, V);
+          while (cur !== start) {
+            ring.push(cur);
+            const next = take(m, cur, prev, V);
+            prev = cur;
+            cur = next;
+          }
+          list.push(simplify(ring, V));
+        }
+      }
+      rings.push(list);
+    }
+    return rings;
+  }
+  function take(m, from, prev, V) {
+    const list = m.get(from);
+    let i = 0;
+    if (list.length > 1 && prev >= 0) {
+      const dx = from % V - prev % V, dy = Math.floor(from / V) - Math.floor(prev / V);
+      const score = (to2) => {
+        const ex = to2 % V - from % V, ey = Math.floor(to2 / V) - Math.floor(from / V);
+        return ex === dy && ey === -dx ? 0 : ex === dx && ey === dy ? 1 : 2;
+      };
+      for (let k = 1; k < list.length; k++) if (score(list[k]) < score(list[i])) i = k;
+    }
+    const to = list[i];
+    list.splice(i, 1);
+    if (!list.length) m.delete(from);
+    return to;
+  }
+  function simplify(ring, V) {
+    const pts = ring.map((k) => ({ x: k % V, y: Math.floor(k / V) })), n4 = pts.length, out = [];
+    for (let i = 0; i < n4; i++) {
+      const a = pts[(i + n4 - 1) % n4], b = pts[i], c = pts[(i + 1) % n4];
+      if ((b.x - a.x) * (c.y - b.y) - (b.y - a.y) * (c.x - b.x) !== 0) out.push(b);
+    }
+    return out;
+  }
+  function ringArea(r) {
+    let s = 0;
+    for (let i = 0, n4 = r.length; i < n4; i++) {
+      const a = r[i], b = r[(i + 1) % n4];
+      s += a.x * b.y - b.x * a.y;
+    }
+    return s / 2;
+  }
+
+  // src/raster/vectorize.ts
+  var MAX_TILES = 2e4;
+  var n3 = (v) => String(Math.round(v * 1e3) / 1e3);
+  function vectorSVG(grout, widthMm) {
+    const W = doc.width, H = doc.height, k = widthMm / W, p = pieces(getImage());
+    const ids = new Int32Array(p.colors.length).fill(-1), colors = [];
+    p.colors.forEach((c, i) => {
+      if (c !== grout) {
+        ids[i] = colors.length;
+        colors.push(c);
+      }
+    });
+    const labels = p.labels.map((l) => l < 0 ? -1 : ids[l]);
+    const rings = traceAll(labels, W, H, colors.length);
+    const shapes = [];
+    rings.forEach((list, i) => {
+      const pts = (r) => r.map((q) => `${n3(q.x * k)},${n3(q.y * k)}`).join(" ");
+      if (list.length === 1) shapes.push(`<polygon points="${pts(list[0])}" fill="${colors[i]}" stroke="none"/>`);
+      else {
+        const sorted = [...list].sort((a, b) => Math.abs(ringArea(b)) - Math.abs(ringArea(a)));
+        const d = sorted.map((r) => "M" + pts(r).replace(/ /g, "L") + "Z").join("");
+        shapes.push(`<path d="${d}" fill="${colors[i]}" fill-rule="evenodd" stroke="none"/>`);
+      }
+    });
+    const w = n3(widthMm), h = n3(H * k), palette = [.../* @__PURE__ */ new Set([...colorRows(p).map((r) => r.color)])];
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">
+<metadata id="mosaic-palette">${JSON.stringify({ palette, paletteName: rt.fileName.replace(/\.[a-z0-9]+$/i, ""), unit: "mm" })}</metadata>
+${grout ? `<rect id="mosaic-bg" x="0" y="0" width="${w}" height="${h}" fill="${grout}"/>` : ""}
+<g id="mosaic-fills"></g>
+<g id="mosaic-shapes">
+${shapes.join("\n")}
+</g>
+</svg>`;
+    return { svg, tiles: colors.length };
+  }
+  function fillDialog() {
+    const rows2 = colorRows(pieces(getImage())), sel = $("#vz-grout");
+    sel.innerHTML = '<option value="">No grout – every piece is a tile</option>' + rows2.map((r) => `<option value="${r.color}">${r.color} – ${r.pieces} piece${r.pieces === 1 ? "" : "s"}</option>`).join("");
+    sel.value = rows2.some((r) => r.color === state.mosaic.groutColor) ? state.mosaic.groutColor : "";
+    $("#vz-width").value = state.realWidth;
+    info();
+  }
+  function info() {
+    const grout = $("#vz-grout").value || null, rows2 = colorRows(pieces(getImage()));
+    const tiles = rows2.filter((r) => r.color !== grout).reduce((s, r) => s + r.pieces, 0);
+    $("#vz-info").textContent = `${tiles.toLocaleString("en")} tile${tiles === 1 ? "" : "s"} at ${n3(state.realWidth)} × ${n3(state.realWidth * doc.height / doc.width)} mm` + (tiles > MAX_TILES ? " – too many: make a mosaic or reduce the picture to the palette first." : ".");
+    $("#vz-go").disabled = tiles > MAX_TILES || !tiles;
+  }
+  function bindVectorize() {
+    $("#btn-vectorize").onclick = () => {
+      fillDialog();
+      $("#dlg-vectorize").showModal();
+    };
+    $("#vz-grout").onchange = info;
+    $("#vz-width").onchange = () => {
+      const v = +$("#vz-width").value;
+      if (v > 0) {
+        state.realWidth = v;
+        savePrefs();
+      }
+      $("#vz-width").value = state.realWidth;
+      info();
+    };
+    $("#vz-go").onclick = async () => {
+      const { svg, tiles } = vectorSVG($("#vz-grout").value || null, state.realWidth);
+      try {
+        await Store.set("handoff", { svg, name: rt.fileName.replace(/\.[a-z0-9]+$/i, "") + ".svg", time: Date.now(), tiles });
+      } catch {
+        toast("Could not hand the tiles over (browser storage unavailable).");
+        return;
+      }
+      location.href = "index.html#from-raster";
+    };
+  }
+
   // src/shared/history-ui.ts
   var esc3 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   function initHistoryUI(host, button) {
@@ -3454,6 +3602,7 @@ ${sections.join("\n")}
   bindReport();
   bindPrint();
   bindShare();
+  bindVectorize();
   initHistoryUI({
     noun: "image",
     list: listVersions,
@@ -3496,6 +3645,7 @@ ${sections.join("\n")}
     selectionChanged,
     pasteImage,
     printPage,
+    vectorSVG,
     /** Replaces the image with a blank one of the given size and color (null = transparent). */
     blank(w, h, color = "#ffffff") {
       const c = document.createElement("canvas");

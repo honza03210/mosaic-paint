@@ -4033,6 +4033,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     loadImg,
     buildSVGString,
     loadSVGText,
+    openText,
     saveVersion,
     restoreVersion,
     confirmDiscard,
@@ -6394,6 +6395,28 @@ ${others}
     },
     fileName: () => MZ.fileName
   }, document.querySelector("#btn-3d"));
+
+  // src/features/raster-import.ts
+  async function importFromRaster() {
+    if (location.hash !== "#from-raster") return;
+    history.replaceState(null, "", location.pathname + location.search);
+    let rec = null;
+    try {
+      rec = await Store.get("handoff");
+    } catch {
+    }
+    if (!rec || !rec.svg) {
+      MZ.toast("Nothing to import from the raster app.");
+      return;
+    }
+    await Store.set("handoff", null).catch(() => {
+    });
+    if (await MZ.openText(rec.svg, rec.name)) {
+      MZ.toast(`Opened ${rec.tiles.toLocaleString("en")} tiles from the raster app – your previous drawing is in History.`);
+    }
+  }
+  MZ.on("ready", importFromRaster);
+  window.addEventListener("hashchange", importFromRaster);
 
   // src/lib/pack.ts
   var b64url = (bytes) => {

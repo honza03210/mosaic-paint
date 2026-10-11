@@ -16,6 +16,7 @@ import { bindExport3D } from './export3d.ts';
 import { bindReport } from './report.ts';
 import { bindPrint, printPage } from './print.ts';
 import { bindShare, fromHash } from './share.ts';
+import { bindVectorize, vectorSVG } from './vectorize.ts';
 import { initHistoryUI } from '../shared/history-ui.ts';
 import { listVersions, restoreVersion } from './files.ts';
 import { saveVersion } from './history.ts';
@@ -27,6 +28,7 @@ bindExport3D();
 bindReport();
 bindPrint();
 bindShare();
+bindVectorize();
 initHistoryUI({
   noun: 'image',
   list: listVersions,
@@ -61,7 +63,7 @@ const RZ = {
     const r = (document.querySelector('#view') as HTMLElement).getBoundingClientRect(), v = state.view;
     return { x: (x - v.x) * v.s + r.left, y: (y - v.y) * v.s + r.top };
   },
-  toDoc, setTool, setMode, commit, fitView, selectionChanged, pasteImage, printPage,
+  toDoc, setTool, setMode, commit, fitView, selectionChanged, pasteImage, printPage, vectorSVG,
   /** Replaces the image with a blank one of the given size and color (null = transparent). */
   blank(w: number, h: number, color: string | null = '#ffffff') {
     const c = document.createElement('canvas');

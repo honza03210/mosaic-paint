@@ -164,7 +164,8 @@ export async function openFile(): Promise<void> {
   }
   $('#file-input').click();
 }
-async function openText(text: string, name: string): Promise<boolean> {
+/** Opens SVG text as the drawing (the current one is kept in History). */
+export async function openText(text: string, name: string): Promise<boolean> {
   if (hasContent()) await saveVersion('Before opening ' + name);
   if (!loadSVGText(text, { name })) return false;
   rt.fileHandle = null;

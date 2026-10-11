@@ -19,6 +19,7 @@ import { Snippets } from './features/snippets.ts';
 import './features/motifs.ts';
 import './features/image-clipboard.ts';
 import './features/export3d.ts';
+import './features/raster-import.ts';
 import { Share } from './features/share.ts';
 
 // for the end-to-end tests and for poking around in the browser console
