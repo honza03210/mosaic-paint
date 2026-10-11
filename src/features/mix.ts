@@ -2,12 +2,12 @@
    backgrounds don't look flat. Optionally avoids putting the same color next to itself. */
 import { MZ } from '../core/api.ts';
 import { t } from '../shared/i18n.ts';
+import { $, loadSettings, saveSettings } from '../shared/ui.ts';
 
-const $ = (s) => document.querySelector<any>(s);
 const { state } = MZ;
 const mix = { on: false, colors: [], avoid: true };
-try { Object.assign(mix, JSON.parse(localStorage.getItem('mz-mix') || '{}')); } catch { /* ignore */ }
-const save = () => { try { localStorage.setItem('mz-mix', JSON.stringify(mix)); } catch { /* ignore */ } };
+loadSettings('mz-mix', mix);
+const save = () => saveSettings('mz-mix', mix);
 const active = () => mix.on && mix.colors.length >= 2;
 
 function pick(reg) {

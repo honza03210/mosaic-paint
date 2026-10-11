@@ -1,6 +1,7 @@
 /* Printing: splitting a drawing onto paper sheets and building print pages.
    Pure functions (no DOM); the dialogs live in features/print.ts, features/layplan.ts and raster/print.ts. */
 import { t, num } from '../shared/i18n.ts';
+import { esc } from './html.ts';
 export const PAPERS: Record<string, { w: number; h: number; name: string }> = {
   a4: { w: 210, h: 297, name: 'A4' },
   letter: { w: 215.9, h: 279.4, name: 'Letter' },
@@ -14,7 +15,6 @@ const LABEL = 7;     // room for the sheet label above the drawing, mm
 export const OVERLAP = 10;  // neighbouring sheets repeat this much, for taping them together, mm
 
 const rowName = (r) => (r >= 26 ? rowName(Math.floor(r / 26) - 1) : '') + String.fromCharCode(65 + (r % 26));
-const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const n = (v) => String(Math.round(v * 1000) / 1000);
 
 /** Printable area of the paper in an orientation, mm. */
@@ -105,7 +105,7 @@ html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs><g id="art">${art}</g></defs></svg>
 ${sections.join('\n')}
-<script>window.onload = () => setTimeout(() => window.print(), 400);<\/script>
+<script>window.onload = () => setTimeout(() => window.print(), 400);</script>
 </body></html>`;
 }
 

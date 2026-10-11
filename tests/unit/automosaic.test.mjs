@@ -49,7 +49,7 @@ test('k-means finds the main colors', () => {
   for (let i = 0; i < 100; i++) labs.push(Colors.toLab([60, 120, 160 + (i % 5)]));
   const centers = AutoMosaic.kmeans(labs, 2, 1).map(Colors.fromLab);
   assert.equal(centers.length, 2);
-  const [r1, g1, b1] = [1, 3, 5].map(i => parseInt(centers[0].slice(i, i + 2), 16));
+  const [r1, , b1] = [1, 3, 5].map(i => parseInt(centers[0].slice(i, i + 2), 16));
   assert.ok(r1 > 200 && b1 < 100, `most common color is the orange one, got ${centers[0]}`);
 });
 

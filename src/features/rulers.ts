@@ -1,7 +1,7 @@
 /* Mosaic Paint – rulers along the canvas edges (Expert mode). */
 import { MZ } from '../core/api.ts';
+import { $ } from '../shared/ui.ts';
 
-const $ = (s: string): any => document.querySelector<any>(s);
 const { state } = MZ;
 
 // ---- rulers ------------------------------------------------------------------------------

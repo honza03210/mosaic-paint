@@ -7,6 +7,7 @@ import { state, rt, savePrefs } from './state.ts';
 import { doc, dctx, getImage } from './canvas.ts';
 import { commit } from './history.ts';
 import { t, num } from '../shared/i18n.ts';
+import { csvText } from '../shared/printing.ts';
 
 export { colorRows, type ColorRow };
 
@@ -49,11 +50,8 @@ function render(): void {
     table.append(tr);
   }
 }
-function csv(): string {
-  const lines = ['number,color,pieces,pixels,area_cm2'];
-  for (const r of rows) lines.push([r.n, r.color, r.pieces, r.pixels, (r.pixels * mmPerPixel() ** 2 / 100).toFixed(2)].join(','));
-  return lines.join('\n') + '\n';
-}
+const csv = (): string => csvText(['number', 'color', 'pieces', 'pixels', 'area_cm2'],
+  rows.map(r => [r.n, r.color, r.pieces, r.pixels, (r.pixels * mmPerPixel() ** 2 / 100).toFixed(2)]));
 
 export function bindReport(): void {
   $('#btn-report').onclick = () => { render(); $('#dlg-report').showModal(); };

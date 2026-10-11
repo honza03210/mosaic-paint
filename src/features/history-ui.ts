@@ -4,8 +4,8 @@ import { Store } from '../lib/store.ts';
 import { initHistoryUI } from '../shared/history-ui.ts';
 import { PhotoTools } from './photo-tools.ts';
 import { t } from '../shared/i18n.ts';
+import { $ } from '../shared/ui.ts';
 
-const $ = (s: string): any => document.querySelector<any>(s);
 const { state } = MZ;
 
 initHistoryUI({

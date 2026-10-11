@@ -19,7 +19,7 @@ const path = require('path');
     MZ.setTool('pattern');
     document.querySelector('#btn-pat-page').click();
     const ctx = { ix: MZ.regionIndex() }, pal = MZ.state.palette;
-    ctx.ix.faces.forEach((f, i) => {
+    ctx.ix.faces.forEach((f) => {
       const reg = ctx.ix.region(f), p = MZ.gridSample(reg.bb, q => MZ.insideRegion(reg, q), 1)[0];
       if (p) MZ.bucketAt(p, pal[(Math.floor(p.x / 40) + Math.floor(p.y / 40)) % pal.length], ctx, f);
     });

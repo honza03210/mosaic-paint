@@ -3,6 +3,7 @@
 import type { Version } from '../lib/store.ts';
 import { toast } from './ui.ts';
 import { t, lang } from './i18n.ts';
+import { esc } from '../lib/html.ts';
 
 export interface HistoryHost {
   /** the texts that name what the app edits (whole sentences: other languages change words around the noun) */
@@ -16,7 +17,6 @@ export interface HistoryHost {
   /** saves the current state as a version now */
   saveNow(): Promise<boolean>;
 }
-const esc = (s: unknown) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 export function initHistoryUI(host: HistoryHost, button: HTMLElement): void {
   const dlg = document.createElement('dialog');
@@ -33,7 +33,7 @@ export function initHistoryUI(host: HistoryHost, button: HTMLElement): void {
   async function render(): Promise<void> {
     thumbs.forEach(u => URL.revokeObjectURL(u));
     thumbs = [];
-    let versions: Version[] = [];
+    let versions: Version[];
     try { versions = await host.list(); } catch { list.innerHTML = `<p class="note">${t('Version history needs browser storage (IndexedDB), which is not available here.')}</p>`; return; }
     if (!versions.length) { list.innerHTML = `<p class="note">${esc(host.texts.empty)}</p>`; return; }
     list.innerHTML = '';

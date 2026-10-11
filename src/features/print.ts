@@ -5,10 +5,11 @@ import * as Colors from '../lib/colors.ts';
 import * as Printing from '../lib/print.ts';
 import { colorStats, colorNumbers } from './report.ts';
 import { t } from '../shared/i18n.ts';
+import * as Shared from '../shared/printing.ts';
+import { openPrintPage } from '../shared/printing.ts';
+import { $ } from '../shared/ui.ts';
 
-const $ = (s: string): any => document.querySelector<any>(s);
 const { state } = MZ;
-const esc = (s: unknown) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 // ---- printable template ------------------------------------------------------------------
 /** A point well inside an element (roughly the center of its largest inscribed circle), and that circle's radius. */
@@ -75,10 +76,9 @@ function printArt(style) {
   const rows = [...stats.entries()].map(([c, e]) => ({ c, n: nums.get(c), ...e })).sort((a, b) => a.n - b.n);
   return { art, rows, nums };
 }
+/** The color legend for the print pages (rows from printArt). */
 function legendHTML(rows) {
-  return rows.length ? `<h2>${esc(MZ.fileName)} – ${t('colors')}</h2><table>`
-    + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${t('{n} {n|area|areas}', { n: r.tiles })}</td><td>${esc(MZ.fmtArea(r.area))}</td></tr>`).join('')
-    + '</table>' : '';
+  return Shared.legendHTML(MZ.fileName, rows.map(r => ({ n: r.n, color: r.c, count: t('{n} {n|area|areas}', { n: r.tiles }), area: MZ.fmtArea(r.area) })));
 }
 function printTemplate() {
   const { art, rows } = printArt(document.querySelector<any>('input[name=print-style]:checked').value);
@@ -88,12 +88,6 @@ function printTemplate() {
     title: MZ.fileName.replace(/\.svg$/i, ''), paper: $('#print-paper').value, mode: document.querySelector<any>('input[name=print-size]:checked').value,
   }));
 }
-function openPrintPage(html) {
-  const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
-  const w = window.open(url, '_blank');
-  if (!w) { MZ.toast(t('The browser blocked the print window – allow pop-ups for this page.')); return; }
-  setTimeout(() => URL.revokeObjectURL(url), 60000);
-}
 function updatePrintInfo() {
   const d = state.doc, k = Printing.MM[MZ.unit()] || Printing.MM.px;
   const mode = document.querySelector<any>('input[name=print-size]:checked').value;
@@ -102,6 +96,6 @@ function updatePrintInfo() {
 }
 $('#btn-print').onclick = () => { updatePrintInfo(); $('#dlg-print').showModal(); };
 // shared with the laying plan (layplan.js)
-export const PrintTools = { art: printArt, legend: legendHTML, open: openPrintPage, colorStats, colorNumbers };
+export const PrintTools = { art: printArt, legend: legendHTML, colorStats, colorNumbers };
 for (const el of document.querySelectorAll<any>('#print-paper, input[name=print-size]')) el.onchange = updatePrintInfo;
 $('#print-go').onclick = () => { $('#dlg-print').close(); printTemplate(); };

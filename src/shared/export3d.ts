@@ -11,7 +11,7 @@ import * as Colors from '../lib/colors.ts';
 import * as R from '../lib/raster.ts';
 import * as M from '../lib/model3d.ts';
 import * as B from '../lib/build3d.ts';
-import { $, clamp, toast, download, lsGet, lsSet } from './ui.ts';
+import { $, clamp, toast, download, loadSettings, saveSettings } from './ui.ts';
 import { t, num } from './i18n.ts';
 import { createView3D, type View3D } from './view3d.ts';
 import { run, isCancelled } from './work.ts';
@@ -42,8 +42,8 @@ const opts = {
   /** finishing, mm (0: none); the frame stands frameRaise layers above the tiles */
   frame: 0, frameRaise: 2, corner: 0, hole: 0, magnet: 0, magnetDepth: 2,
 };
-try { Object.assign(opts, JSON.parse(lsGet('mz-3d') || '{}')); } catch { /* ignore */ }
-const saveOpts = () => lsSet('mz-3d', JSON.stringify(opts));
+loadSettings('mz-3d', opts);
+const saveOpts = () => saveSettings('mz-3d', opts);
 const f2 = (v: number) => String(+v.toFixed(2));
 
 const DIALOG = `

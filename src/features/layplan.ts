@@ -4,17 +4,18 @@
 import { MZ } from '../core/api.ts';
 import * as Printing from '../lib/print.ts';
 import { PrintTools } from './print.ts';
+import { openPrintPage } from '../shared/printing.ts';
 import { panels, panelAt, countByPanel } from '../lib/layplan.ts';
 import { t } from '../shared/i18n.ts';
+import { $, loadSettings, saveSettings } from '../shared/ui.ts';
+import { esc } from '../lib/html.ts';
 
 export const LayPlan = (() => {
   // ---- dialog & print page (in the app) ---------------------------------------------------
-  const $ = (s) => document.querySelector<any>(s);
   const { state } = MZ;
-  const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const opts = { w: 0, h: 0, numbers: true, grid: true, paper: 'a4' };
-  try { Object.assign(opts, JSON.parse(localStorage.getItem('mz-layplan') || '{}')); } catch { /* ignore */ }
-  const save = () => { try { localStorage.setItem('mz-layplan', JSON.stringify(opts)); } catch { /* ignore */ } };
+  loadSettings('mz-layplan', opts);
+  const save = () => saveSettings('mz-layplan', opts);
   const box = () => ({ x: state.doc.x, y: state.doc.y, w: state.doc.w, h: state.doc.h });
   const k = () => Printing.MM[MZ.unit()] || Printing.MM.px;
   // a sensible start: 30 cm panels (a common mesh sheet size)
@@ -89,7 +90,7 @@ export const LayPlan = (() => {
       + '</table>';
     sections.push(`<section class="sheet"><div class="label">${esc(title)} – ${t('tiles per panel and color')}</div>${table}</section>`);
     if (rows.length) sections.push(`<section class="sheet legend">${PrintTools.legend(rows)}</section>`);
-    PrintTools.open(Printing.page({ art, sections, paper: opts.paper, orientation, title: `${title} – ${t('laying plan')}` }));
+    openPrintPage(Printing.page({ art, sections, paper: opts.paper, orientation, title: `${title} – ${t('laying plan')}` }));
     void nums;
   }
 

@@ -5,7 +5,7 @@ import * as R from '../lib/raster.ts';
 import { $$ } from '../shared/ui.ts';
 import { initShell } from '../shared/shell.ts';
 import { state, rt, loadPrefs } from './state.ts';
-import { stage, doc, dctx, getImage, toDoc, fitView, requestRender } from './canvas.ts';
+import { stage, doc, dctx, getImage, toDoc, fitView } from './canvas.ts';
 import { resetHistory, afterChange, updateTitle, startAutosave, loadAutosave, commit } from './history.ts';
 import { renderPalette, renderPaletteSelect } from './palette.ts';
 import { selectionChanged, pasteImage } from './select.ts';
@@ -40,7 +40,7 @@ initHistoryUI({
   },
   list: listVersions,
   thumbnail: (v) => new Blob([v.png], { type: 'image/png' }),
-  detail: (v) => '',
+  detail: () => '',
   restore: restoreVersion,
   saveNow: () => saveVersion(t('Saved by hand')),
 }, document.querySelector('#btn-history'));

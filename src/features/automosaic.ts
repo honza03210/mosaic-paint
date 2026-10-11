@@ -5,14 +5,14 @@ import * as Geo from '../lib/geometry.ts';
 import * as AutoMosaic from '../lib/automosaic.ts';
 import { PhotoTools } from './photo-tools.ts';
 import { t } from '../shared/i18n.ts';
+import { $, loadSettings, saveSettings } from '../shared/ui.ts';
 
-const $ = (s) => document.querySelector<any>(s);
 const { state } = MZ;
 const MAX_TILES = 8000;
 
 const opts = { style: 'square', size: 10, detail: 50, colors: 'palette', count: 12, replace: true };
-try { Object.assign(opts, JSON.parse(localStorage.getItem('mz-automosaic') || '{}')); } catch { /* ignore */ }
-const save = () => { try { localStorage.setItem('mz-automosaic', JSON.stringify(opts)); } catch { /* ignore */ } };
+loadSettings('mz-automosaic', opts);
+const save = () => saveSettings('mz-automosaic', opts);
 
 /** Rough number of tiles the settings will give (adaptive styles vary with the photo). */
 function estimate() {

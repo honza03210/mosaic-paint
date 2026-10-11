@@ -3,10 +3,11 @@ import { MZ } from '../core/api.ts';
 import * as Geo from '../lib/geometry.ts';
 import { Vision } from './vision.ts';
 import { t } from '../shared/i18n.ts';
+import { csvText } from '../shared/printing.ts';
+import { $, loadSettings, saveSettings } from '../shared/ui.ts';
+import { esc } from '../lib/html.ts';
 
-const $ = (s: string): any => document.querySelector<any>(s);
 const { state } = MZ;
-const esc = (s: unknown) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 // ---- colors used in the drawing -----------------------------------------------------
 /** color → { tiles, area } for every painted area / filled shape. */
@@ -45,7 +46,7 @@ function unpaintedCount() {
 
 // ---- tile report ---------------------------------------------------------------------
 const report = { tileW: 10, tileH: 10, waste: 10 };
-try { Object.assign(report, JSON.parse(localStorage.getItem('mz-report') || '{}')); } catch { /* ignore */ }
+loadSettings('mz-report', report);
 function reportRows() {
   const stats = colorStats(), nums = colorNumbers(stats.keys());
   const total = [...stats.values()].reduce((s, e) => s + e.area, 0) || 1;
@@ -91,9 +92,9 @@ function renderReport() {
 }
 function reportCSV() {
   const rows = reportRows(), u = MZ.unit();
-  const lines = [['number', 'color', 'areas', `area_${u}2`, 'share_percent', 'pieces'].join(',')];
-  for (const r of rows) lines.push([r.n, r.c, r.tiles, r.area.toFixed(2), r.share.toFixed(2), r.pieces].join(','));
-  MZ.download(new Blob([lines.join('\n') + '\n'], { type: 'text/csv' }), MZ.fileName.replace(/\.svg$/i, '') + '-colors.csv');
+  const text = csvText(['number', 'color', 'areas', `area_${u}2`, 'share_percent', 'pieces'],
+    rows.map(r => [r.n, r.c, r.tiles, r.area.toFixed(2), r.share.toFixed(2), r.pieces]));
+  MZ.download(new Blob([text], { type: 'text/csv' }), MZ.fileName.replace(/\.svg$/i, '') + '-colors.csv');
 }
 $('#btn-report').onclick = () => {
   $('#rep-tw').value = report.tileW;
@@ -107,7 +108,7 @@ for (const id of ['#rep-tw', '#rep-th', '#rep-waste']) {
     report.tileW = +$('#rep-tw').value || 0;
     report.tileH = +$('#rep-th').value || 0;
     report.waste = +$('#rep-waste').value || 0;
-    try { localStorage.setItem('mz-report', JSON.stringify(report)); } catch { /* ignore */ }
+    saveSettings('mz-report', report);
     renderReport();
   };
 }

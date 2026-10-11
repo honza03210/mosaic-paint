@@ -5,17 +5,22 @@
   "description": "Vector editor for designing and coloring mosaics",
   "scripts": {
     "serve": "node tests/serve.js",
-    "test": "npm run build && npm run typecheck && npm run test:unit && npm run test:e2e",
+    "test": "npm run build && npm run typecheck && npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "node --experimental-strip-types --no-warnings --test \"tests/unit/*.test.mjs\"",
     "test:e2e": "playwright test",
     "bench": "node tests/perf/bench.js",
     "build": "node build.mjs",
     "typecheck": "tsc -p .",
+    "lint": "eslint .",
     "check:slicer": "node --experimental-strip-types --no-warnings tests/slicer/check.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.64.0",
     "esbuild-wasm": "^0.28.2",
-    "typescript": "^5.9.3"
+    "eslint": "^10.12.0",
+    "globals": "^17.13.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.1"
   }
 }

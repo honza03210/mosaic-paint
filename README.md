@@ -124,7 +124,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
-- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the examples dialog (`examples-ui.ts`) and the guide (`guide.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts), running jobs in the worker (`work.ts`)
+- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the examples dialog (`examples-ui.ts`) and the guide (`guide.ts`), print pages, color legends and CSV files (`printing.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts), running jobs in the worker (`work.ts`)
 - `src/worker/`: the worker – its jobs (`jobs.ts`: plain data in and out) and its entry point (`worker.ts`)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket
@@ -141,6 +141,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `build3d.ts`: the 3D model as the dialog builds it – thin towers lowered, finishing, the solids of either kind of model, the files
   - `vectorize.ts`: raster tiles as a Mosaic Paint SVG (one polygon per piece)
   - `examples.ts`: the example projects, made on the spot
+  - `html.ts`: escaping text for HTML
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
   - `trace.ts`: outlines of pixel areas as polygons (corner points only, holes, diagonal pixels kept apart)
 - `src/core/`: the editor
@@ -167,7 +168,8 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 npm install          # build and test tools; the app itself has no dependencies
 npm run build        # bundle src/ into dist/mosaic.js (node build.mjs --watch rebuilds on change)
 npm run serve        # http://localhost:4173/
-npm test             # build, type check, unit tests, then end-to-end tests
+npm run lint         # ESLint
+npm test             # build, type check, lint, unit tests, then end-to-end tests
 ```
 
 Commit `dist/` together with the source change: CI checks that it matches.

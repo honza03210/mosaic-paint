@@ -3,9 +3,9 @@
 import { MZ } from '../core/api.ts';
 import * as Colors from '../lib/colors.ts';
 import { t } from '../shared/i18n.ts';
+import { $ } from '../shared/ui.ts';
 
 export const Vision = (() => {
-  const $ = (s) => document.querySelector<any>(s);
   const NS = 'http://www.w3.org/2000/svg';
   const VIEWS = [
     ['none', t('Normal colors')], ['gray', t('Black & white')], ['protan', t('Red-blind (protanopia)')],

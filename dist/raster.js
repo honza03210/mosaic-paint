@@ -1362,6 +1362,13 @@
       return false;
     }
   }
+  function loadSettings(key, into) {
+    try {
+      Object.assign(into, JSON.parse(lsGet(key) || "{}"));
+    } catch {
+    }
+  }
+  var saveSettings = (key, value) => lsSet(key, JSON.stringify(value));
   function download(blob, name) {
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -1514,9 +1521,9 @@
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
       const n5 = c ? counts2.get(c) || 0 : 0;
-      const num4 = c ? st.palette.indexOf(c) + 1 : 0;
+      const num3 = c ? st.palette.indexOf(c) + 1 : 0;
       const N = host.names;
-      d.title = c ? `#${num4}  ${c}${n5 ? " – " + t("used by {what}", { what: host.usage(n5) }) : ""}
+      d.title = c ? `#${num3}  ${c}${n5 ? " – " + t("used by {what}", { what: host.usage(n5) }) : ""}
 ` + t("Click: {fill} · Right-click: {stroke} · Double-click: edit", { fill: N.fill, stroke: N.stroke }) : N.none;
       let b = d.querySelector(".count");
       if (n5 && !b) {
@@ -4025,7 +4032,7 @@ ${shapes.join("\n")}
   }
   function bindMosaic() {
     const m = state.mosaic;
-    const num4 = (id, key, min) => {
+    const num3 = (id, key, min) => {
       const i = $(id);
       i.value = m[key];
       i.onchange = () => {
@@ -4038,9 +4045,9 @@ ${shapes.join("\n")}
         estimate();
       };
     };
-    num4("#mo-tile", "tile", 2);
-    num4("#mo-grout", "grout", 0);
-    num4("#mo-count", "count", 2);
+    num3("#mo-tile", "tile", 2);
+    num3("#mo-grout", "grout", 0);
+    num3("#mo-count", "count", 2);
     $("#mo-grout-color").value = m.groutColor;
     $("#mo-grout-color").onchange = (e) => {
       m.groutColor = e.target.value;
@@ -4705,11 +4712,8 @@ void main() {
     magnet: 0,
     magnetDepth: 2
   };
-  try {
-    Object.assign(opts, JSON.parse(lsGet("mz-3d") || "{}"));
-  } catch {
-  }
-  var saveOpts = () => lsSet("mz-3d", JSON.stringify(opts));
+  loadSettings("mz-3d", opts);
+  var saveOpts = () => saveSettings("mz-3d", opts);
   var f2 = (v) => String(+v.toFixed(2));
   var DIALOG = `
 <form method="dialog" class="dlg-head"><h2>${t("3D print")}</h2><button title="${t("Close")}">✕</button></form>
@@ -5189,6 +5193,24 @@ void main() {
     }, $("#btn-3d"));
   }
 
+  // src/lib/html.ts
+  var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+  // src/shared/printing.ts
+  function openPrintPage(html2) {
+    const url2 = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
+    const w = window.open(url2, "_blank");
+    if (!w) {
+      toast(t("The browser blocked the print window – allow pop-ups for this page."));
+      return;
+    }
+    setTimeout(() => URL.revokeObjectURL(url2), 6e4);
+  }
+  function legendHTML(title2, rows2) {
+    return rows2.length ? `<h2>${esc(title2)} – ${t("colors")}</h2><table>` + rows2.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${esc(r.count)}</td><td>${esc(r.area)}</td></tr>`).join("") + "</table>" : "";
+  }
+  var csvText = (header, rows2) => [header, ...rows2].map((r) => r.join(",")).join("\n") + "\n";
+
   // src/raster/report.ts
   var mmPerPixel = () => state.realWidth / doc.width;
   var fmtN = (v) => num(v);
@@ -5223,11 +5245,10 @@ void main() {
       table.append(tr);
     }
   }
-  function csv() {
-    const lines = ["number,color,pieces,pixels,area_cm2"];
-    for (const r of rows) lines.push([r.n, r.color, r.pieces, r.pixels, (r.pixels * mmPerPixel() ** 2 / 100).toFixed(2)].join(","));
-    return lines.join("\n") + "\n";
-  }
+  var csv = () => csvText(
+    ["number", "color", "pieces", "pixels", "area_cm2"],
+    rows.map((r) => [r.n, r.color, r.pieces, r.pixels, (r.pixels * mmPerPixel() ** 2 / 100).toFixed(2)])
+  );
   function bindReport() {
     $("#btn-report").onclick = () => {
       render2();
@@ -5256,7 +5277,6 @@ void main() {
   var LABEL = 7;
   var OVERLAP = 10;
   var rowName = (r) => (r >= 26 ? rowName(Math.floor(r / 26) - 1) : "") + String.fromCharCode(65 + r % 26);
-  var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   var n2 = (v) => String(Math.round(v * 1e3) / 1e3);
   function area2(paperKey, orientation) {
     const p = PAPERS[paperKey] || PAPERS.a4;
@@ -5345,7 +5365,6 @@ ${sections.join("\n")}
 
   // src/raster/print.ts
   var MAX_PIECES = 2e4;
-  var esc2 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   var n3 = (v) => String(Math.round(v * 1e3) / 1e3);
   var title = () => rt.fileName.replace(/\.[a-z0-9]+$/i, "");
   function printArt(style) {
@@ -5359,29 +5378,20 @@ ${sections.join("\n")}
     else parts.push(`<image href="${doc.toDataURL("image/png")}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none" style="image-rendering:pixelated"/>`);
     if (style !== "colors") {
       if (style === "numbers") parts.push(`<path d="${pieceOutlines(p, W, H)}" fill="none" stroke="#444444" stroke-width="${n3(0.25 / k)}"/>`);
-      const num4 = new Map(rows2.map((r) => [r.color, r.n])), centres = pieceCentres(p, W, H), labels = [];
+      const num3 = new Map(rows2.map((r) => [r.color, r.n])), centres = pieceCentres(p, W, H), labels = [];
       centres.forEach((c, i) => {
         if (c.r * k < 1.3) return;
         const size = Math.min(c.r * 1.2, 4 / k);
         const halo = style === "both" ? ` stroke="#ffffff" stroke-width="${n3(size * 0.18)}" paint-order="stroke"` : "";
-        labels.push(`<text x="${n3(c.x)}" y="${n3(c.y)}" font-size="${n3(size)}"${halo}>${num4.get(p.colors[i])}</text>`);
+        labels.push(`<text x="${n3(c.x)}" y="${n3(c.y)}" font-size="${n3(size)}"${halo}>${num3.get(p.colors[i])}</text>`);
       });
       parts.push(`<g font-family="Arial" text-anchor="middle" dominant-baseline="central" fill="#111111">${labels.join("")}</g>`);
     }
     return { art: parts.join(""), rows: rows2 };
   }
-  function legendHTML(rows2) {
+  function legendHTML2(rows2) {
     const area3 = (px) => `${num(px * mmPerPixel() ** 2 / 100, 1)} cm²`;
-    return rows2.length ? `<h2>${esc2(title())} – ${t("colors")}</h2><table>` + rows2.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${t("{n} {n|piece|pieces}", { n: r.pieces })}</td><td>${area3(r.pixels)}</td></tr>`).join("") + "</table>" : "";
-  }
-  function openPrintPage(html2) {
-    const url2 = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
-    const w = window.open(url2, "_blank");
-    if (!w) {
-      toast(t("The browser blocked the print window – allow pop-ups for this page."));
-      return;
-    }
-    setTimeout(() => URL.revokeObjectURL(url2), 6e4);
+    return legendHTML(title(), rows2.map((r) => ({ n: r.n, color: r.color, count: t("{n} {n|piece|pieces}", { n: r.pieces }), area: area3(r.pixels) })));
   }
   var mode = () => document.querySelector("input[name=print-size]:checked").value;
   function updateInfo() {
@@ -5396,7 +5406,7 @@ ${sections.join("\n")}
       box: { x: 0, y: 0, w: doc.width, h: doc.height },
       unit: "px",
       mmPerUnit: mmPerPixel(),
-      legend: $("#print-legend").checked ? legendHTML(a.rows) : "",
+      legend: $("#print-legend").checked ? legendHTML2(a.rows) : "",
       title: title(),
       paper: $("#print-paper").value,
       mode: mode()
@@ -5782,12 +5792,11 @@ ${sections.join("\n")}
   }
 
   // src/shared/history-ui.ts
-  var esc3 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   function initHistoryUI(host, button) {
     const dlg = document.createElement("dialog");
     dlg.id = "dlg-history";
     dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
-<p class="note">${esc3(host.texts.intro)}</p>
+<p class="note">${esc(host.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
     document.body.append(dlg);
@@ -5799,7 +5808,7 @@ ${sections.join("\n")}
     async function render3() {
       thumbs.forEach((u) => URL.revokeObjectURL(u));
       thumbs = [];
-      let versions = [];
+      let versions;
       try {
         versions = await host.list();
       } catch {
@@ -5807,7 +5816,7 @@ ${sections.join("\n")}
         return;
       }
       if (!versions.length) {
-        list.innerHTML = `<p class="note">${esc3(host.texts.empty)}</p>`;
+        list.innerHTML = `<p class="note">${esc(host.texts.empty)}</p>`;
         return;
       }
       list.innerHTML = "";
@@ -5817,7 +5826,7 @@ ${sections.join("\n")}
         const url2 = URL.createObjectURL(host.thumbnail(v));
         thumbs.push(url2);
         const detail = host.detail(v);
-        row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc3(v.name || "")} · ${esc3(v.note || "")}${detail ? ` · ${esc3(detail)}` : ""}</span></div>`;
+        row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc(v.name || "")} · ${esc(v.note || "")}${detail ? ` · ${esc(detail)}` : ""}</span></div>`;
         const b = document.createElement("button");
         b.textContent = t("Restore");
         b.onclick = async () => {
@@ -5855,7 +5864,7 @@ ${sections.join("\n")}
     },
     list: listVersions,
     thumbnail: (v) => new Blob([v.png], { type: "image/png" }),
-    detail: (v) => "",
+    detail: () => "",
     restore: restoreVersion,
     saveNow: () => saveVersion(t("Saved by hand"))
   }, document.querySelector("#btn-history"));

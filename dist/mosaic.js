@@ -890,6 +890,13 @@
       return false;
     }
   }
+  function loadSettings(key, into) {
+    try {
+      Object.assign(into, JSON.parse(lsGet(key) || "{}"));
+    } catch {
+    }
+  }
+  var saveSettings = (key, value) => lsSet(key, JSON.stringify(value));
   function download(blob, name) {
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -5133,7 +5140,6 @@
 
   // src/features/vision.ts
   var Vision = (() => {
-    const $10 = (s) => document.querySelector(s);
     const NS = "http://www.w3.org/2000/svg";
     const VIEWS = [
       ["none", t("Normal colors")],
@@ -5159,7 +5165,7 @@
       return t("look alike {who}", { who: views.map((v) => who[v]).join(", ") });
     }
     function buildFilters() {
-      const defs = $10("#mz-uidefs");
+      const defs = $("#mz-uidefs");
       for (const [t2] of VIEWS) {
         if (t2 === "none") continue;
         const m = VISION[t2], f = document.createElementNS(NS, "filter"), c = document.createElementNS(NS, "feColorMatrix");
@@ -5175,16 +5181,16 @@
       view = VIEWS.some(([t2]) => t2 === v) ? v : "none";
       const f = view === "none" ? null : `url(#mz-vision-${view})`;
       for (const id of ["#mz-doc", "#mz-page", "#mz-ref"]) {
-        const el = $10(id);
+        const el = $(id);
         if (f) el.setAttribute("filter", f);
         else el.removeAttribute("filter");
       }
-      $10("#view-filter").value = view;
-      $10("#stage").classList.toggle("vision-on", view !== "none");
+      $("#view-filter").value = view;
+      $("#stage").classList.toggle("vision-on", view !== "none");
       if (marking) markLowContrast();
     }
     function markLowContrast() {
-      const g = $10("#mz-marks");
+      const g = $("#mz-marks");
       g.innerHTML = "";
       if (!marking) return 0;
       const ix = MZ.regionIndex();
@@ -5206,13 +5212,13 @@
     }
     function setMarking(on2) {
       marking = on2;
-      $10("#btn-contrast").classList.toggle("active", on2);
+      $("#btn-contrast").classList.toggle("active", on2);
       const n4 = markLowContrast();
       if (on2) MZ.toast(n4 ? view === "none" ? t("{n} {n|tile blends|tiles blend} into a neighbour of another color.", { n: n4 }) : t("{n} {n|tile blends|tiles blend} into a neighbour of another color (in this view).", { n: n4 }) : t("No tile blends into its neighbours."));
     }
     function init() {
       buildFilters();
-      const sel2 = $10("#view-filter");
+      const sel2 = $("#view-filter");
       for (const [v, label] of VIEWS) {
         const o = document.createElement("option");
         o.value = v;
@@ -5220,7 +5226,7 @@
         sel2.append(o);
       }
       sel2.onchange = () => setView(sel2.value);
-      $10("#btn-contrast").onclick = () => setMarking(!marking);
+      $("#btn-contrast").onclick = () => setMarking(!marking);
       MZ.on("change", () => {
         if (marking) markLowContrast();
       });
@@ -5234,10 +5240,26 @@
   })();
   Vision.init();
 
-  // src/features/report.ts
-  var $2 = (s) => document.querySelector(s);
-  var { state: state2 } = MZ;
+  // src/lib/html.ts
   var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+  // src/shared/printing.ts
+  function openPrintPage(html2) {
+    const url2 = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
+    const w = window.open(url2, "_blank");
+    if (!w) {
+      toast(t("The browser blocked the print window – allow pop-ups for this page."));
+      return;
+    }
+    setTimeout(() => URL.revokeObjectURL(url2), 6e4);
+  }
+  function legendHTML(title, rows) {
+    return rows.length ? `<h2>${esc(title)} – ${t("colors")}</h2><table>` + rows.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${esc(r.count)}</td><td>${esc(r.area)}</td></tr>`).join("") + "</table>" : "";
+  }
+  var csvText = (header, rows) => [header, ...rows].map((r) => r.join(",")).join("\n") + "\n";
+
+  // src/features/report.ts
+  var { state: state2 } = MZ;
   function colorStats() {
     const map = /* @__PURE__ */ new Map();
     for (const el of MZ.allShapes()) {
@@ -5270,10 +5292,7 @@
     return n4;
   }
   var report = { tileW: 10, tileH: 10, waste: 10 };
-  try {
-    Object.assign(report, JSON.parse(localStorage.getItem("mz-report") || "{}"));
-  } catch {
-  }
+  loadSettings("mz-report", report);
   function reportRows() {
     const stats = colorStats(), nums = colorNumbers(stats.keys());
     const total = [...stats.values()].reduce((s, e) => s + e.area, 0) || 1;
@@ -5292,10 +5311,10 @@
     const expert = state2.mode === "expert";
     const tiles = rows.reduce((s, r) => s + r.tiles, 0);
     const free = unpaintedCount();
-    $2("#rep-summary").innerHTML = t("<b>{n}</b> painted {n|area|areas} in <b>{c}</b> {c|color|colors}", { n: tiles, c: rows.length }) + (free ? " · " + t("<b>{n}</b> not painted yet", { n: free }) : " · " + t("everything is painted")) + " · " + t("page {w} × {h} {unit}", { w: MZ.fmt(d.w), h: MZ.fmt(d.h), unit: u });
+    $("#rep-summary").innerHTML = t("<b>{n}</b> painted {n|area|areas} in <b>{c}</b> {c|color|colors}", { n: tiles, c: rows.length }) + (free ? " · " + t("<b>{n}</b> not painted yet", { n: free }) : " · " + t("everything is painted")) + " · " + t("page {w} × {h} {unit}", { w: MZ.fmt(d.w), h: MZ.fmt(d.h), unit: u });
     const palOpts = state2.palette.map((c, i) => `<option value="${c}" style="background:${c}">#${i + 1} ${c}</option>`).join("");
-    $2("#rep-table").innerHTML = `<thead><tr><th>#</th><th></th><th>${t("Color")}</th><th>${t("Areas")}</th><th>${t("Total area")}</th><th>${t("Share of area")}</th>` + (expert ? `<th title="${t("Pieces of the size set above, plus waste")}">${t("Pieces to buy")}</th>` : "") + `<th>${t("Replace with")}</th></tr></thead><tbody>` + rows.map((r) => `<tr><td>${r.n}</td><td><span class="mini" style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles}</td><td>${MZ.fmtArea(r.area)}</td><td>${r.share.toFixed(1)} %</td>` + (expert ? `<td>${r.pieces || "–"}</td>` : "") + `<td><select data-from="${r.c}"><option value="">—</option>${palOpts}<option value="none">${t("Erase")}</option></select></td></tr>`).join("") + `</tbody>`;
-    if (!rows.length) $2("#rep-table").innerHTML = `<tbody><tr><td>${t("Nothing is painted yet. Use the paint bucket, or “Color tiles from photo”.")}</td></tr></tbody>`;
+    $("#rep-table").innerHTML = `<thead><tr><th>#</th><th></th><th>${t("Color")}</th><th>${t("Areas")}</th><th>${t("Total area")}</th><th>${t("Share of area")}</th>` + (expert ? `<th title="${t("Pieces of the size set above, plus waste")}">${t("Pieces to buy")}</th>` : "") + `<th>${t("Replace with")}</th></tr></thead><tbody>` + rows.map((r) => `<tr><td>${r.n}</td><td><span class="mini" style="background:${r.c}"></span></td><td>${r.c}</td><td>${r.tiles}</td><td>${MZ.fmtArea(r.area)}</td><td>${r.share.toFixed(1)} %</td>` + (expert ? `<td>${r.pieces || "–"}</td>` : "") + `<td><select data-from="${r.c}"><option value="">—</option>${palOpts}<option value="none">${t("Erase")}</option></select></td></tr>`).join("") + `</tbody>`;
+    if (!rows.length) $("#rep-table").innerHTML = `<tbody><tr><td>${t("Nothing is painted yet. Use the paint bucket, or “Color tiles from photo”.")}</td></tr></tbody>`;
     for (const s of document.querySelectorAll("#rep-table select")) {
       s.onchange = () => {
         if (!s.value) return;
@@ -5308,34 +5327,33 @@
     }
     for (const el of document.querySelectorAll(".unit-label")) el.textContent = u;
     const alike = Vision.similarPairs(rows.map((r) => r.c));
-    $2("#rep-alike").innerHTML = alike.length ? `<h3>${t("Colors that may look alike")}</h3><ul>` + alike.map((p) => `<li><span class="mini" style="background:${p.a}"></span> <span class="mini" style="background:${p.b}"></span> ${esc(t("{a} and {b} {how}", { a: p.a, b: p.b, how: Vision.describe(p.views) }))}</li>`).join("") + "</ul>" : "";
+    $("#rep-alike").innerHTML = alike.length ? `<h3>${t("Colors that may look alike")}</h3><ul>` + alike.map((p) => `<li><span class="mini" style="background:${p.a}"></span> <span class="mini" style="background:${p.b}"></span> ${esc(t("{a} and {b} {how}", { a: p.a, b: p.b, how: Vision.describe(p.views) }))}</li>`).join("") + "</ul>" : "";
   }
   function reportCSV() {
     const rows = reportRows(), u = MZ.unit();
-    const lines2 = [["number", "color", "areas", `area_${u}2`, "share_percent", "pieces"].join(",")];
-    for (const r of rows) lines2.push([r.n, r.c, r.tiles, r.area.toFixed(2), r.share.toFixed(2), r.pieces].join(","));
-    MZ.download(new Blob([lines2.join("\n") + "\n"], { type: "text/csv" }), MZ.fileName.replace(/\.svg$/i, "") + "-colors.csv");
+    const text = csvText(
+      ["number", "color", "areas", `area_${u}2`, "share_percent", "pieces"],
+      rows.map((r) => [r.n, r.c, r.tiles, r.area.toFixed(2), r.share.toFixed(2), r.pieces])
+    );
+    MZ.download(new Blob([text], { type: "text/csv" }), MZ.fileName.replace(/\.svg$/i, "") + "-colors.csv");
   }
-  $2("#btn-report").onclick = () => {
-    $2("#rep-tw").value = report.tileW;
-    $2("#rep-th").value = report.tileH;
-    $2("#rep-waste").value = report.waste;
+  $("#btn-report").onclick = () => {
+    $("#rep-tw").value = report.tileW;
+    $("#rep-th").value = report.tileH;
+    $("#rep-waste").value = report.waste;
     renderReport();
-    $2("#dlg-report").showModal();
+    $("#dlg-report").showModal();
   };
   for (const id of ["#rep-tw", "#rep-th", "#rep-waste"]) {
-    $2(id).onchange = () => {
-      report.tileW = +$2("#rep-tw").value || 0;
-      report.tileH = +$2("#rep-th").value || 0;
-      report.waste = +$2("#rep-waste").value || 0;
-      try {
-        localStorage.setItem("mz-report", JSON.stringify(report));
-      } catch {
-      }
+    $(id).onchange = () => {
+      report.tileW = +$("#rep-tw").value || 0;
+      report.tileH = +$("#rep-th").value || 0;
+      report.waste = +$("#rep-waste").value || 0;
+      saveSettings("mz-report", report);
       renderReport();
     };
   }
-  $2("#rep-csv").onclick = reportCSV;
+  $("#rep-csv").onclick = reportCSV;
 
   // src/lib/print.ts
   var PAPERS = {
@@ -5349,7 +5367,6 @@
   var LABEL = 7;
   var OVERLAP = 10;
   var rowName = (r) => (r >= 26 ? rowName(Math.floor(r / 26) - 1) : "") + String.fromCharCode(65 + r % 26);
-  var esc2 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   var n = (v) => String(Math.round(v * 1e3) / 1e3);
   function area(paperKey, orientation) {
     const p = PAPERS[paperKey] || PAPERS.a4;
@@ -5382,7 +5399,7 @@
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
       const marks = shade.map((r) => `<rect x="${n(r[0])}" y="${n(r[1])}" width="${n(r[2])}" height="${n(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n(2 / k)} ${n(2 / k)}" stroke-width="${n(0.3 / k)}"/>`).join("");
       const label = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title;
-      return `<section class="sheet"><div class="label">${esc2(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(" ")}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
+      return `<section class="sheet"><div class="label">${esc(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(" ")}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
     });
   }
   function layoutInfo(L, mode) {
@@ -5394,12 +5411,12 @@
   function overviewSection(box, k, A, rects, heading, extra = "") {
     const s = Math.min(A.aw / (box.w * k), (A.ah - 20) / (box.h * k));
     const stroke = 0.6 / k / s;
-    const marks = rects.map((r) => `<rect x="${n(r.x)}" y="${n(r.y)}" width="${n(r.w)}" height="${n(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n(stroke)}"/><text x="${n(r.x + r.w / 2)}" y="${n(r.y + r.h / 2)}" font-size="${n(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc2(r.label)}</text>`).join("");
-    return `<section class="sheet"><div class="label">${esc2(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box.x, box.y, box.w, box.h].map(n).join(" ")}" style="width:${n(box.w * k * s)}mm;height:${n(box.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
+    const marks = rects.map((r) => `<rect x="${n(r.x)}" y="${n(r.y)}" width="${n(r.w)}" height="${n(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n(stroke)}"/><text x="${n(r.x + r.w / 2)}" y="${n(r.y + r.h / 2)}" font-size="${n(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
+    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box.x, box.y, box.w, box.h].map(n).join(" ")}" style="width:${n(box.w * k * s)}mm;height:${n(box.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
   }
   function page({ art, sections, paper = "a4", orientation = "portrait", title = "Mosaic" }) {
     const p = PAPERS[paper] || PAPERS.a4;
-    return `<!doctype html><html><head><meta charset="utf-8"><title>${esc2(title)}</title><style>
+    return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title><style>
 @page { size: ${p.name} ${orientation}; margin: ${MARGIN}mm; }
 html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
 .sheet { page-break-after: always; break-after: page; }
@@ -5437,9 +5454,7 @@ ${sections.join("\n")}
   }
 
   // src/features/print.ts
-  var $3 = (s) => document.querySelector(s);
   var { state: state3 } = MZ;
-  var esc3 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   function labelSpot(el) {
     const g = MZ.geomOf(el), polys = g.polys.filter((p) => p.closed);
     const pts = MZ.gridSample(g.bbox, (p) => MZ.insideEl(el, p), 80);
@@ -5500,8 +5515,8 @@ ${sections.join("\n")}
     const rows = [...stats.entries()].map(([c, e]) => ({ c, n: nums.get(c), ...e })).sort((a, b) => a.n - b.n);
     return { art, rows, nums };
   }
-  function legendHTML(rows) {
-    return rows.length ? `<h2>${esc3(MZ.fileName)} – ${t("colors")}</h2><table>` + rows.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.c}"></span></td><td>${r.c}</td><td>${t("{n} {n|area|areas}", { n: r.tiles })}</td><td>${esc3(MZ.fmtArea(r.area))}</td></tr>`).join("") + "</table>" : "";
+  function legendHTML2(rows) {
+    return legendHTML(MZ.fileName, rows.map((r) => ({ n: r.n, color: r.c, count: t("{n} {n|area|areas}", { n: r.tiles }), area: MZ.fmtArea(r.area) })));
   }
   function printTemplate() {
     const { art, rows } = printArt(document.querySelector("input[name=print-style]:checked").value);
@@ -5510,45 +5525,35 @@ ${sections.join("\n")}
       art,
       box: { x: d.x, y: d.y, w: d.w, h: d.h },
       unit: MZ.unit(),
-      legend: $3("#print-legend").checked ? legendHTML(rows) : "",
+      legend: $("#print-legend").checked ? legendHTML2(rows) : "",
       title: MZ.fileName.replace(/\.svg$/i, ""),
-      paper: $3("#print-paper").value,
+      paper: $("#print-paper").value,
       mode: document.querySelector("input[name=print-size]:checked").value
     }));
-  }
-  function openPrintPage(html2) {
-    const url2 = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
-    const w = window.open(url2, "_blank");
-    if (!w) {
-      MZ.toast(t("The browser blocked the print window – allow pop-ups for this page."));
-      return;
-    }
-    setTimeout(() => URL.revokeObjectURL(url2), 6e4);
   }
   function updatePrintInfo() {
     const d = state3.doc, k = MM[MZ.unit()] || MM.px;
     const mode = document.querySelector("input[name=print-size]:checked").value;
-    const L = layout(d.w * k, d.h * k, $3("#print-paper").value, mode);
-    $3("#print-info").textContent = layoutInfo(L, mode);
+    const L = layout(d.w * k, d.h * k, $("#print-paper").value, mode);
+    $("#print-info").textContent = layoutInfo(L, mode);
   }
-  $3("#btn-print").onclick = () => {
+  $("#btn-print").onclick = () => {
     updatePrintInfo();
-    $3("#dlg-print").showModal();
+    $("#dlg-print").showModal();
   };
-  var PrintTools = { art: printArt, legend: legendHTML, open: openPrintPage, colorStats, colorNumbers };
+  var PrintTools = { art: printArt, legend: legendHTML2, colorStats, colorNumbers };
   for (const el of document.querySelectorAll("#print-paper, input[name=print-size]")) el.onchange = updatePrintInfo;
-  $3("#print-go").onclick = () => {
-    $3("#dlg-print").close();
+  $("#print-go").onclick = () => {
+    $("#dlg-print").close();
     printTemplate();
   };
 
   // src/shared/history-ui.ts
-  var esc4 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   function initHistoryUI(host, button) {
     const dlg = document.createElement("dialog");
     dlg.id = "dlg-history";
     dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
-<p class="note">${esc4(host.texts.intro)}</p>
+<p class="note">${esc(host.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
     document.body.append(dlg);
@@ -5560,7 +5565,7 @@ ${sections.join("\n")}
     async function render3() {
       thumbs2.forEach((u) => URL.revokeObjectURL(u));
       thumbs2 = [];
-      let versions = [];
+      let versions;
       try {
         versions = await host.list();
       } catch {
@@ -5568,7 +5573,7 @@ ${sections.join("\n")}
         return;
       }
       if (!versions.length) {
-        list.innerHTML = `<p class="note">${esc4(host.texts.empty)}</p>`;
+        list.innerHTML = `<p class="note">${esc(host.texts.empty)}</p>`;
         return;
       }
       list.innerHTML = "";
@@ -5578,7 +5583,7 @@ ${sections.join("\n")}
         const url2 = URL.createObjectURL(host.thumbnail(v));
         thumbs2.push(url2);
         const detail = host.detail(v);
-        row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc4(v.name || "")} · ${esc4(v.note || "")}${detail ? ` · ${esc4(detail)}` : ""}</span></div>`;
+        row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc(v.name || "")} · ${esc(v.note || "")}${detail ? ` · ${esc(detail)}` : ""}</span></div>`;
         const b = document.createElement("button");
         b.textContent = t("Restore");
         b.onclick = async () => {
@@ -5600,7 +5605,6 @@ ${sections.join("\n")}
   }
 
   // src/features/history-ui.ts
-  var $4 = (s) => document.querySelector(s);
   var { state: state4 } = MZ;
   initHistoryUI({
     texts: {
@@ -5612,15 +5616,14 @@ ${sections.join("\n")}
     detail: (v) => v.tiles ? t("{n} painted {n|area|areas}", { n: v.tiles }) : "",
     restore: (v) => MZ.restoreVersion(v),
     saveNow: () => MZ.saveVersion(t("Saved by hand"))
-  }, $4("#btn-history"));
-  $4("#btn-autocolor").onclick = () => PhotoTools.colorTiles({ onlyUnpainted: state4.onlyUnpainted });
+  }, $("#btn-history"));
+  $("#btn-autocolor").onclick = () => PhotoTools.colorTiles({ onlyUnpainted: state4.onlyUnpainted });
 
   // src/features/rulers.ts
-  var $5 = (s) => document.querySelector(s);
   var { state: state5 } = MZ;
-  var rx = $5("#ruler-x");
-  var ry = $5("#ruler-y");
-  var corner = $5("#ruler-corner");
+  var rx = $("#ruler-x");
+  var ry = $("#ruler-y");
+  var corner = $("#ruler-corner");
   function niceStep(raw) {
     const p = Math.pow(10, Math.floor(Math.log10(raw)));
     for (const m of [1, 2, 5, 10]) if (m * p >= raw) return { step: m * p, minor: m === 2 ? 4 : 5 };
@@ -5729,37 +5732,28 @@ ${sections.join("\n")}
   initShell(MZ.stage);
 
   // src/features/automosaic.ts
-  var $6 = (s) => document.querySelector(s);
   var { state: state6 } = MZ;
   var MAX_TILES = 8e3;
   var opts = { style: "square", size: 10, detail: 50, colors: "palette", count: 12, replace: true };
-  try {
-    Object.assign(opts, JSON.parse(localStorage.getItem("mz-automosaic") || "{}"));
-  } catch {
-  }
-  var save2 = () => {
-    try {
-      localStorage.setItem("mz-automosaic", JSON.stringify(opts));
-    } catch {
-    }
-  };
+  loadSettings("mz-automosaic", opts);
+  var save2 = () => saveSettings("mz-automosaic", opts);
   function estimate() {
     const d = state6.doc, per = { square: 1, brick: 2, hex: Math.sqrt(3) / 2, irregular: 1 }[opts.style] || 1;
     const base = d.w * d.h / (opts.size * opts.size * per);
     return Math.round(opts.detail > 0 && opts.style !== "hex" ? base * (0.5 + opts.detail / 100) : base);
   }
   function renderUI() {
-    $6("#am-style").value = opts.style;
-    $6("#am-size").value = opts.size;
-    $6("#am-detail").value = opts.detail;
-    $6("#am-detail-row").hidden = opts.style === "hex";
-    $6("#am-count").value = opts.count;
+    $("#am-style").value = opts.style;
+    $("#am-size").value = opts.size;
+    $("#am-detail").value = opts.detail;
+    $("#am-detail-row").hidden = opts.style === "hex";
+    $("#am-count").value = opts.count;
     for (const r of document.querySelectorAll("input[name=am-colors]")) r.checked = r.value === opts.colors;
-    $6("#am-replace").checked = opts.replace;
-    $6("#am-photo-missing").hidden = !!MZ.refImage();
+    $("#am-replace").checked = opts.replace;
+    $("#am-photo-missing").hidden = !!MZ.refImage();
     const n4 = estimate();
-    $6("#am-estimate").textContent = n4 > MAX_TILES ? t("About {n} tiles – too many, use a bigger tile size.", { n: n4 }) : t("About {n} tiles.", { n: n4 });
-    $6("#am-go").disabled = !MZ.refImage() || n4 > MAX_TILES;
+    $("#am-estimate").textContent = n4 > MAX_TILES ? t("About {n} tiles – too many, use a bigger tile size.", { n: n4 }) : t("About {n} tiles.", { n: n4 });
+    $("#am-go").disabled = !MZ.refImage() || n4 > MAX_TILES;
   }
   async function generate() {
     const px2 = await PhotoTools.pixels();
@@ -5791,11 +5785,11 @@ ${sections.join("\n")}
     MZ.commit();
     MZ.toast(t("Made a mosaic of {n} tiles from the photo.", { n: r ? r.painted : 0 }));
   }
-  $6("#btn-automosaic").onclick = () => {
+  $("#btn-automosaic").onclick = () => {
     renderUI();
-    $6("#dlg-automosaic").showModal();
+    $("#dlg-automosaic").showModal();
   };
-  var sel = $6("#am-style");
+  var sel = $("#am-style");
   for (const [v, label] of STYLES) {
     const o = document.createElement("option");
     o.value = v;
@@ -5807,18 +5801,18 @@ ${sections.join("\n")}
     save2();
     renderUI();
   };
-  $6("#am-size").onchange = (e) => {
+  $("#am-size").onchange = (e) => {
     const v = parseFloat(e.target.value);
     if (v > 0) opts.size = v;
     save2();
     renderUI();
   };
-  $6("#am-detail").oninput = (e) => {
+  $("#am-detail").oninput = (e) => {
     opts.detail = +e.target.value;
     save2();
     renderUI();
   };
-  $6("#am-count").onchange = (e) => {
+  $("#am-count").onchange = (e) => {
     const v = Math.round(+e.target.value);
     if (v >= 2 && v <= 64) opts.count = v;
     save2();
@@ -5830,21 +5824,21 @@ ${sections.join("\n")}
       save2();
     }
   };
-  $6("#am-replace").onchange = (e) => {
+  $("#am-replace").onchange = (e) => {
     opts.replace = e.target.checked;
     save2();
   };
-  $6("#am-load").onclick = () => $6("#ref-file").click();
-  $6("#ref-file").addEventListener("change", () => setTimeout(renderUI, 600));
-  $6("#am-go").onclick = async () => {
-    $6("#am-go").disabled = true;
-    $6("#am-go").textContent = t("Working…");
+  $("#am-load").onclick = () => $("#ref-file").click();
+  $("#ref-file").addEventListener("change", () => setTimeout(renderUI, 600));
+  $("#am-go").onclick = async () => {
+    $("#am-go").disabled = true;
+    $("#am-go").textContent = t("Working…");
     await new Promise((r) => setTimeout(r, 30));
     try {
       await generate();
     } finally {
-      $6("#am-go").textContent = t("Make mosaic");
-      $6("#dlg-automosaic").close();
+      $("#am-go").textContent = t("Make mosaic");
+      $("#dlg-automosaic").close();
     }
   };
 
@@ -5873,20 +5867,10 @@ ${sections.join("\n")}
 
   // src/features/layplan.ts
   var LayPlan = (() => {
-    const $10 = (s) => document.querySelector(s);
     const { state: state11 } = MZ;
-    const esc5 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     const opts3 = { w: 0, h: 0, numbers: true, grid: true, paper: "a4" };
-    try {
-      Object.assign(opts3, JSON.parse(localStorage.getItem("mz-layplan") || "{}"));
-    } catch {
-    }
-    const save4 = () => {
-      try {
-        localStorage.setItem("mz-layplan", JSON.stringify(opts3));
-      } catch {
-      }
-    };
+    loadSettings("mz-layplan", opts3);
+    const save4 = () => saveSettings("mz-layplan", opts3);
     const box = () => ({ x: state11.doc.x, y: state11.doc.y, w: state11.doc.w, h: state11.doc.h });
     const k = () => MM[MZ.unit()] || MM.px;
     const panelSize = () => ({ w: opts3.w > 0 ? opts3.w : 300 / k(), h: opts3.h > 0 ? opts3.h : 300 / k() });
@@ -5895,7 +5879,7 @@ ${sections.join("\n")}
       return panels(box(), s.w, s.h);
     };
     function drawGrid(show) {
-      const g = $10("#mz-panels");
+      const g = $("#mz-panels");
       g.innerHTML = "";
       if (!show) return;
       const NS = "http://www.w3.org/2000/svg";
@@ -5915,14 +5899,14 @@ ${sections.join("\n")}
     }
     function renderUI2() {
       const s = panelSize(), P = plan(), u = MZ.unit();
-      $10("#lp-w").value = MZ.fmt(s.w);
-      $10("#lp-h").value = MZ.fmt(s.h);
+      $("#lp-w").value = MZ.fmt(s.w);
+      $("#lp-h").value = MZ.fmt(s.h);
       for (const el of document.querySelectorAll("#dlg-layplan .unit-label")) el.textContent = u;
-      $10("#lp-numbers").checked = opts3.numbers;
-      $10("#lp-grid").checked = opts3.grid;
-      $10("#lp-paper").value = opts3.paper;
+      $("#lp-numbers").checked = opts3.numbers;
+      $("#lp-grid").checked = opts3.grid;
+      $("#lp-paper").value = opts3.paper;
       const L = layout(s.w * k(), s.h * k(), opts3.paper, "real");
-      $10("#lp-info").textContent = t("{n} {n|panel|panels} ({rows} × {cols}) · each printed at real size on {s} {paper} {s|sheet|sheets}.", { n: P.panels.length, rows: P.rows, cols: P.cols, s: L.sheets.length, paper: L.paper.name });
+      $("#lp-info").textContent = t("{n} {n|panel|panels} ({rows} × {cols}) · each printed at real size on {s} {paper} {s|sheet|sheets}.", { n: P.panels.length, rows: P.rows, cols: P.cols, s: L.sheets.length, paper: L.paper.name });
       drawGrid(opts3.grid);
     }
     function tiles() {
@@ -5959,61 +5943,52 @@ ${sections.join("\n")}
       const counts = countByPanel(P, tiles());
       const chip = (c) => `<span style="background:${c}"></span>`;
       const table = `<table class="counts"><tr><td class="n">${t("Panel")}</td>${rows.map((r) => `<td class="n">${chip(r.c)} ${r.n}</td>`).join("")}</tr>` + P.panels.map((q) => `<tr><td class="n">${q.index}</td>${rows.map((r) => `<td>${counts.get(q.index).get(r.c) || ""}</td>`).join("")}</tr>`).join("") + "</table>";
-      sections.push(`<section class="sheet"><div class="label">${esc5(title)} – ${t("tiles per panel and color")}</div>${table}</section>`);
+      sections.push(`<section class="sheet"><div class="label">${esc(title)} – ${t("tiles per panel and color")}</div>${table}</section>`);
       if (rows.length) sections.push(`<section class="sheet legend">${PrintTools.legend(rows)}</section>`);
-      PrintTools.open(page({ art, sections, paper: opts3.paper, orientation, title: `${title} – ${t("laying plan")}` }));
+      openPrintPage(page({ art, sections, paper: opts3.paper, orientation, title: `${title} – ${t("laying plan")}` }));
       void nums;
     }
-    $10("#btn-layplan").onclick = () => {
+    $("#btn-layplan").onclick = () => {
       renderUI2();
-      $10("#dlg-layplan").showModal();
+      $("#dlg-layplan").showModal();
     };
-    $10("#dlg-layplan").addEventListener("close", () => drawGrid(false));
+    $("#dlg-layplan").addEventListener("close", () => drawGrid(false));
     for (const id of ["#lp-w", "#lp-h"]) {
-      $10(id).onchange = () => {
-        const w = parseFloat($10("#lp-w").value), h = parseFloat($10("#lp-h").value);
+      $(id).onchange = () => {
+        const w = parseFloat($("#lp-w").value), h = parseFloat($("#lp-h").value);
         if (w > 0) opts3.w = w;
         if (h > 0) opts3.h = h;
         save4();
         renderUI2();
       };
     }
-    $10("#lp-numbers").onchange = (e) => {
+    $("#lp-numbers").onchange = (e) => {
       opts3.numbers = e.target.checked;
       save4();
     };
-    $10("#lp-grid").onchange = (e) => {
+    $("#lp-grid").onchange = (e) => {
       opts3.grid = e.target.checked;
       save4();
       renderUI2();
     };
-    $10("#lp-paper").onchange = (e) => {
+    $("#lp-paper").onchange = (e) => {
       opts3.paper = e.target.value;
       save4();
       renderUI2();
     };
-    $10("#lp-go").onclick = () => {
+    $("#lp-go").onclick = () => {
       drawGrid(false);
-      $10("#dlg-layplan").close();
+      $("#dlg-layplan").close();
       printPlan();
     };
     return { panels, panelAt, countByPanel };
   })();
 
   // src/features/mix.ts
-  var $7 = (s) => document.querySelector(s);
   var { state: state7 } = MZ;
   var mix = { on: false, colors: [], avoid: true };
-  try {
-    Object.assign(mix, JSON.parse(localStorage.getItem("mz-mix") || "{}"));
-  } catch {
-  }
-  var save3 = () => {
-    try {
-      localStorage.setItem("mz-mix", JSON.stringify(mix));
-    } catch {
-    }
-  };
+  loadSettings("mz-mix", mix);
+  var save3 = () => saveSettings("mz-mix", mix);
   var active = () => mix.on && mix.colors.length >= 2;
   function pick(reg) {
     let options = mix.colors;
@@ -6026,9 +6001,9 @@ ${sections.join("\n")}
   var chooser = (q, face, ctx2) => pick(face ? ctx2.ix.region(face) : null);
   function render() {
     MZ.setFillChooser(active() ? chooser : null);
-    $7("#mix-on").checked = mix.on;
-    $7("#mix-avoid").checked = mix.avoid;
-    const box = $7("#mix-colors");
+    $("#mix-on").checked = mix.on;
+    $("#mix-avoid").checked = mix.avoid;
+    const box = $("#mix-colors");
     box.innerHTML = "";
     for (const c of mix.colors) {
       const chip = document.createElement("span");
@@ -6038,8 +6013,8 @@ ${sections.join("\n")}
       chip.onclick = () => toggle(c);
       box.append(chip);
     }
-    $7("#mix-hint").textContent = mix.colors.length < 2 ? t("Shift+click two or more swatches to put them in the mix.") : t("Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.", { n: mix.colors.length });
-    $7("#btn-mix-sel").hidden = mix.colors.length < 2;
+    $("#mix-hint").textContent = mix.colors.length < 2 ? t("Shift+click two or more swatches to put them in the mix.") : t("Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.", { n: mix.colors.length });
+    $("#btn-mix-sel").hidden = mix.colors.length < 2;
     markSwatches();
     save3();
   }
@@ -6074,21 +6049,20 @@ ${sections.join("\n")}
     if (c) toggle(c);
   });
   MZ.on("palette", markSwatches);
-  $7("#mix-on").onchange = (e) => {
+  $("#mix-on").onchange = (e) => {
     mix.on = e.target.checked;
     if (mix.on && mix.colors.length < 2) MZ.toast(t("Shift+click two or more swatches to put them in the mix."));
     render();
   };
-  $7("#mix-avoid").onchange = (e) => {
+  $("#mix-avoid").onchange = (e) => {
     mix.avoid = e.target.checked;
     render();
   };
-  $7("#btn-mix-sel").onclick = mixSelection;
+  $("#btn-mix-sel").onclick = mixSelection;
   render();
 
   // src/features/pages.ts
   var Pages = (() => {
-    const $10 = (s) => document.querySelector(s);
     const { state: state11 } = MZ;
     const attr = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     const XML = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -6204,7 +6178,7 @@ ${others}
       MZ.docChanged();
     }
     function closeMenu() {
-      const m = $10("#page-menu");
+      const m = $("#page-menu");
       if (m) m.remove();
     }
     function openMenu(i, anchor) {
@@ -6236,7 +6210,7 @@ ${others}
       if (!e.target.closest("#page-menu, .page-more")) closeMenu();
     });
     function render3() {
-      const box = $10("#page-tabs");
+      const box = $("#page-tabs");
       box.innerHTML = "";
       pages.forEach((p, i) => {
         const tab = document.createElement("div");
@@ -6258,7 +6232,7 @@ ${others}
         box.append(tab);
       });
     }
-    $10("#page-add").onclick = () => add(false);
+    $("#page-add").onclick = () => add(false);
     render3();
     return { switchTo, add, get count() {
       return pages.length;
@@ -6372,7 +6346,6 @@ ${others}
   })();
 
   // src/features/image-clipboard.ts
-  var $8 = (s) => document.querySelector(s);
   var { state: state8 } = MZ;
   function imageSize(w, h) {
     return Math.round(clamp(Math.max(w, h) * state8.view.s * (window.devicePixelRatio || 1), 1024, 4096));
@@ -6386,7 +6359,7 @@ ${others}
     const ok = await copyImage(svgToPng(svg2, imageSize(state8.doc.w, state8.doc.h)));
     MZ.toast(ok ? t("Copied the drawing as an image – paste it into the raster app or any other program.") : t("Could not copy the image (the browser refused)."));
   }
-  $8("#btn-copy-img").onclick = () => {
+  $("#btn-copy-img").onclick = () => {
     if (state8.selection.size) copySelection(false, false);
     else copyDrawing();
   };
@@ -6399,7 +6372,6 @@ ${others}
   });
 
   // src/features/motifs.ts
-  var $9 = (s) => document.querySelector(s);
   var { state: state9 } = MZ;
   var lastPointer = null;
   var internalClip = null;
@@ -6516,7 +6488,7 @@ ${others}
   function render2() {
     thumbs.forEach((u) => URL.revokeObjectURL(u));
     thumbs = [];
-    const list = $9("#motif-list");
+    const list = $("#motif-list");
     list.innerHTML = "";
     if (!motifs.length) {
       list.innerHTML = `<p class="note">${t("No motifs yet. Select some shapes and save them.")}</p>`;
@@ -6566,7 +6538,7 @@ ${others}
     if (lastPointer) preview(lastPointer);
   }
   function preview(p) {
-    const g = $9("#mz-preview");
+    const g = $("#mz-preview");
     g.innerHTML = "";
     if (!placing) return;
     const at = MZ.snapPoint(p, {}), m = Snippets.placement(placing.snip, at, placing.angle);
@@ -6609,16 +6581,16 @@ ${others}
       render2();
     }
   });
-  $9("#btn-motif-save").onclick = saveSelection;
-  $9("#btn-motif-export").onclick = () => {
+  $("#btn-motif-save").onclick = saveSelection;
+  $("#btn-motif-export").onclick = () => {
     if (!motifs.length) {
       MZ.toast(t("There are no motifs to export yet."));
       return;
     }
     MZ.download(new Blob([JSON.stringify({ mosaicMotifs: 1, motifs }, null, 1)], { type: "application/json" }), "motifs.json");
   };
-  $9("#btn-motif-import").onclick = () => $9("#motif-file").click();
-  $9("#motif-file").onchange = async (e) => {
+  $("#btn-motif-import").onclick = () => $("#motif-file").click();
+  $("#motif-file").onchange = async (e) => {
     const f = e.target.files[0];
     if (!f) return;
     const text = await f.text();
@@ -7951,11 +7923,8 @@ ${shapes.join("\n")}
     magnet: 0,
     magnetDepth: 2
   };
-  try {
-    Object.assign(opts2, JSON.parse(lsGet("mz-3d") || "{}"));
-  } catch {
-  }
-  var saveOpts = () => lsSet("mz-3d", JSON.stringify(opts2));
+  loadSettings("mz-3d", opts2);
+  var saveOpts = () => saveSettings("mz-3d", opts2);
   var f2 = (v) => String(+v.toFixed(2));
   var DIALOG = `
 <form method="dialog" class="dlg-head"><h2>${t("3D print")}</h2><button title="${t("Close")}">✕</button></form>
@@ -8493,16 +8462,15 @@ ${shapes.join("\n")}
   // src/features/share.ts
   var Share = (() => {
     const LONG = 64 * 1024, MAX = 2 * 1024 * 1024;
-    const $10 = (s) => document.querySelector(s);
     let link = "";
     async function makeLink() {
-      const svg2 = MZ.buildSVGString({ photo: $10("#share-photo").checked }).replace(/>\n</g, "><");
+      const svg2 = MZ.buildSVGString({ photo: $("#share-photo").checked }).replace(/>\n</g, "><");
       const packed = await pack(svg2);
       link = `${location.origin}${location.pathname}#view=${packed}`;
       const kb = Math.round(link.length / 1024);
-      $10("#share-link").value = link;
-      $10("#share-size").textContent = link.length > MAX ? t("The link would be {kb} KB – too long. Share the file instead, or leave out the photo.", { kb }) : link.length > LONG ? t("The link is {kb} KB – long links can get cut off in some messengers; sharing the file is safer. Anyone with it can view the mosaic and make their own copy.", { kb }) : t("The link is {kb} KB. Anyone with it can view the mosaic and make their own copy.", { kb });
-      $10("#share-copy").disabled = link.length > MAX;
+      $("#share-link").value = link;
+      $("#share-size").textContent = link.length > MAX ? t("The link would be {kb} KB – too long. Share the file instead, or leave out the photo.", { kb }) : link.length > LONG ? t("The link is {kb} KB – long links can get cut off in some messengers; sharing the file is safer. Anyone with it can view the mosaic and make their own copy.", { kb }) : t("The link is {kb} KB. Anyone with it can view the mosaic and make their own copy.", { kb });
+      $("#share-copy").disabled = link.length > MAX;
     }
     async function shareFile() {
       const file = new File([MZ.buildSVGString()], MZ.fileName, { type: "image/svg+xml" });
@@ -8512,24 +8480,24 @@ ${shapes.join("\n")}
         if (e.name !== "AbortError") MZ.toast(t("Sharing failed."));
       }
     }
-    $10("#btn-share").onclick = async () => {
-      $10("#dlg-share").showModal();
+    $("#btn-share").onclick = async () => {
+      $("#dlg-share").showModal();
       await makeLink();
     };
-    $10("#share-photo").onchange = makeLink;
-    $10("#share-copy").onclick = async () => {
+    $("#share-photo").onchange = makeLink;
+    $("#share-copy").onclick = async () => {
       try {
         await navigator.clipboard.writeText(link);
         MZ.toast(t("Link copied."));
       } catch {
-        $10("#share-link").select();
+        $("#share-link").select();
         document.execCommand("copy");
         MZ.toast(t("Link copied."));
       }
     };
     const canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [new File(["x"], "x.svg", { type: "image/svg+xml" })] }));
-    $10("#share-file").hidden = !canShareFiles;
-    $10("#share-file").onclick = shareFile;
+    $("#share-file").hidden = !canShareFiles;
+    $("#share-file").onclick = shareFile;
     let viewing = false;
     const blockKeys = (e) => {
       if (!viewing || MZ.typingIn(e.target)) return;
@@ -8574,8 +8542,8 @@ ${shapes.join("\n")}
       history.replaceState(null, "", location.pathname + location.search);
       location.reload();
     }
-    $10("#viewer-copy").onclick = makeCopy;
-    $10("#viewer-close").onclick = closeViewer;
+    $("#viewer-copy").onclick = makeCopy;
+    $("#viewer-close").onclick = closeViewer;
     const fromHash = () => {
       const m = /^#view=([zu][A-Za-z0-9_-]+)$/.exec(location.hash);
       if (m) openShared(m[1]);

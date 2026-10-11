@@ -3,11 +3,10 @@
    (in core/input.ts); copied shapes keep pasting as shapes (features/motifs.ts). */
 import { MZ } from '../core/api.ts';
 import { canCopyImages, copyImage, svgToPng } from '../shared/clipboard.ts';
-import { clamp } from '../shared/ui.ts';
+import { $, clamp } from '../shared/ui.ts';
 import { copySelection } from './motifs.ts';
 import { t } from '../shared/i18n.ts';
 
-const $ = (s: string): any => document.querySelector(s);
 const { state } = MZ;
 
 /** Pixel size for a copied image: about as sharp as on screen, at least 1024 and at most 4096 px. */

@@ -7,9 +7,10 @@ import { state, rt, savePrefs } from './state.ts';
 import { doc, getImage } from './canvas.ts';
 import { colorRows, mmPerPixel, type ColorRow } from './report.ts';
 import { t, num } from '../shared/i18n.ts';
+import * as Shared from '../shared/printing.ts';
+import { openPrintPage } from '../shared/printing.ts';
 
 const MAX_PIECES = 20000;
-const esc = (s: unknown) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const n = (v: number) => String(Math.round(v * 1000) / 1000);
 const title = () => rt.fileName.replace(/\.[a-z0-9]+$/i, '');
 
@@ -39,15 +40,7 @@ function printArt(style: string): { art: string; rows: ColorRow[] } | null {
 }
 function legendHTML(rows: ColorRow[]): string {
   const area = (px: number) => `${num(px * mmPerPixel() ** 2 / 100, 1)} cm²`;
-  return rows.length ? `<h2>${esc(title())} – ${t('colors')}</h2><table>`
-    + rows.map(r => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${t('{n} {n|piece|pieces}', { n: r.pieces })}</td><td>${area(r.pixels)}</td></tr>`).join('')
-    + '</table>' : '';
-}
-function openPrintPage(html: string): void {
-  const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
-  const w = window.open(url, '_blank');
-  if (!w) { toast(t('The browser blocked the print window – allow pop-ups for this page.')); return; }
-  setTimeout(() => URL.revokeObjectURL(url), 60000);
+  return Shared.legendHTML(title(), rows.map(r => ({ n: r.n, color: r.color, count: t('{n} {n|piece|pieces}', { n: r.pieces }), area: area(r.pixels) })));
 }
 const mode = () => (document.querySelector('input[name=print-size]:checked') as HTMLInputElement).value;
 function updateInfo(): void {

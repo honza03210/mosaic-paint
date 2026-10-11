@@ -4,12 +4,12 @@
 import { MZ } from '../core/api.ts';
 import { pack, unpack } from '../lib/pack.ts';
 import { t } from '../shared/i18n.ts';
+import { $ } from '../shared/ui.ts';
 
 export const Share = (() => {
   const LONG = 64 * 1024, MAX = 2 * 1024 * 1024; // links get unwieldy above ~64 KB; browsers stop at a few MB
 
   // ---- dialog -------------------------------------------------------------------------------
-  const $ = (s) => document.querySelector<any>(s);
   let link = '';
   async function makeLink() {
     const svg = MZ.buildSVGString({ photo: $('#share-photo').checked }).replace(/>\n</g, '><');

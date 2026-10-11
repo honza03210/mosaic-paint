@@ -3,9 +3,9 @@
    undo history and view. A saved file is the current page, with the others in a hidden group. */
 import { MZ } from '../core/api.ts';
 import { t } from '../shared/i18n.ts';
+import { $ } from '../shared/ui.ts';
 
 export const Pages = (() => {
-  const $ = (s) => document.querySelector<any>(s);
   const { state } = MZ;
   const attr = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const XML = '<?xml version="1.0" encoding="UTF-8"?>\n';

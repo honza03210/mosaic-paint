@@ -9,7 +9,7 @@ import { doc, dctx } from './canvas.ts';
 import { commit } from './history.ts';
 import { place } from './select.ts';
 import { addPalette, suggestColors } from './palette.ts';
-import { t, num } from '../shared/i18n.ts';
+import { t } from '../shared/i18n.ts';
 
 /** The area to work on: the selection, or the whole image. */
 function region(): R.Box {

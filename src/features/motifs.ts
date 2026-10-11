@@ -6,8 +6,8 @@ import { Snippets } from './snippets.ts';
 import { canCopyImages, copyImage, svgToPng, svgSize } from '../shared/clipboard.ts';
 import { imageSize } from './image-clipboard.ts';
 import { t } from '../shared/i18n.ts';
+import { $ } from '../shared/ui.ts';
 
-const $ = (s) => document.querySelector<any>(s);
 const { state } = MZ;
 let lastPointer = null, internalClip = null;
 

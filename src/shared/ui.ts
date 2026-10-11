@@ -29,6 +29,11 @@ export function working(label: string): { set(f: number): void; done(): void } {
 }
 export function lsGet(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } }
 export function lsSet(k: string, v: string): boolean { try { localStorage.setItem(k, v); return true; } catch { return false; } }
+/** Settings remembered in the browser: fills `into` with what was saved under the key, if it can be read. */
+export function loadSettings(key: string, into: object): void {
+  try { Object.assign(into, JSON.parse(lsGet(key) || '{}')); } catch { /* unreadable: keep the defaults */ }
+}
+export const saveSettings = (key: string, value: unknown): boolean => lsSet(key, JSON.stringify(value));
 export function download(blob: Blob, name: string): void {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
