@@ -2,6 +2,7 @@
 // filament changes. The downloaded STL is read back and measured.
 const { test } = require('@playwright/test');
 const fs = require('fs');
+const zlib = require('zlib');
 const h = require('./helpers');
 const { expect } = h;
 
@@ -23,10 +24,29 @@ function readStl(file) {
   }
   return { n, lo: lo.map(v => +v.toFixed(3)), hi: hi.map(v => +v.toFixed(3)), tops: [...tops].sort((a, c) => a - c) };
 }
+/** The files in a ZIP archive (from its central directory), as text. */
+function unzip(file) {
+  const b = fs.readFileSync(file), out = {};
+  const end = b.lastIndexOf(Buffer.from([0x50, 0x4b, 0x05, 0x06]));
+  let p = b.readUInt32LE(end + 16);
+  for (let i = 0; i < b.readUInt16LE(end + 10); i++) {
+    const method = b.readUInt16LE(p + 10), size = b.readUInt32LE(p + 20), nameLen = b.readUInt16LE(p + 28);
+    const extra = b.readUInt16LE(p + 30), comment = b.readUInt16LE(p + 32), local = b.readUInt32LE(p + 42);
+    const name = b.toString('utf8', p + 46, p + 46 + nameLen);
+    const start = local + 30 + b.readUInt16LE(local + 26) + b.readUInt16LE(local + 28), data = b.subarray(start, start + size);
+    out[name] = (method === 8 ? zlib.inflateRawSync(data) : data).toString('utf8');
+    p += 46 + nameLen + extra + comment;
+  }
+  return out;
+}
 async function downloads(page) {
-  const [stl] = await Promise.all([page.waitForEvent('download'), page.click('#m3-go')]);
+  const [m3] = await Promise.all([page.waitForEvent('download'), page.click('#m3-go')]);
+  const [stl] = await Promise.all([page.waitForEvent('download'), page.click('#m3-stl')]);
   const [plan] = await Promise.all([page.waitForEvent('download'), page.click('#m3-plan')]);
-  return { stl: readStl(await stl.path()), stlName: stl.suggestedFilename(), plan: fs.readFileSync(await plan.path(), 'utf8') };
+  return {
+    stl: readStl(await stl.path()), stlName: stl.suggestedFilename(), plan: fs.readFileSync(await plan.path(), 'utf8'),
+    threeMf: unzip(await m3.path()), threeMfName: m3.suggestedFilename(),
+  };
 }
 
 test('vector: the page at real size, one height per color, grout lines lowest', async ({ page }) => {
@@ -46,8 +66,16 @@ test('vector: the page at real size, one height per color, grout lines lowest', 
   await expect(page.locator('#m3-order .m3-row').first()).toContainText('#222222');
   await expect(page.locator('#m3-order .m3-row').nth(1)).toContainText('#264653');
   await page.click('#m3-light');
-  const { stl, stlName, plan } = await downloads(page);
+  const { stl, stlName, plan, threeMf, threeMfName } = await downloads(page);
   expect(stlName).toBe('mosaic.stl');
+  expect(threeMfName).toBe('mosaic.3mf');
+  expect(Object.keys(threeMf).sort()).toEqual(['3D/3dmodel.model', 'Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml',
+    '[Content_Types].xml', '_rels/.rels']);
+  // the same triangles as the STL, colored by band; the filament changes at the plan's heights
+  expect((threeMf['3D/3dmodel.model'].match(/<triangle /g) || []).length).toBe(stl.n);
+  expect(threeMf['3D/3dmodel.model']).toContain('<base name="#264653" displaycolor="#264653FF"/>');
+  const changes = [...threeMf['Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml'].matchAll(/print_z="([\d.]+)"[^>]*color="(#\w+)"/g)].map(m => [+m[1], m[2]]);
+  expect(changes).toEqual([[1.4, '#f4a261'], [2, '#264653']]);
   expect(stl.n).toBeLessThan(20 * 12); // equal colors are merged into a few boxes
   expect(stl.lo).toEqual([0, 0, 0]);
   expect(stl.hi).toEqual([100, 100, 2.4]);

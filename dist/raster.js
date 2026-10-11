@@ -512,9 +512,9 @@
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
       const n = c ? counts2.get(c) || 0 : 0;
-      const num = c ? st.palette.indexOf(c) + 1 : 0;
+      const num2 = c ? st.palette.indexOf(c) + 1 : 0;
       const N = host.names;
-      d.title = c ? `#${num}  ${c}${n ? ` – used by ${host.usage(n)}` : ""}
+      d.title = c ? `#${num2}  ${c}${n ? ` – used by ${host.usage(n)}` : ""}
 Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       let b = d.querySelector(".count");
       if (n && !b) {
@@ -1915,7 +1915,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   function bindMosaic() {
     const m = state.mosaic;
-    const num = (id, key, min) => {
+    const num2 = (id, key, min) => {
       const i = $(id);
       i.value = m[key];
       i.onchange = () => {
@@ -1928,9 +1928,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         estimate();
       };
     };
-    num("#mo-tile", "tile", 2);
-    num("#mo-grout", "grout", 0);
-    num("#mo-count", "count", 2);
+    num2("#mo-tile", "tile", 2);
+    num2("#mo-grout", "grout", 0);
+    num2("#mo-count", "count", 2);
     $("#mo-grout-color").value = m.groutColor;
     $("#mo-grout-color").onchange = (e) => {
       m.groutColor = e.target.value;
@@ -2403,7 +2403,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   function modelBoxes(grid, w, h, cell, s) {
     const lh = s.layerHeight, base = s.baseLayers * lh, H = h * cell, out = [];
-    if (base > 0) out.push({ x0: 0, y0: 0, z0: 0, x1: w * cell, y1: H, z1: base });
+    if (base > 0) out.push({ x0: 0, y0: 0, z0: 0, x1: w * cell, y1: H, z1: base, level: 0 });
     for (const r of greedyRects(grid, w, h)) {
       out.push({
         x0: r.x * cell,
@@ -2411,37 +2411,46 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         y0: H - (r.y + r.h) * cell,
         y1: H - r.y * cell,
         z0: base,
-        z1: topLayer(r.level, s) * lh
+        z1: topLayer(r.level, s) * lh,
+        level: r.level
       });
     }
     return out;
   }
-  function boxTriangles(b) {
-    const { x0, y0, z0, x1, y1, z1 } = b;
-    return [
-      [0, 0, -1, x0, y0, z0, x0, y1, z0, x1, y1, z0],
-      [0, 0, -1, x0, y0, z0, x1, y1, z0, x1, y0, z0],
-      [0, 0, 1, x0, y0, z1, x1, y0, z1, x1, y1, z1],
-      [0, 0, 1, x0, y0, z1, x1, y1, z1, x0, y1, z1],
-      [0, -1, 0, x0, y0, z0, x1, y0, z0, x1, y0, z1],
-      [0, -1, 0, x0, y0, z0, x1, y0, z1, x0, y0, z1],
-      [0, 1, 0, x0, y1, z0, x0, y1, z1, x1, y1, z1],
-      [0, 1, 0, x0, y1, z0, x1, y1, z1, x1, y1, z0],
-      [-1, 0, 0, x0, y0, z0, x0, y0, z1, x0, y1, z1],
-      [-1, 0, 0, x0, y0, z0, x0, y1, z1, x0, y1, z0],
-      [1, 0, 0, x1, y0, z0, x1, y1, z0, x1, y1, z1],
-      [1, 0, 0, x1, y0, z0, x1, y1, z1, x1, y0, z1]
-    ];
+  function boxMesh(boxes) {
+    const vertices = [], triangles = [], levels = [];
+    const FACES = [[0, 2, 3], [0, 3, 1], [4, 5, 7], [4, 7, 6], [0, 1, 5], [0, 5, 4], [2, 6, 7], [2, 7, 3], [0, 4, 6], [0, 6, 2], [1, 3, 7], [1, 7, 5]];
+    for (const b of boxes) {
+      const o = vertices.length / 3;
+      for (let k = 0; k < 8; k++) vertices.push(k & 1 ? b.x1 : b.x0, k & 2 ? b.y1 : b.y0, k & 4 ? b.z1 : b.z0);
+      for (const t of FACES) {
+        triangles.push(o + t[0], o + t[1], o + t[2]);
+        levels.push(b.level);
+      }
+    }
+    return { vertices, triangles, levels };
   }
-  function stl(boxes, name = "Mosaic Paint") {
-    const n = boxes.length * 12, buf = new ArrayBuffer(84 + n * 50), dv = new DataView(buf);
+  function stl(mesh, name = "Mosaic Paint") {
+    const V = mesh.vertices, T = mesh.triangles, n = T.length / 3, buf = new ArrayBuffer(84 + n * 50), dv = new DataView(buf);
     const header = `${name} – multi-color by layer`.slice(0, 80);
     for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
     dv.setUint32(80, n, true);
     let o = 84;
-    for (const b of boxes) for (const t of boxTriangles(b)) {
-      for (let k = 0; k < 12; k++) {
-        dv.setFloat32(o, t[k], true);
+    for (let t = 0; t < n; t++) {
+      const p = [0, 1, 2].map((k) => T[t * 3 + k] * 3);
+      const ux = V[p[1]] - V[p[0]], uy = V[p[1] + 1] - V[p[0] + 1], uz = V[p[1] + 2] - V[p[0] + 2];
+      const vx = V[p[2]] - V[p[0]], vy = V[p[2] + 1] - V[p[0] + 1], vz = V[p[2] + 2] - V[p[0] + 2];
+      let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+      const L = Math.hypot(nx, ny, nz) || 1;
+      nx /= L;
+      ny /= L;
+      nz /= L;
+      for (const v of [nx, ny, nz]) {
+        dv.setFloat32(o, v, true);
+        o += 4;
+      }
+      for (const q of p) for (let k = 0; k < 3; k++) {
+        dv.setFloat32(o, V[q + k], true);
         o += 4;
       }
       dv.setUint16(o, 0, true);
@@ -2456,6 +2465,119 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     });
   }
   var modelHeight = (nColors, s) => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
+  var xmlAttr = (v) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  var num = (v) => String(+v.toFixed(4));
+  function modelXml(mesh, colors, name) {
+    const V = mesh.vertices, T = mesh.triangles, out = [];
+    out.push(
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">',
+      `<metadata name="Title">${xmlAttr(name)}</metadata>`,
+      '<metadata name="Application">Mosaic Paint</metadata>',
+      "<resources>",
+      '<basematerials id="1">'
+    );
+    for (const c of colors) out.push(`<base name="${xmlAttr(c)}" displaycolor="${c.toUpperCase()}FF"/>`);
+    out.push("</basematerials>", `<object id="2" type="model" pid="1" pindex="0" name="${xmlAttr(name)}">`, "<mesh>", "<vertices>");
+    for (let i = 0; i < V.length; i += 3) out.push(`<vertex x="${num(V[i])}" y="${num(V[i + 1])}" z="${num(V[i + 2])}"/>`);
+    out.push("</vertices>", "<triangles>");
+    for (let t = 0; t < T.length; t += 3) out.push(`<triangle v1="${T[t]}" v2="${T[t + 1]}" v3="${T[t + 2]}" pid="1" p1="${Math.max(0, mesh.levels[t / 3])}"/>`);
+    out.push("</triangles>", "</mesh>", "</object>", "</resources>", "<build>", '<item objectid="2"/>', "</build>", "</model>");
+    return out.join("\n");
+  }
+  function colorChangeXml(plan) {
+    return [
+      '<?xml version="1.0" encoding="utf-8"?>',
+      "<custom_gcodes_per_print_z>",
+      ...plan.filter((p) => p.z != null).map((p) => `<code print_z="${p.z}" type="0" extruder="1" color="${p.color}" extra="" gcode="M600"/>`),
+      '<mode value="SingleExtruder"/>',
+      "</custom_gcodes_per_print_z>"
+    ].join("\n");
+  }
+  function threeMfFiles(mesh, plan, name) {
+    return [
+      { name: "[Content_Types].xml", data: '<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>' },
+      { name: "_rels/.rels", data: '<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>' },
+      { name: "3D/3dmodel.model", data: modelXml(mesh, plan.map((p) => p.color), name) },
+      { name: "Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml", data: colorChangeXml(plan) }
+    ];
+  }
+
+  // src/lib/zip.ts
+  var crcTable = null;
+  function crc32(data) {
+    if (!crcTable) {
+      crcTable = new Uint32Array(256);
+      for (let n = 0; n < 256; n++) {
+        let c2 = n;
+        for (let k = 0; k < 8; k++) c2 = c2 & 1 ? 3988292384 ^ c2 >>> 1 : c2 >>> 1;
+        crcTable[n] = c2 >>> 0;
+      }
+    }
+    let c = 4294967295;
+    for (let i = 0; i < data.length; i++) c = crcTable[(c ^ data[i]) & 255] ^ c >>> 8;
+    return (c ^ 4294967295) >>> 0;
+  }
+  async function deflateRaw(data) {
+    if (typeof CompressionStream === "undefined") return null;
+    try {
+      const s = new Blob([data]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+      return new Uint8Array(await new Response(s).arrayBuffer());
+    } catch {
+      return null;
+    }
+  }
+  async function zip(entries, { compress = true } = {}) {
+    const enc = new TextEncoder(), parts = [], central = [];
+    let offset = 0;
+    for (const e of entries) {
+      const name = enc.encode(e.name), raw = typeof e.data === "string" ? enc.encode(e.data) : e.data;
+      const crc = crc32(raw), packed = compress ? await deflateRaw(raw) : null;
+      const deflated = !!packed && packed.length < raw.length, body = deflated ? packed : raw;
+      const local = new Uint8Array(30 + name.length), lv = new DataView(local.buffer);
+      lv.setUint32(0, 67324752, true);
+      lv.setUint16(4, 20, true);
+      lv.setUint16(6, 2048, true);
+      lv.setUint16(8, deflated ? 8 : 0, true);
+      lv.setUint16(10, 0, true);
+      lv.setUint16(12, 33, true);
+      lv.setUint32(14, crc, true);
+      lv.setUint32(18, body.length, true);
+      lv.setUint32(22, raw.length, true);
+      lv.setUint16(26, name.length, true);
+      local.set(name, 30);
+      const cd = new Uint8Array(46 + name.length), cv = new DataView(cd.buffer);
+      cv.setUint32(0, 33639248, true);
+      cv.setUint16(4, 20, true);
+      cv.setUint16(6, 20, true);
+      cv.setUint16(8, 2048, true);
+      cv.setUint16(10, deflated ? 8 : 0, true);
+      cv.setUint16(12, 0, true);
+      cv.setUint16(14, 33, true);
+      cv.setUint32(16, crc, true);
+      cv.setUint32(20, body.length, true);
+      cv.setUint32(24, raw.length, true);
+      cv.setUint16(28, name.length, true);
+      cv.setUint32(42, offset, true);
+      cd.set(name, 46);
+      parts.push(local, body);
+      central.push(cd);
+      offset += local.length + body.length;
+    }
+    const cdSize = central.reduce((s, c) => s + c.length, 0), end = new Uint8Array(22), ev = new DataView(end.buffer);
+    ev.setUint32(0, 101010256, true);
+    ev.setUint16(8, entries.length, true);
+    ev.setUint16(10, entries.length, true);
+    ev.setUint32(12, cdSize, true);
+    ev.setUint32(16, offset, true);
+    const out = new Uint8Array(offset + cdSize + 22);
+    let o = 0;
+    for (const p of [...parts, ...central, end]) {
+      out.set(p, o);
+      o += p.length;
+    }
+    return out;
+  }
 
   // src/shared/export3d.ts
   var MAX_CELLS = 4e6;
@@ -2469,7 +2591,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   var f2 = (v) => String(+v.toFixed(2));
   var DIALOG = `
 <form method="dialog" class="dlg-head"><h2>3D print</h2><button title="Close">✕</button></form>
-<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color.</p>
+<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.</p>
 <div class="row">
   <label>Size <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
   <label title="Size of the model's smallest step – about your nozzle width">Detail <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
@@ -2492,8 +2614,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
 </div>
 <p class="note" id="m3-summary"></p>
 <div class="row dlg-foot">
-  <button id="m3-plan">Download plan</button>
-  <button id="m3-go" class="primary">Download STL</button>
+  <button id="m3-plan" title="Which filament to load at which layer, as a text file">Plan</button>
+  <button id="m3-stl" title="Just the shape – add the filament changes from the plan in your slicer">STL</button>
+  <button id="m3-go" class="primary" title="The model, with the filament changes for PrusaSlicer">Download 3MF</button>
 </div>`;
   function initExport3D(host, button) {
     const dlg = document.createElement("dialog");
@@ -2554,14 +2677,14 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       ].filter(Boolean).join(" ");
       $("#m3-note").hidden = !warn;
       $("#m3-note").textContent = warn;
-      const plan = colorPlan(list.map((i) => colors[i]), s), total = gw * gh || 1, box = $("#m3-order");
+      const plan2 = colorPlan(list.map((i) => colors[i]), s), total = gw * gh || 1, box = $("#m3-order");
       const keep = new Set(list.map((ci) => colors[ci]));
       for (const [c, el] of rows) if (!keep.has(c)) {
         el.remove();
         rows.delete(c);
       }
       list.forEach((ci, k) => {
-        const c = colors[ci], p = plan[k];
+        const c = colors[ci], p = plan2[k];
         let row = rows.get(c);
         if (!row) {
           row = document.createElement("div");
@@ -2580,7 +2703,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
       $("#m3-summary").textContent = list.length ? `${list.length} color${list.length === 1 ? "" : "s"} · height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers) · ${list.length - 1} filament change${list.length === 2 ? "" : "s"}` + (unpainted ? ` · unpainted parts ${opts.baseLayers ? `stay at the base (${f2(opts.baseLayers * opts.layerHeight)} mm)` : "are left open"}` : "") : "Nothing is painted yet.";
-      $("#m3-go").disabled = $("#m3-plan").disabled = !list.length;
+      $("#m3-go").disabled = $("#m3-stl").disabled = $("#m3-plan").disabled = !list.length;
       drawPreview();
     }
     function drawPreview() {
@@ -2607,17 +2730,20 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       return grid.map((v) => v < 0 ? -1 : rank[v]);
     }
     const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
+    const plan = () => colorPlan(used().map((i) => colors[i]), settings());
+    const mesh = () => boxMesh(modelBoxes(levels(), gw, gh, cell, settings()));
     function planText() {
-      const s = settings(), list = used(), plan = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
+      const s = settings(), list = used(), plan2 = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
       const lines2 = [
-        `Mosaic Paint – 3D print plan for ${base()}.stl`,
+        `Mosaic Paint – 3D print plan for ${base()}.3mf / ${base()}.stl`,
         `Size ${f2(w)} × ${f2(h)} mm · layer height ${s.layerHeight} mm · ${s.layersPerColor} layers per color · base ${s.baseLayers} layers`,
         `Total height ${modelHeight(list.length, s)} mm (${topLayer(list.length - 1, s)} layers). Set the slicer's first layer height to ${s.layerHeight} mm too.`,
         "",
-        `Start with ${plan[0].color} – layers ${plan[0].fromLayer}–${plan[0].toLayer}${s.baseLayers ? " (base plate included)" : ""}`,
-        ...plan.slice(1).map((p) => `Layer ${p.changeAtLayer} (Z ${p.z.toFixed(2)} mm): change to ${p.color} – layers ${p.fromLayer}–${p.toLayer}`),
+        `Start with ${plan2[0].color} – layers ${plan2[0].fromLayer}–${plan2[0].toLayer}${s.baseLayers ? " (base plate included)" : ""}`,
+        ...plan2.slice(1).map((p) => `Layer ${p.changeAtLayer} (Z ${p.z.toFixed(2)} mm): change to ${p.color} – layers ${p.fromLayer}–${p.toLayer}`),
         "",
-        "How to add the changes:",
+        "PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider.",
+        "Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:",
         '- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click "+" (Add color change, M600).',
         '- Cura: Extensions › Post Processing › Modify G-Code › "Filament Change" at each layer number above.',
         "- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer."
@@ -2666,10 +2792,22 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     };
     $("#m3-light").onclick = () => sortBy(true);
     $("#m3-dark").onclick = () => sortBy(false);
-    $("#m3-go").onclick = () => {
-      const boxes = modelBoxes(levels(), gw, gh, cell, settings());
-      download(new Blob([stl(boxes, base())], { type: "model/stl" }), base() + ".stl");
-      toast(`Saved ${base()}.stl (${(boxes.length * 12).toLocaleString("en")} triangles). Add the filament changes from the plan in your slicer.`);
+    const triangles = (m) => (m.triangles.length / 3).toLocaleString("en");
+    $("#m3-go").onclick = async () => {
+      const m = mesh(), p = plan();
+      $("#m3-go").disabled = true;
+      try {
+        const data = await zip(threeMfFiles(m, p, base()));
+        download(new Blob([data], { type: "model/3mf" }), base() + ".3mf");
+        toast(`Saved ${base()}.3mf (${triangles(m)} triangles; PrusaSlicer reads its ${p.length - 1} filament change${p.length === 2 ? "" : "s"}, other slicers need the plan).`);
+      } finally {
+        $("#m3-go").disabled = false;
+      }
+    };
+    $("#m3-stl").onclick = () => {
+      const m = mesh();
+      download(new Blob([stl(m, base())], { type: "model/stl" }), base() + ".stl");
+      toast(`Saved ${base()}.stl (${triangles(m)} triangles). Add the filament changes from the plan in your slicer.`);
     };
     $("#m3-plan").onclick = () => download(new Blob([planText()], { type: "text/plain" }), base() + "-3d-plan.txt");
     button.onclick = async () => {

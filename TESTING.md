@@ -28,6 +28,8 @@ Emulation can't cover everything. Before relying on a new version, check these:
 - [ ] Moving the finger over a big mosaic (2,000+ tiles) feels smooth. (Playwright's WebKit renders in software and is slow here; real Safari uses the GPU.)
 
 ### 3D print
+`npm run check:slicer` (needs PrusaSlicer installed) builds a sample 3MF, slices it with PrusaSlicer's command line and checks that the M600 filament changes land at the plan's layers and that the mesh is closed.
+
 - [ ] Export a small mosaic (e.g. 60 × 60 mm, 3 colors); the STL opens in the slicer as one flat object of the expected size and height.
 - [ ] Add the color changes from the plan; the slicer preview shows each color starting at the listed layer.
 - [ ] Print it: every tile's top shows its color, the grout is the lowest band.

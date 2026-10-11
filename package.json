@@ -10,7 +10,8 @@
     "test:e2e": "playwright test",
     "bench": "node tests/perf/bench.js",
     "build": "node build.mjs",
-    "typecheck": "tsc -p ."
+    "typecheck": "tsc -p .",
+    "check:slicer": "node --experimental-strip-types --no-warnings tests/slicer/check.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.0",

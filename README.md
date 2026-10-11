@@ -86,11 +86,12 @@ The Done / Cancel bar finishes chained lines and free polygons.
 
 ## 3D print (both apps)
 
-**3D…** exports the mosaic as an STL model for printing in several colors on an ordinary single-nozzle printer: every color stands at its own height, so you change the filament at a few layers and each tile's top comes out in its color.
+**3D…** exports the mosaic as a 3D model (3MF or STL) for printing in several colors on an ordinary single-nozzle printer: every color stands at its own height, so you change the filament at a few layers and each tile's top comes out in its color.
 
 - Set the **size** in mm (the vector app takes the page's real size), the **layer height**, **layers per color** (each color is a band this many layers thick – more layers cover the color underneath better) and **base layers** (a plate under everything, printed in the first color; unpainted parts stay at the base, or are left open with 0).
 - **Print order:** the list shows the colors from the bottom up, with their layers and where to change filament. Lines / grout go first, so the tiles stand out of the grout like a real mosaic; the rest goes light → dark (a dark layer covers a light one well). Reorder with ↑ ↓.
-- **Download STL**, and **Download plan**: which filament to start with and at which layer (and height) to change to the next, with where to add the changes in PrusaSlicer, Bambu Studio, OrcaSlicer and Cura.
+- **Download 3MF:** the model with the filament changes built in – PrusaSlicer reads them and puts M600 at the right layers, so you just slice and print. Bambu Studio and OrcaSlicer read only the shape from a 3MF they didn't write: add the changes there from the plan.
+- **STL** (the shape only) and **Plan**: which filament to start with and at which layer (and height) to change to the next, with where to add the changes in PrusaSlicer, Bambu Studio, OrcaSlicer and Cura.
 - **Detail** sets the smallest step (about your nozzle width). The raster app uses the image's colors; photos with many colors are snapped to the palette.
 
 ## Raster app
@@ -121,7 +122,8 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `pack.ts`: compressing a drawing into a share link
   - `store.ts`: browser storage for the autosave and versions
   - `raster.ts`: pixel algorithms – flood fill, hard-edged lines and polygons, reducing to a palette, the mosaic effect
-  - `model3d.ts`: the 3D print model – colors as height bands, boxes merged greedily, binary STL, the filament-change plan
+  - `model3d.ts`: the 3D print model – colors as height bands, binary STL, 3MF with PrusaSlicer color changes, the filament-change plan
+  - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
 - `src/core/`: the editor
   - `env.ts`: page elements, settings and state, small helpers, events between modules
   - `doc.ts`: shapes and their geometry, painting, regular-polygon data

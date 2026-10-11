@@ -1,9 +1,11 @@
-/* "3D print" dialog shared by both apps: the mosaic as an STL model where every color stands at its own
-   height, plus the plan of filament changes – print it on any single-nozzle printer by swapping the
-   filament at the listed layers. The app (host) renders its picture and says which colors it uses. */
+/* "3D print" dialog shared by both apps: the mosaic as a 3D model where every color stands at its own
+   height, so any single-nozzle printer prints it in color by swapping filament at a few layers. The 3MF
+   file carries those filament changes for PrusaSlicer; for other slicers the plan lists them to enter by hand.
+   The app (host) renders its picture and says which colors it uses. */
 import * as Colors from '../lib/colors.ts';
 import * as R from '../lib/raster.ts';
 import * as M from '../lib/model3d.ts';
+import { zip } from '../lib/zip.ts';
 import { $, clamp, toast, download, lsGet, lsSet } from './ui.ts';
 
 export interface Export3DHost {
@@ -29,7 +31,7 @@ const f2 = (v: number) => String(+v.toFixed(2));
 
 const DIALOG = `
 <form method="dialog" class="dlg-head"><h2>3D print</h2><button title="Close">✕</button></form>
-<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color.</p>
+<p class="note">A model where every color stands at its own height. Print it with one nozzle and change the filament at the layers listed below – each tile’s top then shows its color. The 3MF file already contains the filament changes for PrusaSlicer; for other slicers, the plan lists them.</p>
 <div class="row">
   <label>Size <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
   <label title="Size of the model's smallest step – about your nozzle width">Detail <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
@@ -52,8 +54,9 @@ const DIALOG = `
 </div>
 <p class="note" id="m3-summary"></p>
 <div class="row dlg-foot">
-  <button id="m3-plan">Download plan</button>
-  <button id="m3-go" class="primary">Download STL</button>
+  <button id="m3-plan" title="Which filament to load at which layer, as a text file">Plan</button>
+  <button id="m3-stl" title="Just the shape – add the filament changes from the plan in your slicer">STL</button>
+  <button id="m3-go" class="primary" title="The model, with the filament changes for PrusaSlicer">Download 3MF</button>
 </div>`;
 
 export function initExport3D(host: Export3DHost, button: HTMLElement): void {
@@ -148,7 +151,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
         + ` · ${list.length - 1} filament change${list.length === 2 ? '' : 's'}`
         + (unpainted ? ` · unpainted parts ${opts.baseLayers ? `stay at the base (${f2(opts.baseLayers * opts.layerHeight)} mm)` : 'are left open'}` : '')
       : 'Nothing is painted yet.';
-    $('#m3-go').disabled = $('#m3-plan').disabled = !list.length;
+    $('#m3-go').disabled = $('#m3-stl').disabled = $('#m3-plan').disabled = !list.length;
     drawPreview();
   }
   function drawPreview(): void {
@@ -174,17 +177,20 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     return grid.map(v => (v < 0 ? -1 : rank[v]));
   }
   const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, '');
+  const plan = () => M.colorPlan(used().map(i => colors[i]), settings());
+  const mesh = () => M.boxMesh(M.modelBoxes(levels(), gw, gh, cell, settings()));
   function planText(): string {
     const s = settings(), list = used(), plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
     const lines = [
-      `Mosaic Paint – 3D print plan for ${base()}.stl`,
+      `Mosaic Paint – 3D print plan for ${base()}.3mf / ${base()}.stl`,
       `Size ${f2(w)} × ${f2(h)} mm · layer height ${s.layerHeight} mm · ${s.layersPerColor} layers per color · base ${s.baseLayers} layers`,
       `Total height ${M.modelHeight(list.length, s)} mm (${M.topLayer(list.length - 1, s)} layers). Set the slicer's first layer height to ${s.layerHeight} mm too.`,
       '',
       `Start with ${plan[0].color} – layers ${plan[0].fromLayer}–${plan[0].toLayer}${s.baseLayers ? ' (base plate included)' : ''}`,
       ...plan.slice(1).map(p => `Layer ${p.changeAtLayer} (Z ${p.z.toFixed(2)} mm): change to ${p.color} – layers ${p.fromLayer}–${p.toLayer}`),
       '',
-      'How to add the changes:',
+      'PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider.',
+      'Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:',
       '- PrusaSlicer, Bambu Studio, OrcaSlicer: in the preview, move the layer slider to each Z above and click "+" (Add color change, M600).',
       '- Cura: Extensions › Post Processing › Modify G-Code › "Filament Change" at each layer number above.',
       '- Multi-material printers (AMS, MMU): the same changes work; or assign the filaments to the color changes in the slicer.',
@@ -217,10 +223,20 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   $('#m3-h').onchange = () => { const v = +$('#m3-h').value; if (v >= 5 && v <= 2000) { opts.width = v * host.aspect(); saveOpts(); } reanalyse(); };
   $('#m3-light').onclick = () => sortBy(true);
   $('#m3-dark').onclick = () => sortBy(false);
-  $('#m3-go').onclick = () => {
-    const boxes = M.modelBoxes(levels(), gw, gh, cell, settings());
-    download(new Blob([M.stl(boxes, base())], { type: 'model/stl' }), base() + '.stl');
-    toast(`Saved ${base()}.stl (${(boxes.length * 12).toLocaleString('en')} triangles). Add the filament changes from the plan in your slicer.`);
+  const triangles = (m: M.Mesh) => (m.triangles.length / 3).toLocaleString('en');
+  $('#m3-go').onclick = async () => {
+    const m = mesh(), p = plan();
+    $('#m3-go').disabled = true;
+    try {
+      const data = await zip(M.threeMfFiles(m, p, base()));
+      download(new Blob([data as BlobPart], { type: 'model/3mf' }), base() + '.3mf');
+      toast(`Saved ${base()}.3mf (${triangles(m)} triangles; PrusaSlicer reads its ${p.length - 1} filament change${p.length === 2 ? '' : 's'}, other slicers need the plan).`);
+    } finally { $('#m3-go').disabled = false; }
+  };
+  $('#m3-stl').onclick = () => {
+    const m = mesh();
+    download(new Blob([M.stl(m, base())], { type: 'model/stl' }), base() + '.stl');
+    toast(`Saved ${base()}.stl (${triangles(m)} triangles). Add the filament changes from the plan in your slicer.`);
   };
   $('#m3-plan').onclick = () => download(new Blob([planText()], { type: 'text/plain' }), base() + '-3d-plan.txt');
 

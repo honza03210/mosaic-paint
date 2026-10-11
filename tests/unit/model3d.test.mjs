@@ -37,7 +37,7 @@ test('each color stands at its own height on the base plate', () => {
 
 test('the STL is closed and faces outwards: its volume is the sum of the boxes', () => {
   const boxes = M.modelBoxes([0, 0, 1, -1], 2, 2, 1, S);
-  const buf = M.stl(boxes), dv = new DataView(buf);
+  const buf = M.stl(M.boxMesh(boxes)), dv = new DataView(buf);
   const n = dv.getUint32(80, true);
   assert.equal(n, boxes.length * 12);
   assert.equal(buf.byteLength, 84 + n * 50);
@@ -58,4 +58,29 @@ test('the plan says at which layer to change to which color', () => {
     { color: '#e76f51', fromLayer: 6, toLayer: 8, changeAtLayer: 6, z: 1.2 },
     { color: '#264653', fromLayer: 9, toLayer: 11, changeAtLayer: 9, z: 1.8 },
   ]);
+});
+
+test('the 3MF carries the model, its colors and the filament changes', async () => {
+  const { zip, crc32 } = await import('../../src/lib/zip.ts');
+  const mesh = M.boxMesh(M.modelBoxes([0, 1], 2, 1, 1, S));
+  const plan = M.colorPlan(['#ffffff', '#e76f51'], S);
+  const files = M.threeMfFiles(mesh, plan, 'Test');
+  assert.deepEqual(files.map(f => f.name), ['[Content_Types].xml', '_rels/.rels', '3D/3dmodel.model',
+    'Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml']);
+  const model = files[2].data;
+  assert.equal((model.match(/<vertex /g) || []).length, mesh.vertices.length / 3);
+  assert.equal((model.match(/<triangle /g) || []).length, mesh.triangles.length / 3);
+  assert.match(model, /<base name="#e76f51" displaycolor="#E76F51FF"\/>/);
+  assert.match(files[3].data, /<code print_z="1.2" type="0" extruder="1" color="#e76f51" extra="" gcode="M600"\/>/);
+
+  // the archive: local headers, a central directory listing all files, and correct checksums
+  const z = await zip(files), dv = new DataView(z.buffer);
+  assert.equal(dv.getUint32(0, true), 0x04034b50);
+  const end = z.length - 22;
+  assert.equal(dv.getUint32(end, true), 0x06054b50);
+  assert.equal(dv.getUint16(end + 10, true), 4);
+  assert.equal(crc32(new TextEncoder().encode('123456789')), 0xcbf43926);
+  // a stored entry can be read straight back
+  const plain = await zip([{ name: 'a.txt', data: 'hello' }], { compress: false });
+  assert.equal(new TextDecoder().decode(plain.slice(35, 40)), 'hello');
 });
