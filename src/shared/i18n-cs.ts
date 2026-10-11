@@ -1368,4 +1368,42 @@ export const CS: Record<string, string> = {
     'Uloženo {name}.3mf pro {slicer}: {n} {n|díl|díly|dílů} s přiřazenými filamenty.',
   'Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.':
     'Uloženo {name}-stl.zip: {n} {n|soubor|soubory|souborů} STL, jeden pro každou barvu. Načtěte je jako díly jednoho objektu.',
+  'Finishing: frame, corners, hanging hole, magnets':
+    'Dokončení: rámeček, rohy, otvor na pověšení, magnety',
+  'A border around the picture. With one nozzle it comes out in the top color, with several filaments in filament 1. 0: none':
+    'Okraj kolem obrázku. S jednou tryskou vyjde v horní barvě, s více filamenty ve filamentu 1. 0: žádný',
+  'Frame':
+    'Rámeček',
+  'How many layers the frame stands above the tiles':
+    'O kolik vrstev rámeček přečnívá nad dlaždice',
+  'raised by':
+    'vyšší o',
+  'Radius of the outline’s corners. 0: square':
+    'Poloměr rohů obrysu. 0: ostré rohy',
+  'Rounded corners':
+    'Zaoblené rohy',
+  'A hole to hang it by, at the top in the middle. 0: none':
+    'Otvor na pověšení, nahoře uprostřed. 0: žádný',
+  'Hanging hole':
+    'Otvor na pověšení',
+  'Four round pockets in the bottom, one near each corner, to glue magnets in: their diameter. 0: none':
+    'Čtyři kruhové kapsy ve spodku, u každého rohu jedna, pro vlepení magnetů: jejich průměr. 0: žádné',
+  'Magnets':
+    'Magnety',
+  'How deep the magnet pockets are (the magnet’s thickness)':
+    'Jak hluboké jsou kapsy pro magnety (tloušťka magnetu)',
+  'deep':
+    'hloubka',
+  'with the frame {w} × {h} mm, {z} mm high':
+    's rámečkem {w} × {h} mm, výška {z} mm',
+  'The model is too thin for magnet pockets.':
+    'Model je na kapsy pro magnety příliš tenký.',
+  'The magnet pockets are only {d} mm deep – the model is thinner there.':
+    'Kapsy pro magnety jsou hluboké jen {d} mm – model je tam tenčí.',
+  'Frame {w} mm wide, up to layer {layer} (Z {z} mm), in filament 1.':
+    'Rámeček široký {w} mm, až do vrstvy {layer} (Z {z} mm), filamentem 1.',
+  'Frame {w} mm wide: it goes on in {color} up to layer {layer} (Z {z} mm).':
+    'Rámeček široký {w} mm: pokračuje barvou {color} až do vrstvy {layer} (Z {z} mm).',
+  'Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.':
+    'Kapsy pro magnety ve spodku: 4 × {d} mm, hloubka {depth} mm – magnety vlepte po vytištění.',
 };

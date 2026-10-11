@@ -339,6 +339,88 @@ export function colorPlan(colors: string[], s: PrintSettings): PlanStep[] {
 /** Total height of the model in mm. */
 export const modelHeight = (nColors: number, s: PrintSettings): number => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
 
+// ---- finishing: frame, rounded corners, hanging hole, magnet pockets -------------------------------------
+/** grid value of the frame's cells (-1 unpainted, -2 nothing) */
+export const FRAME = -3;
+/** All sizes in cells. */
+export interface FinishShape {
+  /** frame width around the picture (0: none) */
+  frame: number;
+  /** corner radius of the whole outline (0: square) */
+  corner: number;
+  /** diameter of the hanging hole, at the top in the middle (0: none) */
+  hole: number;
+}
+/** Distance of the hanging hole's centre from the top edge (cells): clear of the edge, in the frame if it fits. */
+export const holeCentre = (o: FinishShape, margin: number): number => Math.max(o.hole / 2 + margin, o.frame / 2);
+
+/**
+ * The picture inside its frame (cells FRAME), with the outline's corners rounded and the hanging hole cut
+ * out (both -2). margin: material kept between the hole and the edge, in cells.
+ */
+export function finishGrid(grid: Int16Array | number[], w: number, h: number, o: FinishShape, margin: number): { grid: Int16Array; w: number; h: number } {
+  const b = Math.max(0, Math.round(o.frame)), W = w + 2 * b, H = h + 2 * b, out = new Int16Array(W * H).fill(FRAME);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) out[(y + b) * W + x + b] = grid[y * w + x];
+  const r = Math.min(o.corner, W / 2, H / 2), hr = o.hole / 2, hy = holeCentre(o, margin);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const cx = x + 0.5, cy = y + 0.5;
+    // nearest corner centre: outside the rounded corner's circle is cut off
+    if (r > 0) {
+      const ox = cx < r ? r : cx > W - r ? W - r : cx, oy = cy < r ? r : cy > H - r ? H - r : cy;
+      if ((cx - ox) ** 2 + (cy - oy) ** 2 > r * r) { out[y * W + x] = -2; continue; }
+    }
+    if (hr > 0 && (cx - W / 2) ** 2 + (cy - hy) ** 2 <= hr * hr) out[y * W + x] = -2;
+  }
+  return { grid: out, w: W, h: H };
+}
+
+/** Cells of `count` round magnet pockets (diameter d cells), one near each corner, centres `inset` cells in. */
+export function pocketMask(w: number, h: number, d: number, inset: number): Uint8Array {
+  const mask = new Uint8Array(w * h), r = d / 2;
+  if (r <= 0) return mask;
+  const xs = [inset, w - inset], ys = [inset, h - inset];
+  for (const px of xs) for (const py of ys) {
+    for (let y = Math.max(0, Math.floor(py - r)); y < Math.min(h, Math.ceil(py + r)); y++) {
+      for (let x = Math.max(0, Math.floor(px - r)); x < Math.min(w, Math.ceil(px + r)); x++) {
+        if ((x + 0.5 - px) ** 2 + (y + 0.5 - py) ** 2 <= r * r) mask[y * w + x] = 1;
+      }
+    }
+  }
+  return mask;
+}
+
+/**
+ * Pockets in the bottom (for magnets): in the masked cells the material starts `depth` layers up, in every
+ * solid of the model. At least `keep` layers stay above a pocket, so it gets shallower where the model is
+ * thin. Returns the depth used (layers; 0: no pockets).
+ */
+export function cutPockets(solids: Solid[], mask: Uint8Array, depth: number, keep = 2): number {
+  let used = depth;
+  for (let i = 0; i < mask.length; i++) {
+    if (!mask[i]) continue;
+    let top = 0;
+    for (const s of solids) if (s.top[i] > s.bottom[i]) top = Math.max(top, s.top[i]);
+    if (top > 0) used = Math.min(used, top - keep);
+  }
+  used = Math.max(0, used);
+  if (!used) return 0;
+  for (let i = 0; i < mask.length; i++) {
+    if (!mask[i]) continue;
+    for (const s of solids) if (s.top[i] > s.bottom[i] && s.bottom[i] < used) {
+      s.bottom[i] = used;
+      if (s.top[i] < used) s.top[i] = used; // nothing left of this solid here
+    }
+  }
+  return used;
+}
+
+/** The frame's cells as a solid of their own (from layer `bottom` to `top`, colored `level`). */
+export function frameSolid(grid: Int16Array | number[], bottom: number, top: number, level: number): Solid {
+  const n = grid.length, s: Solid = { bottom: new Int16Array(n).fill(bottom), top: new Int16Array(n), level: new Int16Array(n).fill(level) };
+  for (let i = 0; i < n; i++) if (grid[i] === FRAME) s.top[i] = top;
+  return s;
+}
+
 // ---- 3MF: the model plus the filament changes, read by the slicer ----------------------------------------
 const xmlAttr = (v: string) => v.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const num = (v: number) => String(+v.toFixed(4));

@@ -98,6 +98,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - **Download 3MF:** the model with the filament changes built in – PrusaSlicer reads them and puts M600 at the right layers, so you just slice and print. Bambu Studio and OrcaSlicer read only the shape from a 3MF they didn't write: add the changes there from the plan.
 - **STL** (the shape only) and **Plan**: which filament to start with and at which layer (and height) to change to the next, with where to add the changes in PrusaSlicer, Bambu Studio, OrcaSlicer and Cura.
 - **Detail** sets the smallest step (about your nozzle width). The raster app uses the image's colors; photos with many colors are snapped to the palette.
+- **Finishing:** a **frame** around the picture (standing a few layers above the tiles; with one nozzle it comes out in the top color, with several filaments in filament 1), **rounded corners**, a **hanging hole** at the top in the middle, and four **magnet pockets** in the bottom near the corners (diameter and depth – at least two layers stay above them, so they get shallower where the model is thin; the slicer bridges over them, glue the magnets in afterwards).
 - **Several filaments (AMS, MMU…) – flat:** for printers that change filament by themselves. The model is flat: a base plate, then one part per color, **Tile layers** thick, with grout colors **lower by** a few layers. The 3MF already assigns filament 1, 2, … to the parts (the base plate uses filament 1, like the first color) – PrusaSlicer and Bambu Studio / OrcaSlicer each read only their own way of describing parts, so choose the slicer under **3MF for**. **STL** downloads a ZIP with one STL per color to load as parts of one object; the **Plan** lists which filament goes where.
 
 ## Raster app
@@ -131,7 +132,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `pack.ts`: compressing a drawing into a share link
   - `store.ts`: browser storage for the autosave and versions
   - `raster.ts`: pixel algorithms – flood fill, hard-edged lines and polygons, reducing to a palette, the mosaic effect, pieces (connected areas) with number spots and outlines, mosaics of any tile polygons
-  - `model3d.ts`: the 3D print model – colors as height bands, one closed surface (no T-junctions), binary STL, 3MF with PrusaSlicer color changes, the filament-change plan; the flat multi-filament model (one part per color) as a PrusaSlicer or Bambu Studio 3MF
+  - `model3d.ts`: the 3D print model – colors as height bands, one closed surface (no T-junctions), binary STL, 3MF with PrusaSlicer color changes, the filament-change plan; the flat multi-filament model (one part per color) as a PrusaSlicer or Bambu Studio 3MF; finishing (frame, rounded corners, hanging hole, magnet pockets)
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
   - `trace.ts`: outlines of pixel areas as polygons (corner points only, holes, diagonal pixels kept apart)
 - `src/core/`: the editor

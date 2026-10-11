@@ -690,7 +690,26 @@
     "The 3MF is made for {slicer}: other slicers may read it as one part – then use the STL files.": "3MF je určený pro {slicer}: jiné slicery ho mohou načíst jako jeden díl – pak použijte soubory STL.",
     "STL: one file per color in a ZIP. Load them together as one object made of parts and give each its filament.": "STL: jeden soubor pro každou barvu v ZIPu. Načtěte je společně jako jeden objekt z dílů a každému přiřaďte jeho filament.",
     "Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.": "Uloženo {name}.3mf pro {slicer}: {n} {n|díl|díly|dílů} s přiřazenými filamenty.",
-    "Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.": "Uloženo {name}-stl.zip: {n} {n|soubor|soubory|souborů} STL, jeden pro každou barvu. Načtěte je jako díly jednoho objektu."
+    "Saved {name}-stl.zip: {n} STL {n|file|files}, one per color. Load them as parts of one object.": "Uloženo {name}-stl.zip: {n} {n|soubor|soubory|souborů} STL, jeden pro každou barvu. Načtěte je jako díly jednoho objektu.",
+    "Finishing: frame, corners, hanging hole, magnets": "Dokončení: rámeček, rohy, otvor na pověšení, magnety",
+    "A border around the picture. With one nozzle it comes out in the top color, with several filaments in filament 1. 0: none": "Okraj kolem obrázku. S jednou tryskou vyjde v horní barvě, s více filamenty ve filamentu 1. 0: žádný",
+    "Frame": "Rámeček",
+    "How many layers the frame stands above the tiles": "O kolik vrstev rámeček přečnívá nad dlaždice",
+    "raised by": "vyšší o",
+    "Radius of the outline’s corners. 0: square": "Poloměr rohů obrysu. 0: ostré rohy",
+    "Rounded corners": "Zaoblené rohy",
+    "A hole to hang it by, at the top in the middle. 0: none": "Otvor na pověšení, nahoře uprostřed. 0: žádný",
+    "Hanging hole": "Otvor na pověšení",
+    "Four round pockets in the bottom, one near each corner, to glue magnets in: their diameter. 0: none": "Čtyři kruhové kapsy ve spodku, u každého rohu jedna, pro vlepení magnetů: jejich průměr. 0: žádné",
+    "Magnets": "Magnety",
+    "How deep the magnet pockets are (the magnet’s thickness)": "Jak hluboké jsou kapsy pro magnety (tloušťka magnetu)",
+    "deep": "hloubka",
+    "with the frame {w} × {h} mm, {z} mm high": "s rámečkem {w} × {h} mm, výška {z} mm",
+    "The model is too thin for magnet pockets.": "Model je na kapsy pro magnety příliš tenký.",
+    "The magnet pockets are only {d} mm deep – the model is thinner there.": "Kapsy pro magnety jsou hluboké jen {d} mm – model je tam tenčí.",
+    "Frame {w} mm wide, up to layer {layer} (Z {z} mm), in filament 1.": "Rámeček široký {w} mm, až do vrstvy {layer} (Z {z} mm), filamentem 1.",
+    "Frame {w} mm wide: it goes on in {color} up to layer {layer} (Z {z} mm).": "Rámeček široký {w} mm: pokračuje barvou {color} až do vrstvy {layer} (Z {z} mm).",
+    "Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.": "Kapsy pro magnety ve spodku: 4 × {d} mm, hloubka {depth} mm – magnety vlepte po vytištění."
   };
 
   // src/shared/i18n.ts
@@ -6786,9 +6805,6 @@ ${others}
     }
     return { vertices, triangles, levels };
   }
-  function closedMesh(grid, w, h, cell, s) {
-    return solidMesh(heightSolid(grid, s), w, h, cell, s.layerHeight);
-  }
   function removeTowers(input, w, h, cell, s, o) {
     const grid = Int16Array.from(input), n2 = w * h, label = new Int32Array(n2), dist2 = new Float32Array(n2);
     const heightOf = o.heightOf || ((lv) => lv === -2 ? 0 : (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight);
@@ -6904,6 +6920,62 @@ ${others}
     });
   }
   var modelHeight = (nColors, s) => +(topLayer(nColors - 1, s) * s.layerHeight).toFixed(3);
+  var FRAME = -3;
+  var holeCentre = (o, margin) => Math.max(o.hole / 2 + margin, o.frame / 2);
+  function finishGrid(grid, w, h, o, margin) {
+    const b = Math.max(0, Math.round(o.frame)), W = w + 2 * b, H = h + 2 * b, out = new Int16Array(W * H).fill(FRAME);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) out[(y + b) * W + x + b] = grid[y * w + x];
+    const r = Math.min(o.corner, W / 2, H / 2), hr = o.hole / 2, hy = holeCentre(o, margin);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const cx = x + 0.5, cy = y + 0.5;
+      if (r > 0) {
+        const ox = cx < r ? r : cx > W - r ? W - r : cx, oy = cy < r ? r : cy > H - r ? H - r : cy;
+        if ((cx - ox) ** 2 + (cy - oy) ** 2 > r * r) {
+          out[y * W + x] = -2;
+          continue;
+        }
+      }
+      if (hr > 0 && (cx - W / 2) ** 2 + (cy - hy) ** 2 <= hr * hr) out[y * W + x] = -2;
+    }
+    return { grid: out, w: W, h: H };
+  }
+  function pocketMask(w, h, d, inset) {
+    const mask = new Uint8Array(w * h), r = d / 2;
+    if (r <= 0) return mask;
+    const xs = [inset, w - inset], ys = [inset, h - inset];
+    for (const px2 of xs) for (const py of ys) {
+      for (let y = Math.max(0, Math.floor(py - r)); y < Math.min(h, Math.ceil(py + r)); y++) {
+        for (let x = Math.max(0, Math.floor(px2 - r)); x < Math.min(w, Math.ceil(px2 + r)); x++) {
+          if ((x + 0.5 - px2) ** 2 + (y + 0.5 - py) ** 2 <= r * r) mask[y * w + x] = 1;
+        }
+      }
+    }
+    return mask;
+  }
+  function cutPockets(solids, mask, depth, keep = 2) {
+    let used = depth;
+    for (let i = 0; i < mask.length; i++) {
+      if (!mask[i]) continue;
+      let top = 0;
+      for (const s of solids) if (s.top[i] > s.bottom[i]) top = Math.max(top, s.top[i]);
+      if (top > 0) used = Math.min(used, top - keep);
+    }
+    used = Math.max(0, used);
+    if (!used) return 0;
+    for (let i = 0; i < mask.length; i++) {
+      if (!mask[i]) continue;
+      for (const s of solids) if (s.top[i] > s.bottom[i] && s.bottom[i] < used) {
+        s.bottom[i] = used;
+        if (s.top[i] < used) s.top[i] = used;
+      }
+    }
+    return used;
+  }
+  function frameSolid(grid, bottom, top, level) {
+    const n2 = grid.length, s = { bottom: new Int16Array(n2).fill(bottom), top: new Int16Array(n2), level: new Int16Array(n2).fill(level) };
+    for (let i = 0; i < n2; i++) if (grid[i] === FRAME) s.top[i] = top;
+    return s;
+  }
   var xmlAttr = (v) => v.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   var num2 = (v) => String(+v.toFixed(4));
   var CONTENT_TYPES = '<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>';
@@ -7357,7 +7429,14 @@ void main() {
     mode: "height",
     tileLayers: 5,
     groutRecess: 2,
-    slicer: "prusa"
+    slicer: "prusa",
+    /** finishing, mm (0: none); the frame stands frameRaise layers above the tiles */
+    frame: 0,
+    frameRaise: 2,
+    corner: 0,
+    hole: 0,
+    magnet: 0,
+    magnetDepth: 2
   };
   try {
     Object.assign(opts2, JSON.parse(lsGet("mz-3d") || "{}"));
@@ -7382,6 +7461,18 @@ void main() {
   <label data-mode="flat" title="${t("Grout colors end this many layers below the tiles, so the lines between them stay low. 0: all flat")}">${t("Grout lower by")} <input id="m3-recess" type="number" min="0" max="49" step="1"> ${t("layers")}</label>
   <label title="${t("A plate under everything, printed in the first color. 0: unpainted parts are left open")}">${t("Base layers")} <input id="m3-base" type="number" min="0" max="50" step="1"></label>
 </div>
+<details class="m3-finish" id="m3-finish"><summary>${t("Finishing: frame, corners, hanging hole, magnets")}</summary>
+  <div class="row">
+    <label title="${t("A border around the picture. With one nozzle it comes out in the top color, with several filaments in filament 1. 0: none")}">${t("Frame")} <input id="m3-frame" type="number" min="0" max="100" step="0.5"> mm</label>
+    <label title="${t("How many layers the frame stands above the tiles")}">${t("raised by")} <input id="m3-raise" type="number" min="0" max="50" step="1"> ${t("layers")}</label>
+    <label title="${t("Radius of the outline’s corners. 0: square")}">${t("Rounded corners")} <input id="m3-corner" type="number" min="0" max="500" step="0.5"> mm</label>
+  </div>
+  <div class="row">
+    <label title="${t("A hole to hang it by, at the top in the middle. 0: none")}">${t("Hanging hole")} <input id="m3-hole" type="number" min="0" max="50" step="0.5"> mm</label>
+    <label title="${t("Four round pockets in the bottom, one near each corner, to glue magnets in: their diameter. 0: none")}">${t("Magnets")} <input id="m3-magnet" type="number" min="0" max="50" step="0.5"> mm</label>
+    <label title="${t("How deep the magnet pockets are (the magnet’s thickness)")}">${t("deep")} <input id="m3-mdepth" type="number" min="0.2" max="20" step="0.1"> mm</label>
+  </div>
+</details>
 <p class="note warn" id="m3-note" hidden></p>
 <div class="m3-body">
   <div class="m3-view">
@@ -7517,7 +7608,8 @@ void main() {
       const warn = [
         note,
         !fl && list.length > MANY_COLORS ? t("{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).", { n: list.length }) : "",
-        cell > opts2.detail + 1e-9 ? t("Detail lowered to {d} mm for this size.", { d: num(+f2(cell)) }) : ""
+        cell > opts2.detail + 1e-9 ? t("Detail lowered to {d} mm for this size.", { d: num(+f2(cell)) }) : "",
+        pocketNote()
       ].filter(Boolean).join(" ");
       $("#m3-note").hidden = !warn;
       $("#m3-note").textContent = warn;
@@ -7551,9 +7643,70 @@ void main() {
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
       const fs = flat();
       $("#m3-summary").textContent = !list.length ? t("Nothing is painted yet.") : fl ? t("{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})", { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers }) + (unpainted ? " · " + (opts2.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts2.baseLayers * opts2.layerHeight)) }) : t("unpainted parts are left open")) : "") + (m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "") : t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 }) + (unpainted ? " · " + (opts2.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts2.baseLayers * opts2.layerHeight)) }) : t("unpainted parts are left open")) : "") + (m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "");
+      if (list.length && opts2.frame > 0) {
+        const f = finished();
+        $("#m3-summary").textContent += " · " + t("with the frame {w} × {h} mm, {z} mm high", { w: num(+f2(f.w * cell)), h: num(+f2(f.h * cell)), z: num(+f2(frameTop() * opts2.layerHeight)) });
+      }
       $("#m3-go").disabled = $("#m3-stl").disabled = $("#m3-plan").disabled = !list.length;
       drawPreview(m);
       if (view) schedule3d();
+    }
+    const MARGIN2 = 2;
+    const layers = (mm) => Math.max(1, Math.round(mm / opts2.layerHeight));
+    const frameTop = () => (isFlat() ? opts2.baseLayers + opts2.tileLayers : topLayer(Math.max(0, model().list.length - 1), settings())) + opts2.frameRaise;
+    function layout2(g, w, h, c) {
+      const f = finishGrid(g, w, h, { frame: opts2.frame / c, corner: opts2.corner / c, hole: opts2.hole / c }, MARGIN2 / c);
+      const inset = (opts2.magnet / 2 + MARGIN2 + opts2.corner * 0.3) / c;
+      return { ...f, mask: opts2.magnet > 0 ? pocketMask(f.w, f.h, opts2.magnet / c, inset) : null };
+    }
+    let laid = null, laidKey = "";
+    function finished() {
+      model();
+      const key = [cachedKey, opts2.frame, opts2.corner, opts2.hole, opts2.magnet].join("|");
+      if (!laid || key !== laidKey) {
+        laid = layout2(model().grid, gw, gh, cell);
+        laidKey = key;
+      }
+      return laid;
+    }
+    function columnTop(lv) {
+      if (lv === -2) return 0;
+      if (lv === FRAME) return frameTop();
+      if (isFlat()) return Math.round(flatHeights(model().list.map(isLine), flat())(lv) / opts2.layerHeight);
+      return lv < 0 ? opts2.baseLayers : topLayer(lv, settings());
+    }
+    function pocketDepth() {
+      const f = finished();
+      if (!f.mask) return 0;
+      let d = layers(opts2.magnetDepth);
+      for (let i = 0; i < f.mask.length; i++) if (f.mask[i]) {
+        const top = columnTop(f.grid[i]);
+        if (top > 0) d = Math.min(d, top - 2);
+      }
+      return Math.max(0, d);
+    }
+    function solids(f) {
+      const list = model().list;
+      let out;
+      if (isFlat()) {
+        out = flatParts(f.grid, f.w, f.h, list.length, list.map(isLine), flat());
+        if (opts2.frame > 0) out.splice(opts2.baseLayers ? 1 : 0, 0, { part: FRAME, solid: frameSolid(f.grid, opts2.baseLayers, frameTop(), 0) });
+      } else {
+        const sol = heightSolid(f.grid, settings()), top = frameTop();
+        for (let i = 0; i < f.grid.length; i++) if (f.grid[i] === FRAME) {
+          sol.top[i] = top;
+          sol.level[i] = list.length - 1;
+        }
+        out = [{ part: 0, solid: sol }];
+      }
+      if (f.mask) cutPockets(out.map((p) => p.solid), f.mask, layers(opts2.magnetDepth));
+      return out;
+    }
+    function pocketNote() {
+      if (!opts2.magnet || !model().list.length) return "";
+      const d = pocketDepth();
+      if (!d) return t("The model is too thin for magnet pockets.");
+      return d < layers(opts2.magnetDepth) ? t("The magnet pockets are only {d} mm deep – the model is thinner there.", { d: num(+f2(d * opts2.layerHeight)) }) : "";
     }
     let view = null, timer3d;
     const schedule3d = () => {
@@ -7571,14 +7724,16 @@ void main() {
         for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) g[y * w + x] = m.grid[Math.min(gh - 1, y * f) * gw + Math.min(gw - 1, x * f)];
       }
       const rgb = m.list.map((ci) => rgba(colors[ci]).slice(0, 3));
-      const shape = isFlat() ? mergeMeshes(parts(g, w, h, cell * f).map((p) => p.mesh)) : closedMesh(g, w, h, cell * f, settings());
+      const lay = layout2(g, w, h, cell * f);
+      const shape = mergeMeshes(solids(lay).map((p) => solidMesh(p.solid, lay.w, lay.h, cell * f, opts2.layerHeight)));
       view.show(shape, (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
     }
-    function parts(g, w, h, c) {
-      const list = model().list, fs = flat();
-      return flatParts(g, w, h, list.length, list.map(isLine), fs).map((p) => {
-        const color = colors[list[Math.max(0, p.part)]];
-        return { name: p.part < 0 ? t("Base") : `${p.part + 1} ${color}`, color, mesh: solidMesh(p.solid, w, h, c, fs.layerHeight), filament: Math.max(0, p.part) + 1 };
+    function parts() {
+      const list = model().list, f = finished();
+      return solids(f).map((p) => {
+        const k = Math.max(0, p.part), color = colors[list[k]];
+        const name = p.part === FRAME ? t("Frame") : p.part < 0 ? t("Base") : `${p.part + 1} ${color}`;
+        return { name, color, mesh: solidMesh(p.solid, f.w, f.h, cell, opts2.layerHeight), filament: k + 1 };
       });
     }
     function showTab(three) {
@@ -7599,15 +7754,20 @@ void main() {
     }
     function drawPreview(m) {
       const cv = $("#m3-preview");
-      if (!grid) return;
-      const k = Math.min(1, 300 / Math.max(gw, gh));
-      cv.width = Math.max(1, Math.round(gw * k));
-      cv.height = Math.max(1, Math.round(gh * k));
+      if (!grid || !m.list.length) return;
+      const f = finished(), k = Math.min(1, 300 / Math.max(f.w, f.h));
+      cv.width = Math.max(1, Math.round(f.w * k));
+      cv.height = Math.max(1, Math.round(f.h * k));
       const small = document.createElement("canvas");
-      small.width = gw;
-      small.height = gh;
-      const sx = small.getContext("2d"), im = sx.createImageData(gw, gh), rgb = m.list.map((ci) => rgba(colors[ci]));
-      for (let p = 0; p < m.grid.length; p++) if (m.grid[p] >= 0) im.data.set(rgb[m.grid[p]], p * 4);
+      small.width = f.w;
+      small.height = f.h;
+      const sx = small.getContext("2d"), im = sx.createImageData(f.w, f.h), rgb = m.list.map((ci) => rgba(colors[ci]));
+      const frame = rgb[isFlat() ? 0 : rgb.length - 1];
+      for (let p = 0; p < f.grid.length; p++) {
+        const lv = f.grid[p];
+        if (lv >= 0) im.data.set(rgb[lv], p * 4);
+        else if (lv === FRAME) im.data.set(frame, p * 4);
+      }
       sx.putImageData(im, 0, 0);
       const x = cv.getContext("2d");
       x.imageSmoothingEnabled = k < 1;
@@ -7615,7 +7775,20 @@ void main() {
     }
     const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
     const plan = () => colorPlan(model().list.map((i) => colors[i]), settings());
-    const mesh = () => closedMesh(model().grid, gw, gh, cell, settings());
+    const mesh = () => {
+      const f = finished();
+      return solidMesh(solids(f)[0].solid, f.w, f.h, cell, opts2.layerHeight);
+    };
+    function finishLines() {
+      const out = [], list = model().list;
+      if (opts2.frame > 0) {
+        const top = frameTop(), v = { w: num(opts2.frame), layer: top, z: (top * opts2.layerHeight).toFixed(2) };
+        out.push(isFlat() ? t("Frame {w} mm wide, up to layer {layer} (Z {z} mm), in filament 1.", v) : t("Frame {w} mm wide: it goes on in {color} up to layer {layer} (Z {z} mm).", { ...v, color: colors[list[list.length - 1]] }));
+      }
+      const d = pocketDepth();
+      if (d) out.push(t("Magnet pockets in the bottom: 4 × {d} mm, {depth} mm deep – glue the magnets in after printing.", { d: num(opts2.magnet), depth: (d * opts2.layerHeight).toFixed(2) }));
+      return out;
+    }
     function flatPlanText() {
       const fs = flat(), list = model().list, { w, h } = size(), slicer2 = opts2.slicer === "bambu" ? "Bambu Studio / OrcaSlicer" : "PrusaSlicer";
       const v = { name: base(), w: f2(w), h: f2(h), lh: fs.layerHeight, base: fs.baseLayers, tile: fs.tileLayers, recess: fs.groutRecess, total: f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight), slicer: slicer2 };
@@ -7625,6 +7798,7 @@ void main() {
         t("Total height {total} mm.", v),
         "",
         ...list.map((ci, k) => k === 0 && fs.baseLayers ? t("Filament {k}: {color} (also the base plate)", { k: k + 1, color: colors[ci] }) : t("Filament {k}: {color}", { k: k + 1, color: colors[ci] })),
+        ...finishLines(),
         "",
         t("{slicer}: open the 3MF – every color is a part of one object with its filament already assigned. Load the filaments in this order (AMS slots, MMU…).", v),
         t("The 3MF is made for {slicer}: other slicers may read it as one part – then use the STL files.", v),
@@ -7644,6 +7818,7 @@ void main() {
         "",
         s.baseLayers ? t("Start with {color} – layers {from}–{to} (base plate included)", { color: first.color, from: first.fromLayer, to: first.toLayer }) : t("Start with {color} – layers {from}–{to}", { color: first.color, from: first.fromLayer, to: first.toLayer }),
         ...plan2.slice(1).map((p) => t("Layer {layer} (Z {z} mm): change to {color} – layers {from}–{to}", { layer: p.changeAtLayer, z: p.z.toFixed(2), color: p.color, from: p.fromLayer, to: p.toLayer })),
+        ...finishLines(),
         "",
         t("PrusaSlicer: the 3MF file already contains these changes – open it and check the layer slider."),
         t("Other slicers (they read only the shape from the 3MF or STL) – add the changes by hand:"),
@@ -7658,12 +7833,13 @@ void main() {
       clearTimeout(busy);
       busy = setTimeout(() => analyse().catch(() => toast(t("Could not read the picture."))), 50);
     };
+    const CAN_BE_0 = ["baseLayers", "minWidth", "groutRecess", "frame", "frameRaise", "corner", "hole", "magnet"];
     const bindNum = (id, key, min, max, whole, again) => {
       const i = $(id);
       i.value = opts2[key];
       i.onchange = () => {
         let v = +i.value;
-        if (Number.isFinite(v) && v > 0 || (key === "baseLayers" || key === "minWidth" || key === "groutRecess") && v === 0) {
+        if (Number.isFinite(v) && v > 0 || CAN_BE_0.includes(key) && v === 0) {
           v = clamp(whole ? Math.round(v) : v, min, max);
           opts2[key] = v;
           saveOpts();
@@ -7680,6 +7856,13 @@ void main() {
     bindNum("#m3-base", "baseLayers", 0, 50, true, false);
     bindNum("#m3-tile", "tileLayers", 1, 50, true, false);
     bindNum("#m3-recess", "groutRecess", 0, 49, true, false);
+    bindNum("#m3-frame", "frame", 0, 100, false, false);
+    bindNum("#m3-raise", "frameRaise", 0, 50, true, false);
+    bindNum("#m3-corner", "corner", 0, 500, false, false);
+    bindNum("#m3-hole", "hole", 0, 50, false, false);
+    bindNum("#m3-magnet", "magnet", 0, 50, false, false);
+    bindNum("#m3-mdepth", "magnetDepth", 0.2, 20, false, false);
+    if (opts2.frame || opts2.corner || opts2.hole || opts2.magnet) $("#m3-finish").open = true;
     const setMode2 = (mode) => {
       opts2.mode = mode;
       saveOpts();
@@ -7721,7 +7904,7 @@ void main() {
       $("#m3-go").disabled = true;
       try {
         if (isFlat()) {
-          const ps = parts(model().grid, gw, gh, cell), slicer2 = opts2.slicer === "bambu" ? "Bambu Studio" : "PrusaSlicer";
+          const ps = parts(), slicer2 = opts2.slicer === "bambu" ? "Bambu Studio" : "PrusaSlicer";
           const data2 = await zip(threeMfPartsFiles(ps, base(), opts2.slicer));
           download(new Blob([data2], { type: "model/3mf" }), base() + ".3mf");
           toast(t("Saved {name}.3mf for {slicer}: {n} {n|part|parts} with their filaments assigned.", { name: base(), slicer: slicer2, n: ps.length }));
@@ -7737,7 +7920,7 @@ void main() {
     };
     $("#m3-stl").onclick = async () => {
       if (isFlat()) {
-        const ps = parts(model().grid, gw, gh, cell);
+        const ps = parts();
         const files = ps.map((p, k) => ({
           name: k === 0 && opts2.baseLayers ? `${base()}-base.stl` : `${base()}-${p.filament}-${p.color.slice(1)}.stl`,
           data: new Uint8Array(stl(p.mesh, p.name))

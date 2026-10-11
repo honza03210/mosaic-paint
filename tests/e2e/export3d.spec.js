@@ -12,7 +12,7 @@ test.skip(({ browserName }) => browserName === 'webkit' && process.platform === 
 function readStl(file) {
   const b = Buffer.isBuffer(file) ? file : fs.readFileSync(file), n = b.readUInt32LE(80);
   expect(b.length).toBe(84 + n * 50);
-  const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity], tops = new Set();
+  const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity], tops = new Set(), bottoms = new Set();
   for (let t = 0; t < n; t++) {
     const o = 84 + t * 50;
     for (let v = 0; v < 3; v++) for (let k = 0; k < 3; k++) {
@@ -21,8 +21,9 @@ function readStl(file) {
       hi[k] = Math.max(hi[k], x);
     }
     if (b.readFloatLE(o + 8) === 1) tops.add(+b.readFloatLE(o + 12 + 8).toFixed(3)); // heights of upward faces
+    if (b.readFloatLE(o + 8) === -1) bottoms.add(+b.readFloatLE(o + 12 + 8).toFixed(3)); // … and downward ones
   }
-  return { n, lo: lo.map(v => +v.toFixed(3)), hi: hi.map(v => +v.toFixed(3)), tops: [...tops].sort((a, c) => a - c) };
+  return { n, lo: lo.map(v => +v.toFixed(3)), hi: hi.map(v => +v.toFixed(3)), tops: [...tops].sort((a, c) => a - c), bottoms: [...bottoms].sort((a, c) => a - c) };
 }
 /** The files in a ZIP archive (from its central directory), as text (or bytes: raw). */
 function unzip(file, raw = false) {
@@ -230,4 +231,42 @@ test('several filaments: a flat model, one part per color with its filament, for
   const b = unzip(await bambu.path());
   expect((b['3D/Objects/object_1.model'].match(/<object /g) || []).length).toBe(3);
   expect([...b['Metadata/model_settings.config'].matchAll(/<part id="\d" subtype="normal_part">\n<metadata key="name" value="[^"]*"\/>\n<metadata key="extruder" value="(\d)"/g)].map(m => +m[1])).toEqual([1, 1, 2]);
+});
+
+test('finishing: a raised frame, rounded corners, a hanging hole and magnet pockets', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await page.evaluate(() => {
+    RZ.blank(40, 30, '#b8b2a7');
+    const x = RZ.doc.getContext('2d'); x.fillStyle = '#e76f51'; x.fillRect(5, 5, 30, 20); RZ.commit();
+    RZ.state.mosaic.groutColor = '#b8b2a7';
+  });
+  await page.click('#btn-3d');
+  await page.fill('#m3-w', '40');
+  await page.dispatchEvent('#m3-w', 'change');
+  await expect(page.locator('#m3-order .m3-row')).toHaveCount(2);
+  await page.fill('#m3-detail', '0.5'); // the frame is whole cells: 3 mm
+  await page.dispatchEvent('#m3-detail', 'change');
+  await page.click('#m3-finish summary');
+  for (const [id, v] of [['#m3-frame', '3'], ['#m3-corner', '4'], ['#m3-hole', '4'], ['#m3-magnet', '6'], ['#m3-mdepth', '1']]) {
+    await page.fill(id, v);
+    await page.dispatchEvent(id, 'change');
+  }
+  // two colors: grout up to 1.2 mm, tiles 1.8 mm; the frame 2 layers higher
+  await expect(page.locator('#m3-summary')).toContainText('with the frame 46 × 36 mm, 2.2 mm high');
+  // the magnets sit under the grout (1.2 mm): two layers stay above them
+  await expect(page.locator('#m3-note')).toContainText('The magnet pockets are only 0.8 mm deep');
+  const { stl, plan } = await downloads(page);
+  expect(stl.lo).toEqual([0, 0, 0]);
+  expect(stl.hi).toEqual([46, 36, 2.2]);
+  expect(stl.tops).toEqual([1.2, 1.8, 2.2]);
+  expect(stl.bottoms).toEqual([0, 0.8]); // the floor, and the pockets' ceilings
+  expect(plan).toContain('Frame 3 mm wide: it goes on in #e76f51 up to layer 11 (Z 2.20 mm).');
+  expect(plan).toContain('Magnet pockets in the bottom: 4 × 6 mm, 0.80 mm deep');
+  // several filaments: the frame is a part of its own, in filament 1
+  await page.click('#m3-mode-flat');
+  const [m3] = await Promise.all([page.waitForEvent('download'), page.click('#m3-go')]);
+  const config = unzip(await m3.path())['Metadata/Slic3r_PE_model.config'];
+  expect([...config.matchAll(/key="name" value="([^"]+)"/g)].map(m => m[1]).slice(1)).toEqual(['Base', 'Frame', '1 #b8b2a7', '2 #e76f51']);
+  expect([...config.matchAll(/key="extruder" value="(\d+)"/g)].map(m => +m[1])).toEqual([1, 1, 1, 2]);
 });

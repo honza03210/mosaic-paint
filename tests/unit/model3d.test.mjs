@@ -213,3 +213,56 @@ test('several filaments: a base plate and one flat part per color, grout lower',
   assert.match(byName['3D/_rels/3dmodel.model.rels'], /Target="\/3D\/Objects\/object_1.model"/);
   assert.match(byName['Metadata/model_settings.config'], /<part id="3" subtype="normal_part">\n<metadata key="name" value="Part 2"\/>\n<metadata key="extruder" value="3"\/>/);
 });
+
+test('finishing: a frame around the picture, rounded corners and a hanging hole', () => {
+  const pic = new Int16Array(20 * 10).fill(0);
+  const f = M.finishGrid(pic, 20, 10, { frame: 2, corner: 3, hole: 4 }, 1);
+  assert.equal(f.w, 24);
+  assert.equal(f.h, 14);
+  const at = (x, y) => f.grid[y * f.w + x];
+  assert.equal(at(5, 1), M.FRAME); // the frame
+  assert.equal(at(5, 5), 0); // the picture
+  assert.equal(at(0, 0), -2); // a rounded corner is cut off …
+  assert.equal(at(23, 13), -2);
+  assert.equal(at(1, 2), M.FRAME); // … but not more than that
+  // the hole: centred, 1 + 2 cells from the top (its edge 1 cell from the outline)
+  assert.equal(M.holeCentre({ frame: 2, corner: 3, hole: 4 }, 1), 3);
+  assert.equal(at(12, 3), -2);
+  assert.equal(at(11, 2), -2);
+  assert.equal(at(12, 0), M.FRAME);
+  assert.equal(at(12, 6), 0);
+  assert.equal(at(9, 3), 0); // beside the hole
+  // still one closed solid
+  const sol = M.heightSolid(f.grid, { layerHeight: 0.2, layersPerColor: 2, baseLayers: 2 });
+  assertClosed(M.solidMesh(sol, f.w, f.h, 1, 0.2));
+});
+
+test('finishing: magnet pockets in the bottom, never deeper than the model allows', () => {
+  const w = 20, h = 20, mask = M.pocketMask(w, h, 4, 4);
+  assert.equal(mask[4 * w + 4], 1);
+  assert.equal(mask[15 * w + 15], 1);
+  assert.equal(mask[10 * w + 10], 0);
+  const cells = mask.reduce((a, b) => a + b, 0);
+  assert.equal(cells % 4, 0);
+  // one solid 10 layers tall: pockets 5 layers deep
+  const top = new Int16Array(w * h).fill(10), sol = { bottom: new Int16Array(w * h), top, level: new Int16Array(w * h) };
+  assert.equal(M.cutPockets([sol], mask, 5), 5);
+  const m = M.solidMesh(sol, w, h, 1, 0.2);
+  assertClosed(m);
+  assert.ok(close(volume(m), (w * h * 10 - cells * 5) * 0.2));
+  // a thin model: the pockets leave two layers above them
+  const thin = { bottom: new Int16Array(w * h), top: new Int16Array(w * h).fill(4), level: new Int16Array(w * h) };
+  assert.equal(M.cutPockets([thin], mask, 5), 2);
+  // several parts: a base plate under a part; the pocket goes through the base into the part
+  const base = { bottom: new Int16Array(w * h), top: new Int16Array(w * h).fill(2), level: new Int16Array(w * h) };
+  const part = { bottom: new Int16Array(w * h).fill(2), top: new Int16Array(w * h).fill(8), level: new Int16Array(w * h) };
+  assert.equal(M.cutPockets([base, part], mask, 4), 4);
+  assert.equal(base.top[4 * w + 4] - base.bottom[4 * w + 4], 0);
+  assert.equal(part.bottom[4 * w + 4], 4);
+  assertClosed(M.solidMesh(base, w, h, 1, 0.2));
+  assertClosed(M.solidMesh(part, w, h, 1, 0.2));
+  // the frame as a part of its own
+  const fr = M.frameSolid([M.FRAME, 0, -1, M.FRAME], 2, 9, 3);
+  assert.deepEqual([...fr.top], [9, 0, 0, 9]);
+  assert.deepEqual([...fr.level], [3, 3, 3, 3]);
+});
