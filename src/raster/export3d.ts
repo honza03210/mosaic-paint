@@ -12,7 +12,7 @@ const MAX_COLORS = 24;
 export function bindExport3D(): void {
   initExport3D({
     aspect: () => doc.width / doc.height,
-    realSize: () => null,
+    realSize: () => ({ w: state.realWidth, h: state.realWidth * doc.height / doc.width }),
     async render(w, h) {
       const c = makeCanvas(w, h), x = c.getContext('2d');
       // enlarging keeps pixels sharp (pixel mosaics); shrinking averages

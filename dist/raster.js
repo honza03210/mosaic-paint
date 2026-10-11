@@ -37,10 +37,10 @@
   }
   function toRgb(c) {
     if (Array.isArray(c)) return c;
-    const n = norm(c);
-    if (!n) return null;
-    if (n[0] === "#") return [1, 3, 5].map((i) => parseInt(n.slice(i, i + 2), 16));
-    const m = n.match(/[\d.]+/g);
+    const n3 = norm(c);
+    if (!n3) return null;
+    if (n3[0] === "#") return [1, 3, 5].map((i) => parseInt(n3.slice(i, i + 2), 16));
+    const m = n3.match(/[\d.]+/g);
     return m ? m.slice(0, 3).map(Number) : null;
   }
   function toLab([r, g, b]) {
@@ -186,22 +186,22 @@
     }
   }
   function discMask(size) {
-    const n = Math.max(1, Math.round(size)), r = n / 2, m = new Uint8Array(n * n);
-    for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+    const n3 = Math.max(1, Math.round(size)), r = n3 / 2, m = new Uint8Array(n3 * n3);
+    for (let j = 0; j < n3; j++) for (let i = 0; i < n3; i++) {
       const dx = i + 0.5 - r, dy = j + 0.5 - r;
-      if (n <= 2 || dx * dx + dy * dy <= r * r + 0.25) m[j * n + i] = 1;
+      if (n3 <= 2 || dx * dx + dy * dy <= r * r + 0.25) m[j * n3 + i] = 1;
     }
     return m;
   }
   function fillPolygon(img, pts, color) {
-    const { width: W, height: H, data: d } = img, n = pts.length;
-    if (n < 3) return null;
+    const { width: W, height: H, data: d } = img, n3 = pts.length;
+    if (n3 < 3) return null;
     const b = { x0: W, y0: H, x1: -1, y1: -1 };
     const ys = pts.map((p) => p.y), top = Math.max(0, Math.floor(Math.min(...ys))), bottom = Math.min(H - 1, Math.ceil(Math.max(...ys)));
     for (let y = top; y <= bottom; y++) {
       const cy = y + 0.5, xs = [];
-      for (let i = 0; i < n; i++) {
-        const a = pts[i], c = pts[(i + 1) % n];
+      for (let i = 0; i < n3; i++) {
+        const a = pts[i], c = pts[(i + 1) % n3];
         if (a.y <= cy !== c.y <= cy) xs.push(a.x + (cy - a.y) * (c.x - a.x) / (c.y - a.y));
       }
       xs.sort((p, q) => p - q);
@@ -240,8 +240,8 @@
     }
     return [...m].sort((a, b) => b[1] - a[1]).map(([k]) => hex(k >> 16, k >> 8 & 255, k & 255));
   }
-  function samplePixels(img, n) {
-    const out = [], d = img.data, total = img.width * img.height, step = Math.max(1, Math.floor(total / n));
+  function samplePixels(img, n3) {
+    const out = [], d = img.data, total = img.width * img.height, step = Math.max(1, Math.floor(total / n3));
     for (let p = 0; p < total; p += step) {
       const i = p * 4;
       if (d[i + 3] >= 128) out.push([d[i], d[i + 1], d[i + 2]]);
@@ -250,14 +250,14 @@
   }
   function replaceColor(img, from, to) {
     const [r, g, b] = rgba(from), d = img.data;
-    let n = 0;
+    let n3 = 0;
     for (let i = 0; i < d.length; i += 4) {
       if (d[i + 3] >= 128 && d[i] === r && d[i + 1] === g && d[i + 2] === b) {
         setPx(d, i, to);
-        n++;
+        n3++;
       }
     }
-    return n;
+    return n3;
   }
   function nearestCache(palette) {
     const labs = palette.map((c) => toLab(rgbOf(c)));
@@ -297,7 +297,7 @@
       const shift = o.bricks && row % 2 ? -Math.floor(T / 2) : 0;
       for (let tx = shift; tx < W; tx += T) {
         const x0 = Math.max(0, tx), x1 = Math.min(W, tx + T), y1 = Math.min(H, ty + T);
-        let r = 0, g = 0, b = 0, n = 0, all = 0;
+        let r = 0, g = 0, b = 0, n3 = 0, all = 0;
         for (let y = ty; y < y1 - (y1 === ty + T ? G : 0); y++) for (let x = x0; x < Math.min(x1, tx + T - G); x++) {
           const i = (y * W + x) * 4;
           all++;
@@ -305,14 +305,14 @@
           r += s[i];
           g += s[i + 1];
           b += s[i + 2];
-          n++;
+          n3++;
         }
-        const filled = n > 0 && n >= all / 2;
+        const filled = n3 > 0 && n3 >= all / 2;
         let c = [0, 0, 0, 0];
         if (filled) {
-          r = Math.round(r / n);
-          g = Math.round(g / n);
-          b = Math.round(b / n);
+          r = Math.round(r / n3);
+          g = Math.round(g / n3);
+          b = Math.round(b / n3);
           const name = near ? near(r, g, b) : hex(r, g, b);
           c = rgba(name);
           counts2.set(name, (counts2.get(name) || 0) + 1);
@@ -328,8 +328,8 @@
   }
   function classify(img, colors) {
     const near = nearestCache(colors), index2 = new Map(colors.map((c, i) => [c, i]));
-    const n = img.width * img.height, grid = new Int16Array(n), counts2 = colors.map(() => 0), d = img.data;
-    for (let p = 0, i = 0; p < n; p++, i += 4) {
+    const n3 = img.width * img.height, grid = new Int16Array(n3), counts2 = colors.map(() => 0), d = img.data;
+    for (let p = 0, i = 0; p < n3; p++, i += 4) {
       if (d[i + 3] < 128) {
         grid[p] = -1;
         continue;
@@ -339,6 +339,93 @@
       counts2[k]++;
     }
     return { grid, counts: counts2 };
+  }
+  function pieces(img) {
+    const { width: W, height: H, data: d } = img, n3 = W * H;
+    const labels = new Int32Array(n3).fill(-1), colors = [], sizes = [];
+    const key = (p) => d[p * 4 + 3] < 128 ? -1 : d[p * 4] << 16 | d[p * 4 + 1] << 8 | d[p * 4 + 2];
+    const stack = [];
+    for (let p = 0; p < n3; p++) {
+      if (labels[p] >= 0) continue;
+      const k = key(p);
+      if (k < 0) continue;
+      const id = colors.length;
+      let size = 0;
+      labels[p] = id;
+      stack.push(p);
+      while (stack.length) {
+        const q = stack.pop(), x = q % W;
+        size++;
+        for (const r of [x > 0 ? q - 1 : -1, x < W - 1 ? q + 1 : -1, q - W, q + W]) {
+          if (r < 0 || r >= n3 || labels[r] >= 0 || key(r) !== k) continue;
+          labels[r] = id;
+          stack.push(r);
+        }
+      }
+      colors.push(hex(k >> 16, k >> 8 & 255, k & 255));
+      sizes.push(size);
+    }
+    return { labels, colors, sizes };
+  }
+  function pieceCentres(p, W, H) {
+    const L = p.labels, n3 = W * H, dist2 = new Float32Array(n3);
+    const edge = (i) => {
+      const x = i % W, y = i / W | 0, l = L[i];
+      return x === 0 || y === 0 || x === W - 1 || y === H - 1 || L[i - 1] !== l || L[i + 1] !== l || L[i - W] !== l || L[i + W] !== l;
+    };
+    for (let i = 0; i < n3; i++) dist2[i] = L[i] < 0 ? 0 : edge(i) ? 1 : 1e9;
+    const D = Math.SQRT2;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const i = y * W + x;
+      if (dist2[i] <= 1) continue;
+      let v = dist2[i];
+      if (x > 0) v = Math.min(v, dist2[i - 1] + 1);
+      if (y > 0) v = Math.min(v, dist2[i - W] + 1, x > 0 ? dist2[i - W - 1] + D : 1e9, x < W - 1 ? dist2[i - W + 1] + D : 1e9);
+      dist2[i] = v;
+    }
+    for (let y = H - 1; y >= 0; y--) for (let x = W - 1; x >= 0; x--) {
+      const i = y * W + x;
+      if (dist2[i] <= 1) continue;
+      let v = dist2[i];
+      if (x < W - 1) v = Math.min(v, dist2[i + 1] + 1);
+      if (y < H - 1) v = Math.min(v, dist2[i + W] + 1, x < W - 1 ? dist2[i + W + 1] + D : 1e9, x > 0 ? dist2[i + W - 1] + D : 1e9);
+      dist2[i] = v;
+    }
+    const best = p.colors.map(() => ({ x: 0, y: 0, r: -1 }));
+    for (let i = 0; i < n3; i++) {
+      const l = L[i];
+      if (l >= 0 && dist2[i] > best[l].r) best[l] = { x: i % W + 0.5, y: (i / W | 0) + 0.5, r: dist2[i] };
+    }
+    return best;
+  }
+  function pieceOutlines(p, W, H) {
+    const L = p.labels, at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : L[y * W + x];
+    const out = [];
+    for (let y = 0; y <= H; y++) {
+      for (let x = 0; x < W; ) {
+        const a = at(x, y - 1), b = at(x, y);
+        if (a === b) {
+          x++;
+          continue;
+        }
+        const x0 = x;
+        while (x < W && at(x, y - 1) !== at(x, y)) x++;
+        out.push(`M${x0} ${y}H${x}`);
+      }
+    }
+    for (let x = 0; x <= W; x++) {
+      for (let y = 0; y < H; ) {
+        const a = at(x - 1, y), b = at(x, y);
+        if (a === b) {
+          y++;
+          continue;
+        }
+        const y0 = y;
+        while (y < H && at(x - 1, y) !== at(x, y)) y++;
+        out.push(`M${x} ${y0}V${y}`);
+      }
+    }
+    return out.join("");
   }
 
   // src/shared/ui.ts
@@ -451,9 +538,9 @@
   function createPaletteUI(host) {
     const st = host.state;
     function uniqueName(base) {
-      let n = base, i = 2;
-      while (st.palettes[n]) n = `${base} ${i++}`;
-      return n;
+      let n3 = base, i = 2;
+      while (st.palettes[n3]) n3 = `${base} ${i++}`;
+      return n3;
     }
     function renderSelect() {
       const sel = $("#pal-select");
@@ -470,13 +557,13 @@
       st.paletteName = name;
       host.save();
       renderSelect();
-      render2();
+      render3();
     }
     function addPalette2(name, colors) {
-      const n = uniqueName(name);
-      st.palettes[n] = colors;
-      switchPalette(n);
-      return n;
+      const n3 = uniqueName(name);
+      st.palettes[n3] = colors;
+      switchPalette(n3);
+      return n3;
     }
     function addColors2(list) {
       let added = 0;
@@ -485,11 +572,11 @@
         added++;
       }
       host.save();
-      render2();
+      render3();
       return added;
     }
     let paletteKey = "";
-    function render2() {
+    function render3() {
       const box = $("#palette");
       const counts2 = host.counts(), key = st.palette.join();
       if (key === paletteKey && box.children.length === st.palette.length + 1) {
@@ -511,19 +598,19 @@
     function updateSwatch(d, c, counts2) {
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
-      const n = c ? counts2.get(c) || 0 : 0;
+      const n3 = c ? counts2.get(c) || 0 : 0;
       const num2 = c ? st.palette.indexOf(c) + 1 : 0;
       const N = host.names;
-      d.title = c ? `#${num2}  ${c}${n ? ` – used by ${host.usage(n)}` : ""}
+      d.title = c ? `#${num2}  ${c}${n3 ? ` – used by ${host.usage(n3)}` : ""}
 Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       let b = d.querySelector(".count");
-      if (n && !b) {
+      if (n3 && !b) {
         b = document.createElement("span");
         b.className = "count";
         d.prepend(b);
       }
       if (b) {
-        if (n) b.textContent = n > 9999 ? Math.round(n / 1e3) + "k" : String(n);
+        if (n3) b.textContent = n3 > 9999 ? Math.round(n3 / 1e3) + "k" : String(n3);
         else b.remove();
       }
     }
@@ -557,17 +644,17 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     function setFill2(c, apply) {
       st.fill = c;
       host.save();
-      if (!(apply && host.applyFill && host.applyFill(c))) render2();
+      if (!(apply && host.applyFill && host.applyFill(c))) render3();
     }
     function setStroke2(c, apply) {
       st.stroke = c;
       host.save();
-      if (!(apply && host.applyStroke && host.applyStroke(c))) render2();
+      if (!(apply && host.applyStroke && host.applyStroke(c))) render3();
     }
     function removeColor(c) {
       st.palette = st.palette.filter((x) => x !== c);
       host.save();
-      render2();
+      render3();
     }
     function editColor(old) {
       const v = prompt("Edit color (hex or any CSS color).\nThe drawing is recolored too.", old);
@@ -586,7 +673,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       host.save();
       const msg = host.recolor ? host.recolor(old, c) : null;
       if (msg) toast(msg);
-      render2();
+      render3();
     }
     function addFromInput() {
       const inp = $("#color-input");
@@ -601,11 +688,11 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         toast("No color found in: " + text);
         return;
       }
-      const n = addColors2(cols);
+      const n3 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
       inp.value = "";
       updatePreview();
-      toast(n ? `Added ${n} color${n > 1 ? "s" : ""}.` : "Already in the palette.");
+      toast(n3 ? `Added ${n3} color${n3 > 1 ? "s" : ""}.` : "Already in the palette.");
     }
     function updatePreview() {
       const c = parse($("#color-input").value)[0];
@@ -616,9 +703,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     function pasteColors2(text) {
       const cols = parse(text);
       if (!cols.length) return false;
-      const n = addColors2(cols);
+      const n3 = addColors2(cols);
       if (cols.length === 1) setFill2(cols[0], false);
-      toast(n ? `Added ${n} color${n > 1 ? "s" : ""} from the clipboard.` : "Those colors are already in the palette.");
+      toast(n3 ? `Added ${n3} color${n3 > 1 ? "s" : ""} from the clipboard.` : "Those colors are already in the palette.");
       return true;
     }
     function bind() {
@@ -636,21 +723,21 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         st.fill = st.stroke;
         st.stroke = f;
         host.save();
-        render2();
+        render3();
       };
       $("#pal-select").onchange = (e) => switchPalette(e.target.value);
       $("#btn-pal-new").onclick = () => {
-        const n = prompt("Name of the new palette:", uniqueName("Palette"));
-        if (!n || !n.trim()) return;
-        const name = uniqueName(n.trim());
+        const n3 = prompt("Name of the new palette:", uniqueName("Palette"));
+        if (!n3 || !n3.trim()) return;
+        const name = uniqueName(n3.trim());
         st.palettes[name] = [];
         switchPalette(name);
         toast(`Created “${name}”. Paste colors to fill it.`);
       };
       $("#btn-pal-rename").onclick = () => {
-        const old = st.paletteName, n = prompt("Rename palette:", old);
-        if (!n || !n.trim() || n.trim() === old) return;
-        const name = uniqueName(n.trim()), next = {};
+        const old = st.paletteName, n3 = prompt("Rename palette:", old);
+        if (!n3 || !n3.trim() || n3.trim() === old) return;
+        const name = uniqueName(n3.trim()), next = {};
         for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
         st.palettes = next;
         switchPalette(name);
@@ -662,15 +749,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         switchPalette(Object.keys(st.palettes)[0]);
       };
       $("#btn-pal-doc").onclick = () => {
-        const n = addColors2(host.docColors());
-        toast(n ? `Added ${n} color${n > 1 ? "s" : ""} from the drawing.` : "No new colors in the drawing.");
+        const n3 = addColors2(host.docColors());
+        toast(n3 ? `Added ${n3} color${n3 > 1 ? "s" : ""} from the drawing.` : "No new colors in the drawing.");
       };
       $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
       $("#btn-pal-clear").onclick = () => {
         if (confirm("Remove all colors from this palette? (The drawing is not changed.)")) {
           st.palette = [];
           host.save();
-          render2();
+          render3();
         }
       };
       $("#btn-pal-import").onclick = () => $("#pal-file").click();
@@ -679,17 +766,17 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         if (!f) return;
         const text = await f.text();
         e.target.value = "";
-        const n = addColors2(parse(text));
-        toast(n ? `Imported ${n} color${n > 1 ? "s" : ""}.` : "No new colors found in " + f.name);
+        const n3 = addColors2(parse(text));
+        toast(n3 ? `Imported ${n3} color${n3 > 1 ? "s" : ""}.` : "No new colors found in " + f.name);
       };
       window.addEventListener("storage", (e) => {
         if (e.key !== SHARED_KEY) return;
         loadSharedPalettes(st);
         renderSelect();
-        render2();
+        render3();
       });
     }
-    return { uniqueName, renderSelect, switchPalette, addPalette: addPalette2, addColors: addColors2, render: render2, setFill: setFill2, setStroke: setStroke2, addFromInput, updatePreview, pasteColors: pasteColors2, bind };
+    return { uniqueName, renderSelect, switchPalette, addPalette: addPalette2, addColors: addColors2, render: render3, setFill: setFill2, setStroke: setStroke2, addFromInput, updatePreview, pasteColors: pasteColors2, bind };
   }
 
   // src/raster/state.ts
@@ -709,6 +796,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     tolerance: 24,
     contiguous: true,
     grid: true,
+    /** the real width of the finished mosaic, mm (report, print, 3D) */
+    realWidth: 300,
     mosaic: { tile: 16, grout: 2, groutColor: "#b8b2a7", colors: "palette", count: 12, bricks: false },
     view: { x: 0, y: 0, s: 1 },
     /** the rectangle selection (whole pixels), or null */
@@ -734,7 +823,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     fileHandle: null
   };
   var KEY = "mz-raster-prefs";
-  var PREF_KEYS = ["mode", "tool", "fill", "stroke", "size", "opacity", "smooth", "sides", "ngonFill", "ngonOutline", "tolerance", "contiguous", "grid", "mosaic"];
+  var PREF_KEYS = ["mode", "tool", "fill", "stroke", "size", "opacity", "smooth", "sides", "ngonFill", "ngonOutline", "tolerance", "contiguous", "grid", "mosaic", "realWidth"];
   function savePrefs() {
     const o = {};
     for (const k of PREF_KEYS) o[k] = state[k];
@@ -887,8 +976,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       const r = state.size / 2;
       vctx.beginPath();
       if (state.tool === "pencil") {
-        const n = Math.max(1, Math.round(state.size)), x0 = Math.floor(c.x) - Math.floor((n - 1) / 2), y0 = Math.floor(c.y) - Math.floor((n - 1) / 2);
-        vctx.rect(x0, y0, n, n);
+        const n3 = Math.max(1, Math.round(state.size)), x0 = Math.floor(c.x) - Math.floor((n3 - 1) / 2), y0 = Math.floor(c.y) - Math.floor((n3 - 1) / 2);
+        vctx.rect(x0, y0, n3, n3);
       } else vctx.arc(c.x, c.y, Math.max(r, 0.5), 0, Math.PI * 2);
       vctx.lineWidth = 1 / k;
       vctx.strokeStyle = "rgba(0,0,0,.7)";
@@ -927,6 +1016,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }).observe(stage);
 
   // src/lib/store.ts
+  var appOf = (v) => v.app || "vector";
   var dbp = null;
   function open() {
     if (!dbp) {
@@ -950,10 +1040,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }
     return dbp;
   }
-  async function run(name, mode, fn) {
+  async function run(name, mode2, fn) {
     const d = await open();
     return new Promise((resolve, reject) => {
-      const t = d.transaction(name, mode), req = fn(t.objectStore(name));
+      const t = d.transaction(name, mode2), req = fn(t.objectStore(name));
       t.oncomplete = () => resolve(req ? req.result : void 0);
       t.onerror = t.onabort = () => reject(t.error);
     });
@@ -962,12 +1052,13 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     get: (k) => run("kv", "readonly", (s) => s.get(k)),
     set: (k, v) => run("kv", "readwrite", (s) => s.put(v, k)),
     addVersion: (v) => run("versions", "readwrite", (s) => s.add(v)),
-    async listVersions() {
-      return (await run("versions", "readonly", (s) => s.getAll())).sort((a, b) => b.time - a.time);
+    /** The versions of one app, newest first. */
+    async listVersions(app = "vector") {
+      return (await run("versions", "readonly", (s) => s.getAll())).filter((v) => appOf(v) === app).sort((a, b) => b.time - a.time);
     },
     deleteVersion: (id) => run("versions", "readwrite", (s) => s.delete(id)),
-    async trimVersions(max) {
-      const all = await Store.listVersions();
+    async trimVersions(max, app = "vector") {
+      const all = await Store.listVersions(app);
       for (const v of all.slice(max)) await Store.deleteVersion(v.id);
     }
   };
@@ -1046,22 +1137,22 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
 
   // src/raster/history.ts
-  var history = [];
+  var history2 = [];
   var index = -1;
   var MAX_BYTES = 4e8;
   var MAX_STEPS = 100;
   var snapshot = () => dctx.getImageData(0, 0, doc.width, doc.height);
   function resetHistory() {
-    history = [snapshot()];
+    history2 = [snapshot()];
     index = 0;
     updateUndoUI();
   }
   function commit() {
-    history.splice(index + 1);
-    history.push(snapshot());
-    let bytes = history.reduce((t, s) => t + s.data.length, 0);
-    while (history.length > 2 && (history.length > MAX_STEPS || bytes > MAX_BYTES)) bytes -= history.shift().data.length;
-    index = history.length - 1;
+    history2.splice(index + 1);
+    history2.push(snapshot());
+    let bytes = history2.reduce((t, s) => t + s.data.length, 0);
+    while (history2.length > 2 && (history2.length > MAX_STEPS || bytes > MAX_BYTES)) bytes -= history2.shift().data.length;
+    index = history2.length - 1;
     rt.dirty = true;
     afterChange();
   }
@@ -1073,7 +1164,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     rt.dirty = true;
     afterChange();
   }
-  var restoreCurrent = () => restore(history[index]);
+  var restoreCurrent = () => restore(history2[index]);
   function undo() {
     if (state.floating || state.action) {
       state.action = null;
@@ -1081,15 +1172,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       restoreCurrent();
       return;
     }
-    if (index > 0) restore(history[--index]);
+    if (index > 0) restore(history2[--index]);
   }
   function redo() {
     if (state.floating) restoreCurrent();
-    if (index < history.length - 1) restore(history[++index]);
+    if (index < history2.length - 1) restore(history2[++index]);
   }
   function updateUndoUI() {
     $("#btn-undo").disabled = index <= 0 && !state.floating;
-    $("#btn-redo").disabled = index >= history.length - 1;
+    $("#btn-redo").disabled = index >= history2.length - 1;
   }
   function afterChange() {
     updateUndoUI();
@@ -1103,11 +1194,16 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   var timer;
   var started = false;
+  var paused = false;
   function startAutosave() {
     started = true;
   }
+  function pauseAutosave(on2) {
+    paused = on2;
+    if (on2) clearTimeout(timer);
+  }
   function scheduleAutosave() {
-    if (!started) return;
+    if (!started || paused) return;
     clearTimeout(timer);
     timer = setTimeout(autosaveNow, 800);
   }
@@ -1117,6 +1213,21 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       await Store.set("raster", { png, fileName: rt.fileName, time: Date.now() });
     } catch {
       toast("Autosave failed – remember to save your image.");
+    }
+    if (Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion("Autosave");
+  }
+  var VERSION_EVERY_MS = 3 * 60 * 1e3;
+  var MAX_VERSIONS = 40;
+  var lastVersionAt = Date.now();
+  async function saveVersion(note) {
+    lastVersionAt = Date.now();
+    try {
+      const png = await (await canvasToPng(doc)).arrayBuffer();
+      await Store.addVersion({ app: "raster", time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height });
+      await Store.trimVersions(MAX_VERSIONS, "raster");
+      return true;
+    } catch {
+      return false;
     }
   }
   async function loadAutosave() {
@@ -1130,10 +1241,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
 
   // src/lib/geometry.ts
-  function regularPolygon(n, cx, cy, r, rot) {
+  function regularPolygon(n3, cx, cy, r, rot) {
     const out = [];
-    for (let i = 0; i < n; i++) {
-      const a = rot + i * 2 * Math.PI / n;
+    for (let i = 0; i < n3; i++) {
+      const a = rot + i * 2 * Math.PI / n3;
       out.push({ x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) });
     }
     return out;
@@ -1199,26 +1310,26 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }
     return counts;
   }
-  function suggestColors(img, n) {
+  function suggestColors(img, n3) {
     const labs = samplePixels(img, 5e3).map(toLab);
-    return labs.length ? [...new Set(kmeans(labs, n, 7).map(fromLab))] : [];
+    return labs.length ? [...new Set(kmeans(labs, n3, 7).map(fromLab))] : [];
   }
   var ui = createPaletteUI({
     state,
     save: savePrefs,
     counts: colorCounts,
-    usage: (n) => `${n} pixel${n > 1 ? "s" : ""}`,
+    usage: (n3) => `${n3} pixel${n3 > 1 ? "s" : ""}`,
     names: { fill: "paint color", stroke: "outline color", none: "Transparent – paints and fills transparent pixels" },
     docColors() {
       const img = getImage();
       return uniqueColors(img, 64) || suggestColors(img, 16);
     },
     recolor(old, c) {
-      const img = getImage(), n = replaceColor(img, old, rgba(c));
-      if (!n) return null;
+      const img = getImage(), n3 = replaceColor(img, old, rgba(c));
+      if (!n3) return null;
       dctx.putImageData(img, 0, 0);
       commit();
-      return `Recolored ${n} pixel${n > 1 ? "s" : ""}.`;
+      return `Recolored ${n3} pixel${n3 > 1 ? "s" : ""}.`;
     }
   });
   var {
@@ -1457,13 +1568,13 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   var tips = /* @__PURE__ */ new Map();
   function tip(size, color) {
-    const n = Math.max(1, Math.round(size)), key = n + color;
+    const n3 = Math.max(1, Math.round(size)), key = n3 + color;
     let c = tips.get(key);
     if (!c) {
       if (tips.size > 40) tips.clear();
-      c = makeCanvas(n, n);
-      const x = c.getContext("2d"), im = x.createImageData(n, n), m = discMask(n), rgba2 = rgba(color);
-      for (let i = 0; i < n * n; i++) if (m[i]) im.data.set(rgba2, i * 4);
+      c = makeCanvas(n3, n3);
+      const x = c.getContext("2d"), im = x.createImageData(n3, n3), m = discMask(n3), rgba2 = rgba(color);
+      for (let i = 0; i < n3 * n3; i++) if (m[i]) im.data.set(rgba2, i * 4);
       x.putImageData(im, 0, 0);
       tips.set(key, c);
     }
@@ -1715,7 +1826,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   var MAX_SIDE = 8e3;
   var IMAGE_TYPES = [{ description: "Images", accept: { "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"] } }];
   var PNG_TYPES = [{ description: "PNG image", accept: { "image/png": [".png"] } }];
-  var baseName = (n) => n.replace(/\.[a-z0-9]+$/i, "");
+  var baseName = (n3) => n3.replace(/\.[a-z0-9]+$/i, "");
   function confirmDiscard() {
     return !rt.dirty || confirm("Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)");
   }
@@ -1759,7 +1870,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       toast("Could not read " + f.name + " as an image.");
       return false;
     }
+    await saveVersion("Before opening " + f.name);
     loadCanvas(c, f.name);
+    scheduleAutosave();
     toast(`Opened ${f.name} (${c.width} × ${c.height} px).`);
     return true;
   }
@@ -1799,7 +1912,24 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const c = makeCanvas(s.w, s.h), x = c.getContext("2d");
     x.fillStyle = "#ffffff";
     x.fillRect(0, 0, s.w, s.h);
-    loadCanvas(c, "mosaic.png");
+    saveVersion("Before starting a new image").then(() => {
+      loadCanvas(c, "mosaic.png");
+      scheduleAutosave();
+    });
+  }
+  var listVersions = () => Store.listVersions("raster");
+  async function restoreVersion(v) {
+    const c = v.png && await fileToCanvas(new Blob([v.png], { type: "image/png" }));
+    if (!c) {
+      toast("That version could not be read.");
+      return;
+    }
+    await saveVersion("Before restoring an older version");
+    loadCanvas(c, v.name || "mosaic.png");
+    rt.dirty = true;
+    updateTitle();
+    scheduleAutosave();
+    toast("Restored the version from " + new Date(v.time).toLocaleString());
   }
   async function save() {
     const png = await canvasToPng(doc), w = window;
@@ -1869,9 +1999,9 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     if (state.floating) place();
     return state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
   }
-  var fmtN = (n) => n.toLocaleString("en");
+  var fmtN = (n3) => n3.toLocaleString("en");
   function summary(counts2, unit) {
-    const total = [...counts2.values()].reduce((s, n) => s + n, 0);
+    const total = [...counts2.values()].reduce((s, n3) => s + n3, 0);
     return `${fmtN(total)} ${unit}${total === 1 ? "" : "s"} in ${counts2.size} color${counts2.size === 1 ? "" : "s"}`;
   }
   function makeMosaic() {
@@ -1910,8 +2040,8 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
   function estimate() {
     const m = state.mosaic, b = state.sel || { w: doc.width, h: doc.height };
-    const n = Math.ceil(b.w / Math.max(2, m.tile)) * Math.ceil(b.h / Math.max(2, m.tile));
-    $("#mo-estimate").textContent = `About ${fmtN(n)} tiles${state.sel ? " in the selection" : ""}.`;
+    const n3 = Math.ceil(b.w / Math.max(2, m.tile)) * Math.ceil(b.h / Math.max(2, m.tile));
+    $("#mo-estimate").textContent = `About ${fmtN(n3)} tiles${state.sel ? " in the selection" : ""}.`;
   }
   function bindMosaic() {
     const m = state.mosaic;
@@ -1962,14 +2092,14 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   }
 
   // src/raster/panel.ts
-  function setSides(n) {
-    state.sides = clamp(Math.round(n) || 6, 3, 64);
+  function setSides(n3) {
+    state.sides = clamp(Math.round(n3) || 6, 3, 64);
     $("#opt-sides").value = state.sides;
     for (const b of $$("#quick-sides button")) b.classList.toggle("active", +b.dataset.sides === state.sides);
     savePrefs();
   }
-  function setBrushSize(n) {
-    state.size = clamp(Math.round(n) || 1, 1, 500);
+  function setBrushSize(n3) {
+    state.size = clamp(Math.round(n3) || 1, 1, 500);
     $("#opt-size").value = state.size;
     $("#opt-size-range").value = Math.min(100, state.size);
     savePrefs();
@@ -2423,15 +2553,15 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     for (const r of greedyRects(solid, w, h)) faces.push({ o: [r.x, Y(r.y + r.h), 0], u: [0, r.h, 0], v: [r.w, 0, 0], level: 0 });
     for (let y = 0; y <= h; y++) {
       for (let x = 0; x < w; ) {
-        const n = height(x, y - 1), so = height(x, y);
-        if (n === so) {
+        const n3 = height(x, y - 1), so = height(x, y);
+        if (n3 === so) {
           x++;
           continue;
         }
         let x1 = x + 1;
-        while (x1 < w && height(x1, y - 1) === n && height(x1, y) === so) x1++;
-        const lo = Math.min(n, so), dz = Math.abs(n - so), Y0 = Y(y);
-        if (n > so) faces.push({ o: [x, Y0, lo], u: [x1 - x, 0, 0], v: [0, 0, dz], level: level(x, y - 1) });
+        while (x1 < w && height(x1, y - 1) === n3 && height(x1, y) === so) x1++;
+        const lo = Math.min(n3, so), dz = Math.abs(n3 - so), Y0 = Y(y);
+        if (n3 > so) faces.push({ o: [x, Y0, lo], u: [x1 - x, 0, 0], v: [0, 0, dz], level: level(x, y - 1) });
         else faces.push({ o: [x, Y0, lo], u: [0, 0, dz], v: [x1 - x, 0, 0], level: level(x, y) });
         x = x1;
       }
@@ -2505,12 +2635,12 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     return { vertices, triangles, levels };
   }
   function stl(mesh, name = "Mosaic Paint") {
-    const V = mesh.vertices, T = mesh.triangles, n = T.length / 3, buf = new ArrayBuffer(84 + n * 50), dv = new DataView(buf);
+    const V = mesh.vertices, T = mesh.triangles, n3 = T.length / 3, buf = new ArrayBuffer(84 + n3 * 50), dv = new DataView(buf);
     const header = `${name} – multi-color by layer`.slice(0, 80);
     for (let i = 0; i < header.length; i++) dv.setUint8(i, header.charCodeAt(i) & 127);
-    dv.setUint32(80, n, true);
+    dv.setUint32(80, n3, true);
     let o = 84;
-    for (let t = 0; t < n; t++) {
+    for (let t = 0; t < n3; t++) {
       const p = [0, 1, 2].map((k) => T[t * 3 + k] * 3);
       const ux = V[p[1]] - V[p[0]], uy = V[p[1] + 1] - V[p[0] + 1], uz = V[p[1] + 2] - V[p[0] + 2];
       const vx = V[p[2]] - V[p[0]], vy = V[p[2] + 1] - V[p[0] + 1], vz = V[p[2] + 2] - V[p[0] + 2];
@@ -2582,10 +2712,10 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   function crc32(data) {
     if (!crcTable) {
       crcTable = new Uint32Array(256);
-      for (let n = 0; n < 256; n++) {
-        let c2 = n;
+      for (let n3 = 0; n3 < 256; n3++) {
+        let c2 = n3;
         for (let k = 0; k < 8; k++) c2 = c2 & 1 ? 3988292384 ^ c2 >>> 1 : c2 >>> 1;
-        crcTable[n] = c2 >>> 0;
+        crcTable[n3] = c2 >>> 0;
       }
     }
     let c = 4294967295;
@@ -2711,7 +2841,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     const byBrightness = (lightFirst) => (a, b) => +lines.has(colors[b]) - +lines.has(colors[a]) || (luminance(colors[b]) - luminance(colors[a])) * (lightFirst ? 1 : -1);
     function sortBy(lightFirst) {
       order.sort(byBrightness(lightFirst));
-      render2();
+      render3();
     }
     async function analyse() {
       const { w, h } = size();
@@ -2730,17 +2860,17 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       const known = prev.filter((c2) => colors.includes(c2)).map((c2) => colors.indexOf(c2));
       const fresh = colors.map((_, i) => i).filter((i) => !known.includes(i)).sort(byBrightness(true));
       order = [...known, ...fresh];
-      render2();
+      render3();
     }
-    const rows = /* @__PURE__ */ new Map();
+    const rows2 = /* @__PURE__ */ new Map();
     function move(c, d) {
       const list = used(), k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
       if (k < 0 || other == null) return;
       const a = order.indexOf(list[k]), b = order.indexOf(other);
       [order[a], order[b]] = [order[b], order[a]];
-      render2();
+      render3();
     }
-    function render2() {
+    function render3() {
       const s = settings(), list = used(), { w, h } = size();
       $("#m3-w").value = f2(w);
       $("#m3-h").value = f2(h);
@@ -2753,13 +2883,13 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
       $("#m3-note").textContent = warn;
       const plan2 = colorPlan(list.map((i) => colors[i]), s), total = gw * gh || 1, box = $("#m3-order");
       const keep = new Set(list.map((ci) => colors[ci]));
-      for (const [c, el] of rows) if (!keep.has(c)) {
+      for (const [c, el] of rows2) if (!keep.has(c)) {
         el.remove();
-        rows.delete(c);
+        rows2.delete(c);
       }
       list.forEach((ci, k) => {
         const c = colors[ci], p = plan2[k];
-        let row = rows.get(c);
+        let row = rows2.get(c);
         if (!row) {
           row = document.createElement("div");
           row.className = "m3-row";
@@ -2767,7 +2897,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
           const [up2, down2] = row.querySelectorAll("button");
           up2.onclick = () => move(c, -1);
           down2.onclick = () => move(c, 1);
-          rows.set(c, row);
+          rows2.set(c, row);
         }
         row.querySelector(".note").textContent = `${Math.max(0.1, +(counts2[ci] / total * 100).toFixed(1))} % · layers ${p.fromLayer}–${p.toLayer}${p.z == null ? "" : ` · change at Z ${p.z.toFixed(2)}`}`;
         const [up, down] = row.querySelectorAll("button");
@@ -2841,7 +2971,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
         }
         i.value = opts[key];
         if (again) reanalyse();
-        else render2();
+        else render3();
       };
     };
     bindNum("#m3-detail", "detail", 0.1, 5, false, true);
@@ -2898,7 +3028,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
   function bindExport3D() {
     initExport3D({
       aspect: () => doc.width / doc.height,
-      realSize: () => null,
+      realSize: () => ({ w: state.realWidth, h: state.realWidth * doc.height / doc.width }),
       async render(w, h) {
         const c = makeCanvas(w, h), x = c.getContext("2d");
         x.imageSmoothingEnabled = w < doc.width;
@@ -2915,11 +3045,423 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }, $("#btn-3d"));
   }
 
+  // src/raster/report.ts
+  function colorRows(p) {
+    const m = /* @__PURE__ */ new Map();
+    p.colors.forEach((c, i) => {
+      const r = m.get(c) || { n: 0, color: c, pieces: 0, pixels: 0 };
+      r.pieces++;
+      r.pixels += p.sizes[i];
+      m.set(c, r);
+    });
+    return [...m.values()].sort((a, b) => b.pixels - a.pixels).map((r, i) => ({ ...r, n: i + 1 }));
+  }
+  var mmPerPixel = () => state.realWidth / doc.width;
+  var fmtN2 = (v) => v.toLocaleString("en");
+  var area = (px) => {
+    const cm2 = px * mmPerPixel() ** 2 / 100;
+    return cm2 >= 100 ? `${(cm2 / 100).toFixed(2)} dm²` : `${cm2.toFixed(1)} cm²`;
+  };
+  var rows = [];
+  function render2() {
+    const p = pieces(getImage());
+    rows = colorRows(p);
+    const total = rows.reduce((s, r) => s + r.pixels, 0) || 1, pieces2 = rows.reduce((s, r) => s + r.pieces, 0);
+    $("#rep-summary").textContent = rows.length ? `${fmtN2(pieces2)} piece${pieces2 === 1 ? "" : "s"} in ${rows.length} color${rows.length === 1 ? "" : "s"} · ${doc.width} × ${doc.height} px` : "Nothing is painted yet.";
+    $("#rep-width").value = state.realWidth;
+    $("#rep-size").textContent = `${Math.round(state.realWidth)} × ${Math.round(state.realWidth * doc.height / doc.width)} mm · ${mmPerPixel().toFixed(2)} mm per pixel`;
+    const t = $("#rep-table");
+    t.innerHTML = "<tr><th>#</th><th>Color</th><th>Pieces</th><th>Pixels</th><th>Share</th><th>Area</th><th>Replace with</th></tr>";
+    for (const r of rows) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${r.n}</td><td><span class="mini" style="background:${r.color}"></span> ${r.color}</td><td>${fmtN2(r.pieces)}</td><td>${fmtN2(r.pixels)}</td><td>${(r.pixels / total * 100).toFixed(1)} %</td><td>${area(r.pixels)}</td><td></td>`;
+      const sel = document.createElement("select");
+      sel.innerHTML = '<option value="">–</option>' + state.palette.filter((c) => c !== r.color).map((c) => `<option value="${c}">${c}</option>`).join("") + '<option value="none">transparent</option>';
+      sel.onchange = () => {
+        if (!sel.value) return;
+        const img = getImage(), n3 = replaceColor(img, r.color, rgba(sel.value === "none" ? null : sel.value));
+        dctx.putImageData(img, 0, 0);
+        commit();
+        toast(`Recolored ${fmtN2(n3)} pixel${n3 === 1 ? "" : "s"}.`);
+        render2();
+      };
+      tr.lastElementChild.append(sel);
+      t.append(tr);
+    }
+  }
+  function csv() {
+    const lines = ["number,color,pieces,pixels,area_cm2"];
+    for (const r of rows) lines.push([r.n, r.color, r.pieces, r.pixels, (r.pixels * mmPerPixel() ** 2 / 100).toFixed(2)].join(","));
+    return lines.join("\n") + "\n";
+  }
+  function bindReport() {
+    $("#btn-report").onclick = () => {
+      render2();
+      $("#dlg-report").showModal();
+    };
+    $("#rep-width").onchange = () => {
+      const v = +$("#rep-width").value;
+      if (v > 0) {
+        state.realWidth = v;
+        savePrefs();
+      }
+      render2();
+    };
+    $("#rep-csv").onclick = () => download(new Blob([csv()], { type: "text/csv" }), rt.fileName.replace(/\.[a-z0-9]+$/i, "") + "-colors.csv");
+  }
+
+  // src/lib/print.ts
+  var PAPERS = {
+    a4: { w: 210, h: 297, name: "A4" },
+    letter: { w: 215.9, h: 279.4, name: "Letter" },
+    a3: { w: 297, h: 420, name: "A3" },
+    tabloid: { w: 279.4, h: 431.8, name: "Tabloid" }
+  };
+  var MM = { mm: 1, cm: 10, in: 25.4, px: 25.4 / 96 };
+  var MARGIN = 10;
+  var LABEL = 7;
+  var OVERLAP = 10;
+  var rowName = (r) => (r >= 26 ? rowName(Math.floor(r / 26) - 1) : "") + String.fromCharCode(65 + r % 26);
+  var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  var n = (v) => String(Math.round(v * 1e3) / 1e3);
+  function area2(paperKey, orientation) {
+    const p = PAPERS[paperKey] || PAPERS.a4;
+    const [pw, ph] = orientation === "landscape" ? [p.h, p.w] : [p.w, p.h];
+    return { paper: p, orientation, aw: pw - 2 * MARGIN, ah: ph - 2 * MARGIN - LABEL };
+  }
+  function sheetsFor(wmm, hmm, A, mode2) {
+    if (mode2 === "fit") {
+      const scale = Math.min(A.aw / wmm, A.ah / hmm);
+      return { ...A, scale, rows: 1, cols: 1, sheets: [{ label: "", row: 0, col: 0, x: 0, y: 0, w: wmm, h: hmm }], cost: -scale };
+    }
+    const count = (len, avail) => len <= avail ? 1 : Math.ceil((len - OVERLAP) / (avail - OVERLAP));
+    const cols = count(wmm, A.aw), rows2 = count(hmm, A.ah), sheets = [];
+    for (let r = 0; r < rows2; r++) for (let c = 0; c < cols; c++) {
+      const x = c * (A.aw - OVERLAP), y = r * (A.ah - OVERLAP);
+      sheets.push({ label: rows2 * cols > 1 ? rowName(r) + (c + 1) : "", row: r, col: c, x, y, w: Math.min(A.aw, wmm - x), h: Math.min(A.ah, hmm - y) });
+    }
+    return { ...A, scale: 1, rows: rows2, cols, sheets, cost: rows2 * cols };
+  }
+  function layout(wmm, hmm, paperKey = "a4", mode2 = "real", orientation = null) {
+    const opts2 = (orientation ? [orientation] : ["portrait", "landscape"]).map((o) => sheetsFor(wmm, hmm, area2(paperKey, o), mode2));
+    return opts2.length > 1 && opts2[1].cost < opts2[0].cost ? opts2[1] : opts2[0];
+  }
+  function sheetSections(box, k, L, { title: title2 = "", prefix = "" } = {}) {
+    const multi = L.sheets.length > 1;
+    return L.sheets.map((s) => {
+      const vb = [box.x + s.x / k, box.y + s.y / k, s.w / k, s.h / k];
+      const shade = [];
+      if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
+      if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
+      const marks = shade.map((r) => `<rect x="${n(r[0])}" y="${n(r[1])}" width="${n(r[2])}" height="${n(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n(2 / k)} ${n(2 / k)}" stroke-width="${n(0.3 / k)}"/>`).join("");
+      const label = multi ? `${prefix}Sheet ${s.label} – row ${s.label.replace(/\d+$/, "")}, column ${s.col + 1} of ${L.cols} · blue strips are covered by the next sheet` : prefix + title2;
+      return `<section class="sheet"><div class="label">${esc(label)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n).join(" ")}" style="width:${n(s.w * L.scale)}mm;height:${n(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
+    });
+  }
+  function overviewSection(box, k, A, rects, heading, extra = "") {
+    const s = Math.min(A.aw / (box.w * k), (A.ah - 20) / (box.h * k));
+    const stroke = 0.6 / k / s;
+    const marks = rects.map((r) => `<rect x="${n(r.x)}" y="${n(r.y)}" width="${n(r.w)}" height="${n(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n(stroke)}"/><text x="${n(r.x + r.w / 2)}" y="${n(r.y + r.h / 2)}" font-size="${n(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
+    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box.x, box.y, box.w, box.h].map(n).join(" ")}" style="width:${n(box.w * k * s)}mm;height:${n(box.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
+  }
+  function page({ art, sections, paper = "a4", orientation = "portrait", title: title2 = "Mosaic" }) {
+    const p = PAPERS[paper] || PAPERS.a4;
+    return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title2)}</title><style>
+@page { size: ${p.name} ${orientation}; margin: ${MARGIN}mm; }
+html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+.sheet { page-break-after: always; break-after: page; }
+.sheet:last-child { page-break-after: auto; break-after: auto; }
+.sheet svg { display: block; }
+.label { height: ${LABEL}mm; font-size: 3.2mm; color: #333; }
+.legend table, .counts { border-collapse: collapse; }
+.legend td, .counts td { padding: 1.2mm 3mm; border-bottom: 0.2mm solid #ccc; font-size: 3.6mm; }
+.counts { margin-top: 3mm; }
+.legend td.n, .counts td.n { font-weight: bold; }
+.legend span, .counts span { display: inline-block; width: 9mm; height: 6mm; border: 0.2mm solid #888; vertical-align: middle; }
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><g id="art">${art}</g></defs></svg>
+${sections.join("\n")}
+<script>window.onload = () => setTimeout(() => window.print(), 400);<\/script>
+</body></html>`;
+  }
+  function html({ art, box, unit, mmPerUnit = 0, paper = "a4", mode: mode2 = "real", legend = "", title: title2 = "Mosaic" }) {
+    const k = mmPerUnit || MM[unit] || MM.px;
+    const L = layout(box.w * k, box.h * k, paper, mode2);
+    const sections = [];
+    if (L.sheets.length > 1) {
+      sections.push(overviewSection(
+        box,
+        k,
+        L,
+        L.sheets.map((s) => ({ x: box.x + s.x / k, y: box.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
+        `${title2} – ${L.sheets.length} sheets (${L.rows} × ${L.cols}), real size ${n(box.w * k / 10)} × ${n(box.h * k / 10)} cm`
+      ));
+    }
+    sections.push(...sheetSections(box, k, L, { title: title2 }));
+    if (legend) sections.push(`<section class="sheet legend">${legend}</section>`);
+    return page({ art, sections, paper, orientation: L.orientation, title: title2 });
+  }
+
+  // src/raster/print.ts
+  var MAX_PIECES = 2e4;
+  var esc2 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  var n2 = (v) => String(Math.round(v * 1e3) / 1e3);
+  var title = () => rt.fileName.replace(/\.[a-z0-9]+$/i, "");
+  function printArt(style) {
+    const W = doc.width, H = doc.height, p = pieces(getImage()), rows2 = colorRows(p), k = mmPerPixel();
+    if (style !== "colors" && p.colors.length > MAX_PIECES) {
+      toast(`This picture has ${p.colors.length.toLocaleString("en")} pieces – too many to number. Make a mosaic or reduce it to the palette first.`);
+      return null;
+    }
+    const parts = [];
+    if (style === "numbers") parts.push(`<rect width="${W}" height="${H}" fill="#ffffff"/>`);
+    else parts.push(`<image href="${doc.toDataURL("image/png")}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none" style="image-rendering:pixelated"/>`);
+    if (style !== "colors") {
+      if (style === "numbers") parts.push(`<path d="${pieceOutlines(p, W, H)}" fill="none" stroke="#444444" stroke-width="${n2(0.25 / k)}"/>`);
+      const num2 = new Map(rows2.map((r) => [r.color, r.n])), centres = pieceCentres(p, W, H), labels = [];
+      centres.forEach((c, i) => {
+        if (c.r * k < 1.3) return;
+        const size = Math.min(c.r * 1.2, 4 / k);
+        const halo = style === "both" ? ` stroke="#ffffff" stroke-width="${n2(size * 0.18)}" paint-order="stroke"` : "";
+        labels.push(`<text x="${n2(c.x)}" y="${n2(c.y)}" font-size="${n2(size)}"${halo}>${num2.get(p.colors[i])}</text>`);
+      });
+      parts.push(`<g font-family="Arial" text-anchor="middle" dominant-baseline="central" fill="#111111">${labels.join("")}</g>`);
+    }
+    return { art: parts.join(""), rows: rows2 };
+  }
+  function legendHTML(rows2) {
+    const area3 = (px) => `${(px * mmPerPixel() ** 2 / 100).toFixed(1)} cm²`;
+    return rows2.length ? `<h2>${esc2(title())} – colors</h2><table>` + rows2.map((r) => `<tr><td class="n">${r.n}</td><td><span style="background:${r.color}"></span></td><td>${r.color}</td><td>${r.pieces} piece${r.pieces === 1 ? "" : "s"}</td><td>${area3(r.pixels)}</td></tr>`).join("") + "</table>" : "";
+  }
+  function openPrintPage(html2) {
+    const url = URL.createObjectURL(new Blob([html2], { type: "text/html" }));
+    const w = window.open(url, "_blank");
+    if (!w) {
+      toast("The browser blocked the print window – allow pop-ups for this page.");
+      return;
+    }
+    setTimeout(() => URL.revokeObjectURL(url), 6e4);
+  }
+  var mode = () => document.querySelector("input[name=print-size]:checked").value;
+  function updateInfo() {
+    const L = layout(state.realWidth, state.realWidth * doc.height / doc.width, $("#print-paper").value, mode());
+    $("#print-info").textContent = mode() === "fit" ? `One ${L.paper.name} sheet (${L.orientation}), at ${Math.round(L.scale * 100)} % of the real size.` : `${L.sheets.length} ${L.paper.name} sheet${L.sheets.length > 1 ? "s" : ""} (${L.orientation}${L.sheets.length > 1 ? `, ${L.rows} × ${L.cols}, overlapping ${OVERLAP} mm` : ""}) at real size.`;
+  }
+  function printPage(style) {
+    const a = printArt(style);
+    if (!a) return null;
+    return html({
+      art: a.art,
+      box: { x: 0, y: 0, w: doc.width, h: doc.height },
+      unit: "px",
+      mmPerUnit: mmPerPixel(),
+      legend: $("#print-legend").checked ? legendHTML(a.rows) : "",
+      title: title(),
+      paper: $("#print-paper").value,
+      mode: mode()
+    });
+  }
+  function bindPrint() {
+    $("#btn-print").onclick = () => {
+      $("#print-width").value = state.realWidth;
+      updateInfo();
+      $("#dlg-print").showModal();
+    };
+    $("#print-width").onchange = () => {
+      const v = +$("#print-width").value;
+      if (v > 0) {
+        state.realWidth = v;
+        savePrefs();
+      }
+      $("#print-width").value = state.realWidth;
+      updateInfo();
+    };
+    for (const el of document.querySelectorAll("#print-paper, input[name=print-size]")) el.onchange = updateInfo;
+    $("#print-go").onclick = () => {
+      const html2 = printPage(document.querySelector("input[name=print-style]:checked").value);
+      if (!html2) return;
+      $("#dlg-print").close();
+      openPrintPage(html2);
+    };
+  }
+
+  // src/lib/pack.ts
+  var b64url = (bytes) => {
+    let s = "";
+    for (let i = 0; i < bytes.length; i += 32768) s += String.fromCharCode.apply(null, Array.from(bytes.subarray(i, i + 32768)));
+    return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  };
+  var fromB64url = (s) => {
+    const bin = atob(s.replace(/-/g, "+").replace(/_/g, "/"));
+    const out = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  };
+  var packBytes = (bytes) => "p" + b64url(bytes);
+  var unpackBytes = (s) => fromB64url(s.slice(1));
+
+  // src/raster/share.ts
+  var LONG = 64 * 1024;
+  var MAX = 2 * 1024 * 1024;
+  var link = "";
+  var viewing = false;
+  async function makeLink() {
+    const png = new Uint8Array(await (await canvasToPng(doc)).arrayBuffer());
+    link = `${location.origin}${location.pathname}#view=${packBytes(png)}`;
+    const kb = Math.round(link.length / 1024);
+    $("#share-link").value = link;
+    $("#share-size").textContent = link.length > MAX ? `The link would be ${kb} KB – too long. Share the file instead (or make the image smaller).` : `The link is ${kb} KB${link.length > LONG ? " – long links can get cut off in some messengers; sharing the file is safer" : ""}. Anyone with it can view the image and make their own copy.`;
+    $("#share-copy").disabled = link.length > MAX;
+  }
+  async function shareFile() {
+    const file = new File([await canvasToPng(doc)], rt.fileName, { type: "image/png" });
+    try {
+      await navigator.share({ files: [file], title: rt.fileName });
+    } catch (e) {
+      if (e.name !== "AbortError") toast("Sharing failed.");
+    }
+  }
+  async function openShared(packed) {
+    let c = null;
+    try {
+      c = await fileToCanvas(new Blob([unpackBytes(packed)], { type: "image/png" }));
+    } catch {
+    }
+    if (!c) {
+      toast("This share link is damaged or incomplete.");
+      return;
+    }
+    pauseAutosave(true);
+    await saveVersion("Before opening a shared image");
+    loadCanvas(c, "shared.png");
+    viewing = true;
+    document.body.classList.add("viewer");
+    setTool("pan");
+    fitView();
+  }
+  function makeCopy() {
+    viewing = false;
+    document.body.classList.remove("viewer");
+    history.replaceState(null, "", location.pathname + location.search);
+    pauseAutosave(false);
+    setTool("brush");
+    rt.dirty = true;
+    updateTitle();
+    scheduleAutosave();
+    toast("This is now your own copy – it is saved in this browser like any image.");
+  }
+  function closeViewer() {
+    history.replaceState(null, "", location.pathname + location.search);
+    location.reload();
+  }
+  function bindShare() {
+    $("#btn-share").onclick = async () => {
+      $("#dlg-share").showModal();
+      await makeLink();
+    };
+    $("#share-copy").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(link);
+      } catch {
+        $("#share-link").select();
+        document.execCommand("copy");
+      }
+      toast("Link copied.");
+    };
+    const canShareFiles = !!(navigator.canShare && navigator.canShare({ files: [new File(["x"], "x.png", { type: "image/png" })] }));
+    $("#share-file").hidden = !canShareFiles;
+    $("#share-file").onclick = shareFile;
+    $("#viewer-copy").onclick = makeCopy;
+    $("#viewer-close").onclick = closeViewer;
+    document.addEventListener("keydown", (e) => {
+      if (!viewing || typingIn(e.target)) return;
+      if (["+", "=", "-", "_", "0", "1", " ", "Escape"].includes(e.key) && !e.ctrlKey && !e.metaKey) return;
+      e.stopPropagation();
+    }, true);
+    document.addEventListener("paste", (e) => {
+      if (viewing) e.stopPropagation();
+    }, true);
+    window.addEventListener("hashchange", fromHash);
+  }
+  function fromHash() {
+    const m = /^#view=(p[A-Za-z0-9_-]+)$/.exec(location.hash);
+    if (m) openShared(m[1]);
+  }
+
+  // src/shared/history-ui.ts
+  var esc3 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  function initHistoryUI(host, button) {
+    const dlg = document.createElement("dialog");
+    dlg.id = "dlg-history";
+    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>History</h2><button title="Close">✕</button></form>
+<p class="note">Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another ${host.noun}. Restoring keeps your current ${host.noun} as a version too.</p>
+<div class="row"><button id="hist-save">Save a version now</button></div>
+<div id="hist-list"></div>`;
+    document.body.append(dlg);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    const list = dlg.querySelector("#hist-list");
+    let thumbs = [];
+    async function render3() {
+      thumbs.forEach((u) => URL.revokeObjectURL(u));
+      thumbs = [];
+      let versions = [];
+      try {
+        versions = await host.list();
+      } catch {
+        list.innerHTML = '<p class="note">Version history needs browser storage (IndexedDB), which is not available here.</p>';
+        return;
+      }
+      if (!versions.length) {
+        list.innerHTML = `<p class="note">No versions yet. A version is kept every few minutes while you work, and before you open or start another ${host.noun}.</p>`;
+        return;
+      }
+      list.innerHTML = "";
+      for (const v of versions) {
+        const row = document.createElement("div");
+        row.className = "hist-row";
+        const url = URL.createObjectURL(host.thumbnail(v));
+        thumbs.push(url);
+        const detail = host.detail(v);
+        row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString()}</b><span>${esc3(v.name || "")} · ${esc3(v.note || "")}${detail ? ` · ${esc3(detail)}` : ""}</span></div>`;
+        const b = document.createElement("button");
+        b.textContent = "Restore";
+        b.onclick = async () => {
+          dlg.close();
+          await host.restore(v);
+        };
+        row.append(b);
+        list.append(row);
+      }
+    }
+    button.onclick = () => {
+      render3();
+      dlg.showModal();
+    };
+    dlg.querySelector("#hist-save").onclick = async () => {
+      toast(await host.saveNow() ? "Version saved." : "Could not save a version (browser storage unavailable).");
+      render3();
+    };
+  }
+
   // src/raster/main.ts
   loadPrefs();
   bindPanel();
   bindInput();
   bindExport3D();
+  bindReport();
+  bindPrint();
+  bindShare();
+  initHistoryUI({
+    noun: "image",
+    list: listVersions,
+    thumbnail: (v) => new Blob([v.png], { type: "image/png" }),
+    detail: (v) => "",
+    restore: restoreVersion,
+    saveNow: () => saveVersion("Saved by hand")
+  }, document.querySelector("#btn-history"));
   initShell(stage);
   renderPaletteSelect();
   document.body.dataset.mode = state.mode;
@@ -2953,6 +3495,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     fitView,
     selectionChanged,
     pasteImage,
+    printPage,
     /** Replaces the image with a blank one of the given size and color (null = transparent). */
     blank(w, h, color = "#ffffff") {
       const c = document.createElement("canvas");
@@ -2980,6 +3523,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     startAutosave();
     selectionChanged();
     RZ.ready = true;
+    fromHash();
   })();
 })();
 //# sourceMappingURL=raster.js.map

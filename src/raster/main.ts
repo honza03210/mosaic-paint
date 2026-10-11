@@ -13,11 +13,28 @@ import { loadCanvas, fileToCanvas } from './files.ts';
 import { bindPanel } from './panel.ts';
 import { bindInput } from './input.ts';
 import { bindExport3D } from './export3d.ts';
+import { bindReport } from './report.ts';
+import { bindPrint, printPage } from './print.ts';
+import { bindShare, fromHash } from './share.ts';
+import { initHistoryUI } from '../shared/history-ui.ts';
+import { listVersions, restoreVersion } from './files.ts';
+import { saveVersion } from './history.ts';
 
 loadPrefs();
 bindPanel();
 bindInput();
 bindExport3D();
+bindReport();
+bindPrint();
+bindShare();
+initHistoryUI({
+  noun: 'image',
+  list: listVersions,
+  thumbnail: (v) => new Blob([v.png], { type: 'image/png' }),
+  detail: (v) => '',
+  restore: restoreVersion,
+  saveNow: () => saveVersion('Saved by hand'),
+}, document.querySelector('#btn-history'));
 initShell(stage);
 renderPaletteSelect();
 document.body.dataset.mode = state.mode;
@@ -44,7 +61,7 @@ const RZ = {
     const r = (document.querySelector('#view') as HTMLElement).getBoundingClientRect(), v = state.view;
     return { x: (x - v.x) * v.s + r.left, y: (y - v.y) * v.s + r.top };
   },
-  toDoc, setTool, setMode, commit, fitView, selectionChanged, pasteImage,
+  toDoc, setTool, setMode, commit, fitView, selectionChanged, pasteImage, printPage,
   /** Replaces the image with a blank one of the given size and color (null = transparent). */
   blank(w: number, h: number, color: string | null = '#ffffff') {
     const c = document.createElement('canvas');
@@ -69,4 +86,5 @@ const RZ = {
   startAutosave();
   selectionChanged();
   RZ.ready = true;
+  fromHash();
 })();

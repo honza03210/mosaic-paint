@@ -119,3 +119,21 @@ test('classify maps pixels to the nearest of a few colors, transparent to -1', (
   assert.deepEqual([...grid], [1, 0, -1, 1]);
   assert.deepEqual(counts, [1, 2]);
 });
+
+test('pieces are areas of one color; each gets a spot inside it for its number and an outline', () => {
+  const key = { r: '#ff0000', b: '#0000ff' };
+  const im = img([
+    'rrrbb',
+    'rrrbb',
+    'rrr.r',
+  ], key);
+  const p = R.pieces(im);
+  assert.deepEqual(p.colors, ['#ff0000', '#0000ff', '#ff0000']); // the lone red pixel is its own piece
+  assert.deepEqual(p.sizes, [9, 4, 1]);
+  const c = R.pieceCentres(p, 5, 3);
+  assert.deepEqual([c[0].x, c[0].y], [1.5, 1.5]); // the middle of the 3 × 3 red square
+  assert.ok(c[0].r > c[2].r);
+  const d = R.pieceOutlines(p, 5, 3);
+  assert.match(d, /M0 0H5/); // the top edge in one run
+  assert.match(d, /M3 0V3/); // right of the red square: the blue piece, then the transparent pixel
+});

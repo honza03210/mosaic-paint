@@ -24,3 +24,6 @@ export async function unpack(s: string): Promise<string> {
   const bytes = fromB64url(s.slice(1));
   return new TextDecoder().decode(s[0] === 'z' ? await pipe(bytes, new DecompressionStream('deflate-raw')) : bytes);
 }
+/** Bytes that are already compressed (a PNG) as link text: 'p…'. */
+export const packBytes = (bytes: Uint8Array): string => 'p' + b64url(bytes);
+export const unpackBytes = (s: string): Uint8Array => fromB64url(s.slice(1));

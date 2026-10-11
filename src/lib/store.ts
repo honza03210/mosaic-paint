@@ -1,6 +1,8 @@
 /* IndexedDB storage for the autosave, the version history and the motif library. */
 
-export interface Version { id?: number; time: number; name: string; note: string; svg: string; tiles: number }
+/** A saved version: the vector app keeps SVG text, the raster app PNG bytes (app: 'raster'). */
+export interface Version { id?: number; app?: string; time: number; name: string; note: string; svg?: string; png?: ArrayBuffer; tiles: number }
+const appOf = (v: Version) => v.app || 'vector';
 
 let dbp: Promise<IDBDatabase> | null = null;
 function open(): Promise<IDBDatabase> {
@@ -33,12 +35,13 @@ export const Store = {
   get: <T = any>(k: string) => run<T>('kv', 'readonly', s => s.get(k)),
   set: (k: string, v: unknown) => run('kv', 'readwrite', s => s.put(v, k)),
   addVersion: (v: Version) => run('versions', 'readwrite', s => s.add(v)),
-  async listVersions(): Promise<Version[]> {
-    return (await run<Version[]>('versions', 'readonly', s => s.getAll())).sort((a, b) => b.time - a.time);
+  /** The versions of one app, newest first. */
+  async listVersions(app = 'vector'): Promise<Version[]> {
+    return (await run<Version[]>('versions', 'readonly', s => s.getAll())).filter(v => appOf(v) === app).sort((a, b) => b.time - a.time);
   },
   deleteVersion: (id: number) => run('versions', 'readwrite', s => s.delete(id)),
-  async trimVersions(max: number): Promise<void> {
-    const all = await Store.listVersions();
+  async trimVersions(max: number, app = 'vector'): Promise<void> {
+    const all = await Store.listVersions(app);
     for (const v of all.slice(max)) await Store.deleteVersion(v.id);
   },
 };

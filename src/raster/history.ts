@@ -1,4 +1,4 @@
-/* Undo / redo (snapshots of the pixels), the unsaved-changes mark and autosave in the browser. */
+/* Undo / redo (snapshots of the pixels), the unsaved-changes mark, autosave in the browser and versions. */
 import { Store } from '../lib/store.ts';
 import { $, toast } from '../shared/ui.ts';
 import { canvasToPng } from '../shared/clipboard.ts';
@@ -54,11 +54,13 @@ export function afterChange(): void {
 export function updateTitle(): void { document.title = `${rt.dirty ? '• ' : ''}${rt.fileName} – Mosaic Paint Raster`; }
 
 // ---- autosave ----------------------------------------------------------------------------------------
-let timer: any, started = false;
+let timer: any, started = false, paused = false;
 /** Autosave starts once the saved image has been loaded (so it is never overwritten by an empty one). */
 export function startAutosave(): void { started = true; }
+/** While viewing a shared image nothing is autosaved. */
+export function pauseAutosave(on: boolean): void { paused = on; if (on) clearTimeout(timer); }
 export function scheduleAutosave(): void {
-  if (!started) return;
+  if (!started || paused) return;
   clearTimeout(timer);
   timer = setTimeout(autosaveNow, 800);
 }
@@ -70,6 +72,21 @@ async function autosaveNow(): Promise<void> {
   } catch {
     toast('Autosave failed – remember to save your image.');
   }
+  if (Date.now() - lastVersionAt > VERSION_EVERY_MS) saveVersion('Autosave');
+}
+
+// ---- versions (History) -------------------------------------------------------------------------------
+const VERSION_EVERY_MS = 3 * 60 * 1000, MAX_VERSIONS = 40;
+let lastVersionAt = Date.now();
+/** Keeps the current image as a version (also before it is replaced). */
+export async function saveVersion(note: string): Promise<boolean> {
+  lastVersionAt = Date.now();
+  try {
+    const png = await (await canvasToPng(doc)).arrayBuffer();
+    await Store.addVersion({ app: 'raster', time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height });
+    await Store.trimVersions(MAX_VERSIONS, 'raster');
+    return true;
+  } catch { return false; }
 }
 /** The autosaved image, if any. */
 export async function loadAutosave(): Promise<{ png: Blob; fileName: string } | null> {

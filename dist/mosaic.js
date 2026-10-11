@@ -6,6 +6,7 @@
   };
 
   // src/lib/store.ts
+  var appOf = (v) => v.app || "vector";
   var dbp = null;
   function open() {
     if (!dbp) {
@@ -41,12 +42,13 @@
     get: (k) => run("kv", "readonly", (s) => s.get(k)),
     set: (k, v) => run("kv", "readwrite", (s) => s.put(v, k)),
     addVersion: (v) => run("versions", "readwrite", (s) => s.add(v)),
-    async listVersions() {
-      return (await run("versions", "readonly", (s) => s.getAll())).sort((a, b) => b.time - a.time);
+    /** The versions of one app, newest first. */
+    async listVersions(app = "vector") {
+      return (await run("versions", "readonly", (s) => s.getAll())).filter((v) => appOf(v) === app).sort((a, b) => b.time - a.time);
     },
     deleteVersion: (id) => run("versions", "readwrite", (s) => s.delete(id)),
-    async trimVersions(max) {
-      const all = await Store.listVersions();
+    async trimVersions(max, app = "vector") {
+      const all = await Store.listVersions(app);
       for (const v of all.slice(max)) await Store.deleteVersion(v.id);
     }
   };
@@ -4600,8 +4602,8 @@ ${sections.join("\n")}
 <script>window.onload = () => setTimeout(() => window.print(), 400);<\/script>
 </body></html>`;
   }
-  function html({ art, box, unit: unit2, paper = "a4", mode = "real", legend = "", title = "Mosaic" }) {
-    const k = MM[unit2] || MM.px;
+  function html({ art, box, unit: unit2, mmPerUnit = 0, paper = "a4", mode = "real", legend = "", title = "Mosaic" }) {
+    const k = mmPerUnit || MM[unit2] || MM.px;
     const L = layout(box.w * k, box.h * k, paper, mode);
     const sections = [];
     if (L.sheets.length > 1) {
@@ -4724,51 +4726,74 @@ ${sections.join("\n")}
     printTemplate();
   };
 
+  // src/shared/history-ui.ts
+  var esc4 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  function initHistoryUI(host, button) {
+    const dlg = document.createElement("dialog");
+    dlg.id = "dlg-history";
+    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>History</h2><button title="Close">✕</button></form>
+<p class="note">Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another ${host.noun}. Restoring keeps your current ${host.noun} as a version too.</p>
+<div class="row"><button id="hist-save">Save a version now</button></div>
+<div id="hist-list"></div>`;
+    document.body.append(dlg);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    const list = dlg.querySelector("#hist-list");
+    let thumbs2 = [];
+    async function render3() {
+      thumbs2.forEach((u) => URL.revokeObjectURL(u));
+      thumbs2 = [];
+      let versions = [];
+      try {
+        versions = await host.list();
+      } catch {
+        list.innerHTML = '<p class="note">Version history needs browser storage (IndexedDB), which is not available here.</p>';
+        return;
+      }
+      if (!versions.length) {
+        list.innerHTML = `<p class="note">No versions yet. A version is kept every few minutes while you work, and before you open or start another ${host.noun}.</p>`;
+        return;
+      }
+      list.innerHTML = "";
+      for (const v of versions) {
+        const row = document.createElement("div");
+        row.className = "hist-row";
+        const url = URL.createObjectURL(host.thumbnail(v));
+        thumbs2.push(url);
+        const detail = host.detail(v);
+        row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString()}</b><span>${esc4(v.name || "")} · ${esc4(v.note || "")}${detail ? ` · ${esc4(detail)}` : ""}</span></div>`;
+        const b = document.createElement("button");
+        b.textContent = "Restore";
+        b.onclick = async () => {
+          dlg.close();
+          await host.restore(v);
+        };
+        row.append(b);
+        list.append(row);
+      }
+    }
+    button.onclick = () => {
+      render3();
+      dlg.showModal();
+    };
+    dlg.querySelector("#hist-save").onclick = async () => {
+      toast(await host.saveNow() ? "Version saved." : "Could not save a version (browser storage unavailable).");
+      render3();
+    };
+  }
+
   // src/features/history-ui.ts
   var $4 = (s) => document.querySelector(s);
   var { state: state4 } = MZ;
-  var esc4 = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  var thumbs = [];
-  async function renderHistory() {
-    const list = $4("#hist-list");
-    thumbs.forEach((u) => URL.revokeObjectURL(u));
-    thumbs = [];
-    let versions = [];
-    try {
-      versions = await Store.listVersions();
-    } catch {
-      list.innerHTML = '<p class="note">Version history needs browser storage (IndexedDB), which is not available here.</p>';
-      return;
-    }
-    if (!versions.length) {
-      list.innerHTML = '<p class="note">No versions yet. A version is kept every few minutes while you work, and before you open or start another drawing.</p>';
-      return;
-    }
-    list.innerHTML = "";
-    for (const v of versions) {
-      const row = document.createElement("div");
-      row.className = "hist-row";
-      const url = URL.createObjectURL(new Blob([v.svg], { type: "image/svg+xml" }));
-      thumbs.push(url);
-      row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString()}</b><span>${esc4(v.name || "")} · ${esc4(v.note || "")}${v.tiles ? ` · ${v.tiles} painted areas` : ""}</span></div>`;
-      const b = document.createElement("button");
-      b.textContent = "Restore";
-      b.onclick = async () => {
-        $4("#dlg-history").close();
-        await MZ.restoreVersion(v);
-      };
-      row.append(b);
-      list.append(row);
-    }
-  }
-  $4("#btn-history").onclick = () => {
-    renderHistory();
-    $4("#dlg-history").showModal();
-  };
-  $4("#hist-save").onclick = async () => {
-    MZ.toast(await MZ.saveVersion("Saved by hand") ? "Version saved." : "Could not save a version (browser storage unavailable).");
-    renderHistory();
-  };
+  initHistoryUI({
+    noun: "drawing",
+    list: () => Store.listVersions("vector"),
+    thumbnail: (v) => new Blob([v.svg || ""], { type: "image/svg+xml" }),
+    detail: (v) => v.tiles ? `${v.tiles} painted areas` : "",
+    restore: (v) => MZ.restoreVersion(v),
+    saveNow: () => MZ.saveVersion("Saved by hand")
+  }, $4("#btn-history"));
   $4("#btn-autocolor").onclick = () => PhotoTools.colorTiles({ onlyUnpainted: state4.onlyUnpainted });
 
   // src/features/rulers.ts
@@ -5659,10 +5684,10 @@ ${others}
       }
     }
   }
-  var thumbs2 = [];
+  var thumbs = [];
   function render2() {
-    thumbs2.forEach((u) => URL.revokeObjectURL(u));
-    thumbs2 = [];
+    thumbs.forEach((u) => URL.revokeObjectURL(u));
+    thumbs = [];
     const list = $9("#motif-list");
     list.innerHTML = "";
     if (!motifs.length) {
@@ -5674,7 +5699,7 @@ ${others}
       item.className = "motif" + (placing && placing.id === m.id ? " active" : "");
       item.title = `${m.name} – click, then click on the drawing to place it`;
       const url = URL.createObjectURL(new Blob([m.svg], { type: "image/svg+xml" }));
-      thumbs2.push(url);
+      thumbs.push(url);
       item.innerHTML = `<img src="${url}" alt=""><span></span><button class="del" title="Delete this motif">×</button>`;
       item.querySelector("span").textContent = m.name;
       item.onclick = () => startPlacing(m);

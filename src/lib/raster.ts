@@ -264,3 +264,100 @@ export function classify(img: Img, colors: string[]): { grid: Int16Array; counts
   }
   return { grid, counts };
 }
+
+// ---- pieces: connected areas of one color (tiles) --------------------------------------------------------
+export interface Pieces {
+  /** piece number of every pixel, -1 where transparent */
+  labels: Int32Array;
+  /** color of each piece */
+  colors: string[];
+  /** pixels in each piece */
+  sizes: number[];
+}
+/** Splits an image into pieces: areas of one color whose pixels touch side by side. */
+export function pieces(img: Img): Pieces {
+  const { width: W, height: H, data: d } = img, n = W * H;
+  const labels = new Int32Array(n).fill(-1), colors: string[] = [], sizes: number[] = [];
+  const key = (p: number) => (d[p * 4 + 3] < 128 ? -1 : (d[p * 4] << 16) | (d[p * 4 + 1] << 8) | d[p * 4 + 2]);
+  const stack: number[] = [];
+  for (let p = 0; p < n; p++) {
+    if (labels[p] >= 0) continue;
+    const k = key(p);
+    if (k < 0) continue;
+    const id = colors.length;
+    let size = 0;
+    labels[p] = id;
+    stack.push(p);
+    while (stack.length) {
+      const q = stack.pop(), x = q % W;
+      size++;
+      for (const r of [x > 0 ? q - 1 : -1, x < W - 1 ? q + 1 : -1, q - W, q + W]) {
+        if (r < 0 || r >= n || labels[r] >= 0 || key(r) !== k) continue;
+        labels[r] = id;
+        stack.push(r);
+      }
+    }
+    colors.push(hex(k >> 16, (k >> 8) & 255, k & 255));
+    sizes.push(size);
+  }
+  return { labels, colors, sizes };
+}
+/**
+ * A spot well inside each piece, for its color number: the pixel farthest from the piece's edge
+ * (chamfer distance, in pixels). Returns { x, y, r } per piece (pixel centre, distance to the edge).
+ */
+export function pieceCentres(p: Pieces, W: number, H: number): { x: number; y: number; r: number }[] {
+  const L = p.labels, n = W * H, dist = new Float32Array(n);
+  const edge = (i: number) => {
+    const x = i % W, y = (i / W) | 0, l = L[i];
+    return x === 0 || y === 0 || x === W - 1 || y === H - 1 || L[i - 1] !== l || L[i + 1] !== l || L[i - W] !== l || L[i + W] !== l;
+  };
+  for (let i = 0; i < n; i++) dist[i] = L[i] < 0 ? 0 : edge(i) ? 1 : 1e9;
+  const D = Math.SQRT2;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const i = y * W + x;
+    if (dist[i] <= 1) continue;
+    let v = dist[i];
+    if (x > 0) v = Math.min(v, dist[i - 1] + 1);
+    if (y > 0) v = Math.min(v, dist[i - W] + 1, x > 0 ? dist[i - W - 1] + D : 1e9, x < W - 1 ? dist[i - W + 1] + D : 1e9);
+    dist[i] = v;
+  }
+  for (let y = H - 1; y >= 0; y--) for (let x = W - 1; x >= 0; x--) {
+    const i = y * W + x;
+    if (dist[i] <= 1) continue;
+    let v = dist[i];
+    if (x < W - 1) v = Math.min(v, dist[i + 1] + 1);
+    if (y < H - 1) v = Math.min(v, dist[i + W] + 1, x < W - 1 ? dist[i + W + 1] + D : 1e9, x > 0 ? dist[i + W - 1] + D : 1e9);
+    dist[i] = v;
+  }
+  const best = p.colors.map(() => ({ x: 0, y: 0, r: -1 }));
+  for (let i = 0; i < n; i++) {
+    const l = L[i];
+    if (l >= 0 && dist[i] > best[l].r) best[l] = { x: (i % W) + 0.5, y: ((i / W) | 0) + 0.5, r: dist[i] };
+  }
+  return best;
+}
+/** The borders between pieces (and around them) as SVG path data, in pixel units, merged into long runs. */
+export function pieceOutlines(p: Pieces, W: number, H: number): string {
+  const L = p.labels, at = (x: number, y: number) => (x < 0 || y < 0 || x >= W || y >= H ? -1 : L[y * W + x]);
+  const out: string[] = [];
+  for (let y = 0; y <= H; y++) {
+    for (let x = 0; x < W;) {
+      const a = at(x, y - 1), b = at(x, y);
+      if (a === b) { x++; continue; }
+      const x0 = x;
+      while (x < W && at(x, y - 1) !== at(x, y)) x++;
+      out.push(`M${x0} ${y}H${x}`);
+    }
+  }
+  for (let x = 0; x <= W; x++) {
+    for (let y = 0; y < H;) {
+      const a = at(x - 1, y), b = at(x, y);
+      if (a === b) { y++; continue; }
+      const y0 = y;
+      while (y < H && at(x - 1, y) !== at(x, y)) y++;
+      out.push(`M${x} ${y0}V${y}`);
+    }
+  }
+  return out.join('');
+}

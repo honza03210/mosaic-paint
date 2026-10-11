@@ -102,7 +102,10 @@ The raster app paints pixels. It has the same layout, palettes (shared with the 
 - **Selection:** drag a rectangle, then drag it to move it (Alt: a copy); Enter places it, Esc puts it back. Clear, crop, select all (Ctrl+A).
 - **Clipboard:** Ctrl+C / Ctrl+X copy the selection (or the whole image) as a PNG; Ctrl+V pastes any picture – from the vector app, a screenshot, another program – under the mouse, ready to move. On touch screens use the **Copy** and **Paste** buttons. Pasted color codes go into the palette.
 - **Mosaic:** **Make a mosaic…** turns the image (or the selection) into square tiles with grout – colored from your palette, from a palette it suggests, or keeping the picture's colors, optionally with offset rows. **Reduce to palette** gives every pixel the nearest palette color.
-- **Files:** open PNG / JPEG / WebP / GIF / SVG (or drop one on the canvas), save as PNG, export JPEG / WebP (Expert), resize the image or the canvas. The image is autosaved in the browser.
+- **Files:** open PNG / JPEG / WebP / GIF / SVG (or drop one on the canvas), save as PNG, export JPEG / WebP (Expert), resize the image or the canvas. The image is autosaved in the browser, and **History** keeps earlier versions (every few minutes, and before opening, starting or restoring another image).
+- **Report:** every color with its pieces (connected areas of one color – the tiles), pixels and real area at the width you give – a shopping list – plus “Replace with” and a CSV download.
+- **Print… (Expert):** the image at real size over several sheets (or fitted on one), in color, with color numbers on the pieces, or as outlines to paint by number, with a color legend. The numbers match the report.
+- **Share:** the image travels inside the link; whoever opens it sees it read-only and can make their own copy.
 
 ## Files
 
@@ -110,7 +113,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
-- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`)
+- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket
   - `patterns.ts`: tiling patterns
@@ -121,7 +124,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `layplan.ts`: laying-plan panels and per-panel counts
   - `pack.ts`: compressing a drawing into a share link
   - `store.ts`: browser storage for the autosave and versions
-  - `raster.ts`: pixel algorithms – flood fill, hard-edged lines and polygons, reducing to a palette, the mosaic effect
+  - `raster.ts`: pixel algorithms – flood fill, hard-edged lines and polygons, reducing to a palette, the mosaic effect, pieces (connected areas) with number spots and outlines
   - `model3d.ts`: the 3D print model – colors as height bands, one closed surface (no T-junctions), binary STL, 3MF with PrusaSlicer color changes, the filament-change plan
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
 - `src/core/`: the editor
@@ -139,7 +142,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `input.ts`, `panel.ts`: mouse, touch, keyboard, paste, drop; the side panel
   - `api.ts`: startup and the `MZ` interface used by the features
 - `src/features/`: one module per vector feature: `report`, `print`, `history-ui`, `rulers`, `shell` (phone layout, install), `photo-tools`, `automosaic`, `layplan`, `mix`, `vision`, `pages`, `snippets`, `motifs`, `share`, `image-clipboard`, `export3d`
-- `src/raster/`: the raster app – `state`, `canvas` (image, zoom, drawing on screen), `history` (undo, autosave), `paint` (painting tools), `select` (selection, clipboard), `palette`, `mosaic`, `export3d`, `files`, `tools`, `input`, `panel`, `main`
+- `src/raster/`: the raster app – `state`, `canvas` (image, zoom, drawing on screen), `history` (undo, autosave), `paint` (painting tools), `select` (selection, clipboard), `palette`, `mosaic`, `export3d`, `report`, `print`, `share`, `files`, `tools`, `input`, `panel`, `main`
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support
 
 ## Development

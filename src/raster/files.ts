@@ -3,7 +3,8 @@ import { $, toast, download, loadImg } from '../shared/ui.ts';
 import { canvasToPng, svgToCanvas, svgSize } from '../shared/clipboard.ts';
 import { state, rt } from './state.ts';
 import { doc, dctx, makeCanvas, setSize, fitView } from './canvas.ts';
-import { commit, resetHistory, afterChange, updateTitle } from './history.ts';
+import { Store, type Version } from '../lib/store.ts';
+import { commit, resetHistory, afterChange, updateTitle, saveVersion, scheduleAutosave } from './history.ts';
 import { selectionChanged } from './select.ts';
 
 export const MAX_SIDE = 8000;
@@ -49,7 +50,9 @@ export async function fileToCanvas(f: Blob): Promise<HTMLCanvasElement | null> {
 export async function openImageFile(f: File): Promise<boolean> {
   const c = await fileToCanvas(f);
   if (!c) { toast('Could not read ' + f.name + ' as an image.'); return false; }
+  await saveVersion('Before opening ' + f.name);
   loadCanvas(c, f.name);
+  scheduleAutosave();
   toast(`Opened ${f.name} (${c.width} × ${c.height} px).`);
   return true;
 }
@@ -84,7 +87,19 @@ export function newImage(): void {
   const c = makeCanvas(s.w, s.h), x = c.getContext('2d');
   x.fillStyle = '#ffffff';
   x.fillRect(0, 0, s.w, s.h);
-  loadCanvas(c, 'mosaic.png');
+  saveVersion('Before starting a new image').then(() => { loadCanvas(c, 'mosaic.png'); scheduleAutosave(); });
+}
+/** The versions of the raster app, newest first. */
+export const listVersions = () => Store.listVersions('raster');
+export async function restoreVersion(v: Version): Promise<void> {
+  const c = v.png && await fileToCanvas(new Blob([v.png], { type: 'image/png' }));
+  if (!c) { toast('That version could not be read.'); return; }
+  await saveVersion('Before restoring an older version');
+  loadCanvas(c, v.name || 'mosaic.png');
+  rt.dirty = true;
+  updateTitle();
+  scheduleAutosave();
+  toast('Restored the version from ' + new Date(v.time).toLocaleString());
 }
 export async function save(): Promise<void> {
   const png = await canvasToPng(doc), w = window as any;

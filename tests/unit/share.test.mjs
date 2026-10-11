@@ -19,3 +19,10 @@ test('uncompressed links (older browsers) can still be opened', async () => {
   const plain = 'u' + Buffer.from(bytes).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   assert.equal(await Share.unpack(plain), text);
 });
+
+test('an image (PNG bytes) survives packing into a link and back', () => {
+  const bytes = new Uint8Array(1000).map((_, i) => (i * 37) & 255);
+  const packed = Share.packBytes(bytes);
+  assert.match(packed, /^p[A-Za-z0-9_-]+$/);
+  assert.deepEqual([...Share.unpackBytes(packed)], [...bytes]);
+});

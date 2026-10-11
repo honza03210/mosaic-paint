@@ -16,6 +16,8 @@ export const state = {
   sides: 6, ngonFill: true, ngonOutline: false,
   tolerance: 24, contiguous: true,
   grid: true,
+  /** the real width of the finished mosaic, mm (report, print, 3D) */
+  realWidth: 300,
   mosaic: { tile: 16, grout: 2, groutColor: '#b8b2a7', colors: 'palette', count: 12, bricks: false },
   view: { x: 0, y: 0, s: 1 },
   /** the rectangle selection (whole pixels), or null */
@@ -41,7 +43,7 @@ export const rt = {
 
 // ---- remembered settings ---------------------------------------------------------------------------
 const KEY = 'mz-raster-prefs';
-const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'opacity', 'smooth', 'sides', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic'];
+const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'opacity', 'smooth', 'sides', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
 export function savePrefs(): void {
   const o: Record<string, unknown> = {};
   for (const k of PREF_KEYS) o[k] = state[k];

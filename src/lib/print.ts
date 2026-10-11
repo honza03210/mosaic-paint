@@ -102,10 +102,10 @@ ${sections.join('\n')}
 
 /**
  * The template print page. art: inner SVG markup of the drawing; box: its viewBox {x,y,w,h} in drawing
- * units; unit: 'mm' | 'cm' | 'in' | 'px'; legend: HTML (optional); title: string.
+ * units; unit: 'mm' | 'cm' | 'in' | 'px' (or mmPerUnit: mm per unit); legend: HTML (optional); title: string.
  */
-export function html({ art, box, unit, paper = 'a4', mode = 'real', legend = '', title = 'Mosaic' }) {
-  const k = MM[unit] || MM.px;               // mm per drawing unit
+export function html({ art, box, unit, mmPerUnit = 0, paper = 'a4', mode = 'real', legend = '', title = 'Mosaic' }) {
+  const k = mmPerUnit || MM[unit] || MM.px; // mm per drawing unit (mmPerUnit: e.g. per pixel of a raster image)
   const L = layout(box.w * k, box.h * k, paper, mode);
   const sections = [];
   if (L.sheets.length > 1) {

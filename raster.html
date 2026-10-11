@@ -26,6 +26,10 @@
   <button id="btn-save" title="Save as PNG (Ctrl+S)">Save</button>
   <button id="btn-export" class="expert" title="Export as JPEG or WebP">Export…</button>
   <button id="btn-3d" title="Export a 3D model for printing with filament changes – each color at its own height">3D…</button>
+  <button id="btn-print" class="expert" title="Print a real-size template with color numbers">Print…</button>
+  <button id="btn-report" title="Colors used, pieces and a shopping list">Report</button>
+  <button id="btn-history" title="Earlier versions of your image">History</button>
+  <button id="btn-share" title="Share the image as a link">Share</button>
   <button id="btn-copy" title="Copy the selection (or the whole image) to the clipboard (Ctrl+C)">Copy</button>
   <button id="btn-paste" title="Paste an image from the clipboard (Ctrl+V)">Paste</button>
   <span class="sep"></span>
@@ -76,6 +80,11 @@
 
   <div id="stage" data-tool="brush">
     <canvas id="view" class="canvas-layer"></canvas>
+    <div id="viewer-bar">
+      <span>You are looking at a shared image.</span>
+      <button id="viewer-copy" class="primary">Make my own copy</button>
+      <button id="viewer-close">Back to my image</button>
+    </div>
     <div id="stage-actions" hidden>
       <button id="sa-finish" class="primary">Place</button>
       <button id="sa-cancel">Cancel</button>
@@ -202,6 +211,49 @@
   <span id="st-hint"></span>
   <span id="st-msg"></span>
 </footer>
+
+<dialog id="dlg-report">
+  <form method="dialog" class="dlg-head"><h2>Colors &amp; shopping list</h2><button title="Close">✕</button></form>
+  <p id="rep-summary"></p>
+  <div class="row">
+    <label title="The width of the finished mosaic">Real width <input id="rep-width" type="number" min="1" max="10000" step="1"> mm</label>
+    <span class="note" id="rep-size"></span>
+  </div>
+  <div class="table-wrap"><table id="rep-table"></table></div>
+  <div class="row dlg-foot">
+    <span class="note">Pieces are areas of one color (tiles). “Replace with” recolors every pixel of that color.</span>
+    <button id="rep-csv">Download CSV</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-print">
+  <form method="dialog" class="dlg-head"><h2>Print template</h2><button title="Close">✕</button></form>
+  <p class="note">Opens a print page to use as a cutting or laying template.</p>
+  <div class="row">
+    <label>Real width <input id="print-width" type="number" min="1" max="10000" step="1"> mm</label>
+    <label>Paper <select id="print-paper"><option value="a4">A4</option><option value="letter">Letter</option><option value="a3">A3</option><option value="tabloid">Tabloid (11×17 in)</option></select></label>
+  </div>
+  <label class="chk"><input type="radio" name="print-size" value="real" checked> Real size (split across several sheets if needed)</label>
+  <label class="chk"><input type="radio" name="print-size" value="fit"> Fit on one sheet</label>
+  <p class="note" id="print-info"></p>
+  <hr>
+  <label class="chk"><input type="radio" name="print-style" value="colors" checked> In color</label>
+  <label class="chk"><input type="radio" name="print-style" value="both"> In color, with color numbers</label>
+  <label class="chk"><input type="radio" name="print-style" value="numbers"> Outlines with color numbers (paint by number)</label>
+  <label class="chk"><input type="checkbox" id="print-legend" checked> Add a page with the color legend</label>
+  <div class="row dlg-foot"><button id="print-go" class="primary">Print…</button></div>
+</dialog>
+
+<dialog id="dlg-share">
+  <form method="dialog" class="dlg-head"><h2>Share</h2><button title="Close">✕</button></form>
+  <p class="note">The image is packed into the link itself – nothing is uploaded. Whoever opens it sees the image and can make their own copy to edit.</p>
+  <div class="row"><input id="share-link" type="text" readonly class="grow-input"></div>
+  <p class="note" id="share-size"></p>
+  <div class="row dlg-foot">
+    <button id="share-file" hidden>Share file…</button>
+    <button id="share-copy" class="primary">Copy link</button>
+  </div>
+</dialog>
 
 <dialog id="dlg-mosaic">
   <form method="dialog" class="dlg-head"><h2>Make a mosaic</h2><button title="Close">✕</button></form>
