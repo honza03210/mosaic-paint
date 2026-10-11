@@ -1,12 +1,13 @@
 /* The painting tools: brush, pencil, eraser, line, regular polygon, paint bucket and color picker.
    Strokes are drawn on a separate layer and laid onto the image with the chosen opacity, so a stroke
-   that crosses itself doesn't get darker. The color "none" (∅ swatch) paints transparent. */
+   that crosses itself doesn't get darker. The color "none" (∅ swatch) paints transparent. With a pen
+   (graphics tablet, stylus) the brush, pencil and eraser get thinner the lighter it presses. */
 import * as Geo from '../lib/geometry.ts';
 import type { Pt } from '../lib/geometry.ts';
 import * as R from '../lib/raster.ts';
 import { toast } from '../shared/ui.ts';
 import { state } from './state.ts';
-import { doc, dctx, makeCanvas, getImage, requestRender } from './canvas.ts';
+import { doc, dctx, makeCanvas, getImage, requestRender, toDoc } from './canvas.ts';
 import { commit } from './history.ts';
 import { setFill } from './palette.ts';
 import { t } from '../shared/i18n.ts';
@@ -73,19 +74,21 @@ function hardLine(ctx: CanvasRenderingContext2D, a: Pt, b: Pt, size: number, col
 const paintColor = (): string => state.fill || '#000000';
 
 // ---- brush, pencil, eraser: freehand strokes ----------------------------------------------------------------
-interface Stroke { kind: string; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; start: Pt; last: Pt; erase: boolean; alpha: number }
-function beginStroke(kind: string, p: Pt): Stroke {
+const sizeAt = (e: PointerEvent) => R.pressureSize(state.size, e, state.pressure);
+
+interface Stroke { kind: string; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; start: Pt; last: Pt; lastSize: number; erase: boolean; alpha: number }
+function beginStroke(kind: string, p: Pt, size: number): Stroke {
   const base = makeCanvas(doc.width, doc.height);
   base.getContext('2d').drawImage(doc, 0, 0);
   const layer = makeCanvas(doc.width, doc.height);
   const erase = kind === 'eraser' || !state.fill;
   // the pencil paints exact colors: always fully opaque
   const alpha = kind === 'pencil' ? 1 : state.opacity;
-  return { kind, base, layer, lctx: layer.getContext('2d'), start: p, last: p, erase, alpha };
+  return { kind, base, layer, lctx: layer.getContext('2d'), start: p, last: p, lastSize: size, erase, alpha };
 }
-function strokeSegment(s: Stroke, a: Pt, b: Pt): void {
-  if (s.kind === 'pencil') hardLine(s.lctx, a, b, state.size, paintColor());
-  else smoothLine(s.lctx, a, b, state.size, s.erase ? '#000' : paintColor());
+function strokeSegment(s: Stroke, a: Pt, b: Pt, size = state.size): void {
+  if (s.kind === 'pencil') hardLine(s.lctx, a, b, size, paintColor());
+  else smoothLine(s.lctx, a, b, size, s.erase ? '#000' : paintColor());
 }
 /** The image = what it was before the stroke + the stroke layer. */
 function compose(s: Stroke): void {
@@ -99,9 +102,9 @@ function compose(s: Stroke): void {
 function freehand(kind: string): Tool {
   return {
     down(e, p) {
-      const s = beginStroke(kind, p);
+      const size = sizeAt(e), s = beginStroke(kind, p, size);
       state.action = { type: 'stroke', s };
-      strokeSegment(s, p, p);
+      strokeSegment(s, p, p, size);
       compose(s);
     },
     move(e, p) {
@@ -113,8 +116,14 @@ function freehand(kind: string): Tool {
         s.lctx.clearRect(0, 0, s.layer.width, s.layer.height);
         strokeSegment(s, s.start, constrain(s.start, p));
       } else {
-        strokeSegment(s, s.last, p);
-        s.last = p;
+        // a pen sends more points than the screen shows: all of them, each with its pressure
+        const events = e.getCoalescedEvents?.() || [];
+        for (const ev of events.length ? events : [e]) {
+          const q = events.length ? toDoc(ev.clientX, ev.clientY) : p, size = sizeAt(ev);
+          strokeSegment(s, s.last, q, (s.lastSize + size) / 2);
+          s.last = q;
+          s.lastSize = size;
+        }
       }
       compose(s);
     },

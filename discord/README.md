@@ -11,6 +11,10 @@ original", with a link to the message the image came from) – the way Wordle po
 Opened with the app's launch button (App Launcher) instead, the editor starts empty: open or paste an image
 there; it can be posted the same way.
 
+**Vector or raster:** the editor opens as the raster app; **Vector** (the app switch at the top) opens the
+same picture in the vector app instead, as the photo layer of a drawing its size – draw lines, shapes and
+tile patterns over it, and what is posted is the drawing with the picture under it.
+
 ## How it works
 
 ```
@@ -24,8 +28,10 @@ Activity (editor) ──sign in──▶ /api/token ──▶ /api/pending (the 
   follow-up to the user's command.
 - Discord lets an app answer a command for **15 minutes**. A picture finished later can't be posted by the
   app any more: the editor says so, and **Copy** + paste in the chat does it instead.
-- The editor is the raster app (`raster.html`), served by the same Worker; inside Discord it loads
-  `dist/activity.js` (`src/discord/activity.ts` in the main project), which talks to the Discord client.
+- The editor is the raster app (`raster.html`, served as the start page) and the vector app (`vector.html`),
+  both served by the same Worker; inside Discord they load `dist/activity.js` (`src/discord/activity.ts` in
+  the main project), which talks to the Discord client. Switching apps keeps Discord's connection details
+  in the address, so the other app connects again.
 - Everything runs on Cloudflare's **free plan** (Workers, static assets, SQLite Durable Objects).
 
 ## Setting it up

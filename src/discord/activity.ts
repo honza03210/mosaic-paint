@@ -1,11 +1,11 @@
-/* The raster editor as a Discord Activity (dist/activity.js – loaded by the raster app only inside Discord).
+/* The editor as a Discord Activity (dist/activity.js – loaded by the raster or vector app only inside Discord).
    It signs the user in, opens the image they picked in the chat ("Edit image"), and posts the edited
    picture back to the chat, as an answer to the user's command. The backend is the Worker in discord/
-   (its API under /api). The app is reached through window.RZ, so this bundle stays small (no second copy
-   of the editor or its texts). */
+   (its API under /api). The app is reached through window.RZ (raster) or window.MZ
+   (vector), so this bundle stays small (no second copy of the editor or its texts). */
 import { DiscordSDK, RPCCloseCodes } from '@discord/embedded-app-sdk';
 
-/** What the raster app offers the Activity (see raster/main.ts). */
+/** What the app offers the Activity (raster/main.ts, features/discord-host.ts). */
 interface Editor {
   ready: boolean;
   openImage(blob: Blob, name: string): Promise<void>;
@@ -23,8 +23,20 @@ async function call(path: string, init: RequestInit = {}): Promise<Response> {
   return fetch(API + path, init);
 }
 
+/**
+ * The app switch inside Discord: the Worker serves the raster editor as the start page (index.html) and the
+ * vector app as vector.html; Discord's connection details (in the address) go along, so the other app
+ * connects again.
+ */
+function appSwitch(): void {
+  for (const a of document.querySelectorAll<HTMLAnchorElement>('.app-switch a')) {
+    a.href = (a.getAttribute('href') === 'raster.html' ? 'index.html' : 'vector.html') + location.search;
+  }
+}
+
 async function start(app: Editor): Promise<void> {
   const t = app.t;
+  appSwitch();
   const { clientId } = await (await call('/config')).json() as { clientId: string };
   const sdk: Sdk = (window as any).__discordSdk || new DiscordSDK(clientId);
   await sdk.ready();
@@ -80,7 +92,7 @@ async function start(app: Editor): Promise<void> {
 }
 
 // the editor finishes starting up first (it restores the last image)
-const editor = (window as any).RZ as Editor;
+const editor = ((window as any).RZ || (window as any).MZ) as Editor;
 const t = (s: string) => editor.t(s);
 const wait = () => (editor?.ready ? start(editor).catch(() => editor.toast(t('Could not connect to Discord.'))) : setTimeout(wait, 50));
 wait();

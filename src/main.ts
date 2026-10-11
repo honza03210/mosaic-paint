@@ -24,6 +24,7 @@ import './features/export3d.ts';
 import './features/raster-import.ts';
 import { Share } from './features/share.ts';
 import './features/examples.ts';
+import './features/discord-host.ts';
 import { initWhatsNew } from './shared/whats-new.ts';
 
 // the version in the status bar, and what's new after an update

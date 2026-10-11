@@ -177,3 +177,75 @@ test('opening a very big image offers to scale it down; a photo-like one gets a 
   await page.setInputFiles('#file-input', { name: 'photo.png', mimeType: 'image/png', buffer: h.png(300, 20, (x, y) => [x % 256, (x * 3 + y) % 256, 100]) });
   await expect(page.locator('#st-msg')).toContainText('It has many colors');
 });
+
+test('image editing: rotate, flip, rotate by an angle, trim, crop and keep proportions', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await page.evaluate(() => {
+    RZ.blank(40, 20);
+    const x = RZ.doc.getContext('2d'); x.fillStyle = '#ff0000'; x.fillRect(0, 0, 5, 5); RZ.commit();
+  });
+  const size = () => page.evaluate(() => [RZ.doc.width, RZ.doc.height]);
+  const at = (x, y) => page.evaluate(([x, y]) => RZ.colorAt(x, y), [x, y]);
+  await page.click('#btn-rot-right');
+  expect(await size()).toEqual([20, 40]);
+  expect(await at(17, 2)).toBe('#ff0000'); // the top-left corner went to the top right
+  await page.click('#btn-flip-h');
+  expect(await at(2, 2)).toBe('#ff0000');
+  await page.click('#btn-flip-v');
+  expect(await at(2, 37)).toBe('#ff0000');
+  await page.click('#btn-rot-left');
+  expect(await size()).toEqual([40, 20]);
+  // any angle: the canvas grows to hold the picture
+  await page.fill('#img-angle', '45');
+  await page.click('#btn-rotate');
+  const [w, h] = await size();
+  expect(w).toBeGreaterThan(40);
+  expect(h).toBeGreaterThan(40);
+  expect(await at(0, 0)).toBe(null); // transparent corners
+  await page.keyboard.press('Control+z');
+  expect(await size()).toEqual([40, 20]);
+  // trim: down to the picture inside a one-color border
+  await page.evaluate(() => {
+    RZ.blank(50, 30);
+    const x = RZ.doc.getContext('2d'); x.fillStyle = '#000000'; x.fillRect(10, 5, 10, 10); RZ.commit();
+  });
+  await page.click('#btn-trim');
+  expect(await size()).toEqual([10, 10]);
+  await expect(page.locator('#st-msg')).toContainText('Trimmed to 10 × 10 px');
+  // crop without a selection says how
+  await page.click('#btn-img-crop');
+  await expect(page.locator('#st-msg')).toContainText('Select the part to keep');
+  // keep proportions: one side follows the other
+  await page.evaluate(() => RZ.blank(200, 100));
+  await page.fill('#img-w', '80');
+  await page.dispatchEvent('#img-w', 'input');
+  await expect(page.locator('#img-h')).toHaveValue('40');
+  await page.click('#btn-resize');
+  expect(await size()).toEqual([80, 40]);
+});
+
+test('pen pressure: a light pen paints thinner, a firm one at full size', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await page.evaluate(() => { RZ.blank(100, 60); RZ.setTool('brush'); Object.assign(RZ.state, { size: 20, opacity: 1, fill: '#000000', pressure: true }); });
+  /** A pen stroke across the image at y 30 (as a tablet sends it), and how thick it came out at x 50. */
+  const stroke = (pressure, pointerType = 'pen') => page.evaluate(([pr, type]) => {
+    RZ.blank(100, 60);
+    const v = document.querySelector('#view'), a = RZ.screen(10, 30), b = RZ.screen(90, 30);
+    const ev = (kind, p) => v.dispatchEvent(new PointerEvent(kind, { bubbles: true, pointerId: 7, pointerType: type, pressure: pr, clientX: p.x, clientY: p.y, button: 0, buttons: 1, isPrimary: true }));
+    ev('pointerdown', a);
+    for (let i = 1; i <= 10; i++) ev('pointermove', { x: a.x + (b.x - a.x) * i / 10, y: a.y });
+    ev('pointerup', b);
+    let n = 0;
+    for (let y = 0; y < 60; y++) if (RZ.alphaAt(50, y) > 0 && RZ.colorAt(50, y) !== '#ffffff') n++;
+    return n;
+  }, [pressure, pointerType]);
+  const light = await stroke(0.1), firm = await stroke(1), mouse = await stroke(0.1, 'mouse');
+  expect(light).toBeLessThan(8);
+  expect(firm).toBeGreaterThan(17);
+  expect(mouse).toBeGreaterThan(17); // only a pen's pressure counts
+  // turned off: full size with the pen too
+  await page.evaluate(() => { RZ.state.pressure = false; });
+  expect(await stroke(0.1)).toBeGreaterThan(17);
+});

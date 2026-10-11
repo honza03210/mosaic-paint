@@ -22,7 +22,7 @@ test('the version is shown; after an update it points at what is new until looke
   await button.click();
   await expect(page.locator('#dlg-whats-new')).toBeVisible();
   await expect(page.locator('#dlg-whats-new h3').first()).toContainText(version);
-  await expect(page.locator('#dlg-whats-new li').first()).toContainText('The raster app');
+  await expect(page.locator('#dlg-whats-new')).toContainText('The raster app'); // (from 1.1.0)
   await page.keyboard.press('Escape');
   await page.reload();
   await page.waitForFunction(() => window.RZ && RZ.ready);

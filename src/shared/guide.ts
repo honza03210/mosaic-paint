@@ -51,6 +51,7 @@ export function initGuide(button: HTMLElement, steps: GuideStep[], key: string):
   card.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.preventDefault(); close(); } });
   button.onclick = show;
   // the first time only – and not while a test robot drives the page
-  if (!lsGet(key) && !location.hash && !navigator.webdriver) setTimeout(show, 600);
+  // (nor inside Discord, where the app opens for a quick edit)
+  if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith('discordsays.com')) setTimeout(show, 600);
   return { show };
 }

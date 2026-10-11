@@ -14,6 +14,8 @@ export const state = {
   fill: '#e76f51' as string | null, stroke: '#222222' as string | null,
   palettes: { [t('My palette')]: [...DEFAULT_PALETTE] } as Record<string, string[]>, paletteName: t('My palette'),
   size: 8, opacity: 1, smooth: true,
+  /** a pen paints thinner the lighter it presses */
+  pressure: true,
   sides: 6, ngonFill: true, ngonOutline: false,
   tolerance: 24, contiguous: true,
   grid: true,
@@ -44,7 +46,7 @@ export const rt = {
 
 // ---- remembered settings ---------------------------------------------------------------------------
 const KEY = 'mz-raster-prefs';
-const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'opacity', 'smooth', 'sides', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
+const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'opacity', 'smooth', 'pressure', 'sides', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
 export function savePrefs(): void {
   const o: Record<string, unknown> = {};
   for (const k of PREF_KEYS) o[k] = state[k];

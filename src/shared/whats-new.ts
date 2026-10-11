@@ -11,6 +11,13 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '1.2.0', date: '2026-10-12', items: [
+      'Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.',
+      'Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.',
+      'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.',
+    ],
+  },
+  {
     version: '1.1.0', date: '2026-10-11', items: [
       'The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.',
       '3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.',

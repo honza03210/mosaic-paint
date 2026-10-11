@@ -1602,4 +1602,50 @@ export const DE: Record<string, string> = {
     'Es sind mehr als 15 Minuten vergangen, und Discord lässt die App nicht mehr posten. Nutzen Sie Kopieren und fügen Sie das Bild in den Chat ein.',
   'Discord did not take the picture. Use Copy and paste it into the chat.':
     'Discord hat das Bild nicht angenommen. Nutzen Sie Kopieren und fügen Sie es in den Chat ein.',
+  'Select the part to keep with the Select tool (V), then crop.':
+    'Wählen Sie mit dem Auswahlwerkzeug (V) den Teil aus, der bleiben soll, und schneiden Sie dann zu.',
+  'The image is all one color – nothing to trim.':
+    'Das Bild ist ganz einfarbig – nichts zum Beschneiden.',
+  'There is no border to trim.':
+    'Es gibt keinen Rand zum Beschneiden.',
+  'Trimmed to {w} × {h} px.':
+    'Auf {w} × {h} px beschnitten.',
+  'Pen pressure changes the size':
+    'Stiftdruck ändert die Größe',
+  'Keep proportions':
+    'Seitenverhältnis beibehalten',
+  'Flip ↔':
+    'Spiegeln ↔',
+  'Flip ↕':
+    'Spiegeln ↕',
+  'Rotate by':
+    'Drehen um',
+  'Rotate':
+    'Drehen',
+  'Crop to selection':
+    'Auf Auswahl zuschneiden',
+  'Trim edges':
+    'Ränder beschneiden',
+  'With a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press':
+    'Mit einem Grafiktablett oder Stift malen Pinsel, Stift und Radierer umso dünner, je leichter Sie drücken',
+  'Rotate 90° to the left':
+    'Um 90° nach links drehen',
+  'Rotate 90° to the right':
+    'Um 90° nach rechts drehen',
+  'Flip left ↔ right':
+    'Links ↔ rechts spiegeln',
+  'Flip upside down':
+    'Auf den Kopf stellen',
+  'Rotate by any angle (clockwise; negative: to the left) – the canvas grows to hold the picture':
+    'Um einen beliebigen Winkel drehen (im Uhrzeigersinn; negativ: nach links) – die Leinwand wächst mit',
+  'Keep only the selection (select it with the Select tool first)':
+    'Nur die Auswahl behalten (zuerst mit dem Auswahlwerkzeug auswählen)',
+  'Cut off the empty or one-color border around the picture':
+    'Den leeren oder einfarbigen Rand um das Bild abschneiden',
+  'Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.':
+    'Bilder aus einem Discord-Chat bearbeiten: Rechtsklick › Apps › Edit image, darauf zeichnen, zurückposten – in der Raster- oder der Vektor-App.',
+  'Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.':
+    'Stiftdruck: Mit einem Grafiktablett oder Stift malen Pinsel, Stift und Radierer umso dünner, je leichter Sie drücken.',
+  'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.':
+    'Bildbearbeitung in der Raster-App: drehen (um 90° oder einen beliebigen Winkel), spiegeln, auf die Auswahl zuschneiden, den Rand beschneiden, Größe mit Seitenverhältnis ändern.',
 };

@@ -9617,8 +9617,14 @@
   async function call(path, init = {}) {
     return fetch(API + path, init);
   }
+  function appSwitch() {
+    for (const a of document.querySelectorAll(".app-switch a")) {
+      a.href = (a.getAttribute("href") === "raster.html" ? "index.html" : "vector.html") + location.search;
+    }
+  }
   async function start(app) {
     const t2 = app.t;
+    appSwitch();
     const { clientId } = await (await call("/config")).json();
     const sdk = window.__discordSdk || new DiscordSDK(clientId);
     await sdk.ready();
@@ -9663,7 +9669,7 @@
       post.disabled = false;
     };
   }
-  var editor = window.RZ;
+  var editor = window.RZ || window.MZ;
   var t = (s) => editor.t(s);
   var wait = () => editor?.ready ? start(editor).catch(() => editor.toast(t("Could not connect to Discord."))) : setTimeout(wait, 50);
   wait();

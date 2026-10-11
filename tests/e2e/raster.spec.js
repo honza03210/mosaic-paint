@@ -230,6 +230,7 @@ test('open an image, resize it, and get it back after a reload', async ({ page, 
   await page.click('#btn-resize');
   expect(await size(page)).toEqual([60, 40]);
   expect(await color(page, 50, 30)).toBe('#1e1ec8'); // enlarged with sharp pixels
+  await page.uncheck('#img-keep'); // (wider only: no longer in proportion)
   await page.fill('#img-w', '80');
   await page.click('#btn-canvas');
   expect(await size(page)).toEqual([80, 40]);

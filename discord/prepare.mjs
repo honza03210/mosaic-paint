@@ -1,5 +1,5 @@
 // Copies the editor into ./public for the Worker to serve: the raster app becomes the Activity's start page
-// (index.html), with the files it loads. Run the main build (npm run build, one folder up) first.
+// (index.html), the vector app vector.html, with the files they load. Run the main build (npm run build, one folder up) first.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -10,5 +10,6 @@ const copy = (from, to = from) => {
   fs.copyFileSync(path.join(root, from), path.join(out, to));
 };
 copy('raster.html', 'index.html');
-for (const f of ['style.css', 'dist/raster.js', 'dist/activity.js', 'icons/icon.svg', 'icons/icon-192.png']) copy(f);
+copy('index.html', 'vector.html');
+for (const f of ['style.css', 'dist/raster.js', 'dist/mosaic.js', 'dist/activity.js', 'icons/icon.svg', 'icons/icon-192.png']) copy(f);
 console.log('Copied the editor to', out);

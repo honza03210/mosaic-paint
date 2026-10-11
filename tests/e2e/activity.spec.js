@@ -42,7 +42,7 @@ test('opens the image picked in the chat and posts the edited picture back', asy
   await expect.poll(() => page.evaluate(() => [RZ.doc.width, RZ.doc.height])).toEqual([40, 30]);
   expect(await page.evaluate(() => window.__authorized.scope)).toEqual(['identify']);
   await expect(page.locator('body')).toHaveClass(/in-discord/);
-  await expect(page.locator('.app-switch')).toBeHidden();
+  await expect(page.locator('.app-switch')).toBeVisible(); // to the vector app, inside Discord too
   await expect(page.locator('#btn-share')).toBeHidden();
   // draw on it, then post
   await page.evaluate(() => { const x = RZ.doc.getContext('2d'); x.fillStyle = '#00ff00'; x.fillRect(0, 0, 5, 5); RZ.commit(); });
@@ -86,4 +86,27 @@ test('outside Discord nothing changes', async ({ page }) => {
   await page.waitForTimeout(300);
   await expect(page.locator('#btn-post-discord')).toHaveCount(0);
   expect(await page.evaluate(() => [...document.scripts].some(s => /activity\.js/.test(s.src)))).toBe(false);
+});
+
+test('vector mode inside Discord: the picture opens as the photo to draw on; the app switch keeps the connection', async ({ page }) => {
+  await page.addInitScript(fakeSdk);
+  const posted = await api(page);
+  await page.goto('index.html?frame_id=f1&instance_id=i1');
+  await page.waitForFunction(() => window.MZ && MZ.ready);
+  await expect(page.locator('#btn-post-discord')).toBeVisible();
+  // a drawing the size of the picture, the picture as the fully visible photo
+  await expect.poll(() => page.evaluate(() => !!MZ.refImage())).toBe(true);
+  expect(await page.evaluate(() => [MZ.state.doc.w, MZ.state.doc.h, MZ.state.refOpacity])).toEqual([40, 30, 1]);
+  // the app switch leads to the other app with Discord's details
+  await expect(page.locator('.app-switch a', { hasText: 'Raster' })).toHaveAttribute('href', /index\.html\?frame_id=f1&instance_id=i1$/);
+  await expect(page.locator('.app-switch a', { hasText: 'Vector' })).toHaveAttribute('href', /vector\.html\?frame_id=f1&instance_id=i1$/);
+  await page.click('#btn-post-discord');
+  await expect(page.locator('#st-msg')).toContainText('Posted to the channel.');
+  expect(posted[0].type).toBe('image/png');
+  // the posted picture is the photo with the drawing: red on the left, as the photo is
+  if (posted[0].body) {
+    const png = posted[0].body;
+    expect(png.subarray(1, 4).toString('latin1')).toBe('PNG');
+    expect(png.readUInt32BE(16)).toBe(40); // width
+  }
 });

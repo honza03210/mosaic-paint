@@ -8,6 +8,7 @@ import { place, cancelFloating, copy, clearSelection, crop, pasteImage, pasteInt
 import { bindPalette, pasteColors } from './palette.ts';
 import { setTool, setMode } from './tools.ts';
 import { newImage, openFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
+import { rotate, flip, cropToSelection, trim } from './transform.ts';
 import { bindMosaic } from './mosaic.ts';
 import { t } from '../shared/i18n.ts';
 
@@ -75,6 +76,7 @@ export function bindPanel(): void {
   op.onchange = savePrefs;
   on('mode', () => { op.value = Math.round(state.opacity * 100); });
   bindCheck('#opt-smooth', 'smooth');
+  bindCheck('#opt-pressure', 'pressure');
 
   // polygon
   const sides = $('#opt-sides');
@@ -106,9 +108,19 @@ export function bindPanel(): void {
     if (!(w >= 1 && h >= 1 && w <= MAX_SIDE && h <= MAX_SIDE)) { toast(t('Enter a size from 1 to {max} px.', { max: MAX_SIDE })); showImageSize(); return null; }
     return { w, h };
   };
+  // keep proportions: changing one side changes the other
+  $('#img-w').oninput = () => { if ($('#img-keep').checked && +$('#img-w').value > 0) $('#img-h').value = Math.max(1, Math.round(+$('#img-w').value * doc.height / doc.width)); };
+  $('#img-h').oninput = () => { if ($('#img-keep').checked && +$('#img-h').value > 0) $('#img-w').value = Math.max(1, Math.round(+$('#img-h').value * doc.width / doc.height)); };
   $('#btn-resize').onclick = () => { const s = askedSize(); if (s) resizeImage(s.w, s.h); };
   $('#btn-canvas').onclick = () => { const s = askedSize(); if (s) canvasSize(s.w, s.h); };
   bindCheck('#opt-grid', 'grid', requestRender);
+  $('#btn-rot-left').onclick = () => rotate(-90);
+  $('#btn-rot-right').onclick = () => rotate(90);
+  $('#btn-flip-h').onclick = () => flip(true);
+  $('#btn-flip-v').onclick = () => flip(false);
+  $('#btn-rotate').onclick = () => { const a = Math.round(+$('#img-angle').value); if (Number.isFinite(a) && a) rotate(a); };
+  $('#btn-img-crop').onclick = cropToSelection;
+  $('#btn-trim').onclick = trim;
 
   bindMosaic();
   bindPalette();

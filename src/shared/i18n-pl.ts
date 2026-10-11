@@ -1602,4 +1602,50 @@ export const PL: Record<string, string> = {
     'Minęło ponad 15 minut i Discord nie pozwala już aplikacji wysłać obrazu. Użyj Kopiuj i wklej obraz na czat.',
   'Discord did not take the picture. Use Copy and paste it into the chat.':
     'Discord nie przyjął obrazu. Użyj Kopiuj i wklej go na czat.',
+  'Select the part to keep with the Select tool (V), then crop.':
+    'Narzędziem Zaznaczanie (V) zaznacz część do zachowania, a potem przytnij.',
+  'The image is all one color – nothing to trim.':
+    'Obraz jest cały w jednym kolorze – nie ma czego przycinać.',
+  'There is no border to trim.':
+    'Nie ma obramowania do przycięcia.',
+  'Trimmed to {w} × {h} px.':
+    'Przycięto do {w} × {h} px.',
+  'Pen pressure changes the size':
+    'Nacisk pióra zmienia rozmiar',
+  'Keep proportions':
+    'Zachowaj proporcje',
+  'Flip ↔':
+    'Odbij ↔',
+  'Flip ↕':
+    'Odbij ↕',
+  'Rotate by':
+    'Obróć o',
+  'Rotate':
+    'Obróć',
+  'Crop to selection':
+    'Przytnij do zaznaczenia',
+  'Trim edges':
+    'Przytnij krawędzie',
+  'With a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press':
+    'Z tabletem graficznym lub rysikiem pędzel, ołówek i gumka malują tym cieniej, im lżej naciskasz',
+  'Rotate 90° to the left':
+    'Obróć o 90° w lewo',
+  'Rotate 90° to the right':
+    'Obróć o 90° w prawo',
+  'Flip left ↔ right':
+    'Odbij lewo ↔ prawo',
+  'Flip upside down':
+    'Odwróć do góry nogami',
+  'Rotate by any angle (clockwise; negative: to the left) – the canvas grows to hold the picture':
+    'Obróć o dowolny kąt (zgodnie z ruchem wskazówek; ujemny: w lewo) – płótno powiększy się, by zmieścić obraz',
+  'Keep only the selection (select it with the Select tool first)':
+    'Zachowaj tylko zaznaczenie (najpierw zaznacz narzędziem Zaznaczanie)',
+  'Cut off the empty or one-color border around the picture':
+    'Odetnij puste lub jednokolorowe obramowanie wokół obrazu',
+  'Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.':
+    'Edycja obrazów z czatu na Discordzie: prawy przycisk › Aplikacje › Edit image, rysuj na nim i wyślij z powrotem – w aplikacji rastrowej lub wektorowej.',
+  'Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.':
+    'Nacisk pióra: z tabletem graficznym lub rysikiem pędzel, ołówek i gumka malują tym cieniej, im lżej naciskasz.',
+  'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.':
+    'Edycja obrazu w aplikacji rastrowej: obrót (o 90° lub dowolny kąt), odbicie, przycięcie do zaznaczenia, przycięcie krawędzi, zmiana rozmiaru z zachowaniem proporcji.',
 };

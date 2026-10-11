@@ -159,3 +159,24 @@ test('counting colors stops at the limit and leaves out transparent pixels', () 
   assert.equal(R.countColors(img, 100), 2);
   assert.equal(R.countColors(img, 1), 1);
 });
+
+test('trimming finds the picture inside a one-color or empty border', () => {
+  const W = 6, H = 5, data = new Uint8ClampedArray(W * H * 4).fill(255); // white
+  for (const [x, y] of [[2, 1], [3, 3]]) data.set([200, 0, 0, 255], (y * W + x) * 4);
+  assert.deepEqual(R.trimBox({ width: W, height: H, data }), { x: 2, y: 1, w: 2, h: 3 });
+  assert.equal(R.trimBox({ width: 2, height: 2, data: new Uint8ClampedArray(16).fill(255) }), null);
+  // transparent border, nearly-white pixels count as the border
+  const clear = new Uint8ClampedArray(W * H * 4);
+  clear.set([10, 10, 10, 255], (2 * W + 4) * 4);
+  assert.deepEqual(R.trimBox({ width: W, height: H, data: clear }), { x: 4, y: 2, w: 1, h: 1 });
+  data.set([250, 250, 252, 255], 0);
+  assert.deepEqual(R.trimBox({ width: W, height: H, data }), { x: 2, y: 1, w: 2, h: 3 });
+});
+
+test('pen pressure sets the size; mouse and touch paint at full size', () => {
+  assert.equal(R.pressureSize(20, { pointerType: 'pen', pressure: 1 }, true), 20);
+  assert.equal(R.pressureSize(20, { pointerType: 'pen', pressure: 0 }, true), 2);
+  assert.equal(R.pressureSize(20, { pointerType: 'pen', pressure: 0.5 }, true), 11);
+  assert.equal(R.pressureSize(20, { pointerType: 'pen', pressure: 0.5 }, false), 20);
+  assert.equal(R.pressureSize(20, { pointerType: 'mouse', pressure: 0.5 }, true), 20);
+});

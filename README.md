@@ -13,7 +13,7 @@ To run it from a download instead, open `index.html` (or `raster.html`) in Chrom
 
 ## Discord
 
-The raster editor can also run inside Discord as an Activity: right-click a message with an image › Apps › **Edit image**, draw on it, and **Post to the channel** – in servers, DMs and group DMs, with no bot needed (the picture is posted as an answer to the command, like Wordle's results). The backend is a small Cloudflare Worker (free plan) in [`discord/`](discord/README.md), with step-by-step setup.
+The raster editor can also run inside Discord as an Activity: right-click a message with an image › Apps › **Edit image**, draw on it, and **Post to the channel** – in servers, DMs and group DMs, with no bot needed (the picture is posted as an answer to the command, like Wordle's results). The app switch works there too: in the vector app the picture becomes the photo layer to draw shapes on. The backend is a small Cloudflare Worker (free plan) in [`discord/`](discord/README.md), with step-by-step setup.
 
 ## Getting started
 
@@ -122,6 +122,8 @@ The raster app paints pixels. It has the same layout, palettes (shared with the 
 - **Selection:** drag a rectangle, then drag it to move it (Alt: a copy); Enter places it, Esc puts it back. Clear, crop, select all (Ctrl+A).
 - **Clipboard:** Ctrl+C / Ctrl+X copy the selection (or the whole image) as a PNG; Ctrl+V pastes any picture – from the vector app, a screenshot, another program – under the mouse, ready to move. On touch screens use the **Copy** and **Paste** buttons. Pasted color codes go into the palette.
 - **Mosaic:** **Make a mosaic…** turns the image (or the selection) into tiles with grout – squares, squares in offset rows, bricks, hexagons or irregular “crazy paving”, optionally smaller where the picture has detail (the vector app's tile layouts) – colored from your palette, from a palette it suggests, or keeping the picture's colors. **Reduce to palette** gives every pixel the nearest palette color. **Open as vector tiles…** turns every piece (tile) into a shape in the vector app at the real size, with the grout color as the page background – ready for the vector app's templates, laying plan, 3D print and editing (your previous vector drawing goes to its History).
+- **Image:** resize (keeping proportions, or not), canvas size, rotate by 90° or any angle (the canvas grows to hold the picture), flip, crop to the selection, and trim an empty or one-color border.
+- **Pen pressure:** with a graphics tablet or stylus the brush, pencil and eraser paint thinner the lighter you press (turn it off under Brush).
 - **Files:** open PNG / JPEG / WebP / GIF / SVG (or drop one on the canvas) – an image over 2000 px a side is offered scaled down to 1600 px (painting stays quick), and a photo with hundreds of colors gets a hint to reduce them – save as PNG, export JPEG / WebP (Expert), resize the image or the canvas. The image is autosaved in the browser, and **History** keeps earlier versions (every few minutes, and before opening, starting or restoring another image).
 - **Report:** every color with its pieces (connected areas of one color – the tiles), pixels and real area at the width you give – a shopping list – plus “Replace with” and a CSV download.
 - **Print… (Expert):** the image at real size over several sheets (or fitted on one), in color, with color numbers on the pieces, or as outlines to paint by number, with a color legend. The numbers match the report.

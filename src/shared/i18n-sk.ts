@@ -1602,4 +1602,50 @@ export const SK: Record<string, string> = {
     'Uplynulo viac ako 15 minút a Discord už aplikácii nedovolí poslať obrázok. Použite Kopírovať a obrázok vložte do chatu.',
   'Discord did not take the picture. Use Copy and paste it into the chat.':
     'Discord obrázok neprijal. Použite Kopírovať a vložte ho do chatu.',
+  'Select the part to keep with the Select tool (V), then crop.':
+    'Nástrojom Výber (V) vyberte časť, ktorú chcete ponechať, a potom orežte.',
+  'The image is all one color – nothing to trim.':
+    'Obrázok je celý jednej farby – nie je čo orezávať.',
+  'There is no border to trim.':
+    'Nie je tu žiadny okraj na orezanie.',
+  'Trimmed to {w} × {h} px.':
+    'Orezané na {w} × {h} px.',
+  'Pen pressure changes the size':
+    'Prítlak pera mení veľkosť',
+  'Keep proportions':
+    'Zachovať pomer strán',
+  'Flip ↔':
+    'Prevrátiť ↔',
+  'Flip ↕':
+    'Prevrátiť ↕',
+  'Rotate by':
+    'Otočiť o',
+  'Rotate':
+    'Otočiť',
+  'Crop to selection':
+    'Orezať na výber',
+  'Trim edges':
+    'Orezať okraje',
+  'With a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press':
+    'S grafickým tabletom alebo perom kreslí štetec, ceruzka a guma tým tenšie, čím ľahšie pritlačíte',
+  'Rotate 90° to the left':
+    'Otočiť o 90° doľava',
+  'Rotate 90° to the right':
+    'Otočiť o 90° doprava',
+  'Flip left ↔ right':
+    'Prevrátiť zľava doprava',
+  'Flip upside down':
+    'Prevrátiť hore nohami',
+  'Rotate by any angle (clockwise; negative: to the left) – the canvas grows to hold the picture':
+    'Otočiť o ľubovoľný uhol (v smere hodín; záporný: doľava) – plátno sa zväčší, aby sa obrázok zmestil',
+  'Keep only the selection (select it with the Select tool first)':
+    'Ponechať len výber (najprv ho vyberte nástrojom Výber)',
+  'Cut off the empty or one-color border around the picture':
+    'Odrezať prázdny alebo jednofarebný okraj okolo obrázka',
+  'Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.':
+    'Úpravy obrázkov z chatu na Discorde: pravé tlačidlo › Aplikácie › Edit image, kreslite doň a pošlite ho späť – v rastrovej aj vektorovej aplikácii.',
+  'Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.':
+    'Prítlak pera: s grafickým tabletom alebo perom kreslí štetec, ceruzka a guma tým tenšie, čím ľahšie pritlačíte.',
+  'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.':
+    'Úpravy obrázka v rastrovej aplikácii: otočenie (o 90° alebo o ľubovoľný uhol), prevrátenie, orezanie na výber, orezanie okrajov a zmena veľkosti so zachovaním pomeru strán.',
 };

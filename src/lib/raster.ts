@@ -463,3 +463,30 @@ export function countColors(img: Img, max: number): number {
   }
   return seen.size;
 }
+
+/**
+ * The part of an image inside its border: the smallest box holding every pixel that differs from the
+ * top-left corner's color (more than `tolerance` in each channel; transparent pixels count as one color).
+ * null when the whole image is that one color.
+ */
+export function trimBox(img: Img, tolerance = 8): Box | null {
+  const { width: W, height: H, data: d } = img;
+  const clear = (i: number) => d[i + 3] < 16;
+  const same = (i: number) => (clear(0) ? clear(i)
+    : !clear(i) && Math.abs(d[i] - d[0]) <= tolerance && Math.abs(d[i + 1] - d[1]) <= tolerance && Math.abs(d[i + 2] - d[2]) <= tolerance);
+  let x0 = W, y0 = H, x1 = -1, y1 = -1;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (same((y * W + x) * 4)) continue;
+    if (x < x0) x0 = x;
+    if (x > x1) x1 = x;
+    if (y < y0) y0 = y;
+    if (y > y1) y1 = y;
+  }
+  return x1 < 0 ? null : { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+}
+
+/** The size a pen paints with at its pressure (0…1): from a tenth of the size up to all of it. Mouse and touch: the size. */
+export function pressureSize(size: number, e: { pointerType?: string; pressure?: number }, on: boolean): number {
+  if (!on || e.pointerType !== 'pen') return size;
+  return size * (0.1 + 0.9 * Math.min(1, Math.max(0, e.pressure ?? 0.5)));
+}
