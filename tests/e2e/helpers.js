@@ -91,4 +91,20 @@ function png(w, h, fn) {
   return Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), chunk('IHDR', ihdr), chunk('IDAT', zlib.deflateSync(raw)), chunk('IEND', Buffer.alloc(0))]);
 }
 
-module.exports = { expect, blank, open, scr, drag, click, key, fills, expectFills, near, colorAt, count, setState, png };
+/**
+ * Answers the app's question (its own dialog, in place of the browser's prompt / confirm): OK – typing value
+ * first, if given – or Cancel. Returns the question.
+ */
+async function answer(page, value = null, { cancel = false } = {}) {
+  const d = page.locator('#dlg-ask');
+  await expect(d).toBeVisible();
+  if (value != null) await d.locator('.ask-input').fill(value);
+  const question = await d.locator('.ask-msg').textContent();
+  await d.locator(cancel ? 'button[value=cancel]' : 'button[value=ok]').click();
+  await expect(d).toBeHidden();
+  // the dialog's close event comes a moment later, and the app acts on the answer then
+  await page.evaluate(() => new Promise(r => setTimeout(() => requestAnimationFrame(() => setTimeout(r)), 0)));
+  return question;
+}
+
+module.exports = { expect, blank, open, scr, drag, click, key, fills, expectFills, near, colorAt, count, setState, png, answer };

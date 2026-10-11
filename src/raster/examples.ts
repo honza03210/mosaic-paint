@@ -17,7 +17,7 @@ function toCanvas(img: R.Img): HTMLCanvasElement {
 const sunset = () => R.mosaic(Ex.sunsetImage(), { tile: 8, grout: 1, groutColor: '#e9e4dc', palette: Ex.SUNSET_COLORS, bricks: false }).img;
 
 async function open(img: R.Img, name: string, palette: string, colors: string[]): Promise<void> {
-  if (!confirmDiscard()) return;
+  if (!await confirmDiscard()) return;
   await openCanvas(toCanvas(img), name);
   addPalette(palette, colors);
 }

@@ -43,6 +43,7 @@ The switch in the top-left corner chooses how much of the app you see.
    It accepts `#hex`, bare hex, `rgb()/hsl()`, color names, coolors.co links and GIMP `.gpl` rows.
    Keep several named palettes and switch between them with the drop-down.
    Click a swatch to use it as the fill, right-click to use it as the stroke, and double-click to edit it, which also recolors the drawing.
+   **Choose…** (or a click on the current fill or stroke color) picks any color from a color area, a hue slider or a color code, and can add it to the palette.
 2. **Page:** set the real size and unit (mm, cm or in). Saved files and printouts use that real size.
 3. **Photo (optional):** load a reference photo, set its opacity, and trace over it.
    Or let the app do it: **Make a mosaic from the photo…** lays out tiles over the whole page (squares, bricks, hexagons or irregular "crazy paving", smaller where the photo has detail) and colors them, using your palette or a palette it suggests from the photo. It is one undo step.

@@ -1648,4 +1648,36 @@ export const PL: Record<string, string> = {
     'Nacisk pióra: z tabletem graficznym lub rysikiem pędzel, ołówek i gumka malują tym cieniej, im lżej naciskasz.',
   'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.':
     'Edycja obrazu w aplikacji rastrowej: obrót (o 90° lub dowolny kąt), odbicie, przycięcie do zaznaczenia, przycięcie krawędzi, zmiana rozmiaru z zachowaniem proporcji.',
+  'Choose a color':
+    'Wybierz kolor',
+  'Saturation and brightness':
+    'Nasycenie i jasność',
+  'Hue':
+    'Odcień',
+  'Before':
+    'Przedtem',
+  'Color code':
+    'Kod koloru',
+  'Also add it to the palette':
+    'Dodaj go też do palety',
+  'Use this color':
+    'Użyj tego koloru',
+  'Choose…':
+    'Wybierz…',
+  'Choose any color: a color area, a hue slider and a color code':
+    'Wybierz dowolny kolor: pole koloru, suwak odcienia i kod koloru',
+  'Fill color – used by the paint bucket. Click to choose any color':
+    'Kolor wypełnienia – używany przez wiadro z farbą. Kliknij, aby wybrać dowolny kolor',
+  'Stroke color – used for new lines and polygons. Click to choose any color':
+    'Kolor linii – dla nowych linii i wielokątów. Kliknij, aby wybrać dowolny kolor',
+  'Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color':
+    'Kolor malowania – pędzel, ołówek, linie, wielokąty i wiadro. Kliknij, aby wybrać dowolny kolor',
+  'Outline color – the outline of polygons. Click to choose any color':
+    'Kolor obrysu – obrys wielokątów. Kliknij, aby wybrać dowolny kolor',
+  'Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).':
+    'Wybierz dowolny kolor: pole koloru, suwak odcienia i kod koloru (Wybierz… pod paletą lub kliknij bieżące kolory).',
+  'Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.':
+    'W Discordzie: Nowy, Zapisz jako, zmiana nazwy i inne pytania działają (są teraz zadawane na stronie), a przełączanie między aplikacjami zachowuje przycisk publikowania.',
+  'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
+    'Na telefonach w Discordzie górny pasek nie jest zasłaniany przez elementy sterujące Discorda.',
 };

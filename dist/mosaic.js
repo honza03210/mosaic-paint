@@ -830,7 +830,23 @@
     "Cut off the empty or one-color border around the picture": "Odříznout prázdný nebo jednobarevný okraj kolem obrázku",
     "Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.": "Úpravy obrázků z chatu na Discordu: pravé tlačítko › Aplikace › Edit image, kreslete do něj a pošlete ho zpět – v rastrové i vektorové aplikaci.",
     "Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.": "Přítlak pera: s grafickým tabletem nebo perem kreslí štětec, tužka a guma tím tenčeji, čím lehčeji přitlačíte.",
-    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Úpravy obrázku v rastrové aplikaci: otočení (o 90° nebo o libovolný úhel), převrácení, oříznutí na výběr, oříznutí okrajů a změna velikosti se zachováním poměru stran."
+    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Úpravy obrázku v rastrové aplikaci: otočení (o 90° nebo o libovolný úhel), převrácení, oříznutí na výběr, oříznutí okrajů a změna velikosti se zachováním poměru stran.",
+    "Choose a color": "Vyberte barvu",
+    "Saturation and brightness": "Sytost a jas",
+    "Hue": "Odstín",
+    "Before": "Předtím",
+    "Color code": "Kód barvy",
+    "Also add it to the palette": "Přidat ji i do palety",
+    "Use this color": "Použít tuto barvu",
+    "Choose…": "Vybrat…",
+    "Choose any color: a color area, a hue slider and a color code": "Vyberte libovolnou barvu: barevná plocha, posuvník odstínu a kód barvy",
+    "Fill color – used by the paint bucket. Click to choose any color": "Barva výplně – používá ji kyblík. Kliknutím vyberete libovolnou barvu",
+    "Stroke color – used for new lines and polygons. Click to choose any color": "Barva čáry – pro nové čáry a mnohoúhelníky. Kliknutím vyberete libovolnou barvu",
+    "Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color": "Barva malby – štětec, tužka, čáry, mnohoúhelníky a kyblík. Kliknutím vyberete libovolnou barvu",
+    "Outline color – the outline of polygons. Click to choose any color": "Barva obrysu – obrys mnohoúhelníků. Kliknutím vyberete libovolnou barvu",
+    "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Vyberte libovolnou barvu: barevná plocha, posuvník odstínu a kód barvy (Vybrat… pod paletou, nebo klikněte na aktuální barvy).",
+    "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "V Discordu: Nový, Uložit jako, přejmenování a další otázky fungují (ptají se teď přímo na stránce) a přepínání mezi aplikacemi zachová tlačítko pro odeslání.",
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefonech v Discordu horní lišta nezasahuje pod ovládací prvky Discordu."
   };
 
   // src/shared/i18n-de.ts
@@ -1658,7 +1674,23 @@
     "Cut off the empty or one-color border around the picture": "Den leeren oder einfarbigen Rand um das Bild abschneiden",
     "Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.": "Bilder aus einem Discord-Chat bearbeiten: Rechtsklick › Apps › Edit image, darauf zeichnen, zurückposten – in der Raster- oder der Vektor-App.",
     "Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.": "Stiftdruck: Mit einem Grafiktablett oder Stift malen Pinsel, Stift und Radierer umso dünner, je leichter Sie drücken.",
-    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Bildbearbeitung in der Raster-App: drehen (um 90° oder einen beliebigen Winkel), spiegeln, auf die Auswahl zuschneiden, den Rand beschneiden, Größe mit Seitenverhältnis ändern."
+    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Bildbearbeitung in der Raster-App: drehen (um 90° oder einen beliebigen Winkel), spiegeln, auf die Auswahl zuschneiden, den Rand beschneiden, Größe mit Seitenverhältnis ändern.",
+    "Choose a color": "Farbe wählen",
+    "Saturation and brightness": "Sättigung und Helligkeit",
+    "Hue": "Farbton",
+    "Before": "Vorher",
+    "Color code": "Farbcode",
+    "Also add it to the palette": "Auch zur Palette hinzufügen",
+    "Use this color": "Diese Farbe verwenden",
+    "Choose…": "Wählen…",
+    "Choose any color: a color area, a hue slider and a color code": "Beliebige Farbe wählen: Farbfläche, Farbton-Regler und Farbcode",
+    "Fill color – used by the paint bucket. Click to choose any color": "Füllfarbe – für den Farbeimer. Klicken, um eine beliebige Farbe zu wählen",
+    "Stroke color – used for new lines and polygons. Click to choose any color": "Linienfarbe – für neue Linien und Polygone. Klicken, um eine beliebige Farbe zu wählen",
+    "Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color": "Malfarbe – Pinsel, Stift, Linien, Polygone und Farbeimer. Klicken, um eine beliebige Farbe zu wählen",
+    "Outline color – the outline of polygons. Click to choose any color": "Umrissfarbe – der Umriss von Polygonen. Klicken, um eine beliebige Farbe zu wählen",
+    "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Beliebige Farbe wählen: Farbfläche, Farbton-Regler und Farbcode (Wählen… unter der Palette, oder auf die aktuellen Farben klicken).",
+    "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "In Discord: Neu, Speichern unter, Umbenennen und die anderen Fragen funktionieren (sie werden jetzt auf der Seite gestellt), und beim Wechsel zwischen den Apps bleibt die Schaltfläche zum Posten erhalten.",
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Auf Handys in Discord bleibt die obere Leiste frei von Discords eigenen Bedienelementen."
   };
 
   // src/shared/i18n-sk.ts
@@ -2486,7 +2518,23 @@
     "Cut off the empty or one-color border around the picture": "Odrezať prázdny alebo jednofarebný okraj okolo obrázka",
     "Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.": "Úpravy obrázkov z chatu na Discorde: pravé tlačidlo › Aplikácie › Edit image, kreslite doň a pošlite ho späť – v rastrovej aj vektorovej aplikácii.",
     "Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.": "Prítlak pera: s grafickým tabletom alebo perom kreslí štetec, ceruzka a guma tým tenšie, čím ľahšie pritlačíte.",
-    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Úpravy obrázka v rastrovej aplikácii: otočenie (o 90° alebo o ľubovoľný uhol), prevrátenie, orezanie na výber, orezanie okrajov a zmena veľkosti so zachovaním pomeru strán."
+    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Úpravy obrázka v rastrovej aplikácii: otočenie (o 90° alebo o ľubovoľný uhol), prevrátenie, orezanie na výber, orezanie okrajov a zmena veľkosti so zachovaním pomeru strán.",
+    "Choose a color": "Vyberte farbu",
+    "Saturation and brightness": "Sýtosť a jas",
+    "Hue": "Odtieň",
+    "Before": "Predtým",
+    "Color code": "Kód farby",
+    "Also add it to the palette": "Pridať ju aj do palety",
+    "Use this color": "Použiť túto farbu",
+    "Choose…": "Vybrať…",
+    "Choose any color: a color area, a hue slider and a color code": "Vyberte ľubovoľnú farbu: farebná plocha, posúvač odtieňa a kód farby",
+    "Fill color – used by the paint bucket. Click to choose any color": "Farba výplne – používa ju vedierko. Kliknutím vyberiete ľubovoľnú farbu",
+    "Stroke color – used for new lines and polygons. Click to choose any color": "Farba čiary – pre nové čiary a mnohouholníky. Kliknutím vyberiete ľubovoľnú farbu",
+    "Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color": "Farba maľby – štetec, ceruzka, čiary, mnohouholníky a vedierko. Kliknutím vyberiete ľubovoľnú farbu",
+    "Outline color – the outline of polygons. Click to choose any color": "Farba obrysu – obrys mnohouholníkov. Kliknutím vyberiete ľubovoľnú farbu",
+    "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Vyberte ľubovoľnú farbu: farebná plocha, posúvač odtieňa a kód farby (Vybrať… pod paletou, alebo kliknite na aktuálne farby).",
+    "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "V Discorde: Nový, Uložiť ako, premenovanie a ďalšie otázky fungujú (pýtajú sa teraz priamo na stránke) a prepínanie medzi aplikáciami zachová tlačidlo na odoslanie.",
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefónoch v Discorde horná lišta nezasahuje pod ovládacie prvky Discordu."
   };
 
   // src/shared/i18n-pl.ts
@@ -3314,7 +3362,23 @@
     "Cut off the empty or one-color border around the picture": "Odetnij puste lub jednokolorowe obramowanie wokół obrazu",
     "Edit images from a Discord chat: right-click › Apps › Edit image, draw on it, post it back – in the raster or the vector app.": "Edycja obrazów z czatu na Discordzie: prawy przycisk › Aplikacje › Edit image, rysuj na nim i wyślij z powrotem – w aplikacji rastrowej lub wektorowej.",
     "Pen pressure: with a graphics tablet or stylus, the brush, pencil and eraser paint thinner the lighter you press.": "Nacisk pióra: z tabletem graficznym lub rysikiem pędzel, ołówek i gumka malują tym cieniej, im lżej naciskasz.",
-    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Edycja obrazu w aplikacji rastrowej: obrót (o 90° lub dowolny kąt), odbicie, przycięcie do zaznaczenia, przycięcie krawędzi, zmiana rozmiaru z zachowaniem proporcji."
+    "Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.": "Edycja obrazu w aplikacji rastrowej: obrót (o 90° lub dowolny kąt), odbicie, przycięcie do zaznaczenia, przycięcie krawędzi, zmiana rozmiaru z zachowaniem proporcji.",
+    "Choose a color": "Wybierz kolor",
+    "Saturation and brightness": "Nasycenie i jasność",
+    "Hue": "Odcień",
+    "Before": "Przedtem",
+    "Color code": "Kod koloru",
+    "Also add it to the palette": "Dodaj go też do palety",
+    "Use this color": "Użyj tego koloru",
+    "Choose…": "Wybierz…",
+    "Choose any color: a color area, a hue slider and a color code": "Wybierz dowolny kolor: pole koloru, suwak odcienia i kod koloru",
+    "Fill color – used by the paint bucket. Click to choose any color": "Kolor wypełnienia – używany przez wiadro z farbą. Kliknij, aby wybrać dowolny kolor",
+    "Stroke color – used for new lines and polygons. Click to choose any color": "Kolor linii – dla nowych linii i wielokątów. Kliknij, aby wybrać dowolny kolor",
+    "Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color": "Kolor malowania – pędzel, ołówek, linie, wielokąty i wiadro. Kliknij, aby wybrać dowolny kolor",
+    "Outline color – the outline of polygons. Click to choose any color": "Kolor obrysu – obrys wielokątów. Kliknij, aby wybrać dowolny kolor",
+    "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Wybierz dowolny kolor: pole koloru, suwak odcienia i kod koloru (Wybierz… pod paletą lub kliknij bieżące kolory).",
+    "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "W Discordzie: Nowy, Zapisz jako, zmiana nazwy i inne pytania działają (są teraz zadawane na stronie), a przełączanie między aplikacjami zachowuje przycisk publikowania.",
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefonach w Discordzie górny pasek nie jest zasłaniany przez elementy sterujące Discorda."
   };
 
   // src/shared/i18n.ts
@@ -3532,12 +3596,14 @@
   __export(colors_exports, {
     VISION: () => VISION,
     deltaE: () => deltaE,
+    fromHsv: () => fromHsv,
     fromLab: () => fromLab,
     luminance: () => luminance,
     nearest: () => nearest,
     norm: () => norm,
     parse: () => parse,
     simulate: () => simulate,
+    toHsv: () => toHsv,
     toLab: () => toLab,
     toRgb: () => toRgb
   });
@@ -3578,6 +3644,7 @@
   }
   function toRgb(c) {
     if (Array.isArray(c)) return c;
+    if (/^#[0-9a-f]{6}$/i.test(c)) return [1, 3, 5].map((i) => parseInt(c.slice(i, i + 2), 16));
     const n4 = norm(c);
     if (!n4) return null;
     if (n4[0] === "#") return [1, 3, 5].map((i) => parseInt(n4.slice(i, i + 2), 16));
@@ -3647,6 +3714,131 @@
     const [r, g, b] = toRgb(c) || [255, 255, 255];
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
+  function fromHsv(h, s, v) {
+    const f = (n4) => {
+      const k = (n4 + h / 60) % 6;
+      return Math.round(255 * (v - v * s * Math.max(0, Math.min(k, 4 - k, 1))));
+    };
+    return "#" + [f(5), f(3), f(1)].map((x) => x.toString(16).padStart(2, "0")).join("");
+  }
+  function toHsv(c) {
+    const rgb = toRgb(c);
+    if (!rgb) return null;
+    const [r, g, b] = rgb.map((x) => x / 255), max = Math.max(r, g, b), d = max - Math.min(r, g, b);
+    let h = 0;
+    if (d) h = max === r ? (g - b) / d % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return [(h * 60 + 360) % 360, max ? d / max : 0, max];
+  }
+
+  // src/shared/dialogs.ts
+  var dlg = null;
+  function box() {
+    if (dlg) return dlg;
+    dlg = document.createElement("dialog");
+    dlg.id = "dlg-ask";
+    dlg.innerHTML = `<form method="dialog">
+<p class="ask-msg"></p>
+<input class="ask-input" type="text" autocomplete="off" spellcheck="false">
+<div class="row dlg-foot"><button value="cancel" formnovalidate>${t("Cancel")}</button><button value="ok" class="primary">OK</button></div>
+</form>`;
+    document.body.append(dlg);
+    return dlg;
+  }
+  function show(message, value) {
+    const d = box(), input = d.querySelector(".ask-input");
+    d.querySelector(".ask-msg").textContent = message;
+    input.hidden = value == null;
+    input.value = value ?? "";
+    d.returnValue = "cancel";
+    return new Promise((resolve) => {
+      d.addEventListener("close", () => resolve(d.returnValue === "ok" ? input.value : null), { once: true });
+      d.showModal();
+      if (value != null) {
+        input.focus();
+        input.select();
+      } else d.querySelector("button.primary").focus();
+    });
+  }
+  var ask = (message, value = "") => show(message, value);
+  var askYes = async (message) => await show(message, null) != null;
+
+  // src/shared/color-picker.ts
+  var dlg2 = null;
+  function box2() {
+    if (dlg2) return dlg2;
+    dlg2 = document.createElement("dialog");
+    dlg2.id = "dlg-color";
+    dlg2.innerHTML = `<form method="dialog">
+<div class="dlg-head"><h2>${t("Choose a color")}</h2></div>
+<div class="cp-sv" tabindex="0" role="slider" aria-label="${t("Saturation and brightness")}"><div class="cp-knob"></div></div>
+<input class="cp-hue" type="range" min="0" max="359" step="1" aria-label="${t("Hue")}">
+<div class="row cp-row"><span class="cp-old" title="${t("Before")}"></span><span class="cp-new" title="${t("New")}"></span>
+<input class="cp-hex" type="text" spellcheck="false" autocomplete="off" aria-label="${t("Color code")}"></div>
+<label class="chk"><input type="checkbox" class="cp-add" checked> ${t("Also add it to the palette")}</label>
+<div class="row dlg-foot"><button value="cancel" formnovalidate>${t("Cancel")}</button><button value="ok" class="primary">${t("Use this color")}</button></div>
+</form>`;
+    document.body.append(dlg2);
+    return dlg2;
+  }
+  function chooseColor(initial) {
+    const d = box2(), q = (s2) => d.querySelector(s2);
+    const sv = q(".cp-sv"), knob = q(".cp-knob"), hue = q(".cp-hue");
+    const hex3 = q(".cp-hex"), now = q(".cp-new");
+    let [h, s, v] = toHsv(initial || "#808080") || [0, 0, 0.5];
+    const color = () => fromHsv(h, s, v);
+    const draw = (fromField = false) => {
+      sv.style.backgroundColor = `hsl(${h}, 100%, 50%)`;
+      knob.style.left = `${s * 100}%`;
+      knob.style.top = `${(1 - v) * 100}%`;
+      hue.value = String(Math.round(h));
+      now.style.background = color();
+      if (!fromField) hex3.value = color();
+      sv.setAttribute("aria-valuetext", color());
+    };
+    q(".cp-old").style.background = initial || "transparent";
+    const pick2 = (e) => {
+      const r = sv.getBoundingClientRect();
+      s = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+      v = 1 - Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+      draw();
+    };
+    sv.onpointerdown = (e) => {
+      sv.setPointerCapture(e.pointerId);
+      pick2(e);
+    };
+    sv.onpointermove = (e) => {
+      if (sv.hasPointerCapture(e.pointerId)) pick2(e);
+    };
+    sv.onkeydown = (e) => {
+      const step = e.shiftKey ? 0.1 : 0.02, moves = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] };
+      const m = moves[e.key];
+      if (!m) return;
+      e.preventDefault();
+      s = Math.min(1, Math.max(0, s + m[0]));
+      v = Math.min(1, Math.max(0, v + m[1]));
+      draw();
+    };
+    hue.oninput = () => {
+      h = +hue.value;
+      draw();
+    };
+    hex3.oninput = () => {
+      const c = norm(hex3.value), hsv = c && toHsv(c);
+      if (hsv) {
+        [h, s, v] = hsv;
+        draw(true);
+      }
+    };
+    draw();
+    d.returnValue = "cancel";
+    return new Promise((resolve) => {
+      d.addEventListener("close", () => {
+        resolve(d.returnValue === "ok" ? { color: color(), addToPalette: q(".cp-add").checked } : null);
+      }, { once: true });
+      d.showModal();
+      sv.focus();
+    });
+  }
 
   // src/shared/palette-ui.ts
   var DEFAULT_PALETTE = ["#264653", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51", "#f1faee", "#a8dadc", "#457b9d", "#1d3557"];
@@ -3705,14 +3897,14 @@
     }
     let paletteKey = "";
     function render3() {
-      const box = $("#palette");
+      const box3 = $("#palette");
       const counts = host.counts(), key = st.palette.join();
-      if (key === paletteKey && box.children.length === st.palette.length + 1) {
-        [null, ...st.palette].forEach((c, i) => updateSwatch(box.children[i], c, counts));
+      if (key === paletteKey && box3.children.length === st.palette.length + 1) {
+        [null, ...st.palette].forEach((c, i) => updateSwatch(box3.children[i], c, counts));
       } else {
         paletteKey = key;
-        box.innerHTML = "";
-        for (const c of [null, ...st.palette]) box.append(makeSwatch(c, counts));
+        box3.innerHTML = "";
+        for (const c of [null, ...st.palette]) box3.append(makeSwatch(c, counts));
       }
       const fb = $("#ac-fill"), sb = $("#ac-stroke");
       fb.className = "acbox" + (st.fill ? "" : " none");
@@ -3801,8 +3993,8 @@
       host.save();
       render3();
     }
-    function editColor(old) {
-      const v = prompt(t("Edit color (hex or any CSS color).\nThe drawing is recolored too."), old);
+    async function editColor(old) {
+      const v = await ask(t("Edit color (hex or any CSS color).\nThe drawing is recolored too."), old);
       if (v == null) return;
       const c = norm(v);
       if (!c) {
@@ -3853,9 +4045,31 @@
       toast(n4 ? t("Added {n} {n|color|colors} from the clipboard.", { n: n4 }) : t("Those colors are already in the palette."));
       return true;
     }
+    async function choose(which) {
+      const r = await chooseColor(which === "fill" ? st.fill : st.stroke);
+      if (!r) return;
+      if (r.addToPalette) addColors2([r.color]);
+      if (which === "fill") setFill2(r.color, true);
+      else setStroke2(r.color, true);
+    }
     function bind() {
       const inp = $("#color-input");
       $("#btn-add-color").onclick = addFromInput2;
+      $("#btn-choose-color").onclick = () => choose("fill");
+      for (const [id, which] of [["#ac-fill", "fill"], ["#ac-stroke", "stroke"]]) {
+        const b = $(id);
+        if (!b) continue;
+        b.setAttribute("role", "button");
+        b.setAttribute("aria-label", b.closest("[title]")?.title || "");
+        b.tabIndex = 0;
+        b.onclick = () => choose(which);
+        b.onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            choose(which);
+          }
+        };
+      }
       inp.addEventListener("keydown", (e) => {
         if (e.key === "Enter") addFromInput2();
       });
@@ -3871,24 +4085,24 @@
         render3();
       };
       $("#pal-select").onchange = (e) => switchPalette2(e.target.value);
-      $("#btn-pal-new").onclick = () => {
-        const n4 = prompt(t("Name of the new palette:"), uniqueName2(t("Palette")));
+      $("#btn-pal-new").onclick = async () => {
+        const n4 = await ask(t("Name of the new palette:"), uniqueName2(t("Palette")));
         if (!n4 || !n4.trim()) return;
         const name = uniqueName2(n4.trim());
         st.palettes[name] = [];
         switchPalette2(name);
         toast(t("Created “{name}”. Paste colors to fill it.", { name }));
       };
-      $("#btn-pal-rename").onclick = () => {
-        const old = st.paletteName, n4 = prompt(t("Rename palette:"), old);
+      $("#btn-pal-rename").onclick = async () => {
+        const old = st.paletteName, n4 = await ask(t("Rename palette:"), old);
         if (!n4 || !n4.trim() || n4.trim() === old) return;
         const name = uniqueName2(n4.trim()), next = {};
         for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
         st.palettes = next;
         switchPalette2(name);
       };
-      $("#btn-pal-delete").onclick = () => {
-        if (!confirm(t("Delete the palette “{name}”? (The drawing is not changed.)", { name: st.paletteName }))) return;
+      $("#btn-pal-delete").onclick = async () => {
+        if (!await askYes(t("Delete the palette “{name}”? (The drawing is not changed.)", { name: st.paletteName }))) return;
         delete st.palettes[st.paletteName];
         if (!Object.keys(st.palettes).length) st.palettes[t("My palette")] = [];
         switchPalette2(Object.keys(st.palettes)[0]);
@@ -3898,8 +4112,8 @@
         toast(n4 ? t("Added {n} {n|color|colors} from the drawing.", { n: n4 }) : t("No new colors in the drawing."));
       };
       $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
-      $("#btn-pal-clear").onclick = () => {
-        if (confirm(t("Remove all colors from this palette? (The drawing is not changed.)"))) {
+      $("#btn-pal-clear").onclick = async () => {
+        if (await askYes(t("Remove all colors from this palette? (The drawing is not changed.)"))) {
           st.palette = [];
           host.save();
           render3();
@@ -4533,7 +4747,7 @@
     toast(t("Photo loaded and locked. Unlock it to move it with the Select tool."));
   }
   async function pastePhoto(file) {
-    if (refImage() && !confirm(t("Replace the photo to trace with the pasted image?"))) return;
+    if (refImage() && !await askYes(t("Replace the photo to trace with the pasted image?"))) return;
     await loadPhoto(file);
     if (refImage()) toast(t("The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles."));
   }
@@ -5317,10 +5531,15 @@
       toast(t("The tiles are bigger than this area."));
       return;
     }
-    if (segs.length > 3e3 && !confirm(t("This adds {n} lines, which may make editing slow. Continue?", { n: segs.length }))) return;
-    addLineSegments(segs);
-    commitGeometry();
-    toast(t("Added the pattern “{type}” ({n} {n|line|lines}).", { type: t(TYPES.find((p2) => p2[0] === P.type)[1]), n: segs.length }));
+    const add = () => {
+      addLineSegments(segs);
+      commitGeometry();
+      toast(t("Added the pattern “{type}” ({n} {n|line|lines}).", { type: t(TYPES.find((p2) => p2[0] === P.type)[1]), n: segs.length }));
+    };
+    if (segs.length > 3e3 && !navigator.webdriver) askYes(t("This adds {n} lines, which may make editing slow. Continue?", { n: segs.length })).then((ok) => {
+      if (ok) add();
+    });
+    else add();
   }
   function applyRows(region, P) {
     const span = Math.max(region.bb.x1 - region.bb.x0, region.bb.y1 - region.bb.y0);
@@ -5612,10 +5831,10 @@
     emit("deserialize", root, opts3);
     const vb = (root.getAttribute("viewBox") || "").trim().split(/[\s,]+/).map(Number);
     const hasVB = vb.length === 4 && vb.every(Number.isFinite) && vb[2] > 0 && vb[3] > 0;
-    const box = hasVB ? { x: vb[0], y: vb[1], w: vb[2], h: vb[3] } : { x: 0, y: 0, w: parseFloat(root.getAttribute("width")) || 1e3, h: parseFloat(root.getAttribute("height")) || 1e3 };
+    const box3 = hasVB ? { x: vb[0], y: vb[1], w: vb[2], h: vb[3] } : { x: 0, y: 0, w: parseFloat(root.getAttribute("width")) || 1e3, h: parseFloat(root.getAttribute("height")) || 1e3 };
     const ours = !!root.querySelector('[id="mosaic-shapes"]');
     const wm = /^\s*([\d.]+)\s*(mm|cm|in)\s*$/.exec(root.getAttribute("width") || "");
-    let docUnit = wm && hasVB && Math.abs(+wm[1] - box.w) <= box.w * 1e-6 + 1e-9 ? wm[2] : "px";
+    let docUnit = wm && hasVB && Math.abs(+wm[1] - box3.w) <= box3.w * 1e-6 + 1e-9 ? wm[2] : "px";
     cancelPending();
     defsG.innerHTML = "";
     fillsG.innerHTML = "";
@@ -5662,7 +5881,7 @@
     if (Array.isArray(meta)) meta = { palette: meta };
     if (meta && meta.unit) docUnit = meta.unit;
     if (meta && Array.isArray(meta.palette) && !opts3.restore) importPalette(meta.palette.map(norm).filter(Boolean), meta.paletteName || opts3.name);
-    state.doc = { ...box, bg: ours ? bg : null, unit: docUnit };
+    state.doc = { ...box3, bg: ours ? bg : null, unit: docUnit };
     if (photo) {
       const href = photo.getAttribute("href") || photo.getAttributeNS("http://www.w3.org/1999/xlink", "href");
       setPhoto(href, +photo.getAttribute("data-nw") || 1, +photo.getAttribute("data-nh") || 1);
@@ -5699,12 +5918,12 @@
     switchPalette(n4);
     toast(t("The file’s colors were added as the palette “{name}”.", { name: n4 }));
   }
-  function confirmDiscard() {
-    return !rt.dirty || confirm(t("Discard unsaved changes to the current drawing?\n(A copy is kept in History.)"));
+  async function confirmDiscard() {
+    return !rt.dirty || askYes(t("Discard unsaved changes to the current drawing?\n(A copy is kept in History.)"));
   }
   var SVG_TYPES = [{ description: "SVG image", accept: { "image/svg+xml": [".svg"] } }];
   async function openFile() {
-    if (!confirmDiscard()) return;
+    if (!await confirmDiscard()) return;
     const w = window;
     if (w.showOpenFilePicker) {
       try {
@@ -5751,7 +5970,7 @@
       }
     }
     if (as) {
-      const n4 = prompt(t("File name:"), rt.fileName);
+      const n4 = await ask(t("File name:"), rt.fileName);
       if (!n4) return;
       rt.fileName = /\.svg$/i.test(n4) ? n4 : n4 + ".svg";
     }
@@ -5759,10 +5978,10 @@
     rt.dirty = false;
     updateTitle();
   }
-  function exportPNG() {
+  async function exportPNG() {
     const d = state.doc;
     const def = unit() === "px" ? Math.max(d.w, 2e3) : 3e3;
-    const ans = prompt(t("PNG width in pixels:"), String(Math.round(def)));
+    const ans = await ask(t("PNG width in pixels:"), String(Math.round(def)));
     if (!ans) return;
     const W = Math.round(+ans);
     if (!(W > 0 && W <= 16e3)) {
@@ -5807,7 +6026,7 @@
     afterChange();
   }
   async function newDoc() {
-    if (!confirmDiscard()) return;
+    if (!await confirmDiscard()) return;
     if (hasContent()) await saveVersion(t("Before starting a new drawing"));
     resetDoc(true);
   }
@@ -6972,8 +7191,8 @@
       fitPhoto();
       docChanged();
     };
-    $("#btn-ref-remove").onclick = () => {
-      if (confirm(t("Remove the tracing photo?"))) {
+    $("#btn-ref-remove").onclick = async () => {
+      if (await askYes(t("Remove the tracing photo?"))) {
         setPhoto(null);
         docChanged();
       }
@@ -7406,7 +7625,9 @@
       const f = e.dataTransfer.files[0];
       if (!f) return;
       if (/^image\//.test(f.type) && !/svg/.test(f.type)) loadPhoto(f);
-      else if (confirmDiscard()) loadFile(f);
+      else confirmDiscard().then((ok) => {
+        if (ok) loadFile(f);
+      });
     });
   }
 
@@ -7529,10 +7750,10 @@
     };
   }
   var rect2 = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
-  function quadLeaves(box, size, adaptive, busy) {
+  function quadLeaves(box3, size, adaptive, busy) {
     const top = adaptive ? size * 2 : size, min = adaptive ? size / 2 : size, out = [];
     const visit = (x, y, s) => {
-      if (x >= box.x + box.w - 1e-9 || y >= box.y + box.h - 1e-9) return;
+      if (x >= box3.x + box3.w - 1e-9 || y >= box3.y + box3.h - 1e-9) return;
       if (s > min * 1.0001 && busy(x, y, s, s)) {
         const h = s / 2;
         visit(x, y, h);
@@ -7541,7 +7762,7 @@
         visit(x + h, y + h, h);
       } else out.push({ x, y, s });
     };
-    for (let j = 0; j * top < box.h; j++) for (let i = 0; i * top < box.w; i++) visit(box.x + i * top, box.y + j * top, top);
+    for (let j = 0; j * top < box3.h; j++) for (let i = 0; i * top < box3.w; i++) visit(box3.x + i * top, box3.y + j * top, top);
     return out;
   }
   function clipHalf(poly, f) {
@@ -7556,17 +7777,17 @@
     }
     return out;
   }
-  function voronoi(seeds, box) {
-    const cell = Math.sqrt(box.w * box.h / Math.max(1, seeds.length)) || 1, grid = /* @__PURE__ */ new Map();
+  function voronoi(seeds, box3) {
+    const cell = Math.sqrt(box3.w * box3.h / Math.max(1, seeds.length)) || 1, grid = /* @__PURE__ */ new Map();
     const key = (i, j) => i + "," + j;
     seeds.forEach((s, idx) => {
       const k = key(Math.floor(s.x / cell), Math.floor(s.y / cell));
       (grid.get(k) || grid.set(k, []).get(k)).push(idx);
     });
-    const maxRing = Math.ceil(Math.max(box.w, box.h) / cell) + 1;
+    const maxRing = Math.ceil(Math.max(box3.w, box3.h) / cell) + 1;
     return seeds.map((s, idx) => {
       const ci = Math.floor(s.x / cell), cj = Math.floor(s.y / cell);
-      let poly = rect2(box.x, box.y, box.w, box.h);
+      let poly = rect2(box3.x, box3.y, box3.w, box3.h);
       const radius = () => Math.max(...poly.map((p) => dist(p, s)));
       for (let r = 0; r <= maxRing && poly.length >= 3; r++) {
         if ((r - 1) * cell > 2 * radius()) break;
@@ -7585,29 +7806,29 @@
       return poly;
     }).filter((p) => p.length >= 3);
   }
-  function cells2({ style, box, size, detail = 0, busy = () => false, seed = 1 }) {
+  function cells2({ style, box: box3, size, detail = 0, busy = () => false, seed = 1 }) {
     const adaptive = detail > 0;
     if (style === "hex") {
       const s = size / Math.sqrt(3);
-      return cells("hex", s, { x0: -s, y0: -s, x1: box.w + s, y1: box.h + s }).map((poly) => poly.map((p) => ({ x: p.x + box.x, y: p.y + box.y })));
+      return cells("hex", s, { x0: -s, y0: -s, x1: box3.w + s, y1: box3.h + s }).map((poly) => poly.map((p) => ({ x: p.x + box3.x, y: p.y + box3.y })));
     }
     if (style === "brick") {
       const out = [];
-      for (let j = 0; j * size < box.h; j++) {
+      for (let j = 0; j * size < box3.h; j++) {
         const off = j % 2 ? -size : 0;
-        for (let x = box.x + off; x < box.x + box.w; x += 2 * size) {
-          const y = box.y + j * size;
+        for (let x = box3.x + off; x < box3.x + box3.w; x += 2 * size) {
+          const y = box3.y + j * size;
           if (adaptive && busy(x, y, 2 * size, size)) out.push(rect2(x, y, size, size), rect2(x + size, y, size, size));
           else out.push(rect2(x, y, 2 * size, size));
         }
       }
       return out;
     }
-    const leaves = quadLeaves(box, size, adaptive, busy);
+    const leaves = quadLeaves(box3, size, adaptive, busy);
     if (style === "irregular") {
       const rnd = rng(seed);
-      const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box.x && p.y >= box.y && p.x <= box.x + box.w && p.y <= box.y + box.h);
-      return voronoi(seeds, box);
+      const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box3.x && p.y >= box3.y && p.x <= box3.x + box3.w && p.y <= box3.y + box3.h);
+      return voronoi(seeds, box3);
     }
     return leaves.map((l) => rect2(l.x, l.y, l.s, l.s));
   }
@@ -7660,9 +7881,9 @@
   }
 
   // src/lib/photo.ts
-  function sampler({ data, W, H, box }) {
+  function sampler({ data, W, H, box: box3 }) {
     return (p) => {
-      const u = Math.floor((p.x - box.x) / box.w * W), v = Math.floor((p.y - box.y) / box.h * H);
+      const u = Math.floor((p.x - box3.x) / box3.w * W), v = Math.floor((p.y - box3.y) / box3.h * H);
       if (u < 0 || v < 0 || u >= W || v >= H) return null;
       const i = (v * W + u) * 4;
       return data[i + 3] < 20 ? null : [data[i], data[i + 1], data[i + 2]];
@@ -7678,10 +7899,10 @@
     const m = [0, 1, 2].map((k) => labs.reduce((s, l) => s + l[k], 0) / labs.length);
     return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
   }
-  function suggestPalette(at, box, n4) {
+  function suggestPalette(at, box3, n4) {
     const labs = [];
     for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
-      const c = at({ x: box.x + box.w * (i + 0.5) / 70, y: box.y + box.h * (j + 0.5) / 70 });
+      const c = at({ x: box3.x + box3.w * (i + 0.5) / 70, y: box3.y + box3.h * (j + 0.5) / 70 });
       if (c) labs.push(toLab(c));
     }
     return [...new Set(kmeans(labs, n4, 7).map(fromLab))];
@@ -7719,8 +7940,8 @@
       const cx = cv.getContext("2d", { willReadFrequently: true });
       cx.drawImage(img, 0, 0, W, H);
       const data = cx.getImageData(0, 0, W, H).data;
-      const box = { x: +im.getAttribute("x"), y: +im.getAttribute("y"), w: +im.getAttribute("width"), h: +im.getAttribute("height") };
-      return { data, W, H, box };
+      const box3 = { x: +im.getAttribute("x"), y: +im.getAttribute("y"), w: +im.getAttribute("width"), h: +im.getAttribute("height") };
+      return { data, W, H, box: box3 };
     }
     async function pixels() {
       const p = await photoPixels();
@@ -7739,7 +7960,7 @@
       return n4 ? [r / n4, g / n4, b / n4] : null;
     }
     const detailAt3 = (px2, x, y, w, h) => detailAt(px2.at, x, y, w, h);
-    const suggestPalette2 = (px2, box, n4) => suggestPalette(px2.at, box, n4);
+    const suggestPalette2 = (px2, box3, n4) => suggestPalette(px2.at, box3, n4);
     async function colorTiles({ onlyUnpainted = true, commit: commit2 = true, quiet = false } = {}) {
       const px2 = await pixels();
       if (!px2) {
@@ -8030,10 +8251,10 @@
     const opts3 = (orientation ? [orientation] : ["portrait", "landscape"]).map((o) => sheetsFor(wmm, hmm, area(paperKey, o), mode));
     return opts3.length > 1 && opts3[1].cost < opts3[0].cost ? opts3[1] : opts3[0];
   }
-  function sheetSections(box, k, L, { title = "", prefix = "" } = {}) {
+  function sheetSections(box3, k, L, { title = "", prefix = "" } = {}) {
     const multi = L.sheets.length > 1;
     return L.sheets.map((s) => {
-      const vb = [box.x + s.x / k, box.y + s.y / k, s.w / k, s.h / k];
+      const vb = [box3.x + s.x / k, box3.y + s.y / k, s.w / k, s.h / k];
       const shade = [];
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
@@ -8048,11 +8269,11 @@
     if (L.sheets.length === 1) return t("One {paper} sheet ({orientation}) at real size.", { paper: L.paper.name, orientation: o });
     return t("{n} {paper} {n|sheet|sheets} ({orientation}, {rows} × {cols}, overlapping {overlap} mm) at real size.", { n: L.sheets.length, paper: L.paper.name, orientation: o, rows: L.rows, cols: L.cols, overlap: OVERLAP });
   }
-  function overviewSection(box, k, A, rects, heading, extra = "") {
-    const s = Math.min(A.aw / (box.w * k), (A.ah - 20) / (box.h * k));
+  function overviewSection(box3, k, A, rects, heading, extra = "") {
+    const s = Math.min(A.aw / (box3.w * k), (A.ah - 20) / (box3.h * k));
     const stroke = 0.6 / k / s;
     const marks = rects.map((r) => `<rect x="${n(r.x)}" y="${n(r.y)}" width="${n(r.w)}" height="${n(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n(stroke)}"/><text x="${n(r.x + r.w / 2)}" y="${n(r.y + r.h / 2)}" font-size="${n(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
-    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box.x, box.y, box.w, box.h].map(n).join(" ")}" style="width:${n(box.w * k * s)}mm;height:${n(box.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
+    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box3.x, box3.y, box3.w, box3.h].map(n).join(" ")}" style="width:${n(box3.w * k * s)}mm;height:${n(box3.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
   }
   function page({ art, sections, paper = "a4", orientation = "portrait", title = "Mosaic" }) {
     const p = PAPERS[paper] || PAPERS.a4;
@@ -8075,20 +8296,20 @@ ${sections.join("\n")}
 <script>window.onload = () => setTimeout(() => window.print(), 400);<\/script>
 </body></html>`;
   }
-  function html({ art, box, unit: unit2, mmPerUnit = 0, paper = "a4", mode = "real", legend = "", title = "Mosaic" }) {
+  function html({ art, box: box3, unit: unit2, mmPerUnit = 0, paper = "a4", mode = "real", legend = "", title = "Mosaic" }) {
     const k = mmPerUnit || MM[unit2] || MM.px;
-    const L = layout(box.w * k, box.h * k, paper, mode);
+    const L = layout(box3.w * k, box3.h * k, paper, mode);
     const sections = [];
     if (L.sheets.length > 1) {
       sections.push(overviewSection(
-        box,
+        box3,
         k,
         L,
-        L.sheets.map((s) => ({ x: box.x + s.x / k, y: box.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
-        `${title} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n(box.w * k / 10)), h: num(+n(box.h * k / 10)) })
+        L.sheets.map((s) => ({ x: box3.x + s.x / k, y: box3.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
+        `${title} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n(box3.w * k / 10)), h: num(+n(box3.h * k / 10)) })
       ));
     }
-    sections.push(...sheetSections(box, k, L, { title }));
+    sections.push(...sheetSections(box3, k, L, { title }));
     if (legend) sections.push(`<section class="sheet legend">${legend}</section>`);
     return page({ art, sections, paper, orientation: L.orientation, title });
   }
@@ -8190,17 +8411,17 @@ ${sections.join("\n")}
 
   // src/shared/history-ui.ts
   function initHistoryUI(host, button) {
-    const dlg = document.createElement("dialog");
-    dlg.id = "dlg-history";
-    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg3 = document.createElement("dialog");
+    dlg3.id = "dlg-history";
+    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${esc(host.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
-    document.body.append(dlg);
-    dlg.addEventListener("click", (e) => {
-      if (e.target === dlg) dlg.close();
+    document.body.append(dlg3);
+    dlg3.addEventListener("click", (e) => {
+      if (e.target === dlg3) dlg3.close();
     });
-    const list = dlg.querySelector("#hist-list");
+    const list = dlg3.querySelector("#hist-list");
     let thumbs2 = [];
     async function render3() {
       thumbs2.forEach((u) => URL.revokeObjectURL(u));
@@ -8240,13 +8461,13 @@ ${sections.join("\n")}
         pin.onclick = () => change(v, { pinned: !v.pinned });
         rename.textContent = "✎";
         rename.title = rename.ariaLabel = t("Name this version");
-        rename.onclick = () => {
-          const title = prompt(t("Name of this version:"), v.title || "");
+        rename.onclick = async () => {
+          const title = await ask(t("Name of this version:"), v.title || "");
           if (title != null) change(v, { title: title.trim() || void 0 });
         };
         restore2.textContent = t("Restore");
         restore2.onclick = async () => {
-          dlg.close();
+          dlg3.close();
           await host.restore(v);
         };
         row.append(pin, rename, restore2);
@@ -8263,9 +8484,9 @@ ${sections.join("\n")}
     }
     button.onclick = () => {
       render3();
-      dlg.showModal();
+      dlg3.showModal();
     };
-    dlg.querySelector("#hist-save").onclick = async () => {
+    dlg3.querySelector("#hist-save").onclick = async () => {
       toast(await host.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
@@ -8342,10 +8563,10 @@ ${sections.join("\n")}
     c.stroke();
   }
   function drawRulers() {
-    const show = state5.mode === "expert" && state5.rulers;
-    MZ.stage.classList.toggle("with-rulers", show);
-    rx.hidden = ry.hidden = corner.hidden = !show;
-    if (!show) return;
+    const show2 = state5.mode === "expert" && state5.rulers;
+    MZ.stage.classList.toggle("with-rulers", show2);
+    rx.hidden = ry.hidden = corner.hidden = !show2;
+    if (!show2) return;
     corner.textContent = MZ.unit();
     drawRuler(rx, true);
     drawRuler(ry, false);
@@ -8399,7 +8620,7 @@ ${sections.join("\n")}
   initShell(MZ.stage);
 
   // worker-source:worker-source
-  var worker_source_default = '(()=>{var q=null,et=new Map;function ce(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let i=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,i=q.fillStyle),et.set(t,i),i}function nt(e){if(Array.isArray(e))return e;let t=ce(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(i=>parseInt(t.slice(i,i+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let i=b=>(b/=255,b<=.04045?b/12.92:Math.pow((b+.055)/1.055,2.4)),o=i(e),s=i(t),r=i(n),u=(o*.4124+s*.3576+r*.1805)/.95047,l=o*.2126+s*.7152+r*.0722,a=(o*.0193+s*.1192+r*.9505)/1.08883,m=b=>b>216/24389?Math.cbrt(b):(24389/27*b+16)/116,c=m(u),f=m(l),p=m(a);return[116*f-16,500*(c-f),200*(f-p)]}function dt([e,t,n]){let i=(e+16)/116,o=i+t/500,s=i-n/200,r=f=>f**3>216/24389?f**3:(116*f-16)/(24389/27),u=.95047*r(o),l=r(i),a=1.08883*r(s),m=f=>f<=.0031308?12.92*f:1.055*Math.pow(f,1/2.4)-.055;return"#"+[3.2406*u-1.5372*l-.4986*a,-.9689*u+1.8758*l+.0415*a,.0557*u-.204*l+1.057*a].map(f=>Math.round(Math.max(0,Math.min(1,m(f)))*255)).map(f=>f.toString(16).padStart(2,"0")).join("")}function xt(e,t,n){n=n||t.map(r=>G(nt(r)));let i=G(e),o=null,s=1/0;return t.forEach((r,u)=>{let l=n[u],a=(i[0]-l[0])**2+(i[1]-l[1])**2+(i[2]-l[2])**2;a<s&&(s=a,o=r)}),o}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(i=>G(wt(i))),n=new Map;return(i,o,s)=>{let r=i<<16|o<<8|s,u=n.get(r);return u||(u=xt([i,o,s],e,t),n.set(r,u)),u}}function vt(e,t){let{width:n,height:i}=e,o=e.data,s=Mt(n,i),r=s.data,u=Math.max(2,Math.round(t.tile)),l=Math.min(u-1,Math.max(0,Math.round(t.grout))),a=t.palette&&t.palette.length?Pt(t.palette):null,m=Y(t.groutColor),c=new Map,f=0;for(let p=0,b=0;p<i;p+=u,b++){let d=t.bricks&&b%2?-Math.floor(u/2):0;for(let P=d;P<n;P+=u){let v=Math.max(0,P),k=Math.min(n,P+u),w=Math.min(i,p+u),R=0,I=0,y=0,S=0,h=0;for(let x=p;x<w-(w===p+u?l:0);x++)for(let A=v;A<Math.min(k,P+u-l);A++){let B=(x*n+A)*4;h++,!(o[B+3]<128)&&(R+=o[B],I+=o[B+1],y+=o[B+2],S++)}let g=S>0&&S>=h/2,M=[0,0,0,0];if(g){R=Math.round(R/S),I=Math.round(I/S),y=Math.round(y/S);let x=a?a(R,I,y):st(R,I,y);M=Y(x),c.set(x,(c.get(x)||0)+1),f++}for(let x=p;x<w;x++)for(let A=v;A<k;A++){let B=A>=P+u-l||x>=p+u-l;ot(r,(x*n+A)*4,B?g?m:[0,0,0,0]:M)}}}return{img:s,counts:c,tiles:f}}function kt(e){let{width:t,height:n,data:i}=e,o=t*n,s=new Int32Array(o).fill(-1),r=[],u=[],l=m=>i[m*4+3]<128?-1:i[m*4]<<16|i[m*4+1]<<8|i[m*4+2],a=[];for(let m=0;m<o;m++){if(s[m]>=0)continue;let c=l(m);if(c<0)continue;let f=r.length,p=0;for(s[m]=f,a.push(m);a.length;){let b=a.pop(),d=b%t;p++;for(let P of[d>0?b-1:-1,d<t-1?b+1:-1,b-t,b+t])P<0||P>=o||s[P]>=0||l(P)!==c||(s[P]=f,a.push(P))}r.push(st(c>>16,c>>8&255,c&255)),u.push(p)}return{labels:s,colors:r,sizes:u}}function At(e,t,n,i,o){let s=[],r=e.data;for(let l=0;l<5;l++)for(let a=0;a<5;a++){let m=Math.floor(t+i*(l+.5)/5),c=Math.floor(n+o*(a+.5)/5);if(m<0||c<0||m>=e.width||c>=e.height)continue;let f=(c*e.width+m)*4;r[f+3]>=128&&s.push(G([r[f],r[f+1],r[f+2]]))}if(s.length<2)return 0;let u=[0,1,2].map(l=>s.reduce((a,m)=>a+m[l],0)/s.length);return s.reduce((l,a)=>l+Math.hypot(a[0]-u[0],a[1]-u[1],a[2]-u[2]),0)/s.length}function me(e,t,n,i){let o=n.length,s=n.map(l=>l.y),r=Math.max(0,Math.floor(Math.min(...s))),u=Math.min(t-1,Math.ceil(Math.max(...s)));for(let l=r;l<=u;l++){let a=l+.5,m=[];for(let c=0;c<o;c++){let f=n[c],p=n[(c+1)%o];f.y<=a!=p.y<=a&&m.push(f.x+(a-f.y)*(p.x-f.x)/(p.y-f.y))}m.sort((c,f)=>c-f);for(let c=0;c+1<m.length;c+=2){let f=Math.max(0,Math.ceil(m[c]-.5)),p=Math.min(e-1,Math.floor(m[c+1]-.5));for(let b=f;b<=p;b++)i(l*e+b)}}}function St(e,t,n){let{width:i,height:o}=e,s=e.data,r=Mt(i,o),u=r.data,l=n.palette&&n.palette.length?Pt(n.palette):null,a=new Map,m=[],c=0;for(let p of t){let b=0,d=0,P=0,v=0,k=0,w=[];if(me(i,o,p,y=>{w.push(y),k++;let S=y*4;s[S+3]<128||(b+=s[S],d+=s[S+1],P+=s[S+2],v++)}),!v||v<k/2)continue;b=Math.round(b/v),d=Math.round(d/v),P=Math.round(P/v);let R=l?l(b,d,P):st(b,d,P),I=Y(R);for(let y of w)ot(u,y*4,I);a.set(R,(a.get(R)||0)+1),c++,m.push(p)}let f=Math.max(0,n.grout)/2;if(f>0){let p=Y(n.groutColor);for(let b of m)for(let d=0;d<b.length;d++){let P=b[d],v=b[(d+1)%b.length],k=v.x-P.x,w=v.y-P.y,R=k*k+w*w||1,I=Math.max(0,Math.floor(Math.min(P.x,v.x)-f)),y=Math.min(i-1,Math.ceil(Math.max(P.x,v.x)+f)),S=Math.max(0,Math.floor(Math.min(P.y,v.y)-f)),h=Math.min(o-1,Math.ceil(Math.max(P.y,v.y)+f));for(let g=S;g<=h;g++)for(let M=I;M<=y;M++){let x=M+.5,A=g+.5,B=Math.max(0,Math.min(1,((x-P.x)*k+(A-P.y)*w)/R)),$=P.x+B*k-x,U=P.y+B*w-A;$*$+U*U<=f*f&&ot(u,(g*i+M)*4,p)}}}return{img:r,counts:a,tiles:c}}function Rt(e){let t=new Map;return e.colors.forEach((n,i)=>{let o=t.get(n)||{n:0,color:n,pieces:0,pixels:0};o.pieces++,o.pixels+=e.sizes[i],t.set(n,o)}),[...t.values()].sort((n,i)=>i.pixels-n.pixels).map((n,i)=>({...n,n:i+1}))}var fe=.01;function Bt(e){fe=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,i)=>e*i-t*n;function he(e,t,n){let i=n.x-t.x,o=n.y-t.y,s=i*i+o*o,r=s?((e.x-t.x)*i+(e.y-t.y)*o)/s:0;return r=Math.max(0,Math.min(1,r)),{x:t.x+i*r,y:t.y+o*r,t:r}}function pe(e,t,n,i){let o=t.x-e.x,s=t.y-e.y,r=i.x-n.x,u=i.y-n.y,l=it(o,s,r,u);if(Math.abs(l)<1e-12)return null;let a=n.x-e.x,m=n.y-e.y,c=it(a,m,r,u)/l,f=it(a,m,o,s)/l;return c<0||c>1||f<0||f>1?null:{x:e.x+o*c,y:e.y+s*c,t:c,u:f}}function $t(e,t){let n=!1;for(let i=0,o=t.length-1;i<t.length;o=i++){let s=t[i],r=t[o];s.y>e.y!=r.y>e.y&&e.x<(r.x-s.x)*(e.y-s.y)/(r.y-s.y)+s.x&&(n=!n)}return n}function Ut(e,t,n,i,o){let s=[];for(let r=0;r<e;r++){let u=o+r*2*Math.PI/e;s.push({x:t+i*Math.cos(u),y:n+i*Math.sin(u)})}return s}function at(e,t,n,i){let o=[0,1];for(let a of n)for(let m=0,c=a.length;m<c;m++){let f=pe(e,t,a[m],a[(m+1)%c]);f&&o.push(f.t)}o.sort((a,m)=>a-m);let s=a=>({x:e.x+(t.x-e.x)*a,y:e.y+(t.y-e.y)*a}),r=[],u=null,l=0;for(let a=0;a+1<o.length;a++){let m=o[a],c=o[a+1];c-m<1e-9||(i(s((m+c)/2))?(u===null&&(u=m),l=c):u!==null&&(r.push({a:s(u),b:s(l)}),u=null))}return u!==null&&r.push({a:s(u),b:s(l)}),r}function lt(e,t){let n=1/0;for(let i of t)for(let o=0,s=i.length;o<s;o++)n=Math.min(n,H(e,he(e,i[o],i[(o+1)%s])));return n}var Z=(e,t,n,i)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+i},{x:e,y:t+i}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let i=[];if(e==="square"){let[o,s]=z(n.x0,n.x1,t),[r,u]=z(n.y0,n.y1,t);for(let l=o;l<=s;l++)for(let a=r;a<=u;a++)i.push(Z(l*t,a*t,t,t))}else if(e==="brick"){let o=2*t,[s,r]=z(n.y0,n.y1,t);for(let u=s;u<=r;u++){let l=ct(u)?t:0,[a,m]=z(n.x0-l,n.x1-l,o);for(let c=a;c<=m;c++)i.push(Z(l+c*o,u*t,o,t))}}else if(e==="hex"){let o=Math.sqrt(3)*t,s=1.5*t,[r,u]=z(n.y0,n.y1,s);for(let l=r;l<=u;l++){let a=ct(l)?o/2:0,[m,c]=z(n.x0-a,n.x1-a,o);for(let f=m;f<=c;f++)i.push(Ut(6,a+f*o,l*s,t,-Math.PI/2))}}else if(e==="triangle"){let o=t*Math.sqrt(3)/2,[s,r]=z(n.y0,n.y1,o);for(let u=s;u<=r;u++){let l=u*o,a=ct(u)?t/2:0,[m,c]=z(n.x0-a,n.x1-a,t);for(let f=m;f<=c;f++){let p=a+f*t;i.push([{x:p,y:l+o},{x:p+t/2,y:l},{x:p+t,y:l+o}]),i.push([{x:p+t/2,y:l},{x:p+1.5*t,y:l},{x:p+t,y:l+o}])}}}else if(e==="herringbone"){let o=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([c,f])=>[c/t,f/t]),s=o.map(([c,f])=>(c+f)/4),r=o.map(([c,f])=>(c-f)/2),u=Math.floor(Math.min(...s))-2,l=Math.ceil(Math.max(...s))+2,a=Math.floor(Math.min(...r))-2,m=Math.ceil(Math.max(...r))+2;for(let c=u;c<=l;c++)for(let f=a;f<=m;f++)i.push(Z((2*c+f)*t,(2*c-f)*t,t,2*t)),i.push(Z((2*c+1+f)*t,(2*c+1-f)*t,2*t,t))}return i}function Ft(e,t){let n=new Map;for(let o of e){let s=o.b.x-o.a.x,r=o.b.y-o.a.y,u=Math.hypot(s,r);if(u<t)continue;s/=u,r/=u,(s<-1e-9||Math.abs(s)<=1e-9&&r<0)&&(s=-s,r=-r);let l=-r*o.a.x+s*o.a.y,a=Math.round(Math.atan2(r,s)*1e6)+"|"+Math.round(l/(t*10)),m=s*o.a.x+r*o.a.y,c=s*o.b.x+r*o.b.y;(n.get(a)||n.set(a,{dx:s,dy:r,off:l,list:[]}).get(a)).list.push([Math.min(m,c),Math.max(m,c)])}let i=[];for(let o of n.values()){o.list.sort((l,a)=>l[0]-a[0]);let s=l=>({x:o.dx*l-o.dy*o.off,y:o.dy*l+o.dx*o.off}),[r,u]=o.list[0];for(let l=1;l<=o.list.length;l++){let a=o.list[l];if(a&&a[0]<=u+t){u=Math.max(u,a[1]);continue}i.push({a:s(r),b:s(u)}),a&&([r,u]=a)}}return i}function Tt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,i)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+i},{x:e,y:t+i}];function ge(e,t,n,i){let o=n?t*2:t,s=n?t/2:t,r=[],u=(l,a,m)=>{if(!(l>=e.x+e.w-1e-9||a>=e.y+e.h-1e-9))if(m>s*1.0001&&i(l,a,m,m)){let c=m/2;u(l,a,c),u(l+c,a,c),u(l,a+c,c),u(l+c,a+c,c)}else r.push({x:l,y:a,s:m})};for(let l=0;l*o<e.h;l++)for(let a=0;a*o<e.w;a++)u(e.x+a*o,e.y+l*o,o);return r}function de(e,t){let n=[];for(let i=0,o=e.length;i<o;i++){let s=e[i],r=e[(i+1)%o],u=t(s),l=t(r);if(u<=0&&n.push(s),u<0&&l>0||u>0&&l<0){let a=u/(u-l);n.push({x:s.x+(r.x-s.x)*a,y:s.y+(r.y-s.y)*a})}}return n}function xe(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,i=new Map,o=(r,u)=>r+","+u;e.forEach((r,u)=>{let l=o(Math.floor(r.x/n),Math.floor(r.y/n));(i.get(l)||i.set(l,[]).get(l)).push(u)});let s=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((r,u)=>{let l=Math.floor(r.x/n),a=Math.floor(r.y/n),m=N(t.x,t.y,t.w,t.h),c=()=>Math.max(...m.map(f=>H(f,r)));for(let f=0;f<=s&&m.length>=3&&!((f-1)*n>2*c());f++){let p=[];for(let b=l-f;b<=l+f;b++)for(let d=a-f;d<=a+f;d++)if(Math.max(Math.abs(b-l),Math.abs(d-a))===f)for(let P of i.get(o(b,d))||[])P!==u&&p.push(P);p.sort((b,d)=>H(e[b],r)-H(e[d],r));for(let b of p){let d=e[b],P=d.x-r.x,v=d.y-r.y,k=(r.x+d.x)/2,w=(r.y+d.y)/2;if(m=de(m,R=>(R.x-k)*P+(R.y-w)*v),m.length<3)break}}return m}).filter(r=>r.length>=3)}function V({style:e,box:t,size:n,detail:i=0,busy:o=()=>!1,seed:s=1}){let r=i>0;if(e==="hex"){let l=n/Math.sqrt(3);return Lt("hex",l,{x0:-l,y0:-l,x1:t.w+l,y1:t.h+l}).map(a=>a.map(m=>({x:m.x+t.x,y:m.y+t.y})))}if(e==="brick"){let l=[];for(let a=0;a*n<t.h;a++){let m=a%2?-n:0;for(let c=t.x+m;c<t.x+t.w;c+=2*n){let f=t.y+a*n;r&&o(c,f,2*n,n)?l.push(N(c,f,n,n),N(c+n,f,n,n)):l.push(N(c,f,2*n,n))}}return l}let u=ge(t,n,r,o);if(e==="irregular"){let l=Tt(s),a=u.map(m=>({x:m.x+m.s*(.5+(l()-.5)*.7),y:m.y+m.s*(.5+(l()-.5)*.7)})).filter(m=>m.x>=t.x&&m.y>=t.y&&m.x<=t.x+t.w&&m.y<=t.y+t.h);return xe(a,t)}return u.map(l=>N(l.x,l.y,l.s,l.s))}function jt(e,t,n,i){let o=i*10,s=a=>Math.round(a.x/o)+","+Math.round(a.y/o),r=new Set,u=[],l=a=>n(a)&&lt(a,t)>i*20;for(let a of e)for(let m=0;m<a.length;m++){let c=a[m],f=a[(m+1)%a.length],p=s(c),b=s(f),d=p<b?p+"|"+b:b+"|"+p;p===b||r.has(d)||(r.add(d),u.push(...at(c,f,t,l)))}return Ft(u,i)}function Ct(e,t,n=1,i=16){if(!e.length)return[];t=Math.min(t,e.length);let o=Tt(n),s=(l,a)=>(l[0]-a[0])**2+(l[1]-a[1])**2+(l[2]-a[2])**2,r=[e[Math.floor(o()*e.length)]];for(;r.length<t;){let l=e.map(c=>Math.min(...r.map(f=>s(c,f)))),a=o()*l.reduce((c,f)=>c+f,0),m=0;for(;m<e.length-1&&(a-=l[m])>0;)m++;r.push(e[m])}let u=[];for(let l=0;l<i;l++){let a=r.map(()=>[0,0,0]);u=r.map(()=>0);for(let m of e){let c=0,f=1/0;r.forEach((p,b)=>{let d=s(m,p);d<f&&(f=d,c=b)}),a[c][0]+=m[0],a[c][1]+=m[1],a[c][2]+=m[2],u[c]++}r.forEach((m,c)=>{u[c]&&(r[c]=a[c].map(f=>f/u[c]))})}return r.map((l,a)=>({c:l,n:u[a]})).sort((l,a)=>a.n-l.n).map(l=>l.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function ye(e,t,n){let i=new Uint8Array(t*n),o=[];for(let s=0;s<n;s++)for(let r=0;r<t;r++){let u=s*t+r,l=e[u];if(l<0||i[u])continue;let a=1;for(;r+a<t&&e[u+a]===l&&!i[u+a];)a++;let m=1;t:for(;s+m<n;){let c=(s+m)*t+r;for(let f=0;f<a;f++)if(e[c+f]!==l||i[c+f])break t;m++}for(let c=s;c<s+m;c++)i.fill(1,c*t+r,c*t+r+a);o.push({x:r,y:s,w:a,h:m,level:l})}return o}function Me(e,t){let n=new Int16Array(e.length);for(let i=0;i<e.length;i++)n[i]=e[i]===-2?0:e[i]<0?t.baseLayers:_(e[i],t);return n}function Gt(e,t){let n=e.length,i=Me(e,t),o=new Int16Array(n);for(let s=0;s<n;s++)o[s]=Math.max(0,e[s]);return{bottom:new Int16Array(n),top:i,level:o}}function mt(e,t,n,i,o){let s=(h,g)=>h>=0&&g>=0&&h<t&&g<n,r=(h,g)=>s(h,g)?e.bottom[g*t+h]:0,u=(h,g)=>{if(!s(h,g))return 0;let M=g*t+h;return e.top[M]>e.bottom[M]?e.top[M]:e.bottom[M]},l=(h,g)=>u(h,g)>r(h,g),a=(h,g)=>s(h,g)?e.level[g*t+h]:0,m=[],c=h=>n-h,f=new Int16Array(t*n),p=h=>{let g=new Map,M=[];for(let x=0;x<n;x++)for(let A=0;A<t;A++){let B=x*t+A;if(!l(A,x)){f[B]=-1;continue}let $=h(A,x)*4096+a(A,x),U=g.get($);U==null&&(U=M.length,g.set($,U),M.push($)),f[B]=U}return{rs:ye(f,t,n),vals:M}};{let{rs:h,vals:g}=p(u);for(let M of h){let x=g[M.level];m.push({o:[M.x,c(M.y+M.h),Math.floor(x/4096)],u:[M.w,0,0],v:[0,M.h,0],level:x%4096})}}{let{rs:h,vals:g}=p(r);for(let M of h){let x=g[M.level];m.push({o:[M.x,c(M.y+M.h),Math.floor(x/4096)],u:[0,M.h,0],v:[M.w,0,0],level:x%4096})}}let b=(h,g,M,x)=>{if(g<=h)return[];if(x<=M||x<=h||M>=g)return[[h,g]];let A=[];return M>h&&A.push([h,M]),x<g&&A.push([x,g]),A},d=(h,g)=>l(h,g)?[r(h,g),u(h,g)]:[0,0];for(let h=0;h<=n;h++)for(let g=0;g<t;){let[M,x]=d(g,h-1),[A,B]=d(g,h);if(M===A&&x===B){g++;continue}let $=g+1;for(;$<t;$++){let[F,L]=d($,h-1),[j,C]=d($,h);if(F!==M||L!==x||j!==A||C!==B)break}let U=c(h);for(let[F,L]of b(M,x,A,B))m.push({o:[g,U,F],u:[$-g,0,0],v:[0,0,L-F],level:a(g,h-1)});for(let[F,L]of b(A,B,M,x))m.push({o:[g,U,F],u:[0,0,L-F],v:[$-g,0,0],level:a(g,h)});g=$}for(let h=0;h<=t;h++)for(let g=n-1;g>=0;){let[M,x]=d(h-1,g),[A,B]=d(h,g);if(M===A&&x===B){g--;continue}let $=g-1;for(;$>=0;$--){let[L,j]=d(h-1,$),[C,O]=d(h,$);if(L!==M||j!==x||C!==A||O!==B)break}let U=c(g+1),F=g-$;for(let[L,j]of b(A,B,M,x))m.push({o:[h,U,L],u:[0,0,j-L],v:[0,F,0],level:a(h,g)});for(let[L,j]of b(M,x,A,B))m.push({o:[h,U,L],u:[0,F,0],v:[0,0,j-L],level:a(h-1,g)});g=$}let P=[new Map,new Map,new Map],v=(h,g,M)=>h.o.map((x,A)=>x+g*h.u[A]+M*h.v[A]),k=(h,g)=>g===0?h[1]*1e5+h[2]:g===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of m)for(let[g,M]of[[0,0],[1,0],[1,1],[0,1]]){let x=v(h,g,M);for(let A=0;A<3;A++){let B=k(x,A),$=P[A].get(B);$||P[A].set(B,$=[]),$.push(x[A])}}for(let h of P)for(let[g,M]of h)h.set(g,[...new Set(M)].sort((x,A)=>x-A));let w=[],R=[],I=[],y=new Map,S=h=>{let g=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,M=y.get(g);return M==null&&(M=w.length/3,y.set(g,M),w.push(h[0]*i,h[1]*i,h[2]*o)),M};for(let h of m){let g=[v(h,0,0),v(h,1,0),v(h,1,1),v(h,0,1)],M=[];for(let A=0;A<4;A++){let B=g[A],$=g[(A+1)%4],U=B.findIndex((C,O)=>C!==$[O]);M.push(B);let F=Math.min(B[U],$[U]),L=Math.max(B[U],$[U]),j=(P[U].get(k(B,U))||[]).filter(C=>C>F&&C<L);B[U]>$[U]&&j.reverse();for(let C of j){let O=[...B];O[U]=C,M.push(O)}}let x=M.map(S);if(x.length===4)R.push(x[0],x[1],x[2],x[0],x[2],x[3]),I.push(h.level,h.level);else{let A=S(v(h,.5,.5));for(let B=0;B<x.length;B++)R.push(A,x[B],x[(B+1)%x.length]),I.push(h.level)}}return{vertices:w,triangles:R,levels:I}}function zt(e,t,n,i,o,s){let r=Int16Array.from(e),u=t*n,l=new Int32Array(u),a=new Float32Array(u),m=s.heightOf||(f=>f===-2?0:(f<0?o.baseLayers:_(f,o))*o.layerHeight),c=0;for(let f=0;f<12;f++){l.fill(-1);let p=[],b=[];for(let y=0;y<u;y++){if(l[y]>=0)continue;let S=p.length,h=r[y];for(p.push(h),l[y]=S,b.push(y);b.length;){let g=b.pop(),M=g%t;for(let x of[M>0?g-1:-1,M<t-1?g+1:-1,g-t,g+t])x<0||x>=u||l[x]>=0||r[x]!==h||(l[x]=S,b.push(x))}}let d=Math.SQRT2;for(let y=0;y<u;y++){let S=y%t,h=y/t|0,g=l[y],M=S===0||h===0||S===t-1||h===n-1||l[y-1]!==g||l[y+1]!==g||l[y-t]!==g||l[y+t]!==g;a[y]=M?1:1e9}for(let y=0;y<n;y++)for(let S=0;S<t;S++){let h=y*t+S;a[h]<=1||(a[h]=Math.min(a[h],a[h-1]+1,a[h-t]+1,a[h-t-1]+d,a[h-t+1]+d))}for(let y=n-1;y>=0;y--)for(let S=t-1;S>=0;S--){let h=y*t+S;a[h]<=1||(a[h]=Math.min(a[h],a[h+1]+1,a[h+t]+1,a[h+t+1]+d,a[h+t-1]+d))}let P=new Float32Array(p.length);for(let y=0;y<u;y++)a[y]>P[l[y]]&&(P[l[y]]=a[y]);let v=p.map(()=>new Map),k=new Float64Array(p.length).fill(1/0),w=(y,S)=>{let h=l[y],g=l[S];if(h===g)return;let M=r[y],x=r[S];k[h]=Math.min(k[h],m(x)),k[g]=Math.min(k[g],m(M)),x<M&&v[h].set(x,(v[h].get(x)||0)+1),M<x&&v[g].set(M,(v[g].get(M)||0)+1)};for(let y=0;y<n;y++)for(let S=0;S<t;S++){let h=y*t+S;S<t-1&&w(h,h+1),y<n-1&&w(h,h+t)}let R=new Int16Array(p.length).fill(-32768),I=0;if(p.forEach((y,S)=>{let h=m(y)-k[S];if(!(h>1e-9)||!v[S].size)return;let g=Math.max(1,2*P[S]-1)*i;if(g>=s.minWidth&&h<=s.maxRatio*g)return;let M=-2,x=-1;for(let[A,B]of v[S])(B>x||B===x&&A>M)&&(M=A,x=B);R[S]=M,I++}),!I)break;for(let y=0;y<u;y++){let S=R[l[y]];S!==-32768&&(r[y]=S)}c+=I}return{grid:r,lowered:c}}function ft(e,t="Mosaic Paint"){let n=e.vertices,i=e.triangles,o=i.length/3,s=new ArrayBuffer(84+o*50),r=new DataView(s),u=`${t} – multi-color by layer`.slice(0,80);for(let a=0;a<u.length;a++)r.setUint8(a,u.charCodeAt(a)&127);r.setUint32(80,o,!0);let l=84;for(let a=0;a<o;a++){let m=[0,1,2].map(I=>i[a*3+I]*3),c=n[m[1]]-n[m[0]],f=n[m[1]+1]-n[m[0]+1],p=n[m[1]+2]-n[m[0]+2],b=n[m[2]]-n[m[0]],d=n[m[2]+1]-n[m[0]+1],P=n[m[2]+2]-n[m[0]+2],v=f*P-p*d,k=p*b-c*P,w=c*d-f*b,R=Math.hypot(v,k,w)||1;v/=R,k/=R,w/=R;for(let I of[v,k,w])r.setFloat32(l,I,!0),l+=4;for(let I of m)for(let y=0;y<3;y++)r.setFloat32(l,n[I+y],!0),l+=4;r.setUint16(l,0,!0),l+=2}return s}function Dt(e,t){return e.map((n,i)=>{let o=i===0?1:_(i-1,t)+1,s=_(i,t);return{color:n,fromLayer:o,toLayer:s,changeAtLayer:i===0?null:o,z:i===0?null:+(o*t.layerHeight).toFixed(3)}})}var D=-3,we=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,i,o){let s=Math.max(0,Math.round(i.frame)),r=t+2*s,u=n+2*s,l=new Int16Array(r*u).fill(D);for(let f=0;f<n;f++)for(let p=0;p<t;p++)l[(f+s)*r+p+s]=e[f*t+p];let a=Math.min(i.corner,r/2,u/2),m=i.hole/2,c=we(i,o);for(let f=0;f<u;f++)for(let p=0;p<r;p++){let b=p+.5,d=f+.5;if(a>0){let P=b<a?a:b>r-a?r-a:b,v=d<a?a:d>u-a?u-a:d;if((b-P)**2+(d-v)**2>a*a){l[f*r+p]=-2;continue}}m>0&&(b-r/2)**2+(d-c)**2<=m*m&&(l[f*r+p]=-2)}return{grid:l,w:r,h:u}}function _t(e,t,n,i){let o=new Uint8Array(e*t),s=n/2;if(s<=0)return o;let r=[i,e-i],u=[i,t-i];for(let l of r)for(let a of u)for(let m=Math.max(0,Math.floor(a-s));m<Math.min(t,Math.ceil(a+s));m++)for(let c=Math.max(0,Math.floor(l-s));c<Math.min(e,Math.ceil(l+s));c++)(c+.5-l)**2+(m+.5-a)**2<=s*s&&(o[m*e+c]=1);return o}function qt(e,t,n,i=2){let o=n;for(let s=0;s<t.length;s++){if(!t[s])continue;let r=0;for(let u of e)u.top[s]>u.bottom[s]&&(r=Math.max(r,u.top[s]));r>0&&(o=Math.min(o,r-i))}if(o=Math.max(0,o),!o)return 0;for(let s=0;s<t.length;s++)if(t[s])for(let r of e)r.top[s]>r.bottom[s]&&r.bottom[s]<o&&(r.bottom[s]=o,r.top[s]<o&&(r.top[s]=o));return o}function Ht(e,t,n,i){let o=e.length,s={bottom:new Int16Array(o).fill(t),top:new Int16Array(o),level:new Int16Array(o).fill(i)};for(let r=0;r<o;r++)e[r]===D&&(s.top[r]=n);return s}var T=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function Pe(e,t,n){let i=e.vertices,o=e.triangles,s=[];s.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${T(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let r of t)s.push(`<base name="${T(r)}" displaycolor="${r.toUpperCase()}FF"/>`);s.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${T(n)}">`,"<mesh>","<vertices>");for(let r=0;r<i.length;r+=3)s.push(`<vertex x="${E(i[r])}" y="${E(i[r+1])}" z="${E(i[r+2])}"/>`);s.push("</vertices>","<triangles>");for(let r=0;r<o.length;r+=3)s.push(`<triangle v1="${o[r]}" v2="${o[r+1]}" v3="${o[r+2]}" pid="1" p1="${Math.max(0,e.levels[r/3])}"/>`);return s.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),s.join(`\n`)}function ve(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:Pe(e,t.map(i=>i.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:ve(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,i=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return o=>o===-2?0:o<0?t.baseLayers*t.layerHeight:e[o]?i:n}function Yt(e,t,n,i,o,s){let r=t*n,u=[];if(s.baseLayers>0){let l=new Int16Array(r);for(let a=0;a<r;a++)e[a]!==-2&&(l[a]=s.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(r),top:l,level:new Int16Array(r)}})}for(let l=0;l<i;l++){let a=new Int16Array(r).fill(s.baseLayers),m=new Int16Array(r),c=new Int16Array(r).fill(l),f=s.baseLayers+(o[l]?Math.max(1,s.tileLayers-s.groutRecess):s.tileLayers),p=!1;for(let b=0;b<r;b++)e[b]===l&&(m[b]=f,p=!0);p&&u.push({part:l,solid:{bottom:a,top:m,level:c}})}return u}function Zt(e,t,n="prusa"){return n==="bambu"?ke(e,t):Ae(e,t)}function ke(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',i=(a,m)=>`${a.toString(16).padStart(8,"0")}-0000-4000-8000-${m.toString(16).padStart(12,"0")}`,o=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((a,m)=>{let c=a.mesh.vertices,f=a.mesh.triangles;o.push(`<object id="${m+1}" p:UUID="${i(1,m)}" type="model">`,"<mesh>","<vertices>");for(let p=0;p<c.length;p+=3)o.push(`<vertex x="${E(c[p])}" y="${E(c[p+1])}" z="${E(c[p+2])}"/>`);o.push("</vertices>","<triangles>");for(let p=0;p<f.length;p+=3)o.push(`<triangle v1="${f[p]}" v2="${f[p+1]}" v3="${f[p+2]}"/>`);o.push("</triangles>","</mesh>","</object>")}),o.push("</resources>","<build/>","</model>");let s=e.length+1,r="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${T(t)}</metadata>`,"<resources>",`<object id="${s}" p:UUID="${i(2,0)}" type="model">`,"<components>"];e.forEach((a,m)=>u.push(`<component p:path="${r}" objectid="${m+1}" p:UUID="${i(3,m)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${i(4,0)}">`,`<item objectid="${s}" p:UUID="${i(5,0)}" printable="1"/>`,"</build>","</model>");let l=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${s}">`,`<metadata key="name" value="${T(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((a,m)=>l.push(`<part id="${m+1}" subtype="normal_part">`,`<metadata key="name" value="${T(a.name)}"/>`,`<metadata key="extruder" value="${a.filament||m+1}"/>`,"</part>")),l.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",r)},{name:"3D/Objects/object_1.model",data:o.join(`\n`)},{name:"Metadata/model_settings.config",data:l.join(`\n`)}]}function Ae(e,t){let n=[],i=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${T(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let r of e)n.push(`<base name="${T(r.name)}" displaycolor="${r.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${T(t)}">`,"<mesh>","<vertices>");for(let r of e){let u=r.mesh.vertices;for(let l=0;l<u.length;l+=3)n.push(`<vertex x="${E(u[l])}" y="${E(u[l+1])}" z="${E(u[l+2])}"/>`)}n.push("</vertices>","<triangles>"),i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${T(t)}"/>`);let o=0,s=0;return e.forEach((r,u)=>{let l=r.mesh.triangles,a=l.length/3;for(let m=0;m<l.length;m+=3)n.push(`<triangle v1="${l[m]+o}" v2="${l[m+1]+o}" v3="${l[m+2]+o}" pid="2" p1="${u}"/>`);i.push(`<volume firstid="${s}" lastid="${s+a-1}">`,`<metadata type="volume" key="name" value="${T(r.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${r.filament||u+1}"/>`,"</volume>"),o+=r.mesh.vertices.length/3,s+=a}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),i.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:i.join(`\n`)}]}function Vt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let i=t.vertices.length/3;for(let o of n.vertices)t.vertices.push(o);for(let o of n.triangles)t.triangles.push(o+i);for(let o of n.levels)t.levels.push(o)}return t}var K=null;function Re(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let i=n;for(let o=0;o<8;o++)i=i&1?3988292384^i>>>1:i>>>1;K[n]=i>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function Ie(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,i=[],o=[],s=0;for(let c of e){let f=n.encode(c.name),p=typeof c.data=="string"?n.encode(c.data):c.data,b=Re(p),d=t?await Ie(p):null,P=!!d&&d.length<p.length,v=P?d:p,k=new Uint8Array(30+f.length),w=new DataView(k.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,b,!0),w.setUint32(18,v.length,!0),w.setUint32(22,p.length,!0),w.setUint16(26,f.length,!0),k.set(f,30);let R=new Uint8Array(46+f.length),I=new DataView(R.buffer);I.setUint32(0,33639248,!0),I.setUint16(4,20,!0),I.setUint16(6,20,!0),I.setUint16(8,2048,!0),I.setUint16(10,P?8:0,!0),I.setUint16(12,0,!0),I.setUint16(14,33,!0),I.setUint32(16,b,!0),I.setUint32(20,v.length,!0),I.setUint32(24,p.length,!0),I.setUint16(28,f.length,!0),I.setUint32(42,s,!0),R.set(f,46),i.push(k,v),o.push(R),s+=k.length+v.length}let r=o.reduce((c,f)=>c+f.length,0),u=new Uint8Array(22),l=new DataView(u.buffer);l.setUint32(0,101010256,!0),l.setUint16(8,e.length,!0),l.setUint16(10,e.length,!0),l.setUint32(12,r,!0),l.setUint32(16,s,!0);let a=new Uint8Array(s+r+22),m=0;for(let c of[...i,...o,u])a.set(c,m),m+=c.length;return a}var Xt=2,Be=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),$e=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,i,o,s,r,u,l){let a=o.filter(p=>s[p]>0),m={list:a,grid:new Int16Array(0),counts:[],lowered:0},c=Int16Array.from(e),f=0;for(let p=0;p<4;p++){l?.(p/4);let b=new Int16Array(r.length).fill(-1);a.forEach((w,R)=>{b[w]=R});let d=c.map(w=>w<0?-1:b[w]),P=u.mode==="flat"?Jt(a.map(w=>r[w]),Qt(u)):void 0,v=zt(d,t,n,i,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:P});f+=v.lowered;let k=a.map(()=>0);for(let w=0;w<v.grid.length;w++){let R=v.grid[w];R>=0&&k[R]++,c[w]=R<0?-1:a[R]}if(m={list:a,grid:v.grid,counts:k,lowered:f},k.every(w=>w>0))break;a=a.filter((w,R)=>k[R]>0)}return m}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,i,o){let s=Ot(e,t,n,{frame:o.frame/i,corner:o.corner/i,hole:o.hole/i},Xt/i),r=(o.magnet/2+Xt+o.corner*.3)/i;return{...s,mask:o.magnet>0?_t(s.w,s.h,o.magnet/i,r):null}}function ee(e,t,n){let i=t.length,o;if(n.mode==="flat")o=Yt(e.grid,e.w,e.h,i,t,Qt(n)),n.frame>0&&o.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(i,n),0)});else{let s=Gt(e.grid,W(n)),r=Kt(i,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(s.top[u]=r,s.level[u]=i-1);o=[{part:0,solid:s}]}return e.mask&&qt(o.map(s=>s.solid),e.mask,$e(n.magnetDepth,n),Be),o}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Vt(ee(n,e.grout,t).map(i=>mt(i.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o:i}=e,o=te(n.grid,n.w,n.h,n.cell,i);t?.(.05);let s=ee(o,n.grout,i);t?.(.15);let r=s.map((a,m)=>{let c=mt(a.solid,o.w,o.h,n.cell,i.layerHeight);return t?.(.15+.7*(m+1)/s.length),c}),u=r.reduce((a,m)=>a+m.triangles.length/3,0),l=(a,m,c)=>({fileName:a,type:m,data:c,triangles:u,parts:r.length});if(i.mode==="flat"){let a=s.map((c,f)=>{let p=Math.max(0,c.part),b=e.colors[p];return{name:c.part===D?e.labels.frame:c.part<0?e.labels.base:`${c.part+1} ${b}`,color:b,mesh:r[f],filament:p+1}});if(e.kind==="3mf")return l(e.name+".3mf","model/3mf",await Q(Zt(a,e.name,e.slicer)));let m=s.map((c,f)=>({name:`${e.name}-${c.part===D?"frame":c.part<0?"base":`${c.part+1}-${e.colors[c.part].slice(1)}`}.stl`,data:new Uint8Array(ft(a[f].mesh,a[f].name))}));return l(e.name+"-stl.zip","application/zip",await Q(m))}return e.kind==="3mf"?l(e.name+".3mf","model/3mf",await Q(Nt(r[0],Dt(e.colors,W(i)),e.name))):l(e.name+".stl","model/stl",new Uint8Array(ft(r[0],e.name)))}function se(e,t,n,i,o){let s=(c,f)=>c<0||f<0||c>=t||f>=n?-1:e[f*t+c],r=t+1,u=(c,f)=>f*r+c,l=Array.from({length:i},()=>new Map),a=(c,f,p,b,d)=>{let P=l[c],v=u(f,p),k=P.get(v);k?k.push(u(b,d)):P.set(v,[u(b,d)])};for(let c=0;c<n;c++)for(let f=0;f<t;f++){o&&f===0&&c%64===0&&o(.5*c/n);let p=e[c*t+f];p<0||(s(f,c-1)!==p&&a(p,f+1,c,f,c),s(f-1,c)!==p&&a(p,f,c,f,c+1),s(f,c+1)!==p&&a(p,f,c+1,f+1,c+1),s(f+1,c)!==p&&a(p,f+1,c+1,f+1,c))}let m=[];for(let c=0;c<i;c++){o&&c%256===0&&o(.5+.5*c/i);let f=l[c],p=[];for(let[b]of f)for(;f.get(b)&&f.get(b).length;){let d=[b],P=b,v=oe(f,b,-1,r);for(;v!==b;){d.push(v);let k=oe(f,v,P,r);P=v,v=k}p.push(Le(d,r))}m.push(p)}return m}function oe(e,t,n,i){let o=e.get(t),s=0;if(o.length>1&&n>=0){let u=t%i-n%i,l=Math.floor(t/i)-Math.floor(n/i),a=m=>{let c=m%i-t%i,f=Math.floor(m/i)-Math.floor(t/i);return c===l&&f===-u?0:c===u&&f===l?1:2};for(let m=1;m<o.length;m++)a(o[m])<a(o[s])&&(s=m)}let r=o[s];return o.splice(s,1),o.length||e.delete(t),r}function Le(e,t){let n=e.map(s=>({x:s%t,y:Math.floor(s/t)})),i=n.length,o=[];for(let s=0;s<i;s++){let r=n[(s+i-1)%i],u=n[s],l=n[(s+1)%i];(u.x-r.x)*(l.y-u.y)-(u.y-r.y)*(l.x-u.x)!==0&&o.push(u)}return o}function pt(e){let t=0;for(let n=0,i=e.length;n<i;n++){let o=e[n],s=e[(n+1)%i];t+=o.x*s.y-s.x*o.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,i,o){let s=e.width,r=e.height,u=n/s,l=kt(e);o?.(.15);let a=new Int32Array(l.colors.length).fill(-1),m=[];l.colors.forEach((w,R)=>{w!==t&&(a[R]=m.length,m.push(w))});let c=l.labels.map(w=>w<0?-1:a[w]),f=se(c,s,r,m.length,o&&(w=>o(.15+.8*w))),p=[],b=w=>w.map(R=>`${tt(R.x*u)},${tt(R.y*u)}`).join(" ");f.forEach((w,R)=>{if(w.length===1)p.push(`<polygon points="${b(w[0])}" fill="${m[R]}" stroke="none"/>`);else{let y=[...w].sort((S,h)=>Math.abs(pt(h))-Math.abs(pt(S))).map(S=>"M"+b(S).replace(/ /g,"L")+"Z").join("");p.push(`<path d="${y}" fill="${m[R]}" fill-rule="evenodd" stroke="none"/>`)}});let d=tt(n),P=tt(r*u),v=[...new Set(Rt(l).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${d} ${P}" width="${d}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:v,paletteName:i,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${d}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${p.join(`\n`)}\n</g>\n</svg>`,tiles:m.length}}function Fe({data:e,W:t,H:n,box:i}){return o=>{let s=Math.floor((o.x-i.x)/i.w*t),r=Math.floor((o.y-i.y)/i.h*n);if(s<0||r<0||s>=t||r>=n)return null;let u=(r*t+s)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Te(e,t,n,i,o){let s=[];for(let u=0;u<5;u++)for(let l=0;l<5;l++){let a=e({x:t+i*(u+.5)/5,y:n+o*(l+.5)/5});a&&s.push(G(a))}if(s.length<2)return 0;let r=[0,1,2].map(u=>s.reduce((l,a)=>l+a[u],0)/s.length);return s.reduce((u,l)=>u+Math.hypot(l[0]-r[0],l[1]-r[1],l[2]-r[2]),0)/s.length}function je(e,t,n){let i=[];for(let o=0;o<70;o++)for(let s=0;s<70;s++){let r=e({x:t.x+t.w*(o+.5)/70,y:t.y+t.h*(s+.5)/70});r&&i.push(G(r))}return[...new Set(Ct(i,n,7).map(dt))]}function ae(e,t){Bt(e.eps);let n=Fe(e.photo),i=e.page,o=[{x:i.x,y:i.y},{x:i.x+i.w,y:i.y},{x:i.x+i.w,y:i.y+i.h},{x:i.x,y:i.y+i.h}],s=4+(1-e.detail/100)*26,r=(a,m,c,f)=>Te(n,a,m,c,f)>s,u=V({style:e.style,box:i,size:e.size,detail:e.detail/100,busy:r,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let l=jt(u,[o],a=>$t(a,o),e.eps);return t?.(.85),{tiles:u.length,lines:l,palette:e.suggest?je(n,e.photo.box,e.suggest):[]}}var Ce=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=Ce[t].exec(e);return n?+n[1]:null},Ee=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,Ge=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,i=0,o=!1,s=0,r=!1,u=!1,l=new Set,a=new Map,m=[],c=null;for(let f=0,p=0;f<e.length;p++){let b=e.indexOf(`\n`,f);b<0&&(b=e.length);let d=e.slice(f,b);f=b+1,t&&p%5e4===0&&t(f/e.length);let P=d.indexOf(";");if(P>=0){let k=Ee.exec(d.slice(P));k&&(u=Ge.test(k[1])),d=d.slice(0,P)}if(d=d.trim(),!d)continue;let v=d.split(/\\s/,1)[0].toUpperCase();if(v==="G0"||v==="G1"){let k=J(d,"Z"),w=J(d,"E");if(k!=null&&(n=k),w!=null){let R=o?w>0:w>i;if(o||(i=w),R&&!u&&(J(d,"X")!=null||J(d,"Y")!=null)){let I=Math.round(n*1e3)/1e3;l.add(I);let y=a.get(s);y?(y.from=Math.min(y.from,I),y.to=Math.max(y.to,I)):a.set(s,{from:I,to:I}),c&&(m.push({...c,z:I}),c=null),r=!0}}}else if(v==="G92"){let k=J(d,"E");k!=null&&(i=k)}else if(v==="M82")o=!1;else if(v==="M83")o=!0;else if(v==="M600")c={kind:"M600"};else if(/^T\\d+$/.test(v)){let k=+v.slice(1);r&&k!==s&&(c={kind:"tool",tool:k}),s=k}}return{layers:l.size,top:l.size?Math.max(...l):0,changes:m,tools:[...a].map(([f,p])=>({tool:f,...p})).sort((f,p)=>f.tool-p.tool)}}function ze(e,t){let n=e.img,i=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!i)return vt(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let o=4+(1-e.detail/100)*26,s=(l,a,m,c)=>At(n,l,a,m,c)>o,r=e.shape==="brick"?e.tile/2:e.tile,u=V({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:r,detail:e.detail/100,busy:s,seed:7});return t(.5),St(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var ue={mosaic:(e,t)=>ze(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t)};function bt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let i of Object.values(e))bt(i,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:i}=e.data,o=0,s=r=>{let u=Date.now();u-o>100&&(o=u,gt({id:t,progress:r}))};try{let r=await ue[n](i,s);gt({id:t,result:r},bt(r))}catch(r){gt({id:t,error:String(r?.message||r)})}};})();\n';
+  var worker_source_default = '(()=>{var q=null,et=new Map;function ce(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let o=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,o=q.fillStyle),et.set(t,o),o}function nt(e){if(Array.isArray(e))return e;if(/^#[0-9a-f]{6}$/i.test(e))return[1,3,5].map(o=>parseInt(e.slice(o,o+2),16));let t=ce(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(o=>parseInt(t.slice(o,o+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let o=b=>(b/=255,b<=.04045?b/12.92:Math.pow((b+.055)/1.055,2.4)),s=o(e),i=o(t),r=o(n),u=(s*.4124+i*.3576+r*.1805)/.95047,l=s*.2126+i*.7152+r*.0722,a=(s*.0193+i*.1192+r*.9505)/1.08883,m=b=>b>216/24389?Math.cbrt(b):(24389/27*b+16)/116,c=m(u),f=m(l),p=m(a);return[116*f-16,500*(c-f),200*(f-p)]}function dt([e,t,n]){let o=(e+16)/116,s=o+t/500,i=o-n/200,r=f=>f**3>216/24389?f**3:(116*f-16)/(24389/27),u=.95047*r(s),l=r(o),a=1.08883*r(i),m=f=>f<=.0031308?12.92*f:1.055*Math.pow(f,1/2.4)-.055;return"#"+[3.2406*u-1.5372*l-.4986*a,-.9689*u+1.8758*l+.0415*a,.0557*u-.204*l+1.057*a].map(f=>Math.round(Math.max(0,Math.min(1,m(f)))*255)).map(f=>f.toString(16).padStart(2,"0")).join("")}function xt(e,t,n){n=n||t.map(r=>G(nt(r)));let o=G(e),s=null,i=1/0;return t.forEach((r,u)=>{let l=n[u],a=(o[0]-l[0])**2+(o[1]-l[1])**2+(o[2]-l[2])**2;a<i&&(i=a,s=r)}),s}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(o=>G(wt(o))),n=new Map;return(o,s,i)=>{let r=o<<16|s<<8|i,u=n.get(r);return u||(u=xt([o,s,i],e,t),n.set(r,u)),u}}function vt(e,t){let{width:n,height:o}=e,s=e.data,i=Mt(n,o),r=i.data,u=Math.max(2,Math.round(t.tile)),l=Math.min(u-1,Math.max(0,Math.round(t.grout))),a=t.palette&&t.palette.length?Pt(t.palette):null,m=Y(t.groutColor),c=new Map,f=0;for(let p=0,b=0;p<o;p+=u,b++){let d=t.bricks&&b%2?-Math.floor(u/2):0;for(let P=d;P<n;P+=u){let v=Math.max(0,P),k=Math.min(n,P+u),w=Math.min(o,p+u),R=0,I=0,y=0,A=0,h=0;for(let x=p;x<w-(w===p+u?l:0);x++)for(let S=v;S<Math.min(k,P+u-l);S++){let B=(x*n+S)*4;h++,!(s[B+3]<128)&&(R+=s[B],I+=s[B+1],y+=s[B+2],A++)}let g=A>0&&A>=h/2,M=[0,0,0,0];if(g){R=Math.round(R/A),I=Math.round(I/A),y=Math.round(y/A);let x=a?a(R,I,y):st(R,I,y);M=Y(x),c.set(x,(c.get(x)||0)+1),f++}for(let x=p;x<w;x++)for(let S=v;S<k;S++){let B=S>=P+u-l||x>=p+u-l;ot(r,(x*n+S)*4,B?g?m:[0,0,0,0]:M)}}}return{img:i,counts:c,tiles:f}}function kt(e){let{width:t,height:n,data:o}=e,s=t*n,i=new Int32Array(s).fill(-1),r=[],u=[],l=m=>o[m*4+3]<128?-1:o[m*4]<<16|o[m*4+1]<<8|o[m*4+2],a=[];for(let m=0;m<s;m++){if(i[m]>=0)continue;let c=l(m);if(c<0)continue;let f=r.length,p=0;for(i[m]=f,a.push(m);a.length;){let b=a.pop(),d=b%t;p++;for(let P of[d>0?b-1:-1,d<t-1?b+1:-1,b-t,b+t])P<0||P>=s||i[P]>=0||l(P)!==c||(i[P]=f,a.push(P))}r.push(st(c>>16,c>>8&255,c&255)),u.push(p)}return{labels:i,colors:r,sizes:u}}function St(e,t,n,o,s){let i=[],r=e.data;for(let l=0;l<5;l++)for(let a=0;a<5;a++){let m=Math.floor(t+o*(l+.5)/5),c=Math.floor(n+s*(a+.5)/5);if(m<0||c<0||m>=e.width||c>=e.height)continue;let f=(c*e.width+m)*4;r[f+3]>=128&&i.push(G([r[f],r[f+1],r[f+2]]))}if(i.length<2)return 0;let u=[0,1,2].map(l=>i.reduce((a,m)=>a+m[l],0)/i.length);return i.reduce((l,a)=>l+Math.hypot(a[0]-u[0],a[1]-u[1],a[2]-u[2]),0)/i.length}function me(e,t,n,o){let s=n.length,i=n.map(l=>l.y),r=Math.max(0,Math.floor(Math.min(...i))),u=Math.min(t-1,Math.ceil(Math.max(...i)));for(let l=r;l<=u;l++){let a=l+.5,m=[];for(let c=0;c<s;c++){let f=n[c],p=n[(c+1)%s];f.y<=a!=p.y<=a&&m.push(f.x+(a-f.y)*(p.x-f.x)/(p.y-f.y))}m.sort((c,f)=>c-f);for(let c=0;c+1<m.length;c+=2){let f=Math.max(0,Math.ceil(m[c]-.5)),p=Math.min(e-1,Math.floor(m[c+1]-.5));for(let b=f;b<=p;b++)o(l*e+b)}}}function At(e,t,n){let{width:o,height:s}=e,i=e.data,r=Mt(o,s),u=r.data,l=n.palette&&n.palette.length?Pt(n.palette):null,a=new Map,m=[],c=0;for(let p of t){let b=0,d=0,P=0,v=0,k=0,w=[];if(me(o,s,p,y=>{w.push(y),k++;let A=y*4;i[A+3]<128||(b+=i[A],d+=i[A+1],P+=i[A+2],v++)}),!v||v<k/2)continue;b=Math.round(b/v),d=Math.round(d/v),P=Math.round(P/v);let R=l?l(b,d,P):st(b,d,P),I=Y(R);for(let y of w)ot(u,y*4,I);a.set(R,(a.get(R)||0)+1),c++,m.push(p)}let f=Math.max(0,n.grout)/2;if(f>0){let p=Y(n.groutColor);for(let b of m)for(let d=0;d<b.length;d++){let P=b[d],v=b[(d+1)%b.length],k=v.x-P.x,w=v.y-P.y,R=k*k+w*w||1,I=Math.max(0,Math.floor(Math.min(P.x,v.x)-f)),y=Math.min(o-1,Math.ceil(Math.max(P.x,v.x)+f)),A=Math.max(0,Math.floor(Math.min(P.y,v.y)-f)),h=Math.min(s-1,Math.ceil(Math.max(P.y,v.y)+f));for(let g=A;g<=h;g++)for(let M=I;M<=y;M++){let x=M+.5,S=g+.5,B=Math.max(0,Math.min(1,((x-P.x)*k+(S-P.y)*w)/R)),$=P.x+B*k-x,U=P.y+B*w-S;$*$+U*U<=f*f&&ot(u,(g*o+M)*4,p)}}}return{img:r,counts:a,tiles:c}}function Rt(e){let t=new Map;return e.colors.forEach((n,o)=>{let s=t.get(n)||{n:0,color:n,pieces:0,pixels:0};s.pieces++,s.pixels+=e.sizes[o],t.set(n,s)}),[...t.values()].sort((n,o)=>o.pixels-n.pixels).map((n,o)=>({...n,n:o+1}))}var fe=.01;function Bt(e){fe=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,o)=>e*o-t*n;function he(e,t,n){let o=n.x-t.x,s=n.y-t.y,i=o*o+s*s,r=i?((e.x-t.x)*o+(e.y-t.y)*s)/i:0;return r=Math.max(0,Math.min(1,r)),{x:t.x+o*r,y:t.y+s*r,t:r}}function pe(e,t,n,o){let s=t.x-e.x,i=t.y-e.y,r=o.x-n.x,u=o.y-n.y,l=it(s,i,r,u);if(Math.abs(l)<1e-12)return null;let a=n.x-e.x,m=n.y-e.y,c=it(a,m,r,u)/l,f=it(a,m,s,i)/l;return c<0||c>1||f<0||f>1?null:{x:e.x+s*c,y:e.y+i*c,t:c,u:f}}function $t(e,t){let n=!1;for(let o=0,s=t.length-1;o<t.length;s=o++){let i=t[o],r=t[s];i.y>e.y!=r.y>e.y&&e.x<(r.x-i.x)*(e.y-i.y)/(r.y-i.y)+i.x&&(n=!n)}return n}function Ut(e,t,n,o,s){let i=[];for(let r=0;r<e;r++){let u=s+r*2*Math.PI/e;i.push({x:t+o*Math.cos(u),y:n+o*Math.sin(u)})}return i}function at(e,t,n,o){let s=[0,1];for(let a of n)for(let m=0,c=a.length;m<c;m++){let f=pe(e,t,a[m],a[(m+1)%c]);f&&s.push(f.t)}s.sort((a,m)=>a-m);let i=a=>({x:e.x+(t.x-e.x)*a,y:e.y+(t.y-e.y)*a}),r=[],u=null,l=0;for(let a=0;a+1<s.length;a++){let m=s[a],c=s[a+1];c-m<1e-9||(o(i((m+c)/2))?(u===null&&(u=m),l=c):u!==null&&(r.push({a:i(u),b:i(l)}),u=null))}return u!==null&&r.push({a:i(u),b:i(l)}),r}function lt(e,t){let n=1/0;for(let o of t)for(let s=0,i=o.length;s<i;s++)n=Math.min(n,H(e,he(e,o[s],o[(s+1)%i])));return n}var Z=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let o=[];if(e==="square"){let[s,i]=z(n.x0,n.x1,t),[r,u]=z(n.y0,n.y1,t);for(let l=s;l<=i;l++)for(let a=r;a<=u;a++)o.push(Z(l*t,a*t,t,t))}else if(e==="brick"){let s=2*t,[i,r]=z(n.y0,n.y1,t);for(let u=i;u<=r;u++){let l=ct(u)?t:0,[a,m]=z(n.x0-l,n.x1-l,s);for(let c=a;c<=m;c++)o.push(Z(l+c*s,u*t,s,t))}}else if(e==="hex"){let s=Math.sqrt(3)*t,i=1.5*t,[r,u]=z(n.y0,n.y1,i);for(let l=r;l<=u;l++){let a=ct(l)?s/2:0,[m,c]=z(n.x0-a,n.x1-a,s);for(let f=m;f<=c;f++)o.push(Ut(6,a+f*s,l*i,t,-Math.PI/2))}}else if(e==="triangle"){let s=t*Math.sqrt(3)/2,[i,r]=z(n.y0,n.y1,s);for(let u=i;u<=r;u++){let l=u*s,a=ct(u)?t/2:0,[m,c]=z(n.x0-a,n.x1-a,t);for(let f=m;f<=c;f++){let p=a+f*t;o.push([{x:p,y:l+s},{x:p+t/2,y:l},{x:p+t,y:l+s}]),o.push([{x:p+t/2,y:l},{x:p+1.5*t,y:l},{x:p+t,y:l+s}])}}}else if(e==="herringbone"){let s=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([c,f])=>[c/t,f/t]),i=s.map(([c,f])=>(c+f)/4),r=s.map(([c,f])=>(c-f)/2),u=Math.floor(Math.min(...i))-2,l=Math.ceil(Math.max(...i))+2,a=Math.floor(Math.min(...r))-2,m=Math.ceil(Math.max(...r))+2;for(let c=u;c<=l;c++)for(let f=a;f<=m;f++)o.push(Z((2*c+f)*t,(2*c-f)*t,t,2*t)),o.push(Z((2*c+1+f)*t,(2*c+1-f)*t,2*t,t))}return o}function Ft(e,t){let n=new Map;for(let s of e){let i=s.b.x-s.a.x,r=s.b.y-s.a.y,u=Math.hypot(i,r);if(u<t)continue;i/=u,r/=u,(i<-1e-9||Math.abs(i)<=1e-9&&r<0)&&(i=-i,r=-r);let l=-r*s.a.x+i*s.a.y,a=Math.round(Math.atan2(r,i)*1e6)+"|"+Math.round(l/(t*10)),m=i*s.a.x+r*s.a.y,c=i*s.b.x+r*s.b.y;(n.get(a)||n.set(a,{dx:i,dy:r,off:l,list:[]}).get(a)).list.push([Math.min(m,c),Math.max(m,c)])}let o=[];for(let s of n.values()){s.list.sort((l,a)=>l[0]-a[0]);let i=l=>({x:s.dx*l-s.dy*s.off,y:s.dy*l+s.dx*s.off}),[r,u]=s.list[0];for(let l=1;l<=s.list.length;l++){let a=s.list[l];if(a&&a[0]<=u+t){u=Math.max(u,a[1]);continue}o.push({a:i(r),b:i(u)}),a&&([r,u]=a)}}return o}function Tt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}];function ge(e,t,n,o){let s=n?t*2:t,i=n?t/2:t,r=[],u=(l,a,m)=>{if(!(l>=e.x+e.w-1e-9||a>=e.y+e.h-1e-9))if(m>i*1.0001&&o(l,a,m,m)){let c=m/2;u(l,a,c),u(l+c,a,c),u(l,a+c,c),u(l+c,a+c,c)}else r.push({x:l,y:a,s:m})};for(let l=0;l*s<e.h;l++)for(let a=0;a*s<e.w;a++)u(e.x+a*s,e.y+l*s,s);return r}function de(e,t){let n=[];for(let o=0,s=e.length;o<s;o++){let i=e[o],r=e[(o+1)%s],u=t(i),l=t(r);if(u<=0&&n.push(i),u<0&&l>0||u>0&&l<0){let a=u/(u-l);n.push({x:i.x+(r.x-i.x)*a,y:i.y+(r.y-i.y)*a})}}return n}function xe(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,o=new Map,s=(r,u)=>r+","+u;e.forEach((r,u)=>{let l=s(Math.floor(r.x/n),Math.floor(r.y/n));(o.get(l)||o.set(l,[]).get(l)).push(u)});let i=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((r,u)=>{let l=Math.floor(r.x/n),a=Math.floor(r.y/n),m=N(t.x,t.y,t.w,t.h),c=()=>Math.max(...m.map(f=>H(f,r)));for(let f=0;f<=i&&m.length>=3&&!((f-1)*n>2*c());f++){let p=[];for(let b=l-f;b<=l+f;b++)for(let d=a-f;d<=a+f;d++)if(Math.max(Math.abs(b-l),Math.abs(d-a))===f)for(let P of o.get(s(b,d))||[])P!==u&&p.push(P);p.sort((b,d)=>H(e[b],r)-H(e[d],r));for(let b of p){let d=e[b],P=d.x-r.x,v=d.y-r.y,k=(r.x+d.x)/2,w=(r.y+d.y)/2;if(m=de(m,R=>(R.x-k)*P+(R.y-w)*v),m.length<3)break}}return m}).filter(r=>r.length>=3)}function V({style:e,box:t,size:n,detail:o=0,busy:s=()=>!1,seed:i=1}){let r=o>0;if(e==="hex"){let l=n/Math.sqrt(3);return Lt("hex",l,{x0:-l,y0:-l,x1:t.w+l,y1:t.h+l}).map(a=>a.map(m=>({x:m.x+t.x,y:m.y+t.y})))}if(e==="brick"){let l=[];for(let a=0;a*n<t.h;a++){let m=a%2?-n:0;for(let c=t.x+m;c<t.x+t.w;c+=2*n){let f=t.y+a*n;r&&s(c,f,2*n,n)?l.push(N(c,f,n,n),N(c+n,f,n,n)):l.push(N(c,f,2*n,n))}}return l}let u=ge(t,n,r,s);if(e==="irregular"){let l=Tt(i),a=u.map(m=>({x:m.x+m.s*(.5+(l()-.5)*.7),y:m.y+m.s*(.5+(l()-.5)*.7)})).filter(m=>m.x>=t.x&&m.y>=t.y&&m.x<=t.x+t.w&&m.y<=t.y+t.h);return xe(a,t)}return u.map(l=>N(l.x,l.y,l.s,l.s))}function jt(e,t,n,o){let s=o*10,i=a=>Math.round(a.x/s)+","+Math.round(a.y/s),r=new Set,u=[],l=a=>n(a)&&lt(a,t)>o*20;for(let a of e)for(let m=0;m<a.length;m++){let c=a[m],f=a[(m+1)%a.length],p=i(c),b=i(f),d=p<b?p+"|"+b:b+"|"+p;p===b||r.has(d)||(r.add(d),u.push(...at(c,f,t,l)))}return Ft(u,o)}function Ct(e,t,n=1,o=16){if(!e.length)return[];t=Math.min(t,e.length);let s=Tt(n),i=(l,a)=>(l[0]-a[0])**2+(l[1]-a[1])**2+(l[2]-a[2])**2,r=[e[Math.floor(s()*e.length)]];for(;r.length<t;){let l=e.map(c=>Math.min(...r.map(f=>i(c,f)))),a=s()*l.reduce((c,f)=>c+f,0),m=0;for(;m<e.length-1&&(a-=l[m])>0;)m++;r.push(e[m])}let u=[];for(let l=0;l<o;l++){let a=r.map(()=>[0,0,0]);u=r.map(()=>0);for(let m of e){let c=0,f=1/0;r.forEach((p,b)=>{let d=i(m,p);d<f&&(f=d,c=b)}),a[c][0]+=m[0],a[c][1]+=m[1],a[c][2]+=m[2],u[c]++}r.forEach((m,c)=>{u[c]&&(r[c]=a[c].map(f=>f/u[c]))})}return r.map((l,a)=>({c:l,n:u[a]})).sort((l,a)=>a.n-l.n).map(l=>l.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function ye(e,t,n){let o=new Uint8Array(t*n),s=[];for(let i=0;i<n;i++)for(let r=0;r<t;r++){let u=i*t+r,l=e[u];if(l<0||o[u])continue;let a=1;for(;r+a<t&&e[u+a]===l&&!o[u+a];)a++;let m=1;t:for(;i+m<n;){let c=(i+m)*t+r;for(let f=0;f<a;f++)if(e[c+f]!==l||o[c+f])break t;m++}for(let c=i;c<i+m;c++)o.fill(1,c*t+r,c*t+r+a);s.push({x:r,y:i,w:a,h:m,level:l})}return s}function Me(e,t){let n=new Int16Array(e.length);for(let o=0;o<e.length;o++)n[o]=e[o]===-2?0:e[o]<0?t.baseLayers:_(e[o],t);return n}function Gt(e,t){let n=e.length,o=Me(e,t),s=new Int16Array(n);for(let i=0;i<n;i++)s[i]=Math.max(0,e[i]);return{bottom:new Int16Array(n),top:o,level:s}}function mt(e,t,n,o,s){let i=(h,g)=>h>=0&&g>=0&&h<t&&g<n,r=(h,g)=>i(h,g)?e.bottom[g*t+h]:0,u=(h,g)=>{if(!i(h,g))return 0;let M=g*t+h;return e.top[M]>e.bottom[M]?e.top[M]:e.bottom[M]},l=(h,g)=>u(h,g)>r(h,g),a=(h,g)=>i(h,g)?e.level[g*t+h]:0,m=[],c=h=>n-h,f=new Int16Array(t*n),p=h=>{let g=new Map,M=[];for(let x=0;x<n;x++)for(let S=0;S<t;S++){let B=x*t+S;if(!l(S,x)){f[B]=-1;continue}let $=h(S,x)*4096+a(S,x),U=g.get($);U==null&&(U=M.length,g.set($,U),M.push($)),f[B]=U}return{rs:ye(f,t,n),vals:M}};{let{rs:h,vals:g}=p(u);for(let M of h){let x=g[M.level];m.push({o:[M.x,c(M.y+M.h),Math.floor(x/4096)],u:[M.w,0,0],v:[0,M.h,0],level:x%4096})}}{let{rs:h,vals:g}=p(r);for(let M of h){let x=g[M.level];m.push({o:[M.x,c(M.y+M.h),Math.floor(x/4096)],u:[0,M.h,0],v:[M.w,0,0],level:x%4096})}}let b=(h,g,M,x)=>{if(g<=h)return[];if(x<=M||x<=h||M>=g)return[[h,g]];let S=[];return M>h&&S.push([h,M]),x<g&&S.push([x,g]),S},d=(h,g)=>l(h,g)?[r(h,g),u(h,g)]:[0,0];for(let h=0;h<=n;h++)for(let g=0;g<t;){let[M,x]=d(g,h-1),[S,B]=d(g,h);if(M===S&&x===B){g++;continue}let $=g+1;for(;$<t;$++){let[F,L]=d($,h-1),[j,C]=d($,h);if(F!==M||L!==x||j!==S||C!==B)break}let U=c(h);for(let[F,L]of b(M,x,S,B))m.push({o:[g,U,F],u:[$-g,0,0],v:[0,0,L-F],level:a(g,h-1)});for(let[F,L]of b(S,B,M,x))m.push({o:[g,U,F],u:[0,0,L-F],v:[$-g,0,0],level:a(g,h)});g=$}for(let h=0;h<=t;h++)for(let g=n-1;g>=0;){let[M,x]=d(h-1,g),[S,B]=d(h,g);if(M===S&&x===B){g--;continue}let $=g-1;for(;$>=0;$--){let[L,j]=d(h-1,$),[C,O]=d(h,$);if(L!==M||j!==x||C!==S||O!==B)break}let U=c(g+1),F=g-$;for(let[L,j]of b(S,B,M,x))m.push({o:[h,U,L],u:[0,0,j-L],v:[0,F,0],level:a(h,g)});for(let[L,j]of b(M,x,S,B))m.push({o:[h,U,L],u:[0,F,0],v:[0,0,j-L],level:a(h-1,g)});g=$}let P=[new Map,new Map,new Map],v=(h,g,M)=>h.o.map((x,S)=>x+g*h.u[S]+M*h.v[S]),k=(h,g)=>g===0?h[1]*1e5+h[2]:g===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of m)for(let[g,M]of[[0,0],[1,0],[1,1],[0,1]]){let x=v(h,g,M);for(let S=0;S<3;S++){let B=k(x,S),$=P[S].get(B);$||P[S].set(B,$=[]),$.push(x[S])}}for(let h of P)for(let[g,M]of h)h.set(g,[...new Set(M)].sort((x,S)=>x-S));let w=[],R=[],I=[],y=new Map,A=h=>{let g=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,M=y.get(g);return M==null&&(M=w.length/3,y.set(g,M),w.push(h[0]*o,h[1]*o,h[2]*s)),M};for(let h of m){let g=[v(h,0,0),v(h,1,0),v(h,1,1),v(h,0,1)],M=[];for(let S=0;S<4;S++){let B=g[S],$=g[(S+1)%4],U=B.findIndex((C,O)=>C!==$[O]);M.push(B);let F=Math.min(B[U],$[U]),L=Math.max(B[U],$[U]),j=(P[U].get(k(B,U))||[]).filter(C=>C>F&&C<L);B[U]>$[U]&&j.reverse();for(let C of j){let O=[...B];O[U]=C,M.push(O)}}let x=M.map(A);if(x.length===4)R.push(x[0],x[1],x[2],x[0],x[2],x[3]),I.push(h.level,h.level);else{let S=A(v(h,.5,.5));for(let B=0;B<x.length;B++)R.push(S,x[B],x[(B+1)%x.length]),I.push(h.level)}}return{vertices:w,triangles:R,levels:I}}function zt(e,t,n,o,s,i){let r=Int16Array.from(e),u=t*n,l=new Int32Array(u),a=new Float32Array(u),m=i.heightOf||(f=>f===-2?0:(f<0?s.baseLayers:_(f,s))*s.layerHeight),c=0;for(let f=0;f<12;f++){l.fill(-1);let p=[],b=[];for(let y=0;y<u;y++){if(l[y]>=0)continue;let A=p.length,h=r[y];for(p.push(h),l[y]=A,b.push(y);b.length;){let g=b.pop(),M=g%t;for(let x of[M>0?g-1:-1,M<t-1?g+1:-1,g-t,g+t])x<0||x>=u||l[x]>=0||r[x]!==h||(l[x]=A,b.push(x))}}let d=Math.SQRT2;for(let y=0;y<u;y++){let A=y%t,h=y/t|0,g=l[y],M=A===0||h===0||A===t-1||h===n-1||l[y-1]!==g||l[y+1]!==g||l[y-t]!==g||l[y+t]!==g;a[y]=M?1:1e9}for(let y=0;y<n;y++)for(let A=0;A<t;A++){let h=y*t+A;a[h]<=1||(a[h]=Math.min(a[h],a[h-1]+1,a[h-t]+1,a[h-t-1]+d,a[h-t+1]+d))}for(let y=n-1;y>=0;y--)for(let A=t-1;A>=0;A--){let h=y*t+A;a[h]<=1||(a[h]=Math.min(a[h],a[h+1]+1,a[h+t]+1,a[h+t+1]+d,a[h+t-1]+d))}let P=new Float32Array(p.length);for(let y=0;y<u;y++)a[y]>P[l[y]]&&(P[l[y]]=a[y]);let v=p.map(()=>new Map),k=new Float64Array(p.length).fill(1/0),w=(y,A)=>{let h=l[y],g=l[A];if(h===g)return;let M=r[y],x=r[A];k[h]=Math.min(k[h],m(x)),k[g]=Math.min(k[g],m(M)),x<M&&v[h].set(x,(v[h].get(x)||0)+1),M<x&&v[g].set(M,(v[g].get(M)||0)+1)};for(let y=0;y<n;y++)for(let A=0;A<t;A++){let h=y*t+A;A<t-1&&w(h,h+1),y<n-1&&w(h,h+t)}let R=new Int16Array(p.length).fill(-32768),I=0;if(p.forEach((y,A)=>{let h=m(y)-k[A];if(!(h>1e-9)||!v[A].size)return;let g=Math.max(1,2*P[A]-1)*o;if(g>=i.minWidth&&h<=i.maxRatio*g)return;let M=-2,x=-1;for(let[S,B]of v[A])(B>x||B===x&&S>M)&&(M=S,x=B);R[A]=M,I++}),!I)break;for(let y=0;y<u;y++){let A=R[l[y]];A!==-32768&&(r[y]=A)}c+=I}return{grid:r,lowered:c}}function ft(e,t="Mosaic Paint"){let n=e.vertices,o=e.triangles,s=o.length/3,i=new ArrayBuffer(84+s*50),r=new DataView(i),u=`${t} – multi-color by layer`.slice(0,80);for(let a=0;a<u.length;a++)r.setUint8(a,u.charCodeAt(a)&127);r.setUint32(80,s,!0);let l=84;for(let a=0;a<s;a++){let m=[0,1,2].map(I=>o[a*3+I]*3),c=n[m[1]]-n[m[0]],f=n[m[1]+1]-n[m[0]+1],p=n[m[1]+2]-n[m[0]+2],b=n[m[2]]-n[m[0]],d=n[m[2]+1]-n[m[0]+1],P=n[m[2]+2]-n[m[0]+2],v=f*P-p*d,k=p*b-c*P,w=c*d-f*b,R=Math.hypot(v,k,w)||1;v/=R,k/=R,w/=R;for(let I of[v,k,w])r.setFloat32(l,I,!0),l+=4;for(let I of m)for(let y=0;y<3;y++)r.setFloat32(l,n[I+y],!0),l+=4;r.setUint16(l,0,!0),l+=2}return i}function Dt(e,t){return e.map((n,o)=>{let s=o===0?1:_(o-1,t)+1,i=_(o,t);return{color:n,fromLayer:s,toLayer:i,changeAtLayer:o===0?null:s,z:o===0?null:+(s*t.layerHeight).toFixed(3)}})}var D=-3,we=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,o,s){let i=Math.max(0,Math.round(o.frame)),r=t+2*i,u=n+2*i,l=new Int16Array(r*u).fill(D);for(let f=0;f<n;f++)for(let p=0;p<t;p++)l[(f+i)*r+p+i]=e[f*t+p];let a=Math.min(o.corner,r/2,u/2),m=o.hole/2,c=we(o,s);for(let f=0;f<u;f++)for(let p=0;p<r;p++){let b=p+.5,d=f+.5;if(a>0){let P=b<a?a:b>r-a?r-a:b,v=d<a?a:d>u-a?u-a:d;if((b-P)**2+(d-v)**2>a*a){l[f*r+p]=-2;continue}}m>0&&(b-r/2)**2+(d-c)**2<=m*m&&(l[f*r+p]=-2)}return{grid:l,w:r,h:u}}function _t(e,t,n,o){let s=new Uint8Array(e*t),i=n/2;if(i<=0)return s;let r=[o,e-o],u=[o,t-o];for(let l of r)for(let a of u)for(let m=Math.max(0,Math.floor(a-i));m<Math.min(t,Math.ceil(a+i));m++)for(let c=Math.max(0,Math.floor(l-i));c<Math.min(e,Math.ceil(l+i));c++)(c+.5-l)**2+(m+.5-a)**2<=i*i&&(s[m*e+c]=1);return s}function qt(e,t,n,o=2){let s=n;for(let i=0;i<t.length;i++){if(!t[i])continue;let r=0;for(let u of e)u.top[i]>u.bottom[i]&&(r=Math.max(r,u.top[i]));r>0&&(s=Math.min(s,r-o))}if(s=Math.max(0,s),!s)return 0;for(let i=0;i<t.length;i++)if(t[i])for(let r of e)r.top[i]>r.bottom[i]&&r.bottom[i]<s&&(r.bottom[i]=s,r.top[i]<s&&(r.top[i]=s));return s}function Ht(e,t,n,o){let s=e.length,i={bottom:new Int16Array(s).fill(t),top:new Int16Array(s),level:new Int16Array(s).fill(o)};for(let r=0;r<s;r++)e[r]===D&&(i.top[r]=n);return i}var T=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function Pe(e,t,n){let o=e.vertices,s=e.triangles,i=[];i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${T(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let r of t)i.push(`<base name="${T(r)}" displaycolor="${r.toUpperCase()}FF"/>`);i.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${T(n)}">`,"<mesh>","<vertices>");for(let r=0;r<o.length;r+=3)i.push(`<vertex x="${E(o[r])}" y="${E(o[r+1])}" z="${E(o[r+2])}"/>`);i.push("</vertices>","<triangles>");for(let r=0;r<s.length;r+=3)i.push(`<triangle v1="${s[r]}" v2="${s[r+1]}" v3="${s[r+2]}" pid="1" p1="${Math.max(0,e.levels[r/3])}"/>`);return i.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),i.join(`\n`)}function ve(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:Pe(e,t.map(o=>o.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:ve(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,o=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return s=>s===-2?0:s<0?t.baseLayers*t.layerHeight:e[s]?o:n}function Yt(e,t,n,o,s,i){let r=t*n,u=[];if(i.baseLayers>0){let l=new Int16Array(r);for(let a=0;a<r;a++)e[a]!==-2&&(l[a]=i.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(r),top:l,level:new Int16Array(r)}})}for(let l=0;l<o;l++){let a=new Int16Array(r).fill(i.baseLayers),m=new Int16Array(r),c=new Int16Array(r).fill(l),f=i.baseLayers+(s[l]?Math.max(1,i.tileLayers-i.groutRecess):i.tileLayers),p=!1;for(let b=0;b<r;b++)e[b]===l&&(m[b]=f,p=!0);p&&u.push({part:l,solid:{bottom:a,top:m,level:c}})}return u}function Zt(e,t,n="prusa"){return n==="bambu"?ke(e,t):Se(e,t)}function ke(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',o=(a,m)=>`${a.toString(16).padStart(8,"0")}-0000-4000-8000-${m.toString(16).padStart(12,"0")}`,s=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((a,m)=>{let c=a.mesh.vertices,f=a.mesh.triangles;s.push(`<object id="${m+1}" p:UUID="${o(1,m)}" type="model">`,"<mesh>","<vertices>");for(let p=0;p<c.length;p+=3)s.push(`<vertex x="${E(c[p])}" y="${E(c[p+1])}" z="${E(c[p+2])}"/>`);s.push("</vertices>","<triangles>");for(let p=0;p<f.length;p+=3)s.push(`<triangle v1="${f[p]}" v2="${f[p+1]}" v3="${f[p+2]}"/>`);s.push("</triangles>","</mesh>","</object>")}),s.push("</resources>","<build/>","</model>");let i=e.length+1,r="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${T(t)}</metadata>`,"<resources>",`<object id="${i}" p:UUID="${o(2,0)}" type="model">`,"<components>"];e.forEach((a,m)=>u.push(`<component p:path="${r}" objectid="${m+1}" p:UUID="${o(3,m)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${o(4,0)}">`,`<item objectid="${i}" p:UUID="${o(5,0)}" printable="1"/>`,"</build>","</model>");let l=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${i}">`,`<metadata key="name" value="${T(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((a,m)=>l.push(`<part id="${m+1}" subtype="normal_part">`,`<metadata key="name" value="${T(a.name)}"/>`,`<metadata key="extruder" value="${a.filament||m+1}"/>`,"</part>")),l.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",r)},{name:"3D/Objects/object_1.model",data:s.join(`\n`)},{name:"Metadata/model_settings.config",data:l.join(`\n`)}]}function Se(e,t){let n=[],o=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${T(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let r of e)n.push(`<base name="${T(r.name)}" displaycolor="${r.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${T(t)}">`,"<mesh>","<vertices>");for(let r of e){let u=r.mesh.vertices;for(let l=0;l<u.length;l+=3)n.push(`<vertex x="${E(u[l])}" y="${E(u[l+1])}" z="${E(u[l+2])}"/>`)}n.push("</vertices>","<triangles>"),o.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${T(t)}"/>`);let s=0,i=0;return e.forEach((r,u)=>{let l=r.mesh.triangles,a=l.length/3;for(let m=0;m<l.length;m+=3)n.push(`<triangle v1="${l[m]+s}" v2="${l[m+1]+s}" v3="${l[m+2]+s}" pid="2" p1="${u}"/>`);o.push(`<volume firstid="${i}" lastid="${i+a-1}">`,`<metadata type="volume" key="name" value="${T(r.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${r.filament||u+1}"/>`,"</volume>"),s+=r.mesh.vertices.length/3,i+=a}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),o.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:o.join(`\n`)}]}function Vt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let o=t.vertices.length/3;for(let s of n.vertices)t.vertices.push(s);for(let s of n.triangles)t.triangles.push(s+o);for(let s of n.levels)t.levels.push(s)}return t}var K=null;function Re(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let o=n;for(let s=0;s<8;s++)o=o&1?3988292384^o>>>1:o>>>1;K[n]=o>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function Ie(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,o=[],s=[],i=0;for(let c of e){let f=n.encode(c.name),p=typeof c.data=="string"?n.encode(c.data):c.data,b=Re(p),d=t?await Ie(p):null,P=!!d&&d.length<p.length,v=P?d:p,k=new Uint8Array(30+f.length),w=new DataView(k.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,b,!0),w.setUint32(18,v.length,!0),w.setUint32(22,p.length,!0),w.setUint16(26,f.length,!0),k.set(f,30);let R=new Uint8Array(46+f.length),I=new DataView(R.buffer);I.setUint32(0,33639248,!0),I.setUint16(4,20,!0),I.setUint16(6,20,!0),I.setUint16(8,2048,!0),I.setUint16(10,P?8:0,!0),I.setUint16(12,0,!0),I.setUint16(14,33,!0),I.setUint32(16,b,!0),I.setUint32(20,v.length,!0),I.setUint32(24,p.length,!0),I.setUint16(28,f.length,!0),I.setUint32(42,i,!0),R.set(f,46),o.push(k,v),s.push(R),i+=k.length+v.length}let r=s.reduce((c,f)=>c+f.length,0),u=new Uint8Array(22),l=new DataView(u.buffer);l.setUint32(0,101010256,!0),l.setUint16(8,e.length,!0),l.setUint16(10,e.length,!0),l.setUint32(12,r,!0),l.setUint32(16,i,!0);let a=new Uint8Array(i+r+22),m=0;for(let c of[...o,...s,u])a.set(c,m),m+=c.length;return a}var Xt=2,Be=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),$e=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,o,s,i,r,u,l){let a=s.filter(p=>i[p]>0),m={list:a,grid:new Int16Array(0),counts:[],lowered:0},c=Int16Array.from(e),f=0;for(let p=0;p<4;p++){l?.(p/4);let b=new Int16Array(r.length).fill(-1);a.forEach((w,R)=>{b[w]=R});let d=c.map(w=>w<0?-1:b[w]),P=u.mode==="flat"?Jt(a.map(w=>r[w]),Qt(u)):void 0,v=zt(d,t,n,o,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:P});f+=v.lowered;let k=a.map(()=>0);for(let w=0;w<v.grid.length;w++){let R=v.grid[w];R>=0&&k[R]++,c[w]=R<0?-1:a[R]}if(m={list:a,grid:v.grid,counts:k,lowered:f},k.every(w=>w>0))break;a=a.filter((w,R)=>k[R]>0)}return m}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,o,s){let i=Ot(e,t,n,{frame:s.frame/o,corner:s.corner/o,hole:s.hole/o},Xt/o),r=(s.magnet/2+Xt+s.corner*.3)/o;return{...i,mask:s.magnet>0?_t(i.w,i.h,s.magnet/o,r):null}}function ee(e,t,n){let o=t.length,s;if(n.mode==="flat")s=Yt(e.grid,e.w,e.h,o,t,Qt(n)),n.frame>0&&s.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(o,n),0)});else{let i=Gt(e.grid,W(n)),r=Kt(o,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(i.top[u]=r,i.level[u]=o-1);s=[{part:0,solid:i}]}return e.mask&&qt(s.map(i=>i.solid),e.mask,$e(n.magnetDepth,n),Be),s}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Vt(ee(n,e.grout,t).map(o=>mt(o.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o}=e,s=te(n.grid,n.w,n.h,n.cell,o);t?.(.05);let i=ee(s,n.grout,o);t?.(.15);let r=i.map((a,m)=>{let c=mt(a.solid,s.w,s.h,n.cell,o.layerHeight);return t?.(.15+.7*(m+1)/i.length),c}),u=r.reduce((a,m)=>a+m.triangles.length/3,0),l=(a,m,c)=>({fileName:a,type:m,data:c,triangles:u,parts:r.length});if(o.mode==="flat"){let a=i.map((c,f)=>{let p=Math.max(0,c.part),b=e.colors[p];return{name:c.part===D?e.labels.frame:c.part<0?e.labels.base:`${c.part+1} ${b}`,color:b,mesh:r[f],filament:p+1}});if(e.kind==="3mf")return l(e.name+".3mf","model/3mf",await Q(Zt(a,e.name,e.slicer)));let m=i.map((c,f)=>({name:`${e.name}-${c.part===D?"frame":c.part<0?"base":`${c.part+1}-${e.colors[c.part].slice(1)}`}.stl`,data:new Uint8Array(ft(a[f].mesh,a[f].name))}));return l(e.name+"-stl.zip","application/zip",await Q(m))}return e.kind==="3mf"?l(e.name+".3mf","model/3mf",await Q(Nt(r[0],Dt(e.colors,W(o)),e.name))):l(e.name+".stl","model/stl",new Uint8Array(ft(r[0],e.name)))}function se(e,t,n,o,s){let i=(c,f)=>c<0||f<0||c>=t||f>=n?-1:e[f*t+c],r=t+1,u=(c,f)=>f*r+c,l=Array.from({length:o},()=>new Map),a=(c,f,p,b,d)=>{let P=l[c],v=u(f,p),k=P.get(v);k?k.push(u(b,d)):P.set(v,[u(b,d)])};for(let c=0;c<n;c++)for(let f=0;f<t;f++){s&&f===0&&c%64===0&&s(.5*c/n);let p=e[c*t+f];p<0||(i(f,c-1)!==p&&a(p,f+1,c,f,c),i(f-1,c)!==p&&a(p,f,c,f,c+1),i(f,c+1)!==p&&a(p,f,c+1,f+1,c+1),i(f+1,c)!==p&&a(p,f+1,c+1,f+1,c))}let m=[];for(let c=0;c<o;c++){s&&c%256===0&&s(.5+.5*c/o);let f=l[c],p=[];for(let[b]of f)for(;f.get(b)&&f.get(b).length;){let d=[b],P=b,v=oe(f,b,-1,r);for(;v!==b;){d.push(v);let k=oe(f,v,P,r);P=v,v=k}p.push(Le(d,r))}m.push(p)}return m}function oe(e,t,n,o){let s=e.get(t),i=0;if(s.length>1&&n>=0){let u=t%o-n%o,l=Math.floor(t/o)-Math.floor(n/o),a=m=>{let c=m%o-t%o,f=Math.floor(m/o)-Math.floor(t/o);return c===l&&f===-u?0:c===u&&f===l?1:2};for(let m=1;m<s.length;m++)a(s[m])<a(s[i])&&(i=m)}let r=s[i];return s.splice(i,1),s.length||e.delete(t),r}function Le(e,t){let n=e.map(i=>({x:i%t,y:Math.floor(i/t)})),o=n.length,s=[];for(let i=0;i<o;i++){let r=n[(i+o-1)%o],u=n[i],l=n[(i+1)%o];(u.x-r.x)*(l.y-u.y)-(u.y-r.y)*(l.x-u.x)!==0&&s.push(u)}return s}function pt(e){let t=0;for(let n=0,o=e.length;n<o;n++){let s=e[n],i=e[(n+1)%o];t+=s.x*i.y-i.x*s.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,o,s){let i=e.width,r=e.height,u=n/i,l=kt(e);s?.(.15);let a=new Int32Array(l.colors.length).fill(-1),m=[];l.colors.forEach((w,R)=>{w!==t&&(a[R]=m.length,m.push(w))});let c=l.labels.map(w=>w<0?-1:a[w]),f=se(c,i,r,m.length,s&&(w=>s(.15+.8*w))),p=[],b=w=>w.map(R=>`${tt(R.x*u)},${tt(R.y*u)}`).join(" ");f.forEach((w,R)=>{if(w.length===1)p.push(`<polygon points="${b(w[0])}" fill="${m[R]}" stroke="none"/>`);else{let y=[...w].sort((A,h)=>Math.abs(pt(h))-Math.abs(pt(A))).map(A=>"M"+b(A).replace(/ /g,"L")+"Z").join("");p.push(`<path d="${y}" fill="${m[R]}" fill-rule="evenodd" stroke="none"/>`)}});let d=tt(n),P=tt(r*u),v=[...new Set(Rt(l).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${d} ${P}" width="${d}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:v,paletteName:o,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${d}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${p.join(`\n`)}\n</g>\n</svg>`,tiles:m.length}}function Fe({data:e,W:t,H:n,box:o}){return s=>{let i=Math.floor((s.x-o.x)/o.w*t),r=Math.floor((s.y-o.y)/o.h*n);if(i<0||r<0||i>=t||r>=n)return null;let u=(r*t+i)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Te(e,t,n,o,s){let i=[];for(let u=0;u<5;u++)for(let l=0;l<5;l++){let a=e({x:t+o*(u+.5)/5,y:n+s*(l+.5)/5});a&&i.push(G(a))}if(i.length<2)return 0;let r=[0,1,2].map(u=>i.reduce((l,a)=>l+a[u],0)/i.length);return i.reduce((u,l)=>u+Math.hypot(l[0]-r[0],l[1]-r[1],l[2]-r[2]),0)/i.length}function je(e,t,n){let o=[];for(let s=0;s<70;s++)for(let i=0;i<70;i++){let r=e({x:t.x+t.w*(s+.5)/70,y:t.y+t.h*(i+.5)/70});r&&o.push(G(r))}return[...new Set(Ct(o,n,7).map(dt))]}function ae(e,t){Bt(e.eps);let n=Fe(e.photo),o=e.page,s=[{x:o.x,y:o.y},{x:o.x+o.w,y:o.y},{x:o.x+o.w,y:o.y+o.h},{x:o.x,y:o.y+o.h}],i=4+(1-e.detail/100)*26,r=(a,m,c,f)=>Te(n,a,m,c,f)>i,u=V({style:e.style,box:o,size:e.size,detail:e.detail/100,busy:r,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let l=jt(u,[s],a=>$t(a,s),e.eps);return t?.(.85),{tiles:u.length,lines:l,palette:e.suggest?je(n,e.photo.box,e.suggest):[]}}var Ce=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=Ce[t].exec(e);return n?+n[1]:null},Ee=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,Ge=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,o=0,s=!1,i=0,r=!1,u=!1,l=new Set,a=new Map,m=[],c=null;for(let f=0,p=0;f<e.length;p++){let b=e.indexOf(`\n`,f);b<0&&(b=e.length);let d=e.slice(f,b);f=b+1,t&&p%5e4===0&&t(f/e.length);let P=d.indexOf(";");if(P>=0){let k=Ee.exec(d.slice(P));k&&(u=Ge.test(k[1])),d=d.slice(0,P)}if(d=d.trim(),!d)continue;let v=d.split(/\\s/,1)[0].toUpperCase();if(v==="G0"||v==="G1"){let k=J(d,"Z"),w=J(d,"E");if(k!=null&&(n=k),w!=null){let R=s?w>0:w>o;if(s||(o=w),R&&!u&&(J(d,"X")!=null||J(d,"Y")!=null)){let I=Math.round(n*1e3)/1e3;l.add(I);let y=a.get(i);y?(y.from=Math.min(y.from,I),y.to=Math.max(y.to,I)):a.set(i,{from:I,to:I}),c&&(m.push({...c,z:I}),c=null),r=!0}}}else if(v==="G92"){let k=J(d,"E");k!=null&&(o=k)}else if(v==="M82")s=!1;else if(v==="M83")s=!0;else if(v==="M600")c={kind:"M600"};else if(/^T\\d+$/.test(v)){let k=+v.slice(1);r&&k!==i&&(c={kind:"tool",tool:k}),i=k}}return{layers:l.size,top:l.size?Math.max(...l):0,changes:m,tools:[...a].map(([f,p])=>({tool:f,...p})).sort((f,p)=>f.tool-p.tool)}}function ze(e,t){let n=e.img,o=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!o)return vt(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let s=4+(1-e.detail/100)*26,i=(l,a,m,c)=>St(n,l,a,m,c)>s,r=e.shape==="brick"?e.tile/2:e.tile,u=V({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:r,detail:e.detail/100,busy:i,seed:7});return t(.5),At(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var ue={mosaic:(e,t)=>ze(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t)};function bt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let o of Object.values(e))bt(o,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:o}=e.data,s=0,i=r=>{let u=Date.now();u-s>100&&(s=u,gt({id:t,progress:r}))};try{let r=await ue[n](o,i);gt({id:t,result:r},bt(r))}catch(r){gt({id:t,error:String(r?.message||r)})}};})();\n';
 
   // src/lib/raster.ts
   var makeImg = (width, height) => ({ width, height, data: new Uint8ClampedArray(width * height * 4) });
@@ -9715,11 +9936,11 @@ ${shapes.join("\n")}
   };
 
   // src/lib/layplan.ts
-  function panels(box, pw, ph) {
-    const cols = Math.max(1, Math.ceil(box.w / pw - 1e-9)), rows = Math.max(1, Math.ceil(box.h / ph - 1e-9)), out = [];
+  function panels(box3, pw, ph) {
+    const cols = Math.max(1, Math.ceil(box3.w / pw - 1e-9)), rows = Math.max(1, Math.ceil(box3.h / ph - 1e-9)), out = [];
     for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-      const x = box.x + c * pw, y = box.y + r * ph;
-      out.push({ index: out.length + 1, row: r, col: c, x, y, w: Math.min(pw, box.x + box.w - x), h: Math.min(ph, box.y + box.h - y) });
+      const x = box3.x + c * pw, y = box3.y + r * ph;
+      out.push({ index: out.length + 1, row: r, col: c, x, y, w: Math.min(pw, box3.x + box3.w - x), h: Math.min(ph, box3.y + box3.h - y) });
     }
     return { rows, cols, panels: out };
   }
@@ -9743,17 +9964,17 @@ ${shapes.join("\n")}
     const opts3 = { w: 0, h: 0, numbers: true, grid: true, paper: "a4" };
     loadSettings("mz-layplan", opts3);
     const save4 = () => saveSettings("mz-layplan", opts3);
-    const box = () => ({ x: state11.doc.x, y: state11.doc.y, w: state11.doc.w, h: state11.doc.h });
+    const box3 = () => ({ x: state11.doc.x, y: state11.doc.y, w: state11.doc.w, h: state11.doc.h });
     const k = () => MM[MZ.unit()] || MM.px;
     const panelSize = () => ({ w: opts3.w > 0 ? opts3.w : 300 / k(), h: opts3.h > 0 ? opts3.h : 300 / k() });
     const plan = () => {
       const s = panelSize();
-      return panels(box(), s.w, s.h);
+      return panels(box3(), s.w, s.h);
     };
-    function drawGrid(show) {
+    function drawGrid(show2) {
       const g = $("#mz-panels");
       g.innerHTML = "";
-      if (!show) return;
+      if (!show2) return;
       const NS = "http://www.w3.org/2000/svg";
       for (const q of plan().panels) {
         const r = document.createElementNS(NS, "rect");
@@ -9792,7 +10013,7 @@ ${shapes.join("\n")}
       return out;
     }
     function printPlan() {
-      const P = plan(), K = k(), B = box(), u = MZ.unit();
+      const P = plan(), K = k(), B = box3(), u = MZ.unit();
       const { art, rows, nums } = PrintTools.art(opts3.numbers ? "both" : "colors");
       const title = MZ.fileName.replace(/\.svg$/i, "");
       const sheetsFor2 = (o) => P.panels.reduce((s, q) => s + layout(q.w * K, q.h * K, opts3.paper, "real", o).sheets.length, 0);
@@ -9875,15 +10096,15 @@ ${shapes.join("\n")}
     MZ.setFillChooser(active() ? chooser : null);
     $("#mix-on").checked = mix.on;
     $("#mix-avoid").checked = mix.avoid;
-    const box = $("#mix-colors");
-    box.innerHTML = "";
+    const box3 = $("#mix-colors");
+    box3.innerHTML = "";
     for (const c of mix.colors) {
       const chip = document.createElement("span");
       chip.className = "mix-chip";
       chip.style.background = c;
       chip.title = t("{c} – click to remove from the mix", { c });
       chip.onclick = () => toggle(c);
-      box.append(chip);
+      box3.append(chip);
     }
     $("#mix-hint").textContent = mix.colors.length < 2 ? t("Shift+click two or more swatches to put them in the mix.") : t("Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.", { n: mix.colors.length });
     $("#btn-mix-sel").hidden = mix.colors.length < 2;
@@ -9977,7 +10198,7 @@ ${others}
       p.history = MZ.getHistory();
       p.view = { ...state11.view };
     }
-    function show(i) {
+    function show2(i) {
       cur = i;
       const p = pages[i];
       switching = true;
@@ -9998,7 +10219,7 @@ ${others}
     function switchTo(i) {
       if (i === cur || !pages[i]) return;
       capture2();
-      show(i);
+      show2(i);
     }
     function blankPage() {
       const d = state11.doc, u = MZ.unit(), size = (v) => v + (u === "px" ? "" : u);
@@ -10013,26 +10234,26 @@ ${others}
         history: null,
         view: duplicate2 ? { ...src.view } : null
       });
-      show(cur + 1);
+      show2(cur + 1);
       if (!duplicate2) MZ.fitView();
     }
-    function rename(i) {
-      const n4 = prompt(t("Page name:"), pages[i].name);
+    async function rename(i) {
+      const n4 = await ask(t("Page name:"), pages[i].name);
       if (!n4 || !n4.trim()) return;
       pages[i].name = n4.trim();
       render3();
       MZ.docChanged();
     }
-    function remove(i) {
+    async function remove(i) {
       if (pages.length < 2) {
         MZ.toast(t("A project needs at least one page."));
         return;
       }
-      if (!confirm(t("Delete the page “{name}”? (A copy of the project is kept in History.)", { name: pages[i].name }))) return;
+      if (!await askYes(t("Delete the page “{name}”? (A copy of the project is kept in History.)", { name: pages[i].name }))) return;
       MZ.saveVersion(t("Before deleting the page {name}", { name: pages[i].name }));
       if (i === cur) {
         pages.splice(i, 1);
-        show(Math.min(i, pages.length - 1));
+        show2(Math.min(i, pages.length - 1));
       } else {
         pages.splice(i, 1);
         if (i < cur) cur--;
@@ -10082,8 +10303,8 @@ ${others}
       if (!e.target.closest("#page-menu, .page-more")) closeMenu();
     });
     function render3() {
-      const box = $("#page-tabs");
-      box.innerHTML = "";
+      const box3 = $("#page-tabs");
+      box3.innerHTML = "";
       pages.forEach((p, i) => {
         const tab = document.createElement("div");
         tab.className = "page-tab" + (i === cur ? " active" : "");
@@ -10101,7 +10322,7 @@ ${others}
           more.onclick = () => openMenu(i, more);
           tab.append(more);
         }
-        box.append(tab);
+        box3.append(tab);
       });
     }
     $("#page-add").onclick = () => add(false);
@@ -10377,7 +10598,7 @@ ${others}
       item.onclick = () => startPlacing(m);
       item.querySelector(".del").onclick = async (e) => {
         e.stopPropagation();
-        if (!confirm(t("Delete the motif “{name}”?", { name: m.name }))) return;
+        if (!await askYes(t("Delete the motif “{name}”?", { name: m.name }))) return;
         motifs = motifs.filter((x) => x !== m);
         await persist();
         render2();
@@ -10391,7 +10612,7 @@ ${others}
       return;
     }
     const svg2 = Snippets.fromElements(state9.selection);
-    const name = prompt(t("Name of the motif:"), t("Motif {n}", { n: motifs.length + 1 }));
+    const name = await ask(t("Name of the motif:"), t("Motif {n}", { n: motifs.length + 1 }));
     if (!name || !name.trim()) return;
     motifs.push({ id: Date.now().toString(36), name: name.trim(), svg: svg2, created: Date.now() });
     await persist();
@@ -10549,7 +10770,7 @@ void main() {
       gl.bindBuffer(gl.ARRAY_BUFFER, buffers[name]);
       gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
     }
-    function show(mesh, colorOf) {
+    function show2(mesh, colorOf) {
       const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3;
       const pos = new Float32Array(n4 * 9), nor = new Float32Array(n4 * 9), col = new Float32Array(n4 * 9);
       let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = 0;
@@ -10662,7 +10883,7 @@ void main() {
       render3();
     }, { passive: false });
     canvas.addEventListener("dblclick", reset);
-    return { show, setExaggeration: (k) => {
+    return { show: show2, setExaggeration: (k) => {
       exaggeration = k;
       render3();
     }, reset, render: render3 };
@@ -10755,12 +10976,12 @@ void main() {
 </div>`;
   var SMALL = 2e4;
   function initExport3D(host, button) {
-    const dlg = document.createElement("dialog");
-    dlg.id = "dlg-3d";
-    dlg.innerHTML = DIALOG;
-    document.body.append(dlg);
-    dlg.addEventListener("click", (e) => {
-      if (e.target === dlg) dlg.close();
+    const dlg3 = document.createElement("dialog");
+    dlg3.id = "dlg-3d";
+    dlg3.innerHTML = DIALOG;
+    document.body.append(dlg3);
+    dlg3.addEventListener("click", (e) => {
+      if (e.target === dlg3) dlg3.close();
     });
     let colors = [], counts = [], grid = null, gw = 0, gh = 0, cell = opts2.detail;
     let order = [], note = "", lines2 = /* @__PURE__ */ new Set(), version = 0;
@@ -10858,7 +11079,7 @@ void main() {
     }
     function render3() {
       const { w, h } = size(), fl = isFlat();
-      for (const el of dlg.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts2.mode;
+      for (const el of dlg3.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts2.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
       $("#m3-mode-flat").classList.toggle("active", fl);
       $("#m3-go").title = fl ? t("The model, one part per color with its filament") : t("The model, with the filament changes for PrusaSlicer");
@@ -10877,7 +11098,7 @@ void main() {
       ].filter(Boolean).join(" ");
       $("#m3-note").hidden = !warn;
       $("#m3-note").textContent = warn;
-      const plan = colorPlan(list.map((i) => colors[i]), s), total = gw * gh || 1, box = $("#m3-order");
+      const plan = colorPlan(list.map((i) => colors[i]), s), total = gw * gh || 1, box3 = $("#m3-order");
       const keep = new Set(list.map((ci) => colors[ci]));
       for (const [c, el] of rows) if (!keep.has(c)) {
         el.remove();
@@ -10902,7 +11123,7 @@ void main() {
         tag.classList.toggle("on", isLine(ci));
         up.disabled = k === 0 || isLine(list[k - 1]) !== isLine(ci);
         down.disabled = k === list.length - 1 || isLine(list[k + 1]) !== isLine(ci);
-        if (box.children[k] !== row) box.insertBefore(row, box.children[k] || null);
+        if (box3.children[k] !== row) box3.insertBefore(row, box3.children[k] || null);
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
       const fs = flat();
@@ -11062,11 +11283,11 @@ void main() {
             return f.found == null ? t("Filament {k} ({color}) is not used – assign it to the part “{k} {color}”", { k: f.filament, color: f.color }) : f.ok ? t("Filament {k} ({color}) prints up to {z} mm", { k: f.filament, color: f.color, z: mm(f.top) }) : t("Filament {k} ({color}) prints up to {found} mm instead of {z} mm", { k: f.filament, color: f.color, found: mm(f.found), z: mm(f.top) });
         }
       };
-      const bad = findings.filter((f) => !f.ok).length, box = $("#m3-check");
+      const bad = findings.filter((f) => !f.ok).length, box3 = $("#m3-check");
       const head = !g.layers ? t("No printing found in {name} – is it a G-code file?", { name }) : bad ? t("{name}: {n} {n|thing|things} to look at", { name, n: bad }) : t("{name}: everything matches the plan", { name });
-      box.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f) => `<li class="${f.ok ? "ok" : "bad"}">${f.ok ? "✓" : "✗"} ${esc(say(f))}</li>`).join("") + "</ul>" : "");
-      box.classList.toggle("bad", !g.layers || bad > 0);
-      box.hidden = false;
+      box3.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f) => `<li class="${f.ok ? "ok" : "bad"}">${f.ok ? "✓" : "✗"} ${esc(say(f))}</li>`).join("") + "</ul>" : "");
+      box3.classList.toggle("bad", !g.layers || bad > 0);
+      box3.hidden = false;
     }
     async function save4(kind) {
       const m = model();
@@ -11195,7 +11416,7 @@ void main() {
       const real = host.realSize();
       if (real) opts2.width = +real.w.toFixed(2);
       $("#m3-summary").textContent = t("Reading the picture…");
-      dlg.showModal();
+      dlg3.showModal();
       await analyse().catch(() => toast(t("Could not read the picture.")));
     };
   }
@@ -11454,16 +11675,16 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
 
   // src/shared/examples-ui.ts
   function initExamples(button, examples) {
-    const dlg = document.createElement("dialog");
-    dlg.id = "dlg-examples";
-    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg3 = document.createElement("dialog");
+    dlg3.id = "dlg-examples";
+    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
 <div class="ex-list"></div>`;
-    document.body.append(dlg);
-    dlg.addEventListener("click", (e) => {
-      if (e.target === dlg) dlg.close();
+    document.body.append(dlg3);
+    dlg3.addEventListener("click", (e) => {
+      if (e.target === dlg3) dlg3.close();
     });
-    const list = dlg.querySelector(".ex-list");
+    const list = dlg3.querySelector(".ex-list");
     for (const ex of examples) {
       const card = document.createElement("button");
       card.className = "ex-card";
@@ -11472,7 +11693,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       card.querySelector("b").textContent = ex.title;
       card.querySelector(".note").textContent = ex.text;
       card.onclick = async () => {
-        dlg.close();
+        dlg3.close();
         await ex.open();
       };
       list.append(card);
@@ -11481,7 +11702,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       list.querySelectorAll("img").forEach((img, k) => {
         if (!img.src) img.src = examples[k].preview();
       });
-      dlg.showModal();
+      dlg3.showModal();
     };
   }
 
@@ -11515,7 +11736,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       card.close();
       lsSet(key, "1");
     }
-    function show() {
+    function show2() {
       at = 0;
       draw();
       if (!card.open) card.show();
@@ -11538,15 +11759,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
         close();
       }
     });
-    button.onclick = show;
-    if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith("discordsays.com")) setTimeout(show, 600);
-    return { show };
+    button.onclick = show2;
+    if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith("discordsays.com")) setTimeout(show2, 600);
+    return { show: show2 };
   }
 
   // src/features/examples.ts
   var svgUrl = (svg2) => "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg2);
   async function open2(svg2, name) {
-    if (!MZ.confirmDiscard()) return;
+    if (!await MZ.confirmDiscard()) return;
     await MZ.openText(svg2, name);
   }
   function fromPhoto() {
@@ -11633,8 +11854,17 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.2.0" : "dev";
+  var VERSION = true ? "1.2.1" : "dev";
   var RELEASES = [
+    {
+      version: "1.2.1",
+      date: "2026-10-12",
+      items: [
+        "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).",
+        "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.",
+        "On phones inside Discord, the top bar stays clear of Discord’s own controls."
+      ]
+    },
     {
       version: "1.2.0",
       date: "2026-10-12",
@@ -11668,12 +11898,12 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   ];
   var KEY2 = "mz-version";
   function initWhatsNew() {
-    const dlg = document.createElement("dialog");
-    dlg.id = "dlg-whats-new";
-    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
-    document.body.append(dlg);
-    dlg.addEventListener("click", (e) => {
-      if (e.target === dlg) dlg.close();
+    const dlg3 = document.createElement("dialog");
+    dlg3.id = "dlg-whats-new";
+    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
+    document.body.append(dlg3);
+    dlg3.addEventListener("click", (e) => {
+      if (e.target === dlg3) dlg3.close();
     });
     const button = document.createElement("button");
     button.id = "st-version";
@@ -11688,7 +11918,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
     button.onclick = () => {
       button.classList.remove("new");
       lsSet(KEY2, VERSION);
-      dlg.showModal();
+      dlg3.showModal();
     };
   }
 

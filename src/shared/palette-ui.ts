@@ -4,6 +4,8 @@
 import * as Colors from '../lib/colors.ts';
 import { $, toast, download, lsGet, lsSet } from './ui.ts';
 import { t } from './i18n.ts';
+import { ask, askYes } from './dialogs.ts';
+import { chooseColor } from './color-picker.ts';
 
 export interface PaletteState {
   fill: string | null;
@@ -173,8 +175,8 @@ export function createPaletteUI(host: PaletteHost) {
     host.save();
     render();
   }
-  function editColor(old: string): void {
-    const v = prompt(t('Edit color (hex or any CSS color).\nThe drawing is recolored too.'), old);
+  async function editColor(old: string): Promise<void> {
+    const v = await ask(t('Edit color (hex or any CSS color).\nThe drawing is recolored too.'), old);
     if (v == null) return;
     const c = Colors.norm(v);
     if (!c) { toast(t('Not a valid color: {v}', { v })); return; }
@@ -216,33 +218,52 @@ export function createPaletteUI(host: PaletteHost) {
     return true;
   }
 
+  /** Choose any color for the fill (paint) or the stroke (outline) color – and add it to the palette. */
+  async function choose(which: 'fill' | 'stroke'): Promise<void> {
+    const r = await chooseColor(which === 'fill' ? st.fill : st.stroke);
+    if (!r) return;
+    if (r.addToPalette) addColors([r.color]);
+    if (which === 'fill') setFill(r.color, true); else setStroke(r.color, true);
+  }
+
   /** Wires the palette controls of the side panel. */
   function bind(): void {
     const inp = $('#color-input');
     $('#btn-add-color').onclick = addFromInput;
+    $('#btn-choose-color').onclick = () => choose('fill');
+    // the active colors open the chooser too
+    for (const [id, which] of [['#ac-fill', 'fill'], ['#ac-stroke', 'stroke']] as const) {
+      const b = $(id);
+      if (!b) continue;
+      b.setAttribute('role', 'button');
+      b.setAttribute('aria-label', (b.closest('[title]') as HTMLElement | null)?.title || '');
+      b.tabIndex = 0;
+      b.onclick = () => choose(which);
+      b.onkeydown = (e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(which); } };
+    }
     inp.addEventListener('keydown', (e: KeyboardEvent) => { if (e.key === 'Enter') addFromInput(); });
     inp.addEventListener('input', updatePreview);
     inp.addEventListener('paste', () => setTimeout(() => { if (Colors.parse(inp.value).length) addFromInput(); }, 0));
     $('#btn-swap').onclick = () => { const f = st.fill; st.fill = st.stroke; st.stroke = f; host.save(); render(); };
     $('#pal-select').onchange = (e: any) => switchPalette(e.target.value);
-    $('#btn-pal-new').onclick = () => {
-      const n = prompt(t('Name of the new palette:'), uniqueName(t('Palette')));
+    $('#btn-pal-new').onclick = async () => {
+      const n = await ask(t('Name of the new palette:'), uniqueName(t('Palette')));
       if (!n || !n.trim()) return;
       const name = uniqueName(n.trim());
       st.palettes[name] = [];
       switchPalette(name);
       toast(t('Created “{name}”. Paste colors to fill it.', { name }));
     };
-    $('#btn-pal-rename').onclick = () => {
-      const old = st.paletteName, n = prompt(t('Rename palette:'), old);
+    $('#btn-pal-rename').onclick = async () => {
+      const old = st.paletteName, n = await ask(t('Rename palette:'), old);
       if (!n || !n.trim() || n.trim() === old) return;
       const name = uniqueName(n.trim()), next: Record<string, string[]> = {};
       for (const k of Object.keys(st.palettes)) next[k === old ? name : k] = st.palettes[k];
       st.palettes = next;
       switchPalette(name);
     };
-    $('#btn-pal-delete').onclick = () => {
-      if (!confirm(t('Delete the palette “{name}”? (The drawing is not changed.)', { name: st.paletteName }))) return;
+    $('#btn-pal-delete').onclick = async () => {
+      if (!await askYes(t('Delete the palette “{name}”? (The drawing is not changed.)', { name: st.paletteName }))) return;
       delete st.palettes[st.paletteName];
       if (!Object.keys(st.palettes).length) st.palettes[t('My palette')] = [];
       switchPalette(Object.keys(st.palettes)[0]);
@@ -252,7 +273,7 @@ export function createPaletteUI(host: PaletteHost) {
       toast(n ? t('Added {n} {n|color|colors} from the drawing.', { n }) : t('No new colors in the drawing.'));
     };
     $('#btn-pal-export').onclick = () => download(new Blob([st.palette.join('\n') + '\n'], { type: 'text/plain' }), st.paletteName + '.txt');
-    $('#btn-pal-clear').onclick = () => { if (confirm(t('Remove all colors from this palette? (The drawing is not changed.)'))) { st.palette = []; host.save(); render(); } };
+    $('#btn-pal-clear').onclick = async () => { if (await askYes(t('Remove all colors from this palette? (The drawing is not changed.)'))) { st.palette = []; host.save(); render(); } };
     $('#btn-pal-import').onclick = () => $('#pal-file').click();
     $('#pal-file').onchange = async (e: any) => {
       const f = e.target.files[0];

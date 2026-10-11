@@ -31,7 +31,10 @@ Activity (editor) ──sign in──▶ /api/token ──▶ /api/pending (the 
 - The editor is the raster app (`raster.html`, served as the start page) and the vector app (`vector.html`),
   both served by the same Worker; inside Discord they load `dist/activity.js` (`src/discord/activity.ts` in
   the main project), which talks to the Discord client. Switching apps keeps Discord's connection details
-  in the address, so the other app connects again.
+  in the address (and in the tab, should a page open without them), so the other app connects again.
+- Discord's frame doesn't allow the browser's own questions (`prompt`, `confirm`), so the editor asks in the
+  page (New, Save as, renaming, …). On phones the top bar and the panel keep clear of Discord's controls
+  (its `--discord-safe-area-inset-*` values).
 - Everything runs on Cloudflare's **free plan** (Workers, static assets, SQLite Durable Objects).
 
 ## Setting it up

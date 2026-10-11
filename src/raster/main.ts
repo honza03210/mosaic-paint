@@ -107,10 +107,10 @@ Object.assign(RZ, {
   selectionChanged();
   RZ.ready = true;
   fromHash();
-  // inside Discord (an Activity): the part that talks to Discord, loaded only there
-  if (location.hostname.endsWith('discordsays.com') || (window as any).__discordSdk) {
-    const s = document.createElement('script');
-    s.src = 'dist/activity.js';
-    document.head.append(s);
-  }
 })();
+// inside Discord (an Activity): the part that talks to Discord, loaded only there (it waits for RZ.ready)
+if (location.hostname.endsWith('discordsays.com') || (window as any).__discordSdk) {
+  const s = document.createElement('script');
+  s.src = 'dist/activity.js';
+  document.head.append(s);
+}

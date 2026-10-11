@@ -43,6 +43,8 @@ export function parse(text: string): string[] {
 
 export function toRgb(c: string | RGB): RGB | null {
   if (Array.isArray(c)) return c;
+  // '#rrggbb' directly (no page needed: works in workers and tests too)
+  if (/^#[0-9a-f]{6}$/i.test(c)) return [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16)) as RGB;
   const n = norm(c);
   if (!n) return null;
   if (n[0] === '#') return [1, 3, 5].map(i => parseInt(n.slice(i, i + 2), 16)) as RGB;
@@ -117,4 +119,22 @@ export function deltaE(a: string | RGB, b: string | RGB): number {
 export function luminance(c: string): number {
   const [r, g, b] = toRgb(c) || [255, 255, 255];
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/** Hue (0…360), saturation and value (0…1) → '#rrggbb'. */
+export function fromHsv(h: number, s: number, v: number): string {
+  const f = (n: number) => {
+    const k = (n + h / 60) % 6;
+    return Math.round(255 * (v - v * s * Math.max(0, Math.min(k, 4 - k, 1))));
+  };
+  return '#' + [f(5), f(3), f(1)].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+/** A color → hue (0…360), saturation and value (0…1); null if it is not a color. */
+export function toHsv(c: string | RGB): [number, number, number] | null {
+  const rgb = toRgb(c);
+  if (!rgb) return null;
+  const [r, g, b] = rgb.map(x => x / 255), max = Math.max(r, g, b), d = max - Math.min(r, g, b);
+  let h = 0;
+  if (d) h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return [(h * 60 + 360) % 360, max ? d / max : 0, max];
 }

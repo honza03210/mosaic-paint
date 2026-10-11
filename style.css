@@ -12,6 +12,15 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
+/* safe areas: inside Discord on a phone its own controls cover the edges of the Activity (Discord gives the
+   insets as --discord-safe-area-inset-*); elsewhere the device's (notches) – usually none */
+:root {
+  --sait: var(--discord-safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --sair: var(--discord-safe-area-inset-right, env(safe-area-inset-right, 0px));
+  --saib: var(--discord-safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  --sail: var(--discord-safe-area-inset-left, env(safe-area-inset-left, 0px));
+}
+body { padding: var(--sait) var(--sair) var(--saib) var(--sail); }
 body {
   display: flex; flex-direction: column;
   background: var(--bg); color: var(--text);
@@ -242,7 +251,7 @@ dialog h2 { margin: 0; font-size: 16px; }
   #topbar button { flex: none; }
   #btn-panel { display: inline-block; margin-left: auto; }
   #panel {
-    position: fixed; z-index: 20; top: var(--topbar-h, 42px); right: 0; bottom: 0; width: min(340px, 88vw);
+    position: fixed; z-index: 20; top: calc(var(--topbar-h, 42px) + var(--sait)); right: var(--sair); bottom: var(--saib); width: min(340px, 88vw);
     transform: translateX(100%); transition: transform .2s ease; box-shadow: -8px 0 24px rgba(0,0,0,.45);
   }
   body.panel-open #panel { transform: none; }
@@ -367,3 +376,19 @@ body.working, body.working * { cursor: progress !important; }
 
 /* inside Discord (the Activity): no installing or share links – the post button instead */
 .in-discord #btn-install, .in-discord #btn-share { display: none !important; }
+
+/* questions asked in the page (dialogs.ts) and the color chooser (color-picker.ts) */
+#dlg-ask { width: min(420px, 94vw); }
+#dlg-ask .ask-msg { white-space: pre-line; margin: 0 0 10px; }
+#dlg-ask .ask-input { width: 100%; }
+#dlg-color { width: min(340px, 94vw); }
+.cp-sv { position: relative; height: 180px; border-radius: 6px; cursor: crosshair; touch-action: none;
+  background-image: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent); }
+.cp-knob { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, .6); pointer-events: none; }
+.cp-hue { width: 100%; margin: 10px 0 6px; -webkit-appearance: none; appearance: none; height: 14px; border-radius: 7px;
+  background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); }
+.cp-row { align-items: center; gap: 6px; }
+.cp-old, .cp-new { width: 34px; height: 26px; border-radius: 5px; border: 1px solid rgba(255, 255, 255, .25); }
+.cp-hex { flex: 1; min-width: 0; font-family: ui-monospace, monospace; }
+.acbox[role=button] { cursor: pointer; }

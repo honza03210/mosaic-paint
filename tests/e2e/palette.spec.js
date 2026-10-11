@@ -15,8 +15,8 @@ test('pasting colors: hex, rgb(), names and a coolors link', async ({ page }) =>
 
 test('named palettes can be created and switched', async ({ page }) => {
   await h.open(page);
-  page.once('dialog', d => d.accept('Glass tiles'));
   await page.click('#btn-pal-new');
+  await h.answer(page, 'Glass tiles');
   expect(await page.evaluate(() => MZ.state.paletteName)).toBe('Glass tiles');
   expect(await palette(page)).toEqual([]);
   await page.fill('#color-input', '#112233');
@@ -34,8 +34,8 @@ test('editing a swatch recolors the areas painted with it', async ({ page }) => 
   await h.click(page, { x: 500, y: 500 });
   expect(await h.colorAt(page, { x: 500, y: 500 })).toBe('#ff0000');
   await page.evaluate(() => MZ.setTool('bucket')); // re-render after the palette change
-  page.once('dialog', d => d.accept('#00ff00'));
   await page.locator('#palette .swatch').nth(1).dblclick();
+  await h.answer(page, '#00ff00');
   expect(await h.colorAt(page, { x: 500, y: 500 })).toBe('#00ff00');
   expect(await palette(page)).toEqual(['#00ff00']);
 });

@@ -1,5 +1,6 @@
 // The raster editor as a Discord Activity, with a stand-in for the Discord SDK and the Worker's API:
 // it signs in, opens the image picked in the chat, and posts the edited picture to the channel.
+const fs = require('fs');
 const { test } = require('@playwright/test');
 const h = require('./helpers');
 const { expect } = h;
@@ -109,4 +110,33 @@ test('vector mode inside Discord: the picture opens as the photo to draw on; the
     expect(png.subarray(1, 4).toString('latin1')).toBe('PNG');
     expect(png.readUInt32BE(16)).toBe(40); // width
   }
+});
+
+test('switching apps – even before signing in has finished – keeps the connection and the post button', async ({ page }) => {
+  await page.addInitScript(fakeSdk);
+  await api(page);
+  // sign-in takes a while, so the app switch is clicked before it is done
+  await page.unroute('**/api/config');
+  await page.route('**/api/config', async r => { await new Promise(res => setTimeout(res, 1500)); await r.fulfill({ json: { clientId: 'app1' } }); });
+  // the pages as the Worker serves them (discord/prepare.mjs): the raster app as index.html, the vector app as vector.html
+  const served = (file) => fs.readFileSync(file, 'utf8')
+    .replace('href="index.html" data-app="vector"', 'href="vector.html" data-app="vector"')
+    .replace('href="raster.html" data-app="raster"', 'href="index.html" data-app="raster"');
+  await page.route(/\/vector\.html/, r => r.fulfill({ body: served('index.html'), contentType: 'text/html' }));
+  await page.route(/\/index\.html/, r => r.fulfill({ body: served('raster.html'), contentType: 'text/html' }));
+  const where = () => page.evaluate(() => [location.pathname.split('/').pop(), new URLSearchParams(location.search).get('frame_id')]);
+  await page.goto('index.html?frame_id=f1&instance_id=i1');
+  await page.waitForFunction(() => window.RZ && RZ.ready);
+  await page.click('.app-switch a:has-text("Vector")');
+  await page.waitForFunction(() => window.MZ && MZ.ready);
+  expect(await where()).toEqual(['vector.html', 'f1']);
+  await page.click('.app-switch a:has-text("Raster")');
+  await page.waitForFunction(() => window.RZ && RZ.ready);
+  expect(await where()).toEqual(['index.html', 'f1']);
+  await expect(page.locator('#btn-post-discord')).toBeVisible({ timeout: 10000 });
+  // a page opened without Discord's details (a reload by hand) gets them back from this tab
+  await page.goto('index.html');
+  await page.waitForFunction(() => window.RZ && RZ.ready);
+  await expect(page.locator('#btn-post-discord')).toBeVisible({ timeout: 10000 });
+  expect(await where()).toEqual(['index.html', 'f1']);
 });

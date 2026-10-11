@@ -7,6 +7,7 @@ import { canCopyImages, copyImage, svgToPng, svgSize } from '../shared/clipboard
 import { imageSize } from './image-clipboard.ts';
 import { t } from '../shared/i18n.ts';
 import { $ } from '../shared/ui.ts';
+import { ask, askYes } from '../shared/dialogs.ts';
 
 const { state } = MZ;
 let lastPointer = null, internalClip = null;
@@ -121,7 +122,7 @@ function render() {
     item.onclick = () => startPlacing(m);
     item.querySelector<any>('.del').onclick = async (e) => {
       e.stopPropagation();
-      if (!confirm(t('Delete the motif “{name}”?', { name: m.name }))) return;
+      if (!await askYes(t('Delete the motif “{name}”?', { name: m.name }))) return;
       motifs = motifs.filter(x => x !== m);
       await persist();
       render();
@@ -132,7 +133,7 @@ function render() {
 async function saveSelection() {
   if (!state.selection.size) { MZ.toast(t('Select the shapes of the motif first (Select tool).')); return; }
   const svg = Snippets.fromElements(state.selection);
-  const name = prompt(t('Name of the motif:'), t('Motif {n}', { n: motifs.length + 1 }));
+  const name = await ask(t('Name of the motif:'), t('Motif {n}', { n: motifs.length + 1 }));
   if (!name || !name.trim()) return;
   motifs.push({ id: Date.now().toString(36), name: name.trim(), svg, created: Date.now() });
   await persist();

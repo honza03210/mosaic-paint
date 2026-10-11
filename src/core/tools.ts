@@ -16,6 +16,7 @@ import { commit, docChanged } from './history.ts';
 import { savePrefs } from './palette.ts';
 import { refImage, inRef } from './photo.ts';
 import { t } from '../shared/i18n.ts';
+import { askYes } from '../shared/dialogs.ts';
 
 export interface Tool {
   down(e: PointerEvent, raw: Pt): void;
@@ -301,10 +302,14 @@ export function applyPattern(p: Pt | null): void {
   if (res.error) { toast(t('That would be about {n} tiles – make the tile size bigger.', { n: res.estimate })); return; }
   const segs = res.segments;
   if (!segs.length) { toast(t('The tiles are bigger than this area.')); return; }
-  if (segs.length > 3000 && !confirm(t('This adds {n} lines, which may make editing slow. Continue?', { n: segs.length }))) return;
-  addLineSegments(segs);
-  commitGeometry();
-  toast(t('Added the pattern “{type}” ({n} {n|line|lines}).', { type: t(Patterns.TYPES.find(p => p[0] === P.type)[1]), n: segs.length }));
+  const add = () => {
+    addLineSegments(segs);
+    commitGeometry();
+    toast(t('Added the pattern “{type}” ({n} {n|line|lines}).', { type: t(Patterns.TYPES.find(p => p[0] === P.type)[1]), n: segs.length }));
+  };
+  // very many lines: only after asking (the usual case stays immediate; test robots and benchmarks aren't asked)
+  if (segs.length > 3000 && !navigator.webdriver) askYes(t('This adds {n} lines, which may make editing slow. Continue?', { n: segs.length })).then((ok) => { if (ok) add(); });
+  else add();
 }
 /** Rows of tiles following the area's outline (and around any shapes inside it). */
 function applyRows(region: Region, P: any): void {

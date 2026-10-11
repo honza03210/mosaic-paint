@@ -31,3 +31,14 @@ test('deltaE is zero for equal colors and grows with difference', () => {
   assert.ok(Colors.deltaE(RED, [222, 42, 40]) < 3);
   assert.ok(Colors.deltaE(RED, BLUE) > 50);
 });
+
+test('HSV (for the color chooser) and back', () => {
+  assert.equal(Colors.fromHsv(0, 1, 1), '#ff0000');
+  assert.equal(Colors.fromHsv(120, 1, 1), '#00ff00');
+  assert.equal(Colors.fromHsv(240, 1, 0.5), '#000080');
+  assert.equal(Colors.fromHsv(0, 0, 1), '#ffffff');
+  for (const c of ['#e76f51', '#264653', '#2a9d8f', '#808080', '#000000']) {
+    const [h, s, v] = Colors.toHsv(c);
+    assert.equal(Colors.fromHsv(h, s, v), c);
+  }
+});

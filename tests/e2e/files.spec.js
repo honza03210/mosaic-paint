@@ -82,8 +82,8 @@ test('history: each version shows its size and colors, can be named and pinned; 
   // the coaster: 100 × 100 mm, five ring colors
   await expect(row).toContainText('100 × 100 mm');
   await expect(row).toContainText('5 colors');
-  page.once('dialog', d => d.accept('Before the big change'));
   await row.locator('button[title="Name this version"]').click();
+  await h.answer(page, 'Before the big change');
   await expect(row.locator('b')).toHaveText('Before the big change');
   await row.locator('.hist-pin').click();
   await expect(row).toHaveClass(/pinned/);

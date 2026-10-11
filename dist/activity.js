@@ -9618,13 +9618,22 @@
     return fetch(API + path, init);
   }
   function appSwitch() {
-    for (const a of document.querySelectorAll(".app-switch a")) {
-      a.href = (a.getAttribute("href") === "raster.html" ? "index.html" : "vector.html") + location.search;
+    for (const a of document.querySelectorAll(".app-switch a[data-app]")) {
+      a.href = (a.dataset.app === "raster" ? "index.html" : "vector.html") + location.search;
+    }
+  }
+  function keepDiscordDetails() {
+    try {
+      if (new URLSearchParams(location.search).has("frame_id")) sessionStorage.setItem("mz-discord-query", location.search);
+      else {
+        const q = sessionStorage.getItem("mz-discord-query");
+        if (q) history.replaceState(history.state, "", location.pathname + q + location.hash);
+      }
+    } catch {
     }
   }
   async function start(app) {
     const t2 = app.t;
-    appSwitch();
     const { clientId } = await (await call("/config")).json();
     const sdk = window.__discordSdk || new DiscordSDK(clientId);
     await sdk.ready();
@@ -9669,6 +9678,8 @@
       post.disabled = false;
     };
   }
+  keepDiscordDetails();
+  appSwitch();
   var editor = window.RZ || window.MZ;
   var t = (s) => editor.t(s);
   var wait = () => editor?.ready ? start(editor).catch(() => editor.toast(t("Could not connect to Discord."))) : setTimeout(wait, 50);

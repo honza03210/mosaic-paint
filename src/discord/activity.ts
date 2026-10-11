@@ -29,14 +29,27 @@ async function call(path: string, init: RequestInit = {}): Promise<Response> {
  * connects again.
  */
 function appSwitch(): void {
-  for (const a of document.querySelectorAll<HTMLAnchorElement>('.app-switch a')) {
-    a.href = (a.getAttribute('href') === 'raster.html' ? 'index.html' : 'vector.html') + location.search;
+  for (const a of document.querySelectorAll<HTMLAnchorElement>('.app-switch a[data-app]')) {
+    a.href = (a.dataset.app === 'raster' ? 'index.html' : 'vector.html') + location.search;
   }
+}
+
+/**
+ * Discord's details (frame_id, instance_id, …) come in the address, and the SDK needs them. They are kept for
+ * this tab, so a page opened without them (the app switch clicked early, a reload) still connects.
+ */
+function keepDiscordDetails(): void {
+  try {
+    if (new URLSearchParams(location.search).has('frame_id')) sessionStorage.setItem('mz-discord-query', location.search);
+    else {
+      const q = sessionStorage.getItem('mz-discord-query');
+      if (q) history.replaceState(history.state, '', location.pathname + q + location.hash);
+    }
+  } catch { /* storage blocked: the address is all there is */ }
 }
 
 async function start(app: Editor): Promise<void> {
   const t = app.t;
-  appSwitch();
   const { clientId } = await (await call('/config')).json() as { clientId: string };
   const sdk: Sdk = (window as any).__discordSdk || new DiscordSDK(clientId);
   await sdk.ready();
@@ -91,6 +104,8 @@ async function start(app: Editor): Promise<void> {
   };
 }
 
+keepDiscordDetails();
+appSwitch();
 // the editor finishes starting up first (it restores the last image)
 const editor = ((window as any).RZ || (window as any).MZ) as Editor;
 const t = (s: string) => editor.t(s);

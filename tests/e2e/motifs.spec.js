@@ -52,8 +52,8 @@ test('pasting into a drawing in other units keeps the real size', async ({ page 
 test('motifs: save, place twice, turn, and keep after a reload', async ({ page }) => {
   await h.open(page);
   await paintedHexagon(page);
-  page.once('dialog', d => d.accept('Flower'));
   await page.click('#btn-motif-save');
+  await h.answer(page, 'Flower');
   await expect(page.locator('#motif-list .motif')).toHaveCount(1);
   await expect(page.locator('#motif-list .motif span')).toHaveText('Flower');
   await page.click('#motif-list .motif');
@@ -78,12 +78,12 @@ test('the motif library can be exported and imported', async ({ page, browserNam
   test.skip(browserName === 'webkit' && process.platform === 'win32', 'Playwright WebKit on Windows cancels downloads (CI runs it on Linux)');
   await h.open(page);
   await paintedHexagon(page);
-  page.once('dialog', d => d.accept('Star'));
   await page.click('#btn-motif-save');
+  await h.answer(page, 'Star');
   const [download] = await Promise.all([page.waitForEvent('download'), page.click('#btn-motif-export')]);
   const text = require('fs').readFileSync(await download.path(), 'utf8');
-  page.once('dialog', d => d.accept());
   await page.locator('#motif-list .motif .del').dispatchEvent('click'); // the button shows on hover
+  await h.answer(page);
   await expect(page.locator('#motif-list .motif')).toHaveCount(0);
   await page.setInputFiles('#motif-file', { name: 'motifs.json', mimeType: 'application/json', buffer: Buffer.from(text) });
   await expect(page.locator('#motif-list .motif span')).toHaveText('Star');

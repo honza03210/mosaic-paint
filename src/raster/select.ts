@@ -9,6 +9,7 @@ import { doc, dctx, view, makeCanvas, setSize, toDoc, requestRender, fitView } f
 import { commit, restoreCurrent, afterChange } from './history.ts';
 import type { Tool } from './paint.ts';
 import { t } from '../shared/i18n.ts';
+import { askYes } from '../shared/dialogs.ts';
 
 const inside = (b: Box, p: Pt) => p.x >= b.x && p.y >= b.y && p.x < b.x + b.w && p.y < b.y + b.h;
 const floatBox = (): Box | null => {
@@ -175,7 +176,7 @@ export async function pasteImage(src: Blob | HTMLCanvasElement): Promise<void> {
   if (!c) { toast(t('Could not read the pasted image.')); return; }
   if (state.floating) place();
   if ((c.width > doc.width || c.height > doc.height)
-    && confirm(t('The pasted image ({w} × {h}) is bigger than this one ({W} × {H}). Enlarge the canvas to fit it?', { w: c.width, h: c.height, W: doc.width, H: doc.height }))) {
+    && await askYes(t('The pasted image ({w} × {h}) is bigger than this one ({W} × {H}). Enlarge the canvas to fit it?', { w: c.width, h: c.height, W: doc.width, H: doc.height }))) {
     const keep = makeCanvas(doc.width, doc.height);
     keep.getContext('2d').drawImage(doc, 0, 0);
     setSize(Math.max(doc.width, c.width), Math.max(doc.height, c.height));

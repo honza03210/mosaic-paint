@@ -1648,4 +1648,36 @@ export const SK: Record<string, string> = {
     'Prítlak pera: s grafickým tabletom alebo perom kreslí štetec, ceruzka a guma tým tenšie, čím ľahšie pritlačíte.',
   'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.':
     'Úpravy obrázka v rastrovej aplikácii: otočenie (o 90° alebo o ľubovoľný uhol), prevrátenie, orezanie na výber, orezanie okrajov a zmena veľkosti so zachovaním pomeru strán.',
+  'Choose a color':
+    'Vyberte farbu',
+  'Saturation and brightness':
+    'Sýtosť a jas',
+  'Hue':
+    'Odtieň',
+  'Before':
+    'Predtým',
+  'Color code':
+    'Kód farby',
+  'Also add it to the palette':
+    'Pridať ju aj do palety',
+  'Use this color':
+    'Použiť túto farbu',
+  'Choose…':
+    'Vybrať…',
+  'Choose any color: a color area, a hue slider and a color code':
+    'Vyberte ľubovoľnú farbu: farebná plocha, posúvač odtieňa a kód farby',
+  'Fill color – used by the paint bucket. Click to choose any color':
+    'Farba výplne – používa ju vedierko. Kliknutím vyberiete ľubovoľnú farbu',
+  'Stroke color – used for new lines and polygons. Click to choose any color':
+    'Farba čiary – pre nové čiary a mnohouholníky. Kliknutím vyberiete ľubovoľnú farbu',
+  'Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color':
+    'Farba maľby – štetec, ceruzka, čiary, mnohouholníky a vedierko. Kliknutím vyberiete ľubovoľnú farbu',
+  'Outline color – the outline of polygons. Click to choose any color':
+    'Farba obrysu – obrys mnohouholníkov. Kliknutím vyberiete ľubovoľnú farbu',
+  'Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).':
+    'Vyberte ľubovoľnú farbu: farebná plocha, posúvač odtieňa a kód farby (Vybrať… pod paletou, alebo kliknite na aktuálne farby).',
+  'Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.':
+    'V Discorde: Nový, Uložiť ako, premenovanie a ďalšie otázky fungujú (pýtajú sa teraz priamo na stránke) a prepínanie medzi aplikáciami zachová tlačidlo na odoslanie.',
+  'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
+    'Na telefónoch v Discorde horná lišta nezasahuje pod ovládacie prvky Discordu.',
 };

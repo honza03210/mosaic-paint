@@ -4,6 +4,7 @@
 import { MZ } from '../core/api.ts';
 import { t } from '../shared/i18n.ts';
 import { $ } from '../shared/ui.ts';
+import { ask, askYes } from '../shared/dialogs.ts';
 
 export const Pages = (() => {
   const { state } = MZ;
@@ -86,16 +87,16 @@ export const Pages = (() => {
     show(cur + 1);
     if (!duplicate) MZ.fitView();
   }
-  function rename(i) {
-    const n = prompt(t('Page name:'), pages[i].name);
+  async function rename(i) {
+    const n = await ask(t('Page name:'), pages[i].name);
     if (!n || !n.trim()) return;
     pages[i].name = n.trim();
     render();
     MZ.docChanged();
   }
-  function remove(i) {
+  async function remove(i) {
     if (pages.length < 2) { MZ.toast(t('A project needs at least one page.')); return; }
-    if (!confirm(t('Delete the page “{name}”? (A copy of the project is kept in History.)', { name: pages[i].name }))) return;
+    if (!await askYes(t('Delete the page “{name}”? (A copy of the project is kept in History.)', { name: pages[i].name }))) return;
     MZ.saveVersion(t('Before deleting the page {name}', { name: pages[i].name }));
     if (i === cur) {
       pages.splice(i, 1);

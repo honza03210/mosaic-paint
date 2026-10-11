@@ -170,8 +170,8 @@ test('a pasted image floats under the mouse until placed; a bigger one can enlar
   await page.click('#sa-finish');
   expect(await color(page, 100, 75)).toBe('#0000ff');
 
-  page.once('dialog', d => d.accept());
   await pasteImageEvent(page, 300, 200, '#00ff00');
+  await h.answer(page);
   await expect.poll(() => size(page)).toEqual([300, 200]);
   await page.keyboard.press('Enter');
   expect(await color(page, 250, 180)).toBe('#00ff00');
@@ -282,6 +282,8 @@ test.describe('clipboard', () => {
     expect(await clipTypes(page)).toContain('image/png');
     await open(page);
     await page.keyboard.press('Control+v');
+    // (the picture is bigger than the image: keep the canvas as it is)
+    expect(await h.answer(page, null, { cancel: true })).toContain('Enlarge the canvas');
     await expect.poll(() => page.evaluate(() => !!RZ.state.floating)).toBe(true);
     await page.keyboard.press('Enter');
     const f = await page.evaluate(() => RZ.state.sel);

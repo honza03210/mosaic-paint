@@ -12,6 +12,7 @@ import { refImage, loadPhoto, setPhoto, fitPhoto, setPhotoSize } from './photo.t
 import { newDoc, openFile, loadFile, save, exportPNG, setMode } from './files.ts';
 import { setTool, cancelPending, finishFree, freeBack, applyPattern } from './tools.ts';
 import { t } from '../shared/i18n.ts';
+import { askYes } from '../shared/dialogs.ts';
 
 export function setSides(n: number): void {
   state.sides = clamp(Math.round(n) || 6, 3, 64);
@@ -131,7 +132,7 @@ export function bindPanel(): void {
   };
   $('#ref-size').onchange = (e: any) => setPhotoSize(clamp(+e.target.value || 100, 5, 1000));
   $('#btn-ref-fit').onclick = () => { fitPhoto(); docChanged(); };
-  $('#btn-ref-remove').onclick = () => { if (confirm(t('Remove the tracing photo?'))) { setPhoto(null); docChanged(); } };
+  $('#btn-ref-remove').onclick = async () => { if (await askYes(t('Remove the tracing photo?'))) { setPhoto(null); docChanged(); } };
   bindCheck('#ref-save', 'savePhoto', docChanged);
   bindCheck('#opt-unpainted', 'onlyUnpainted');
 

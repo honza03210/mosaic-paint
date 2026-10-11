@@ -7,7 +7,7 @@ import { t } from '../shared/i18n.ts';
 
 const svgUrl = (svg: string) => 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
 async function open(svg: string, name: string): Promise<void> {
-  if (!MZ.confirmDiscard()) return;
+  if (!await MZ.confirmDiscard()) return;
   await MZ.openText(svg, name);
 }
 /** Load a photo (the tracing photo), then the "Mosaic from photo" dialog. */

@@ -7,6 +7,7 @@ import { applyLayers } from './view.ts';
 import { savePrefs } from './palette.ts';
 import { docChanged } from './history.ts';
 import { t } from '../shared/i18n.ts';
+import { askYes } from '../shared/dialogs.ts';
 
 export const refImage = (): SVGImageElement | null => refG.querySelector('image');
 export function inRef(p: Pt): boolean {
@@ -35,7 +36,7 @@ export async function loadPhoto(file: Blob): Promise<void> {
 }
 /** A pasted image becomes the photo to trace (after asking, if there already is one). */
 export async function pastePhoto(file: Blob): Promise<void> {
-  if (refImage() && !confirm(t('Replace the photo to trace with the pasted image?'))) return;
+  if (refImage() && !await askYes(t('Replace the photo to trace with the pasted image?'))) return;
   await loadPhoto(file);
   if (refImage()) toast(t('The pasted image is now the photo to trace – “Make a mosaic from the photo” turns it into tiles.'));
 }

@@ -195,6 +195,6 @@ export function bindInput(): void {
     e.preventDefault();
     stage.classList.remove('drop');
     const f = e.dataTransfer.files[0];
-    if (f && confirmDiscard()) openImageFile(f);
+    if (f) confirmDiscard().then((ok) => { if (ok) openImageFile(f); });
   });
 }

@@ -9,6 +9,7 @@ import { applyGrout, groutCSS } from './grout.ts';
 import { refImage, setPhoto, renderPhotoUI } from './photo.ts';
 import { cancelPending, setTool } from './tools.ts';
 import { t } from '../shared/i18n.ts';
+import { ask, askYes } from '../shared/dialogs.ts';
 
 export interface BuildOptions { photo?: boolean; grout?: boolean; pageOnly?: boolean }
 /** opts.photo: include the reference photo (default: the user's setting). opts.grout: bake in the grout preview. */
@@ -146,12 +147,12 @@ function importPalette(colors: string[], name?: string): void {
   switchPalette(n);
   toast(t('The file’s colors were added as the palette “{name}”.', { name: n }));
 }
-export function confirmDiscard(): boolean {
-  return !rt.dirty || confirm(t('Discard unsaved changes to the current drawing?\n(A copy is kept in History.)'));
+export async function confirmDiscard(): Promise<boolean> {
+  return !rt.dirty || askYes(t('Discard unsaved changes to the current drawing?\n(A copy is kept in History.)'));
 }
 const SVG_TYPES = [{ description: 'SVG image', accept: { 'image/svg+xml': ['.svg'] } }];
 export async function openFile(): Promise<void> {
-  if (!confirmDiscard()) return;
+  if (!await confirmDiscard()) return;
   const w = window as any;
   if (w.showOpenFilePicker) {
     try {
@@ -199,7 +200,7 @@ export async function save(as: boolean): Promise<void> {
     }
   }
   if (as) {
-    const n = prompt(t('File name:'), rt.fileName);
+    const n = await ask(t('File name:'), rt.fileName);
     if (!n) return;
     rt.fileName = /\.svg$/i.test(n) ? n : n + '.svg';
   }
@@ -207,10 +208,10 @@ export async function save(as: boolean): Promise<void> {
   rt.dirty = false;
   updateTitle();
 }
-export function exportPNG(): void {
+export async function exportPNG(): Promise<void> {
   const d = state.doc;
   const def = unit() === 'px' ? Math.max(d.w, 2000) : 3000;
-  const ans = prompt(t('PNG width in pixels:'), String(Math.round(def)));
+  const ans = await ask(t('PNG width in pixels:'), String(Math.round(def)));
   if (!ans) return;
   const W = Math.round(+ans);
   if (!(W > 0 && W <= 16000)) { toast(t('Invalid width.')); return; }
@@ -249,7 +250,7 @@ function resetDoc(keepSize: boolean): void {
   afterChange();
 }
 export async function newDoc(): Promise<void> {
-  if (!confirmDiscard()) return;
+  if (!await confirmDiscard()) return;
   if (hasContent()) await saveVersion(t('Before starting a new drawing'));
   resetDoc(true);
 }

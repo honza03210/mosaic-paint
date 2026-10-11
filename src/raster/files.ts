@@ -8,14 +8,15 @@ import { Store, type Version } from '../lib/store.ts';
 import { commit, resetHistory, afterChange, updateTitle, saveVersion, scheduleAutosave } from './history.ts';
 import { selectionChanged } from './select.ts';
 import { t, lang } from '../shared/i18n.ts';
+import { ask, askYes } from '../shared/dialogs.ts';
 
 export const MAX_SIDE = 8000;
 const IMAGE_TYPES = [{ description: t('Images'), accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.svg'] } }];
 const PNG_TYPES = [{ description: t('PNG image'), accept: { 'image/png': ['.png'] } }];
 const baseName = (n: string) => n.replace(/\.[a-z0-9]+$/i, '');
 
-export function confirmDiscard(): boolean {
-  return !rt.dirty || confirm(t('Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)'));
+export async function confirmDiscard(): Promise<boolean> {
+  return !rt.dirty || askYes(t('Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)'));
 }
 /** Replaces the image with a canvas (opened file, new image) and starts a fresh undo history. */
 export function loadCanvas(c: HTMLCanvasElement, name: string): void {
@@ -66,7 +67,7 @@ export async function openImageFile(f: File): Promise<boolean> {
   const side = Math.max(c.width, c.height);
   if (side > BIG) {
     const k = FIT / side, v = { name: f.name, w: c.width, h: c.height, W: Math.round(c.width * k), H: Math.round(c.height * k) };
-    if (confirm(t('{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?', v))) c = scaled(c, k);
+    if (await askYes(t('{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?', v))) c = scaled(c, k);
   }
   const img = c.getContext('2d').getImageData(0, 0, c.width, c.height);
   const many = R.countColors(img, MANY_COLORS + 1) > MANY_COLORS;
@@ -82,7 +83,7 @@ export async function openCanvas(c: HTMLCanvasElement, name: string, note = ''):
   toast(t('Opened {name} ({w} × {h} px).', { name, w: c.width, h: c.height }) + (note ? ' ' + note : ''));
 }
 export async function openFile(): Promise<void> {
-  if (!confirmDiscard()) return;
+  if (!await confirmDiscard()) return;
   const w = window as any;
   if (w.showOpenFilePicker) {
     try {
@@ -103,9 +104,9 @@ export function parseSize(s: string): { w: number; h: number } | null {
   const w = +m[1], h = +m[2];
   return w >= 1 && h >= 1 && w <= MAX_SIDE && h <= MAX_SIDE ? { w, h } : null;
 }
-export function newImage(): void {
-  if (!confirmDiscard()) return;
-  const ans = prompt(t('Size of the new image in pixels (width × height):'), `${doc.width} × ${doc.height}`);
+export async function newImage(): Promise<void> {
+  if (!await confirmDiscard()) return;
+  const ans = await ask(t('Size of the new image in pixels (width × height):'), `${doc.width} × ${doc.height}`);
   if (ans == null) return;
   const s = parseSize(ans);
   if (!s) { toast(t('Enter a size like 800 × 600 (at most {max} px a side).', { max: MAX_SIDE })); return; }

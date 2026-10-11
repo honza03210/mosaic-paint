@@ -1648,4 +1648,36 @@ export const DE: Record<string, string> = {
     'Stiftdruck: Mit einem Grafiktablett oder Stift malen Pinsel, Stift und Radierer umso dünner, je leichter Sie drücken.',
   'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.':
     'Bildbearbeitung in der Raster-App: drehen (um 90° oder einen beliebigen Winkel), spiegeln, auf die Auswahl zuschneiden, den Rand beschneiden, Größe mit Seitenverhältnis ändern.',
+  'Choose a color':
+    'Farbe wählen',
+  'Saturation and brightness':
+    'Sättigung und Helligkeit',
+  'Hue':
+    'Farbton',
+  'Before':
+    'Vorher',
+  'Color code':
+    'Farbcode',
+  'Also add it to the palette':
+    'Auch zur Palette hinzufügen',
+  'Use this color':
+    'Diese Farbe verwenden',
+  'Choose…':
+    'Wählen…',
+  'Choose any color: a color area, a hue slider and a color code':
+    'Beliebige Farbe wählen: Farbfläche, Farbton-Regler und Farbcode',
+  'Fill color – used by the paint bucket. Click to choose any color':
+    'Füllfarbe – für den Farbeimer. Klicken, um eine beliebige Farbe zu wählen',
+  'Stroke color – used for new lines and polygons. Click to choose any color':
+    'Linienfarbe – für neue Linien und Polygone. Klicken, um eine beliebige Farbe zu wählen',
+  'Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color':
+    'Malfarbe – Pinsel, Stift, Linien, Polygone und Farbeimer. Klicken, um eine beliebige Farbe zu wählen',
+  'Outline color – the outline of polygons. Click to choose any color':
+    'Umrissfarbe – der Umriss von Polygonen. Klicken, um eine beliebige Farbe zu wählen',
+  'Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).':
+    'Beliebige Farbe wählen: Farbfläche, Farbton-Regler und Farbcode (Wählen… unter der Palette, oder auf die aktuellen Farben klicken).',
+  'Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.':
+    'In Discord: Neu, Speichern unter, Umbenennen und die anderen Fragen funktionieren (sie werden jetzt auf der Seite gestellt), und beim Wechsel zwischen den Apps bleibt die Schaltfläche zum Posten erhalten.',
+  'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
+    'Auf Handys in Discord bleibt die obere Leiste frei von Discords eigenen Bedienelementen.',
 };

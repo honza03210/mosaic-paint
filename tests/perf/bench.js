@@ -11,7 +11,6 @@ async function main() {
   await new Promise(r => setTimeout(r, 500));
   const browser = await chromium.launch({ channel: process.env.CI ? undefined : 'chrome' });
   const page = await browser.newPage({ viewport: { width: 1400, height: 860 } });
-  page.on('dialog', d => d.accept());
   await page.goto(`http://localhost:${PORT}/`);
   await page.waitForFunction(() => window.MZ && window.MZ.ready);
 

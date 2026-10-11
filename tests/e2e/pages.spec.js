@@ -31,11 +31,12 @@ test('all pages are saved in one file and come back when it is opened', async ({
   await page.click('#page-add');
   await h.drag(page, { x: 0, y: 500 }, { x: 1000, y: 500 });
   await h.drag(page, { x: 0, y: 200 }, { x: 1000, y: 200 });
-  page.once('dialog', d => d.accept('Back'));
   await page.dblclick('#page-tabs >> text=Page 2');
+  await h.answer(page, 'Back');
+  // (the new name is applied once the question has closed)
+  await expect.poll(() => page.evaluate(() => MZ.buildSVGString())).toContain('data-page-name="Back"');
   const svg = await page.evaluate(() => MZ.buildSVGString());
   expect(svg).toContain('id="mosaic-pages"');
-  expect(svg).toContain('data-page-name="Back"');
 
   // other programs only see the current page; Mosaic Paint reads them all
   await page.evaluate(() => MZ.loadSVGText('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"></svg>', { restore: true }));
@@ -64,9 +65,9 @@ test('pages survive a reload and can be duplicated, moved and deleted', async ({
   await page.waitForFunction(() => window.MZ && window.MZ.ready);
   expect(await tabs(page)).toEqual(['Page 1 copy', 'Page 1']);
 
-  page.once('dialog', d => d.accept());
   await page.click('#page-tabs .page-more');
   await page.click('#page-menu >> text=Delete…');
+  await h.answer(page);
   expect(await tabs(page)).toEqual(['Page 1']);
   expect(await lines(page)).toBe(1);
 });
@@ -76,7 +77,7 @@ test('New starts over with a single page', async ({ page }) => {
   await page.click('#page-add');
   await page.click('#page-add');
   expect((await tabs(page)).length).toBe(3);
-  page.once('dialog', d => d.accept());
   await page.click('#btn-new');
+  await h.answer(page);
   expect(await tabs(page)).toEqual(['Page 1']);
 });

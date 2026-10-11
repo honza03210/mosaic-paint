@@ -1648,4 +1648,36 @@ export const CS: Record<string, string> = {
     'Přítlak pera: s grafickým tabletem nebo perem kreslí štětec, tužka a guma tím tenčeji, čím lehčeji přitlačíte.',
   'Image editing in the raster app: rotate (by 90° or any angle), flip, crop to the selection, trim the border, resize keeping proportions.':
     'Úpravy obrázku v rastrové aplikaci: otočení (o 90° nebo o libovolný úhel), převrácení, oříznutí na výběr, oříznutí okrajů a změna velikosti se zachováním poměru stran.',
+  'Choose a color':
+    'Vyberte barvu',
+  'Saturation and brightness':
+    'Sytost a jas',
+  'Hue':
+    'Odstín',
+  'Before':
+    'Předtím',
+  'Color code':
+    'Kód barvy',
+  'Also add it to the palette':
+    'Přidat ji i do palety',
+  'Use this color':
+    'Použít tuto barvu',
+  'Choose…':
+    'Vybrat…',
+  'Choose any color: a color area, a hue slider and a color code':
+    'Vyberte libovolnou barvu: barevná plocha, posuvník odstínu a kód barvy',
+  'Fill color – used by the paint bucket. Click to choose any color':
+    'Barva výplně – používá ji kyblík. Kliknutím vyberete libovolnou barvu',
+  'Stroke color – used for new lines and polygons. Click to choose any color':
+    'Barva čáry – pro nové čáry a mnohoúhelníky. Kliknutím vyberete libovolnou barvu',
+  'Paint color – brush, pencil, lines, polygons and the bucket. Click to choose any color':
+    'Barva malby – štětec, tužka, čáry, mnohoúhelníky a kyblík. Kliknutím vyberete libovolnou barvu',
+  'Outline color – the outline of polygons. Click to choose any color':
+    'Barva obrysu – obrys mnohoúhelníků. Kliknutím vyberete libovolnou barvu',
+  'Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).':
+    'Vyberte libovolnou barvu: barevná plocha, posuvník odstínu a kód barvy (Vybrat… pod paletou, nebo klikněte na aktuální barvy).',
+  'Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.':
+    'V Discordu: Nový, Uložit jako, přejmenování a další otázky fungují (ptají se teď přímo na stránce) a přepínání mezi aplikacemi zachová tlačítko pro odeslání.',
+  'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
+    'Na telefonech v Discordu horní lišta nezasahuje pod ovládací prvky Discordu.',
 };

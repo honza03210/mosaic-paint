@@ -11,5 +11,12 @@ const copy = (from, to = from) => {
 };
 copy('raster.html', 'index.html');
 copy('index.html', 'vector.html');
+// the app switch points at the Worker's names from the start (before the Activity script adds Discord's details)
+for (const f of ['index.html', 'vector.html']) {
+  const p = path.join(out, f);
+  fs.writeFileSync(p, fs.readFileSync(p, 'utf8')
+    .replace('href="index.html" data-app="vector"', 'href="vector.html" data-app="vector"')
+    .replace('href="raster.html" data-app="raster"', 'href="index.html" data-app="raster"'));
+}
 for (const f of ['style.css', 'dist/raster.js', 'dist/mosaic.js', 'dist/activity.js', 'icons/icon.svg', 'icons/icon-192.png']) copy(f);
 console.log('Copied the editor to', out);

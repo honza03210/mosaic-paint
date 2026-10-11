@@ -5,6 +5,7 @@ import { Store, type Version } from '../lib/store.ts';
 import { toast } from './ui.ts';
 import { t, lang, num } from './i18n.ts';
 import { esc } from '../lib/html.ts';
+import { ask } from './dialogs.ts';
 
 export interface HistoryHost {
   /** the texts that name what the app edits (whole sentences: other languages change words around the noun) */
@@ -56,8 +57,8 @@ export function initHistoryUI(host: HistoryHost, button: HTMLElement): void {
       pin.onclick = () => change(v, { pinned: !v.pinned });
       rename.textContent = '✎';
       rename.title = rename.ariaLabel = t('Name this version');
-      rename.onclick = () => {
-        const title = prompt(t('Name of this version:'), v.title || '');
+      rename.onclick = async () => {
+        const title = await ask(t('Name of this version:'), v.title || '');
         if (title != null) change(v, { title: title.trim() || undefined });
       };
       restore.textContent = t('Restore');

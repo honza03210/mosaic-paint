@@ -15,7 +15,7 @@
 <header id="topbar">
   <span class="brand">Mosaic Paint</span>
   <nav class="app-switch seg-btns" aria-label="Switch app" title="Vector: tiles as shapes. Raster: paint with pixels. Palettes are shared; copy and paste images between them.">
-    <a href="index.html" aria-current="page">Vector</a><a href="raster.html">Raster</a>
+    <a href="index.html" data-app="vector" aria-current="page">Vector</a><a href="raster.html" data-app="raster">Raster</a>
   </nav>
   <div id="mode-switch" class="seg-btns" title="Simple shows the essentials; Expert adds symmetry, layers, rulers, the knife, printing and fine settings">
     <button data-mode="simple">Simple</button><button data-mode="expert">Expert</button>
@@ -138,8 +138,8 @@
         <button id="btn-pal-delete" title="Delete this palette">🗑</button>
       </div>
       <div class="active-colors">
-        <div class="ac" title="Fill color – used by the paint bucket"><span>Fill</span><div id="ac-fill" class="acbox"></div></div>
-        <div class="ac" title="Stroke color – used for new lines and polygons"><span>Stroke</span><div id="ac-stroke" class="acbox"></div></div>
+        <div class="ac" title="Fill color – used by the paint bucket. Click to choose any color"><span>Fill</span><div id="ac-fill" class="acbox"></div></div>
+        <div class="ac" title="Stroke color – used for new lines and polygons. Click to choose any color"><span>Stroke</span><div id="ac-stroke" class="acbox"></div></div>
         <button id="btn-swap" title="Swap fill and stroke">⇄</button>
         <label class="sw-w" title="Line width for new lines and polygons">Width <input id="stroke-width" type="number" min="0" step="0.5"></label>
       </div>
@@ -148,6 +148,7 @@
         <span id="color-preview" class="mini"></span>
         <input id="color-input" type="text" placeholder="Paste #hex, rgb(), name…" spellcheck="false" autocomplete="off">
         <button id="btn-add-color" class="primary">Add color</button>
+        <button id="btn-choose-color" title="Choose any color: a color area, a hue slider and a color code">Choose…</button>
       </div>
       <div class="row small">
         <button id="btn-pal-import" title="Load colors from a .txt / .gpl / .css file">Import…</button>

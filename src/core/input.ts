@@ -234,6 +234,6 @@ export function bindInput(): void {
     const f = e.dataTransfer.files[0];
     if (!f) return;
     if (/^image\//.test(f.type) && !/svg/.test(f.type)) loadPhoto(f);
-    else if (confirmDiscard()) loadFile(f);
+    else confirmDiscard().then((ok) => { if (ok) loadFile(f); });
   });
 }
