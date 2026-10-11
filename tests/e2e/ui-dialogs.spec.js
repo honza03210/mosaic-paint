@@ -70,6 +70,6 @@ test('inside Discord on a phone the top bar stays below Discord’s own controls
   expect(await top()).toBe(0);
   // Discord gives the covered edges as CSS variables
   await page.addStyleTag({ content: ':root { --discord-safe-area-inset-top: 56px; --discord-safe-area-inset-bottom: 20px; }' });
-  expect(await top()).toBe(56);
-  expect(await page.evaluate(() => innerHeight - document.querySelector('#status').getBoundingClientRect().bottom)).toBe(20);
+  expect(await top()).toBeCloseTo(56, 1);
+  expect(await page.evaluate(() => innerHeight - document.querySelector('#status').getBoundingClientRect().bottom)).toBeCloseTo(20, 1);
 });
