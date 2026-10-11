@@ -653,7 +653,12 @@
     "Grout colors are always printed first, so the lines between the tiles stay low.": "Barvy spár se tisknou vždy jako první, takže čáry mezi dlaždicemi zůstanou nízko.",
     "Grout / lines: always printed first, so they stay low": "Spáry / čáry: tisknou se vždy jako první, takže zůstanou nízko",
     "grout": "spáry",
-    "{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower": "{n} {n|tenký dílek snížen|tenké dílky sníženy|tenkých dílků sníženo}, aby se nic netisklo jako tenká věžička"
+    "{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower": "{n} {n|tenký dílek snížen|tenké dílky sníženy|tenkých dílků sníženo}, aby se nic netisklo jako tenká věžička",
+    "Top view": "Shora",
+    "Drag to turn · wheel or two fingers to zoom · double-click to reset": "Tažením otáčíte · kolečkem nebo dvěma prsty přibližujete · dvojklik vrátí pohled",
+    "Shows the heights taller than they are, to see the color bands": "Zobrazí výšky větší, než jsou, aby byly vidět barevné vrstvy",
+    "Heights ×": "Výšky ×",
+    "This browser can’t show 3D (WebGL is off).": "Tento prohlížeč neumí zobrazit 3D (WebGL je vypnuté)."
   };
 
   // src/shared/i18n.ts
@@ -3805,6 +3810,189 @@
     return out;
   }
 
+  // src/shared/view3d.ts
+  var VS = `
+attribute vec3 aPos; attribute vec3 aNormal; attribute vec3 aColor;
+uniform mat4 uView; uniform float uZ;
+varying vec3 vColor; varying vec3 vNormal;
+void main() {
+  vec3 p = vec3(aPos.xy, aPos.z * uZ);
+  vec3 n = normalize(vec3(aNormal.xy * uZ, aNormal.z));
+  vNormal = n; vColor = aColor;
+  gl_Position = uView * vec4(p, 1.0);
+}`;
+  var FS = `
+precision mediump float;
+varying vec3 vColor; varying vec3 vNormal;
+uniform vec3 uLight;
+void main() {
+  float d = max(dot(normalize(vNormal), uLight), 0.0);
+  gl_FragColor = vec4(vColor * (0.45 + 0.6 * d), 1.0);
+}`;
+  var mul = (a, b) => {
+    const o = new Float32Array(16);
+    for (let c = 0; c < 4; c++) for (let r = 0; r < 4; r++) {
+      let s = 0;
+      for (let k = 0; k < 4; k++) s += a[k * 4 + r] * b[c * 4 + k];
+      o[c * 4 + r] = s;
+    }
+    return o;
+  };
+  var perspective = (fov, aspect, near, far) => {
+    const f = 1 / Math.tan(fov / 2), nf = 1 / (near - far);
+    return new Float32Array([f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, (far + near) * nf, -1, 0, 0, 2 * far * near * nf, 0]);
+  };
+  var translate = (x, y, z) => new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1]);
+  var rotX = (a) => {
+    const c = Math.cos(a), s = Math.sin(a);
+    return new Float32Array([1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1]);
+  };
+  var rotZ = (a) => {
+    const c = Math.cos(a), s = Math.sin(a);
+    return new Float32Array([c, s, 0, 0, -s, c, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+  };
+  function createView3D(canvas) {
+    const gl = canvas.getContext("webgl", { antialias: true, preserveDrawingBuffer: true });
+    if (!gl) return null;
+    const shader = (type, src) => {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return s;
+    };
+    const prog = gl.createProgram();
+    gl.attachShader(prog, shader(gl.VERTEX_SHADER, VS));
+    gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FS));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+    const loc = { pos: gl.getAttribLocation(prog, "aPos"), normal: gl.getAttribLocation(prog, "aNormal"), color: gl.getAttribLocation(prog, "aColor") };
+    const uView = gl.getUniformLocation(prog, "uView"), uZ = gl.getUniformLocation(prog, "uZ"), uLight = gl.getUniformLocation(prog, "uLight");
+    const buffers = { pos: gl.createBuffer(), normal: gl.createBuffer(), color: gl.createBuffer() };
+    let count = 0, center = [0, 0, 0], radius = 1, exaggeration = 3;
+    const cam = { yaw: -0.5, pitch: 0.85, dist: 3 };
+    function upload(name, data) {
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffers[name]);
+      gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+    }
+    function show(mesh, colorOf) {
+      const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3;
+      const pos = new Float32Array(n4 * 9), nor = new Float32Array(n4 * 9), col = new Float32Array(n4 * 9);
+      let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = 0;
+      for (let t2 = 0; t2 < n4; t2++) {
+        const a = T[t2 * 3] * 3, b = T[t2 * 3 + 1] * 3, c = T[t2 * 3 + 2] * 3;
+        const ux = V[b] - V[a], uy = V[b + 1] - V[a + 1], uz = V[b + 2] - V[a + 2];
+        const vx = V[c] - V[a], vy = V[c + 1] - V[a + 1], vz = V[c + 2] - V[a + 2];
+        let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+        const L = Math.hypot(nx, ny, nz) || 1;
+        nx /= L;
+        ny /= L;
+        nz /= L;
+        const rgb = colorOf(mesh.levels[t2]);
+        const shade = Math.abs(nz) > 0.5 ? 1 : 0.85;
+        [a, b, c].forEach((p, k) => {
+          const o = t2 * 9 + k * 3;
+          pos[o] = V[p];
+          pos[o + 1] = V[p + 1];
+          pos[o + 2] = V[p + 2];
+          nor[o] = nx;
+          nor[o + 1] = ny;
+          nor[o + 2] = nz;
+          col[o] = rgb[0] / 255 * shade;
+          col[o + 1] = rgb[1] / 255 * shade;
+          col[o + 2] = rgb[2] / 255 * shade;
+          x0 = Math.min(x0, V[p]);
+          x1 = Math.max(x1, V[p]);
+          y0 = Math.min(y0, V[p + 1]);
+          y1 = Math.max(y1, V[p + 1]);
+          z1 = Math.max(z1, V[p + 2]);
+        });
+      }
+      upload("pos", pos);
+      upload("normal", nor);
+      upload("color", col);
+      count = n4 * 3;
+      center = [(x0 + x1) / 2, (y0 + y1) / 2, 0];
+      radius = Math.max(1e-3, Math.hypot(x1 - x0, y1 - y0) / 2, z1);
+      render3();
+    }
+    function render3() {
+      const dpr = window.devicePixelRatio || 1, w = Math.round(canvas.clientWidth * dpr) || canvas.width, h = Math.round(canvas.clientHeight * dpr) || canvas.height;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      gl.viewport(0, 0, w, h);
+      gl.clearColor(0.15, 0.16, 0.18, 1);
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      if (!count) return;
+      gl.enable(gl.DEPTH_TEST);
+      gl.useProgram(prog);
+      const proj = perspective(0.7, w / h, radius * 0.05, radius * 20);
+      const view2 = mul(translate(0, 0, -radius * cam.dist), mul(rotX(-cam.pitch), mul(rotZ(cam.yaw), translate(-center[0], -center[1], -center[2]))));
+      gl.uniformMatrix4fv(uView, false, mul(proj, view2));
+      gl.uniform1f(uZ, exaggeration);
+      const lx = 0.3, ly = -0.5, lz = 0.8, ll = Math.hypot(lx, ly, lz);
+      gl.uniform3f(uLight, lx / ll, ly / ll, lz / ll);
+      for (const [name, at] of [["pos", loc.pos], ["normal", loc.normal], ["color", loc.color]]) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers[name]);
+        gl.enableVertexAttribArray(at);
+        gl.vertexAttribPointer(at, 3, gl.FLOAT, false, 0, 0);
+      }
+      gl.drawArrays(gl.TRIANGLES, 0, count);
+    }
+    function reset() {
+      cam.yaw = -0.5;
+      cam.pitch = 0.85;
+      cam.dist = 3;
+      render3();
+    }
+    const pointers2 = /* @__PURE__ */ new Map();
+    let pinch2 = 0;
+    canvas.style.touchAction = "none";
+    canvas.addEventListener("pointerdown", (e) => {
+      pointers2.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      try {
+        canvas.setPointerCapture(e.pointerId);
+      } catch {
+      }
+      if (pointers2.size === 2) {
+        const [a, b] = [...pointers2.values()];
+        pinch2 = Math.hypot(a.x - b.x, a.y - b.y);
+      }
+    });
+    canvas.addEventListener("pointermove", (e) => {
+      const p = pointers2.get(e.pointerId);
+      if (!p) return;
+      if (pointers2.size === 2) {
+        pointers2.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        const [a, b] = [...pointers2.values()], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (pinch2) cam.dist = Math.min(8, Math.max(0.4, cam.dist * pinch2 / d));
+        pinch2 = d;
+      } else {
+        cam.yaw += (e.clientX - p.x) * 0.01;
+        cam.pitch = Math.min(1.5, Math.max(0, cam.pitch - (e.clientY - p.y) * 0.01));
+        pointers2.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      }
+      render3();
+    });
+    const end = (e) => {
+      pointers2.delete(e.pointerId);
+      pinch2 = 0;
+    };
+    canvas.addEventListener("pointerup", end);
+    canvas.addEventListener("pointercancel", end);
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      cam.dist = Math.min(8, Math.max(0.4, cam.dist * Math.exp(e.deltaY * 1e-3)));
+      render3();
+    }, { passive: false });
+    canvas.addEventListener("dblclick", reset);
+    return { show, setExaggeration: (k) => {
+      exaggeration = k;
+      render3();
+    }, reset, render: render3 };
+  }
+
   // src/shared/export3d.ts
   var MAX_CELLS = 4e6;
   var MANY_COLORS = 16;
@@ -3831,7 +4019,12 @@
 </div>
 <p class="note warn" id="m3-note" hidden></p>
 <div class="m3-body">
-  <canvas id="m3-preview" title="${t("Top view of the model")}"></canvas>
+  <div class="m3-view">
+    <div class="seg-btns m3-tabs"><button id="m3-tab-top" class="active">${t("Top view")}</button><button id="m3-tab-3d">3D</button></div>
+    <canvas id="m3-preview" title="${t("Top view of the model")}"></canvas>
+    <canvas id="m3-3d" title="${t("Drag to turn · wheel or two fingers to zoom · double-click to reset")}" hidden></canvas>
+    <label class="grow" id="m3-zrow" hidden title="${t("Shows the heights taller than they are, to see the color bands")}">${t("Heights ×")} <input id="m3-z" type="range" min="1" max="10" value="3"></label>
+  </div>
   <div class="m3-side">
     <div class="row small"><span class="note">${t("Print order (bottom first):")}</span>
       <button id="m3-light" title="${t("Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom")}">${t("Light → dark")}</button>
@@ -3984,6 +4177,41 @@
       $("#m3-summary").textContent = list.length ? t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 }) + (unpainted ? " · " + (opts.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t("unpainted parts are left open")) : "") + (m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "") : t("Nothing is painted yet.");
       $("#m3-go").disabled = $("#m3-stl").disabled = $("#m3-plan").disabled = !list.length;
       drawPreview(m);
+      if (view2) schedule3d();
+    }
+    let view2 = null, timer3d;
+    const schedule3d = () => {
+      clearTimeout(timer3d);
+      timer3d = setTimeout(update3d, 120);
+    };
+    function update3d() {
+      if (!view2 || $("#m3-3d").hidden || !grid) return;
+      const m = model(), f = Math.max(1, Math.ceil(Math.sqrt(gw * gh / 16e4)));
+      let g = m.grid, w = gw, h = gh;
+      if (f > 1) {
+        w = Math.ceil(gw / f);
+        h = Math.ceil(gh / f);
+        g = new Int16Array(w * h);
+        for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) g[y * w + x] = m.grid[Math.min(gh - 1, y * f) * gw + Math.min(gw - 1, x * f)];
+      }
+      const rgb = m.list.map((ci) => rgba(colors[ci]).slice(0, 3));
+      view2.show(closedMesh(g, w, h, cell * f, settings()), (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
+    }
+    function showTab(three) {
+      if (three && !view2) {
+        view2 = createView3D($("#m3-3d"));
+        if (!view2) {
+          toast(t("This browser can’t show 3D (WebGL is off)."));
+          return;
+        }
+        view2.setExaggeration(+$("#m3-z").value);
+      }
+      $("#m3-3d").hidden = !three;
+      $("#m3-zrow").hidden = !three;
+      $("#m3-preview").hidden = three;
+      $("#m3-tab-3d").classList.toggle("active", three);
+      $("#m3-tab-top").classList.toggle("active", !three);
+      if (three) update3d();
     }
     function drawPreview(m) {
       const cv = $("#m3-preview");
@@ -4064,6 +4292,11 @@
         saveOpts();
       }
       reanalyse();
+    };
+    $("#m3-tab-top").onclick = () => showTab(false);
+    $("#m3-tab-3d").onclick = () => showTab(true);
+    $("#m3-z").oninput = () => {
+      if (view2) view2.setExaggeration(+$("#m3-z").value);
     };
     $("#m3-light").onclick = () => sortBy(true);
     $("#m3-dark").onclick = () => sortBy(false);

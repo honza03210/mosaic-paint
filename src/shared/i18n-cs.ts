@@ -1306,4 +1306,14 @@ export const CS: Record<string, string> = {
     'spáry',
   '{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower':
     '{n} {n|tenký dílek snížen|tenké dílky sníženy|tenkých dílků sníženo}, aby se nic netisklo jako tenká věžička',
+  'Top view':
+    'Shora',
+  'Drag to turn · wheel or two fingers to zoom · double-click to reset':
+    'Tažením otáčíte · kolečkem nebo dvěma prsty přibližujete · dvojklik vrátí pohled',
+  'Shows the heights taller than they are, to see the color bands':
+    'Zobrazí výšky větší, než jsou, aby byly vidět barevné vrstvy',
+  'Heights ×':
+    'Výšky ×',
+  'This browser can’t show 3D (WebGL is off).':
+    'Tento prohlížeč neumí zobrazit 3D (WebGL je vypnuté).',
 };

@@ -152,3 +152,38 @@ test('raster: the mosaic grout stays lowest, and specks that would print as thin
   // the two grout colors, then the white tile: no black tops are left anywhere
   expect(stl.tops).toEqual([1.2, 1.8, 2.4]);
 });
+
+test('the 3D view shows the model and turns when dragged', async ({ page, browserName }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await page.evaluate(() => {
+    RZ.blank(40, 30, '#b8b2a7');
+    const x = RZ.doc.getContext('2d'); x.fillStyle = '#e76f51'; x.fillRect(5, 5, 30, 20); RZ.commit();
+  });
+  await page.click('#btn-3d');
+  await expect(page.locator('#m3-order .m3-row')).toHaveCount(2);
+  const webgl = await page.evaluate(() => !!document.createElement('canvas').getContext('webgl'));
+  test.skip(!webgl, `no WebGL in ${browserName} here`);
+  await page.click('#m3-tab-3d');
+  await expect(page.locator('#m3-3d')).toBeVisible();
+  await expect(page.locator('#m3-preview')).toBeHidden();
+  const image = () => page.evaluate(() => document.querySelector('#m3-3d').toDataURL());
+  // something is drawn: the picture is not one flat color
+  await expect.poll(() => page.evaluate(() => {
+    const c = document.querySelector('#m3-3d'), x = document.createElement('canvas');
+    x.width = 40; x.height = 40;
+    const g = x.getContext('2d'); g.drawImage(c, 0, 0, 40, 40);
+    const d = g.getImageData(0, 0, 40, 40).data, seen = new Set();
+    for (let i = 0; i < d.length; i += 4) seen.add(d[i] >> 4 << 8 | d[i + 1] >> 4 << 4 | d[i + 2] >> 4);
+    return seen.size;
+  })).toBeGreaterThan(3);
+  const before = await image();
+  const box = await page.locator('#m3-3d').boundingBox();
+  await page.mouse.move(box.x + 150, box.y + 150);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 220, box.y + 170, { steps: 6 });
+  await page.mouse.up();
+  expect(await image()).not.toBe(before);
+  await page.click('#m3-tab-top');
+  await expect(page.locator('#m3-preview')).toBeVisible();
+});

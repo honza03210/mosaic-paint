@@ -9,6 +9,7 @@ import * as M from '../lib/model3d.ts';
 import { zip } from '../lib/zip.ts';
 import { $, clamp, toast, download, lsGet, lsSet } from './ui.ts';
 import { t, num } from './i18n.ts';
+import { createView3D, type View3D } from './view3d.ts';
 
 export interface Export3DHost {
   /** width / height of the picture */
@@ -48,7 +49,12 @@ const DIALOG = `
 </div>
 <p class="note warn" id="m3-note" hidden></p>
 <div class="m3-body">
-  <canvas id="m3-preview" title="${t('Top view of the model')}"></canvas>
+  <div class="m3-view">
+    <div class="seg-btns m3-tabs"><button id="m3-tab-top" class="active">${t('Top view')}</button><button id="m3-tab-3d">3D</button></div>
+    <canvas id="m3-preview" title="${t('Top view of the model')}"></canvas>
+    <canvas id="m3-3d" title="${t('Drag to turn · wheel or two fingers to zoom · double-click to reset')}" hidden></canvas>
+    <label class="grow" id="m3-zrow" hidden title="${t('Shows the heights taller than they are, to see the color bands')}">${t('Heights ×')} <input id="m3-z" type="range" min="1" max="10" value="3"></label>
+  </div>
   <div class="m3-side">
     <div class="row small"><span class="note">${t('Print order (bottom first):')}</span>
       <button id="m3-light" title="${t('Lighter colors lower: a darker layer covers a lighter one well. Lines (grout) stay at the bottom')}">${t('Light → dark')}</button>
@@ -215,6 +221,37 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       : t('Nothing is painted yet.');
     $('#m3-go').disabled = $('#m3-stl').disabled = $('#m3-plan').disabled = !list.length;
     drawPreview(m);
+    if (view) schedule3d();
+  }
+
+  // ---- the 3D view ----------------------------------------------------------------------------
+  let view: View3D | null = null, timer3d: any;
+  const schedule3d = () => { clearTimeout(timer3d); timer3d = setTimeout(update3d, 120); };
+  /** The model in the 3D view (very big ones thinned out, for the view only). */
+  function update3d(): void {
+    if (!view || $('#m3-3d').hidden || !grid) return;
+    const m = model(), f = Math.max(1, Math.ceil(Math.sqrt(gw * gh / 160000)));
+    let g = m.grid, w = gw, h = gh;
+    if (f > 1) {
+      w = Math.ceil(gw / f); h = Math.ceil(gh / f);
+      g = new Int16Array(w * h);
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) g[y * w + x] = m.grid[Math.min(gh - 1, y * f) * gw + Math.min(gw - 1, x * f)];
+    }
+    const rgb = m.list.map(ci => R.rgba(colors[ci]).slice(0, 3) as [number, number, number]);
+    view.show(M.closedMesh(g, w, h, cell * f, settings()), (lv) => rgb[Math.max(0, lv)] || [200, 200, 200]);
+  }
+  function showTab(three: boolean): void {
+    if (three && !view) {
+      view = createView3D($('#m3-3d'));
+      if (!view) { toast(t('This browser can’t show 3D (WebGL is off).')); return; }
+      view.setExaggeration(+$('#m3-z').value);
+    }
+    $('#m3-3d').hidden = !three;
+    $('#m3-zrow').hidden = !three;
+    $('#m3-preview').hidden = three;
+    $('#m3-tab-3d').classList.toggle('active', three);
+    $('#m3-tab-top').classList.toggle('active', !three);
+    if (three) update3d();
   }
   /** The top view of the model as it will print (after thin towers were lowered). */
   function drawPreview(m: Model): void {
@@ -283,6 +320,9 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   bindNum('#m3-base', 'baseLayers', 0, 50, true, false);
   $('#m3-w').onchange = () => { const v = +$('#m3-w').value; if (v >= 5 && v <= 2000) { opts.width = v; saveOpts(); } reanalyse(); };
   $('#m3-h').onchange = () => { const v = +$('#m3-h').value; if (v >= 5 && v <= 2000) { opts.width = v * host.aspect(); saveOpts(); } reanalyse(); };
+  $('#m3-tab-top').onclick = () => showTab(false);
+  $('#m3-tab-3d').onclick = () => showTab(true);
+  $('#m3-z').oninput = () => { if (view) view.setExaggeration(+$('#m3-z').value); };
   $('#m3-light').onclick = () => sortBy(true);
   $('#m3-dark').onclick = () => sortBy(false);
   const triangles = (m: M.Mesh) => m.triangles.length / 3;

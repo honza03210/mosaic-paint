@@ -94,7 +94,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 
 - Set the **size** in mm (the vector app takes the page's real size), the **layer height**, **layers per color** (each color is a band this many layers thick – more layers cover the color underneath better) and **base layers** (a plate under everything, printed in the first color; unpainted parts stay at the base, or are left open with 0).
 - **Print order:** the list shows the colors from the bottom up, with their layers and where to change filament. Grout always goes first, so the lines between the tiles stay the lowest part and the tiles stand out of them like a real mosaic: lines in the vector app and the grout of a raster mosaic are recognized, and any color can be marked as grout with its **grout** button. The rest goes light → dark (a dark layer covers a light one well); reorder with ↑ ↓.
-- **No thin towers:** raised parts narrower than **Thinnest part** (1.2 mm by default), or more than twice as tall as they are wide, are lowered to what is around them – stray pixels, slivers along tile edges, tiny tiles in high colors. Grooves such as grout lines are never filled. The preview shows the model as it will print.
+- **No thin towers:** raised parts narrower than **Thinnest part** (1.2 mm by default), or more than twice as tall as they are wide, are lowered to what is around them – stray pixels, slivers along tile edges, tiny tiles in high colors. Grooves such as grout lines are never filled. The preview shows the model as it will print – from the top, or in **3D**: drag to turn it, zoom with the wheel or two fingers, and make the heights look taller to see the color bands.
 - **Download 3MF:** the model with the filament changes built in – PrusaSlicer reads them and puts M600 at the right layers, so you just slice and print. Bambu Studio and OrcaSlicer read only the shape from a 3MF they didn't write: add the changes there from the plan.
 - **STL** (the shape only) and **Plan**: which filament to start with and at which layer (and height) to change to the next, with where to add the changes in PrusaSlicer, Bambu Studio, OrcaSlicer and Cura.
 - **Detail** sets the smallest step (about your nozzle width). The raster app uses the image's colors; photos with many colors are snapped to the palette.
@@ -118,7 +118,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
-- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts)
+- `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`: the Czech texts)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket
   - `patterns.ts`: tiling patterns
