@@ -1,14 +1,12 @@
 [
- "What’s new",
- "Version {v} – what’s new",
- "Updated to version {v} – click {v} in the corner to see what’s new.",
- "The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.",
- "3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.",
- "Examples to start from, and a short guide for newcomers.",
- "German, Slovak and Polish.",
- "Heavy work – mosaics, tracing, 3D models – no longer holds up the page.",
- "History: name and pin versions; see their size and colors.",
- "Big images can be scaled down when opened.",
- "Better keyboard and screen-reader support.",
- "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link."
+ "Could not sign in to Discord.",
+ "Post to the channel",
+ "Post the picture in this channel, as a reply to the message it came from",
+ "That image is no longer available in Discord.",
+ "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.",
+ "Posted to the channel.",
+ "The picture is too big for Discord – make it smaller (Image › Resize image).",
+ "Only someone in this channel’s Activity can post here.",
+ "Discord did not take the picture – does the bot have permission to post here?",
+ "Could not reach the server."
 ]

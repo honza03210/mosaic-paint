@@ -1578,4 +1578,26 @@ export const DE: Record<string, string> = {
     'Bessere Unterstützung für Tastatur und Bildschirmleser.',
   'The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.':
     'Der Vektor-Editor: Linien, Fliesenmuster, der Farbeimer, Paletten, Übersichten, Drucken in Originalgröße und Teilen per Link.',
+  'Could not sign in to Discord.':
+    'Anmeldung bei Discord fehlgeschlagen.',
+  'Post to the channel':
+    'In den Kanal posten',
+  'Post the picture in this channel, as a reply to the message it came from':
+    'Das Bild in diesem Kanal posten, als Antwort auf die Nachricht, aus der es stammt',
+  'That image is no longer available in Discord.':
+    'Dieses Bild ist in Discord nicht mehr verfügbar.',
+  'Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.':
+    'Rechtsklick auf ein Bild im Chat › Apps › Edit image, um es hier zu bearbeiten – oder öffnen oder fügen Sie eines ein.',
+  'Posted to the channel.':
+    'In den Kanal gepostet.',
+  'The picture is too big for Discord – make it smaller (Image › Resize image).':
+    'Das Bild ist zu groß für Discord – verkleinern Sie es (Bild › Bildgröße ändern).',
+  'Only someone in this channel’s Activity can post here.':
+    'Nur jemand in der Aktivität dieses Kanals kann hier posten.',
+  'Discord did not take the picture – does the bot have permission to post here?':
+    'Discord hat das Bild nicht angenommen – darf der Bot hier posten?',
+  'Could not reach the server.':
+    'Der Server ist nicht erreichbar.',
+  'Could not connect to Discord.':
+    'Keine Verbindung zu Discord.',
 };

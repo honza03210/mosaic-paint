@@ -11,6 +11,10 @@ Switch between them with **Vector | Raster** in the top bar. They look and work 
 It can be installed as an app ("Install app" button, or the browser's install icon), and then it also works offline.
 To run it from a download instead, open `index.html` (or `raster.html`) in Chrome / Edge / Firefox; there's no build step.
 
+## Discord
+
+The raster editor can also run inside Discord as an Activity: right-click a message with an image › Apps › **Edit image**, draw on it, and **Post to the channel**. The backend is a small Cloudflare Worker (free plan) in [`discord/`](discord/README.md), with step-by-step setup.
+
 ## Getting started
 
 The first time you open an app, a short guide points out its parts; the **?** button in the top bar shows it again. **Examples…** opens ready-made projects to look at or start from: a coaster, a sign and “Your photo” (load a photo, then Mosaic from photo) in the vector app, a pixel-art heart and a sunset mosaic in the raster app (your current work is kept in History).
@@ -130,6 +134,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
 - `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the examples dialog (`examples-ui.ts`) and the guide (`guide.ts`), print pages, color legends and CSV files (`printing.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`, `i18n-de.ts`, `i18n-sk.ts`, `i18n-pl.ts`: the texts of each language, keyed by the English text), running jobs in the worker (`work.ts`)
+- `src/discord/activity.ts`: the editor as a Discord Activity (`dist/activity.js`, loaded only inside Discord); its backend, a Cloudflare Worker, is in `discord/`
 - `src/worker/`: the worker – its jobs (`jobs.ts`: plain data in and out) and its entry point (`worker.ts`)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket

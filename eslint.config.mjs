@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 import globals from 'globals';
 
 export default tseslint.config(
-  { ignores: ['dist/**', 'node_modules/**', 'test-results/**', 'playwright-report/**'] },
+  { ignores: ['dist/**', 'node_modules/**', 'test-results/**', 'playwright-report/**', 'discord/public/**', 'discord/node_modules/**', 'discord/.wrangler/**'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -21,7 +21,7 @@ export default tseslint.config(
   },
   {
     // build script, unit tests, slicer check: Node
-    files: ['*.mjs', '*.js', 'tests/**/*.mjs', 'tests/**/*.js'],
+    files: ['*.mjs', '*.js', 'tests/**/*.mjs', 'tests/**/*.js', 'discord/*.mjs'],
     languageOptions: { globals: { ...globals.node } },
     rules: { '@typescript-eslint/no-require-imports': 'off' },
   },

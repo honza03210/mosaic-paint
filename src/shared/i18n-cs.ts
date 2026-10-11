@@ -1578,4 +1578,26 @@ export const CS: Record<string, string> = {
     'Lepší podpora klávesnice a čteček obrazovky.',
   'The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.':
     'Vektorový editor: čáry, vzory dlaždic, kbelík, palety, přehledy, tisk ve skutečné velikosti a sdílení odkazem.',
+  'Could not sign in to Discord.':
+    'Přihlášení k Discordu se nezdařilo.',
+  'Post to the channel':
+    'Poslat do kanálu',
+  'Post the picture in this channel, as a reply to the message it came from':
+    'Poslat obrázek do tohoto kanálu jako odpověď na zprávu, ze které pochází',
+  'That image is no longer available in Discord.':
+    'Ten obrázek už na Discordu není k dispozici.',
+  'Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.':
+    'Klikněte pravým tlačítkem na obrázek v chatu › Aplikace › Edit image a upravte ho tady – nebo nějaký otevřete či vložte.',
+  'Posted to the channel.':
+    'Posláno do kanálu.',
+  'The picture is too big for Discord – make it smaller (Image › Resize image).':
+    'Obrázek je pro Discord příliš velký – zmenšete ho (Obrázek › Změnit velikost obrázku).',
+  'Only someone in this channel’s Activity can post here.':
+    'Sem může posílat jen někdo z aktivity tohoto kanálu.',
+  'Discord did not take the picture – does the bot have permission to post here?':
+    'Discord obrázek nepřijal – má bot oprávnění sem psát?',
+  'Could not reach the server.':
+    'Server není dostupný.',
+  'Could not connect to Discord.':
+    'Spojení s Discordem se nezdařilo.',
 };

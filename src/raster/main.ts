@@ -3,7 +3,8 @@
 import '../shared/i18n-start.ts';
 import '../shared/a11y.ts';
 import * as R from '../lib/raster.ts';
-import { $$ } from '../shared/ui.ts';
+import { $$, toast } from '../shared/ui.ts';
+import { canvasToPng } from '../shared/clipboard.ts';
 import { initShell } from '../shared/shell.ts';
 import { state, rt, loadPrefs } from './state.ts';
 import { stage, doc, dctx, getImage, toDoc, fitView } from './canvas.ts';
@@ -11,7 +12,7 @@ import { resetHistory, afterChange, updateTitle, startAutosave, loadAutosave, co
 import { renderPalette, renderPaletteSelect } from './palette.ts';
 import { selectionChanged, pasteImage } from './select.ts';
 import { setTool, setMode } from './tools.ts';
-import { loadCanvas, fileToCanvas } from './files.ts';
+import { loadCanvas, fileToCanvas, openImageFile } from './files.ts';
 import { bindPanel } from './panel.ts';
 import { bindInput } from './input.ts';
 import { bindExport3D } from './export3d.ts';
@@ -83,6 +84,13 @@ const RZ = {
     loadCanvas(c, 'test.png');
   },
 };
+Object.assign(RZ, {
+  // for the Discord Activity (src/discord/activity.ts): open a picture, get the image as PNG, messages and texts
+  openImage: async (blob: Blob, name: string) => { await openImageFile(new File([blob], name, { type: blob.type })); },
+  png: () => canvasToPng(doc),
+  toast,
+  t,
+});
 (window as any).RZ = RZ;
 
 (async () => {
@@ -99,4 +107,10 @@ const RZ = {
   selectionChanged();
   RZ.ready = true;
   fromHash();
+  // inside Discord (an Activity): the part that talks to Discord, loaded only there
+  if (location.hostname.endsWith('discordsays.com') || (window as any).__discordSdk) {
+    const s = document.createElement('script');
+    s.src = 'dist/activity.js';
+    document.head.append(s);
+  }
 })();

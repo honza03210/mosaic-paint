@@ -1578,4 +1578,26 @@ export const SK: Record<string, string> = {
     'Lepšia podpora klávesnice a čítačiek obrazovky.',
   'The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.':
     'Vektorový editor: čiary, vzory dlaždíc, vedro, palety, prehľady, tlač v skutočnej veľkosti a zdieľanie odkazom.',
+  'Could not sign in to Discord.':
+    'Prihlásenie do Discordu zlyhalo.',
+  'Post to the channel':
+    'Poslať do kanála',
+  'Post the picture in this channel, as a reply to the message it came from':
+    'Poslať obrázok do tohto kanála ako odpoveď na správu, z ktorej pochádza',
+  'That image is no longer available in Discord.':
+    'Ten obrázok už na Discorde nie je k dispozícii.',
+  'Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.':
+    'Kliknite pravým tlačidlom na obrázok v chate › Aplikácie › Edit image a upravte ho tu – alebo nejaký otvorte či vložte.',
+  'Posted to the channel.':
+    'Poslané do kanála.',
+  'The picture is too big for Discord – make it smaller (Image › Resize image).':
+    'Obrázok je pre Discord príliš veľký – zmenšite ho (Obrázok › Zmeniť veľkosť obrázka).',
+  'Only someone in this channel’s Activity can post here.':
+    'Sem môže posielať len niekto z aktivity tohto kanála.',
+  'Discord did not take the picture – does the bot have permission to post here?':
+    'Discord obrázok neprijal – má bot oprávnenie sem písať?',
+  'Could not reach the server.':
+    'Server nie je dostupný.',
+  'Could not connect to Discord.':
+    'Spojenie s Discordom zlyhalo.',
 };

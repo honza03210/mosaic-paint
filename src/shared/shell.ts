@@ -33,7 +33,8 @@ export function initShell(stage: HTMLElement): void {
     $('#btn-install').hidden = true;
   };
   window.addEventListener('appinstalled', () => { $('#btn-install').hidden = true; toast(t('Installed – Mosaic Paint now works offline too.')); });
-  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  // offline support – not inside Discord, where the Activity is always online
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) && !location.hostname.endsWith('discordsays.com')) {
     navigator.serviceWorker.register('sw.js').catch(() => { /* offline support is optional */ });
   }
 }

@@ -795,7 +795,18 @@
     "History: name and pin versions; see their size and colors.": "Historie: verze můžete pojmenovat a připnout; vidíte jejich velikost a barvy.",
     "Big images can be scaled down when opened.": "Velké obrázky lze při otevření zmenšit.",
     "Better keyboard and screen-reader support.": "Lepší podpora klávesnice a čteček obrazovky.",
-    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Vektorový editor: čáry, vzory dlaždic, kbelík, palety, přehledy, tisk ve skutečné velikosti a sdílení odkazem."
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Vektorový editor: čáry, vzory dlaždic, kbelík, palety, přehledy, tisk ve skutečné velikosti a sdílení odkazem.",
+    "Could not sign in to Discord.": "Přihlášení k Discordu se nezdařilo.",
+    "Post to the channel": "Poslat do kanálu",
+    "Post the picture in this channel, as a reply to the message it came from": "Poslat obrázek do tohoto kanálu jako odpověď na zprávu, ze které pochází",
+    "That image is no longer available in Discord.": "Ten obrázek už na Discordu není k dispozici.",
+    "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Klikněte pravým tlačítkem na obrázek v chatu › Aplikace › Edit image a upravte ho tady – nebo nějaký otevřete či vložte.",
+    "Posted to the channel.": "Posláno do kanálu.",
+    "The picture is too big for Discord – make it smaller (Image › Resize image).": "Obrázek je pro Discord příliš velký – zmenšete ho (Obrázek › Změnit velikost obrázku).",
+    "Only someone in this channel’s Activity can post here.": "Sem může posílat jen někdo z aktivity tohoto kanálu.",
+    "Discord did not take the picture – does the bot have permission to post here?": "Discord obrázek nepřijal – má bot oprávnění sem psát?",
+    "Could not reach the server.": "Server není dostupný.",
+    "Could not connect to Discord.": "Spojení s Discordem se nezdařilo."
   };
 
   // src/shared/i18n-de.ts
@@ -1588,7 +1599,18 @@
     "History: name and pin versions; see their size and colors.": "Verlauf: Versionen benennen und anheften; ihre Größe und Farben sehen.",
     "Big images can be scaled down when opened.": "Große Bilder lassen sich beim Öffnen verkleinern.",
     "Better keyboard and screen-reader support.": "Bessere Unterstützung für Tastatur und Bildschirmleser.",
-    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Der Vektor-Editor: Linien, Fliesenmuster, der Farbeimer, Paletten, Übersichten, Drucken in Originalgröße und Teilen per Link."
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Der Vektor-Editor: Linien, Fliesenmuster, der Farbeimer, Paletten, Übersichten, Drucken in Originalgröße und Teilen per Link.",
+    "Could not sign in to Discord.": "Anmeldung bei Discord fehlgeschlagen.",
+    "Post to the channel": "In den Kanal posten",
+    "Post the picture in this channel, as a reply to the message it came from": "Das Bild in diesem Kanal posten, als Antwort auf die Nachricht, aus der es stammt",
+    "That image is no longer available in Discord.": "Dieses Bild ist in Discord nicht mehr verfügbar.",
+    "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Rechtsklick auf ein Bild im Chat › Apps › Edit image, um es hier zu bearbeiten – oder öffnen oder fügen Sie eines ein.",
+    "Posted to the channel.": "In den Kanal gepostet.",
+    "The picture is too big for Discord – make it smaller (Image › Resize image).": "Das Bild ist zu groß für Discord – verkleinern Sie es (Bild › Bildgröße ändern).",
+    "Only someone in this channel’s Activity can post here.": "Nur jemand in der Aktivität dieses Kanals kann hier posten.",
+    "Discord did not take the picture – does the bot have permission to post here?": "Discord hat das Bild nicht angenommen – darf der Bot hier posten?",
+    "Could not reach the server.": "Der Server ist nicht erreichbar.",
+    "Could not connect to Discord.": "Keine Verbindung zu Discord."
   };
 
   // src/shared/i18n-sk.ts
@@ -2381,7 +2403,18 @@
     "History: name and pin versions; see their size and colors.": "História: verzie môžete pomenovať a pripnúť; vidíte ich veľkosť a farby.",
     "Big images can be scaled down when opened.": "Veľké obrázky sa dajú pri otvorení zmenšiť.",
     "Better keyboard and screen-reader support.": "Lepšia podpora klávesnice a čítačiek obrazovky.",
-    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Vektorový editor: čiary, vzory dlaždíc, vedro, palety, prehľady, tlač v skutočnej veľkosti a zdieľanie odkazom."
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Vektorový editor: čiary, vzory dlaždíc, vedro, palety, prehľady, tlač v skutočnej veľkosti a zdieľanie odkazom.",
+    "Could not sign in to Discord.": "Prihlásenie do Discordu zlyhalo.",
+    "Post to the channel": "Poslať do kanála",
+    "Post the picture in this channel, as a reply to the message it came from": "Poslať obrázok do tohto kanála ako odpoveď na správu, z ktorej pochádza",
+    "That image is no longer available in Discord.": "Ten obrázok už na Discorde nie je k dispozícii.",
+    "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Kliknite pravým tlačidlom na obrázok v chate › Aplikácie › Edit image a upravte ho tu – alebo nejaký otvorte či vložte.",
+    "Posted to the channel.": "Poslané do kanála.",
+    "The picture is too big for Discord – make it smaller (Image › Resize image).": "Obrázok je pre Discord príliš veľký – zmenšite ho (Obrázok › Zmeniť veľkosť obrázka).",
+    "Only someone in this channel’s Activity can post here.": "Sem môže posielať len niekto z aktivity tohto kanála.",
+    "Discord did not take the picture – does the bot have permission to post here?": "Discord obrázok neprijal – má bot oprávnenie sem písať?",
+    "Could not reach the server.": "Server nie je dostupný.",
+    "Could not connect to Discord.": "Spojenie s Discordom zlyhalo."
   };
 
   // src/shared/i18n-pl.ts
@@ -3174,7 +3207,18 @@
     "History: name and pin versions; see their size and colors.": "Historia: nazywaj i przypinaj wersje; zobacz ich rozmiar i kolory.",
     "Big images can be scaled down when opened.": "Duże obrazy można zmniejszyć przy otwieraniu.",
     "Better keyboard and screen-reader support.": "Lepsza obsługa klawiatury i czytników ekranu.",
-    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Edytor wektorowy: linie, wzory płytek, wiadro z farbą, palety, raporty, druk w rzeczywistym rozmiarze i udostępnianie linkiem."
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Edytor wektorowy: linie, wzory płytek, wiadro z farbą, palety, raporty, druk w rzeczywistym rozmiarze i udostępnianie linkiem.",
+    "Could not sign in to Discord.": "Nie udało się zalogować do Discorda.",
+    "Post to the channel": "Wyślij na kanał",
+    "Post the picture in this channel, as a reply to the message it came from": "Wyślij obraz na ten kanał jako odpowiedź na wiadomość, z której pochodzi",
+    "That image is no longer available in Discord.": "Ten obraz nie jest już dostępny na Discordzie.",
+    "Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.": "Kliknij prawym przyciskiem obraz na czacie › Aplikacje › Edit image, aby edytować go tutaj – albo otwórz lub wklej jakiś.",
+    "Posted to the channel.": "Wysłano na kanał.",
+    "The picture is too big for Discord – make it smaller (Image › Resize image).": "Obraz jest za duży dla Discorda – zmniejsz go (Obraz › Zmień rozmiar obrazu).",
+    "Only someone in this channel’s Activity can post here.": "Wysyłać tutaj może tylko ktoś z aktywności tego kanału.",
+    "Discord did not take the picture – does the bot have permission to post here?": "Discord nie przyjął obrazu – czy bot ma uprawnienia do pisania tutaj?",
+    "Could not reach the server.": "Nie można połączyć się z serwerem.",
+    "Could not connect to Discord.": "Nie udało się połączyć z Discordem."
   };
 
   // src/shared/i18n.ts
@@ -8249,7 +8293,7 @@ ${sections.join("\n")}
       $("#btn-install").hidden = true;
       toast(t("Installed – Mosaic Paint now works offline too."));
     });
-    if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+    if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && !location.hostname.endsWith("discordsays.com")) {
       navigator.serviceWorker.register("sw.js").catch(() => {
       });
     }

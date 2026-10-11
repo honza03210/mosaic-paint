@@ -1,0 +1,14 @@
+{
+  "name": "mosaic-paint-discord",
+  "private": true,
+  "description": "Mosaic Paint as a Discord Activity: edit an image from the chat and post it back (Cloudflare Worker)",
+  "scripts": {
+    "prepare-assets": "node prepare.mjs",
+    "dev": "npm run prepare-assets && wrangler dev",
+    "deploy": "npm run prepare-assets && wrangler deploy",
+    "register": "node register.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.20.0"
+  }
+}

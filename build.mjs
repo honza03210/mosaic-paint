@@ -1,5 +1,6 @@
 // Bundles the two apps into one classic script each, so they also run from file://:
-// src/main.ts → dist/mosaic.js (vector, index.html) and src/raster/main.ts → dist/raster.js (raster.html).
+// src/main.ts → dist/mosaic.js (vector, index.html) and src/raster/main.ts → dist/raster.js (raster.html);
+// src/discord/activity.ts → dist/activity.js, which the raster app loads only when it runs inside Discord.
 // The worker (src/worker/worker.ts) is bundled first and goes into each app as a string (import
 // 'worker-source'): the apps start it from a blob URL, which works from file:// too.
 // The version in package.json goes into the apps (__VERSION__), and the offline cache in sw.js is named
@@ -39,7 +40,7 @@ const stamp = { name: 'stamp-cache', setup(build) { build.onEnd((r) => { if (!r.
 
 const options = {
   ...common,
-  entryPoints: { mosaic: 'src/main.ts', raster: 'src/raster/main.ts' },
+  entryPoints: { mosaic: 'src/main.ts', raster: 'src/raster/main.ts', activity: 'src/discord/activity.ts' },
   outdir: 'dist',
   format: 'iife',
   sourcemap: true,

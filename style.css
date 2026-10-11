@@ -364,3 +364,6 @@ body.working, body.working * { cursor: progress !important; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* inside Discord (the Activity): no app switch, installing or share links – the post button instead */
+.in-discord .app-switch, .in-discord #btn-install, .in-discord #btn-share { display: none !important; }

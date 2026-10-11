@@ -1,0 +1,18 @@
+# Cloudflare Worker for the Discord Activity (free plan). Secrets are set with `npx wrangler secret put …`
+# (see README.md); the editor's files come from ./public, made by `npm run prepare-assets`.
+name = "mosaic-paint-discord"
+main = "src/worker.ts"
+compatibility_date = "2025-06-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[durable_objects.bindings]]
+name = "PENDING"
+class_name = "PendingEdits"
+
+# SQLite-backed Durable Objects are on the free plan
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["PendingEdits"]
