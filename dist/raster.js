@@ -647,7 +647,13 @@
     "landscape": "na šířku",
     "Vector": "Vektor",
     "Raster": "Rastr",
-    "Fit": "Vše"
+    "Fit": "Vše",
+    "Thinnest part": "Nejtenčí část",
+    "Raised parts narrower than this – or more than twice as tall as they are wide – are lowered to what is around them, so nothing prints as a thin tower": "Vyvýšená místa užší než tato hodnota – nebo víc než dvakrát vyšší, než jsou široká – se sníží na úroveň okolí, aby se nic netisklo jako tenká věžička",
+    "Grout colors are always printed first, so the lines between the tiles stay low.": "Barvy spár se tisknou vždy jako první, takže čáry mezi dlaždicemi zůstanou nízko.",
+    "Grout / lines: always printed first, so they stay low": "Spáry / čáry: tisknou se vždy jako první, takže zůstanou nízko",
+    "grout": "spáry",
+    "{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower": "{n} {n|tenký dílek snížen|tenké dílky sníženy|tenkých dílků sníženo}, aby se nic netisklo jako tenká věžička"
   };
 
   // src/shared/i18n.ts
@@ -3570,6 +3576,86 @@
     }
     return { vertices, triangles, levels };
   }
+  function removeTowers(input, w, h, cell, s, o) {
+    const grid = Int16Array.from(input), n4 = w * h, label = new Int32Array(n4), dist2 = new Float32Array(n4);
+    const heightOf = (lv) => (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight;
+    let lowered = 0;
+    for (let round = 0; round < 12; round++) {
+      label.fill(-1);
+      const levels = [], stack = [];
+      for (let p = 0; p < n4; p++) {
+        if (label[p] >= 0) continue;
+        const id = levels.length, lv = grid[p];
+        levels.push(lv);
+        label[p] = id;
+        stack.push(p);
+        while (stack.length) {
+          const q = stack.pop(), x = q % w;
+          for (const r of [x > 0 ? q - 1 : -1, x < w - 1 ? q + 1 : -1, q - w, q + w]) {
+            if (r < 0 || r >= n4 || label[r] >= 0 || grid[r] !== lv) continue;
+            label[r] = id;
+            stack.push(r);
+          }
+        }
+      }
+      const D = Math.SQRT2;
+      for (let p = 0; p < n4; p++) {
+        const x = p % w, y = p / w | 0, l = label[p];
+        const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label[p - 1] !== l || label[p + 1] !== l || label[p - w] !== l || label[p + w] !== l;
+        dist2[p] = edge ? 1 : 1e9;
+      }
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const p = y * w + x;
+        if (dist2[p] <= 1) continue;
+        dist2[p] = Math.min(dist2[p], dist2[p - 1] + 1, dist2[p - w] + 1, dist2[p - w - 1] + D, dist2[p - w + 1] + D);
+      }
+      for (let y = h - 1; y >= 0; y--) for (let x = w - 1; x >= 0; x--) {
+        const p = y * w + x;
+        if (dist2[p] <= 1) continue;
+        dist2[p] = Math.min(dist2[p], dist2[p + 1] + 1, dist2[p + w] + 1, dist2[p + w + 1] + D, dist2[p + w - 1] + D);
+      }
+      const widest = new Float32Array(levels.length);
+      for (let p = 0; p < n4; p++) if (dist2[p] > widest[label[p]]) widest[label[p]] = dist2[p];
+      const borders = levels.map(() => /* @__PURE__ */ new Map());
+      const lowest = new Float64Array(levels.length).fill(Infinity);
+      const meet = (a, b) => {
+        const la = label[a], lb = label[b];
+        if (la === lb) return;
+        const ga = grid[a], gb = grid[b];
+        lowest[la] = Math.min(lowest[la], heightOf(gb));
+        lowest[lb] = Math.min(lowest[lb], heightOf(ga));
+        if (gb < ga) borders[la].set(gb, (borders[la].get(gb) || 0) + 1);
+        if (ga < gb) borders[lb].set(ga, (borders[lb].get(ga) || 0) + 1);
+      };
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const p = y * w + x;
+        if (x < w - 1) meet(p, p + 1);
+        if (y < h - 1) meet(p, p + w);
+      }
+      const target = new Int16Array(levels.length).fill(-32768);
+      let changed = 0;
+      levels.forEach((lv, id) => {
+        const relief = heightOf(lv) - lowest[id];
+        if (!(relief > 1e-9) || !borders[id].size) return;
+        const width = Math.max(1, 2 * widest[id] - 1) * cell;
+        if (width >= o.minWidth && relief <= o.maxRatio * width) return;
+        let best = -2, bestN = -1;
+        for (const [nl, cnt] of borders[id]) if (cnt > bestN || cnt === bestN && nl > best) {
+          best = nl;
+          bestN = cnt;
+        }
+        target[id] = best;
+        changed++;
+      });
+      if (!changed) break;
+      for (let p = 0; p < n4; p++) {
+        const tl = target[label[p]];
+        if (tl !== -32768) grid[p] = tl;
+      }
+      lowered += changed;
+    }
+    return { grid, lowered };
+  }
   function stl(mesh, name = "Mosaic Paint") {
     const V = mesh.vertices, T = mesh.triangles, n4 = T.length / 3, buf = new ArrayBuffer(84 + n4 * 50), dv = new DataView(buf);
     const header = `${name} – multi-color by layer`.slice(0, 80);
@@ -3722,7 +3808,8 @@
   // src/shared/export3d.ts
   var MAX_CELLS = 4e6;
   var MANY_COLORS = 16;
-  var opts = { width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3 };
+  var MAX_RATIO = 2;
+  var opts = { width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3, minWidth: 1.2 };
   try {
     Object.assign(opts, JSON.parse(lsGet("mz-3d") || "{}"));
   } catch {
@@ -3735,6 +3822,7 @@
 <div class="row">
   <label>${t("Size")} <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
   <label title="${t("Size of the model’s smallest step – about your nozzle width")}">${t("Detail")} <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
+  <label title="${t("Raised parts narrower than this – or more than twice as tall as they are wide – are lowered to what is around them, so nothing prints as a thin tower")}">${t("Thinnest part")} <input id="m3-min" type="number" min="0" max="20" step="0.1"> mm</label>
 </div>
 <div class="row">
   <label>${t("Layer height")} <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
@@ -3750,6 +3838,7 @@
       <button id="m3-dark">${t("Dark → light")}</button>
     </div>
     <div id="m3-order"></div>
+    <p class="note">${t("Grout colors are always printed first, so the lines between the tiles stay low.")}</p>
   </div>
 </div>
 <p class="note" id="m3-summary"></p>
@@ -3767,14 +3856,47 @@
       if (e.target === dlg) dlg.close();
     });
     let colors = [], counts2 = [], grid = null, gw = 0, gh = 0, cell = opts.detail;
-    let order = [], note = "", lines = /* @__PURE__ */ new Set();
+    let order = [], note = "", lines = /* @__PURE__ */ new Set(), version = 0;
+    const groutChoice = /* @__PURE__ */ new Map();
+    const isLine = (ci) => lines.has(colors[ci]);
     const settings = () => ({ layerHeight: opts.layerHeight, layersPerColor: opts.layersPerColor, baseLayers: opts.baseLayers });
-    const used = () => order.filter((i) => counts2[i] > 0);
     const size = () => {
       const a = host.aspect();
       return { w: opts.width, h: opts.width / a };
     };
-    const byBrightness = (lightFirst) => (a, b) => +lines.has(colors[b]) - +lines.has(colors[a]) || (luminance(colors[b]) - luminance(colors[a])) * (lightFirst ? 1 : -1);
+    const normalize = () => {
+      order = [...order.filter(isLine), ...order.filter((ci) => !isLine(ci))];
+    };
+    let cached = null, cachedKey = "";
+    function model() {
+      const key = [version, order.join(), opts.layerHeight, opts.layersPerColor, opts.baseLayers, opts.minWidth, cell].join("|");
+      if (cached && key === cachedKey) return cached;
+      let list = order.filter((i) => counts2[i] > 0), out = { list, grid: new Int16Array(0), counts: [], lowered: 0 };
+      const colorGrid = Int16Array.from(grid);
+      let lowered = 0;
+      for (let round = 0; round < 4; round++) {
+        const rank = new Int16Array(colors.length).fill(-1);
+        list.forEach((ci, k) => {
+          rank[ci] = k;
+        });
+        const levels = colorGrid.map((v) => v < 0 ? -1 : rank[v]);
+        const res = removeTowers(levels, gw, gh, cell, settings(), { minWidth: opts.minWidth, maxRatio: MAX_RATIO });
+        lowered += res.lowered;
+        const c = list.map(() => 0);
+        for (let p = 0; p < res.grid.length; p++) {
+          const lv = res.grid[p];
+          if (lv >= 0) c[lv]++;
+          colorGrid[p] = lv < 0 ? -1 : list[lv];
+        }
+        out = { list, grid: res.grid, counts: c, lowered };
+        if (c.every((n4) => n4 > 0)) break;
+        list = list.filter((_, k) => c[k] > 0);
+      }
+      cached = out;
+      cachedKey = key;
+      return out;
+    }
+    const byBrightness = (lightFirst) => (a, b) => +isLine(b) - +isLine(a) || (luminance(colors[b]) - luminance(colors[a])) * (lightFirst ? 1 : -1);
     function sortBy(lightFirst) {
       order.sort(byBrightness(lightFirst));
       render3();
@@ -3792,22 +3914,36 @@
       colors = cs.colors;
       note = cs.note || "";
       lines = new Set(cs.lines || []);
+      for (const [col, on2] of groutChoice) {
+        if (on2) lines.add(col);
+        else lines.delete(col);
+      }
       ({ grid, counts: counts2 } = classify(img, colors));
+      version++;
       const known = prev.filter((c2) => colors.includes(c2)).map((c2) => colors.indexOf(c2));
       const fresh = colors.map((_, i) => i).filter((i) => !known.includes(i)).sort(byBrightness(true));
       order = [...known, ...fresh];
+      normalize();
       render3();
     }
     const rows2 = /* @__PURE__ */ new Map();
     function move(c, d) {
-      const list = used(), k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
-      if (k < 0 || other == null) return;
+      const list = model().list, k = list.findIndex((ci) => colors[ci] === c), other = list[k + d];
+      if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
       const a = order.indexOf(list[k]), b = order.indexOf(other);
       [order[a], order[b]] = [order[b], order[a]];
       render3();
     }
+    function toggleGrout(c) {
+      const on2 = !lines.has(c);
+      groutChoice.set(c, on2);
+      if (on2) lines.add(c);
+      else lines.delete(c);
+      normalize();
+      render3();
+    }
     function render3() {
-      const s = settings(), list = used(), { w, h } = size();
+      const s = settings(), m = model(), list = m.list, { w, h } = size();
       $("#m3-w").value = f2(w);
       $("#m3-h").value = f2(h);
       const warn = [
@@ -3829,25 +3965,27 @@
         if (!row) {
           row = document.createElement("div");
           row.className = "m3-row";
-          row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines.has(c) ? `<span class="tag">${t("lines")}</span>` : ""}<span class="note"></span><button title="${t("Print earlier (lower)")}">↑</button><button title="${t("Print later (higher)")}">↓</button>`;
-          const [up2, down2] = row.querySelectorAll("button");
+          row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code><button class="tag" title="${t("Grout / lines: always printed first, so they stay low")}">${t("grout")}</button><span class="note"></span><button title="${t("Print earlier (lower)")}">↑</button><button title="${t("Print later (higher)")}">↓</button>`;
+          const [tag2, up2, down2] = row.querySelectorAll("button");
+          tag2.onclick = () => toggleGrout(c);
           up2.onclick = () => move(c, -1);
           down2.onclick = () => move(c, 1);
           rows2.set(c, row);
         }
-        const share = num(Math.max(0.1, +(counts2[ci] / total2 * 100).toFixed(1)));
+        const share = num(Math.max(0.1, +(m.counts[k] / total2 * 100).toFixed(1)));
         row.querySelector(".note").textContent = p.z == null ? t("{share} % · layers {from}–{to}", { share, from: p.fromLayer, to: p.toLayer }) : t("{share} % · layers {from}–{to} · change at Z {z}", { share, from: p.fromLayer, to: p.toLayer, z: num(p.z, 2) });
-        const [up, down] = row.querySelectorAll("button");
-        up.disabled = k === 0;
-        down.disabled = k === list.length - 1;
+        const [tag, up, down] = row.querySelectorAll("button");
+        tag.classList.toggle("on", isLine(ci));
+        up.disabled = k === 0 || isLine(list[k - 1]) !== isLine(ci);
+        down.disabled = k === list.length - 1 || isLine(list[k + 1]) !== isLine(ci);
         if (box.children[k] !== row) box.insertBefore(row, box.children[k] || null);
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
-      $("#m3-summary").textContent = list.length ? t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 }) + (unpainted ? " · " + (opts.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t("unpainted parts are left open")) : "") : t("Nothing is painted yet.");
+      $("#m3-summary").textContent = list.length ? t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 }) + (unpainted ? " · " + (opts.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t("unpainted parts are left open")) : "") + (m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "") : t("Nothing is painted yet.");
       $("#m3-go").disabled = $("#m3-stl").disabled = $("#m3-plan").disabled = !list.length;
-      drawPreview();
+      drawPreview(m);
     }
-    function drawPreview() {
+    function drawPreview(m) {
       const cv = $("#m3-preview");
       if (!grid) return;
       const k = Math.min(1, 300 / Math.max(gw, gh));
@@ -3856,25 +3994,18 @@
       const small = document.createElement("canvas");
       small.width = gw;
       small.height = gh;
-      const sx = small.getContext("2d"), im = sx.createImageData(gw, gh), rgb = colors.map((c) => rgba(c));
-      for (let p = 0; p < grid.length; p++) if (grid[p] >= 0) im.data.set(rgb[grid[p]], p * 4);
+      const sx = small.getContext("2d"), im = sx.createImageData(gw, gh), rgb = m.list.map((ci) => rgba(colors[ci]));
+      for (let p = 0; p < m.grid.length; p++) if (m.grid[p] >= 0) im.data.set(rgb[m.grid[p]], p * 4);
       sx.putImageData(im, 0, 0);
       const x = cv.getContext("2d");
       x.imageSmoothingEnabled = k < 1;
       x.drawImage(small, 0, 0, cv.width, cv.height);
     }
-    function levels() {
-      const rank = new Int16Array(colors.length).fill(-1);
-      used().forEach((ci, k) => {
-        rank[ci] = k;
-      });
-      return grid.map((v) => v < 0 ? -1 : rank[v]);
-    }
     const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
-    const plan = () => colorPlan(used().map((i) => colors[i]), settings());
-    const mesh = () => closedMesh(levels(), gw, gh, cell, settings());
+    const plan = () => colorPlan(model().list.map((i) => colors[i]), settings());
+    const mesh = () => closedMesh(model().grid, gw, gh, cell, settings());
     function planText() {
-      const s = settings(), list = used(), plan2 = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
+      const s = settings(), list = model().list, plan2 = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
       const v = { name: base(), w: f2(w), h: f2(h), lh: s.layerHeight, lpc: s.layersPerColor, base: s.baseLayers, total: modelHeight(list.length, s), layers: topLayer(list.length - 1, s) };
       const first = plan2[0];
       const lines2 = [
@@ -3903,7 +4034,7 @@
       i.value = opts[key];
       i.onchange = () => {
         let v = +i.value;
-        if (Number.isFinite(v) && v > 0 || key === "baseLayers" && v === 0) {
+        if (Number.isFinite(v) && v > 0 || (key === "baseLayers" || key === "minWidth") && v === 0) {
           v = clamp(whole ? Math.round(v) : v, min, max);
           opts[key] = v;
           saveOpts();
@@ -3914,6 +4045,7 @@
       };
     };
     bindNum("#m3-detail", "detail", 0.1, 5, false, true);
+    bindNum("#m3-min", "minWidth", 0, 20, false, false);
     bindNum("#m3-lh", "layerHeight", 0.04, 1, false, false);
     bindNum("#m3-lpc", "layersPerColor", 1, 50, true, false);
     bindNum("#m3-base", "baseLayers", 0, 50, true, false);
@@ -3976,8 +4108,9 @@
       },
       colors() {
         const img = getImage(), own = uniqueColors(img, MAX_COLORS);
-        if (own) return { colors: own };
-        if (state.palette.length) return { colors: [...state.palette], note: t("The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).") };
+        const grout = (list) => list.includes(state.mosaic.groutColor) ? [state.mosaic.groutColor] : [];
+        if (own) return { colors: own, lines: grout(own) };
+        if (state.palette.length) return { colors: [...state.palette], lines: grout(state.palette), note: t("The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).") };
         return { colors: suggestColors(img, 8), note: t("The picture has many colors: it is snapped to 8 colors suggested from it.") };
       },
       fileName: () => rt.fileName

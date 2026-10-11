@@ -1294,4 +1294,16 @@ export const CS: Record<string, string> = {
     'Rastr',
   'Fit':
     'Vše',
+  'Thinnest part':
+    'Nejtenčí část',
+  'Raised parts narrower than this – or more than twice as tall as they are wide – are lowered to what is around them, so nothing prints as a thin tower':
+    'Vyvýšená místa užší než tato hodnota – nebo víc než dvakrát vyšší, než jsou široká – se sníží na úroveň okolí, aby se nic netisklo jako tenká věžička',
+  'Grout colors are always printed first, so the lines between the tiles stay low.':
+    'Barvy spár se tisknou vždy jako první, takže čáry mezi dlaždicemi zůstanou nízko.',
+  'Grout / lines: always printed first, so they stay low':
+    'Spáry / čáry: tisknou se vždy jako první, takže zůstanou nízko',
+  'grout':
+    'spáry',
+  '{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower':
+    '{n} {n|tenký dílek snížen|tenké dílky sníženy|tenkých dílků sníženo}, aby se nic netisklo jako tenká věžička',
 };

@@ -23,8 +23,10 @@ export function bindExport3D(): void {
     },
     colors() {
       const img = getImage(), own = R.uniqueColors(img, MAX_COLORS);
-      if (own) return { colors: own };
-      if (state.palette.length) return { colors: [...state.palette], note: t('The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).') };
+      // the grout of a mosaic made here stays the lowest part
+      const grout = (list: string[]) => (list.includes(state.mosaic.groutColor) ? [state.mosaic.groutColor] : []);
+      if (own) return { colors: own, lines: grout(own) };
+      if (state.palette.length) return { colors: [...state.palette], lines: grout(state.palette), note: t('The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).') };
       return { colors: suggestColors(img, 8), note: t('The picture has many colors: it is snapped to 8 colors suggested from it.') };
     },
     fileName: () => rt.fileName,

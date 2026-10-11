@@ -59,7 +59,10 @@ test('vector: the page at real size, one height per color, grout lines lowest', 
   expect(await page.inputValue('#m3-w')).toBe('100');
   await expect(page.locator('#m3-summary')).toContainText('height 2.4 mm (12 layers) · 2 filament changes');
   // the grout line first (lowest), then the lighter tile color
-  await expect(page.locator('#m3-order .m3-row').first()).toContainText('#222222lines');
+  await expect(page.locator('#m3-order .m3-row').first()).toContainText('#222222');
+  await expect(page.locator('#m3-order .m3-row').first().locator('.tag')).toHaveClass(/on/);
+  // the ↑ of the first tile color can't move it below the grout
+  await expect(page.locator('#m3-order .m3-row').nth(1).locator('button', { hasText: '↑' })).toBeDisabled();
   await expect(page.locator('#m3-order .m3-row').nth(1)).toContainText('#f4a261');
   // sorting keeps the lines at the bottom
   await page.click('#m3-dark');
@@ -115,4 +118,37 @@ test('raster: transparent pixels stay at the base; the print order can be change
   expect(stl.tops).toEqual([0.6, 1, 1.4]);
   expect(plan).toContain('Start with #0000ff – layers 1–5');
   expect(plan).toContain('Layer 6 (Z 1.20 mm): change to #ff0000 – layers 6–7');
+});
+
+test('raster: the mosaic grout stays lowest, and specks that would print as thin towers are lowered', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await page.evaluate(() => {
+    // grout everywhere, two 20 px tiles, and single-pixel specks of a third color
+    RZ.blank(50, 30, '#b8b2a7');
+    const x = RZ.doc.getContext('2d');
+    x.fillStyle = '#ffffff'; x.fillRect(4, 4, 20, 20);
+    x.fillStyle = '#e76f51'; x.fillRect(27, 4, 20, 20);
+    x.fillStyle = '#000000'; for (const [px, py] of [[10, 10], [35, 12], [2, 27]]) x.fillRect(px, py, 1, 1);
+    RZ.commit();
+    RZ.state.mosaic.groutColor = '#b8b2a7';
+  });
+  await page.click('#btn-3d');
+  await page.fill('#m3-w', '50');
+  await page.dispatchEvent('#m3-w', 'change');
+  await page.fill('#m3-detail', '1');
+  await page.dispatchEvent('#m3-detail', 'change');
+  // the grout comes first although it is not the lightest color
+  await expect(page.locator('#m3-order .m3-row').first()).toContainText('#b8b2a7');
+  await expect(page.locator('#m3-order .m3-row').first().locator('.tag')).toHaveClass(/on/);
+  // the 1 mm black specks are gone: black is no longer a color of the model
+  await expect(page.locator('#m3-order .m3-row')).toHaveCount(3);
+  await expect(page.locator('#m3-order')).not.toContainText('#000000');
+  await expect(page.locator('#m3-summary')).toContainText('3 thin pieces lowered');
+  // marking another color as grout moves it to the bottom too
+  await page.locator('#m3-order .m3-row', { hasText: '#e76f51' }).locator('.tag').click();
+  await expect(page.locator('#m3-order .m3-row').nth(1)).toContainText('#e76f51');
+  const { stl } = await downloads(page);
+  // the two grout colors, then the white tile: no black tops are left anywhere
+  expect(stl.tops).toEqual([1.2, 1.8, 2.4]);
 });

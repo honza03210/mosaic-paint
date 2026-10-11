@@ -126,3 +126,40 @@ test('the 3MF carries the model, its colors and the filament changes', async () 
   const plain = await zip([{ name: 'a.txt', data: 'hello' }], { compress: false });
   assert.equal(new TextDecoder().decode(plain.slice(35, 40)), 'hello');
 });
+
+test('thin towers sink into what is around them; grout grooves and wide tiles stay', () => {
+  // grout (0) all around, a wide tile of level 2, a single speck of level 3 inside it, a 1-cell sliver of level 3
+  const rows = [
+    '00000000000',
+    '02222200300',
+    '02232200300',
+    '02222200300',
+    '02222200000',
+    '00000000000',
+  ];
+  const grid = rows.join('').split('').map(Number), w = 11, h = 6;
+  const o = { minWidth: 1.2, maxRatio: 2 };
+  // cells of 1 mm: the 5 × 4 tile is wide enough; the speck and the 1 mm sliver are not
+  const { grid: out, lowered } = M.removeTowers(grid, w, h, 1, S, o);
+  const at = (x, y) => out[y * w + x];
+  assert.equal(at(3, 2), 2); // the speck took the tile's level
+  assert.equal(at(8, 2), 0); // the sliver sank to the grout
+  assert.equal(at(2, 2), 2); // the tile stays
+  assert.equal(at(0, 0), 0); // grout stays
+  assert.equal(lowered, 2);
+
+  // a narrow groove (lower than its surroundings) is never filled in
+  // (tiles 3 × 3 cells = 1.5 mm either side of a 0.5 mm groove)
+  const g = [2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2];
+  const groove = M.removeTowers(g, 7, 3, 0.5, S, o);
+  assert.deepEqual([...groove.grid], g);
+  assert.equal(groove.lowered, 0);
+
+  // tall for its width: with 7 layers per color a level-2 tile stands 2.8 mm above level-0 grout –
+  // too much for a 1.3 mm tile (over 2 × its width), fine for a 1.5 mm one
+  const tall = { ...S, layersPerColor: 7 };
+  const t = M.removeTowers([0, 0, 0, 0, 2, 0, 0, 0, 0], 3, 3, 1.3, tall, o);
+  assert.equal(t.grid[4], 0);
+  const ok = M.removeTowers([0, 0, 0, 0, 2, 0, 0, 0, 0], 3, 3, 1.5, tall, o);
+  assert.equal(ok.grid[4], 2);
+});

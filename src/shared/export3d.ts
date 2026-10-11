@@ -1,6 +1,7 @@
 /* "3D print" dialog shared by both apps: the mosaic as a 3D model where every color stands at its own
    height, so any single-nozzle printer prints it in color by swapping filament at a few layers. The 3MF
    file carries those filament changes for PrusaSlicer; for other slicers the plan lists them to enter by hand.
+   Grout colors are always printed first (lowest), and pieces that would print as thin towers are lowered.
    The app (host) renders its picture and says which colors it uses. */
 import * as Colors from '../lib/colors.ts';
 import * as R from '../lib/raster.ts';
@@ -18,14 +19,16 @@ export interface Export3DHost {
   render(w: number, h: number): Promise<HTMLCanvasElement>;
   /**
    * The colors the picture is made of (every pixel is snapped to one of them). `lines`: colors of lines /
-   * grout, printed first so the grout sits lowest and the tiles stand out of it.
+   * grout, always printed first so the grout sits lowest and the tiles stand out of it.
    */
   colors(): { colors: string[]; lines?: string[]; note?: string };
   fileName(): string;
 }
 
 const MAX_CELLS = 4e6, MANY_COLORS = 16;
-const opts = { width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3 };
+/** a raised part may be at most this many times as tall (above what is around it) as it is wide */
+const MAX_RATIO = 2;
+const opts = { width: 150, detail: 0.4, layerHeight: 0.2, layersPerColor: 3, baseLayers: 3, minWidth: 1.2 };
 try { Object.assign(opts, JSON.parse(lsGet('mz-3d') || '{}')); } catch { /* ignore */ }
 const saveOpts = () => lsSet('mz-3d', JSON.stringify(opts));
 const f2 = (v: number) => String(+v.toFixed(2));
@@ -36,6 +39,7 @@ const DIALOG = `
 <div class="row">
   <label>${t('Size')} <input id="m3-w" type="number" min="5" max="2000" step="1"> × <input id="m3-h" type="number" min="5" max="2000" step="1"> mm</label>
   <label title="${t('Size of the model’s smallest step – about your nozzle width')}">${t('Detail')} <input id="m3-detail" type="number" min="0.1" max="5" step="0.05"> mm</label>
+  <label title="${t('Raised parts narrower than this – or more than twice as tall as they are wide – are lowered to what is around them, so nothing prints as a thin tower')}">${t('Thinnest part')} <input id="m3-min" type="number" min="0" max="20" step="0.1"> mm</label>
 </div>
 <div class="row">
   <label>${t('Layer height')} <input id="m3-lh" type="number" min="0.04" max="1" step="0.04"> mm</label>
@@ -51,6 +55,7 @@ const DIALOG = `
       <button id="m3-dark">${t('Dark → light')}</button>
     </div>
     <div id="m3-order"></div>
+    <p class="note">${t('Grout colors are always printed first, so the lines between the tiles stay low.')}</p>
   </div>
 </div>
 <p class="note" id="m3-summary"></p>
@@ -59,6 +64,8 @@ const DIALOG = `
   <button id="m3-stl" title="${t('Just the shape – add the filament changes from the plan in your slicer')}">STL</button>
   <button id="m3-go" class="primary" title="${t('The model, with the filament changes for PrusaSlicer')}">${t('Download 3MF')}</button>
 </div>`;
+
+interface Model { list: number[]; grid: Int16Array; counts: number[]; lowered: number }
 
 export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   const dlg = document.createElement('dialog');
@@ -69,17 +76,55 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
 
   // the analysed picture: a grid of color indexes, and the print order (indexes into `colors`)
   let colors: string[] = [], counts: number[] = [], grid: Int16Array | null = null, gw = 0, gh = 0, cell = opts.detail;
-  let order: number[] = [], note = '', lines = new Set<string>();
+  let order: number[] = [], note = '', lines = new Set<string>(), version = 0;
+  /** grout choices made in the dialog win over what the app suggests */
+  const groutChoice = new Map<string, boolean>();
+  const isLine = (ci: number) => lines.has(colors[ci]);
   const settings = (): M.PrintSettings => ({ layerHeight: opts.layerHeight, layersPerColor: opts.layersPerColor, baseLayers: opts.baseLayers });
-  const used = () => order.filter(i => counts[i] > 0);
   const size = () => {
     const a = host.aspect();
     return { w: opts.width, h: opts.width / a };
   };
+  /** Grout first, always: the lines between the tiles stay the lowest part. */
+  const normalize = () => { order = [...order.filter(isLine), ...order.filter(ci => !isLine(ci))]; };
 
-  /** Lines first, then the others by brightness. */
+  /**
+   * The model as it will be printed: colors in print order (those that still have pieces), and the grid of
+   * levels after thin towers were lowered. Lowering can empty a color, which moves the ones above it down:
+   * so this repeats until it settles.
+   */
+  let cached: Model | null = null, cachedKey = '';
+  function model(): Model {
+    const key = [version, order.join(), opts.layerHeight, opts.layersPerColor, opts.baseLayers, opts.minWidth, cell].join('|');
+    if (cached && key === cachedKey) return cached;
+    let list = order.filter(i => counts[i] > 0), out: Model = { list, grid: new Int16Array(0), counts: [], lowered: 0 };
+    // the picture as color indexes, with each round's lowering kept for the next
+    const colorGrid = Int16Array.from(grid);
+    let lowered = 0;
+    for (let round = 0; round < 4; round++) {
+      const rank = new Int16Array(colors.length).fill(-1);
+      list.forEach((ci, k) => { rank[ci] = k; });
+      const levels = colorGrid.map(v => (v < 0 ? -1 : rank[v]));
+      const res = M.removeTowers(levels, gw, gh, cell, settings(), { minWidth: opts.minWidth, maxRatio: MAX_RATIO });
+      lowered += res.lowered;
+      const c = list.map(() => 0);
+      for (let p = 0; p < res.grid.length; p++) {
+        const lv = res.grid[p];
+        if (lv >= 0) c[lv]++;
+        colorGrid[p] = lv < 0 ? -1 : list[lv];
+      }
+      out = { list, grid: res.grid, counts: c, lowered };
+      if (c.every(n => n > 0)) break;
+      list = list.filter((_, k) => c[k] > 0);
+    }
+    cached = out;
+    cachedKey = key;
+    return out;
+  }
+
+  /** Grout first, then the others by brightness. */
   const byBrightness = (lightFirst: boolean) => (a: number, b: number) =>
-    (+lines.has(colors[b]) - +lines.has(colors[a])) || (Colors.luminance(colors[b]) - Colors.luminance(colors[a])) * (lightFirst ? 1 : -1);
+    (+isLine(b) - +isLine(a)) || (Colors.luminance(colors[b]) - Colors.luminance(colors[a])) * (lightFirst ? 1 : -1);
   function sortBy(lightFirst: boolean): void {
     order.sort(byBrightness(lightFirst));
     render();
@@ -98,24 +143,34 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     colors = cs.colors;
     note = cs.note || '';
     lines = new Set(cs.lines || []);
+    for (const [col, on] of groutChoice) { if (on) lines.add(col); else lines.delete(col); }
     ({ grid, counts } = R.classify(img, colors));
+    version++;
     // keep the order the user chose for colors that are still there; new ones go by brightness
     const known = prev.filter(c => colors.includes(c)).map(c => colors.indexOf(c));
     const fresh = colors.map((_, i) => i).filter(i => !known.includes(i)).sort(byBrightness(true));
     order = [...known, ...fresh];
+    normalize();
     render();
   }
   const rows = new Map<string, HTMLElement>();
-  /** Moves a color one step earlier (-1) or later (+1) in the print order. */
+  /** Moves a color one step earlier (-1) or later (+1) in the print order – grout stays below the tiles. */
   function move(c: string, d: number): void {
-    const list = used(), k = list.findIndex(ci => colors[ci] === c), other = list[k + d];
-    if (k < 0 || other == null) return;
+    const list = model().list, k = list.findIndex(ci => colors[ci] === c), other = list[k + d];
+    if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
     const a = order.indexOf(list[k]), b = order.indexOf(other);
     [order[a], order[b]] = [order[b], order[a]];
     render();
   }
+  function toggleGrout(c: string): void {
+    const on = !lines.has(c);
+    groutChoice.set(c, on);
+    if (on) lines.add(c); else lines.delete(c);
+    normalize();
+    render();
+  }
   function render(): void {
-    const s = settings(), list = used(), { w, h } = size();
+    const s = settings(), m = model(), list = m.list, { w, h } = size();
     $('#m3-w').value = f2(w);
     $('#m3-h').value = f2(h);
     const warn = [note, list.length > MANY_COLORS ? t('{n} colors make a tall print with many filament changes – reduce the colors first (Raster: “Reduce to palette”).', { n: list.length }) : '',
@@ -133,31 +188,36 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
       if (!row) {
         row = document.createElement('div');
         row.className = 'm3-row';
-        row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>${lines.has(c) ? `<span class="tag">${t('lines')}</span>` : ''}<span class="note"></span>`
+        row.innerHTML = `<span class="mini" style="background:${c}"></span><code>${c}</code>`
+          + `<button class="tag" title="${t('Grout / lines: always printed first, so they stay low')}">${t('grout')}</button><span class="note"></span>`
           + `<button title="${t('Print earlier (lower)')}">↑</button><button title="${t('Print later (higher)')}">↓</button>`;
-        const [up, down] = row.querySelectorAll('button');
+        const [tag, up, down] = row.querySelectorAll('button');
+        tag.onclick = () => toggleGrout(c);
         up.onclick = () => move(c, -1);
         down.onclick = () => move(c, 1);
         rows.set(c, row);
       }
-      const share = num(Math.max(0.1, +(counts[ci] / total * 100).toFixed(1)));
+      const share = num(Math.max(0.1, +(m.counts[k] / total * 100).toFixed(1)));
       row.querySelector('.note').textContent = p.z == null
         ? t('{share} % · layers {from}–{to}', { share, from: p.fromLayer, to: p.toLayer })
         : t('{share} % · layers {from}–{to} · change at Z {z}', { share, from: p.fromLayer, to: p.toLayer, z: num(p.z, 2) });
-      const [up, down] = row.querySelectorAll('button');
-      up.disabled = k === 0;
-      down.disabled = k === list.length - 1;
+      const [tag, up, down] = row.querySelectorAll('button');
+      tag.classList.toggle('on', isLine(ci));
+      up.disabled = k === 0 || isLine(list[k - 1]) !== isLine(ci);
+      down.disabled = k === list.length - 1 || isLine(list[k + 1]) !== isLine(ci);
       if (box.children[k] !== row) box.insertBefore(row, box.children[k] || null);
     });
     const unpainted = grid ? grid.filter(v => v < 0).length : 0;
     $('#m3-summary').textContent = list.length
       ? t('{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}', { n: list.length, h: num(M.modelHeight(list.length, s)), layers: M.topLayer(list.length - 1, s), c: list.length - 1 })
         + (unpainted ? ' · ' + (opts.baseLayers ? t('unpainted parts stay at the base ({h} mm)', { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t('unpainted parts are left open')) : '')
+        + (m.lowered ? ' · ' + t('{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower', { n: m.lowered }) : '')
       : t('Nothing is painted yet.');
     $('#m3-go').disabled = $('#m3-stl').disabled = $('#m3-plan').disabled = !list.length;
-    drawPreview();
+    drawPreview(m);
   }
-  function drawPreview(): void {
+  /** The top view of the model as it will print (after thin towers were lowered). */
+  function drawPreview(m: Model): void {
     const cv = $('#m3-preview') as HTMLCanvasElement;
     if (!grid) return;
     const k = Math.min(1, 300 / Math.max(gw, gh));
@@ -166,24 +226,18 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     const small = document.createElement('canvas');
     small.width = gw;
     small.height = gh;
-    const sx = small.getContext('2d'), im = sx.createImageData(gw, gh), rgb = colors.map(c => R.rgba(c));
-    for (let p = 0; p < grid.length; p++) if (grid[p] >= 0) im.data.set(rgb[grid[p]], p * 4);
+    const sx = small.getContext('2d'), im = sx.createImageData(gw, gh), rgb = m.list.map(ci => R.rgba(colors[ci]));
+    for (let p = 0; p < m.grid.length; p++) if (m.grid[p] >= 0) im.data.set(rgb[m.grid[p]], p * 4);
     sx.putImageData(im, 0, 0);
     const x = cv.getContext('2d');
     x.imageSmoothingEnabled = k < 1;
     x.drawImage(small, 0, 0, cv.width, cv.height);
   }
-  /** Grid of print levels (position in the print order), -1 for unpainted. */
-  function levels(): Int16Array {
-    const rank = new Int16Array(colors.length).fill(-1);
-    used().forEach((ci, k) => { rank[ci] = k; });
-    return grid.map(v => (v < 0 ? -1 : rank[v]));
-  }
   const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, '');
-  const plan = () => M.colorPlan(used().map(i => colors[i]), settings());
-  const mesh = () => M.closedMesh(levels(), gw, gh, cell, settings());
+  const plan = () => M.colorPlan(model().list.map(i => colors[i]), settings());
+  const mesh = () => M.closedMesh(model().grid, gw, gh, cell, settings());
   function planText(): string {
-    const s = settings(), list = used(), plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
+    const s = settings(), list = model().list, plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
     const v = { name: base(), w: f2(w), h: f2(h), lh: s.layerHeight, lpc: s.layersPerColor, base: s.baseLayers, total: M.modelHeight(list.length, s), layers: M.topLayer(list.length - 1, s) };
     // the plan is a file: plain numbers (2.40), whatever the language
     const first = plan[0];
@@ -213,7 +267,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     i.value = opts[key];
     i.onchange = () => {
       let v = +i.value;
-      if (Number.isFinite(v) && v > 0 || (key === 'baseLayers' && v === 0)) {
+      if (Number.isFinite(v) && v > 0 || ((key === 'baseLayers' || key === 'minWidth') && v === 0)) {
         v = clamp(whole ? Math.round(v) : v, min, max);
         opts[key] = v;
         saveOpts();
@@ -223,6 +277,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     };
   };
   bindNum('#m3-detail', 'detail', 0.1, 5, false, true);
+  bindNum('#m3-min', 'minWidth', 0, 20, false, false);
   bindNum('#m3-lh', 'layerHeight', 0.04, 1, false, false);
   bindNum('#m3-lpc', 'layersPerColor', 1, 50, true, false);
   bindNum('#m3-base', 'baseLayers', 0, 50, true, false);

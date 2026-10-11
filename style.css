@@ -318,4 +318,5 @@ body.viewer #mode-switch, body.viewer #btn-panel { display: none !important; }
 .m3-row .note { margin: 0 auto 0 0; }
 .m3-row button { padding: 1px 7px; }
 .m3-row code { font-size: 12px; }
-.m3-row .tag { font-size: 11px; padding: 0 5px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); }
+.m3-row .tag { font-size: 11px; padding: 0 5px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); background: none; }
+.m3-row .tag.on { color: #fff; background: var(--accent); border-color: var(--accent); }

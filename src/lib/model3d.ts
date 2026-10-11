@@ -158,6 +158,100 @@ export function closedMesh(grid: Int16Array | number[], w: number, h: number, ce
   }
   return { vertices, triangles, levels };
 }
+// ---- no thin towers ---------------------------------------------------------------------------------------
+export interface TowerOptions {
+  /** narrowest part that may stand above its surroundings, mm */
+  minWidth: number;
+  /** a raised part may be at most this many times as tall (above its lowest neighbour) as it is wide */
+  maxRatio: number;
+}
+/**
+ * Removes pieces that would print as thin towers. A piece (cells of one level touching side by side) that
+ * stands above a neighbour and is narrower than minWidth, or taller than maxRatio × its width, takes the
+ * level of its lower neighbour it shares the longest border with – so specks, slivers and tiny tiles in high
+ * colors sink, while grooves (grout lines, lower than what is around them) are never touched. Repeats until
+ * nothing changes. Width = the widest spot of the piece (twice the distance from its middle to its edge).
+ * Returns a new grid and how many pieces were lowered.
+ */
+export function removeTowers(input: Int16Array | number[], w: number, h: number, cell: number, s: PrintSettings, o: TowerOptions): { grid: Int16Array; lowered: number } {
+  const grid = Int16Array.from(input), n = w * h, label = new Int32Array(n), dist = new Float32Array(n);
+  const heightOf = (lv: number) => (lv < 0 ? s.baseLayers : topLayer(lv, s)) * s.layerHeight;
+  let lowered = 0;
+  for (let round = 0; round < 12; round++) {
+    // pieces
+    label.fill(-1);
+    const levels: number[] = [], stack: number[] = [];
+    for (let p = 0; p < n; p++) {
+      if (label[p] >= 0) continue;
+      const id = levels.length, lv = grid[p];
+      levels.push(lv);
+      label[p] = id;
+      stack.push(p);
+      while (stack.length) {
+        const q = stack.pop(), x = q % w;
+        for (const r of [x > 0 ? q - 1 : -1, x < w - 1 ? q + 1 : -1, q - w, q + w]) {
+          if (r < 0 || r >= n || label[r] >= 0 || grid[r] !== lv) continue;
+          label[r] = id;
+          stack.push(r);
+        }
+      }
+    }
+    // how wide each piece is: distance from each cell to the piece's edge (chamfer), its largest value
+    const D = Math.SQRT2;
+    for (let p = 0; p < n; p++) {
+      const x = p % w, y = (p / w) | 0, l = label[p];
+      const edge = x === 0 || y === 0 || x === w - 1 || y === h - 1 || label[p - 1] !== l || label[p + 1] !== l || label[p - w] !== l || label[p + w] !== l;
+      dist[p] = edge ? 1 : 1e9;
+    }
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const p = y * w + x;
+      if (dist[p] <= 1) continue;
+      dist[p] = Math.min(dist[p], dist[p - 1] + 1, dist[p - w] + 1, dist[p - w - 1] + D, dist[p - w + 1] + D);
+    }
+    for (let y = h - 1; y >= 0; y--) for (let x = w - 1; x >= 0; x--) {
+      const p = y * w + x;
+      if (dist[p] <= 1) continue;
+      dist[p] = Math.min(dist[p], dist[p + 1] + 1, dist[p + w] + 1, dist[p + w + 1] + D, dist[p + w - 1] + D);
+    }
+    const widest = new Float32Array(levels.length);
+    for (let p = 0; p < n; p++) if (dist[p] > widest[label[p]]) widest[label[p]] = dist[p];
+    // neighbours: border length with each lower level
+    const borders: Map<number, number>[] = levels.map(() => new Map());
+    const lowest = new Float64Array(levels.length).fill(Infinity);
+    const meet = (a: number, b: number) => {
+      const la = label[a], lb = label[b];
+      if (la === lb) return;
+      const ga = grid[a], gb = grid[b];
+      lowest[la] = Math.min(lowest[la], heightOf(gb));
+      lowest[lb] = Math.min(lowest[lb], heightOf(ga));
+      if (gb < ga) borders[la].set(gb, (borders[la].get(gb) || 0) + 1);
+      if (ga < gb) borders[lb].set(ga, (borders[lb].get(ga) || 0) + 1);
+    };
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const p = y * w + x;
+      if (x < w - 1) meet(p, p + 1);
+      if (y < h - 1) meet(p, p + w);
+    }
+    // the towers sink to their main lower neighbour
+    const target = new Int16Array(levels.length).fill(-32768);
+    let changed = 0;
+    levels.forEach((lv, id) => {
+      const relief = heightOf(lv) - lowest[id];
+      if (!(relief > 1e-9) || !borders[id].size) return;
+      const width = Math.max(1, 2 * widest[id] - 1) * cell;
+      if (width >= o.minWidth && relief <= o.maxRatio * width) return;
+      let best = -2, bestN = -1;
+      for (const [nl, cnt] of borders[id]) if (cnt > bestN || (cnt === bestN && nl > best)) { best = nl; bestN = cnt; }
+      target[id] = best;
+      changed++;
+    });
+    if (!changed) break;
+    for (let p = 0; p < n; p++) { const tl = target[label[p]]; if (tl !== -32768) grid[p] = tl; }
+    lowered += changed;
+  }
+  return { grid, lowered };
+}
+
 /** Binary STL of a mesh (units: mm). */
 export function stl(mesh: Mesh, name = 'Mosaic Paint'): ArrayBuffer {
   const V = mesh.vertices, T = mesh.triangles, n = T.length / 3, buf = new ArrayBuffer(84 + n * 50), dv = new DataView(buf);
