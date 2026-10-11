@@ -270,3 +270,29 @@ test('finishing: a raised frame, rounded corners, a hanging hole and magnet pock
   expect([...config.matchAll(/key="name" value="([^"]+)"/g)].map(m => m[1]).slice(1)).toEqual(['Base', 'Frame', '1 #b8b2a7', '2 #e76f51']);
   expect([...config.matchAll(/key="extruder" value="(\d+)"/g)].map(m => +m[1])).toEqual([1, 1, 1, 2]);
 });
+
+test('Check G-code: the sliced file is compared with the plan', async ({ page }) => {
+  const doc = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100mm" height="100mm"><g id="mosaic-shapes">'
+    + '<rect x="0" y="0" width="50" height="100" fill="#f4a261" stroke="none"/><rect x="50" y="0" width="50" height="100" fill="#264653" stroke="none"/>'
+    + '<line x1="50" y1="0" x2="50" y2="100" stroke="#222222" stroke-width="4"/></g></svg>';
+  await h.open(page, { doc });
+  await page.click('#btn-3d');
+  await expect(page.locator('#m3-summary')).toContainText('2 filament changes');
+  // layers of 0.2 mm up to 2.4; filament changes before the given heights
+  const gcode = (changes) => {
+    const out = ['M83', 'T0'];
+    for (let k = 1; k <= 12; k++) {
+      const z = +(k * 0.2).toFixed(1);
+      if (changes.includes(z)) out.push('M600');
+      out.push(`G1 Z${z}`, `G1 X10 Y10 E0.5`, `G1 X20 Y20 E0.5`);
+    }
+    return Buffer.from(out.join('\n'));
+  };
+  await page.setInputFiles('#m3-gcode', { name: 'good.gcode', mimeType: 'text/plain', buffer: gcode([1.4, 2]) });
+  await expect(page.locator('#m3-check')).toContainText('good.gcode: everything matches the plan');
+  await expect(page.locator('#m3-check li.ok')).toHaveCount(3);
+  await page.setInputFiles('#m3-gcode', { name: 'bad.gcode', mimeType: 'text/plain', buffer: gcode([1.6, 2]) });
+  await expect(page.locator('#m3-check')).toContainText('bad.gcode: 2 things to look at');
+  await expect(page.locator('#m3-check li.bad').first()).toContainText('No filament change to #f4a261 at Z 1.4 mm');
+  await expect(page.locator('#m3-check li.bad').nth(1)).toContainText('A filament change the plan does not have, at Z 1.6 mm');
+});

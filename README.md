@@ -102,6 +102,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 - **Download 3MF:** the model with the filament changes built in – PrusaSlicer reads them and puts M600 at the right layers, so you just slice and print. Bambu Studio and OrcaSlicer read only the shape from a 3MF they didn't write: add the changes there from the plan.
 - **STL** (the shape only) and **Plan**: which filament to start with and at which layer (and height) to change to the next, with where to add the changes in PrusaSlicer, Bambu Studio, OrcaSlicer and Cura.
 - **Detail** sets the smallest step (about your nozzle width). The raster app uses the image's colors; photos with many colors are snapped to the palette.
+- **Check G-code…:** open the G-code your slicer made, and the dialog checks it against the plan: with one nozzle, that every filament change (M600 or tool change) takes effect at the planned height and there are no others; with several filaments, that filament 1, 2, … each print up to the height they should. It reads the moves themselves, so it works with any slicer (wipe towers, skirts and brims are left out).
 - **Finishing:** a **frame** around the picture (standing a few layers above the tiles; with one nozzle it comes out in the top color, with several filaments in filament 1), **rounded corners**, a **hanging hole** at the top in the middle, and four **magnet pockets** in the bottom near the corners (diameter and depth – at least two layers stay above them, so they get shallower where the model is thin; the slicer bridges over them, glue the magnets in afterwards).
 - **Several filaments (AMS, MMU…) – flat:** for printers that change filament by themselves. The model is flat: a base plate, then one part per color, **Tile layers** thick, with grout colors **lower by** a few layers. The 3MF already assigns filament 1, 2, … to the parts (the base plate uses filament 1, like the first color) – PrusaSlicer and Bambu Studio / OrcaSlicer each read only their own way of describing parts, so choose the slicer under **3MF for**. **STL** downloads a ZIP with one STL per color to load as parts of one object; the **Plan** lists which filament goes where.
 
@@ -141,6 +142,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `build3d.ts`: the 3D model as the dialog builds it – thin towers lowered, finishing, the solids of either kind of model, the files
   - `vectorize.ts`: raster tiles as a Mosaic Paint SVG (one polygon per piece)
   - `examples.ts`: the example projects, made on the spot
+  - `gcode.ts`: reading sliced G-code back (filament and tool changes, heights per tool) and checking it against the plan
   - `photo.ts`: reading a photo over the drawing – colors, detail, palette suggestions, the tile layout of Mosaic from photo
   - `html.ts`: escaping text for HTML
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)

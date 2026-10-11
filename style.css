@@ -340,3 +340,10 @@ body.working, body.working * { cursor: progress !important; }
 #guide .guide-text { margin: 8px 0 4px; line-height: 1.45; }
 .guide-target { outline: 3px solid var(--accent) !important; outline-offset: 2px; border-radius: 6px; }
 #btn-guide { font-weight: 700; min-width: 30px; }
+
+/* the G-code check in the 3D dialog */
+.m3-check { margin: 8px 0 0; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px; }
+.m3-check ul { margin: 6px 0 0; padding-left: 4px; list-style: none; }
+.m3-check li.ok { color: var(--muted); }
+.m3-check li.bad { font-weight: 600; }
+.m3-check.bad { border-color: #d9822b; }

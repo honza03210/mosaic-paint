@@ -11,6 +11,8 @@ import * as Colors from '../lib/colors.ts';
 import * as R from '../lib/raster.ts';
 import * as M from '../lib/model3d.ts';
 import * as B from '../lib/build3d.ts';
+import * as G from '../lib/gcode.ts';
+import { esc } from '../lib/html.ts';
 import { $, clamp, toast, download, loadSettings, saveSettings } from './ui.ts';
 import { t, num } from './i18n.ts';
 import { createView3D, type View3D } from './view3d.ts';
@@ -94,8 +96,11 @@ const DIALOG = `
   </div>
 </div>
 <p class="note" id="m3-summary"></p>
+<div id="m3-check" class="m3-check" hidden aria-live="polite"></div>
 <div class="row dlg-foot">
   <span id="m3-busy" class="note" aria-live="polite"></span>
+  <button id="m3-check-btn" title="${t('Read the G-code your slicer made and check it against this plan: filament changes, filaments and heights')}">${t('Check G-code…')}</button>
+  <input type="file" id="m3-gcode" accept=".gcode,.gco,.g" hidden>
   <button id="m3-plan" title="${t('Which filament to load at which layer, as a text file')}">${t('Plan')}</button>
   <button id="m3-stl" title="${t('Just the shape – add the filament changes from the plan in your slicer')}">STL</button>
   <label data-mode="flat">${t('3MF for')} <select id="m3-slicer"><option value="prusa">PrusaSlicer</option><option value="bambu">Bambu Studio, OrcaSlicer</option></select></label>
@@ -404,6 +409,40 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
     return lines.join('\n') + '\n';
   }
 
+  // ---- checking the sliced G-code -------------------------------------------------------------------
+  /** What the slicer made, compared with the plan: one line per finding, ✓ or ✗. */
+  function showCheck(name: string, g: G.GcodeSummary, m: B.Model3D): void {
+    const o = buildOpts(), lh = opts.layerHeight, grout = m.list.map(isLine), mm = (v: number) => num(+f2(v));
+    let findings: G.Finding[];
+    if (isFlat()) {
+      // filament k prints level k − 1; filament 1 also the base plate and the frame
+      findings = G.checkFilaments(g, m.list.map((ci, k) => {
+        let top = B.columnTop(k, grout, o);
+        if (k === 0 && opts.frame > 0) top = Math.max(top, B.frameTop(m.list.length, o));
+        return { color: colors[ci], top: top * lh };
+      }), lh);
+    } else {
+      const top = Math.max(M.topLayer(m.list.length - 1, settings()), opts.frame > 0 ? B.frameTop(m.list.length, o) : 0) * lh;
+      findings = G.checkHeights(g, M.colorPlan(m.list.map(ci => colors[ci]), settings()), top, lh);
+    }
+    const say = (f: G.Finding): string => {
+      switch (f.kind) {
+        case 'change': return f.ok ? t('Change to {color} at Z {z} mm', { color: f.color, z: mm(f.z) }) : t('No filament change to {color} at Z {z} mm', { color: f.color, z: mm(f.z) });
+        case 'extra': return t('A filament change the plan does not have, at Z {z} mm', { z: mm(f.z) });
+        case 'top': return f.ok ? t('The top is at {z} mm, as planned', { z: mm(f.z) }) : t('The top is at {found} mm instead of {z} mm', { found: mm(f.found), z: mm(f.z) });
+        case 'filament': return f.found == null ? t('Filament {k} ({color}) is not used – assign it to the part “{k} {color}”', { k: f.filament, color: f.color })
+          : f.ok ? t('Filament {k} ({color}) prints up to {z} mm', { k: f.filament, color: f.color, z: mm(f.top) })
+          : t('Filament {k} ({color}) prints up to {found} mm instead of {z} mm', { k: f.filament, color: f.color, found: mm(f.found), z: mm(f.top) });
+      }
+    };
+    const bad = findings.filter(f => !f.ok).length, box = $('#m3-check') as HTMLElement;
+    const head = !g.layers ? t('No printing found in {name} – is it a G-code file?', { name })
+      : bad ? t('{name}: {n} {n|thing|things} to look at', { name, n: bad }) : t('{name}: everything matches the plan', { name });
+    box.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? '<ul>' + findings.map(f => `<li class="${f.ok ? 'ok' : 'bad'}">${f.ok ? '✓' : '✗'} ${esc(say(f))}</li>`).join('') + '</ul>' : '');
+    box.classList.toggle('bad', !g.layers || bad > 0);
+    box.hidden = false;
+  }
+
   // ---- the files -------------------------------------------------------------------------------------
   /** Builds the model's file in a worker and downloads it. */
   async function save(kind: '3mf' | 'stl'): Promise<void> {
@@ -484,6 +523,20 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   $('#m3-dark').onclick = () => sortBy(false);
   $('#m3-go').onclick = () => save('3mf');
   $('#m3-stl').onclick = () => save('stl');
+  $('#m3-check-btn').onclick = () => $('#m3-gcode').click();
+  $('#m3-gcode').onchange = async () => {
+    const input = $('#m3-gcode') as HTMLInputElement, file = input.files[0];
+    input.value = '';
+    const m = model();
+    if (!file || !m || !m.list.length) return;
+    busy(t('Reading the G-code…'));
+    try {
+      const g = await run('gcode', { text: await file.text() }, { progress: f => busy(t('Reading the G-code… {p} %', { p: Math.round(f * 100) })) });
+      showCheck(file.name, g, m);
+    } catch (e) {
+      if (!isCancelled(e)) toast(t('Could not read {name}.', { name: file.name }));
+    } finally { busy(''); }
+  };
   $('#m3-plan').onclick = () => {
     const m = model();
     if (m && m.list.length) download(new Blob([planText(m)], { type: 'text/plain' }), base() + '-3d-plan.txt');

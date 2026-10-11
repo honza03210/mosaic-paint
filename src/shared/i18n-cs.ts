@@ -1506,4 +1506,36 @@ export const CS: Record<string, string> = {
     'Vaše fotka',
   'Load a photo and turn it into tiles – smaller where it has detail.':
     'Načtěte fotku a proměňte ji v dlaždice – menší tam, kde má detaily.',
+  'Read the G-code your slicer made and check it against this plan: filament changes, filaments and heights':
+    'Načte G-code ze sliceru a porovná ho s tímto plánem: výměny filamentu, filamenty a výšky',
+  'Check G-code…':
+    'Zkontrolovat G-code…',
+  'Change to {color} at Z {z} mm':
+    'Výměna na {color} v Z {z} mm',
+  'No filament change to {color} at Z {z} mm':
+    'Chybí výměna filamentu na {color} v Z {z} mm',
+  'A filament change the plan does not have, at Z {z} mm':
+    'Výměna filamentu, kterou plán nemá, v Z {z} mm',
+  'The top is at {z} mm, as planned':
+    'Vršek je ve výšce {z} mm, podle plánu',
+  'The top is at {found} mm instead of {z} mm':
+    'Vršek je ve výšce {found} mm místo {z} mm',
+  'Filament {k} ({color}) is not used – assign it to the part “{k} {color}”':
+    'Filament {k} ({color}) se nepoužívá – přiřaďte ho dílu „{k} {color}“',
+  'Filament {k} ({color}) prints up to {z} mm':
+    'Filament {k} ({color}) tiskne do výšky {z} mm',
+  'Filament {k} ({color}) prints up to {found} mm instead of {z} mm':
+    'Filament {k} ({color}) tiskne do výšky {found} mm místo {z} mm',
+  'No printing found in {name} – is it a G-code file?':
+    'V {name} není žádný tisk – je to soubor G-code?',
+  '{name}: {n} {n|thing|things} to look at':
+    '{name}: {n} {n|věc|věci|věcí} ke kontrole',
+  '{name}: everything matches the plan':
+    '{name}: vše odpovídá plánu',
+  'Reading the G-code…':
+    'Čtu G-code…',
+  'Reading the G-code… {p} %':
+    'Čtu G-code… {p} %',
+  'Could not read {name}.':
+    '{name} se nepodařilo přečíst.',
 };
