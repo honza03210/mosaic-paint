@@ -122,7 +122,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
   - `pack.ts`: compressing a drawing into a share link
   - `store.ts`: browser storage for the autosave and versions
   - `raster.ts`: pixel algorithms – flood fill, hard-edged lines and polygons, reducing to a palette, the mosaic effect
-  - `model3d.ts`: the 3D print model – colors as height bands, binary STL, 3MF with PrusaSlicer color changes, the filament-change plan
+  - `model3d.ts`: the 3D print model – colors as height bands, one closed surface (no T-junctions), binary STL, 3MF with PrusaSlicer color changes, the filament-change plan
   - `zip.ts`: a small ZIP writer (3MF files are ZIP archives)
 - `src/core/`: the editor
   - `env.ts`: page elements, settings and state, small helpers, events between modules

@@ -76,10 +76,10 @@ test('vector: the page at real size, one height per color, grout lines lowest', 
   expect(threeMf['3D/3dmodel.model']).toContain('<base name="#264653" displaycolor="#264653FF"/>');
   const changes = [...threeMf['Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml'].matchAll(/print_z="([\d.]+)"[^>]*color="(#\w+)"/g)].map(m => [+m[1], m[2]]);
   expect(changes).toEqual([[1.4, '#f4a261'], [2, '#264653']]);
-  expect(stl.n).toBeLessThan(20 * 12); // equal colors are merged into a few boxes
+  expect(stl.n).toBeLessThan(200); // equal heights are merged into a few faces
   expect(stl.lo).toEqual([0, 0, 0]);
   expect(stl.hi).toEqual([100, 100, 2.4]);
-  expect(stl.tops).toEqual([0.6, 1.2, 1.8, 2.4]);
+  expect(stl.tops).toEqual([1.2, 1.8, 2.4]); // everything is painted: no bare base shows
   expect(plan).toContain('Start with #222222 – layers 1–6 (base plate included)');
   expect(plan).toContain('Layer 7 (Z 1.40 mm): change to #f4a261 – layers 7–9');
   expect(plan).toContain('Layer 10 (Z 2.00 mm): change to #264653 – layers 10–12');

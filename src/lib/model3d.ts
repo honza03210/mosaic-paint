@@ -2,8 +2,7 @@
    so when the printer swaps filament at the right layers, each tile's top shows its color.
 
    Color i (in print order) reaches (base + (i + 1) × layersPerColor) layers; unpainted areas stay at the
-   base. The solid is a set of boxes (one per rectangle of equal color, found greedily) standing on a base
-   plate – boxes that touch are merged by every slicer. */
+   base. The model is one closed surface built from rectangles of equal height (found greedily). */
 
 export interface PrintSettings {
   /** layer height, mm */
@@ -14,8 +13,6 @@ export interface PrintSettings {
   baseLayers: number;
 }
 export interface Rect { x: number; y: number; w: number; h: number; level: number }
-/** level: the color band it belongs to (the base plate is band 0) */
-export interface Box { x0: number; y0: number; z0: number; x1: number; y1: number; z1: number; level: number }
 /** Triangles (indexes into vertices, counter-clockwise from outside) with the color band of each. */
 export interface Mesh { vertices: number[]; triangles: number[]; levels: number[] }
 
@@ -45,32 +42,119 @@ export function greedyRects(grid: Int16Array | number[], w: number, h: number): 
   return out;
 }
 
-/**
- * The boxes of the model in mm: the base plate, then one box per rectangle up to its color's height.
- * cell: size of a grid cell in mm. The picture's y axis points down; the model's points up.
- */
-export function modelBoxes(grid: Int16Array | number[], w: number, h: number, cell: number, s: PrintSettings): Box[] {
-  const lh = s.layerHeight, base = s.baseLayers * lh, H = h * cell, out: Box[] = [];
-  if (base > 0) out.push({ x0: 0, y0: 0, z0: 0, x1: w * cell, y1: H, z1: base, level: 0 });
-  for (const r of greedyRects(grid, w, h)) {
-    out.push({
-      x0: r.x * cell, x1: (r.x + r.w) * cell,
-      y0: H - (r.y + r.h) * cell, y1: H - r.y * cell,
-      z0: base, z1: topLayer(r.level, s) * lh, level: r.level,
-    });
-  }
+/** Height of every cell in layers: its color's band top, the base for unpainted cells (0 = empty). */
+export function cellHeights(grid: Int16Array | number[], s: PrintSettings): Int16Array {
+  const out = new Int16Array(grid.length);
+  for (let i = 0; i < grid.length; i++) out[i] = grid[i] < 0 ? s.baseLayers : topLayer(grid[i], s);
   return out;
 }
 
-/** The boxes as one mesh: 8 corners and 12 triangles each. */
-export function boxMesh(boxes: Box[]): Mesh {
-  const vertices: number[] = [], triangles: number[] = [], levels: number[] = [];
-  // corner k: x from bit 0, y from bit 1, z from bit 2
-  const FACES = [[0, 2, 3], [0, 3, 1], [4, 5, 7], [4, 7, 6], [0, 1, 5], [0, 5, 4], [2, 6, 7], [2, 7, 3], [0, 4, 6], [0, 6, 2], [1, 3, 7], [1, 7, 5]];
-  for (const b of boxes) {
-    const o = vertices.length / 3;
-    for (let k = 0; k < 8; k++) vertices.push(k & 1 ? b.x1 : b.x0, k & 2 ? b.y1 : b.y0, k & 4 ? b.z1 : b.z0);
-    for (const t of FACES) { triangles.push(o + t[0], o + t[1], o + t[2]); levels.push(b.level); }
+/**
+ * The model as one closed surface (each edge shared by exactly two triangles): top faces (one per
+ * rectangle of equal height), the bottom, and walls only where neighbouring heights differ. Where a corner
+ * of one face lies on the edge of another, that edge gets the corner as an extra vertex (no T-junctions);
+ * such faces are split into a fan around their middle.
+ * grid: color level per cell (-1 unpainted), cell: cell size in mm. The picture's y axis points down; the
+ * model's points up.
+ */
+export function closedMesh(grid: Int16Array | number[], w: number, h: number, cell: number, s: PrintSettings): Mesh {
+  const Hc = cellHeights(grid, s);
+  // all coordinates are whole cells (x, y) and layers (z) until the end, so they compare exactly
+  const height = (x: number, y: number) => (x < 0 || y < 0 || x >= w || y >= h ? 0 : Hc[y * w + x]);
+  const level = (x: number, y: number) => (x < 0 || y < 0 || x >= w || y >= h ? 0 : Math.max(0, grid[y * w + x]));
+  // a face: corner o and two edge vectors u, v (u × v points outwards), the band it is colored with
+  interface Face { o: number[]; u: number[]; v: number[]; level: number }
+  const faces: Face[] = [];
+  const Y = (y: number) => h - y; // picture row → model y
+
+  // top faces: rectangles of equal height
+  const tops = new Int16Array(w * h);
+  for (let i = 0; i < w * h; i++) tops[i] = Hc[i] > 0 ? Hc[i] : -1;
+  for (const r of greedyRects(tops, w, h)) {
+    const lv = level(r.x, r.y);
+    faces.push({ o: [r.x, Y(r.y + r.h), r.level], u: [r.w, 0, 0], v: [0, r.h, 0], level: lv });
+  }
+  // the bottom: wherever there is material
+  const solid = new Int16Array(w * h);
+  for (let i = 0; i < w * h; i++) solid[i] = Hc[i] > 0 ? 0 : -1;
+  for (const r of greedyRects(solid, w, h)) faces.push({ o: [r.x, Y(r.y + r.h), 0], u: [0, r.h, 0], v: [r.w, 0, 0], level: 0 });
+
+  // walls along the picture's rows: between row y-1 (north) and row y (south), at model y = h - y
+  for (let y = 0; y <= h; y++) {
+    for (let x = 0; x < w;) {
+      const n = height(x, y - 1), so = height(x, y);
+      if (n === so) { x++; continue; }
+      let x1 = x + 1;
+      while (x1 < w && height(x1, y - 1) === n && height(x1, y) === so) x1++;
+      const lo = Math.min(n, so), dz = Math.abs(n - so), Y0 = Y(y);
+      // the higher side's material faces the lower side
+      if (n > so) faces.push({ o: [x, Y0, lo], u: [x1 - x, 0, 0], v: [0, 0, dz], level: level(x, y - 1) }); // faces -y
+      else faces.push({ o: [x, Y0, lo], u: [0, 0, dz], v: [x1 - x, 0, 0], level: level(x, y) }); // faces +y
+      x = x1;
+    }
+  }
+  // walls along the columns: between column x-1 (west) and column x (east)
+  for (let x = 0; x <= w; x++) {
+    for (let y = h - 1; y >= 0;) {
+      const we = height(x - 1, y), ea = height(x, y);
+      if (we === ea) { y--; continue; }
+      let y1 = y - 1;
+      while (y1 >= 0 && height(x - 1, y1) === we && height(x, y1) === ea) y1--;
+      // rows y1+1 … y, i.e. model y from Y(y + 1) to Y(y1 + 1)
+      const lo = Math.min(we, ea), dz = Math.abs(we - ea), Y0 = Y(y + 1), dy = y - y1;
+      if (ea > we) faces.push({ o: [x, Y0, lo], u: [0, 0, dz], v: [0, dy, 0], level: level(x, y) }); // faces -x
+      else faces.push({ o: [x, Y0, lo], u: [0, dy, 0], v: [0, 0, dz], level: level(x - 1, y) }); // faces +x
+      y = y1;
+    }
+  }
+
+  // every corner, indexed by the two coordinates it shares with edges along each axis
+  // (numeric keys: coordinates are whole numbers well below 1e5, and halves only for the fan centres)
+  const along: Map<number, number[]>[] = [new Map(), new Map(), new Map()];
+  const corner = (f: Face, a: number, b: number) => f.o.map((c, k) => c + a * f.u[k] + b * f.v[k]);
+  const lineKey = (p: number[], axis: number) => (axis === 0 ? p[1] * 1e5 + p[2] : axis === 1 ? p[0] * 1e5 + p[2] : p[0] * 1e5 + p[1]);
+  for (const f of faces) for (const [a, b] of [[0, 0], [1, 0], [1, 1], [0, 1]]) {
+    const p = corner(f, a, b);
+    for (let axis = 0; axis < 3; axis++) {
+      const key = lineKey(p, axis);
+      let list = along[axis].get(key);
+      if (!list) along[axis].set(key, list = []);
+      list.push(p[axis]);
+    }
+  }
+  for (const m of along) for (const [k, list] of m) m.set(k, [...new Set(list)].sort((a, b) => a - b));
+
+  const vertices: number[] = [], triangles: number[] = [], levels: number[] = [], index = new Map<number, number>();
+  const vertex = (p: number[]) => {
+    const key = (p[0] * 2e5 + p[1] * 2) * 2e5 + p[2] * 2;
+    let i = index.get(key);
+    if (i == null) {
+      i = vertices.length / 3;
+      index.set(key, i);
+      vertices.push(p[0] * cell, p[1] * cell, p[2] * s.layerHeight);
+    }
+    return i;
+  };
+  for (const f of faces) {
+    const c = [corner(f, 0, 0), corner(f, 1, 0), corner(f, 1, 1), corner(f, 0, 1)];
+    // the outline, with every corner of another face that lies on one of its edges
+    const ring: number[][] = [];
+    for (let e = 0; e < 4; e++) {
+      const a = c[e], b = c[(e + 1) % 4], axis = a.findIndex((v, k) => v !== b[k]);
+      ring.push(a);
+      const lo = Math.min(a[axis], b[axis]), hi = Math.max(a[axis], b[axis]);
+      const mid = (along[axis].get(lineKey(a, axis)) || []).filter(v => v > lo && v < hi);
+      if (a[axis] > b[axis]) mid.reverse();
+      for (const v of mid) { const p = [...a]; p[axis] = v; ring.push(p); }
+    }
+    const ids = ring.map(vertex);
+    if (ids.length === 4) {
+      triangles.push(ids[0], ids[1], ids[2], ids[0], ids[2], ids[3]);
+      levels.push(f.level, f.level);
+    } else {
+      const m = vertex(corner(f, 0.5, 0.5));
+      for (let i = 0; i < ids.length; i++) { triangles.push(m, ids[i], ids[(i + 1) % ids.length]); levels.push(f.level); }
+    }
   }
   return { vertices, triangles, levels };
 }

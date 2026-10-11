@@ -2401,31 +2401,105 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }
     return out;
   }
-  function modelBoxes(grid, w, h, cell, s) {
-    const lh = s.layerHeight, base = s.baseLayers * lh, H = h * cell, out = [];
-    if (base > 0) out.push({ x0: 0, y0: 0, z0: 0, x1: w * cell, y1: H, z1: base, level: 0 });
-    for (const r of greedyRects(grid, w, h)) {
-      out.push({
-        x0: r.x * cell,
-        x1: (r.x + r.w) * cell,
-        y0: H - (r.y + r.h) * cell,
-        y1: H - r.y * cell,
-        z0: base,
-        z1: topLayer(r.level, s) * lh,
-        level: r.level
-      });
-    }
+  function cellHeights(grid, s) {
+    const out = new Int16Array(grid.length);
+    for (let i = 0; i < grid.length; i++) out[i] = grid[i] < 0 ? s.baseLayers : topLayer(grid[i], s);
     return out;
   }
-  function boxMesh(boxes) {
-    const vertices = [], triangles = [], levels = [];
-    const FACES = [[0, 2, 3], [0, 3, 1], [4, 5, 7], [4, 7, 6], [0, 1, 5], [0, 5, 4], [2, 6, 7], [2, 7, 3], [0, 4, 6], [0, 6, 2], [1, 3, 7], [1, 7, 5]];
-    for (const b of boxes) {
-      const o = vertices.length / 3;
-      for (let k = 0; k < 8; k++) vertices.push(k & 1 ? b.x1 : b.x0, k & 2 ? b.y1 : b.y0, k & 4 ? b.z1 : b.z0);
-      for (const t of FACES) {
-        triangles.push(o + t[0], o + t[1], o + t[2]);
-        levels.push(b.level);
+  function closedMesh(grid, w, h, cell, s) {
+    const Hc = cellHeights(grid, s);
+    const height = (x, y) => x < 0 || y < 0 || x >= w || y >= h ? 0 : Hc[y * w + x];
+    const level = (x, y) => x < 0 || y < 0 || x >= w || y >= h ? 0 : Math.max(0, grid[y * w + x]);
+    const faces = [];
+    const Y = (y) => h - y;
+    const tops = new Int16Array(w * h);
+    for (let i = 0; i < w * h; i++) tops[i] = Hc[i] > 0 ? Hc[i] : -1;
+    for (const r of greedyRects(tops, w, h)) {
+      const lv = level(r.x, r.y);
+      faces.push({ o: [r.x, Y(r.y + r.h), r.level], u: [r.w, 0, 0], v: [0, r.h, 0], level: lv });
+    }
+    const solid = new Int16Array(w * h);
+    for (let i = 0; i < w * h; i++) solid[i] = Hc[i] > 0 ? 0 : -1;
+    for (const r of greedyRects(solid, w, h)) faces.push({ o: [r.x, Y(r.y + r.h), 0], u: [0, r.h, 0], v: [r.w, 0, 0], level: 0 });
+    for (let y = 0; y <= h; y++) {
+      for (let x = 0; x < w; ) {
+        const n = height(x, y - 1), so = height(x, y);
+        if (n === so) {
+          x++;
+          continue;
+        }
+        let x1 = x + 1;
+        while (x1 < w && height(x1, y - 1) === n && height(x1, y) === so) x1++;
+        const lo = Math.min(n, so), dz = Math.abs(n - so), Y0 = Y(y);
+        if (n > so) faces.push({ o: [x, Y0, lo], u: [x1 - x, 0, 0], v: [0, 0, dz], level: level(x, y - 1) });
+        else faces.push({ o: [x, Y0, lo], u: [0, 0, dz], v: [x1 - x, 0, 0], level: level(x, y) });
+        x = x1;
+      }
+    }
+    for (let x = 0; x <= w; x++) {
+      for (let y = h - 1; y >= 0; ) {
+        const we = height(x - 1, y), ea = height(x, y);
+        if (we === ea) {
+          y--;
+          continue;
+        }
+        let y1 = y - 1;
+        while (y1 >= 0 && height(x - 1, y1) === we && height(x, y1) === ea) y1--;
+        const lo = Math.min(we, ea), dz = Math.abs(we - ea), Y0 = Y(y + 1), dy = y - y1;
+        if (ea > we) faces.push({ o: [x, Y0, lo], u: [0, 0, dz], v: [0, dy, 0], level: level(x, y) });
+        else faces.push({ o: [x, Y0, lo], u: [0, dy, 0], v: [0, 0, dz], level: level(x - 1, y) });
+        y = y1;
+      }
+    }
+    const along = [/* @__PURE__ */ new Map(), /* @__PURE__ */ new Map(), /* @__PURE__ */ new Map()];
+    const corner = (f, a, b) => f.o.map((c, k) => c + a * f.u[k] + b * f.v[k]);
+    const lineKey = (p, axis) => axis === 0 ? p[1] * 1e5 + p[2] : axis === 1 ? p[0] * 1e5 + p[2] : p[0] * 1e5 + p[1];
+    for (const f of faces) for (const [a, b] of [[0, 0], [1, 0], [1, 1], [0, 1]]) {
+      const p = corner(f, a, b);
+      for (let axis = 0; axis < 3; axis++) {
+        const key = lineKey(p, axis);
+        let list = along[axis].get(key);
+        if (!list) along[axis].set(key, list = []);
+        list.push(p[axis]);
+      }
+    }
+    for (const m of along) for (const [k, list] of m) m.set(k, [...new Set(list)].sort((a, b) => a - b));
+    const vertices = [], triangles = [], levels = [], index2 = /* @__PURE__ */ new Map();
+    const vertex = (p) => {
+      const key = (p[0] * 2e5 + p[1] * 2) * 2e5 + p[2] * 2;
+      let i = index2.get(key);
+      if (i == null) {
+        i = vertices.length / 3;
+        index2.set(key, i);
+        vertices.push(p[0] * cell, p[1] * cell, p[2] * s.layerHeight);
+      }
+      return i;
+    };
+    for (const f of faces) {
+      const c = [corner(f, 0, 0), corner(f, 1, 0), corner(f, 1, 1), corner(f, 0, 1)];
+      const ring = [];
+      for (let e = 0; e < 4; e++) {
+        const a = c[e], b = c[(e + 1) % 4], axis = a.findIndex((v, k) => v !== b[k]);
+        ring.push(a);
+        const lo = Math.min(a[axis], b[axis]), hi = Math.max(a[axis], b[axis]);
+        const mid = (along[axis].get(lineKey(a, axis)) || []).filter((v) => v > lo && v < hi);
+        if (a[axis] > b[axis]) mid.reverse();
+        for (const v of mid) {
+          const p = [...a];
+          p[axis] = v;
+          ring.push(p);
+        }
+      }
+      const ids = ring.map(vertex);
+      if (ids.length === 4) {
+        triangles.push(ids[0], ids[1], ids[2], ids[0], ids[2], ids[3]);
+        levels.push(f.level, f.level);
+      } else {
+        const m = vertex(corner(f, 0.5, 0.5));
+        for (let i = 0; i < ids.length; i++) {
+          triangles.push(m, ids[i], ids[(i + 1) % ids.length]);
+          levels.push(f.level);
+        }
       }
     }
     return { vertices, triangles, levels };
@@ -2731,7 +2805,7 @@ Click: ${N.fill} · Right-click: ${N.stroke} · Double-click: edit` : N.none;
     }
     const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
     const plan = () => colorPlan(used().map((i) => colors[i]), settings());
-    const mesh = () => boxMesh(modelBoxes(levels(), gw, gh, cell, settings()));
+    const mesh = () => closedMesh(levels(), gw, gh, cell, settings());
     function planText() {
       const s = settings(), list = used(), plan2 = colorPlan(list.map((i) => colors[i]), s), { w, h } = size();
       const lines2 = [

@@ -178,7 +178,7 @@ export function initExport3D(host: Export3DHost, button: HTMLElement): void {
   }
   const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, '');
   const plan = () => M.colorPlan(used().map(i => colors[i]), settings());
-  const mesh = () => M.boxMesh(M.modelBoxes(levels(), gw, gh, cell, settings()));
+  const mesh = () => M.closedMesh(levels(), gw, gh, cell, settings());
   function planText(): string {
     const s = settings(), list = used(), plan = M.colorPlan(list.map(i => colors[i]), s), { w, h } = size();
     const lines = [

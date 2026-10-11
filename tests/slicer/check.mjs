@@ -28,7 +28,7 @@ for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
 }
 const s = { layerHeight: 0.2, layersPerColor: 3, baseLayers: 2 };
 const plan = M.colorPlan(['#222222', '#f4a261', '#264653'], s);
-const mesh = M.closedMesh ? M.closedMesh(grid, W, H, 0.5, s) : M.boxMesh(M.modelBoxes(grid, W, H, 0.5, s));
+const mesh = M.closedMesh(grid, W, H, 0.5, s);
 const file = path.join(dir, 'check.3mf'), gcode = path.join(dir, 'check.gcode');
 fs.writeFileSync(file, await zip(M.threeMfFiles(mesh, plan, 'check')));
 
@@ -46,6 +46,6 @@ for (const l of lines) {
 const expected = plan.filter(p => p.z != null).map(p => p.z);
 const height = M.modelHeight(plan.length, s);
 console.log({ slicer, file, manifold, layers: layers.size, top: Math.max(...layers), changes, expected, height });
-const ok = JSON.stringify(changes) === JSON.stringify(expected) && Math.abs(Math.max(...layers) - height) < 1e-6 && (!M.closedMesh || manifold === 'yes');
+const ok = JSON.stringify(changes) === JSON.stringify(expected) && Math.abs(Math.max(...layers) - height) < 1e-6 && manifold === 'yes';
 console.log(ok ? 'OK – the slicer puts the filament changes where the plan says.' : 'MISMATCH');
 process.exit(ok ? 0 : 1);

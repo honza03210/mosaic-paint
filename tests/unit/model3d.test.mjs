@@ -20,35 +20,77 @@ test('equal colors are covered by few rectangles', () => {
   assert.equal(n, grid.filter(v => v >= 0).length);
 });
 
-test('each color stands at its own height on the base plate', () => {
-  const boxes = M.modelBoxes([0, 1, -1, 1], 2, 2, 0.5, S);
-  assert.equal(boxes.length, 3); // base + one rectangle per color (the two 1-cells are one column)
-  const close = (a, b) => Math.abs(a - b) < 1e-9;
-  assert.ok(close(boxes[0].z1, 0.4) && boxes[0].x1 === 1 && boxes[0].y1 === 1);
-  const top = (lv) => boxes.slice(1).filter(b => close(b.z1, M.topLayer(lv, S) * 0.2));
-  assert.equal(top(0).length, 1);
-  assert.equal(top(1).length, 1);
-  assert.deepEqual([top(1)[0].y0, top(1)[0].y1], [0, 1]);
-  assert.ok(close(M.topLayer(0, S) * 0.2, 1.0) && close(M.topLayer(1, S) * 0.2, 1.6));
-  // y is flipped: the top-left cell of the picture is at the top (high y) of the model
-  assert.deepEqual([top(0)[0].x0, top(0)[0].y0, top(0)[0].y1], [0, 0.5, 1]);
-  assert.equal(M.modelHeight(2, S), 1.6);
-});
-
-test('the STL is closed and faces outwards: its volume is the sum of the boxes', () => {
-  const boxes = M.modelBoxes([0, 0, 1, -1], 2, 2, 1, S);
-  const buf = M.stl(M.boxMesh(boxes)), dv = new DataView(buf);
-  const n = dv.getUint32(80, true);
-  assert.equal(n, boxes.length * 12);
-  assert.equal(buf.byteLength, 84 + n * 50);
+/** Checks a mesh is one closed surface: every edge is used exactly twice, once in each direction. */
+function assertClosed(mesh) {
+  const T = mesh.triangles, use = new Map();
+  for (let t = 0; t < T.length; t += 3) for (let k = 0; k < 3; k++) {
+    const a = T[t + k], b = T[t + (k + 1) % 3];
+    use.set(a + '>' + b, (use.get(a + '>' + b) || 0) + 1);
+  }
+  for (const [e, n] of use) {
+    const [a, b] = e.split('>');
+    assert.equal(n, 1, `edge ${e} used ${n} times in the same direction`);
+    assert.equal(use.get(b + '>' + a), 1, `edge ${e} has no opposite`);
+  }
+}
+/** Volume enclosed by a mesh (positive when the triangles face outwards). */
+function volume(mesh) {
+  const V = mesh.vertices, T = mesh.triangles;
   let vol = 0;
-  for (let t = 0; t < n; t++) {
-    const o = 84 + t * 50 + 12, p = [0, 1, 2].map(k => [0, 1, 2].map(j => dv.getFloat32(o + (k * 3 + j) * 4, true)));
-    const [a, b, c] = p;
+  for (let t = 0; t < T.length; t += 3) {
+    const [a, b, c] = [0, 1, 2].map(k => [V[T[t + k] * 3], V[T[t + k] * 3 + 1], V[T[t + k] * 3 + 2]]);
     vol += (a[0] * (b[1] * c[2] - b[2] * c[1]) - a[1] * (b[0] * c[2] - b[2] * c[0]) + a[2] * (b[0] * c[1] - b[1] * c[0])) / 6;
   }
-  const expected = boxes.reduce((s, b) => s + (b.x1 - b.x0) * (b.y1 - b.y0) * (b.z1 - b.z0), 0);
-  assert.ok(Math.abs(vol - expected) < 1e-4, `${vol} vs ${expected}`);
+  return vol;
+}
+const close = (a, b) => Math.abs(a - b) < 1e-6;
+
+test('each color stands at its own height on the base plate', () => {
+  const grid = [0, 1, -1, 1];
+  const mesh = M.closedMesh(grid, 2, 2, 0.5, S);
+  const V = mesh.vertices, T = mesh.triangles, flat = new Set(), xs = new Set(), ys = new Set();
+  for (let i = 0; i < V.length; i += 3) { xs.add(V[i]); ys.add(V[i + 1]); }
+  // heights of the horizontal faces: floor, base, band 0, band 1
+  for (let t = 0; t < T.length; t += 3) {
+    const z = [0, 1, 2].map(k => +V[T[t + k] * 3 + 2].toFixed(6));
+    if (z[0] === z[1] && z[1] === z[2]) flat.add(z[0]);
+  }
+  assert.deepEqual([...flat].sort((a, b) => a - b), [0, 0.4, 1, 1.6]);
+  assert.deepEqual([Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)], [0, 1, 0, 1]);
+  assert.deepEqual([...M.cellHeights(grid, S)], [5, 8, 2, 8]);
+  assert.equal(M.modelHeight(2, S), 1.6);
+  // the band-0 cell is the top-left of the picture: at the top (high y) of the model
+  const top0 = [];
+  for (let t = 0; t < mesh.triangles.length; t += 3) {
+    const pts = [0, 1, 2].map(k => mesh.triangles[t + k] * 3);
+    if (pts.every(p => close(V[p + 2], 1))) top0.push(...pts.map(p => [V[p], V[p + 1]]));
+  }
+  assert.ok(top0.length && top0.every(([x, y]) => x <= 0.5 + 1e-9 && y >= 0.5 - 1e-9));
+});
+
+test('the model is one closed surface facing outwards, with the volume of its cells', () => {
+  const S0 = { ...S, baseLayers: 0 };
+  // T-junctions everywhere: tiles of different sizes and heights, a hole, and open (unpainted) cells
+  const grid = [
+    0, 0, 1, 1, 1,
+    0, 2, 2, 1, -1,
+    0, 2, 2, 0, -1,
+    -1, 1, 0, 0, 0,
+  ];
+  for (const s of [S, S0]) {
+    const mesh = M.closedMesh(grid, 5, 4, 0.5, s);
+    assertClosed(mesh);
+    const H = M.cellHeights(grid, s);
+    const expected = [...H].reduce((sum, hc) => sum + hc * s.layerHeight * 0.25, 0);
+    assert.ok(close(volume(mesh), expected), `${volume(mesh)} vs ${expected}`);
+  }
+  // equal heights are merged: a uniform 20 × 20 plate is a box of 12 triangles
+  const flat = M.closedMesh(new Array(400).fill(0), 20, 20, 1, S);
+  assert.equal(flat.triangles.length / 3, 12);
+  // the STL has the same triangles
+  const buf = M.stl(flat);
+  assert.equal(new DataView(buf).getUint32(80, true), 12);
+  assert.equal(buf.byteLength, 84 + 12 * 50);
 });
 
 test('the plan says at which layer to change to which color', () => {
@@ -62,7 +104,7 @@ test('the plan says at which layer to change to which color', () => {
 
 test('the 3MF carries the model, its colors and the filament changes', async () => {
   const { zip, crc32 } = await import('../../src/lib/zip.ts');
-  const mesh = M.boxMesh(M.modelBoxes([0, 1], 2, 1, 1, S));
+  const mesh = M.closedMesh([0, 1], 2, 1, 1, S);
   const plan = M.colorPlan(['#ffffff', '#e76f51'], S);
   const files = M.threeMfFiles(mesh, plan, 'Test');
   assert.deepEqual(files.map(f => f.name), ['[Content_Types].xml', '_rels/.rels', '3D/3dmodel.model',
