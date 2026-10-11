@@ -56,3 +56,12 @@ test('the offline cache lists both pages and every script and stylesheet they lo
     for (const [, href] of index.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)) assert.ok(sw.includes(`'${href}'`), `${href} is missing from sw.js`);
   }
 });
+
+test('the offline cache is named after the version (the build stamps it with the files’ content too)', () => {
+  const root = path.resolve(import.meta.dirname, '..', '..');
+  const { version } = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+  const sw = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
+  const name = /const CACHE = '([^']*)';/.exec(sw)[1];
+  assert.ok(name.startsWith(`mosaic-paint-${version}-`), name);
+  assert.match(name.slice(`mosaic-paint-${version}-`.length), /^[0-9a-f]{10}$/);
+});

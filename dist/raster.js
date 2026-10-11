@@ -777,7 +777,19 @@
     "Pin – kept when old versions are cleared": "Připnout – zůstane, i když se staré verze mažou",
     "Name this version": "Pojmenovat tuto verzi",
     "Name of this version:": "Název této verze:",
-    "Share link": "Odkaz ke sdílení"
+    "Share link": "Odkaz ke sdílení",
+    "What’s new": "Co je nového",
+    "Version {v} – what’s new": "Verze {v} – co je nového",
+    "Updated to version {v} – click v{v} in the corner to see what’s new.": "Aktualizováno na verzi {v} – co je nového, uvidíte po kliknutí na v{v} v rohu.",
+    "The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.": "Rastrová aplikace: malování pixely, fotky proměněné v mozaiky a kopírování obrázků mezi oběma aplikacemi.",
+    "3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.": "3D tisk: 3D náhled, modely pro tiskárny s více filamenty (AMS, MMU), rámeček, zaoblené rohy, otvor na pověšení a kapsy na magnety – a kontrola G-codu ze sliceru podle plánu.",
+    "Examples to start from, and a short guide for newcomers.": "Příklady, od kterých můžete začít, a krátký průvodce pro nováčky.",
+    "German, Slovak and Polish.": "Němčina, slovenština a polština.",
+    "Heavy work – mosaics, tracing, 3D models – no longer holds up the page.": "Náročná práce – mozaiky, obkreslování, 3D modely – už stránku nezdržuje.",
+    "History: name and pin versions; see their size and colors.": "Historie: verze můžete pojmenovat a připnout; vidíte jejich velikost a barvy.",
+    "Big images can be scaled down when opened.": "Velké obrázky lze při otevření zmenšit.",
+    "Better keyboard and screen-reader support.": "Lepší podpora klávesnice a čteček obrazovky.",
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Vektorový editor: čáry, vzory dlaždic, kbelík, palety, přehledy, tisk ve skutečné velikosti a sdílení odkazem."
   };
 
   // src/shared/i18n-de.ts
@@ -1558,7 +1570,19 @@
     "Pin – kept when old versions are cleared": "Anheften – bleibt, wenn alte Versionen gelöscht werden",
     "Name this version": "Diese Version benennen",
     "Name of this version:": "Name dieser Version:",
-    "Share link": "Link zum Teilen"
+    "Share link": "Link zum Teilen",
+    "What’s new": "Neuigkeiten",
+    "Version {v} – what’s new": "Version {v} – Neuigkeiten",
+    "Updated to version {v} – click v{v} in the corner to see what’s new.": "Auf Version {v} aktualisiert – klicken Sie unten in der Ecke auf v{v}, um die Neuigkeiten zu sehen.",
+    "The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.": "Die Raster-App: Malen mit Pixeln, Fotos als Mosaik und Bilder zwischen beiden Apps kopieren.",
+    "3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.": "3D-Druck: eine 3D-Vorschau, Modelle für Mehrfilament-Drucker (AMS, MMU), ein Rahmen, abgerundete Ecken, ein Aufhängeloch und Magnetvertiefungen – und eine Prüfung des G-Codes aus dem Slicer gegen den Plan.",
+    "Examples to start from, and a short guide for newcomers.": "Beispiele zum Loslegen und eine kurze Anleitung für Einsteiger.",
+    "German, Slovak and Polish.": "Deutsch, Slowakisch und Polnisch.",
+    "Heavy work – mosaics, tracing, 3D models – no longer holds up the page.": "Aufwendige Arbeit – Mosaike, Nachzeichnen, 3D-Modelle – hält die Seite nicht mehr auf.",
+    "History: name and pin versions; see their size and colors.": "Verlauf: Versionen benennen und anheften; ihre Größe und Farben sehen.",
+    "Big images can be scaled down when opened.": "Große Bilder lassen sich beim Öffnen verkleinern.",
+    "Better keyboard and screen-reader support.": "Bessere Unterstützung für Tastatur und Bildschirmleser.",
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Der Vektor-Editor: Linien, Fliesenmuster, der Farbeimer, Paletten, Übersichten, Drucken in Originalgröße und Teilen per Link."
   };
 
   // src/shared/i18n-sk.ts
@@ -2339,7 +2363,19 @@
     "Pin – kept when old versions are cleared": "Pripnúť – zostane, aj keď sa staré verzie mažú",
     "Name this version": "Pomenovať túto verziu",
     "Name of this version:": "Názov tejto verzie:",
-    "Share link": "Odkaz na zdieľanie"
+    "Share link": "Odkaz na zdieľanie",
+    "What’s new": "Čo je nové",
+    "Version {v} – what’s new": "Verzia {v} – čo je nové",
+    "Updated to version {v} – click v{v} in the corner to see what’s new.": "Aktualizované na verziu {v} – čo je nové, uvidíte po kliknutí na v{v} v rohu.",
+    "The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.": "Rastrová aplikácia: maľovanie pixelmi, fotky premenené na mozaiky a kopírovanie obrázkov medzi oboma aplikáciami.",
+    "3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.": "3D tlač: 3D náhľad, modely pre tlačiarne s viacerými filamentmi (AMS, MMU), rámik, zaoblené rohy, otvor na zavesenie a vrecká na magnety – a kontrola G-codu zo slicera podľa plánu.",
+    "Examples to start from, and a short guide for newcomers.": "Príklady, od ktorých môžete začať, a krátky sprievodca pre nováčikov.",
+    "German, Slovak and Polish.": "Nemčina, slovenčina a poľština.",
+    "Heavy work – mosaics, tracing, 3D models – no longer holds up the page.": "Náročná práca – mozaiky, obkresľovanie, 3D modely – už stránku nezdržiava.",
+    "History: name and pin versions; see their size and colors.": "História: verzie môžete pomenovať a pripnúť; vidíte ich veľkosť a farby.",
+    "Big images can be scaled down when opened.": "Veľké obrázky sa dajú pri otvorení zmenšiť.",
+    "Better keyboard and screen-reader support.": "Lepšia podpora klávesnice a čítačiek obrazovky.",
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Vektorový editor: čiary, vzory dlaždíc, vedro, palety, prehľady, tlač v skutočnej veľkosti a zdieľanie odkazom."
   };
 
   // src/shared/i18n-pl.ts
@@ -3120,7 +3156,19 @@
     "Pin – kept when old versions are cleared": "Przypnij – zostaje, gdy stare wersje są usuwane",
     "Name this version": "Nazwij tę wersję",
     "Name of this version:": "Nazwa tej wersji:",
-    "Share link": "Link do udostępnienia"
+    "Share link": "Link do udostępnienia",
+    "What’s new": "Co nowego",
+    "Version {v} – what’s new": "Wersja {v} – co nowego",
+    "Updated to version {v} – click v{v} in the corner to see what’s new.": "Zaktualizowano do wersji {v} – kliknij v{v} w rogu, aby zobaczyć, co nowego.",
+    "The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.": "Aplikacja rastrowa: malowanie pikselami, zdjęcia zamieniane w mozaiki i kopiowanie obrazów między obiema aplikacjami.",
+    "3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.": "Druk 3D: podgląd 3D, modele dla drukarek wielofilamentowych (AMS, MMU), ramka, zaokrąglone narożniki, otwór do zawieszenia i gniazda na magnesy – oraz sprawdzanie G-code ze slicera względem planu.",
+    "Examples to start from, and a short guide for newcomers.": "Przykłady na start i krótki przewodnik dla początkujących.",
+    "German, Slovak and Polish.": "Niemiecki, słowacki i polski.",
+    "Heavy work – mosaics, tracing, 3D models – no longer holds up the page.": "Ciężka praca – mozaiki, odrysowywanie, modele 3D – już nie blokuje strony.",
+    "History: name and pin versions; see their size and colors.": "Historia: nazywaj i przypinaj wersje; zobacz ich rozmiar i kolory.",
+    "Big images can be scaled down when opened.": "Duże obrazy można zmniejszyć przy otwieraniu.",
+    "Better keyboard and screen-reader support.": "Lepsza obsługa klawiatury i czytników ekranu.",
+    "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.": "Edytor wektorowy: linie, wzory płytek, wiadro z farbą, palety, raporty, druk w rzeczywistym rozmiarze i udostępnianie linkiem."
   };
 
   // src/shared/i18n.ts
@@ -8530,6 +8578,57 @@ ${sections.join("\n")}
     ], "mz-guide-raster");
   }
 
+  // src/shared/whats-new.ts
+  var VERSION = true ? "1.1.0" : "dev";
+  var RELEASES = [
+    {
+      version: "1.1.0",
+      date: "2026-10-11",
+      items: [
+        "The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.",
+        "3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.",
+        "Examples to start from, and a short guide for newcomers.",
+        "German, Slovak and Polish.",
+        "Heavy work – mosaics, tracing, 3D models – no longer holds up the page.",
+        "History: name and pin versions; see their size and colors.",
+        "Big images can be scaled down when opened.",
+        "Better keyboard and screen-reader support."
+      ]
+    },
+    {
+      version: "1.0.0",
+      date: "2026-10-10",
+      items: [
+        "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link."
+      ]
+    }
+  ];
+  var KEY3 = "mz-version";
+  function initWhatsNew() {
+    const dlg = document.createElement("dialog");
+    dlg.id = "dlg-whats-new";
+    dlg.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
+    document.body.append(dlg);
+    dlg.addEventListener("click", (e) => {
+      if (e.target === dlg) dlg.close();
+    });
+    const button = document.createElement("button");
+    button.id = "st-version";
+    button.textContent = "v" + VERSION;
+    button.title = t("Version {v} – what’s new", { v: VERSION });
+    $("#status").append(button);
+    const seen = lsGet(KEY3);
+    if (seen && seen !== VERSION) {
+      button.classList.add("new");
+      toast(t("Updated to version {v} – click v{v} in the corner to see what’s new.", { v: VERSION }));
+    } else if (!seen) lsSet(KEY3, VERSION);
+    button.onclick = () => {
+      button.classList.remove("new");
+      lsSet(KEY3, VERSION);
+      dlg.showModal();
+    };
+  }
+
   // src/shared/history-ui.ts
   function initHistoryUI(host, button) {
     const dlg = document.createElement("dialog");
@@ -8623,6 +8722,7 @@ ${sections.join("\n")}
   bindShare();
   bindVectorize();
   bindExamples();
+  initWhatsNew();
   initHistoryUI({
     texts: {
       intro: t("Versions are kept in this browser: every few minutes while you work, and before you open, start or restore another image. Restoring keeps your current image as a version too."),

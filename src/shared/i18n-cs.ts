@@ -1554,4 +1554,28 @@ export const CS: Record<string, string> = {
     'Název této verze:',
   'Share link':
     'Odkaz ke sdílení',
+  'What’s new':
+    'Co je nového',
+  'Version {v} – what’s new':
+    'Verze {v} – co je nového',
+  'Updated to version {v} – click v{v} in the corner to see what’s new.':
+    'Aktualizováno na verzi {v} – co je nového, uvidíte po kliknutí na v{v} v rohu.',
+  'The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.':
+    'Rastrová aplikace: malování pixely, fotky proměněné v mozaiky a kopírování obrázků mezi oběma aplikacemi.',
+  '3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.':
+    '3D tisk: 3D náhled, modely pro tiskárny s více filamenty (AMS, MMU), rámeček, zaoblené rohy, otvor na pověšení a kapsy na magnety – a kontrola G-codu ze sliceru podle plánu.',
+  'Examples to start from, and a short guide for newcomers.':
+    'Příklady, od kterých můžete začít, a krátký průvodce pro nováčky.',
+  'German, Slovak and Polish.':
+    'Němčina, slovenština a polština.',
+  'Heavy work – mosaics, tracing, 3D models – no longer holds up the page.':
+    'Náročná práce – mozaiky, obkreslování, 3D modely – už stránku nezdržuje.',
+  'History: name and pin versions; see their size and colors.':
+    'Historie: verze můžete pojmenovat a připnout; vidíte jejich velikost a barvy.',
+  'Big images can be scaled down when opened.':
+    'Velké obrázky lze při otevření zmenšit.',
+  'Better keyboard and screen-reader support.':
+    'Lepší podpora klávesnice a čteček obrazovky.',
+  'The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.':
+    'Vektorový editor: čáry, vzory dlaždic, kbelík, palety, přehledy, tisk ve skutečné velikosti a sdílení odkazem.',
 };

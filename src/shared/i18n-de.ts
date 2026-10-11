@@ -1554,4 +1554,28 @@ export const DE: Record<string, string> = {
     'Name dieser Version:',
   'Share link':
     'Link zum Teilen',
+  'What’s new':
+    'Neuigkeiten',
+  'Version {v} – what’s new':
+    'Version {v} – Neuigkeiten',
+  'Updated to version {v} – click v{v} in the corner to see what’s new.':
+    'Auf Version {v} aktualisiert – klicken Sie unten in der Ecke auf v{v}, um die Neuigkeiten zu sehen.',
+  'The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.':
+    'Die Raster-App: Malen mit Pixeln, Fotos als Mosaik und Bilder zwischen beiden Apps kopieren.',
+  '3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.':
+    '3D-Druck: eine 3D-Vorschau, Modelle für Mehrfilament-Drucker (AMS, MMU), ein Rahmen, abgerundete Ecken, ein Aufhängeloch und Magnetvertiefungen – und eine Prüfung des G-Codes aus dem Slicer gegen den Plan.',
+  'Examples to start from, and a short guide for newcomers.':
+    'Beispiele zum Loslegen und eine kurze Anleitung für Einsteiger.',
+  'German, Slovak and Polish.':
+    'Deutsch, Slowakisch und Polnisch.',
+  'Heavy work – mosaics, tracing, 3D models – no longer holds up the page.':
+    'Aufwendige Arbeit – Mosaike, Nachzeichnen, 3D-Modelle – hält die Seite nicht mehr auf.',
+  'History: name and pin versions; see their size and colors.':
+    'Verlauf: Versionen benennen und anheften; ihre Größe und Farben sehen.',
+  'Big images can be scaled down when opened.':
+    'Große Bilder lassen sich beim Öffnen verkleinern.',
+  'Better keyboard and screen-reader support.':
+    'Bessere Unterstützung für Tastatur und Bildschirmleser.',
+  'The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link.':
+    'Der Vektor-Editor: Linien, Fliesenmuster, der Farbeimer, Paletten, Übersichten, Drucken in Originalgröße und Teilen per Link.',
 };

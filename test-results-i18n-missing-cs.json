@@ -1,3 +1,14 @@
 [
- "Share link"
+ "What’s new",
+ "Version {v} – what’s new",
+ "Updated to version {v} – click {v} in the corner to see what’s new.",
+ "The raster app: paint with pixels, turn photos into mosaics, and copy pictures between both apps.",
+ "3D print: a 3D preview, models for multi-filament printers (AMS, MMU), a frame, rounded corners, a hanging hole and magnet pockets – and a check of the sliced G-code against the plan.",
+ "Examples to start from, and a short guide for newcomers.",
+ "German, Slovak and Polish.",
+ "Heavy work – mosaics, tracing, 3D models – no longer holds up the page.",
+ "History: name and pin versions; see their size and colors.",
+ "Big images can be scaled down when opened.",
+ "Better keyboard and screen-reader support.",
+ "The vector editor: lines, tile patterns, the paint bucket, palettes, reports, printing at real size and sharing as a link."
 ]

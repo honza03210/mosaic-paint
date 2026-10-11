@@ -8,6 +8,7 @@ import { DICTS, LANGS } from '../../src/shared/i18n.ts';
 import * as Patterns from '../../src/lib/patterns.ts';
 import * as AutoMosaic from '../../src/lib/automosaic.ts';
 import { t, num, wordForm } from '../../src/shared/i18n.ts';
+import { RELEASES } from '../../src/shared/whats-new.ts';
 
 const root = path.resolve(import.meta.dirname, '..', '..');
 const hasWords = (s) => /[A-Za-z]{2}/.test(s);
@@ -43,6 +44,8 @@ function allKeys() {
   for (const [, label] of Patterns.TYPES) keys.add(label);
   for (const [, label] of AutoMosaic.STYLES) keys.add(label);
   for (const k of ['portrait', 'landscape']) keys.add(k);
+  // the release notes (translated when shown)
+  for (const r of RELEASES) for (const item of r.items) keys.add(item);
   // names (the app, languages, file formats, keys and units) stay as they are
   return [...keys].filter(hasWords).filter(k => !/^(Mosaic Paint|English|Čeština|STL|PNG|SVG|Ctrl\+.*|px|mm|cm|in|1:1)$/.test(k));
 }

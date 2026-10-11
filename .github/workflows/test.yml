@@ -22,7 +22,7 @@ jobs:
       - run: npm run test:unit
       - run: npm run test:e2e
       - name: The committed bundle matches the source
-        run: git diff --exit-code -- dist || (echo "Run npm run build and commit dist/" && exit 1)
+        run: git diff --exit-code -- dist sw.js || (echo "Run npm run build and commit dist/ and sw.js" && exit 1)
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

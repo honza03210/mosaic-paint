@@ -149,6 +149,11 @@ details summary { cursor: pointer; color: var(--muted); }
 #st-pos { min-width: 130px; font-variant-numeric: tabular-nums; }
 #st-hint { overflow: hidden; text-overflow: ellipsis; }
 #st-msg { margin-left: auto; color: var(--warn); }
+#st-version { padding: 0 6px; border: 0; background: none; color: var(--muted); font-size: 11px; }
+#st-version.new { color: #fff; background: var(--accent-fill); border-radius: 4px; }
+#dlg-whats-new { width: min(560px, 96vw); }
+#dlg-whats-new h3 { margin: 14px 0 4px; font-size: 14px; }
+#dlg-whats-new ul { margin: 0; padding-left: 18px; line-height: 1.5; }
 
 /* ---- modes ---- */
 [hidden] { display: none !important; }

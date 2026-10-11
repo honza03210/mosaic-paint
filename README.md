@@ -179,7 +179,9 @@ npm run lint         # ESLint
 npm test             # build, type check, lint, unit tests, then end-to-end tests
 ```
 
-Commit `dist/` together with the source change: CI checks that it matches.
+Commit `dist/` and `sw.js` together with the source change: CI checks that they match the build.
+
+**Releases.** The version is the one in `package.json`; the apps show it in the status bar (v1.1.0), and its button opens **What’s new**. To release: raise the version, add what changed at the top of `RELEASES` in `src/shared/whats-new.ts` (and its translations), and run `npm run build` – it also names the offline cache in `sw.js` after the version and the files it keeps, so every release replaces the offline copy. After an update, people who used the app before see the version button marked until they open What’s new.
 
 The end-to-end tests (`tests/e2e/`) drive the real app with mouse, keyboard and touch input:
 drawing, snapping, painting, painted areas following edits, files, autosave, history, printing, the photo tools, the phone layout and offline start.

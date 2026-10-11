@@ -24,6 +24,10 @@ import './features/export3d.ts';
 import './features/raster-import.ts';
 import { Share } from './features/share.ts';
 import './features/examples.ts';
+import { initWhatsNew } from './shared/whats-new.ts';
+
+// the version in the status bar, and what's new after an update
+initWhatsNew();
 
 // for the end-to-end tests and for poking around in the browser console
 Object.assign(window, { MZ, Geo, Colors, Store, PhotoTools, LayPlan, Vision, Pages, Snippets, Share });

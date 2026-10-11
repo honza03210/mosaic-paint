@@ -2,9 +2,14 @@
 // src/main.ts → dist/mosaic.js (vector, index.html) and src/raster/main.ts → dist/raster.js (raster.html).
 // The worker (src/worker/worker.ts) is bundled first and goes into each app as a string (import
 // 'worker-source'): the apps start it from a blob URL, which works from file:// too.
+// The version in package.json goes into the apps (__VERSION__), and the offline cache in sw.js is named
+// after it and the files it keeps: every release replaces the offline copy.
 // Uses the WebAssembly build of esbuild: no native binary to install. `node build.mjs --watch` rebuilds on change.
 import * as esbuild from 'esbuild-wasm';
+import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 
+const { version } = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 const common = { bundle: true, target: 'es2020', charset: 'utf8', legalComments: 'none' };
 
 /** `import source from 'worker-source'`: the worker's bundled code. */
@@ -19,6 +24,19 @@ const workerSource = {
   },
 };
 
+/** Names the offline cache in sw.js after the version and the content of the files it keeps. */
+function stampCache() {
+  const sw = fs.readFileSync('sw.js', 'utf8');
+  const files = JSON.parse('[' + /const FILES = \[([^\]]*)\]/.exec(sw)[1].replace(/'/g, '"').replace(/,\s*$/, '') + ']');
+  const hash = createHash('sha256');
+  // the same hash on every system: line endings left out
+  for (const f of files.filter(f => f !== './')) hash.update(fs.readFileSync(f).toString('latin1').replace(/\r\n/g, '\n'));
+  const name = `mosaic-paint-${version}-${hash.digest('hex').slice(0, 10)}`;
+  const out = sw.replace(/const CACHE = '[^']*';/, `const CACHE = '${name}';`);
+  if (out !== sw) fs.writeFileSync('sw.js', out);
+}
+const stamp = { name: 'stamp-cache', setup(build) { build.onEnd((r) => { if (!r.errors.length) stampCache(); }); } };
+
 const options = {
   ...common,
   entryPoints: { mosaic: 'src/main.ts', raster: 'src/raster/main.ts' },
@@ -26,7 +44,8 @@ const options = {
   format: 'iife',
   sourcemap: true,
   logLevel: 'info',
-  plugins: [workerSource],
+  define: { __VERSION__: JSON.stringify(version) },
+  plugins: [workerSource, stamp],
 };
 if (process.argv.includes('--watch')) {
   const ctx = await esbuild.context(options);
