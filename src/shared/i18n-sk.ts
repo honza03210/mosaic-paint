@@ -1542,4 +1542,14 @@ export const SK: Record<string, string> = {
     '{name} má {w} × {h} px – maľovanie a mozaiky na ňom budú pomalé. Zmenšiť ho na {W} × {H} px?',
   'It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.':
     'Má veľa farieb: „Previesť na paletu“ alebo „Vytvoriť mozaiku…“ z nich urobí pár farieb, v ktorých dlaždice kúpite.',
+  '{n} {n|color|colors}':
+    '{n} {n|farba|farby|farieb}',
+  'Unpin – it may be cleared with old versions':
+    'Odopnúť – môže byť zmazaná so starými verziami',
+  'Pin – kept when old versions are cleared':
+    'Pripnúť – zostane, aj keď sa staré verzie mažú',
+  'Name this version':
+    'Pomenovať túto verziu',
+  'Name of this version:':
+    'Názov tejto verzie:',
 };

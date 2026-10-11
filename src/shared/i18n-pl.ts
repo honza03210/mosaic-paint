@@ -1542,4 +1542,14 @@ export const PL: Record<string, string> = {
     '{name} ma {w} × {h} px – malowanie i mozaiki na nim będą powolne. Zmniejszyć go do {W} × {H} px?',
   'It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.':
     'Ma dużo kolorów: „Zredukuj do palety” lub „Utwórz mozaikę…” zrobią z nich kilka, w których kupisz płytki.',
+  '{n} {n|color|colors}':
+    '{n} {n|kolor|kolory|kolorów}',
+  'Unpin – it may be cleared with old versions':
+    'Odepnij – może zostać usunięta ze starymi wersjami',
+  'Pin – kept when old versions are cleared':
+    'Przypnij – zostaje, gdy stare wersje są usuwane',
+  'Name this version':
+    'Nazwij tę wersję',
+  'Name of this version:':
+    'Nazwa tej wersji:',
 };

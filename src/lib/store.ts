@@ -1,7 +1,14 @@
 /* IndexedDB storage for the autosave, the version history and the motif library. */
 
-/** A saved version: the vector app keeps SVG text, the raster app PNG bytes (app: 'raster'). */
-export interface Version { id?: number; app?: string; time: number; name: string; note: string; svg?: string; png?: ArrayBuffer; tiles: number }
+/**
+ * A saved version: the vector app keeps SVG text, the raster app PNG bytes (app: 'raster'). size: its size
+ * (w × h in unit); colors: how many it uses; title: a name the user gave it; pinned: kept when old versions
+ * are cleared.
+ */
+export interface Version {
+  id?: number; app?: string; time: number; name: string; note: string; svg?: string; png?: ArrayBuffer; tiles: number;
+  size?: { w: number; h: number; unit: string }; colors?: number; title?: string; pinned?: boolean;
+}
 const appOf = (v: Version) => v.app || 'vector';
 
 let dbp: Promise<IDBDatabase> | null = null;
@@ -41,8 +48,11 @@ export const Store = {
     return (await run<Version[]>('versions', 'readonly', s => s.getAll())).filter(v => appOf(v) === app).sort((a, b) => b.time - a.time);
   },
   deleteVersion: (id: number) => run('versions', 'readwrite', s => s.delete(id)),
+  /** Saves changes to a version (its title, pinned). */
+  updateVersion: (v: Version) => run('versions', 'readwrite', s => s.put(v)),
+  /** Keeps the newest max versions of an app – pinned ones are kept besides. */
   async trimVersions(max: number, app = 'vector'): Promise<void> {
-    const all = await Store.listVersions(app);
+    const all = (await Store.listVersions(app)).filter(v => !v.pinned);
     for (const v of all.slice(max)) await Store.deleteVersion(v.id);
   },
 };

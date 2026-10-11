@@ -771,7 +771,12 @@
     "Reading the G-code… {p} %": "Čtu G-code… {p} %",
     "Could not read {name}.": "{name} se nepodařilo přečíst.",
     "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} má {w} × {h} px – malování a mozaiky na něm budou pomalé. Zmenšit ho na {W} × {H} px?",
-    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má mnoho barev: „Převést na paletu“ nebo „Vytvořit mozaiku…“ z nich udělá pár barev, ve kterých dlaždice koupíte."
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má mnoho barev: „Převést na paletu“ nebo „Vytvořit mozaiku…“ z nich udělá pár barev, ve kterých dlaždice koupíte.",
+    "{n} {n|color|colors}": "{n} {n|barva|barvy|barev}",
+    "Unpin – it may be cleared with old versions": "Odepnout – může být smazána se starými verzemi",
+    "Pin – kept when old versions are cleared": "Připnout – zůstane, i když se staré verze mažou",
+    "Name this version": "Pojmenovat tuto verzi",
+    "Name of this version:": "Název této verze:"
   };
 
   // src/shared/i18n-de.ts
@@ -1546,7 +1551,12 @@
     "Reading the G-code… {p} %": "G-Code wird gelesen… {p} %",
     "Could not read {name}.": "{name} lässt sich nicht lesen.",
     "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} ist {w} × {h} px groß – Malen und Mosaike darauf werden langsam. Auf {W} × {H} px verkleinern?",
-    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Es hat viele Farben: „Auf Palette reduzieren“ oder „Mosaik erstellen…“ machen daraus wenige, in denen Sie Fliesen kaufen können."
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Es hat viele Farben: „Auf Palette reduzieren“ oder „Mosaik erstellen…“ machen daraus wenige, in denen Sie Fliesen kaufen können.",
+    "{n} {n|color|colors}": "{n} {n|Farbe|Farben}",
+    "Unpin – it may be cleared with old versions": "Lösen – kann mit alten Versionen gelöscht werden",
+    "Pin – kept when old versions are cleared": "Anheften – bleibt, wenn alte Versionen gelöscht werden",
+    "Name this version": "Diese Version benennen",
+    "Name of this version:": "Name dieser Version:"
   };
 
   // src/shared/i18n-sk.ts
@@ -2321,7 +2331,12 @@
     "Reading the G-code… {p} %": "Čítam G-code… {p} %",
     "Could not read {name}.": "{name} sa nepodarilo prečítať.",
     "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} má {w} × {h} px – maľovanie a mozaiky na ňom budú pomalé. Zmenšiť ho na {W} × {H} px?",
-    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má veľa farieb: „Previesť na paletu“ alebo „Vytvoriť mozaiku…“ z nich urobí pár farieb, v ktorých dlaždice kúpite."
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Má veľa farieb: „Previesť na paletu“ alebo „Vytvoriť mozaiku…“ z nich urobí pár farieb, v ktorých dlaždice kúpite.",
+    "{n} {n|color|colors}": "{n} {n|farba|farby|farieb}",
+    "Unpin – it may be cleared with old versions": "Odopnúť – môže byť zmazaná so starými verziami",
+    "Pin – kept when old versions are cleared": "Pripnúť – zostane, aj keď sa staré verzie mažú",
+    "Name this version": "Pomenovať túto verziu",
+    "Name of this version:": "Názov tejto verzie:"
   };
 
   // src/shared/i18n-pl.ts
@@ -3096,7 +3111,12 @@
     "Reading the G-code… {p} %": "Odczytywanie G-code… {p} %",
     "Could not read {name}.": "Nie udało się odczytać {name}.",
     "{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?": "{name} ma {w} × {h} px – malowanie i mozaiki na nim będą powolne. Zmniejszyć go do {W} × {H} px?",
-    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Ma dużo kolorów: „Zredukuj do palety” lub „Utwórz mozaikę…” zrobią z nich kilka, w których kupisz płytki."
+    "It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.": "Ma dużo kolorów: „Zredukuj do palety” lub „Utwórz mozaikę…” zrobią z nich kilka, w których kupisz płytki.",
+    "{n} {n|color|colors}": "{n} {n|kolor|kolory|kolorów}",
+    "Unpin – it may be cleared with old versions": "Odepnij – może zostać usunięta ze starymi wersjami",
+    "Pin – kept when old versions are cleared": "Przypnij – zostaje, gdy stare wersje są usuwane",
+    "Name this version": "Nazwij tę wersję",
+    "Name of this version:": "Nazwa tej wersji:"
   };
 
   // src/shared/i18n.ts
@@ -4352,8 +4372,11 @@
       return (await run("versions", "readonly", (s) => s.getAll())).filter((v) => appOf(v) === app).sort((a, b) => b.time - a.time);
     },
     deleteVersion: (id) => run("versions", "readwrite", (s) => s.delete(id)),
+    /** Saves changes to a version (its title, pinned). */
+    updateVersion: (v) => run("versions", "readwrite", (s) => s.put(v)),
+    /** Keeps the newest max versions of an app – pinned ones are kept besides. */
     async trimVersions(max, app = "vector") {
-      const all = await Store.listVersions(app);
+      const all = (await Store.listVersions(app)).filter((v) => !v.pinned);
       for (const v of all.slice(max)) await Store.deleteVersion(v.id);
     }
   };
@@ -4517,8 +4540,9 @@
   async function saveVersion(note) {
     lastVersionAt = Date.now();
     try {
+      const colors = countColors(dctx.getImageData(0, 0, doc.width, doc.height), 1e5);
       const png = await (await canvasToPng(doc)).arrayBuffer();
-      await Store.addVersion({ app: "raster", time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height });
+      await Store.addVersion({ app: "raster", time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height, size: { w: doc.width, h: doc.height, unit: "px" }, colors });
       await Store.trimVersions(MAX_VERSIONS, "raster");
       return true;
     } catch {
@@ -8495,20 +8519,47 @@ ${sections.join("\n")}
       list.innerHTML = "";
       for (const v of versions) {
         const row = document.createElement("div");
-        row.className = "hist-row";
+        row.className = "hist-row" + (v.pinned ? " pinned" : "");
         const url2 = URL.createObjectURL(host.thumbnail(v));
         thumbs.push(url2);
-        const detail = host.detail(v);
-        row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc(v.name || "")} · ${esc(v.note || "")}${detail ? ` · ${esc(detail)}` : ""}</span></div>`;
-        const b = document.createElement("button");
-        b.textContent = t("Restore");
-        b.onclick = async () => {
+        const when = new Date(v.time).toLocaleString(lang);
+        const facts = [
+          v.title ? when : "",
+          v.name,
+          v.note,
+          host.detail(v),
+          v.size ? `${num(+v.size.w.toFixed(1))} × ${num(+v.size.h.toFixed(1))} ${v.size.unit}` : "",
+          v.colors != null ? t("{n} {n|color|colors}", { n: v.colors }) : ""
+        ].filter(Boolean);
+        row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${v.pinned ? "★ " : ""}${esc(v.title || when)}</b><span>${esc(facts.join(" · "))}</span></div>`;
+        const pin = document.createElement("button"), rename = document.createElement("button"), restore2 = document.createElement("button");
+        pin.className = "hist-pin";
+        pin.textContent = "★";
+        pin.title = v.pinned ? t("Unpin – it may be cleared with old versions") : t("Pin – kept when old versions are cleared");
+        pin.setAttribute("aria-pressed", String(!!v.pinned));
+        pin.onclick = () => change(v, { pinned: !v.pinned });
+        rename.textContent = "✎";
+        rename.title = rename.ariaLabel = t("Name this version");
+        rename.onclick = () => {
+          const title2 = prompt(t("Name of this version:"), v.title || "");
+          if (title2 != null) change(v, { title: title2.trim() || void 0 });
+        };
+        restore2.textContent = t("Restore");
+        restore2.onclick = async () => {
           dlg.close();
           await host.restore(v);
         };
-        row.append(b);
+        row.append(pin, rename, restore2);
         list.append(row);
       }
+    }
+    async function change(v, what) {
+      try {
+        await Store.updateVersion({ ...v, ...what });
+      } catch {
+        toast(t("Could not save a version (browser storage unavailable)."));
+      }
+      render3();
     }
     button.onclick = () => {
       render3();

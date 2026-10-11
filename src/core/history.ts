@@ -1,6 +1,6 @@
 /* Undo / redo, the "unsaved changes" state, autosave and the version history. */
 import { Store } from '../lib/store.ts';
-import { $, state, rt, defsG, fillsG, shapesG, emit, toast, lsSet, VERSION_EVERY_MS, MAX_VERSIONS, type Doc } from './env.ts';
+import { $, state, rt, defsG, fillsG, shapesG, emit, toast, lsSet, unit, VERSION_EVERY_MS, MAX_VERSIONS, type Doc } from './env.ts';
 import { touch } from './doc.ts';
 import { applyDoc } from './view.ts';
 import { renderSelection, renderProps } from './selection.ts';
@@ -93,7 +93,10 @@ async function autosaveNow(): Promise<void> {
 export async function saveVersion(note: string): Promise<boolean> {
   lastVersionAt = Date.now();
   try {
-    await Store.addVersion({ time: Date.now(), name: rt.fileName, note, svg: buildSVGString(), tiles: fillsG.children.length });
+    // colors: of painted areas and of filled shapes
+    const fills = [...fillsG.children, ...shapesG.querySelectorAll('[fill]')].map(el => el.getAttribute('fill')).filter(f => f && f !== 'none');
+    const d = state.doc, colors = new Set(fills).size;
+    await Store.addVersion({ time: Date.now(), name: rt.fileName, note, svg: buildSVGString(), tiles: fillsG.children.length, size: { w: d.w, h: d.h, unit: unit() }, colors });
     await Store.trimVersions(MAX_VERSIONS);
     return true;
   } catch { return false; }

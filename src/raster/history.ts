@@ -1,5 +1,6 @@
 /* Undo / redo (snapshots of the pixels), the unsaved-changes mark, autosave in the browser and versions. */
 import { Store } from '../lib/store.ts';
+import * as R from '../lib/raster.ts';
 import { $, toast } from '../shared/ui.ts';
 import { canvasToPng } from '../shared/clipboard.ts';
 import { state, rt, emit } from './state.ts';
@@ -83,8 +84,10 @@ let lastVersionAt = Date.now();
 export async function saveVersion(note: string): Promise<boolean> {
   lastVersionAt = Date.now();
   try {
+    // counted before the picture is taken (that waits): both as the image is now
+    const colors = R.countColors(dctx.getImageData(0, 0, doc.width, doc.height), 100000);
     const png = await (await canvasToPng(doc)).arrayBuffer();
-    await Store.addVersion({ app: 'raster', time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height });
+    await Store.addVersion({ app: 'raster', time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height, size: { w: doc.width, h: doc.height, unit: 'px' }, colors });
     await Store.trimVersions(MAX_VERSIONS, 'raster');
     return true;
   } catch { return false; }

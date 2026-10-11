@@ -1,8 +1,9 @@
 /* The version history dialog shared by both apps: earlier versions kept in the browser, with a picture
-   of each, restored with one click. The app (host) says how to list, show, save and restore its versions. */
-import type { Version } from '../lib/store.ts';
+   of each, its size and colors, restored with one click; versions can be named and pinned (pinned ones are
+   kept when old versions are cleared). The app (host) says how to list, show, save and restore its versions. */
+import { Store, type Version } from '../lib/store.ts';
 import { toast } from './ui.ts';
-import { t, lang } from './i18n.ts';
+import { t, lang, num } from './i18n.ts';
 import { esc } from '../lib/html.ts';
 
 export interface HistoryHost {
@@ -39,17 +40,35 @@ export function initHistoryUI(host: HistoryHost, button: HTMLElement): void {
     list.innerHTML = '';
     for (const v of versions) {
       const row = document.createElement('div');
-      row.className = 'hist-row';
+      row.className = 'hist-row' + (v.pinned ? ' pinned' : '');
       const url = URL.createObjectURL(host.thumbnail(v));
       thumbs.push(url);
-      const detail = host.detail(v);
-      row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${new Date(v.time).toLocaleString(lang)}</b><span>${esc(v.name || '')} · ${esc(v.note || '')}${detail ? ` · ${esc(detail)}` : ''}</span></div>`;
-      const b = document.createElement('button');
-      b.textContent = t('Restore');
-      b.onclick = async () => { dlg.close(); await host.restore(v); };
-      row.append(b);
+      const when = new Date(v.time).toLocaleString(lang);
+      const facts = [v.title ? when : '', v.name, v.note, host.detail(v),
+        v.size ? `${num(+v.size.w.toFixed(1))} × ${num(+v.size.h.toFixed(1))} ${v.size.unit}` : '',
+        v.colors != null ? t('{n} {n|color|colors}', { n: v.colors }) : ''].filter(Boolean);
+      row.innerHTML = `<img src="${url}" alt=""><div class="hist-info"><b>${v.pinned ? '★ ' : ''}${esc(v.title || when)}</b><span>${esc(facts.join(' · '))}</span></div>`;
+      const pin = document.createElement('button'), rename = document.createElement('button'), restore = document.createElement('button');
+      pin.className = 'hist-pin';
+      pin.textContent = '★';
+      pin.title = v.pinned ? t('Unpin – it may be cleared with old versions') : t('Pin – kept when old versions are cleared');
+      pin.setAttribute('aria-pressed', String(!!v.pinned));
+      pin.onclick = () => change(v, { pinned: !v.pinned });
+      rename.textContent = '✎';
+      rename.title = rename.ariaLabel = t('Name this version');
+      rename.onclick = () => {
+        const title = prompt(t('Name of this version:'), v.title || '');
+        if (title != null) change(v, { title: title.trim() || undefined });
+      };
+      restore.textContent = t('Restore');
+      restore.onclick = async () => { dlg.close(); await host.restore(v); };
+      row.append(pin, rename, restore);
       list.append(row);
     }
+  }
+  async function change(v: Version, what: Partial<Version>): Promise<void> {
+    try { await Store.updateVersion({ ...v, ...what }); } catch { toast(t('Could not save a version (browser storage unavailable).')); }
+    render();
   }
   button.onclick = () => { render(); dlg.showModal(); };
   (dlg.querySelector('#hist-save') as HTMLElement).onclick = async () => {

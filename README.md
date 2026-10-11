@@ -78,7 +78,7 @@ A project can have several pages (front and back, color variants, …): the bar 
 
 ## Safety net
 
-The drawing is autosaved in the browser, and **History** keeps the last 40 versions.
+The drawing is autosaved in the browser, and **History** keeps the last 40 versions, each with its size and number of colors. Name a version with ✎, and pin it with ★ to keep it when old versions are cleared (pinned versions don't count toward the 40). The raster app's History works the same way.
 A version is saved every few minutes while you work, and before you open, start or restore another drawing.
 
 ## Expert extras

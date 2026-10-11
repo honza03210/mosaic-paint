@@ -222,6 +222,10 @@ dialog h2 { margin: 0; font-size: 16px; }
 .hist-row img { width: 64px; height: 64px; object-fit: contain; background: #fff; border-radius: 4px; flex: none; }
 .hist-info { flex: 1; display: flex; flex-direction: column; font-size: 12.5px; min-width: 0; }
 .hist-info span { color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+.hist-row.pinned { border-color: var(--accent); }
+.hist-row button { flex: none; }
+.hist-pin { color: var(--muted); }
+.hist-pin[aria-pressed="true"] { color: #e9a400; }
 
 /* ---- phones & tablets ---- */
 #btn-panel { display: none; }

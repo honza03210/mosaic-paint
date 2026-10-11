@@ -67,8 +67,35 @@ test('history keeps versions that can be restored', async ({ page }) => {
   await page.evaluate(() => MZ.loadSVGText('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"></svg>', { restore: true }));
   expect(await h.count(page, '#mz-shapes line')).toBe(0);
   await page.click('#btn-history');
-  await page.locator('#hist-list .hist-row button').first().click();
+  await page.locator('#hist-list .hist-row button', { hasText: 'Restore' }).first().click();
   await expect.poll(() => h.count(page, '#mz-shapes line')).toBe(1);
+});
+
+test('history: each version shows its size and colors, can be named and pinned; pinned ones are never cleared', async ({ page }) => {
+  await h.open(page, { doc: h.blank(300, 200, 'mm') });
+  await page.click('#btn-examples');
+  await page.click('[data-example=coaster]');
+  await expect.poll(() => page.evaluate(() => MZ.allShapes().length)).toBe(100);
+  await page.click('#btn-history');
+  await page.click('#hist-save');
+  const row = page.locator('#hist-list .hist-row').first();
+  // the coaster: 100 × 100 mm, five ring colors
+  await expect(row).toContainText('100 × 100 mm');
+  await expect(row).toContainText('5 colors');
+  page.once('dialog', d => d.accept('Before the big change'));
+  await row.locator('button[title="Name this version"]').click();
+  await expect(row.locator('b')).toHaveText('Before the big change');
+  await row.locator('.hist-pin').click();
+  await expect(row).toHaveClass(/pinned/);
+  await expect(row.locator('b')).toHaveText('★ Before the big change');
+  // 45 newer versions: old ones are cleared down to 40, the pinned one stays
+  await page.evaluate(async () => {
+    for (let i = 0; i < 45; i++) await Store.addVersion({ time: Date.now() + 1000 + i, name: 'x.svg', note: 'test', svg: '<svg xmlns="http://www.w3.org/2000/svg"/>', tiles: 0 });
+    await Store.trimVersions(40);
+  });
+  const left = await page.evaluate(async () => (await Store.listVersions('vector')).map(v => v.title || ''));
+  expect(left.length).toBe(41);
+  expect(left).toContain('Before the big change');
 });
 
 test('print template: real size split over overlapping A4 sheets, with numbers and a legend (Expert)', async ({ page, context, browserName }) => {

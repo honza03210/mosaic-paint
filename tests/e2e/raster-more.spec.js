@@ -31,7 +31,7 @@ test('history: versions of the image can be restored, and stay apart from the ve
   await page.evaluate(() => { const x = RZ.doc.getContext('2d'); x.fillStyle = '#000000'; x.fillRect(0, 0, 60, 40); RZ.commit(); });
   expect(await color(page, 10, 10)).toBe('#000000');
   await page.click('#btn-history');
-  await page.locator('#hist-list .hist-row').first().locator('button').click();
+  await page.locator('#hist-list .hist-row').first().locator('button', { hasText: 'Restore' }).click();
   await expect.poll(() => color(page, 10, 10)).toBe('#e76f51');
   await expect(page.locator('#st-msg')).toContainText('Restored the version');
   // the vector app lists only its own versions
