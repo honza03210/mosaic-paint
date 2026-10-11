@@ -39,7 +39,7 @@ test('a share link opens read-only and leaves the visitor\'s own drawing alone',
   expect(await viewer.evaluate(() => MZ.state.tool)).toBe('pan');
 
   // back to my drawing: the two-line drawing is still there
-  await viewer.click('#viewer-close');
+  await Promise.all([viewer.waitForEvent('load'), viewer.click('#viewer-close')]); // it reloads the page
   await viewer.waitForFunction(() => window.MZ && window.MZ.ready);
   expect(await h.count(viewer, '#mz-shapes line')).toBe(2);
   await expect(viewer.locator('#viewer-bar')).toBeHidden();

@@ -81,34 +81,47 @@ The Done / Cancel bar finishes chained lines and free polygons.
 
 ## Files
 
+The app is written in TypeScript and bundled into one script, `dist/mosaic.js`. The bundle is committed, so GitHub Pages and opening `index.html` straight from disk need no build step.
+
 - `index.html`, `style.css`: UI
-- `js/app.js`: editor core (tools, snapping, selection, palettes, undo, autosave, load/save)
-- `js/features.js`: report, print template, history, auto-coloring, rulers, install
-- `js/geometry.js`: geometry math, including finding closed areas for the bucket
-- `js/patterns.js`: tiling patterns
-- `js/automosaic.js`: tile layouts for a mosaic from a photo (quadtree, Voronoi) and palette suggestion (k-means)
-- `js/photo.js`: reading the photo (average colors, detail, coloring tiles)
-- `js/automosaic-ui.js`: the "Mosaic from photo" dialog
-- `js/print.js`: splitting the print-out across sheets, print pages
-- `js/layplan.js`: the laying plan (panels, per-panel counts)
-- `js/contour.js`: rows following an outline (distance field, marching squares)
-- `js/mix.js`: the random color mix
-- `js/vision.js`: black & white / color-blind views and contrast checks
-- `js/pages.js`: several pages per project
-- `js/snippets.js`: shapes as small SVG snippets, placed moved / turned / scaled
-- `js/motifs.js`: copy / paste and the motif library
-- `js/share.js`: share links (compressed drawing in the link) and the read-only viewer
-- `js/colors.js`: color parsing and closest-color matching
-- `js/store.js`: browser storage for the autosave and versions
+- `src/main.ts`: entry point; loads the editor core, then the features
+- `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
+  - `geometry.ts`: geometry math, including finding closed areas for the bucket
+  - `patterns.ts`: tiling patterns
+  - `contour.ts`: rows following an outline (distance field, marching squares)
+  - `automosaic.ts`: tile layouts for a mosaic from a photo (quadtree, Voronoi) and palette suggestion (k-means)
+  - `colors.ts`: color parsing, closest-color matching, color-blind simulation
+  - `print.ts`: splitting the print-out across sheets, print pages
+  - `layplan.ts`: laying-plan panels and per-panel counts
+  - `pack.ts`: compressing a drawing into a share link
+  - `store.ts`: browser storage for the autosave and versions
+- `src/core/`: the editor
+  - `env.ts`: page elements, settings and state, small helpers, events between modules
+  - `doc.ts`: shapes and their geometry, painting, regular-polygon data
+  - `view.ts`: zoom / pan, page, layers, symmetry
+  - `snap.ts`: snapping and the size labels shown while drawing
+  - `selection.ts`: selecting, moving, the selection commands
+  - `areas.ts`: closed areas, the paint bucket, painted areas following edited lines
+  - `tools.ts`: the drawing tools
+  - `history.ts`: undo / redo, autosave, versions
+  - `palette.ts`: palettes, swatches, fill and line colors
+  - `photo.ts`, `grout.ts`: the tracing photo and the grout preview
+  - `files.ts`: reading / writing SVG, open, save, PNG export, mode
+  - `input.ts`, `panel.ts`: mouse, touch, keyboard, paste, drop; the side panel
+  - `api.ts`: startup and the `MZ` interface used by the features
+- `src/features/`: one module per feature: `report`, `print`, `history-ui`, `rulers`, `shell` (phone layout, install), `photo-tools`, `automosaic`, `layplan`, `mix`, `vision`, `pages`, `snippets`, `motifs`, `share`
 - `sw.js`, `manifest.webmanifest`, `icons/`: offline / install support
 
 ## Development
 
 ```bash
-npm install          # test tools only; the app itself has no dependencies
+npm install          # build and test tools; the app itself has no dependencies
+npm run build        # bundle src/ into dist/mosaic.js (node build.mjs --watch rebuilds on change)
 npm run serve        # http://localhost:4173/
-npm test             # unit tests (geometry, patterns) + end-to-end tests in Chrome
+npm test             # build, type check, unit tests, then end-to-end tests
 ```
+
+Commit `dist/` together with the source change: CI checks that it matches.
 
 The end-to-end tests (`tests/e2e/`) drive the real app with mouse, keyboard and touch input:
 drawing, snapping, painting, painted areas following edits, files, autosave, history, printing, the photo tools, the phone layout and offline start.

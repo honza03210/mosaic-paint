@@ -2,7 +2,7 @@
 
 ## Automated (runs on every push)
 
-`npm test` runs:
+`npm test` builds `dist/mosaic.js`, type-checks the TypeScript (`tsc`), then runs:
 
 - **Unit tests** (`tests/unit/`): geometry (closed areas, holes, T-junctions), tiling patterns, print sheet layout, and that the offline cache lists every file.
 - **End-to-end tests** (`tests/e2e/`), driving the real app in:
