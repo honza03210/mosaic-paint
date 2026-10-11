@@ -13,6 +13,7 @@ import { save, openFile, loadFile, confirmDiscard } from './files.ts';
 import { tools, setTool, cancelPending, updateStageActions, finishFree, freeBack } from './tools.ts';
 import { setSides } from './panel.ts';
 import { t } from '../shared/i18n.ts';
+import { modalOpen } from '../shared/ui.ts';
 
 function setTouch(on: boolean): void {
   rt.snapPx = on ? 18 : 10;
@@ -140,11 +141,13 @@ function bindPointer(): void {
 function onKey(e: KeyboardEvent): void {
   const target = e.target as HTMLElement;
   if (typingIn(target)) {
-    if (e.key === 'Escape') target.blur();
-    return;
+    if (e.key !== 'Escape') return;
+    target.blur();
+    // Esc also stops a line or shape being drawn (its first point is already placed)
+    if (!state.lineStart && !state.freePts) return;
   }
   if (target.tagName === 'INPUT' && e.key === ' ') return; // space toggles a focused checkbox
-  if (document.querySelector('dialog[open]')) return;
+  if (modalOpen()) return;
   const ctrl = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
   if (ctrl) {
     if (k === 'z' && !e.shiftKey) undo();

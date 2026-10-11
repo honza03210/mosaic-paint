@@ -59,3 +59,23 @@ test('the guide opens the first time, points at the parts it explains, and the ?
   await page.goto('raster.html');
   await expect(page.locator('#guide h2')).toHaveText('Welcome to Mosaic Paint Raster');
 });
+
+test('Esc stops a line after its first point – also while the guide is open or a field has focus', async ({ page }) => {
+  await page.addInitScript(() => Object.defineProperty(Navigator.prototype, 'webdriver', { get: () => false }));
+  await page.goto('index.html');
+  await page.waitForFunction(() => window.MZ && MZ.ready);
+  await expect(page.locator('#guide')).toBeVisible();
+  const box = await page.locator('#stage').boundingBox(), cx = box.x + box.width / 2, cy = box.y + box.height / 2;
+  const pending = () => page.evaluate(() => !!MZ.state.lineStart);
+  await page.click('[data-tool=line]');
+  await page.mouse.click(cx, cy);
+  expect(await pending()).toBe(true);
+  await page.keyboard.press('Escape');
+  expect(await pending()).toBe(false);
+  await expect(page.locator('#stage-actions')).toBeHidden();
+  // a line started while the line width field has focus
+  await page.mouse.click(cx + 30, cy + 30);
+  await page.focus('#stroke-width');
+  await page.keyboard.press('Escape');
+  expect(await pending()).toBe(false);
+});

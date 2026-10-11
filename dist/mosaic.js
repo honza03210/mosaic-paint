@@ -913,6 +913,15 @@
     if (t2.tagName === "TEXTAREA" || t2.tagName === "SELECT" || t2.isContentEditable) return true;
     return t2.tagName === "INPUT" && !["checkbox", "radio", "range", "color", "button", "file"].includes(t2.type);
   }
+  function modalOpen() {
+    return [...document.querySelectorAll("dialog[open]")].some((d) => {
+      try {
+        return d.matches(":modal");
+      } catch {
+        return d.id !== "guide";
+      }
+    });
+  }
   function readAsDataURL(file) {
     return new Promise((res, rej) => {
       const r = new FileReader();
@@ -4634,11 +4643,12 @@
   function onKey(e) {
     const target2 = e.target;
     if (typingIn(target2)) {
-      if (e.key === "Escape") target2.blur();
-      return;
+      if (e.key !== "Escape") return;
+      target2.blur();
+      if (!state.lineStart && !state.freePts) return;
     }
     if (target2.tagName === "INPUT" && e.key === " ") return;
-    if (document.querySelector("dialog[open]")) return;
+    if (modalOpen()) return;
     const ctrl = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
     if (ctrl) {
       if (k === "z" && !e.shiftKey) undo();
@@ -6365,7 +6375,7 @@ ${others}
   };
   document.addEventListener("keydown", (e) => {
     if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey || e.key.toLowerCase() !== "c") return;
-    if (MZ.typingIn(e.target) || state8.selection.size || document.querySelector("dialog[open]")) return;
+    if (MZ.typingIn(e.target) || state8.selection.size || modalOpen()) return;
     if (window.getSelection && String(window.getSelection())) return;
     e.preventDefault();
     copyDrawing();

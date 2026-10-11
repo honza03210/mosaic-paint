@@ -3,7 +3,7 @@
    (in core/input.ts); copied shapes keep pasting as shapes (features/motifs.ts). */
 import { MZ } from '../core/api.ts';
 import { canCopyImages, copyImage, svgToPng } from '../shared/clipboard.ts';
-import { $, clamp } from '../shared/ui.ts';
+import { $, clamp, modalOpen } from '../shared/ui.ts';
 import { copySelection } from './motifs.ts';
 import { t } from '../shared/i18n.ts';
 
@@ -25,7 +25,7 @@ $('#btn-copy-img').onclick = () => { if (state.selection.size) copySelection(fal
 // Ctrl+C with nothing selected copies the whole drawing (with a selection, motifs.ts copies the shapes)
 document.addEventListener('keydown', (e) => {
   if (!(e.ctrlKey || e.metaKey) || e.shiftKey || e.altKey || e.key.toLowerCase() !== 'c') return;
-  if (MZ.typingIn(e.target) || state.selection.size || document.querySelector('dialog[open]')) return;
+  if (MZ.typingIn(e.target) || state.selection.size || modalOpen()) return;
   if (window.getSelection && String(window.getSelection())) return; // the user is copying text from the page
   e.preventDefault();
   copyDrawing();

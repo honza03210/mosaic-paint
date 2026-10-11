@@ -1,6 +1,6 @@
 /* Pointer, touch (pinch to zoom), keyboard, paste and drag & drop for the raster app. */
 import type { Pt } from '../lib/geometry.ts';
-import { $, clamp, toast, typingIn } from '../shared/ui.ts';
+import { $, clamp, toast, typingIn, modalOpen } from '../shared/ui.ts';
 import { imageFromPaste } from '../shared/clipboard.ts';
 import { state, on, savePrefs } from './state.ts';
 import { stage, view, toDoc, updateView, fitView, zoomAt, zoomCenter, actualSize, requestRender } from './canvas.ts';
@@ -117,7 +117,7 @@ function onKey(e: KeyboardEvent): void {
     return;
   }
   if (target.tagName === 'INPUT' && e.key === ' ') return; // space toggles a focused checkbox
-  if (document.querySelector('dialog[open]')) return;
+  if (modalOpen()) return;
   const ctrl = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
   if (ctrl) {
     if (k === 'z' && !e.shiftKey) undo();
@@ -176,7 +176,7 @@ export function bindInput(): void {
 
   // pasting: an image (from the vector app, a screenshot, a web page…) or color codes
   document.addEventListener('paste', (e) => {
-    if (typingIn(e.target) || document.querySelector('dialog[open]')) return;
+    if (typingIn(e.target) || modalOpen()) return;
     const img = imageFromPaste(e);
     const text = (e.clipboardData && e.clipboardData.getData('text')) || '';
     if (img) { e.preventDefault(); setTool('select'); pasteImage(img); return; }

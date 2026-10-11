@@ -49,6 +49,15 @@ export function typingIn(t: any): boolean {
   if (t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable) return true;
   return t.tagName === 'INPUT' && !['checkbox', 'radio', 'range', 'color', 'button', 'file'].includes(t.type);
 }
+/**
+ * Whether a modal dialog is open (keyboard shortcuts wait until it closes). A card shown without being
+ * modal – the guide – leaves them working.
+ */
+export function modalOpen(): boolean {
+  return [...document.querySelectorAll('dialog[open]')].some((d) => {
+    try { return d.matches(':modal'); } catch { return d.id !== 'guide'; } // browsers without :modal
+  });
+}
 export function readAsDataURL(file: Blob): Promise<string> {
   return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result as string); r.onerror = rej; r.readAsDataURL(file); });
 }

@@ -1385,6 +1385,15 @@
     if (t2.tagName === "TEXTAREA" || t2.tagName === "SELECT" || t2.isContentEditable) return true;
     return t2.tagName === "INPUT" && !["checkbox", "radio", "range", "color", "button", "file"].includes(t2.type);
   }
+  function modalOpen() {
+    return [...document.querySelectorAll("dialog[open]")].some((d) => {
+      try {
+        return d.matches(":modal");
+      } catch {
+        return d.id !== "guide";
+      }
+    });
+  }
   function loadImg(src) {
     return new Promise((res, rej) => {
       const i = new Image();
@@ -4344,7 +4353,7 @@ ${shapes.join("\n")}
       return;
     }
     if (target.tagName === "INPUT" && e.key === " ") return;
-    if (document.querySelector("dialog[open]")) return;
+    if (modalOpen()) return;
     const ctrl = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
     if (ctrl) {
       if (k === "z" && !e.shiftKey) undo();
@@ -4463,7 +4472,7 @@ ${shapes.join("\n")}
       stage.classList.remove("space");
     });
     document.addEventListener("paste", (e) => {
-      if (typingIn(e.target) || document.querySelector("dialog[open]")) return;
+      if (typingIn(e.target) || modalOpen()) return;
       const img = imageFromPaste(e);
       const text = e.clipboardData && e.clipboardData.getData("text") || "";
       if (img) {
