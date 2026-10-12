@@ -858,8 +858,8 @@ export const PL: Record<string, string> = {
     'Pokaż linijki',
   'Keyboard & mouse':
     'Klawiatura i mysz',
-  'Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan':
-    'Zaznaczanie, Linia, Dowolny wielokąt, Wielokąt, Wzór, Wiadro, Przesuwanie',
+  'Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan':
+    'Zaznaczanie, Linia, Dowolny wielokąt, Wielokąt, Elipsa, Krzywa, Wzór, Wiadro, Przesuwanie',
   'Polygon sides':
     'Liczba boków wielokąta',
   'Toggle snapping':
@@ -1150,8 +1150,8 @@ export const PL: Record<string, string> = {
     'Rozmiar płótna',
   'Pixel grid when zoomed in':
     'Siatka pikseli po powiększeniu',
-  'Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan':
-    'Zaznaczanie, Pędzel, Ołówek, Gumka, Linia, Wielokąt, Wiadro, Pipeta, Przesuwanie',
+  'Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Zaznaczanie, Pędzel, Ołówek, Gumka, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pipeta, Przesuwanie',
   'Smaller / bigger brush':
     'Mniejszy / większy pędzel',
   'Swap paint and outline colors':
@@ -1628,6 +1628,62 @@ export const PL: Record<string, string> = {
     'Kształt pędzla i gumki',
   'The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed':
     'Kąt stalówki kaligraficznej – 45° dla praworęcznych, około 135° dla leworęcznych',
+  'curve through points':
+    'krzywa przez punkty',
+  'B-spline':
+    'B-spline',
+  'cubic Bézier':
+    'sześcienna krzywa Béziera',
+  'quadratic Bézier':
+    'kwadratowa krzywa Béziera',
+  'ellipse':
+    'elipsa',
+  'Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap':
+    'Przeciągnij od rogu do rogu (lub od środka) · Shift: koło · Alt: bez przyciągania',
+  'Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels':
+    'Klikaj punkty krzywej · kliknięcie pierwszego punktu ją zamyka · dwuklik lub Enter kończy ją otwartą · Backspace usuwa ostatni punkt · Esc anuluje',
+  'Turn on “Fill” or “Outline” for shapes.':
+    'Dla kształtów włącz „Wypełnienie” lub „Obrys”.',
+  'Drag from corner to corner (or from the center) · Shift: a circle':
+    'Przeciągnij od rogu do rogu (lub od środka) · Shift: koło',
+  'The curve runs smoothly through every point you click.':
+    'Krzywa przechodzi gładko przez każdy kliknięty punkt.',
+  'The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines.':
+    'Każdy punkt przyciąga krzywą, ale dotyka ona tylko pierwszego i ostatniego – bardzo gładka, dobra do płynnych linii.',
+  'Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it.':
+    'Kliknij punkt, dwa punkty kontrolne, następny punkt, dwa punkty kontrolne … Krzywa przechodzi przez co trzeci punkt; punkty kontrolne (okrągłe) ją przyciągają.',
+  'Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.':
+    'Kliknij punkt, punkt kontrolny, następny punkt, punkt kontrolny … Krzywa przechodzi przez co drugi punkt; punkty kontrolne (okrągłe) ją przyciągają.',
+  'Ellipse':
+    'Elipsa',
+  'From corner':
+    'Od rogu',
+  'Shift: a circle. Select it to drag its axis ends.':
+    'Shift: koło. Po zaznaczeniu można przeciągać końce jej osi.',
+  'Curve':
+    'Krzywa',
+  'Type':
+    'Rodzaj',
+  'Smooth, through the points':
+    'Gładka, przez punkty',
+  'Smooth, near the points (B-spline)':
+    'Gładka, przy punktach (B-spline)',
+  'Bézier, cubic':
+    'Bézier, sześcienna',
+  'Bézier, quadratic':
+    'Bézier, kwadratowa',
+  'Ellipse – Shift: circle (O)':
+    'Elipsa – Shift: koło (O)',
+  'Curve – click its points (C)':
+    'Krzywa – klikaj jej punkty (C)',
+  'Shift: a circle.':
+    'Shift: koło.',
+  'An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.':
+    'Otwarta krzywa to linia w kolorze malowania o wybranym rozmiarze; zamknięta jest wypełniana i obrysowywana jak kształty.',
+  'Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.':
+    'Elipsy i krzywe w obu aplikacjach: narzędzie Elipsa (O, z Shiftem koło) i narzędzie Krzywa (C) – gładka przez punkty, gładka przy punktach (B-spline) albo sześcienna i kwadratowa krzywa Béziera.',
+  'In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.':
+    'W aplikacji wektorowej elipsy i krzywe pozostają dokładnymi krzywymi: przeciągaj ich punkty lub końce osi, aby je zmienić, i maluj, tnij oraz odbijaj je jak każdą płytkę.',
   'Shift+B':
     'Shift+B',
   'Next brush tip':

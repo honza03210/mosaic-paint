@@ -5,7 +5,7 @@ import { imageFromPaste } from '../shared/clipboard.ts';
 import { state, on, savePrefs } from './state.ts';
 import { stage, view, toDoc, updateView, fitView, zoomAt, zoomCenter, actualSize, requestRender } from './canvas.ts';
 import { undo, redo, restoreCurrent, commit } from './history.ts';
-import { pickAt } from './paint.ts';
+import { pickAt, curve, finishCurve, curveBack, cancelCurve } from './paint.ts';
 import { place, cancelFloating, deselect, selectAll, copy, clearSelection, pasteImage, pasteInternal } from './select.ts';
 import { pasteColors, renderPalette } from './palette.ts';
 import { tools, setTool } from './tools.ts';
@@ -20,6 +20,7 @@ function startPinch(): void {
   // a second finger turns the gesture into pan / zoom: undo what the first finger began
   const a = state.action;
   if (a && (a.type === 'stroke')) restoreCurrent();
+  if (a && a.type === 'curve-press') curveBack();
   state.action = null;
   state.preview = null;
   const [p1, p2] = [...pointers.values()];
@@ -45,7 +46,7 @@ function pointerEnd(e: PointerEvent): boolean {
   }
   return false;
 }
-const PAINT = new Set(['brush', 'pencil', 'eraser', 'line', 'ngon', 'bucket']);
+const PAINT = new Set(['brush', 'pencil', 'eraser', 'line', 'ngon', 'ellipse', 'curve', 'bucket']);
 function bindPointer(): void {
   view.addEventListener('pointerdown', (e) => {
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -60,7 +61,11 @@ function bindPointer(): void {
       stage.classList.add('panning');
       return;
     }
-    if (e.button === 2) { if (state.action) { state.action = null; state.preview = null; restoreCurrent(); } return; }
+    if (e.button === 2) {
+      if (curve.pts) cancelCurve();
+      else if (state.action) { state.action = null; state.preview = null; restoreCurrent(); }
+      return;
+    }
     if (e.button !== 0) return;
     if (e.altKey && PAINT.has(state.tool)) { pickAt(p); return; }
     // painting places pasted / moved pixels first
@@ -102,6 +107,7 @@ function bindPointer(): void {
   });
   view.addEventListener('pointerleave', () => { state.cursor = null; requestRender(); });
   view.addEventListener('contextmenu', (e) => e.preventDefault());
+  view.addEventListener('dblclick', () => { if (curve.pts) finishCurve(); });
   view.addEventListener('wheel', (e) => {
     e.preventDefault();
     const dy = e.deltaMode === 1 ? e.deltaY * 30 : e.deltaY;
@@ -145,19 +151,22 @@ function onKey(e: KeyboardEvent): void {
     case 'e': setTool('eraser'); break;
     case 'l': setTool('line'); break;
     case 'g': setTool('ngon'); break;
+    case 'o': setTool('ellipse'); break;
+    case 'c': setTool('curve'); break;
     case 'f': setTool('bucket'); break;
     case 'i': setTool('picker'); break;
     case 'h': setTool('pan'); break;
     case 'x': { const f = state.fill; state.fill = state.stroke; state.stroke = f; savePrefs(); renderPalette(); break; }
     case '[': setBrushSize(state.size > 10 ? state.size - 5 : state.size - 1); break;
     case ']': setBrushSize(state.size >= 10 ? state.size + 5 : state.size + 1); break;
-    case 'enter': if (!place()) return; break;
+    case 'enter': if (curve.pts) finishCurve(); else if (!place()) return; break;
     case 'escape':
       if (state.floating) cancelFloating();
+      else if (curve.pts) cancelCurve();
       else if (state.action) { state.action = null; state.preview = null; restoreCurrent(); }
       else deselect();
       break;
-    case 'delete': case 'backspace': clearSelection(); break;
+    case 'delete': case 'backspace': if (curve.pts) curveBack(); else clearSelection(); break;
     case '0': fitView(); break;
     case '1': actualSize(); break;
     case '+': case '=': zoomCenter(1.25); break;

@@ -430,7 +430,7 @@
     "Background": "Pozadí",
     "Show rulers": "Zobrazit pravítka",
     "Keyboard & mouse": "Klávesnice a myš",
-    "Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan": "Výběr, Čára, Volný mnohoúhelník, Mnohoúhelník, Vzor, Kbelík, Posun",
+    "Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan": "Výběr, Čára, Volný mnohoúhelník, Mnohoúhelník, Elipsa, Křivka, Vzor, Kbelík, Posun",
     "Polygon sides": "Počet stran mnohoúhelníku",
     "Toggle snapping": "Zapnout / vypnout přichytávání",
     "Alt": "Alt",
@@ -576,7 +576,7 @@
     "Resize image": "Změnit velikost obrázku",
     "Canvas size": "Velikost plátna",
     "Pixel grid when zoomed in": "Mřížka pixelů při přiblížení",
-    "Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Čára, Mnohoúhelník, Kbelík, Kapátko, Posun",
+    "Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Čára, Mnohoúhelník, Elipsa, Křivka, Kbelík, Kapátko, Posun",
     "Smaller / bigger brush": "Menší / větší štětec",
     "Swap paint and outline colors": "Prohodit barvu malování a obrysu",
     "Alt+click": "Alt+klik",
@@ -815,6 +815,34 @@
     "Chalk": "Křída",
     "The shape of the brush and eraser": "Tvar štětce a gumy",
     "The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed": "Úhel kaligrafického hrotu – 45° pro praváky, asi 135° pro leváky",
+    "curve through points": "křivka přes body",
+    "B-spline": "B-spline",
+    "cubic Bézier": "kubická Bézierova křivka",
+    "quadratic Bézier": "kvadratická Bézierova křivka",
+    "ellipse": "elipsa",
+    "Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap": "Táhněte z rohu do rohu (nebo ze středu) · Shift: kruh · Alt: bez přichytávání",
+    "Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels": "Klikejte na body křivky · kliknutím na první bod ji uzavřete · dvojklik nebo Enter ji ukončí otevřenou · Backspace odebere poslední bod · Esc zruší",
+    "Turn on “Fill” or “Outline” for shapes.": "U tvarů zapněte „Výplň“ nebo „Obrys“.",
+    "Drag from corner to corner (or from the center) · Shift: a circle": "Táhněte z rohu do rohu (nebo ze středu) · Shift: kruh",
+    "The curve runs smoothly through every point you click.": "Křivka vede plynule přes každý bod, na který kliknete.",
+    "The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines.": "Křivku každý bod přitahuje, ale dotkne se jen prvního a posledního – velmi hladká, vhodná pro plynulé linie.",
+    "Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it.": "Klikněte na bod, dva řídicí body, další bod, dva řídicí body … Křivka prochází každým třetím bodem; řídicí body (kulaté) ji přitahují.",
+    "Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.": "Klikněte na bod, řídicí bod, další bod, řídicí bod … Křivka prochází každým druhým bodem; řídicí body (kulaté) ji přitahují.",
+    "Ellipse": "Elipsa",
+    "From corner": "Z rohu",
+    "Shift: a circle. Select it to drag its axis ends.": "Shift: kruh. Po výběru můžete táhnout konce jejích os.",
+    "Curve": "Křivka",
+    "Type": "Typ",
+    "Smooth, through the points": "Hladká, přes body",
+    "Smooth, near the points (B-spline)": "Hladká, u bodů (B-spline)",
+    "Bézier, cubic": "Bézierova, kubická",
+    "Bézier, quadratic": "Bézierova, kvadratická",
+    "Ellipse – Shift: circle (O)": "Elipsa – Shift: kruh (O)",
+    "Curve – click its points (C)": "Křivka – klikejte na její body (C)",
+    "Shift: a circle.": "Shift: kruh.",
+    "An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.": "Otevřená křivka je čára v barvě malování o zvolené velikosti; uzavřená se vyplní a obtáhne jako tvary.",
+    "Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.": "Elipsy a křivky v obou aplikacích: nástroj Elipsa (O, se Shiftem kruh) a nástroj Křivka (C) – hladká přes body, hladká u bodů (B-spline), nebo kubická a kvadratická Bézierova.",
+    "In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.": "Ve vektorové aplikaci zůstávají elipsy a křivky přesnými křivkami: tažením bodů nebo konců os je měníte a vybarvujete, řežete a zrcadlíte je jako každou dlaždici.",
     "Shift+B": "Shift+B",
     "Next brush tip": "Další hrot štětce",
     "Brush tip: {tip}": "Hrot štětce: {tip}",
@@ -1287,7 +1315,7 @@
     "Background": "Hintergrund",
     "Show rulers": "Lineale anzeigen",
     "Keyboard & mouse": "Tastatur & Maus",
-    "Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan": "Auswahl, Linie, Freies Vieleck, Vieleck, Muster, Farbeimer, Verschieben",
+    "Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan": "Auswahl, Linie, Freies Vieleck, Vieleck, Ellipse, Kurve, Muster, Farbeimer, Verschieben",
     "Polygon sides": "Seitenzahl des Vielecks",
     "Toggle snapping": "Einrasten ein/aus",
     "Alt": "Alt",
@@ -1433,7 +1461,7 @@
     "Resize image": "Bildgröße ändern",
     "Canvas size": "Leinwandgröße",
     "Pixel grid when zoomed in": "Pixelraster beim Vergrößern",
-    "Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Linie, Vieleck, Farbeimer, Pipette, Verschieben",
+    "Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Linie, Vieleck, Ellipse, Kurve, Farbeimer, Pipette, Verschieben",
     "Smaller / bigger brush": "Kleinerer / größerer Pinsel",
     "Swap paint and outline colors": "Mal- und Konturfarbe tauschen",
     "Alt+click": "Alt+Klick",
@@ -1672,6 +1700,34 @@
     "Chalk": "Kreide",
     "The shape of the brush and eraser": "Die Form von Pinsel und Radierer",
     "The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed": "Der Winkel der Kalligrafiefeder – 45° für Rechtshänder, etwa 135° für Linkshänder",
+    "curve through points": "Kurve durch Punkte",
+    "B-spline": "B-Spline",
+    "cubic Bézier": "kubische Bézierkurve",
+    "quadratic Bézier": "quadratische Bézierkurve",
+    "ellipse": "Ellipse",
+    "Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap": "Von Ecke zu Ecke ziehen (oder vom Mittelpunkt) · Umschalt: ein Kreis · Alt: ohne Einrasten",
+    "Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels": "Die Punkte der Kurve anklicken · Klick auf den ersten Punkt schließt sie · Doppelklick oder Eingabe beendet sie offen · Rücktaste entfernt den letzten Punkt · Esc bricht ab",
+    "Turn on “Fill” or “Outline” for shapes.": "Schalten Sie bei Formen „Füllung“ oder „Kontur“ ein.",
+    "Drag from corner to corner (or from the center) · Shift: a circle": "Von Ecke zu Ecke ziehen (oder vom Mittelpunkt) · Umschalt: ein Kreis",
+    "The curve runs smoothly through every point you click.": "Die Kurve verläuft glatt durch jeden Punkt, den Sie anklicken.",
+    "The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines.": "Jeder Punkt zieht die Kurve an, sie berührt aber nur den ersten und den letzten – sehr glatt, gut für fließende Linien.",
+    "Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it.": "Klicken Sie einen Punkt, zwei Kontrollpunkte, den nächsten Punkt, zwei Kontrollpunkte … Die Kurve geht durch jeden dritten Punkt; die Kontrollpunkte (rund) ziehen sie an.",
+    "Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.": "Klicken Sie einen Punkt, einen Kontrollpunkt, den nächsten Punkt, einen Kontrollpunkt … Die Kurve geht durch jeden zweiten Punkt; die Kontrollpunkte (rund) ziehen sie an.",
+    "Ellipse": "Ellipse",
+    "From corner": "Von der Ecke",
+    "Shift: a circle. Select it to drag its axis ends.": "Umschalt: ein Kreis. Ausgewählt lassen sich die Enden ihrer Achsen ziehen.",
+    "Curve": "Kurve",
+    "Type": "Art",
+    "Smooth, through the points": "Glatt, durch die Punkte",
+    "Smooth, near the points (B-spline)": "Glatt, nahe den Punkten (B-Spline)",
+    "Bézier, cubic": "Bézier, kubisch",
+    "Bézier, quadratic": "Bézier, quadratisch",
+    "Ellipse – Shift: circle (O)": "Ellipse – Umschalt: Kreis (O)",
+    "Curve – click its points (C)": "Kurve – ihre Punkte anklicken (C)",
+    "Shift: a circle.": "Umschalt: ein Kreis.",
+    "An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.": "Eine offene Kurve ist eine Linie in der Malfarbe, so dick wie die Größe; eine geschlossene wird wie die Formen gefüllt und umrandet.",
+    "Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.": "Ellipsen und Kurven in beiden Apps: das Werkzeug Ellipse (O, mit Umschalt ein Kreis) und das Werkzeug Kurve (C) – glatt durch die Punkte, glatt nahe den Punkten (B-Spline) oder kubische und quadratische Bézierkurve.",
+    "In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.": "In der Vektor-App bleiben Ellipsen und Kurven exakte Kurven: Ziehen Sie ihre Punkte oder Achsenenden, um sie zu ändern, und malen, schneiden und spiegeln Sie sie wie jede Fliese.",
     "Shift+B": "Umschalt+B",
     "Next brush tip": "Nächste Pinselspitze",
     "Brush tip: {tip}": "Pinselspitze: {tip}",
@@ -2144,7 +2200,7 @@
     "Background": "Pozadie",
     "Show rulers": "Zobraziť pravítka",
     "Keyboard & mouse": "Klávesnica a myš",
-    "Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan": "Výber, Čiara, Voľný mnohouholník, Mnohouholník, Vzor, Vedro, Posun",
+    "Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan": "Výber, Čiara, Voľný mnohouholník, Mnohouholník, Elipsa, Krivka, Vzor, Vedro, Posun",
     "Polygon sides": "Počet strán mnohouholníka",
     "Toggle snapping": "Zapnúť / vypnúť prichytávanie",
     "Alt": "Alt",
@@ -2290,7 +2346,7 @@
     "Resize image": "Zmeniť veľkosť obrázka",
     "Canvas size": "Veľkosť plátna",
     "Pixel grid when zoomed in": "Mriežka pixelov pri priblížení",
-    "Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Čiara, Mnohouholník, Vedro, Kvapkadlo, Posun",
+    "Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Čiara, Mnohouholník, Elipsa, Krivka, Vedro, Kvapkadlo, Posun",
     "Smaller / bigger brush": "Menší / väčší štetec",
     "Swap paint and outline colors": "Vymeniť farbu maľovania a obrysu",
     "Alt+click": "Alt+klik",
@@ -2529,6 +2585,34 @@
     "Chalk": "Krieda",
     "The shape of the brush and eraser": "Tvar štetca a gumy",
     "The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed": "Uhol kaligrafického hrotu – 45° pre pravákov, asi 135° pre ľavákov",
+    "curve through points": "krivka cez body",
+    "B-spline": "B-spline",
+    "cubic Bézier": "kubická Bézierova krivka",
+    "quadratic Bézier": "kvadratická Bézierova krivka",
+    "ellipse": "elipsa",
+    "Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap": "Ťahajte z rohu do rohu (alebo zo stredu) · Shift: kruh · Alt: bez prichytávania",
+    "Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels": "Klikajte na body krivky · kliknutím na prvý bod ju uzavriete · dvojklik alebo Enter ju ukončí otvorenú · Backspace odoberie posledný bod · Esc zruší",
+    "Turn on “Fill” or “Outline” for shapes.": "Pri tvaroch zapnite „Výplň“ alebo „Obrys“.",
+    "Drag from corner to corner (or from the center) · Shift: a circle": "Ťahajte z rohu do rohu (alebo zo stredu) · Shift: kruh",
+    "The curve runs smoothly through every point you click.": "Krivka vedie plynulo cez každý bod, na ktorý kliknete.",
+    "The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines.": "Krivku každý bod priťahuje, ale dotkne sa len prvého a posledného – veľmi hladká, vhodná na plynulé línie.",
+    "Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it.": "Kliknite na bod, dva riadiace body, ďalší bod, dva riadiace body … Krivka prechádza každým tretím bodom; riadiace body (okrúhle) ju priťahujú.",
+    "Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.": "Kliknite na bod, riadiaci bod, ďalší bod, riadiaci bod … Krivka prechádza každým druhým bodom; riadiace body (okrúhle) ju priťahujú.",
+    "Ellipse": "Elipsa",
+    "From corner": "Z rohu",
+    "Shift: a circle. Select it to drag its axis ends.": "Shift: kruh. Po výbere môžete ťahať konce jej osí.",
+    "Curve": "Krivka",
+    "Type": "Typ",
+    "Smooth, through the points": "Hladká, cez body",
+    "Smooth, near the points (B-spline)": "Hladká, pri bodoch (B-spline)",
+    "Bézier, cubic": "Bézierova, kubická",
+    "Bézier, quadratic": "Bézierova, kvadratická",
+    "Ellipse – Shift: circle (O)": "Elipsa – Shift: kruh (O)",
+    "Curve – click its points (C)": "Krivka – klikajte na jej body (C)",
+    "Shift: a circle.": "Shift: kruh.",
+    "An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.": "Otvorená krivka je čiara vo farbe maľovania s nastavenou veľkosťou; uzavretá sa vyplní a obtiahne ako tvary.",
+    "Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.": "Elipsy a krivky v oboch aplikáciách: nástroj Elipsa (O, so Shiftom kruh) a nástroj Krivka (C) – hladká cez body, hladká pri bodoch (B-spline), alebo kubická a kvadratická Bézierova.",
+    "In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.": "Vo vektorovej aplikácii zostávajú elipsy a krivky presnými krivkami: ťahaním bodov alebo koncov osí ich meníte a vyfarbujete, režete a zrkadlíte ich ako každú dlaždicu.",
     "Shift+B": "Shift+B",
     "Next brush tip": "Ďalší hrot štetca",
     "Brush tip: {tip}": "Hrot štetca: {tip}",
@@ -3001,7 +3085,7 @@
     "Background": "Tło",
     "Show rulers": "Pokaż linijki",
     "Keyboard & mouse": "Klawiatura i mysz",
-    "Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan": "Zaznaczanie, Linia, Dowolny wielokąt, Wielokąt, Wzór, Wiadro, Przesuwanie",
+    "Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan": "Zaznaczanie, Linia, Dowolny wielokąt, Wielokąt, Elipsa, Krzywa, Wzór, Wiadro, Przesuwanie",
     "Polygon sides": "Liczba boków wielokąta",
     "Toggle snapping": "Włącz / wyłącz przyciąganie",
     "Alt": "Alt",
@@ -3147,7 +3231,7 @@
     "Resize image": "Zmień rozmiar obrazu",
     "Canvas size": "Rozmiar płótna",
     "Pixel grid when zoomed in": "Siatka pikseli po powiększeniu",
-    "Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan": "Zaznaczanie, Pędzel, Ołówek, Gumka, Linia, Wielokąt, Wiadro, Pipeta, Przesuwanie",
+    "Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczanie, Pędzel, Ołówek, Gumka, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pipeta, Przesuwanie",
     "Smaller / bigger brush": "Mniejszy / większy pędzel",
     "Swap paint and outline colors": "Zamień kolor malowania i obrysu",
     "Alt+click": "Alt+klik",
@@ -3386,6 +3470,34 @@
     "Chalk": "Kreda",
     "The shape of the brush and eraser": "Kształt pędzla i gumki",
     "The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed": "Kąt stalówki kaligraficznej – 45° dla praworęcznych, około 135° dla leworęcznych",
+    "curve through points": "krzywa przez punkty",
+    "B-spline": "B-spline",
+    "cubic Bézier": "sześcienna krzywa Béziera",
+    "quadratic Bézier": "kwadratowa krzywa Béziera",
+    "ellipse": "elipsa",
+    "Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap": "Przeciągnij od rogu do rogu (lub od środka) · Shift: koło · Alt: bez przyciągania",
+    "Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels": "Klikaj punkty krzywej · kliknięcie pierwszego punktu ją zamyka · dwuklik lub Enter kończy ją otwartą · Backspace usuwa ostatni punkt · Esc anuluje",
+    "Turn on “Fill” or “Outline” for shapes.": "Dla kształtów włącz „Wypełnienie” lub „Obrys”.",
+    "Drag from corner to corner (or from the center) · Shift: a circle": "Przeciągnij od rogu do rogu (lub od środka) · Shift: koło",
+    "The curve runs smoothly through every point you click.": "Krzywa przechodzi gładko przez każdy kliknięty punkt.",
+    "The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines.": "Każdy punkt przyciąga krzywą, ale dotyka ona tylko pierwszego i ostatniego – bardzo gładka, dobra do płynnych linii.",
+    "Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it.": "Kliknij punkt, dwa punkty kontrolne, następny punkt, dwa punkty kontrolne … Krzywa przechodzi przez co trzeci punkt; punkty kontrolne (okrągłe) ją przyciągają.",
+    "Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.": "Kliknij punkt, punkt kontrolny, następny punkt, punkt kontrolny … Krzywa przechodzi przez co drugi punkt; punkty kontrolne (okrągłe) ją przyciągają.",
+    "Ellipse": "Elipsa",
+    "From corner": "Od rogu",
+    "Shift: a circle. Select it to drag its axis ends.": "Shift: koło. Po zaznaczeniu można przeciągać końce jej osi.",
+    "Curve": "Krzywa",
+    "Type": "Rodzaj",
+    "Smooth, through the points": "Gładka, przez punkty",
+    "Smooth, near the points (B-spline)": "Gładka, przy punktach (B-spline)",
+    "Bézier, cubic": "Bézier, sześcienna",
+    "Bézier, quadratic": "Bézier, kwadratowa",
+    "Ellipse – Shift: circle (O)": "Elipsa – Shift: koło (O)",
+    "Curve – click its points (C)": "Krzywa – klikaj jej punkty (C)",
+    "Shift: a circle.": "Shift: koło.",
+    "An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.": "Otwarta krzywa to linia w kolorze malowania o wybranym rozmiarze; zamknięta jest wypełniana i obrysowywana jak kształty.",
+    "Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.": "Elipsy i krzywe w obu aplikacjach: narzędzie Elipsa (O, z Shiftem koło) i narzędzie Krzywa (C) – gładka przez punkty, gładka przy punktach (B-spline) albo sześcienna i kwadratowa krzywa Béziera.",
+    "In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.": "W aplikacji wektorowej elipsy i krzywe pozostają dokładnymi krzywymi: przeciągaj ich punkty lub końce osi, aby je zmienić, i maluj, tnij oraz odbijaj je jak każdą płytkę.",
     "Shift+B": "Shift+B",
     "Next brush tip": "Następna końcówka pędzla",
     "Brush tip: {tip}": "Końcówka pędzla: {tip}",
@@ -4701,6 +4813,8 @@
     sides: 6,
     ngonFill: true,
     ngonOutline: false,
+    ellipseMode: "corner",
+    curveType: "catmull",
     tolerance: 24,
     contiguous: true,
     grid: true,
@@ -4731,7 +4845,7 @@
     fileHandle: null
   };
   var KEY2 = "mz-raster-prefs";
-  var PREF_KEYS = ["mode", "tool", "fill", "stroke", "size", "tip", "nibAngle", "opacity", "smooth", "pressure", "sides", "ngonFill", "ngonOutline", "tolerance", "contiguous", "grid", "mosaic", "realWidth"];
+  var PREF_KEYS = ["mode", "tool", "fill", "stroke", "size", "tip", "nibAngle", "opacity", "smooth", "pressure", "sides", "ellipseMode", "curveType", "ngonFill", "ngonOutline", "tolerance", "contiguous", "grid", "mosaic", "realWidth"];
   function savePrefs() {
     const o = {};
     for (const k of PREF_KEYS) o[k] = state[k];
@@ -5615,6 +5729,97 @@
     return true;
   }
 
+  // src/lib/curves.ts
+  var SPLINE_TYPES = ["catmull", "bspline", "bezier3", "bezier2"];
+  var lerp = (p, q, t2) => ({ x: p.x + (q.x - p.x) * t2, y: p.y + (q.y - p.y) * t2 });
+  var straight = (p, q) => ({ a: p, b: lerp(p, q, 1 / 3), c: lerp(p, q, 2 / 3), d: q });
+  var quad = (p, k, q) => ({ a: p, b: lerp(p, k, 2 / 3), c: lerp(q, k, 2 / 3), d: q });
+  function toCubics(type, pts, closed) {
+    const n5 = pts.length;
+    if (n5 < 2) return [];
+    if (n5 === 2) return [straight(pts[0], pts[1])];
+    if (type === "catmull") {
+      const at = (i2) => closed ? pts[(i2 + n5) % n5] : pts[Math.max(0, Math.min(n5 - 1, i2))];
+      const out2 = [];
+      for (let i2 = 0; i2 < (closed ? n5 : n5 - 1); i2++) {
+        const p0 = at(i2 - 1), p1 = at(i2), p2 = at(i2 + 1), p3 = at(i2 + 2);
+        out2.push({
+          a: p1,
+          d: p2,
+          b: { x: p1.x + (p2.x - p0.x) / 6, y: p1.y + (p2.y - p0.y) / 6 },
+          c: { x: p2.x - (p3.x - p1.x) / 6, y: p2.y - (p3.y - p1.y) / 6 }
+        });
+      }
+      return out2;
+    }
+    if (type === "bspline") {
+      const P2 = closed ? pts : [pts[0], pts[0], ...pts, pts[n5 - 1], pts[n5 - 1]];
+      const m = P2.length, at = (i2) => P2[(i2 + m) % m];
+      const out2 = [];
+      for (let i2 = 0; i2 < (closed ? m : m - 3); i2++) {
+        const p0 = at(i2), p1 = at(i2 + 1), p2 = at(i2 + 2), p3 = at(i2 + 3);
+        out2.push({
+          a: { x: (p0.x + 4 * p1.x + p2.x) / 6, y: (p0.y + 4 * p1.y + p2.y) / 6 },
+          b: { x: (2 * p1.x + p2.x) / 3, y: (2 * p1.y + p2.y) / 3 },
+          c: { x: (p1.x + 2 * p2.x) / 3, y: (p1.y + 2 * p2.y) / 3 },
+          d: { x: (p1.x + 4 * p2.x + p3.x) / 6, y: (p1.y + 4 * p2.y + p3.y) / 6 }
+        });
+      }
+      return out2;
+    }
+    const step = type === "bezier3" ? 3 : 2, P = closed ? [...pts, pts[0]] : pts, out = [];
+    let i = 0;
+    while (i < P.length - 1) {
+      const k = Math.min(step, P.length - 1 - i), p = P[i], q = P[i + k];
+      out.push(k === 3 ? { a: p, b: P[i + 1], c: P[i + 2], d: q } : k === 2 ? quad(p, P[i + 1], q) : straight(p, q));
+      i += k;
+    }
+    return out;
+  }
+  function onCurve(type, n5, closed, i) {
+    if (type === "catmull") return true;
+    if (type === "bspline") return !closed && (i === 0 || i === n5 - 1);
+    const step = type === "bezier3" ? 3 : 2;
+    return i % step === 0 || !closed && i === n5 - 1;
+  }
+  function cubicAt(s, t2) {
+    const u = 1 - t2, a = u * u * u, b = 3 * u * u * t2, c = 3 * u * t2 * t2, d = t2 * t2 * t2;
+    return { x: a * s.a.x + b * s.b.x + c * s.c.x + d * s.d.x, y: a * s.a.y + b * s.b.y + c * s.c.y + d * s.d.y };
+  }
+  function sampleCubics(segs, closed, tol) {
+    if (!segs.length) return [];
+    const out = [segs[0].a];
+    for (const s of segs) {
+      const leg = Math.max(Math.hypot(s.b.x - s.a.x, s.b.y - s.a.y), Math.hypot(s.c.x - s.b.x, s.c.y - s.b.y), Math.hypot(s.d.x - s.c.x, s.d.y - s.c.y));
+      const k = Math.max(1, Math.min(512, Math.ceil(3 * leg / Math.max(tol, 1e-9))));
+      for (let i = 1; i <= k; i++) out.push(cubicAt(s, i / k));
+    }
+    if (closed && out.length > 1) {
+      const f = out[0], l = out[out.length - 1];
+      if (Math.hypot(f.x - l.x, f.y - l.y) < 1e-9) out.pop();
+    }
+    return out;
+  }
+  function ellipsePoints(cx, cy, rx, ry, rot, tol) {
+    const r = Math.max(Math.abs(rx), Math.abs(ry)), n5 = Math.max(12, Math.min(720, Math.ceil(2 * Math.PI * r / Math.max(tol, 1e-9))));
+    const cos = Math.cos(rot), sin = Math.sin(rot), out = [];
+    for (let i = 0; i < n5; i++) {
+      const a = i / n5 * 2 * Math.PI, x = rx * Math.cos(a), y = ry * Math.sin(a);
+      out.push({ x: cx + x * cos - y * sin, y: cy + x * sin + y * cos });
+    }
+    return out;
+  }
+  function ellipseFromDrag(a, b, fromCenter, circle) {
+    let rx = Math.abs(b.x - a.x), ry = Math.abs(b.y - a.y);
+    if (!fromCenter) {
+      rx /= 2;
+      ry /= 2;
+    }
+    if (circle) rx = ry = Math.max(rx, ry);
+    if (fromCenter) return { cx: a.x, cy: a.y, rx, ry };
+    return { cx: a.x + Math.sign(b.x - a.x || 1) * rx, cy: a.y + Math.sign(b.y - a.y || 1) * ry, rx, ry };
+  }
+
   // src/raster/paint.ts
   function constrain(a, b) {
     const ang = Math.atan2(b.y - a.y, b.x - a.x), step = Math.PI / 12, q = Math.round(ang / step) * step;
@@ -5931,6 +6136,163 @@
       commit();
     }
   };
+  var CURVE_TOL = 1 / 3;
+  function previewOutline(ctx2, px, pts, closed, fill) {
+    const path = () => {
+      ctx2.beginPath();
+      pts.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+      if (closed) ctx2.closePath();
+    };
+    ctx2.globalAlpha = state.opacity;
+    if (fill && state.fill) {
+      path();
+      ctx2.fillStyle = state.fill;
+      ctx2.fill();
+    }
+    const line = closed ? state.ngonOutline && state.stroke : state.fill;
+    if (line) {
+      path();
+      ctx2.lineWidth = state.size;
+      ctx2.lineCap = ctx2.lineJoin = "round";
+      ctx2.strokeStyle = line;
+      ctx2.stroke();
+    }
+    ctx2.globalAlpha = 1;
+    path();
+    ctx2.lineWidth = px;
+    ctx2.setLineDash([4 * px, 3 * px]);
+    ctx2.strokeStyle = "#2b8cff";
+    ctx2.stroke();
+    ctx2.setLineDash([]);
+  }
+  function ellipsePts(a) {
+    const e = ellipseFromDrag(a.a, a.b, state.ellipseMode === "center", a.shift);
+    return e.rx < 0.5 || e.ry < 0.5 ? [] : ellipsePoints(e.cx, e.cy, e.rx, e.ry, 0, CURVE_TOL);
+  }
+  var ellipseTool = {
+    down(e, p) {
+      state.action = { type: "ellipse", a: p, b: p, shift: e.shiftKey };
+    },
+    move(e, p) {
+      const a = state.action;
+      if (!a || a.type !== "ellipse") return;
+      a.b = p;
+      a.shift = e.shiftKey;
+      const pts = ellipsePts(a);
+      state.preview = pts.length ? (ctx2, px) => previewOutline(ctx2, px, pts, true, state.ngonFill) : null;
+      requestRender();
+    },
+    up() {
+      const a = state.action;
+      state.action = null;
+      state.preview = null;
+      requestRender();
+      if (!a || a.type !== "ellipse") return;
+      const pts = ellipsePts(a);
+      if (!pts.length) return;
+      if (!state.ngonFill && !state.ngonOutline) {
+        toast(t("Turn on “Fill” or “Outline” for shapes."));
+        return;
+      }
+      drawPolygon(pts);
+      commit();
+    }
+  };
+  var curve = { pts: null, hover: null };
+  var curvePoints = (pts, closed) => sampleCubics(toCubics(state.curveType, pts, closed), closed, CURVE_TOL);
+  function curvePreview() {
+    const pts = curve.pts;
+    if (!pts) {
+      state.preview = null;
+      requestRender();
+      return;
+    }
+    const all = curve.hover ? [...pts, curve.hover] : pts, line = curvePoints(all, false);
+    state.preview = (ctx2, px) => {
+      if (line.length > 1) previewOutline(ctx2, px, line, false, false);
+      if (state.curveType !== "catmull" && all.length > 1) {
+        ctx2.beginPath();
+        all.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+        ctx2.lineWidth = px;
+        ctx2.setLineDash([3 * px, 3 * px]);
+        ctx2.strokeStyle = "rgba(43,140,255,.7)";
+        ctx2.stroke();
+        ctx2.setLineDash([]);
+      }
+      const r = 3.5 * px;
+      all.forEach((q, i) => {
+        ctx2.beginPath();
+        if (onCurve(state.curveType, all.length, false, i)) ctx2.rect(q.x - r, q.y - r, 2 * r, 2 * r);
+        else ctx2.arc(q.x, q.y, r, 0, Math.PI * 2);
+        ctx2.fillStyle = "#fff";
+        ctx2.fill();
+        ctx2.lineWidth = 1.2 * px;
+        ctx2.strokeStyle = "#2b8cff";
+        ctx2.stroke();
+      });
+    };
+    requestRender();
+  }
+  function finishCurve(closed = false) {
+    const pts = curve.pts;
+    curve.pts = null;
+    curve.hover = null;
+    curvePreview();
+    if (!pts || pts.length < 2 || closed && pts.length < 3) return;
+    const line = curvePoints(pts, closed);
+    if (closed) {
+      if (!state.ngonFill && !state.ngonOutline) {
+        toast(t("Turn on “Fill” or “Outline” for shapes."));
+        return;
+      }
+      drawPolygon(line);
+    } else {
+      const layer = makeCanvas(doc.width, doc.height), ctx2 = layer.getContext("2d");
+      if (state.smooth) {
+        ctx2.beginPath();
+        line.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+        ctx2.lineWidth = state.size;
+        ctx2.lineCap = ctx2.lineJoin = "round";
+        ctx2.strokeStyle = state.fill || "#000";
+        ctx2.stroke();
+      } else for (let i = 1; i < line.length; i++) hardLine(ctx2, line[i - 1], line[i], state.size, state.fill || "#000");
+      applyLayer(layer, !state.fill, state.opacity);
+    }
+    commit();
+  }
+  function curveBack() {
+    if (!curve.pts) return;
+    curve.pts.pop();
+    if (!curve.pts.length) curve.pts = null;
+    curvePreview();
+  }
+  function cancelCurve() {
+    curve.pts = null;
+    curve.hover = null;
+    curvePreview();
+  }
+  var curveTool = {
+    down(e, p) {
+      const pts = curve.pts || [], px = 1 / state.view.s;
+      if (pts.length >= 3 && dist(p, pts[0]) < 8 * px) {
+        finishCurve(true);
+        return;
+      }
+      if (pts.length && dist(p, pts[pts.length - 1]) < 2 * px) return;
+      pts.push(p);
+      curve.pts = pts;
+      state.action = { type: "curve-press" };
+      curvePreview();
+    },
+    move(e, p) {
+      if (!curve.pts) return;
+      curve.hover = p;
+      curvePreview();
+    },
+    up() {
+      if (state.action?.type === "curve-press") state.action = null;
+    }
+  };
   function bucketAt(p) {
     const x = Math.floor(p.x), y = Math.floor(p.y);
     if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return false;
@@ -5969,6 +6331,8 @@
     eraser: freehand("eraser"),
     line: lineTool,
     ngon: ngonTool,
+    ellipse: ellipseTool,
+    curve: curveTool,
     bucket: bucketTool,
     picker: pickerTool
   };
@@ -5989,6 +6353,8 @@
     eraser: t("Drag to erase to transparent · Shift: straight line · [ ] size"),
     line: t("Drag a line · Shift: 15° steps"),
     ngon: t("Drag from the center · Shift: 15° rotation · keys 3–9: sides"),
+    ellipse: t("Drag from corner to corner (or from the center) · Shift: a circle"),
+    curve: t("Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels"),
     bucket: t("Click to fill the area of similar color · Alt+click: pick a color"),
     picker: t("Click to take a color from the image"),
     pan: t("Drag to pan · mouse wheel zooms")
@@ -5997,7 +6363,7 @@
     if (!tools[tool]) tool = "brush";
     if (tool !== "select" && state.floating) place();
     state.action = null;
-    state.preview = null;
+    cancelCurve();
     state.tool = tool;
     stage.dataset.tool = tool;
     for (const b of $$("#tools button")) b.classList.toggle("active", b.dataset.tool === tool);
@@ -7437,6 +7803,15 @@ ${shapes.join("\n")}
     $("#btn-reduce").onclick = reduceToPalette;
   }
 
+  // src/shared/curve-notes.ts
+  var NOTES = {
+    catmull: () => t("The curve runs smoothly through every point you click."),
+    bspline: () => t("The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines."),
+    bezier3: () => t("Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it."),
+    bezier2: () => t("Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.")
+  };
+  var curveNote = (type) => (NOTES[type] || NOTES.catmull)();
+
   // src/raster/panel.ts
   function setSides(n5) {
     state.sides = clamp(Math.round(n5) || 6, 3, 64);
@@ -7551,6 +7926,28 @@ ${shapes.join("\n")}
     setSides(state.sides);
     bindCheck("#opt-ngon-fill", "ngonFill");
     bindCheck("#opt-ngon-outline", "ngonOutline");
+    for (const r of $$("input[name=elmode]")) {
+      r.checked = r.value === state.ellipseMode;
+      r.onchange = () => {
+        if (r.checked) {
+          state.ellipseMode = r.value;
+          savePrefs();
+        }
+      };
+    }
+    const ct = $("#opt-curve-type");
+    if (!SPLINE_TYPES.includes(state.curveType)) state.curveType = "catmull";
+    ct.value = state.curveType;
+    const showCurveNote = () => {
+      $("#curve-note").textContent = curveNote(state.curveType);
+    };
+    ct.onchange = () => {
+      state.curveType = ct.value;
+      savePrefs();
+      showCurveNote();
+      cancelCurve();
+    };
+    showCurveNote();
     const tol = $("#opt-tolerance"), tolLabel = () => {
       $("#tol-label").textContent = String(state.tolerance);
     };
@@ -7613,6 +8010,7 @@ ${shapes.join("\n")}
   function startPinch() {
     const a = state.action;
     if (a && a.type === "stroke") restoreCurrent();
+    if (a && a.type === "curve-press") curveBack();
     state.action = null;
     state.preview = null;
     const [p1, p2] = [...pointers.values()];
@@ -7643,7 +8041,7 @@ ${shapes.join("\n")}
     }
     return false;
   }
-  var PAINT = /* @__PURE__ */ new Set(["brush", "pencil", "eraser", "line", "ngon", "bucket"]);
+  var PAINT = /* @__PURE__ */ new Set(["brush", "pencil", "eraser", "line", "ngon", "ellipse", "curve", "bucket"]);
   function bindPointer() {
     view.addEventListener("pointerdown", (e) => {
       pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -7662,7 +8060,8 @@ ${shapes.join("\n")}
         return;
       }
       if (e.button === 2) {
-        if (state.action) {
+        if (curve.pts) cancelCurve();
+        else if (state.action) {
           state.action = null;
           state.preview = null;
           restoreCurrent();
@@ -7722,6 +8121,9 @@ ${shapes.join("\n")}
       requestRender();
     });
     view.addEventListener("contextmenu", (e) => e.preventDefault());
+    view.addEventListener("dblclick", () => {
+      if (curve.pts) finishCurve();
+    });
     view.addEventListener("wheel", (e) => {
       e.preventDefault();
       const dy = e.deltaMode === 1 ? e.deltaY * 30 : e.deltaY;
@@ -7781,6 +8183,12 @@ ${shapes.join("\n")}
       case "g":
         setTool("ngon");
         break;
+      case "o":
+        setTool("ellipse");
+        break;
+      case "c":
+        setTool("curve");
+        break;
       case "f":
         setTool("bucket");
         break;
@@ -7805,10 +8213,12 @@ ${shapes.join("\n")}
         setBrushSize(state.size >= 10 ? state.size + 5 : state.size + 1);
         break;
       case "enter":
-        if (!place()) return;
+        if (curve.pts) finishCurve();
+        else if (!place()) return;
         break;
       case "escape":
         if (state.floating) cancelFloating();
+        else if (curve.pts) cancelCurve();
         else if (state.action) {
           state.action = null;
           state.preview = null;
@@ -7817,7 +8227,8 @@ ${shapes.join("\n")}
         break;
       case "delete":
       case "backspace":
-        clearSelection();
+        if (curve.pts) curveBack();
+        else clearSelection();
         break;
       case "0":
         fitView();
@@ -9237,8 +9648,16 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.3.0" : "dev";
+  var VERSION = true ? "1.4.0" : "dev";
   var RELEASES = [
+    {
+      version: "1.4.0",
+      date: "2026-10-12",
+      items: [
+        "Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.",
+        "In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile."
+      ]
+    },
     {
       version: "1.3.0",
       date: "2026-10-12",

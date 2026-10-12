@@ -10,7 +10,9 @@ import { setTool, setMode } from './tools.ts';
 import { newImage, openFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
 import { rotate, flip, cropToSelection, trim } from './transform.ts';
 import { bindMosaic } from './mosaic.ts';
-import { TIPS } from './paint.ts';
+import { TIPS, cancelCurve } from './paint.ts';
+import * as Curves from '../lib/curves.ts';
+import { curveNote } from '../shared/curve-notes.ts';
 import { t } from '../shared/i18n.ts';
 
 export function setSides(n: number): void {
@@ -109,6 +111,18 @@ export function bindPanel(): void {
   setSides(state.sides);
   bindCheck('#opt-ngon-fill', 'ngonFill');
   bindCheck('#opt-ngon-outline', 'ngonOutline');
+
+  // ellipse and curve
+  for (const r of $$('input[name=elmode]')) {
+    r.checked = r.value === state.ellipseMode;
+    r.onchange = () => { if (r.checked) { state.ellipseMode = r.value; savePrefs(); } };
+  }
+  const ct = $('#opt-curve-type');
+  if (!Curves.SPLINE_TYPES.includes(state.curveType)) state.curveType = 'catmull';
+  ct.value = state.curveType;
+  const showCurveNote = () => { $('#curve-note').textContent = curveNote(state.curveType); };
+  ct.onchange = () => { state.curveType = ct.value; savePrefs(); showCurveNote(); cancelCurve(); };
+  showCurveNote();
 
   // bucket
   const tol = $('#opt-tolerance'), tolLabel = () => { $('#tol-label').textContent = String(state.tolerance); };

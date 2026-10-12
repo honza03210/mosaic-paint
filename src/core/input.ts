@@ -32,7 +32,7 @@ function startPinch(): void {
     state.freePts.pop();
     if (!state.freePts.length) state.freePts = null;
   }
-  if (state.tool !== 'free' && !(state.tool === 'line' && state.chain)) state.lineStart = null;
+  if (state.tool !== 'free' && state.tool !== 'curve' && !(state.tool === 'line' && state.chain)) state.lineStart = null;
   state.action = null;
   previewG.innerHTML = '';
   snapG.innerHTML = '';
@@ -127,7 +127,7 @@ function bindPointer(): void {
     stage.classList.remove('panning');
   });
   svg.addEventListener('pointerleave', () => { if (!state.action) snapG.innerHTML = ''; });
-  svg.addEventListener('dblclick', () => { if (state.tool === 'free' && state.freePts) finishFree(); });
+  svg.addEventListener('dblclick', () => { if ((state.tool === 'free' || state.tool === 'curve') && state.freePts) finishFree(); });
   svg.addEventListener('contextmenu', (e) => e.preventDefault());
   svg.addEventListener('wheel', (e) => {
     e.preventDefault();
@@ -176,6 +176,8 @@ function onKey(e: KeyboardEvent): void {
     case 'l': setTool('line'); break;
     case 'p': setTool('free'); break;
     case 'g': case 'n': setTool('ngon'); break;
+    case 'o': setTool('ellipse'); break;
+    case 'c': setTool('curve'); break;
     case 'k': setTool('knife'); break;
     case 't': setTool('pattern'); break;
     case 'b': case 'f': setTool('bucket'); break;

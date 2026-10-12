@@ -2,7 +2,7 @@
 import { $, $$ } from '../shared/ui.ts';
 import { state, savePrefs, emit } from './state.ts';
 import { stage, requestRender } from './canvas.ts';
-import { paintTools, type Tool } from './paint.ts';
+import { paintTools, cancelCurve, type Tool } from './paint.ts';
 import { selectTool, place } from './select.ts';
 import { t } from '../shared/i18n.ts';
 
@@ -16,6 +16,8 @@ const HINTS: Record<string, string> = {
   eraser: t('Drag to erase to transparent · Shift: straight line · [ ] size'),
   line: t('Drag a line · Shift: 15° steps'),
   ngon: t('Drag from the center · Shift: 15° rotation · keys 3–9: sides'),
+  ellipse: t('Drag from corner to corner (or from the center) · Shift: a circle'),
+  curve: t('Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels'),
   bucket: t('Click to fill the area of similar color · Alt+click: pick a color'),
   picker: t('Click to take a color from the image'),
   pan: t('Drag to pan · mouse wheel zooms'),
@@ -25,7 +27,7 @@ export function setTool(tool: string): void {
   // moving on from the selection tool places what was being moved or pasted
   if (tool !== 'select' && state.floating) place();
   state.action = null;
-  state.preview = null;
+  cancelCurve();
   state.tool = tool;
   stage.dataset.tool = tool;
   for (const b of $$('#tools button')) b.classList.toggle('active', b.dataset.tool === tool);

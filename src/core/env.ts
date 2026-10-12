@@ -1,5 +1,6 @@
 /* The editor's foundation: page elements, constants, shared state, events and small helpers.
    Imports nothing from the rest of the editor, so every other module can use it. */
+import type { SplineType } from '../lib/curves.ts';
 import type { Pt } from '../lib/geometry.ts';
 import { $ } from '../shared/ui.ts';
 import { DEFAULT_PALETTE } from '../shared/palette-ui.ts';
@@ -25,7 +26,8 @@ export const VERSION_EVERY_MS = 3 * 60 * 1000, MAX_VERSIONS = 40;
 // ---- state --------------------------------------------------------------------------------
 export interface Layer { visible: boolean; locked: boolean }
 export interface Doc { x: number; y: number; w: number; h: number; bg: string | null; unit: string }
-export interface Handle { el: Element; idx: number; x: number; y: number }
+/** ctrl: a curve point the curve doesn't pass through (drawn round) */
+export interface Handle { el: Element; idx: number; x: number; y: number; ctrl?: boolean }
 
 /** Settings and the document; the PREF_KEYS part is remembered between visits. */
 export const state = {
@@ -35,6 +37,7 @@ export const state = {
   palettes: { [t('My palette')]: [...DEFAULT_PALETTE] } as Record<string, string[]>, paletteName: t('My palette'),
   snap: true, link: true, grid: false, gridSize: 10, border: true, gapPct: 0.4,
   chain: false, sides: 6, ngonMode: 'center', newFill: false,
+  ellipseMode: 'corner', curveType: 'catmull' as SplineType,
   lastRadius: 20, lastRot: -90,
   pattern: { type: 'square', size: 10, angle: 0, rows: 0 },
   sym: { type: 'none', n: 8, mirror: false, cx: null as number | null, cy: null as number | null },

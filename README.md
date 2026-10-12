@@ -51,6 +51,8 @@ The switch in the top-left corner chooses how much of the app you see.
    - **Line (L)**
    - **Free polygon (P):** click corner by corner.
    - **Regular polygon (G):** drawn from its center or along an existing edge.
+   - **Ellipse (O):** dragged from corner to corner or from its center; Shift makes a circle. Selected, its axis ends can be dragged.
+   - **Curve (C):** click its points; click the first point again to close it, double-click or Enter to leave it open. Four types: smooth through the points (Catmull–Rom), smooth near the points (B-spline), and cubic or quadratic Bézier, whose round control points pull the curve. Selected, all its points can be dragged.
    - **Pattern (T):** fills an area with squares, bricks, herringbone, hexagons, triangles or rings, or with **rows following the outline** (opus vermiculatum): rows of tiles that run along the area's edge and around any shapes inside it.
    - **Knife (K, Expert):** cuts a tile straight across.
 
@@ -119,7 +121,7 @@ The Done / Cancel bar finishes chained lines and free polygons.
 
 The raster app paints pixels. It has the same layout, palettes (shared with the vector app) and Simple / Expert switch.
 
-- **Tools:** select (V), brush (B, soft edges), pencil (P, hard pixels in exact palette colors – best for pixel mosaics), eraser (E), line (L), regular polygon (G), paint bucket with a tolerance (F), color picker (I, or Alt+click). Shift draws straight lines; [ and ] change the size. The ∅ swatch paints transparent.
+- **Tools:** select (V), brush (B, soft edges), pencil (P, hard pixels in exact palette colors – best for pixel mosaics), eraser (E), line (L), regular polygon (G), ellipse (O), curve (C, the same four types as in the vector app), paint bucket with a tolerance (F), color picker (I, or Alt+click). Shift draws straight lines; [ and ] change the size. The ∅ swatch paints transparent.
 - **Selection:** drag a rectangle, then drag it to move it (Alt: a copy); Enter places it, Esc puts it back. Clear, crop, select all (Ctrl+A).
 - **Clipboard:** Ctrl+C / Ctrl+X copy the selection (or the whole image) as a PNG; Ctrl+V pastes any picture – from the vector app, a screenshot, another program – under the mouse, ready to move. On touch screens use the **Copy** and **Paste** buttons. Pasted color codes go into the palette.
 - **Mosaic:** **Make a mosaic…** turns the image (or the selection) into tiles with grout – squares, squares in offset rows, bricks, hexagons or irregular “crazy paving”, optionally smaller where the picture has detail (the vector app's tile layouts) – colored from your palette, from a palette it suggests, or keeping the picture's colors. **Reduce to palette** gives every pixel the nearest palette color. **Open as vector tiles…** turns every piece (tile) into a shape in the vector app at the real size, with the grout color as the page background – ready for the vector app's templates, laying plan, 3D print and editing (your previous vector drawing goes to its History).

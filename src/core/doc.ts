@@ -2,6 +2,7 @@
    with a spatial index for quick lookups, vertices of editable shapes and regular-polygon data. */
 import * as Geo from '../lib/geometry.ts';
 import * as Colors from '../lib/colors.ts';
+import * as Curves from '../lib/curves.ts';
 import type { Pt, Bounds } from '../lib/geometry.ts';
 import {
   state, docG, defsG, fillsG, shapesG, SHAPE_SEL, EDITABLE, isFill, applyM, clamp, fmt, ptsStr, parsePoints,
@@ -227,12 +228,19 @@ export function paintedColorAt(p: Pt): string | null {
   return null;
 }
 
-// ---- vertices of editable shapes (line / polyline / polygon) ---------------------------------
+// ---- vertices of editable shapes: lines, polylines, polygons, ellipses (the ends of their axes) and
+// curves (their clicked points) -------------------------------------------------------------------------
+export function hasVerts(el: Element): boolean {
+  return EDITABLE.has(el.tagName) || el.tagName === 'ellipse' || !!splineData(el);
+}
 export function localVerts(el: Element): Pt[] {
-  if (el.tagName === 'line') {
-    const n = (k: string) => parseFloat(el.getAttribute(k)) || 0;
-    return [{ x: n('x1'), y: n('y1') }, { x: n('x2'), y: n('y2') }];
+  const n = (k: string) => parseFloat(el.getAttribute(k)) || 0;
+  if (el.tagName === 'line') return [{ x: n('x1'), y: n('y1') }, { x: n('x2'), y: n('y2') }];
+  if (el.tagName === 'ellipse') {
+    const cx = n('cx'), cy = n('cy'), rx = n('rx'), ry = n('ry');
+    return [{ x: cx + rx, y: cy }, { x: cx, y: cy + ry }, { x: cx - rx, y: cy }, { x: cx, y: cy - ry }];
   }
+  if (el.tagName === 'path') return splineData(el)?.pts || [];
   return parsePoints(el.getAttribute('points'));
 }
 export function docVerts(el: Element): Pt[] {
@@ -240,7 +248,17 @@ export function docVerts(el: Element): Pt[] {
   return localVerts(el).map(p => applyM(m, p));
 }
 export function setVertex(el: Element, idx: number, q: Pt): void {
-  if (el.tagName === 'line') {
+  const sp = splineData(el);
+  if (sp) {
+    sp.pts[idx] = q;
+    setSpline(el, sp);
+    return;
+  }
+  if (el.tagName === 'ellipse') {
+    // an axis end sets that radius
+    const c = parseFloat(el.getAttribute(idx % 2 ? 'cy' : 'cx')) || 0;
+    el.setAttribute(idx % 2 ? 'ry' : 'rx', fmt(Math.max(Math.abs((idx % 2 ? q.y : q.x) - c), 1e-3)));
+  } else if (el.tagName === 'line') {
     el.setAttribute(idx ? 'x2' : 'x1', fmt(q.x));
     el.setAttribute(idx ? 'y2' : 'y1', fmt(q.y));
   } else {
@@ -253,7 +271,7 @@ export function setVertex(el: Element, idx: number, q: Pt): void {
 export function verticesAt(p: Pt): { el: Element; idx: number; inv?: DOMMatrix }[] {
   const out: { el: Element; idx: number }[] = [], tol = Geo.eps * 5;
   for (const el of shapesAt(p, tol)) {
-    if (!EDITABLE.has(el.tagName) || isFill(el) || !selectable(el)) continue;
+    if (!hasVerts(el) || isFill(el) || !selectable(el)) continue;
     const b = geomOf(el).bbox;
     if (p.x < b.x0 - tol || p.x > b.x1 + tol || p.y < b.y0 - tol || p.y > b.y1 + tol) continue;
     docVerts(el).forEach((q, i) => { if (Geo.dist(q, p) < tol) out.push({ el, idx: i }); });
@@ -277,5 +295,22 @@ export function setNgon(el: Element, g: Ngon, exact?: Pt | null, idx?: number): 
   if (exact) pts[idx] = exact;
   el.setAttribute('points', ptsStr(pts));
   setNgonData(el, g);
+  invalidate(el);
+}
+
+// ---- curves keep their clicked points in data-spline="type open|closed x,y x,y …" -----------------
+export interface Spline { type: Curves.SplineType; closed: boolean; pts: Pt[] }
+export function splineData(el: any): Spline | null {
+  const s = el && el.tagName === 'path' && el.getAttribute('data-spline');
+  if (!s) return null;
+  const [type, shut, ...rest] = s.trim().split(/\s+/);
+  if (!Curves.SPLINE_TYPES.includes(type as Curves.SplineType)) return null;
+  const pts = parsePoints(rest.join(' '));
+  return pts.length >= 2 ? { type: type as Curves.SplineType, closed: shut === 'closed', pts } : null;
+}
+/** Sets a curve's points and redraws it. */
+export function setSpline(el: Element, sp: Spline): void {
+  el.setAttribute('data-spline', `${sp.type} ${sp.closed ? 'closed' : 'open'} ${ptsStr(sp.pts)}`);
+  el.setAttribute('d', Curves.cubicsToD(Curves.toCubics(sp.type, sp.pts, sp.closed), sp.closed, fmt));
   invalidate(el);
 }

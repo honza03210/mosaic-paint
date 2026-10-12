@@ -358,3 +358,61 @@ test('brush tips: the spray builds up while held still; the nib angle; Shift+B s
   await page.keyboard.press('b');
   expect(await page.evaluate(() => RZ.state.tip)).toBe('round');
 });
+
+test('ellipse and curve tools paint pixels: filled and outlined shapes, open curves as lines', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  const errors = [];
+  page.on('pageerror', e => errors.push(e.message));
+  await page.evaluate(() => { RZ.blank(200, 200); Object.assign(RZ.state, { fill: '#000000', stroke: '#ff0000', opacity: 1, size: 4, ngonFill: true, ngonOutline: false, smooth: true }); });
+  const ev = (kind, x, y, opts = {}) => page.evaluate(([kind, x, y, opts]) => {
+    const p = RZ.screen(x, y);
+    document.querySelector('#view').dispatchEvent(new PointerEvent(kind, { bubbles: true, pointerId: 1, pointerType: 'mouse', clientX: p.x, clientY: p.y, button: 0, buttons: 1, isPrimary: true, ...opts }));
+  }, [kind, x, y, opts]);
+  const drag = async (a, b, opts) => { await ev('pointerdown', ...a, opts); for (let i = 1; i <= 5; i++) await ev('pointermove', a[0] + (b[0] - a[0]) * i / 5, a[1] + (b[1] - a[1]) * i / 5, opts); await ev('pointerup', ...b, opts); };
+  const click = async (x, y) => { await ev('pointerdown', x, y); await ev('pointerup', x, y); };
+  const at = (x, y) => page.evaluate(([x, y]) => RZ.colorAt(x, y), [x, y]);
+
+  // an ellipse from corner to corner: inside painted, the box's corners not
+  await page.keyboard.press('o');
+  await expect(page.locator('input[name=elmode][value=corner]')).toBeChecked();
+  await drag([20, 40], [180, 160]);
+  expect(await at(100, 100)).toBe('#000000');
+  expect(await at(25, 100)).toBe('#000000');
+  expect(await at(30, 50)).toBe('#ffffff');
+  // Shift: a circle, outlined only
+  await page.evaluate(() => { RZ.blank(200, 200); Object.assign(RZ.state, { ngonFill: false, ngonOutline: true }); });
+  await drag([50, 50], [150, 120], { shiftKey: true });
+  expect(await at(100, 100)).toBe('#ffffff');
+  expect(await at(100, 51)).toBe('#ff0000'); // top of the 100 × 100 circle
+  expect(await at(100, 149)).toBe('#ff0000');
+
+  // a closed curve through four points, filled
+  await page.evaluate(() => { RZ.blank(200, 200); Object.assign(RZ.state, { ngonFill: true, ngonOutline: false }); });
+  await page.keyboard.press('c');
+  await page.selectOption('#opt-curve-type', 'catmull');
+  for (const [x, y] of [[50, 50], [150, 50], [150, 150], [50, 150]]) await click(x, y);
+  expect(await at(100, 100)).toBe('#ffffff'); // nothing painted until it is finished
+  await click(50, 50);
+  expect(await at(100, 100)).toBe('#000000');
+  expect(await at(100, 45)).toBe('#000000'); // bulges out past its points
+  expect(await at(10, 10)).toBe('#ffffff');
+  await page.keyboard.press('Control+z');
+  expect(await at(100, 100)).toBe('#ffffff');
+
+  // an open B-spline ended with Enter: a line in the paint color, touching its end points only
+  await page.selectOption('#opt-curve-type', 'bspline');
+  for (const [x, y] of [[20, 100], [100, 20], [180, 100], [180, 190]]) await click(x, y);
+  await page.keyboard.press('Backspace'); // takes back the last point
+  await page.keyboard.press('Enter');
+  expect(await at(20, 100)).toBe('#000000');
+  expect(await at(180, 100)).toBe('#000000');
+  expect(await at(100, 20)).toBe('#ffffff');
+  expect(await at(180, 185)).toBe('#ffffff');
+  // Esc drops an unfinished curve
+  for (const [x, y] of [[10, 190], [190, 190]]) await click(x, y);
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('Enter');
+  expect(await at(100, 190)).toBe('#ffffff');
+  expect(errors).toEqual([]);
+});

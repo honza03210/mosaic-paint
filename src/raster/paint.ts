@@ -1,4 +1,4 @@
-/* The painting tools: brush, pencil, eraser, line, regular polygon, paint bucket and color picker.
+/* The painting tools: brush, pencil, eraser, line, regular polygon, ellipse, curve, paint bucket and color picker.
    Strokes are drawn on a separate layer and laid onto the image with the chosen opacity, so a stroke
    that crosses itself doesn't get darker. The color "none" (∅ swatch) paints transparent. With a pen
    (graphics tablet, stylus) the brush, pencil and eraser get thinner the lighter it presses. The brush and
@@ -7,6 +7,7 @@
 import * as Geo from '../lib/geometry.ts';
 import type { Pt } from '../lib/geometry.ts';
 import * as R from '../lib/raster.ts';
+import * as Curves from '../lib/curves.ts';
 import { toast } from '../shared/ui.ts';
 import { state } from './state.ts';
 import { doc, dctx, makeCanvas, getImage, requestRender, toDoc } from './canvas.ts';
@@ -323,6 +324,141 @@ const ngonTool: Tool = {
   },
 };
 
+// ---- ellipse and curve ----------------------------------------------------------------------------------------
+/** How finely curves are turned into pixels: a third of a pixel. */
+const CURVE_TOL = 1 / 3;
+/** The preview of a shape: its fill and outline as they will look, and a thin dashed outline. */
+function previewOutline(ctx: CanvasRenderingContext2D, px: number, pts: Pt[], closed: boolean, fill: boolean): void {
+  const path = () => { ctx.beginPath(); pts.forEach((q, i) => (i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y))); if (closed) ctx.closePath(); };
+  ctx.globalAlpha = state.opacity;
+  if (fill && state.fill) { path(); ctx.fillStyle = state.fill; ctx.fill(); }
+  const line = closed ? state.ngonOutline && state.stroke : state.fill;
+  if (line) { path(); ctx.lineWidth = state.size; ctx.lineCap = ctx.lineJoin = 'round'; ctx.strokeStyle = line; ctx.stroke(); }
+  ctx.globalAlpha = 1;
+  path();
+  ctx.lineWidth = px;
+  ctx.setLineDash([4 * px, 3 * px]);
+  ctx.strokeStyle = '#2b8cff';
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+function ellipsePts(a: any): Pt[] {
+  const e = Curves.ellipseFromDrag(a.a, a.b, state.ellipseMode === 'center', a.shift);
+  return e.rx < 0.5 || e.ry < 0.5 ? [] : Curves.ellipsePoints(e.cx, e.cy, e.rx, e.ry, 0, CURVE_TOL);
+}
+const ellipseTool: Tool = {
+  down(e, p) { state.action = { type: 'ellipse', a: p, b: p, shift: e.shiftKey }; },
+  move(e, p) {
+    const a = state.action;
+    if (!a || a.type !== 'ellipse') return;
+    a.b = p;
+    a.shift = e.shiftKey;
+    const pts = ellipsePts(a);
+    state.preview = pts.length ? (ctx, px) => previewOutline(ctx, px, pts, true, state.ngonFill) : null;
+    requestRender();
+  },
+  up() {
+    const a = state.action;
+    state.action = null;
+    state.preview = null;
+    requestRender();
+    if (!a || a.type !== 'ellipse') return;
+    const pts = ellipsePts(a);
+    if (!pts.length) return;
+    if (!state.ngonFill && !state.ngonOutline) { toast(t('Turn on “Fill” or “Outline” for shapes.')); return; }
+    drawPolygon(pts);
+    commit();
+  },
+};
+
+/** The curve's points so far: kept apart from state.action, so panning in between doesn't lose them. */
+export const curve = { pts: null as Pt[] | null, hover: null as Pt | null };
+const curvePoints = (pts: Pt[], closed: boolean): Pt[] => Curves.sampleCubics(Curves.toCubics(state.curveType, pts, closed), closed, CURVE_TOL);
+function curvePreview(): void {
+  const pts = curve.pts;
+  if (!pts) { state.preview = null; requestRender(); return; }
+  const all = curve.hover ? [...pts, curve.hover] : pts, line = curvePoints(all, false);
+  state.preview = (ctx, px) => {
+    if (line.length > 1) previewOutline(ctx, px, line, false, false);
+    // the clicked points: square where the curve passes, round where they only pull it
+    if (state.curveType !== 'catmull' && all.length > 1) {
+      ctx.beginPath();
+      all.forEach((q, i) => (i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y)));
+      ctx.lineWidth = px;
+      ctx.setLineDash([3 * px, 3 * px]);
+      ctx.strokeStyle = 'rgba(43,140,255,.7)';
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    const r = 3.5 * px;
+    all.forEach((q, i) => {
+      ctx.beginPath();
+      if (Curves.onCurve(state.curveType, all.length, false, i)) ctx.rect(q.x - r, q.y - r, 2 * r, 2 * r); else ctx.arc(q.x, q.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+      ctx.lineWidth = 1.2 * px;
+      ctx.strokeStyle = '#2b8cff';
+      ctx.stroke();
+    });
+  };
+  requestRender();
+}
+/** Ends the curve: open (a line in the paint color) or closed (filled and / or outlined, like a polygon). */
+export function finishCurve(closed = false): void {
+  const pts = curve.pts;
+  curve.pts = null;
+  curve.hover = null;
+  curvePreview();
+  if (!pts || pts.length < 2 || (closed && pts.length < 3)) return;
+  const line = curvePoints(pts, closed);
+  if (closed) {
+    if (!state.ngonFill && !state.ngonOutline) { toast(t('Turn on “Fill” or “Outline” for shapes.')); return; }
+    drawPolygon(line);
+  } else {
+    const layer = makeCanvas(doc.width, doc.height), ctx = layer.getContext('2d');
+    if (state.smooth) {
+      ctx.beginPath();
+      line.forEach((q, i) => (i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y)));
+      ctx.lineWidth = state.size;
+      ctx.lineCap = ctx.lineJoin = 'round';
+      ctx.strokeStyle = state.fill || '#000';
+      ctx.stroke();
+    } else for (let i = 1; i < line.length; i++) hardLine(ctx, line[i - 1], line[i], state.size, state.fill || '#000');
+    applyLayer(layer, !state.fill, state.opacity);
+  }
+  commit();
+}
+export function curveBack(): void {
+  if (!curve.pts) return;
+  curve.pts.pop();
+  if (!curve.pts.length) curve.pts = null;
+  curvePreview();
+}
+export function cancelCurve(): void {
+  curve.pts = null;
+  curve.hover = null;
+  curvePreview();
+}
+const curveTool: Tool = {
+  down(e, p) {
+    const pts = curve.pts || [], px = 1 / state.view.s;
+    // clicking the first point again closes the curve; the second click of a double-click adds nothing
+    if (pts.length >= 3 && Geo.dist(p, pts[0]) < 8 * px) { finishCurve(true); return; }
+    if (pts.length && Geo.dist(p, pts[pts.length - 1]) < 2 * px) return;
+    pts.push(p);
+    curve.pts = pts;
+    // a second finger (pinch) takes this point back
+    state.action = { type: 'curve-press' };
+    curvePreview();
+  },
+  move(e, p) {
+    if (!curve.pts) return;
+    curve.hover = p;
+    curvePreview();
+  },
+  up() { if (state.action?.type === 'curve-press') state.action = null; },
+};
+
 // ---- paint bucket and color picker --------------------------------------------------------------------------
 export function bucketAt(p: Pt): boolean {
   const x = Math.floor(p.x), y = Math.floor(p.y);
@@ -350,5 +486,5 @@ const pickerTool: Tool = { down(e, p) { pickAt(p); }, move() {}, up() {} };
 
 export const paintTools: Record<string, Tool> = {
   brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'),
-  line: lineTool, ngon: ngonTool, bucket: bucketTool, picker: pickerTool,
+  line: lineTool, ngon: ngonTool, ellipse: ellipseTool, curve: curveTool, bucket: bucketTool, picker: pickerTool,
 };

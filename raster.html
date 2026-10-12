@@ -70,6 +70,12 @@
     <button data-tool="ngon" title="Regular polygon (G)">
       <svg viewBox="0 0 20 20"><path d="M10 2l7 4v8l-7 4-7-4V6z" class="st"/></svg>
     </button>
+    <button data-tool="ellipse" title="Ellipse – Shift: circle (O)">
+      <svg viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="8" ry="5.5" class="st"/></svg>
+    </button>
+    <button data-tool="curve" title="Curve – click its points (C)">
+      <svg viewBox="0 0 20 20"><path d="M2 16C5 2 10 2 11 9s6 7 7-5" class="st"/><rect x="0.5" y="14.5" width="3" height="3"/><rect x="16.5" y="2.5" width="3" height="3"/></svg>
+    </button>
     <button data-tool="bucket" title="Paint bucket – fill an area (F)">
       <svg viewBox="0 0 20 20"><path d="M3 9l6-6 7 7-6 6z" class="st"/><path d="M16.5 12.5c1.2 1.8 1.8 2.9 1.8 3.6a1.8 1.8 0 01-3.6 0c0-.7.6-1.8 1.8-3.6z"/></svg>
     </button>
@@ -155,9 +161,33 @@
           <button data-sides="3">3</button><button data-sides="4">4</button><button data-sides="5">5</button><button data-sides="6">6</button><button data-sides="8">8</button><button data-sides="12">12</button>
         </span>
       </div>
+      <p class="note">Drag from the center. Shift: 15° rotation steps.</p>
+    </section>
+
+    <section class="tool-opts" data-for="ellipse">
+      <h3>Ellipse</h3>
+      <div class="row seg">
+        <label><input type="radio" name="elmode" value="corner"> From corner</label>
+        <label><input type="radio" name="elmode" value="center"> From center</label>
+      </div>
+      <p class="note">Shift: a circle.</p>
+    </section>
+
+    <section class="tool-opts" data-for="curve">
+      <h3>Curve</h3>
+      <label>Type <select id="opt-curve-type">
+        <option value="catmull">Smooth, through the points</option>
+        <option value="bspline">Smooth, near the points (B-spline)</option>
+        <option value="bezier3">Bézier, cubic</option>
+        <option value="bezier2">Bézier, quadratic</option>
+      </select></label>
+      <p class="note" id="curve-note"></p>
+      <p class="note">An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.</p>
+    </section>
+
+    <section class="tool-opts" data-for="ngon ellipse curve">
       <label class="chk"><input type="checkbox" id="opt-ngon-fill"> Fill with the paint color</label>
       <label class="chk"><input type="checkbox" id="opt-ngon-outline"> Outline in the outline color</label>
-      <p class="note">Drag from the center. Shift: 15° rotation steps.</p>
     </section>
 
     <section class="tool-opts" data-for="bucket">
@@ -219,7 +249,7 @@
       <details>
         <summary>Keyboard &amp; mouse</summary>
         <table class="keys">
-          <tr><td>V B P E L G F I H</td><td>Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan</td></tr>
+          <tr><td>V B P E L G O C F I H</td><td>Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan</td></tr>
           <tr><td>[ ]</td><td>Smaller / bigger brush</td></tr>
           <tr><td>Shift+B</td><td>Next brush tip</td></tr>
           <tr><td>3 – 9</td><td>Polygon sides</td></tr>

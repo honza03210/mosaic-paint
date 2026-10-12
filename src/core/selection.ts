@@ -1,15 +1,17 @@
 /* Selecting and moving: hit testing, the selection outline and handles, the properties panel,
    moving shapes by a delta, and the selection commands (delete, duplicate, order, select all). */
 import * as Geo from '../lib/geometry.ts';
+import * as Curves from '../lib/curves.ts';
 import type { Pt } from '../lib/geometry.ts';
-import { $, state, rt, selG, EDITABLE, isFill, px, mk, fmt, ptsStr, parsePoints, linM } from './env.ts';
+import { $, state, rt, selG, isFill, px, mk, fmt, ptsStr, parsePoints, linM } from './env.ts';
 import {
-  shapesAt, geomOf, hasFill, insideEl, strokeW, docVerts, ngonData, setNgonData, elMatrix, linearPath, invalidate, allShapes,
+  shapesAt, geomOf, hasFill, insideEl, strokeW, docVerts, hasVerts, splineData, ngonData, setNgonData, elMatrix, linearPath, invalidate, allShapes,
   type Ngon, type Poly,
 } from './doc.ts';
 import { selectable } from './view.ts';
 import { ringsToD, commitFor } from './areas.ts';
 import { commit } from './history.ts';
+import { t } from '../shared/i18n.ts';
 import { setTool } from './tools.ts';
 
 export function hitTest(p: Pt): Element | null {
@@ -35,18 +37,28 @@ export function renderSelection(): void {
   for (const el of [...state.selection]) {
     if (!el.isConnected) { state.selection.delete(el); continue; }
     for (const pl of geomOf(el).polys) mk(pl.closed ? 'polygon' : 'polyline', { points: ptsStr(pl.pts), class: 'sel-outline' }, selG);
-    if (!many && EDITABLE.has(el.tagName) && !isFill(el)) docVerts(el).forEach((q, i) => state.handles.push({ el, idx: i, x: q.x, y: q.y }));
+    if (many || !hasVerts(el) || isFill(el)) continue;
+    const vs = docVerts(el), sp = splineData(el);
+    // a curve's points that it doesn't pass through: joined by a dashed line, with round handles
+    if (sp && sp.type !== 'catmull') mk(sp.closed ? 'polygon' : 'polyline', { points: ptsStr(vs), class: 'sel-ctrl' }, selG);
+    vs.forEach((q, i) => state.handles.push({ el, idx: i, x: q.x, y: q.y, ctrl: !!sp && !Curves.onCurve(sp.type, vs.length, sp.closed, i) }));
   }
   const s = px(rt.handlePx - 2);
   for (const h of state.handles) {
-    mk('rect', { x: h.x - s / 2, y: h.y - s / 2, width: s, height: s, class: ngonData(h.el) ? 'handle ngon' : 'handle' }, selG);
+    if (h.ctrl) mk('circle', { cx: h.x, cy: h.y, r: s / 2, class: 'handle' }, selG);
+    else mk('rect', { x: h.x - s / 2, y: h.y - s / 2, width: s, height: s, class: ngonData(h.el) ? 'handle ngon' : 'handle' }, selG);
   }
 }
+const CURVE_NAMES: Record<Curves.SplineType, () => string> = {
+  catmull: () => t('curve through points'), bspline: () => t('B-spline'), bezier3: () => t('cubic Bézier'), bezier2: () => t('quadratic Bézier'),
+};
 function describe(el: Element): string {
   if (isFill(el)) return 'painted area';
   const ng = ngonData(el);
   if (ng) return `${ng.n}-gon`;
-  return el.tagName;
+  const sp = splineData(el);
+  if (sp) return CURVE_NAMES[sp.type]();
+  return el.tagName === 'ellipse' ? t('ellipse') : el.tagName;
 }
 export function renderProps(): void {
   const sel = [...state.selection].filter(e => e.isConnected);

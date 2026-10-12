@@ -11,6 +11,12 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '1.4.0', date: '2026-10-12', items: [
+      'Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.',
+      'In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.',
+    ],
+  },
+  {
     version: '1.3.0', date: '2026-10-12', items: [
       'Brush tips for the brush and the eraser: soft (airbrush), spray, calligraphy and chalk. Shift+B switches between them.',
       'The spray keeps spraying while you hold it still, like an airbrush; the calligraphy nib’s angle can be set (also for left-handed writing).',

@@ -1,6 +1,7 @@
 /* The raster app's settings, state and events. The palettes are shared with the vector app. */
 import type { Pt } from '../lib/geometry.ts';
 import type { Box } from '../lib/raster.ts';
+import type { SplineType } from '../lib/curves.ts';
 import { lsGet, lsSet } from '../shared/ui.ts';
 import { DEFAULT_PALETTE, loadSharedPalettes, saveSharedPalettes } from '../shared/palette-ui.ts';
 import { t } from '../shared/i18n.ts';
@@ -21,6 +22,7 @@ export const state = {
   /** a pen paints thinner the lighter it presses */
   pressure: true,
   sides: 6, ngonFill: true, ngonOutline: false,
+  ellipseMode: 'corner', curveType: 'catmull' as SplineType,
   tolerance: 24, contiguous: true,
   grid: true,
   /** the real width of the finished mosaic, mm (report, print, 3D) */
@@ -50,7 +52,7 @@ export const rt = {
 
 // ---- remembered settings ---------------------------------------------------------------------------
 const KEY = 'mz-raster-prefs';
-const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'sides', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
+const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'sides', 'ellipseMode', 'curveType', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
 export function savePrefs(): void {
   const o: Record<string, unknown> = {};
   for (const k of PREF_KEYS) o[k] = state[k];

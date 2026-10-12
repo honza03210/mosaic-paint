@@ -858,8 +858,8 @@ export const CS: Record<string, string> = {
     'Zobrazit pravítka',
   'Keyboard & mouse':
     'Klávesnice a myš',
-  'Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan':
-    'Výběr, Čára, Volný mnohoúhelník, Mnohoúhelník, Vzor, Kbelík, Posun',
+  'Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan':
+    'Výběr, Čára, Volný mnohoúhelník, Mnohoúhelník, Elipsa, Křivka, Vzor, Kbelík, Posun',
   'Polygon sides':
     'Počet stran mnohoúhelníku',
   'Toggle snapping':
@@ -1150,8 +1150,8 @@ export const CS: Record<string, string> = {
     'Velikost plátna',
   'Pixel grid when zoomed in':
     'Mřížka pixelů při přiblížení',
-  'Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan':
-    'Výběr, Štětec, Tužka, Guma, Čára, Mnohoúhelník, Kbelík, Kapátko, Posun',
+  'Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Výběr, Štětec, Tužka, Guma, Čára, Mnohoúhelník, Elipsa, Křivka, Kbelík, Kapátko, Posun',
   'Smaller / bigger brush':
     'Menší / větší štětec',
   'Swap paint and outline colors':
@@ -1628,6 +1628,62 @@ export const CS: Record<string, string> = {
     'Tvar štětce a gumy',
   'The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed':
     'Úhel kaligrafického hrotu – 45° pro praváky, asi 135° pro leváky',
+  'curve through points':
+    'křivka přes body',
+  'B-spline':
+    'B-spline',
+  'cubic Bézier':
+    'kubická Bézierova křivka',
+  'quadratic Bézier':
+    'kvadratická Bézierova křivka',
+  'ellipse':
+    'elipsa',
+  'Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap':
+    'Táhněte z rohu do rohu (nebo ze středu) · Shift: kruh · Alt: bez přichytávání',
+  'Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels':
+    'Klikejte na body křivky · kliknutím na první bod ji uzavřete · dvojklik nebo Enter ji ukončí otevřenou · Backspace odebere poslední bod · Esc zruší',
+  'Turn on “Fill” or “Outline” for shapes.':
+    'U tvarů zapněte „Výplň“ nebo „Obrys“.',
+  'Drag from corner to corner (or from the center) · Shift: a circle':
+    'Táhněte z rohu do rohu (nebo ze středu) · Shift: kruh',
+  'The curve runs smoothly through every point you click.':
+    'Křivka vede plynule přes každý bod, na který kliknete.',
+  'The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines.':
+    'Křivku každý bod přitahuje, ale dotkne se jen prvního a posledního – velmi hladká, vhodná pro plynulé linie.',
+  'Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it.':
+    'Klikněte na bod, dva řídicí body, další bod, dva řídicí body … Křivka prochází každým třetím bodem; řídicí body (kulaté) ji přitahují.',
+  'Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.':
+    'Klikněte na bod, řídicí bod, další bod, řídicí bod … Křivka prochází každým druhým bodem; řídicí body (kulaté) ji přitahují.',
+  'Ellipse':
+    'Elipsa',
+  'From corner':
+    'Z rohu',
+  'Shift: a circle. Select it to drag its axis ends.':
+    'Shift: kruh. Po výběru můžete táhnout konce jejích os.',
+  'Curve':
+    'Křivka',
+  'Type':
+    'Typ',
+  'Smooth, through the points':
+    'Hladká, přes body',
+  'Smooth, near the points (B-spline)':
+    'Hladká, u bodů (B-spline)',
+  'Bézier, cubic':
+    'Bézierova, kubická',
+  'Bézier, quadratic':
+    'Bézierova, kvadratická',
+  'Ellipse – Shift: circle (O)':
+    'Elipsa – Shift: kruh (O)',
+  'Curve – click its points (C)':
+    'Křivka – klikejte na její body (C)',
+  'Shift: a circle.':
+    'Shift: kruh.',
+  'An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.':
+    'Otevřená křivka je čára v barvě malování o zvolené velikosti; uzavřená se vyplní a obtáhne jako tvary.',
+  'Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.':
+    'Elipsy a křivky v obou aplikacích: nástroj Elipsa (O, se Shiftem kruh) a nástroj Křivka (C) – hladká přes body, hladká u bodů (B-spline), nebo kubická a kvadratická Bézierova.',
+  'In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.':
+    'Ve vektorové aplikaci zůstávají elipsy a křivky přesnými křivkami: tažením bodů nebo konců os je měníte a vybarvujete, řežete a zrcadlíte je jako každou dlaždici.',
   'Shift+B':
     'Shift+B',
   'Next brush tip':

@@ -8,7 +8,7 @@ import { t } from '../shared/i18n.ts';
 
 // ---- remembered settings ------------------------------------------------------------------------
 const PREF_KEYS = ['mode', 'fill', 'stroke', 'strokeWidth', 'palettes', 'paletteName', 'snap', 'link', 'grid', 'gridSize', 'border', 'gapPct',
-  'chain', 'sides', 'ngonMode', 'newFill', 'lastRadius', 'lastRot', 'pattern', 'sym', 'layers', 'refOpacity', 'savePhoto', 'onlyUnpainted', 'grout', 'rulers'];
+  'chain', 'sides', 'ngonMode', 'ellipseMode', 'curveType', 'newFill', 'lastRadius', 'lastRot', 'pattern', 'sym', 'layers', 'refOpacity', 'savePhoto', 'onlyUnpainted', 'grout', 'rulers'];
 export function savePrefs(): void {
   const o: Record<string, unknown> = {};
   for (const k of PREF_KEYS) o[k] = state[k];

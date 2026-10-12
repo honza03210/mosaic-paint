@@ -66,6 +66,12 @@
     <button data-tool="ngon" title="Regular polygon (G)">
       <svg viewBox="0 0 20 20"><path d="M10 2l7 4v8l-7 4-7-4V6z" class="st"/></svg>
     </button>
+    <button data-tool="ellipse" title="Ellipse – Shift: circle (O)">
+      <svg viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="8" ry="5.5" class="st"/></svg>
+    </button>
+    <button data-tool="curve" title="Curve – click its points (C)">
+      <svg viewBox="0 0 20 20"><path d="M2 16C5 2 10 2 11 9s6 7 7-5" class="st"/><rect x="0.5" y="14.5" width="3" height="3"/><rect x="16.5" y="2.5" width="3" height="3"/></svg>
+    </button>
     <button data-tool="knife" class="expert" title="Knife – cut a tile straight across (K)">
       <svg viewBox="0 0 20 20"><path d="M3 17L15 5l2 2L7 17z" class="st"/><path d="M15 5l2-2" class="st"/></svg>
     </button>
@@ -168,7 +174,7 @@
     <section class="tool-opts" data-for="free">
       <h3>Free polygon</h3>
       <p class="note">Click each corner. Click the first corner again, double-click or press Enter to close it.</p>
-      <label class="chk"><input type="checkbox" id="opt-newfill2"> Fill new shapes with the fill color</label>
+      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
     </section>
 
     <section class="tool-opts" data-for="ngon">
@@ -183,7 +189,29 @@
         <label><input type="radio" name="ngmode" value="center"> From center</label>
         <label><input type="radio" name="ngmode" value="edge"> From edge</label>
       </div>
-      <label class="chk"><input type="checkbox" id="opt-newfill"> Fill new shapes with the fill color</label>
+      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
+    </section>
+
+    <section class="tool-opts" data-for="ellipse">
+      <h3>Ellipse</h3>
+      <div class="row seg">
+        <label><input type="radio" name="elmode" value="corner"> From corner</label>
+        <label><input type="radio" name="elmode" value="center"> From center</label>
+      </div>
+      <p class="note">Shift: a circle. Select it to drag its axis ends.</p>
+      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
+    </section>
+
+    <section class="tool-opts" data-for="curve">
+      <h3>Curve</h3>
+      <label>Type <select id="opt-curve-type">
+        <option value="catmull">Smooth, through the points</option>
+        <option value="bspline">Smooth, near the points (B-spline)</option>
+        <option value="bezier3">Bézier, cubic</option>
+        <option value="bezier2">Bézier, quadratic</option>
+      </select></label>
+      <p class="note" id="curve-note"></p>
+      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
     </section>
 
     <section class="tool-opts" data-for="knife">
@@ -341,7 +369,7 @@
       <details>
         <summary>Keyboard &amp; mouse</summary>
         <table class="keys">
-          <tr><td>V L P G T B H</td><td>Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan</td></tr>
+          <tr><td>V L P G O C T B H</td><td>Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan</td></tr>
           <tr class="expert"><td>K</td><td>Knife</td></tr>
           <tr><td>3 – 9</td><td>Polygon sides</td></tr>
           <tr><td>S</td><td>Toggle snapping</td></tr>

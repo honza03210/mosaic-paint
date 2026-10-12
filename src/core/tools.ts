@@ -1,12 +1,13 @@
-/* The drawing tools: line, free polygon, regular polygon, knife, pattern, paint bucket, select,
+/* The drawing tools: line, free polygon, regular polygon, ellipse, curve, knife, pattern, paint bucket, select,
    plus creating shapes (with their symmetric copies) and the tool switcher. */
 import * as Geo from '../lib/geometry.ts';
 import type { Pt, Region, Face } from '../lib/geometry.ts';
 import * as Patterns from '../lib/patterns.ts';
+import * as Curves from '../lib/curves.ts';
 import * as Contour from '../lib/contour.ts';
 import { $, $$, state, rt, stage, shapesG, previewG, snapG, EXPERT_TOOLS, isFill, mk, fmt, px, ptsStr, applyM, toast, fmtLen } from './env.ts';
 import {
-  shapesAt, insideEl, geomOf, allShapes, pagePts, elMatrix, ngonData, setNgonData, setNgon, setVertex, verticesAt,
+  shapesAt, insideEl, geomOf, allShapes, pagePts, elMatrix, ngonData, setNgonData, setNgon, setVertex, verticesAt, setSpline,
 } from './doc.ts';
 import { canDraw, editable, selectable, symCopies, symTransforms, ptKey } from './view.ts';
 import { resolvePoint, constrainAngle, drawMeasure } from './snap.ts';
@@ -81,7 +82,7 @@ export function cancelPending(): void {
 export function updateStageActions(): void {
   $('#stage-actions').hidden = !(state.lineStart || state.freePts);
   $('#sa-back').hidden = !state.freePts;
-  $('#sa-finish').textContent = state.freePts ? t('Close shape') : t('Done');
+  $('#sa-finish').textContent = state.freePts && state.tool !== 'curve' ? t('Close shape') : t('Done');
 }
 
 // ---- line ------------------------------------------------------------------------------------------
@@ -122,11 +123,12 @@ const lineTool: Tool = {
 };
 
 // ---- free polygon: click corner by corner -------------------------------------------------------------
-export function finishFree(): void {
+export function finishFree(close = false): void {
   const pts: Pt[] | null = state.freePts;
   state.freePts = null;
   previewG.innerHTML = '';
   snapG.innerHTML = '';
+  if (state.tool === 'curve') { finishCurve(pts, close); updateStageActions(); return; }
   if (pts && pts.length >= 3) { addPolygons(pts); commitGeometry(); }
   else if (pts && pts.length === 2) { addLines(pts[0], pts[1]); commitGeometry(); }
   updateStageActions();
@@ -140,6 +142,7 @@ export function freeBack(): void {
   updateStageActions();
 }
 function drawFreePreview(p: Pt): void {
+  if (state.tool === 'curve') { drawCurvePreview(p); return; }
   previewG.innerHTML = '';
   const pts: Pt[] | null = state.freePts;
   if (!pts || !pts.length) return;
@@ -153,7 +156,7 @@ const freeTool: Tool = {
     const pts: Pt[] = state.freePts || [];
     const last = pts[pts.length - 1];
     const p = resolvePoint(e, raw, { origin: last, extra: pts });
-    if (pts.length >= 3 && Geo.dist(p, pts[0]) < px(rt.snapPx)) { finishFree(); return; }
+    if (pts.length >= 3 && Geo.dist(p, pts[0]) < px(rt.snapPx)) { finishFree(true); return; }
     if (last && Geo.dist(last, p) < px(2)) return; // second press of a double-click
     pts.push({ x: p.x, y: p.y });
     state.freePts = pts;
@@ -234,6 +237,82 @@ const ngonTool: Tool = {
     commitGeometry();
   },
 };
+
+// ---- ellipse: drag its box (or from its center); Shift: a circle -------------------------------------------
+interface EllipseSpec { cx: number; cy: number; rx: number; ry: number }
+function ellipseSpec(a: any): EllipseSpec {
+  return Curves.ellipseFromDrag(a.a, a.b, state.ellipseMode === 'center', a.shift);
+}
+/** The ellipse and its symmetric copies: each copy is the ellipse through the copied center and axis ends. */
+function ellipseCopies(s: EllipseSpec): { cx: number; cy: number; rx: number; ry: number; rot: number }[] {
+  return symCopies([{ x: s.cx, y: s.cy }, { x: s.cx + s.rx, y: s.cy }, { x: s.cx, y: s.cy + s.ry }]).map(([c, v]) => {
+    let rot = Math.atan2(v.y - c.y, v.x - c.x) * 180 / Math.PI;
+    rot = ((rot % 180) + 180) % 180; // an ellipse turned by 180° is the same ellipse
+    if (Math.abs(rot) < 1e-6 || Math.abs(rot - 180) < 1e-6) rot = 0;
+    return { cx: c.x, cy: c.y, rx: s.rx, ry: s.ry, rot };
+  });
+}
+function ellipseAttrs(e: { cx: number; cy: number; rx: number; ry: number; rot: number }): Record<string, any> {
+  const at: Record<string, any> = { cx: fmt(e.cx), cy: fmt(e.cy), rx: fmt(e.rx), ry: fmt(e.ry) };
+  if (e.rot) at.transform = `rotate(${fmt(e.rot)} ${fmt(e.cx)} ${fmt(e.cy)})`;
+  return at;
+}
+const ellipseTool: Tool = {
+  down(e, raw) {
+    if (!canDraw()) return;
+    const p = resolvePoint(e, raw);
+    state.action = { type: 'ellipse', a: { x: p.x, y: p.y }, b: { x: p.x, y: p.y }, sx: e.clientX, sy: e.clientY, moved: false, shift: false };
+  },
+  move(e, raw) {
+    const a = state.action;
+    if (!a) { resolvePoint(e, raw); return; }
+    if (Math.hypot(e.clientX - a.sx, e.clientY - a.sy) > 3) a.moved = true;
+    // Shift makes a circle here, so the point itself isn't held to 15° steps
+    a.b = resolvePoint({ shiftKey: false, altKey: e.altKey }, raw);
+    a.shift = e.shiftKey;
+    previewG.innerHTML = '';
+    if (!a.moved) return;
+    const s = ellipseSpec(a);
+    ellipseCopies(s).forEach((c, i) => mk('ellipse', { ...ellipseAttrs(c), ...(i ? { class: 'preview-ghost' } : previewStyle()) }, previewG));
+    drawMeasure(a.b, s.rx === s.ry ? `Ø ${fmtLen(2 * s.rx)}` : `${fmtLen(2 * s.rx)} × ${fmtLen(2 * s.ry)}`);
+  },
+  up() {
+    const a = state.action;
+    state.action = null;
+    previewG.innerHTML = '';
+    if (!a || !a.moved) return;
+    const s = ellipseSpec(a);
+    if (s.rx < px(1) || s.ry < px(1)) return;
+    for (const c of ellipseCopies(s)) mk('ellipse', { ...ellipseAttrs(c), fill: newFill(), ...shapeStyle() }, shapesG);
+    commitGeometry();
+  },
+};
+
+// ---- curve: click its points; click the first point to close it, double-click or Enter to end it open -----------
+const curveD = (pts: Pt[], closed: boolean): string => Curves.cubicsToD(Curves.toCubics(state.curveType, pts, closed), closed, fmt);
+function finishCurve(pts: Pt[] | null, closed: boolean): void {
+  if (!pts || pts.length < 2 || (closed && pts.length < 3)) return;
+  for (const q of symCopies(pts)) {
+    const el = mk('path', { fill: closed ? newFill() : 'none', ...shapeStyle() }, shapesG);
+    setSpline(el, { type: state.curveType, closed, pts: q });
+  }
+  commitGeometry();
+}
+function drawCurvePreview(p: Pt): void {
+  previewG.innerHTML = '';
+  const pts: Pt[] | null = state.freePts;
+  if (!pts || !pts.length) return;
+  const all = [...pts, p];
+  symCopies(all).forEach((q, i) => mk('path', { d: curveD(q, false), ...(i ? { class: 'preview-ghost' } : previewStyle()) }, previewG));
+  // the clicked points, joined by a dashed line when the curve doesn't pass through them all
+  if (state.curveType !== 'catmull') mk('polyline', { points: ptsStr(all), class: 'preview-ghost' }, previewG);
+  const r = px(3);
+  all.forEach((q, i) => {
+    if (Curves.onCurve(state.curveType, all.length, false, i)) mk('rect', { x: q.x - r, y: q.y - r, width: 2 * r, height: 2 * r, class: 'handle' }, previewG);
+    else mk('circle', { cx: q.x, cy: q.y, r, class: 'handle' }, previewG);
+  });
+}
+const curveTool: Tool = { ...freeTool };
 
 // ---- knife: cut a tile straight across, from edge to edge -----------------------------------------------
 function knifeCuts(a: any): { a: Pt; b: Pt }[] {
@@ -484,7 +563,7 @@ const selectTool: Tool = {
 
 // ---- the tool switcher ------------------------------------------------------------------------------------------
 export const tools: Record<string, Tool> = {
-  select: selectTool, line: lineTool, free: freeTool, ngon: ngonTool, knife: knifeTool,
+  select: selectTool, line: lineTool, free: freeTool, ngon: ngonTool, ellipse: ellipseTool, curve: curveTool, knife: knifeTool,
   pattern: patternTool, bucket: bucketTool, pan: { down() {}, move() {}, up() {} },
 };
 const HINTS: Record<string, string> = {
@@ -492,6 +571,8 @@ const HINTS: Record<string, string> = {
   line: t('Click–click or drag · ends snap to points and onto other lines · Shift: 15° steps · Alt: no snap · Esc: stop'),
   free: t('Click corner by corner · click the first corner, double-click or press Enter to close · Backspace removes the last corner · Esc cancels'),
   ngon: t('Drag from the center (or along an edge in “From edge” mode) · click = last size · Shift: 15° rotation · Ctrl: flip side · keys 3–9: sides'),
+  ellipse: t('Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap'),
+  curve: t('Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels'),
   knife: t('Drag across a tile to cut it straight through, edge to edge · Shift: 15° steps'),
   pattern: t('Click inside a closed area to fill it with the chosen pattern'),
   bucket: t('Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color'),

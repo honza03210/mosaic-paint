@@ -1,5 +1,7 @@
 /* Wires the side panel and toolbar controls to the editor. */
 import * as Patterns from '../lib/patterns.ts';
+import * as Curves from '../lib/curves.ts';
+import { curveNote } from '../shared/curve-notes.ts';
 import { $, $$, state, isFill, fmt, clamp, emit, toast, unit } from './env.ts';
 import { ngonData, setNgon } from './doc.ts';
 import { applyDoc, applyLayers, fitView, zoomCenter, drawGuides } from './view.ts';
@@ -64,9 +66,22 @@ export function bindPanel(): void {
     r.checked = r.value === state.ngonMode;
     r.onchange = () => { if (r.checked) { state.ngonMode = r.value; savePrefs(); } };
   }
-  bindCheck('#opt-newfill', 'newFill');
-  bindCheck('#opt-newfill2', 'newFill', () => { $('#opt-newfill').checked = state.newFill; });
-  $('#opt-newfill').addEventListener('change', () => { $('#opt-newfill2').checked = state.newFill; });
+  // "Fill new shapes" is in each shape tool's options: one setting
+  const newFills = $$('.opt-newfill');
+  for (const c of newFills) {
+    c.checked = state.newFill;
+    c.onchange = () => { state.newFill = c.checked; for (const o of newFills) o.checked = c.checked; savePrefs(); };
+  }
+  for (const r of $$('input[name=elmode]')) {
+    r.checked = r.value === state.ellipseMode;
+    r.onchange = () => { if (r.checked) { state.ellipseMode = r.value; savePrefs(); } };
+  }
+  const ct = $('#opt-curve-type');
+  if (!Curves.SPLINE_TYPES.includes(state.curveType)) state.curveType = 'catmull';
+  ct.value = state.curveType;
+  const showCurveNote = () => { $('#curve-note').textContent = curveNote(state.curveType); };
+  ct.onchange = () => { state.curveType = ct.value; savePrefs(); showCurveNote(); if (state.freePts) cancelPending(); };
+  showCurveNote();
   const pt = $('#pat-type');
   for (const [v, label] of Patterns.TYPES) { const o = document.createElement('option'); o.value = v; o.textContent = t(label); pt.append(o); }
   pt.value = state.pattern.type;

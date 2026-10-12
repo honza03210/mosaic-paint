@@ -858,8 +858,8 @@ export const DE: Record<string, string> = {
     'Lineale anzeigen',
   'Keyboard & mouse':
     'Tastatur & Maus',
-  'Select, Line, Free polygon, Polygon, Pattern, Bucket, Pan':
-    'Auswahl, Linie, Freies Vieleck, Vieleck, Muster, Farbeimer, Verschieben',
+  'Select, Line, Free polygon, Polygon, Ellipse, Curve, Pattern, Bucket, Pan':
+    'Auswahl, Linie, Freies Vieleck, Vieleck, Ellipse, Kurve, Muster, Farbeimer, Verschieben',
   'Polygon sides':
     'Seitenzahl des Vielecks',
   'Toggle snapping':
@@ -1150,8 +1150,8 @@ export const DE: Record<string, string> = {
     'Leinwandgröße',
   'Pixel grid when zoomed in':
     'Pixelraster beim Vergrößern',
-  'Select, Brush, Pencil, Eraser, Line, Polygon, Bucket, Pick color, Pan':
-    'Auswahl, Pinsel, Stift, Radierer, Linie, Vieleck, Farbeimer, Pipette, Verschieben',
+  'Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Auswahl, Pinsel, Stift, Radierer, Linie, Vieleck, Ellipse, Kurve, Farbeimer, Pipette, Verschieben',
   'Smaller / bigger brush':
     'Kleinerer / größerer Pinsel',
   'Swap paint and outline colors':
@@ -1628,6 +1628,62 @@ export const DE: Record<string, string> = {
     'Die Form von Pinsel und Radierer',
   'The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed':
     'Der Winkel der Kalligrafiefeder – 45° für Rechtshänder, etwa 135° für Linkshänder',
+  'curve through points':
+    'Kurve durch Punkte',
+  'B-spline':
+    'B-Spline',
+  'cubic Bézier':
+    'kubische Bézierkurve',
+  'quadratic Bézier':
+    'quadratische Bézierkurve',
+  'ellipse':
+    'Ellipse',
+  'Drag from corner to corner (or from the center) · Shift: a circle · Alt: no snap':
+    'Von Ecke zu Ecke ziehen (oder vom Mittelpunkt) · Umschalt: ein Kreis · Alt: ohne Einrasten',
+  'Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels':
+    'Die Punkte der Kurve anklicken · Klick auf den ersten Punkt schließt sie · Doppelklick oder Eingabe beendet sie offen · Rücktaste entfernt den letzten Punkt · Esc bricht ab',
+  'Turn on “Fill” or “Outline” for shapes.':
+    'Schalten Sie bei Formen „Füllung“ oder „Kontur“ ein.',
+  'Drag from corner to corner (or from the center) · Shift: a circle':
+    'Von Ecke zu Ecke ziehen (oder vom Mittelpunkt) · Umschalt: ein Kreis',
+  'The curve runs smoothly through every point you click.':
+    'Die Kurve verläuft glatt durch jeden Punkt, den Sie anklicken.',
+  'The curve is pulled towards each point but only touches the first and the last – very smooth, good for flowing lines.':
+    'Jeder Punkt zieht die Kurve an, sie berührt aber nur den ersten und den letzten – sehr glatt, gut für fließende Linien.',
+  'Click a point, two control points, the next point, two control points … The curve passes through every third point; the control points (round) pull it.':
+    'Klicken Sie einen Punkt, zwei Kontrollpunkte, den nächsten Punkt, zwei Kontrollpunkte … Die Kurve geht durch jeden dritten Punkt; die Kontrollpunkte (rund) ziehen sie an.',
+  'Click a point, a control point, the next point, a control point … The curve passes through every other point; the control points (round) pull it.':
+    'Klicken Sie einen Punkt, einen Kontrollpunkt, den nächsten Punkt, einen Kontrollpunkt … Die Kurve geht durch jeden zweiten Punkt; die Kontrollpunkte (rund) ziehen sie an.',
+  'Ellipse':
+    'Ellipse',
+  'From corner':
+    'Von der Ecke',
+  'Shift: a circle. Select it to drag its axis ends.':
+    'Umschalt: ein Kreis. Ausgewählt lassen sich die Enden ihrer Achsen ziehen.',
+  'Curve':
+    'Kurve',
+  'Type':
+    'Art',
+  'Smooth, through the points':
+    'Glatt, durch die Punkte',
+  'Smooth, near the points (B-spline)':
+    'Glatt, nahe den Punkten (B-Spline)',
+  'Bézier, cubic':
+    'Bézier, kubisch',
+  'Bézier, quadratic':
+    'Bézier, quadratisch',
+  'Ellipse – Shift: circle (O)':
+    'Ellipse – Umschalt: Kreis (O)',
+  'Curve – click its points (C)':
+    'Kurve – ihre Punkte anklicken (C)',
+  'Shift: a circle.':
+    'Umschalt: ein Kreis.',
+  'An open curve is a line in the paint color, as thick as the size; a closed one is filled and outlined like the shapes.':
+    'Eine offene Kurve ist eine Linie in der Malfarbe, so dick wie die Größe; eine geschlossene wird wie die Formen gefüllt und umrandet.',
+  'Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.':
+    'Ellipsen und Kurven in beiden Apps: das Werkzeug Ellipse (O, mit Umschalt ein Kreis) und das Werkzeug Kurve (C) – glatt durch die Punkte, glatt nahe den Punkten (B-Spline) oder kubische und quadratische Bézierkurve.',
+  'In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.':
+    'In der Vektor-App bleiben Ellipsen und Kurven exakte Kurven: Ziehen Sie ihre Punkte oder Achsenenden, um sie zu ändern, und malen, schneiden und spiegeln Sie sie wie jede Fliese.',
   'Shift+B':
     'Umschalt+B',
   'Next brush tip':

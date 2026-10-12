@@ -86,6 +86,7 @@ kbd { font: 11px ui-monospace, monospace; padding: 0 4px; border: 1px solid var(
 .sel-outline { fill: none; stroke: #2b8cff; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .handle { fill: #fff; stroke: #2b8cff; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
 .handle.ngon { fill: #ffd166; }
+.sel-ctrl { fill: none; stroke: #2b8cff; stroke-width: 1; stroke-dasharray: 3 3; opacity: .7; vector-effect: non-scaling-stroke; }
 .snap-mark { fill: none; stroke: #ff2d78; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
 .snap-label { fill: #ff2d78; font-family: system-ui, sans-serif; }
 .preview { opacity: .85; }
