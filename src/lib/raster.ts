@@ -490,3 +490,10 @@ export function pressureSize(size: number, e: { pointerType?: string; pressure?:
   if (!on || e.pointerType !== 'pen') return size;
   return size * (0.1 + 0.9 * Math.min(1, Math.max(0, e.pressure ?? 0.5)));
 }
+/** The calligraphy nib at p: a flat pen held at an angle (degrees, counterclockwise from pointing right; 45° =
+    up and to the right), size long and a sixth of that wide. */
+export function nibCorners(p: { x: number; y: number }, size: number, angle = 45): { x: number; y: number }[] {
+  const r = angle * Math.PI / 180, cos = Math.cos(r), sin = Math.sin(r);
+  const h = size / 2, w = Math.max(0.5, size / 12), nx = cos * h, ny = -sin * h, px = sin * w, py = cos * w;
+  return [{ x: p.x - nx - px, y: p.y - ny - py }, { x: p.x + nx - px, y: p.y + ny - py }, { x: p.x + nx + px, y: p.y + ny + py }, { x: p.x - nx + px, y: p.y - ny + py }];
+}

@@ -486,8 +486,8 @@ export const PL: Record<string, string> = {
     'To jest teraz twoja własna kopia – zapisuje się w tej przeglądarce jak każdy obraz.',
   'Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste':
     'Przeciągnij, aby zaznaczyć · przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt: kopię) · Enter je umieszcza · Ctrl+C / X / V kopiuj, wytnij, wklej',
-  'Drag to paint · Shift: straight line · [ ] size · Alt+click: pick a color':
-    'Przeciągnij, aby malować · Shift: prosta linia · [ ] rozmiar · Alt+klik: pobierz kolor',
+  'Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color':
+    'Przeciągnij, aby malować · Shift: prosta linia · [ ] rozmiar · Shift+B: końcówka · Alt+klik: pobierz kolor',
   'Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color':
     'Ostre piksele w dokładnych kolorach · Shift: prosta linia · [ ] rozmiar · Alt+klik: pobierz kolor',
   'Drag to erase to transparent · Shift: straight line · [ ] size':
@@ -1612,6 +1612,32 @@ export const PL: Record<string, string> = {
     'Przycięto do {w} × {h} px.',
   'Pen pressure changes the size':
     'Nacisk pióra zmienia rozmiar',
+  'Tip':
+    'Końcówka',
+  'Round':
+    'Okrągła',
+  'Soft (airbrush)':
+    'Miękka (aerograf)',
+  'Spray':
+    'Spray',
+  'Calligraphy':
+    'Kaligrafia',
+  'Chalk':
+    'Kreda',
+  'The shape of the brush and eraser':
+    'Kształt pędzla i gumki',
+  'The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed':
+    'Kąt stalówki kaligraficznej – 45° dla praworęcznych, około 135° dla leworęcznych',
+  'Shift+B':
+    'Shift+B',
+  'Next brush tip':
+    'Następna końcówka pędzla',
+  'Brush tip: {tip}':
+    'Końcówka pędzla: {tip}',
+  'Brush tips for the brush and the eraser: soft (airbrush), spray, calligraphy and chalk. Shift+B switches between them.':
+    'Końcówki pędzla i gumki: miękka (aerograf), spray, kaligrafia i kreda. Shift+B przełącza między nimi.',
+  'The spray keeps spraying while you hold it still, like an airbrush; the calligraphy nib’s angle can be set (also for left-handed writing).':
+    'Spray pryska dalej, gdy trzymasz go w miejscu, jak aerograf; kąt stalówki kaligraficznej można ustawić (także dla leworęcznych).',
   'Keep proportions':
     'Zachowaj proporcje',
   'Flip ↔':

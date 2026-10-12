@@ -1,6 +1,7 @@
 /* The image (an offscreen canvas) and the view: zoom / pan, and drawing it all on screen –
    checkerboard under transparent pixels, the pixel grid, the selection and the tool previews. */
 import type { Pt } from '../lib/geometry.ts';
+import * as R from '../lib/raster.ts';
 import { $, clamp } from '../shared/ui.ts';
 import { state, emit } from './state.ts';
 
@@ -132,6 +133,9 @@ export function render(): void {
     if (state.tool === 'pencil') {
       const n = Math.max(1, Math.round(state.size)), x0 = Math.floor(c.x) - Math.floor((n - 1) / 2), y0 = Math.floor(c.y) - Math.floor((n - 1) / 2);
       vctx.rect(x0, y0, n, n);
+    } else if (state.tip === 'calligraphy') {
+      R.nibCorners(c, state.size, state.nibAngle).forEach((q, i) => (i ? vctx.lineTo(q.x, q.y) : vctx.moveTo(q.x, q.y)));
+      vctx.closePath();
     } else vctx.arc(c.x, c.y, Math.max(r, 0.5), 0, Math.PI * 2);
     vctx.lineWidth = 1 / k;
     vctx.strokeStyle = 'rgba(0,0,0,.7)';

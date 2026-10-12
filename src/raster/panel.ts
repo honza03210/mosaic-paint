@@ -10,6 +10,7 @@ import { setTool, setMode } from './tools.ts';
 import { newImage, openFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
 import { rotate, flip, cropToSelection, trim } from './transform.ts';
 import { bindMosaic } from './mosaic.ts';
+import { TIPS } from './paint.ts';
 import { t } from '../shared/i18n.ts';
 
 export function setSides(n: number): void {
@@ -24,6 +25,19 @@ export function setBrushSize(n: number): void {
   $('#opt-size-range').value = Math.min(100, state.size);
   savePrefs();
   requestRender();
+}
+export function setTip(tip: string): void {
+  state.tip = TIPS.includes(tip) ? tip : 'round';
+  $('#opt-tip').value = state.tip;
+  $('#nib-angle-row').hidden = state.tip !== 'calligraphy';
+  savePrefs();
+  requestRender();
+}
+/** Shift+B: the next tip, on the brush (or the eraser, when erasing). */
+export function nextTip(): void {
+  if (state.tool !== 'brush' && state.tool !== 'eraser') setTool('brush');
+  setTip(TIPS[(TIPS.indexOf(state.tip) + 1) % TIPS.length]);
+  toast(t('Brush tip: {tip}', { tip: $(`#opt-tip option[value="${state.tip}"]`).textContent }));
 }
 function bindCheck(id: string, key: string, after?: () => void): void {
   const i = $(id);
@@ -70,6 +84,16 @@ export function bindPanel(): void {
   $('#opt-size').onchange = () => setBrushSize(+$('#opt-size').value);
   $('#opt-size-range').oninput = () => setBrushSize(+$('#opt-size-range').value);
   setBrushSize(state.size);
+  $('#opt-tip').onchange = () => setTip($('#opt-tip').value);
+  setTip(state.tip);
+  const angle = $('#opt-nib-angle');
+  angle.value = state.nibAngle;
+  angle.onchange = () => {
+    const a = Math.round(+angle.value);
+    state.nibAngle = Number.isFinite(a) ? ((a % 180) + 180) % 180 : 45;
+    angle.value = state.nibAngle;
+    savePrefs();
+  };
   const op = $('#opt-opacity');
   op.value = Math.round(state.opacity * 100);
   op.oninput = () => { state.opacity = clamp(+op.value, 5, 100) / 100; };

@@ -486,8 +486,8 @@ export const DE: Record<string, string> = {
     'Das ist jetzt Ihre eigene Kopie – sie wird wie jedes Bild in diesem Browser gespeichert.',
   'Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste':
     'Ziehen zum Auswählen · in der Auswahl ziehen zum Verschieben (Alt: eine Kopie) · Enter platziert sie · Strg+C / X / V kopieren, ausschneiden, einfügen',
-  'Drag to paint · Shift: straight line · [ ] size · Alt+click: pick a color':
-    'Ziehen zum Malen · Umschalt: gerade Linie · [ ] Größe · Alt+Klick: Farbe aufnehmen',
+  'Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color':
+    'Ziehen zum Malen · Umschalt: gerade Linie · [ ] Größe · Umschalt+B: Spitze · Alt+Klick: Farbe aufnehmen',
   'Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color':
     'Harte Pixel in exakten Farben · Umschalt: gerade Linie · [ ] Größe · Alt+Klick: Farbe aufnehmen',
   'Drag to erase to transparent · Shift: straight line · [ ] size':
@@ -1612,6 +1612,32 @@ export const DE: Record<string, string> = {
     'Auf {w} × {h} px beschnitten.',
   'Pen pressure changes the size':
     'Stiftdruck ändert die Größe',
+  'Tip':
+    'Spitze',
+  'Round':
+    'Rund',
+  'Soft (airbrush)':
+    'Weich (Airbrush)',
+  'Spray':
+    'Sprühdose',
+  'Calligraphy':
+    'Kalligrafie',
+  'Chalk':
+    'Kreide',
+  'The shape of the brush and eraser':
+    'Die Form von Pinsel und Radierer',
+  'The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed':
+    'Der Winkel der Kalligrafiefeder – 45° für Rechtshänder, etwa 135° für Linkshänder',
+  'Shift+B':
+    'Umschalt+B',
+  'Next brush tip':
+    'Nächste Pinselspitze',
+  'Brush tip: {tip}':
+    'Pinselspitze: {tip}',
+  'Brush tips for the brush and the eraser: soft (airbrush), spray, calligraphy and chalk. Shift+B switches between them.':
+    'Spitzen für Pinsel und Radierer: weich (Airbrush), Sprühdose, Kalligrafie und Kreide. Umschalt+B wechselt zwischen ihnen.',
+  'The spray keeps spraying while you hold it still, like an airbrush; the calligraphy nib’s angle can be set (also for left-handed writing).':
+    'Die Sprühdose sprüht weiter, während Sie sie still halten, wie eine Airbrush; der Winkel der Kalligrafiefeder lässt sich einstellen (auch für Linkshänder).',
   'Keep proportions':
     'Seitenverhältnis beibehalten',
   'Flip ↔':

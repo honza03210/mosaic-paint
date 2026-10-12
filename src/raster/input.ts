@@ -10,7 +10,7 @@ import { place, cancelFloating, deselect, selectAll, copy, clearSelection, paste
 import { pasteColors, renderPalette } from './palette.ts';
 import { tools, setTool } from './tools.ts';
 import { save, openFile, openImageFile, confirmDiscard } from './files.ts';
-import { setSides, setBrushSize } from './panel.ts';
+import { setSides, setBrushSize, nextTip } from './panel.ts';
 import { t } from '../shared/i18n.ts';
 
 // ---- pointer & pinch ------------------------------------------------------------------------------------
@@ -140,7 +140,7 @@ function onKey(e: KeyboardEvent): void {
   }
   switch (k) {
     case 'v': setTool('select'); break;
-    case 'b': setTool('brush'); break;
+    case 'b': if (e.shiftKey) nextTip(); else setTool('brush'); break;
     case 'p': setTool('pencil'); break;
     case 'e': setTool('eraser'); break;
     case 'l': setTool('line'); break;

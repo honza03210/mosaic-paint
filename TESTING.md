@@ -28,6 +28,11 @@ Emulation can't cover everything. Before relying on a new version, check these:
 - [ ] Save: the file is offered for download / sharing.
 - [ ] Moving the finger over a big mosaic (2,000+ tiles) feels smooth. (Playwright's WebKit renders in software and is slow here; real Safari uses the GPU.)
 
+### Graphics tablet or stylus (raster app)
+- [ ] With pen pressure on, a light touch paints thinner with every brush tip; Soft stays soft at its edges at any pressure.
+- [ ] Calligraphy: strokes along the nib are thin, across it thick, and pressing harder widens the nib smoothly, without steps.
+- [ ] Spray: holding the pen still keeps spraying, and lifting it stops; the stroke is one undo step.
+
 ### 3D print
 `npm run check:slicer` (needs PrusaSlicer installed) builds a sample 3MF, slices it with PrusaSlicer's command line and checks that the M600 filament changes land at the plan's layers and that the mesh is closed.
 

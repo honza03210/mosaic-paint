@@ -486,8 +486,8 @@ export const CS: Record<string, string> = {
     'Teď je to vaše vlastní kopie – ukládá se v tomto prohlížeči jako každý obrázek.',
   'Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste':
     'Tažením vyberete · tažením uvnitř výběru ho posunete (Alt: kopii) · Enter ho umístí · Ctrl+C / X / V kopírovat, vyjmout, vložit',
-  'Drag to paint · Shift: straight line · [ ] size · Alt+click: pick a color':
-    'Tažením malujete · Shift: rovná čára · [ ] velikost · Alt+klik: vybrat barvu',
+  'Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color':
+    'Tažením malujete · Shift: rovná čára · [ ] velikost · Shift+B: hrot · Alt+klik: vybrat barvu',
   'Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color':
     'Ostré pixely v přesných barvách · Shift: rovná čára · [ ] velikost · Alt+klik: vybrat barvu',
   'Drag to erase to transparent · Shift: straight line · [ ] size':
@@ -1612,6 +1612,32 @@ export const CS: Record<string, string> = {
     'Oříznuto na {w} × {h} px.',
   'Pen pressure changes the size':
     'Přítlak pera mění velikost',
+  'Tip':
+    'Hrot',
+  'Round':
+    'Kulatý',
+  'Soft (airbrush)':
+    'Měkký (airbrush)',
+  'Spray':
+    'Sprej',
+  'Calligraphy':
+    'Kaligrafie',
+  'Chalk':
+    'Křída',
+  'The shape of the brush and eraser':
+    'Tvar štětce a gumy',
+  'The angle of the calligraphy nib – 45° for right-handed writing, about 135° for left-handed':
+    'Úhel kaligrafického hrotu – 45° pro praváky, asi 135° pro leváky',
+  'Shift+B':
+    'Shift+B',
+  'Next brush tip':
+    'Další hrot štětce',
+  'Brush tip: {tip}':
+    'Hrot štětce: {tip}',
+  'Brush tips for the brush and the eraser: soft (airbrush), spray, calligraphy and chalk. Shift+B switches between them.':
+    'Hroty pro štětec a gumu: měkký (airbrush), sprej, kaligrafie a křída. Shift+B mezi nimi přepíná.',
+  'The spray keeps spraying while you hold it still, like an airbrush; the calligraphy nib’s angle can be set (also for left-handed writing).':
+    'Sprej stříká dál, i když ho držíte na místě, jako airbrush; úhel kaligrafického hrotu lze nastavit (i pro leváky).',
   'Keep proportions':
     'Zachovat poměr stran',
   'Flip ↔':

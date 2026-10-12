@@ -248,3 +248,113 @@ test('pen pressure: a light pen paints thinner, a firm one at full size', async 
   await page.evaluate(() => { RZ.state.pressure = false; });
   expect(await stroke(0.1)).toBeGreaterThan(17);
 });
+
+test('brush tips: soft edges, spray dots, calligraphy thick and thin, chalk grain', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  await expect(page.locator('#opt-tip')).toBeVisible();
+  /** A black stroke from a to b with a tip; returns, across the stroke's middle, how many pixels are
+      fully black, partly painted (gray) and left white, and how many color runs the cross-section has. */
+  const stroke = (tip, a, b, across) => page.evaluate(([tip, a, b, across]) => {
+    RZ.blank(120, 120);
+    RZ.setTool('brush');
+    Object.assign(RZ.state, { size: 30, opacity: 1, fill: '#000000', pressure: false, tip });
+    const v = document.querySelector('#view'), sa = RZ.screen(a[0], a[1]), sb = RZ.screen(b[0], b[1]);
+    const ev = (kind, p) => v.dispatchEvent(new PointerEvent(kind, { bubbles: true, pointerId: 1, pointerType: 'mouse', clientX: p.x, clientY: p.y, button: 0, buttons: 1, isPrimary: true }));
+    ev('pointerdown', sa);
+    for (let i = 1; i <= 20; i++) ev('pointermove', { x: sa.x + (sb.x - sa.x) * i / 20, y: sa.y + (sb.y - sa.y) * i / 20 });
+    ev('pointerup', sb);
+    let black = 0, gray = 0, white = 0;
+    for (const [x, y] of across) {
+      const c = RZ.colorAt(x, y);
+      if (c === '#000000') black++; else if (c === '#ffffff') white++; else gray++;
+    }
+    return { black, gray, white };
+  }, [tip, a, b, across]);
+  // a vertical cut through a horizontal stroke at y 60
+  const cut = Array.from({ length: 40 }, (_, i) => [60, 40 + i]);
+  const round = await stroke('round', [10, 60], [110, 60], cut);
+  expect(round.black).toBeGreaterThan(26);
+  const soft = await stroke('soft', [10, 60], [110, 60], cut);
+  expect(soft.gray).toBeGreaterThan(10); // fades out towards the edges
+  expect(soft.black).toBeLessThan(round.black);
+  const spray = await stroke('spray', [10, 60], [110, 60], cut);
+  expect(spray.black).toBeGreaterThan(0);
+  expect(spray.white).toBeGreaterThan(15); // dots, with paper between them
+  const chalk = await stroke('chalk', [10, 60], [110, 60], cut);
+  expect(chalk.black).toBeGreaterThan(10);
+  expect(chalk.white).toBeGreaterThan(round.white + 2); // grain shows through
+  // calligraphy: the nib is held at 45° up and to the right – thin along it, thick across it
+  const diag = (sx, sy) => Array.from({ length: 60 }, (_, i) => [60 + (i - 30) * sx / Math.SQRT2, 60 + (i - 30) * sy / Math.SQRT2]);
+  const along = await stroke('calligraphy', [20, 100], [100, 20], diag(1, 1));
+  const across = await stroke('calligraphy', [20, 20], [100, 100], diag(1, -1));
+  expect(across.black).toBeGreaterThan(along.black * 3);
+  // the eraser takes the tip too, and the choice is remembered
+  await page.selectOption('#opt-tip', 'soft');
+  await page.evaluate(() => RZ.setTool('eraser'));
+  await expect(page.locator('#opt-tip')).toBeVisible();
+  await page.evaluate(() => RZ.setTool('pencil'));
+  await expect(page.locator('#opt-tip')).toBeHidden();
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('mz-raster-prefs')).tip)).toBe('soft');
+});
+
+test('brush tips: the spray builds up while held still; the nib angle; Shift+B switches tips', async ({ page }) => {
+  await page.goto('raster.html');
+  await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  const ev = (kind, x, y) => page.evaluate(([kind, x, y]) => {
+    const p = RZ.screen(x, y);
+    document.querySelector('#view').dispatchEvent(new PointerEvent(kind, { bubbles: true, pointerId: 1, pointerType: 'mouse', clientX: p.x, clientY: p.y, button: 0, buttons: 1, isPrimary: true }));
+  }, [kind, x, y]);
+  const painted = () => page.evaluate(() => {
+    let n = 0;
+    for (let y = 30; y < 70; y++) for (let x = 30; x < 70; x++) if (RZ.colorAt(x, y) !== '#ffffff') n++;
+    return n;
+  });
+  // spray: pressing and holding still keeps adding dots until the pointer is lifted; one undo step
+  await page.evaluate(() => { RZ.blank(100, 100); RZ.setTool('brush'); Object.assign(RZ.state, { size: 30, opacity: 1, fill: '#000000', pressure: false }); });
+  await page.selectOption('#opt-tip', 'spray');
+  await ev('pointerdown', 50, 50);
+  const first = await painted();
+  await page.waitForTimeout(400);
+  const held = await painted();
+  expect(held).toBeGreaterThan(first * 2);
+  await ev('pointerup', 50, 50);
+  const lifted = await painted();
+  await page.waitForTimeout(200);
+  expect(await painted()).toBe(lifted);
+  await page.keyboard.press('Control+z');
+  expect(await painted()).toBe(0);
+
+  // the nib angle: at 135° a stroke up and to the right is thick instead of thin
+  await page.selectOption('#opt-tip', 'calligraphy');
+  await expect(page.locator('#opt-nib-angle')).toBeVisible();
+  const diagonal = () => page.evaluate(async () => {
+    RZ.blank(100, 100);
+    const view = document.querySelector('#view'), a = RZ.screen(20, 80), b = RZ.screen(80, 20);
+    const e = (kind, p) => view.dispatchEvent(new PointerEvent(kind, { bubbles: true, pointerId: 1, pointerType: 'mouse', clientX: p.x, clientY: p.y, button: 0, buttons: 1, isPrimary: true }));
+    e('pointerdown', a);
+    for (let i = 1; i <= 10; i++) e('pointermove', { x: a.x + (b.x - a.x) * i / 10, y: a.y + (b.y - a.y) * i / 10 });
+    e('pointerup', b);
+    let n = 0;
+    for (let i = -30; i <= 30; i++) if (RZ.colorAt(50 + i / Math.SQRT2, 50 + i / Math.SQRT2) === '#000000') n++;
+    return n;
+  });
+  const at45 = await diagonal();
+  await page.fill('#opt-nib-angle', '135');
+  await page.dispatchEvent('#opt-nib-angle', 'change');
+  expect(await diagonal()).toBeGreaterThan(at45 * 3);
+  await page.fill('#opt-nib-angle', '200');
+  await page.dispatchEvent('#opt-nib-angle', 'change');
+  await expect(page.locator('#opt-nib-angle')).toHaveValue('20');
+
+  // Shift+B: the next tip (from another tool it picks the brush); the angle shows only for calligraphy
+  await page.locator('#opt-nib-angle').blur();
+  await page.evaluate(() => RZ.setTool('bucket'));
+  await page.keyboard.press('Shift+B');
+  expect(await page.evaluate(() => [RZ.state.tool, RZ.state.tip])).toEqual(['brush', 'chalk']);
+  await expect(page.locator('#opt-nib-angle')).toBeHidden();
+  await page.keyboard.press('Shift+B');
+  expect(await page.evaluate(() => RZ.state.tip)).toBe('round');
+  await page.keyboard.press('b');
+  expect(await page.evaluate(() => RZ.state.tip)).toBe('round');
+});

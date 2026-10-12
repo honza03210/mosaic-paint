@@ -11,7 +11,7 @@ export const tools: Record<string, Tool> = {
 };
 const HINTS: Record<string, string> = {
   select: t('Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste'),
-  brush: t('Drag to paint · Shift: straight line · [ ] size · Alt+click: pick a color'),
+  brush: t('Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color'),
   pencil: t('Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color'),
   eraser: t('Drag to erase to transparent · Shift: straight line · [ ] size'),
   line: t('Drag a line · Shift: 15° steps'),
