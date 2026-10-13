@@ -4,16 +4,21 @@ import { state, savePrefs, emit } from './state.ts';
 import { stage, requestRender } from './canvas.ts';
 import { paintTools, cancelCurve, type Tool } from './paint.ts';
 import { selectTool, place } from './select.ts';
+import { textTool } from './text.ts';
 import { t } from '../shared/i18n.ts';
 
 export const tools: Record<string, Tool> = {
-  ...paintTools, select: selectTool, pan: { down() {}, move() {}, up() {} },
+  ...paintTools, select: selectTool, text: textTool, pan: { down() {}, move() {}, up() {} },
 };
 const HINTS: Record<string, string> = {
   select: t('Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste'),
   brush: t('Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color'),
   pencil: t('Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color'),
   eraser: t('Drag to erase to transparent · Shift: straight line · [ ] size'),
+  clone: t('Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it'),
+  heal: t('Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift'),
+  remove: t('Paint over what should disappear – it is filled from the surroundings when you lift'),
+  text: t('Tap to add text · drag it into place · tap it to edit · Enter places it'),
   line: t('Drag a line · Shift: 15° steps'),
   ngon: t('Drag from the center · Shift: 15° rotation · keys 3–9: sides'),
   ellipse: t('Drag from corner to corner (or from the center) · Shift: a circle'),
@@ -25,7 +30,7 @@ const HINTS: Record<string, string> = {
 export function setTool(tool: string): void {
   if (!tools[tool]) tool = 'brush';
   // moving on from the selection tool places what was being moved or pasted
-  if (tool !== 'select' && state.floating) place();
+  if (tool !== 'select' && tool !== 'text' && state.floating) place();
   state.action = null;
   cancelCurve();
   state.tool = tool;

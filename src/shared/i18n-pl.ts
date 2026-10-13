@@ -1898,4 +1898,52 @@ export const PL: Record<string, string> = {
     'Zaznaczenia dowolnego kształtu: Lasso, Magnetyczne (przyciąga się do krawędzi) i Różdżka (według koloru), z Nowe / Dodaj / Odejmij (lub Shift / Alt) – kopiowanie, czyszczenie, przesuwanie i Dopasuj kolory trzymają się kształtu.',
   'Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.':
     'Usuwanie: pędzel Usuń (R) i Wypełnij z otoczenia dla zaznaczenia wypełniają miejsce obrazem z otoczenia – z uwzględnieniem treści, na urządzeniu.',
+  'Text':
+    'Tekst',
+  'Type here':
+    'Pisz tutaj',
+  'Font':
+    'Czcionka',
+  'List the fonts installed on this computer (the browser asks first)':
+    'Pokaż czcionki zainstalowane na tym komputerze (przeglądarka najpierw zapyta)',
+  'More fonts…':
+    'Więcej czcionek…',
+  'Style':
+    'Styl',
+  'Bold':
+    'Pogrubienie',
+  'Italic':
+    'Kursywa',
+  'Alignment':
+    'Wyrównanie',
+  'Left':
+    'Do lewej',
+  'Center':
+    'Do środka',
+  'Right':
+    'Do prawej',
+  'Shadow':
+    'Cień',
+  'The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.':
+    'Tekst ma kolor malowania, obrys – kolor obrysu. Przeciągnij go na miejsce, potem naciśnij Enter lub stuknij obok.',
+  '{n} fonts listed.':
+    'Wyświetlono czcionek: {n}.',
+  'The browser did not list the fonts.':
+    'Przeglądarka nie podała listy czcionek.',
+  'Drag the text into place, then press Enter or tap outside it.':
+    'Przeciągnij tekst na miejsce, potem naciśnij Enter lub stuknij obok.',
+  'Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it':
+    'Stuknij, skąd kopiować (lub Alt+klik), potem maluj kopię · krążek źródła można przeciągnąć',
+  'Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift':
+    'Stuknij, skąd kopiować (lub Alt+klik), potem zamaluj miejsce – po uniesieniu się wtopi',
+  'Paint over what should disappear – it is filled from the surroundings when you lift':
+    'Zamaluj to, co ma zniknąć – po uniesieniu wypełni się z otoczenia',
+  'Tap to add text · drag it into place · tap it to edit · Enter places it':
+    'Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń',
+  'Text – tap to type; fonts, outline, shadow and curved text (T)':
+    'Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)',
+  'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
+    'Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować.',
 };

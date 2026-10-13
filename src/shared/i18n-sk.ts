@@ -1898,4 +1898,52 @@ export const SK: Record<string, string> = {
     'Výbery ľubovoľného tvaru: Laso, Magnetické (prichytí sa k hranám) a Palička (podľa farby), s Nový / Pridať / Ubrať (alebo Shift / Alt) – kopírovanie, mazanie, presun aj Upraviť farby rešpektujú tvar.',
   'Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.':
     'Odstraňovanie: štetec Odstrániť (R) a Vyplniť z okolia pre výber vyplnia miesto okolitým obrázkom – s ohľadom na obsah, priamo v zariadení.',
+  'Text':
+    'Text',
+  'Type here':
+    'Píšte sem',
+  'Font':
+    'Písmo',
+  'List the fonts installed on this computer (the browser asks first)':
+    'Zobraziť písma nainštalované v tomto počítači (prehliadač sa najprv opýta)',
+  'More fonts…':
+    'Ďalšie písma…',
+  'Style':
+    'Rez',
+  'Bold':
+    'Tučné',
+  'Italic':
+    'Kurzíva',
+  'Alignment':
+    'Zarovnanie',
+  'Left':
+    'Vľavo',
+  'Center':
+    'Na stred',
+  'Right':
+    'Vpravo',
+  'Shadow':
+    'Tieň',
+  'The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.':
+    'Text má farbu maľby, obrys farbu obrysu. Presuňte ho na miesto a potom stlačte Enter alebo ťuknite mimo neho.',
+  '{n} fonts listed.':
+    'Zobrazené písma: {n}.',
+  'The browser did not list the fonts.':
+    'Prehliadač písma nezobrazil.',
+  'Drag the text into place, then press Enter or tap outside it.':
+    'Presuňte text na miesto a potom stlačte Enter alebo ťuknite mimo neho.',
+  'Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it':
+    'Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom maľujte kópiu · kotúčik zdroja posuniete ťahaním',
+  'Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift':
+    'Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom premaľujte miesto – po zdvihnutí splynie',
+  'Paint over what should disappear – it is filled from the surroundings when you lift':
+    'Premaľujte, čo má zmiznúť – po zdvihnutí sa vyplní z okolia',
+  'Tap to add text · drag it into place · tap it to edit · Enter places it':
+    'Ťuknutím pridáte text · presuňte ho na miesto · ťuknutím ho upravíte · Enter ho umiestni',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun',
+  'Text – tap to type; fonts, outline, shadow and curved text (T)':
+    'Text – ťuknite a píšte; písma, obrys, tieň a zakrivený text (T)',
+  'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
+    'Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte.',
 };

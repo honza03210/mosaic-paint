@@ -955,7 +955,31 @@
     "Take away from the selection (or hold Alt)": "Ubrat z výběru (nebo držte Alt)",
     "The selected part disappears: filled from the picture around it": "Vybraná část zmizí: vyplní se z okolního obrázku",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Výběry libovolného tvaru: Laso, Magnetické (přichytí se k hranám) a Hůlka (podle barvy), s Nový / Přidat / Ubrat (nebo Shift / Alt) – kopírování, mazání, přesun i Upravit barvy respektují tvar.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňování: štětec Odstranit (R) a Vyplnit z okolí pro výběr vyplní místo okolním obrázkem – s ohledem na obsah, přímo v zařízení."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňování: štětec Odstranit (R) a Vyplnit z okolí pro výběr vyplní místo okolním obrázkem – s ohledem na obsah, přímo v zařízení.",
+    "Text": "Text",
+    "Type here": "Pište sem",
+    "Font": "Písmo",
+    "List the fonts installed on this computer (the browser asks first)": "Zobrazit písma nainstalovaná v tomto počítači (prohlížeč se nejdřív zeptá)",
+    "More fonts…": "Další písma…",
+    "Style": "Řez",
+    "Bold": "Tučně",
+    "Italic": "Kurzíva",
+    "Alignment": "Zarovnání",
+    "Left": "Vlevo",
+    "Center": "Na střed",
+    "Right": "Vpravo",
+    "Shadow": "Stín",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Text má barvu malby, obrys barvu obrysu. Přetáhněte ho na místo a pak stiskněte Enter nebo klepněte mimo něj.",
+    "{n} fonts listed.": "Zobrazeno písem: {n}.",
+    "The browser did not list the fonts.": "Prohlížeč písma nezobrazil.",
+    "Drag the text into place, then press Enter or tap outside it.": "Přetáhněte text na místo a pak stiskněte Enter nebo klepněte mimo něj.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Klepněte, odkud kopírovat (nebo Alt+klik), pak malujte kopii · kotouček zdroje posunete tažením",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Klepněte, odkud kopírovat (nebo Alt+klik), pak přemalujte místo – po zvednutí splyne",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Přemalujte, co má zmizet – po zvednutí se vyplní z okolí",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Klepnutím přidáte text · přetáhněte ho na místo · klepnutím ho upravíte · Enter ho umístí",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – klepněte a pište; písma, obrys, stín a zakřivený text (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrové aplikaci (T): libovolné písmo (i nainstalovaná, kde je prohlížeč umí zobrazit), velikost, tučné, kurzíva, zarovnání, obrys, stín a zakřivený text. Do umístění plave nad obrázkem – přetáhněte ho, klepnutím upravíte."
   };
 
   // src/shared/i18n-de.ts
@@ -1908,7 +1932,31 @@
     "Take away from the selection (or hold Alt)": "Von der Auswahl abziehen (oder Alt halten)",
     "The selected part disappears: filled from the picture around it": "Der ausgewählte Teil verschwindet: aus dem umgebenden Bild gefüllt",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Auswahlen jeder Form: Lasso, Magnetisch (rastet an Kanten ein) und Zauberstab (nach Farbe), mit Neu / Hinzufügen / Abziehen (oder Umschalt / Alt) – Kopieren, Löschen, Verschieben und Farben anpassen folgen der Form.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Dinge entfernen: der Entfernen-Pinsel (R) und Aus der Umgebung füllen für eine Auswahl füllen die Stelle mit dem umgebenden Bild – inhaltsbasiert, auf dem Gerät."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Dinge entfernen: der Entfernen-Pinsel (R) und Aus der Umgebung füllen für eine Auswahl füllen die Stelle mit dem umgebenden Bild – inhaltsbasiert, auf dem Gerät.",
+    "Text": "Text",
+    "Type here": "Hier tippen",
+    "Font": "Schrift",
+    "List the fonts installed on this computer (the browser asks first)": "Die auf diesem Computer installierten Schriften auflisten (der Browser fragt zuerst)",
+    "More fonts…": "Weitere Schriften…",
+    "Style": "Stil",
+    "Bold": "Fett",
+    "Italic": "Kursiv",
+    "Alignment": "Ausrichtung",
+    "Left": "Links",
+    "Center": "Mittig",
+    "Right": "Rechts",
+    "Shadow": "Schatten",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Der Text hat die Malfarbe, sein Umriss die Umrissfarbe. Ziehe ihn an seinen Platz und drücke dann Enter oder tippe daneben.",
+    "{n} fonts listed.": "{n} Schriften aufgelistet.",
+    "The browser did not list the fonts.": "Der Browser hat die Schriften nicht aufgelistet.",
+    "Drag the text into place, then press Enter or tap outside it.": "Ziehe den Text an seinen Platz und drücke dann Enter oder tippe daneben.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Tippe, wovon kopiert wird (oder Alt+Klick), dann male die Kopie · die Quellscheibe lässt sich ziehen",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Tippe, wovon kopiert wird (oder Alt+Klick), dann übermale die Stelle – beim Loslassen fügt sie sich ein",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Übermale, was verschwinden soll – beim Loslassen wird es aus der Umgebung gefüllt",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Text-Werkzeug in der Raster-App (T): jede Schrift (auch die installierten, wo der Browser sie auflistet), Größe, fett, kursiv, Ausrichtung, Umriss, Schatten und gebogener Text. Er schwebt, bis er gesetzt wird – ziehen, antippen zum Bearbeiten."
   };
 
   // src/shared/i18n-sk.ts
@@ -2861,7 +2909,31 @@
     "Take away from the selection (or hold Alt)": "Ubrať z výberu (alebo držte Alt)",
     "The selected part disappears: filled from the picture around it": "Vybraná časť zmizne: vyplní sa z okolitého obrázka",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Výbery ľubovoľného tvaru: Laso, Magnetické (prichytí sa k hranám) a Palička (podľa farby), s Nový / Pridať / Ubrať (alebo Shift / Alt) – kopírovanie, mazanie, presun aj Upraviť farby rešpektujú tvar.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňovanie: štetec Odstrániť (R) a Vyplniť z okolia pre výber vyplnia miesto okolitým obrázkom – s ohľadom na obsah, priamo v zariadení."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňovanie: štetec Odstrániť (R) a Vyplniť z okolia pre výber vyplnia miesto okolitým obrázkom – s ohľadom na obsah, priamo v zariadení.",
+    "Text": "Text",
+    "Type here": "Píšte sem",
+    "Font": "Písmo",
+    "List the fonts installed on this computer (the browser asks first)": "Zobraziť písma nainštalované v tomto počítači (prehliadač sa najprv opýta)",
+    "More fonts…": "Ďalšie písma…",
+    "Style": "Rez",
+    "Bold": "Tučné",
+    "Italic": "Kurzíva",
+    "Alignment": "Zarovnanie",
+    "Left": "Vľavo",
+    "Center": "Na stred",
+    "Right": "Vpravo",
+    "Shadow": "Tieň",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Text má farbu maľby, obrys farbu obrysu. Presuňte ho na miesto a potom stlačte Enter alebo ťuknite mimo neho.",
+    "{n} fonts listed.": "Zobrazené písma: {n}.",
+    "The browser did not list the fonts.": "Prehliadač písma nezobrazil.",
+    "Drag the text into place, then press Enter or tap outside it.": "Presuňte text na miesto a potom stlačte Enter alebo ťuknite mimo neho.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom maľujte kópiu · kotúčik zdroja posuniete ťahaním",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom premaľujte miesto – po zdvihnutí splynie",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Premaľujte, čo má zmiznúť – po zdvihnutí sa vyplní z okolia",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Ťuknutím pridáte text · presuňte ho na miesto · ťuknutím ho upravíte · Enter ho umiestni",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – ťuknite a píšte; písma, obrys, tieň a zakrivený text (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte."
   };
 
   // src/shared/i18n-pl.ts
@@ -3814,7 +3886,31 @@
     "Take away from the selection (or hold Alt)": "Odejmij od zaznaczenia (lub przytrzymaj Alt)",
     "The selected part disappears: filled from the picture around it": "Zaznaczona część znika: wypełniona obrazem z otoczenia",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Zaznaczenia dowolnego kształtu: Lasso, Magnetyczne (przyciąga się do krawędzi) i Różdżka (według koloru), z Nowe / Dodaj / Odejmij (lub Shift / Alt) – kopiowanie, czyszczenie, przesuwanie i Dopasuj kolory trzymają się kształtu.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Usuwanie: pędzel Usuń (R) i Wypełnij z otoczenia dla zaznaczenia wypełniają miejsce obrazem z otoczenia – z uwzględnieniem treści, na urządzeniu."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Usuwanie: pędzel Usuń (R) i Wypełnij z otoczenia dla zaznaczenia wypełniają miejsce obrazem z otoczenia – z uwzględnieniem treści, na urządzeniu.",
+    "Text": "Tekst",
+    "Type here": "Pisz tutaj",
+    "Font": "Czcionka",
+    "List the fonts installed on this computer (the browser asks first)": "Pokaż czcionki zainstalowane na tym komputerze (przeglądarka najpierw zapyta)",
+    "More fonts…": "Więcej czcionek…",
+    "Style": "Styl",
+    "Bold": "Pogrubienie",
+    "Italic": "Kursywa",
+    "Alignment": "Wyrównanie",
+    "Left": "Do lewej",
+    "Center": "Do środka",
+    "Right": "Do prawej",
+    "Shadow": "Cień",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Tekst ma kolor malowania, obrys – kolor obrysu. Przeciągnij go na miejsce, potem naciśnij Enter lub stuknij obok.",
+    "{n} fonts listed.": "Wyświetlono czcionek: {n}.",
+    "The browser did not list the fonts.": "Przeglądarka nie podała listy czcionek.",
+    "Drag the text into place, then press Enter or tap outside it.": "Przeciągnij tekst na miejsce, potem naciśnij Enter lub stuknij obok.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Stuknij, skąd kopiować (lub Alt+klik), potem maluj kopię · krążek źródła można przeciągnąć",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Stuknij, skąd kopiować (lub Alt+klik), potem zamaluj miejsce – po uniesieniu się wtopi",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Zamaluj to, co ma zniknąć – po uniesieniu wypełni się z otoczenia",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować."
   };
 
   // src/shared/i18n.ts
@@ -13093,8 +13189,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.8.0" : "dev";
+  var VERSION = true ? "1.9.0" : "dev";
   var RELEASES = [
+    {
+      version: "1.9.0",
+      date: "2026-10-13",
+      items: [
+        "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit."
+      ]
+    },
     {
       version: "1.8.0",
       date: "2026-10-13",

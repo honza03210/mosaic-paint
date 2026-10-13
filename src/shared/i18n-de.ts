@@ -1898,4 +1898,52 @@ export const DE: Record<string, string> = {
     'Auswahlen jeder Form: Lasso, Magnetisch (rastet an Kanten ein) und Zauberstab (nach Farbe), mit Neu / Hinzufügen / Abziehen (oder Umschalt / Alt) – Kopieren, Löschen, Verschieben und Farben anpassen folgen der Form.',
   'Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.':
     'Dinge entfernen: der Entfernen-Pinsel (R) und Aus der Umgebung füllen für eine Auswahl füllen die Stelle mit dem umgebenden Bild – inhaltsbasiert, auf dem Gerät.',
+  'Text':
+    'Text',
+  'Type here':
+    'Hier tippen',
+  'Font':
+    'Schrift',
+  'List the fonts installed on this computer (the browser asks first)':
+    'Die auf diesem Computer installierten Schriften auflisten (der Browser fragt zuerst)',
+  'More fonts…':
+    'Weitere Schriften…',
+  'Style':
+    'Stil',
+  'Bold':
+    'Fett',
+  'Italic':
+    'Kursiv',
+  'Alignment':
+    'Ausrichtung',
+  'Left':
+    'Links',
+  'Center':
+    'Mittig',
+  'Right':
+    'Rechts',
+  'Shadow':
+    'Schatten',
+  'The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.':
+    'Der Text hat die Malfarbe, sein Umriss die Umrissfarbe. Ziehe ihn an seinen Platz und drücke dann Enter oder tippe daneben.',
+  '{n} fonts listed.':
+    '{n} Schriften aufgelistet.',
+  'The browser did not list the fonts.':
+    'Der Browser hat die Schriften nicht aufgelistet.',
+  'Drag the text into place, then press Enter or tap outside it.':
+    'Ziehe den Text an seinen Platz und drücke dann Enter oder tippe daneben.',
+  'Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it':
+    'Tippe, wovon kopiert wird (oder Alt+Klick), dann male die Kopie · die Quellscheibe lässt sich ziehen',
+  'Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift':
+    'Tippe, wovon kopiert wird (oder Alt+Klick), dann übermale die Stelle – beim Loslassen fügt sie sich ein',
+  'Paint over what should disappear – it is filled from the surroundings when you lift':
+    'Übermale, was verschwinden soll – beim Loslassen wird es aus der Umgebung gefüllt',
+  'Tap to add text · drag it into place · tap it to edit · Enter places it':
+    'Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben',
+  'Text – tap to type; fonts, outline, shadow and curved text (T)':
+    'Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)',
+  'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
+    'Text-Werkzeug in der Raster-App (T): jede Schrift (auch die installierten, wo der Browser sie auflistet), Größe, fett, kursiv, Ausrichtung, Umriss, Schatten und gebogener Text. Er schwebt, bis er gesetzt wird – ziehen, antippen zum Bearbeiten.',
 };

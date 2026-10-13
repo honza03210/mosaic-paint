@@ -70,7 +70,7 @@ function bindPointer(): void {
     if (e.button !== 0) return;
     if (e.altKey && PAINT.has(state.tool)) { pickAt(p); return; }
     // painting places pasted / moved pixels first
-    if (state.tool !== 'select' && state.floating) place();
+    if (state.tool !== 'select' && state.tool !== 'text' && state.floating) place();
     capturePointer(e);
     tools[state.tool].down(e, p);
   });
@@ -153,6 +153,7 @@ function onKey(e: KeyboardEvent): void {
     case 's': setTool('clone'); break;
     case 'j': setTool('heal'); break;
     case 'r': setTool('remove'); break;
+    case 't': setTool('text'); break;
     case 'l': setTool('line'); break;
     case 'g': setTool('ngon'); break;
     case 'o': setTool('ellipse'); break;

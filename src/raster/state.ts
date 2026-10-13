@@ -8,7 +8,7 @@ import { t } from '../shared/i18n.ts';
 
 /** Pixels lifted off the image (moved selection) or pasted, not yet placed. */
 /** Pixels being moved or pasted; mask: the shape they were lifted with (kept as the selection when placed). */
-export interface Floating { canvas: HTMLCanvasElement; x: number; y: number; mask?: Uint8Array }
+export interface Floating { canvas: HTMLCanvasElement; x: number; y: number; mask?: Uint8Array; /** text that can still be edited (text.ts) */ text?: unknown }
 /** The selection: its box, and for shapes other than a rectangle how much of each of its pixels is selected
     (0…255, w × h) – with its outline, worked out once for drawing. */
 export type Selection = Box & { mask?: Uint8Array; edges?: number[] };

@@ -949,7 +949,31 @@
     "Take away from the selection (or hold Alt)": "Ubrat z výběru (nebo držte Alt)",
     "The selected part disappears: filled from the picture around it": "Vybraná část zmizí: vyplní se z okolního obrázku",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Výběry libovolného tvaru: Laso, Magnetické (přichytí se k hranám) a Hůlka (podle barvy), s Nový / Přidat / Ubrat (nebo Shift / Alt) – kopírování, mazání, přesun i Upravit barvy respektují tvar.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňování: štětec Odstranit (R) a Vyplnit z okolí pro výběr vyplní místo okolním obrázkem – s ohledem na obsah, přímo v zařízení."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňování: štětec Odstranit (R) a Vyplnit z okolí pro výběr vyplní místo okolním obrázkem – s ohledem na obsah, přímo v zařízení.",
+    "Text": "Text",
+    "Type here": "Pište sem",
+    "Font": "Písmo",
+    "List the fonts installed on this computer (the browser asks first)": "Zobrazit písma nainstalovaná v tomto počítači (prohlížeč se nejdřív zeptá)",
+    "More fonts…": "Další písma…",
+    "Style": "Řez",
+    "Bold": "Tučně",
+    "Italic": "Kurzíva",
+    "Alignment": "Zarovnání",
+    "Left": "Vlevo",
+    "Center": "Na střed",
+    "Right": "Vpravo",
+    "Shadow": "Stín",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Text má barvu malby, obrys barvu obrysu. Přetáhněte ho na místo a pak stiskněte Enter nebo klepněte mimo něj.",
+    "{n} fonts listed.": "Zobrazeno písem: {n}.",
+    "The browser did not list the fonts.": "Prohlížeč písma nezobrazil.",
+    "Drag the text into place, then press Enter or tap outside it.": "Přetáhněte text na místo a pak stiskněte Enter nebo klepněte mimo něj.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Klepněte, odkud kopírovat (nebo Alt+klik), pak malujte kopii · kotouček zdroje posunete tažením",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Klepněte, odkud kopírovat (nebo Alt+klik), pak přemalujte místo – po zvednutí splyne",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Přemalujte, co má zmizet – po zvednutí se vyplní z okolí",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Klepnutím přidáte text · přetáhněte ho na místo · klepnutím ho upravíte · Enter ho umístí",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – klepněte a pište; písma, obrys, stín a zakřivený text (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrové aplikaci (T): libovolné písmo (i nainstalovaná, kde je prohlížeč umí zobrazit), velikost, tučné, kurzíva, zarovnání, obrys, stín a zakřivený text. Do umístění plave nad obrázkem – přetáhněte ho, klepnutím upravíte."
   };
 
   // src/shared/i18n-de.ts
@@ -1902,7 +1926,31 @@
     "Take away from the selection (or hold Alt)": "Von der Auswahl abziehen (oder Alt halten)",
     "The selected part disappears: filled from the picture around it": "Der ausgewählte Teil verschwindet: aus dem umgebenden Bild gefüllt",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Auswahlen jeder Form: Lasso, Magnetisch (rastet an Kanten ein) und Zauberstab (nach Farbe), mit Neu / Hinzufügen / Abziehen (oder Umschalt / Alt) – Kopieren, Löschen, Verschieben und Farben anpassen folgen der Form.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Dinge entfernen: der Entfernen-Pinsel (R) und Aus der Umgebung füllen für eine Auswahl füllen die Stelle mit dem umgebenden Bild – inhaltsbasiert, auf dem Gerät."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Dinge entfernen: der Entfernen-Pinsel (R) und Aus der Umgebung füllen für eine Auswahl füllen die Stelle mit dem umgebenden Bild – inhaltsbasiert, auf dem Gerät.",
+    "Text": "Text",
+    "Type here": "Hier tippen",
+    "Font": "Schrift",
+    "List the fonts installed on this computer (the browser asks first)": "Die auf diesem Computer installierten Schriften auflisten (der Browser fragt zuerst)",
+    "More fonts…": "Weitere Schriften…",
+    "Style": "Stil",
+    "Bold": "Fett",
+    "Italic": "Kursiv",
+    "Alignment": "Ausrichtung",
+    "Left": "Links",
+    "Center": "Mittig",
+    "Right": "Rechts",
+    "Shadow": "Schatten",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Der Text hat die Malfarbe, sein Umriss die Umrissfarbe. Ziehe ihn an seinen Platz und drücke dann Enter oder tippe daneben.",
+    "{n} fonts listed.": "{n} Schriften aufgelistet.",
+    "The browser did not list the fonts.": "Der Browser hat die Schriften nicht aufgelistet.",
+    "Drag the text into place, then press Enter or tap outside it.": "Ziehe den Text an seinen Platz und drücke dann Enter oder tippe daneben.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Tippe, wovon kopiert wird (oder Alt+Klick), dann male die Kopie · die Quellscheibe lässt sich ziehen",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Tippe, wovon kopiert wird (oder Alt+Klick), dann übermale die Stelle – beim Loslassen fügt sie sich ein",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Übermale, was verschwinden soll – beim Loslassen wird es aus der Umgebung gefüllt",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Text-Werkzeug in der Raster-App (T): jede Schrift (auch die installierten, wo der Browser sie auflistet), Größe, fett, kursiv, Ausrichtung, Umriss, Schatten und gebogener Text. Er schwebt, bis er gesetzt wird – ziehen, antippen zum Bearbeiten."
   };
 
   // src/shared/i18n-sk.ts
@@ -2855,7 +2903,31 @@
     "Take away from the selection (or hold Alt)": "Ubrať z výberu (alebo držte Alt)",
     "The selected part disappears: filled from the picture around it": "Vybraná časť zmizne: vyplní sa z okolitého obrázka",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Výbery ľubovoľného tvaru: Laso, Magnetické (prichytí sa k hranám) a Palička (podľa farby), s Nový / Pridať / Ubrať (alebo Shift / Alt) – kopírovanie, mazanie, presun aj Upraviť farby rešpektujú tvar.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňovanie: štetec Odstrániť (R) a Vyplniť z okolia pre výber vyplnia miesto okolitým obrázkom – s ohľadom na obsah, priamo v zariadení."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňovanie: štetec Odstrániť (R) a Vyplniť z okolia pre výber vyplnia miesto okolitým obrázkom – s ohľadom na obsah, priamo v zariadení.",
+    "Text": "Text",
+    "Type here": "Píšte sem",
+    "Font": "Písmo",
+    "List the fonts installed on this computer (the browser asks first)": "Zobraziť písma nainštalované v tomto počítači (prehliadač sa najprv opýta)",
+    "More fonts…": "Ďalšie písma…",
+    "Style": "Rez",
+    "Bold": "Tučné",
+    "Italic": "Kurzíva",
+    "Alignment": "Zarovnanie",
+    "Left": "Vľavo",
+    "Center": "Na stred",
+    "Right": "Vpravo",
+    "Shadow": "Tieň",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Text má farbu maľby, obrys farbu obrysu. Presuňte ho na miesto a potom stlačte Enter alebo ťuknite mimo neho.",
+    "{n} fonts listed.": "Zobrazené písma: {n}.",
+    "The browser did not list the fonts.": "Prehliadač písma nezobrazil.",
+    "Drag the text into place, then press Enter or tap outside it.": "Presuňte text na miesto a potom stlačte Enter alebo ťuknite mimo neho.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom maľujte kópiu · kotúčik zdroja posuniete ťahaním",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom premaľujte miesto – po zdvihnutí splynie",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Premaľujte, čo má zmiznúť – po zdvihnutí sa vyplní z okolia",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Ťuknutím pridáte text · presuňte ho na miesto · ťuknutím ho upravíte · Enter ho umiestni",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – ťuknite a píšte; písma, obrys, tieň a zakrivený text (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte."
   };
 
   // src/shared/i18n-pl.ts
@@ -3808,7 +3880,31 @@
     "Take away from the selection (or hold Alt)": "Odejmij od zaznaczenia (lub przytrzymaj Alt)",
     "The selected part disappears: filled from the picture around it": "Zaznaczona część znika: wypełniona obrazem z otoczenia",
     "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Zaznaczenia dowolnego kształtu: Lasso, Magnetyczne (przyciąga się do krawędzi) i Różdżka (według koloru), z Nowe / Dodaj / Odejmij (lub Shift / Alt) – kopiowanie, czyszczenie, przesuwanie i Dopasuj kolory trzymają się kształtu.",
-    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Usuwanie: pędzel Usuń (R) i Wypełnij z otoczenia dla zaznaczenia wypełniają miejsce obrazem z otoczenia – z uwzględnieniem treści, na urządzeniu."
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Usuwanie: pędzel Usuń (R) i Wypełnij z otoczenia dla zaznaczenia wypełniają miejsce obrazem z otoczenia – z uwzględnieniem treści, na urządzeniu.",
+    "Text": "Tekst",
+    "Type here": "Pisz tutaj",
+    "Font": "Czcionka",
+    "List the fonts installed on this computer (the browser asks first)": "Pokaż czcionki zainstalowane na tym komputerze (przeglądarka najpierw zapyta)",
+    "More fonts…": "Więcej czcionek…",
+    "Style": "Styl",
+    "Bold": "Pogrubienie",
+    "Italic": "Kursywa",
+    "Alignment": "Wyrównanie",
+    "Left": "Do lewej",
+    "Center": "Do środka",
+    "Right": "Do prawej",
+    "Shadow": "Cień",
+    "The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.": "Tekst ma kolor malowania, obrys – kolor obrysu. Przeciągnij go na miejsce, potem naciśnij Enter lub stuknij obok.",
+    "{n} fonts listed.": "Wyświetlono czcionek: {n}.",
+    "The browser did not list the fonts.": "Przeglądarka nie podała listy czcionek.",
+    "Drag the text into place, then press Enter or tap outside it.": "Przeciągnij tekst na miejsce, potem naciśnij Enter lub stuknij obok.",
+    "Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it": "Stuknij, skąd kopiować (lub Alt+klik), potem maluj kopię · krążek źródła można przeciągnąć",
+    "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Stuknij, skąd kopiować (lub Alt+klik), potem zamaluj miejsce – po uniesieniu się wtopi",
+    "Paint over what should disappear – it is filled from the surroundings when you lift": "Zamaluj to, co ma zniknąć – po uniesieniu wypełni się z otoczenia",
+    "Tap to add text · drag it into place · tap it to edit · Enter places it": "Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
+    "Text – tap to type; fonts, outline, shadow and curved text (T)": "Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)",
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować."
   };
 
   // src/shared/i18n.ts
@@ -4309,29 +4405,29 @@
     return best;
   }
   function pieceOutlines(p, W, H) {
-    const L = p.labels, at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : L[y * W + x];
+    const L = p.labels, at2 = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : L[y * W + x];
     const out = [];
     for (let y = 0; y <= H; y++) {
       for (let x = 0; x < W; ) {
-        const a = at(x, y - 1), b = at(x, y);
+        const a = at2(x, y - 1), b = at2(x, y);
         if (a === b) {
           x++;
           continue;
         }
         const x0 = x;
-        while (x < W && at(x, y - 1) !== at(x, y)) x++;
+        while (x < W && at2(x, y - 1) !== at2(x, y)) x++;
         out.push(`M${x0} ${y}H${x}`);
       }
     }
     for (let x = 0; x <= W; x++) {
       for (let y = 0; y < H; ) {
-        const a = at(x - 1, y), b = at(x, y);
+        const a = at2(x - 1, y), b = at2(x, y);
         if (a === b) {
           y++;
           continue;
         }
         const y0 = y;
-        while (y < H && at(x - 1, y) !== at(x, y)) y++;
+        while (y < H && at2(x - 1, y) !== at2(x, y)) y++;
         out.push(`M${x} ${y0}V${y}`);
       }
     }
@@ -5205,11 +5301,11 @@
     updateView();
   }
   function zoomAt(cx, cy, factor) {
-    const before = toDoc(cx, cy), v = state.view;
+    const before2 = toDoc(cx, cy), v = state.view;
     v.s = clamp(v.s * factor, 0.02, 64);
     const r = view.getBoundingClientRect();
-    v.x = before.x - (cx - r.left) / v.s;
-    v.y = before.y - (cy - r.top) / v.s;
+    v.x = before2.x - (cx - r.left) / v.s;
+    v.y = before2.y - (cy - r.top) / v.s;
     updateView();
   }
   function zoomCenter(f) {
@@ -5281,11 +5377,11 @@
       vctx.restore();
     }
     const c = state.cursor;
-    const cs = state.clone, at = cs.live || cs.src;
-    if ((state.tool === "clone" || state.tool === "heal") && at) {
+    const cs = state.clone, at2 = cs.live || cs.src;
+    if ((state.tool === "clone" || state.tool === "heal") && at2) {
       const r = Math.max(state.size / 2, 3 / k), g = 14 / k;
       vctx.beginPath();
-      vctx.arc(at.x, at.y, r, 0, Math.PI * 2);
+      vctx.arc(at2.x, at2.y, r, 0, Math.PI * 2);
       vctx.lineWidth = 1 / k;
       vctx.strokeStyle = "rgba(0,0,0,.7)";
       vctx.stroke();
@@ -5294,13 +5390,13 @@
       vctx.stroke();
       vctx.setLineDash([]);
       vctx.beginPath();
-      vctx.arc(at.x, at.y, g, 0, Math.PI * 2);
+      vctx.arc(at2.x, at2.y, g, 0, Math.PI * 2);
       vctx.fillStyle = cs.live ? "rgba(43,140,255,.12)" : "rgba(43,140,255,.28)";
       vctx.fill();
-      vctx.moveTo(at.x - g * 0.55, at.y);
-      vctx.lineTo(at.x + g * 0.55, at.y);
-      vctx.moveTo(at.x, at.y - g * 0.55);
-      vctx.lineTo(at.x, at.y + g * 0.55);
+      vctx.moveTo(at2.x - g * 0.55, at2.y);
+      vctx.lineTo(at2.x + g * 0.55, at2.y);
+      vctx.moveTo(at2.x, at2.y - g * 0.55);
+      vctx.lineTo(at2.x, at2.y + g * 0.55);
       vctx.lineWidth = 2 / k;
       vctx.strokeStyle = "#2b8cff";
       vctx.stroke();
@@ -5578,21 +5674,21 @@
       if (x) ts.push(x.t);
     }
     ts.sort((p, q) => p - q);
-    const at = (t2) => ({ x: a.x + (b.x - a.x) * t2, y: a.y + (b.y - a.y) * t2 });
+    const at2 = (t2) => ({ x: a.x + (b.x - a.x) * t2, y: a.y + (b.y - a.y) * t2 });
     const out = [];
     let start = null, end = 0;
     for (let i = 0; i + 1 < ts.length; i++) {
       const t0 = ts[i], t1 = ts[i + 1];
       if (t1 - t0 < 1e-9) continue;
-      if (keep(at((t0 + t1) / 2))) {
+      if (keep(at2((t0 + t1) / 2))) {
         if (start === null) start = t0;
         end = t1;
       } else if (start !== null) {
-        out.push({ a: at(start), b: at(end) });
+        out.push({ a: at2(start), b: at2(end) });
         start = null;
       }
     }
-    if (start !== null) out.push({ a: at(start), b: at(end) });
+    if (start !== null) out.push({ a: at2(start), b: at2(end) });
     return out;
   }
   function distToRings(p, rings) {
@@ -6231,8 +6327,8 @@
           lassoPreview(box5 ? [{ x: box5.x, y: box5.y }, { x: box5.x + box5.w, y: box5.y }, { x: box5.x + box5.w, y: box5.y + box5.h }, { x: box5.x, y: box5.y + box5.h }, { x: box5.x, y: box5.y }] : []);
         }
       } else if (a.type === "lasso") {
-        const last2 = a.pts[a.pts.length - 1];
-        if (Math.hypot(p.x - last2.x, p.y - last2.y) * state.view.s >= 2) a.pts.push(p);
+        const last3 = a.pts[a.pts.length - 1];
+        if (Math.hypot(p.x - last3.x, p.y - last3.y) * state.view.s >= 2) a.pts.push(p);
         lassoPreview(a.pts);
       } else if (a.type === "magnetic") {
         const anchor = a.anchors[a.anchors.length - 1];
@@ -6356,13 +6452,13 @@
       commit();
       fitView();
     }
-    let at = lastPointer;
-    if (!at) {
+    let at2 = lastPointer;
+    if (!at2) {
       const r = view.getBoundingClientRect();
-      at = toDoc(r.left + r.width / 2, r.top + r.height / 2);
+      at2 = toDoc(r.left + r.width / 2, r.top + r.height / 2);
     }
-    const x = Math.min(Math.max(Math.floor(at.x) - Math.floor(c.width / 2), 0), Math.max(0, doc.width - c.width));
-    const y = Math.min(Math.max(Math.floor(at.y) - Math.floor(c.height / 2), 0), Math.max(0, doc.height - c.height));
+    const x = Math.min(Math.max(Math.floor(at2.x) - Math.floor(c.width / 2), 0), Math.max(0, doc.width - c.width));
+    const y = Math.min(Math.max(Math.floor(at2.y) - Math.floor(c.height / 2), 0), Math.max(0, doc.height - c.height));
     emit("paste-start");
     state.floating = { canvas: c, x, y };
     state.sel = null;
@@ -6388,10 +6484,10 @@
     if (n5 < 2) return [];
     if (n5 === 2) return [straight(pts[0], pts[1])];
     if (type === "catmull") {
-      const at = (i2) => closed ? pts[(i2 + n5) % n5] : pts[Math.max(0, Math.min(n5 - 1, i2))];
+      const at2 = (i2) => closed ? pts[(i2 + n5) % n5] : pts[Math.max(0, Math.min(n5 - 1, i2))];
       const out2 = [];
       for (let i2 = 0; i2 < (closed ? n5 : n5 - 1); i2++) {
-        const p0 = at(i2 - 1), p1 = at(i2), p2 = at(i2 + 1), p3 = at(i2 + 2);
+        const p0 = at2(i2 - 1), p1 = at2(i2), p2 = at2(i2 + 1), p3 = at2(i2 + 2);
         out2.push({
           a: p1,
           d: p2,
@@ -6403,10 +6499,10 @@
     }
     if (type === "bspline") {
       const P3 = closed ? pts : [pts[0], pts[0], ...pts, pts[n5 - 1], pts[n5 - 1]];
-      const m = P3.length, at = (i2) => P3[(i2 + m) % m];
+      const m = P3.length, at2 = (i2) => P3[(i2 + m) % m];
       const out2 = [];
       for (let i2 = 0; i2 < (closed ? m : m - 3); i2++) {
-        const p0 = at(i2), p1 = at(i2 + 1), p2 = at(i2 + 2), p3 = at(i2 + 3);
+        const p0 = at2(i2), p1 = at2(i2 + 1), p2 = at2(i2 + 2), p3 = at2(i2 + 3);
         out2.push({
           a: { x: (p0.x + 4 * p1.x + p2.x) / 6, y: (p0.y + 4 * p1.y + p2.y) / 6 },
           b: { x: (2 * p1.x + p2.x) / 3, y: (2 * p1.y + p2.y) / 3 },
@@ -7314,7 +7410,7 @@
 
   // src/lib/trace.ts
   function traceAll(labels, W, H, count, progress) {
-    const at = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x];
+    const at2 = (x, y) => x < 0 || y < 0 || x >= W || y >= H ? -1 : labels[y * W + x];
     const V = W + 1, key = (x, y) => y * V + x;
     const out = Array.from({ length: count }, () => /* @__PURE__ */ new Map());
     const add = (l, x0, y0, x1, y1) => {
@@ -7327,10 +7423,10 @@
       if (progress && x === 0 && y % 64 === 0) progress(0.5 * y / H);
       const l = labels[y * W + x];
       if (l < 0) continue;
-      if (at(x, y - 1) !== l) add(l, x + 1, y, x, y);
-      if (at(x - 1, y) !== l) add(l, x, y, x, y + 1);
-      if (at(x, y + 1) !== l) add(l, x, y + 1, x + 1, y + 1);
-      if (at(x + 1, y) !== l) add(l, x + 1, y + 1, x + 1, y);
+      if (at2(x, y - 1) !== l) add(l, x + 1, y, x, y);
+      if (at2(x - 1, y) !== l) add(l, x, y, x, y + 1);
+      if (at2(x, y + 1) !== l) add(l, x, y + 1, x + 1, y + 1);
+      if (at2(x + 1, y) !== l) add(l, x + 1, y + 1, x + 1, y);
     }
     const rings = [];
     for (let l = 0; l < count; l++) {
@@ -7432,36 +7528,36 @@ ${shapes.join("\n")}
       return data[i + 3] < 20 ? null : [data[i], data[i + 1], data[i + 2]];
     };
   }
-  function detailAt2(at, x, y, w, h) {
+  function detailAt2(at2, x, y, w, h) {
     const labs = [];
     for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
-      const c = at({ x: x + w * (i + 0.5) / 5, y: y + h * (j + 0.5) / 5 });
+      const c = at2({ x: x + w * (i + 0.5) / 5, y: y + h * (j + 0.5) / 5 });
       if (c) labs.push(toLab(c));
     }
     if (labs.length < 2) return 0;
     const m = [0, 1, 2].map((k) => labs.reduce((s, l) => s + l[k], 0) / labs.length);
     return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
   }
-  function suggestPalette(at, box5, n5) {
+  function suggestPalette(at2, box5, n5) {
     const labs = [];
     for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
-      const c = at({ x: box5.x + box5.w * (i + 0.5) / 70, y: box5.y + box5.h * (j + 0.5) / 70 });
+      const c = at2({ x: box5.x + box5.w * (i + 0.5) / 70, y: box5.y + box5.h * (j + 0.5) / 70 });
       if (c) labs.push(toLab(c));
     }
     return [...new Set(kmeans(labs, n5, 7).map(fromLab))];
   }
   function photoMosaic(j, progress) {
     setEps(j.eps);
-    const at = sampler(j.photo), d = j.page;
+    const at2 = sampler(j.photo), d = j.page;
     const page2 = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
     const bar = 4 + (1 - j.detail / 100) * 26;
-    const busy2 = (x, y, w, h) => detailAt2(at, x, y, w, h) > bar;
+    const busy2 = (x, y, w, h) => detailAt2(at2, x, y, w, h) > bar;
     const cells3 = cells2({ style: j.style, box: d, size: j.size, detail: j.detail / 100, busy: busy2, seed: j.seed });
     progress?.(0.5);
     if (cells3.length > j.maxTiles) return { tiles: cells3.length, lines: [], palette: [] };
     const lines2 = lines(cells3, [page2], (p) => pointInPolygon(p, page2), j.eps);
     progress?.(0.85);
-    return { tiles: cells3.length, lines: lines2, palette: j.suggest ? suggestPalette(at, j.photo.box, j.suggest) : [] };
+    return { tiles: cells3.length, lines: lines2, palette: j.suggest ? suggestPalette(at2, j.photo.box, j.suggest) : [] };
   }
 
   // src/lib/gcode.ts
@@ -7476,12 +7572,12 @@ ${shapes.join("\n")}
     let z = 0, e = 0, relative = false, tool = 0, printed = false, notModel = false;
     const zs = /* @__PURE__ */ new Set(), tools2 = /* @__PURE__ */ new Map(), changes = [];
     let pending = null;
-    for (let at = 0, n5 = 0; at < text.length; n5++) {
-      let end = text.indexOf("\n", at);
+    for (let at2 = 0, n5 = 0; at2 < text.length; n5++) {
+      let end = text.indexOf("\n", at2);
       if (end < 0) end = text.length;
-      let line = text.slice(at, end);
-      at = end + 1;
-      if (progress && n5 % 5e4 === 0) progress(at / text.length);
+      let line = text.slice(at2, end);
+      at2 = end + 1;
+      if (progress && n5 % 5e4 === 0) progress(at2 / text.length);
       const semi = line.indexOf(";");
       if (semi >= 0) {
         const type = FEATURE.exec(line.slice(semi));
@@ -8559,10 +8655,271 @@ ${shapes.join("\n")}
     picker: pickerTool
   };
 
+  // src/raster/text.ts
+  var FONTS = ["system-ui", "sans-serif", "serif", "monospace", "Arial", "Helvetica", "Verdana", "Trebuchet MS", "Georgia", "Times New Roman", "Courier New", "Impact", "Comic Sans MS", "cursive", "fantasy"];
+  var last2 = { font: "system-ui", size: 48, bold: true, italic: false, align: "center", outline: false, outlineWidth: 4, shadow: false, curve: 0 };
+  var fontCss = (s) => `${s.italic ? "italic " : ""}${s.bold ? "bold " : ""}${s.size}px ${/^[\w-]+$/.test(s.font) && !/\s/.test(s.font) ? s.font : JSON.stringify(s.font)}`;
+  function renderText(s) {
+    const probe = makeCanvas(1, 1).getContext("2d");
+    probe.font = fontCss(s);
+    const lines2 = s.text.split("\n"), lh = Math.round(s.size * 1.2), widths = lines2.map((l) => probe.measureText(l).width);
+    const pad = Math.ceil((s.outline ? s.outlineWidth : 0) + (s.shadow ? s.size * 0.15 + 6 : 0) + 2);
+    const textW = Math.max(1, ...widths), textH = lh * lines2.length;
+    const bend = s.curve / 100 * Math.PI * 1.4;
+    const draw = (x, fn) => {
+      x.save();
+      if (s.shadow) {
+        x.shadowColor = "rgba(0,0,0,.55)";
+        x.shadowBlur = s.size * 0.12;
+        x.shadowOffsetX = x.shadowOffsetY = Math.max(1, s.size * 0.06);
+      }
+      x.font = fontCss(s);
+      x.textBaseline = "middle";
+      x.lineJoin = "round";
+      fn(x);
+      x.restore();
+    };
+    const paint = (x, str, px, py) => {
+      if (s.outline && s.outlineColor && s.outlineWidth > 0) {
+        x.lineWidth = s.outlineWidth * 2;
+        x.strokeStyle = s.outlineColor;
+        x.strokeText(str, px, py);
+      }
+      if (s.outline) x.shadowColor = "transparent";
+      x.fillStyle = s.color || "#000";
+      x.fillText(str, px, py);
+    };
+    if (Math.abs(bend) < 0.01) {
+      const w = Math.ceil(textW) + 2 * pad, h = textH + 2 * pad;
+      const c2 = makeCanvas(w, h);
+      draw(c2.getContext("2d"), (x) => {
+        x.textAlign = s.align;
+        const ax = s.align === "left" ? pad : s.align === "right" ? w - pad : w / 2;
+        lines2.forEach((l, i) => paint(x, l, ax, pad + lh * i + lh / 2));
+      });
+      return c2;
+    }
+    const R = textW / Math.abs(bend), up = bend > 0;
+    const radii = lines2.map((_, i) => up ? R + (lines2.length - 1 - i) * lh : R + i * lh);
+    const outer = Math.max(...radii) + lh / 2, S = Math.ceil(2 * outer) + 2 * pad;
+    const big = makeCanvas(S, S), cx = S / 2, cy = S / 2;
+    draw(big.getContext("2d"), (x) => {
+      x.textAlign = "center";
+      lines2.forEach((l, i) => {
+        const r = radii[i], lw = widths[i];
+        const span = lw / r, room = textW / R;
+        let a = s.align === "left" ? -room / 2 : s.align === "right" ? room / 2 - span : -span / 2;
+        for (const ch of l) {
+          const cw = x.measureText(ch).width, mid = a + cw / 2 / r;
+          x.save();
+          if (up) {
+            x.translate(cx + r * Math.sin(mid), cy - r * Math.cos(mid));
+            x.rotate(mid);
+          } else {
+            x.translate(cx + r * Math.sin(mid), cy + r * Math.cos(mid));
+            x.rotate(-mid);
+          }
+          paint(x, ch, 0, 0);
+          x.restore();
+          a += cw / r;
+        }
+      });
+    });
+    const d = big.getContext("2d").getImageData(0, 0, S, S).data;
+    let x0 = S, y0 = S, x1 = -1, y1 = -1;
+    for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
+      if (!d[(y * S + x) * 4 + 3]) continue;
+      if (x < x0) x0 = x;
+      if (x > x1) x1 = x;
+      if (y < y0) y0 = y;
+      if (y > y1) y1 = y;
+    }
+    if (x1 < 0) return makeCanvas(1, 1);
+    const c = makeCanvas(x1 - x0 + 1 + 2, y1 - y0 + 1 + 2);
+    c.getContext("2d").drawImage(big, -x0 + 1, -y0 + 1);
+    return c;
+  }
+  var dlg3 = null;
+  var spec;
+  var at;
+  var editing = false;
+  var isNew = false;
+  function build() {
+    const d = document.createElement("dialog");
+    d.id = "dlg-text";
+    d.className = "sheet";
+    d.innerHTML = `<div class="dlg-head"><h2>${t("Text")}</h2></div>
+<textarea class="tx-text" rows="2" placeholder="${t("Type here")}" aria-label="${t("Text")}"></textarea>
+<div class="row wrap">
+  <label>${t("Font")} <select class="tx-font"></select></label>
+  <button class="tx-more" hidden title="${t("List the fonts installed on this computer (the browser asks first)")}">${t("More fonts…")}</button>
+  <label>${t("Size")} <input class="tx-size" type="number" min="4" max="1000" step="1"> px</label>
+</div>
+<div class="row wrap">
+  <div class="seg-btns" role="group" aria-label="${t("Style")}"><button class="tx-bold" aria-pressed="false" title="${t("Bold")}"><b>B</b></button><button class="tx-italic" aria-pressed="false" title="${t("Italic")}"><i>I</i></button></div>
+  <div class="seg-btns tx-align" role="radiogroup" aria-label="${t("Alignment")}"><button data-a="left" title="${t("Left")}">⇤</button><button data-a="center" title="${t("Center")}">↔</button><button data-a="right" title="${t("Right")}">⇥</button></div>
+  <label class="chk"><input type="checkbox" class="tx-outline"> ${t("Outline")}</label>
+  <label class="tx-ow-row">${t("Width")} <input class="tx-ow" type="number" min="1" max="100" step="1"></label>
+  <label class="chk"><input type="checkbox" class="tx-shadow"> ${t("Shadow")}</label>
+</div>
+<label class="adj-row"><span>${t("Curve")}</span><input type="range" class="tx-curve" min="-100" max="100" step="1"><output></output></label>
+<p class="note">${t("The text is in the paint color, its outline in the outline color. Drag it into place, then press Enter or tap outside it.")}</p>
+<div class="row dlg-foot"><button class="tx-cancel">${t("Cancel")}</button><span class="grow"></span><button class="tx-done primary">${t("Done")}</button></div>`;
+    document.body.append(d);
+    const q = (s) => d.querySelector(s);
+    const fontSel = q(".tx-font");
+    for (const f of FONTS) fontSel.add(new Option(f, f));
+    const qlf = window.queryLocalFonts;
+    if (qlf) {
+      q(".tx-more").hidden = false;
+      q(".tx-more").onclick = async () => {
+        try {
+          const fams = [...new Set((await qlf()).map((f) => f.family))].sort((a, b) => a.localeCompare(b));
+          const have = new Set([...fontSel.options].map((o) => o.value));
+          for (const f of fams) if (!have.has(f)) fontSel.add(new Option(f, f));
+          q(".tx-more").hidden = true;
+          toast(t("{n} fonts listed.", { n: fams.length }));
+        } catch {
+          toast(t("The browser did not list the fonts."));
+        }
+      };
+    }
+    const changed = () => {
+      read();
+      preview();
+    };
+    for (const el of d.querySelectorAll("input, select, textarea")) el.addEventListener("input", changed);
+    for (const b of [".tx-bold", ".tx-italic"]) q(b).onclick = () => {
+      const on2 = q(b).getAttribute("aria-pressed") !== "true";
+      q(b).setAttribute("aria-pressed", String(on2));
+      q(b).classList.toggle("active", on2);
+      changed();
+    };
+    for (const b of d.querySelectorAll(".tx-align button")) b.onclick = () => {
+      spec.align = b.dataset.a;
+      show2();
+      preview();
+    };
+    q(".tx-cancel").onclick = () => d.close("cancel");
+    q(".tx-done").onclick = () => d.close("done");
+    d.addEventListener("close", () => {
+      if (d.returnValue !== "done" || !spec.text.trim()) {
+        if (isNew || !spec.text.trim()) state.floating = null;
+        else state.floating = before;
+        selectionChanged();
+        requestRender();
+        return;
+      }
+      const { text: _t, color: _c, outlineColor: _o, ...keep } = spec;
+      last2 = keep;
+      toast(t("Drag the text into place, then press Enter or tap outside it."));
+    });
+    return d;
+  }
+  function show2() {
+    const q = (s) => dlg3.querySelector(s);
+    q(".tx-text").value = spec.text;
+    const fontSel = q(".tx-font");
+    if (![...fontSel.options].some((o) => o.value === spec.font)) fontSel.add(new Option(spec.font, spec.font));
+    fontSel.value = spec.font;
+    q(".tx-size").value = String(spec.size);
+    for (const [b, on2] of [[".tx-bold", spec.bold], [".tx-italic", spec.italic]]) {
+      q(b).setAttribute("aria-pressed", String(on2));
+      q(b).classList.toggle("active", on2);
+    }
+    for (const b of dlg3.querySelectorAll(".tx-align button")) {
+      const on2 = b.dataset.a === spec.align;
+      b.classList.toggle("active", on2);
+      b.setAttribute("aria-checked", String(on2));
+      b.setAttribute("role", "radio");
+    }
+    q(".tx-outline").checked = spec.outline;
+    q(".tx-ow").value = String(spec.outlineWidth);
+    q(".tx-ow-row").hidden = !spec.outline;
+    q(".tx-shadow").checked = spec.shadow;
+    q(".tx-curve").value = String(spec.curve);
+    q(".tx-curve").nextElementSibling.textContent = String(spec.curve);
+  }
+  function read() {
+    const q = (s) => dlg3.querySelector(s);
+    spec.text = q(".tx-text").value;
+    spec.font = q(".tx-font").value;
+    spec.size = Math.max(4, Math.min(1e3, +q(".tx-size").value || 48));
+    spec.bold = q(".tx-bold").getAttribute("aria-pressed") === "true";
+    spec.italic = q(".tx-italic").getAttribute("aria-pressed") === "true";
+    spec.outline = q(".tx-outline").checked;
+    spec.outlineWidth = Math.max(1, Math.min(100, +q(".tx-ow").value || 4));
+    spec.shadow = q(".tx-shadow").checked;
+    spec.curve = +q(".tx-curve").value;
+    q(".tx-ow-row").hidden = !spec.outline;
+    q(".tx-curve").nextElementSibling.textContent = String(spec.curve);
+  }
+  function preview() {
+    const c = renderText(spec), f = state.floating;
+    const centre = f && editing ? { x: f.x + f.canvas.width / 2, y: f.y + f.canvas.height / 2 } : at;
+    state.floating = { canvas: c, x: Math.round(centre.x - c.width / 2), y: Math.round(centre.y - c.height / 2), text: { ...spec } };
+    if (!editing) {
+      editing = true;
+      at = centre;
+    }
+    selectionChanged();
+    requestRender();
+  }
+  var before = null;
+  function openText(p) {
+    dlg3 = dlg3 || build();
+    const f = state.floating;
+    before = f;
+    isNew = !!p;
+    if (p) {
+      editing = false;
+      at = p;
+      spec = { text: "", ...last2, color: state.fill, outlineColor: state.stroke };
+    } else {
+      editing = true;
+      spec = { ...f.text, color: state.fill, outlineColor: state.stroke };
+    }
+    show2();
+    dlg3.returnValue = "";
+    dlg3.showModal();
+    const ta = dlg3.querySelector(".tx-text");
+    ta.focus();
+    ta.select();
+    if (!p) preview();
+  }
+  var inFloating = (p) => {
+    const f = state.floating;
+    return !!f && p.x >= f.x && p.y >= f.y && p.x < f.x + f.canvas.width && p.y < f.y + f.canvas.height;
+  };
+  var textTool = {
+    down(e, p) {
+      if (inFloating(p)) {
+        state.action = { type: "text-move", dx: p.x - state.floating.x, dy: p.y - state.floating.y, sx: e.clientX, sy: e.clientY, moved: false };
+        return;
+      }
+      if (state.floating) place();
+      openText(p);
+    },
+    move(e, p) {
+      const a = state.action;
+      if (a?.type !== "text-move" || !state.floating) return;
+      if (Math.hypot(e.clientX - a.sx, e.clientY - a.sy) > 4) a.moved = true;
+      state.floating.x = Math.round(p.x - a.dx);
+      state.floating.y = Math.round(p.y - a.dy);
+      requestRender();
+    },
+    up() {
+      const a = state.action;
+      state.action = null;
+      if (a?.type === "text-move" && !a.moved && state.floating?.text) openText(null);
+    }
+  };
+
   // src/raster/tools.ts
   var tools = {
     ...paintTools,
     select: selectTool,
+    text: textTool,
     pan: { down() {
     }, move() {
     }, up() {
@@ -8573,6 +8930,10 @@ ${shapes.join("\n")}
     brush: t("Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color"),
     pencil: t("Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color"),
     eraser: t("Drag to erase to transparent · Shift: straight line · [ ] size"),
+    clone: t("Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it"),
+    heal: t("Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift"),
+    remove: t("Paint over what should disappear – it is filled from the surroundings when you lift"),
+    text: t("Tap to add text · drag it into place · tap it to edit · Enter places it"),
     line: t("Drag a line · Shift: 15° steps"),
     ngon: t("Drag from the center · Shift: 15° rotation · keys 3–9: sides"),
     ellipse: t("Drag from corner to corner (or from the center) · Shift: a circle"),
@@ -8583,7 +8944,7 @@ ${shapes.join("\n")}
   };
   function setTool(tool) {
     if (!tools[tool]) tool = "brush";
-    if (tool !== "select" && state.floating) place();
+    if (tool !== "select" && tool !== "text" && state.floating) place();
     state.action = null;
     cancelCurve();
     state.tool = tool;
@@ -8999,7 +9360,7 @@ ${shapes.join("\n")}
   ];
   var toSlider = (k, v) => k === "gamma" ? Math.round(Math.log2(v) * 50) : v;
   var fromSlider = (k, v) => k === "gamma" ? Math.pow(2, v / 50) : v;
-  var dlg3 = null;
+  var dlg4 = null;
   var box3;
   var original;
   var mask = null;
@@ -9007,7 +9368,7 @@ ${shapes.join("\n")}
   var busy = Promise.resolve();
   var timer2 = 0;
   var comparing = false;
-  function build() {
+  function build2() {
     const d = document.createElement("dialog");
     d.id = "dlg-adjust";
     d.className = "sheet";
@@ -9028,22 +9389,22 @@ ${shapes.join("\n")}
         cur[k] = fromSlider(k, +inp.value);
         if (k === "black" && cur.black >= cur.white) cur.white = Math.min(255, cur.black + 1);
         if (k === "white" && cur.white <= cur.black) cur.black = Math.max(0, cur.white - 1);
-        show2();
+        show3();
         schedule();
       });
     }
     d.querySelector(".adj-auto").onclick = () => {
       Object.assign(cur, autoLevels(original.data));
-      show2();
+      show3();
       schedule();
     };
     d.querySelector(".adj-reset").onclick = () => {
       cur = { ...NO_ADJUST };
-      show2();
+      show3();
       schedule();
     };
     const cmp = d.querySelector(".adj-compare");
-    const before = (on2) => {
+    const before2 = (on2) => {
       comparing = on2;
       if (on2) {
         clearTimeout(timer2);
@@ -9052,17 +9413,17 @@ ${shapes.join("\n")}
     };
     cmp.onpointerdown = (e) => {
       cmp.setPointerCapture(e.pointerId);
-      before(true);
+      before2(true);
     };
-    cmp.onpointerup = cmp.onpointercancel = () => before(false);
+    cmp.onpointerup = cmp.onpointercancel = () => before2(false);
     cmp.onkeydown = (e) => {
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
-        if (!e.repeat) before(true);
+        if (!e.repeat) before2(true);
       }
     };
     cmp.onkeyup = (e) => {
-      if (e.key === " " || e.key === "Enter") before(false);
+      if (e.key === " " || e.key === "Enter") before2(false);
     };
     d.querySelector(".adj-cancel").onclick = () => d.close("cancel");
     d.querySelector(".adj-apply").onclick = async () => {
@@ -9081,8 +9442,8 @@ ${shapes.join("\n")}
     });
     return d;
   }
-  function show2() {
-    for (const inp of dlg3.querySelectorAll("input[type=range]")) {
+  function show3() {
+    for (const inp of dlg4.querySelectorAll("input[type=range]")) {
       const k = inp.dataset.k;
       inp.value = String(toSlider(k, cur[k]));
       inp.nextElementSibling.textContent = k === "gamma" ? cur.gamma.toFixed(2) : String(Math.round(cur[k]));
@@ -9108,7 +9469,7 @@ ${shapes.join("\n")}
     }, ms);
   }
   async function update() {
-    const label2 = dlg3.querySelector(".adj-busy");
+    const label2 = dlg4.querySelector(".adj-busy");
     if (isNoAdjust(cur)) {
       if (!comparing) putRegion(original.data);
       label2.textContent = "";
@@ -9118,7 +9479,7 @@ ${shapes.join("\n")}
     try {
       const img = { width: box3.w, height: box3.h, data: new Uint8ClampedArray(original.data) };
       const out = await run2("adjust", { img, adjust: { ...cur } }, { lane: "adjust" });
-      if (dlg3.open && !comparing) putRegion(out.data);
+      if (dlg4.open && !comparing) putRegion(out.data);
       label2.textContent = "";
     } catch (e) {
       if (!isCancelled(e)) {
@@ -9129,17 +9490,17 @@ ${shapes.join("\n")}
   }
   function openAdjust() {
     if (state.floating) place();
-    dlg3 = dlg3 || build();
+    dlg4 = dlg4 || build2();
     const s = state.sel;
     box3 = s ? { x: s.x, y: s.y, w: s.w, h: s.h } : { x: 0, y: 0, w: doc.width, h: doc.height };
     mask = s ? selectionMask() : null;
     original = dctx.getImageData(box3.x, box3.y, box3.w, box3.h);
     cur = { ...NO_ADJUST };
     comparing = false;
-    show2();
-    dlg3.querySelector(".adj-busy").textContent = "";
-    dlg3.returnValue = "";
-    dlg3.showModal();
+    show3();
+    dlg4.querySelector(".adj-busy").textContent = "";
+    dlg4.returnValue = "";
+    dlg4.showModal();
   }
 
   // src/shared/curve-notes.ts
@@ -9265,7 +9626,7 @@ ${shapes.join("\n")}
     $("#btn-sel-fill").onclick = () => fillSelection();
     const segs = (id, attr, key, after = () => {
     }) => {
-      const show3 = () => {
+      const show4 = () => {
         for (const b of $$(`${id} button`)) {
           const on2 = b.dataset[attr] === state[key];
           b.classList.toggle("active", on2);
@@ -9277,9 +9638,9 @@ ${shapes.join("\n")}
       for (const b of $$(`${id} button`)) b.onclick = () => {
         state[key] = b.dataset[attr];
         if (key === "selShape") savePrefs();
-        show3();
+        show4();
       };
-      show3();
+      show4();
     };
     segs("#sel-shape", "shape", "selShape", () => {
       $("#sel-wand-row").hidden = state.selShape !== "wand";
@@ -9400,7 +9761,7 @@ ${shapes.join("\n")}
     const { min, max } = host.size, v = min * Math.pow(max / min, k / 1e3);
     return v >= 10 ? Math.round(v) : v >= 1 ? Math.round(v * 2) / 2 : Math.round(v * 10) / 10;
   };
-  function build2() {
+  function build3() {
     const el = document.createElement("div");
     el.id = "quick-menu";
     el.setAttribute("role", "dialog");
@@ -9523,7 +9884,7 @@ ${shapes.join("\n")}
     box4.querySelector(".qm-size output").textContent = `${v} ${host.size.unit()}`;
   }
   function openQuickMenu(x, y) {
-    box4 = box4 || build2();
+    box4 = box4 || build3();
     renderHead();
     renderTools();
     renderColors();
@@ -9565,7 +9926,7 @@ ${shapes.join("\n")}
   function initQuickMenu(h) {
     host = h;
     let cur2 = null;
-    let last2 = null;
+    let last3 = null;
     let swallow = null;
     const stop = (e) => {
       e.stopImmediatePropagation();
@@ -9575,19 +9936,19 @@ ${shapes.join("\n")}
     s.addEventListener("pointerdown", (ev) => {
       const e = ev;
       if (e.pointerType !== "touch" || !e.isPrimary) {
-        cur2 = last2 = null;
+        cur2 = last3 = null;
         return;
       }
       hintOnce();
-      if (last2 && e.timeStamp - last2.t < GAP_MS && Math.hypot(e.clientX - last2.x, e.clientY - last2.y) < PAIR_PX) {
-        if (h.steps() === last2.steps + 1) h.dropLastStep();
+      if (last3 && e.timeStamp - last3.t < GAP_MS && Math.hypot(e.clientX - last3.x, e.clientY - last3.y) < PAIR_PX) {
+        if (h.steps() === last3.steps + 1) h.dropLastStep();
         h.cancelPending();
-        last2 = null;
+        last3 = null;
         swallow = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false };
         stop(e);
         return;
       }
-      last2 = null;
+      last3 = null;
       cur2 = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, steps: h.steps(), busy: h.busy(), moved: false };
     }, true);
     s.addEventListener("pointermove", (ev) => {
@@ -9609,7 +9970,7 @@ ${shapes.join("\n")}
         return;
       }
       if (cur2 && e.pointerId === cur2.id && !cur2.moved && !cur2.busy && e.timeStamp - cur2.t < TAP_MS) {
-        last2 = { x: e.clientX, y: e.clientY, t: e.timeStamp, steps: cur2.steps };
+        last3 = { x: e.clientX, y: e.clientY, t: e.timeStamp, steps: cur2.steps };
       }
       cur2 = null;
     }, true);
@@ -9619,7 +9980,7 @@ ${shapes.join("\n")}
         swallow = null;
         stop(e);
       }
-      cur2 = last2 = null;
+      cur2 = last3 = null;
     }, true);
     s.addEventListener("dblclick", (e) => {
       if (quickMenuOpen()) stop(e);
@@ -9707,7 +10068,7 @@ ${shapes.join("\n")}
         pickAt(p);
         return;
       }
-      if (state.tool !== "select" && state.floating) place();
+      if (state.tool !== "select" && state.tool !== "text" && state.floating) place();
       capturePointer(e);
       tools[state.tool].down(e, p);
     });
@@ -9819,6 +10180,9 @@ ${shapes.join("\n")}
         break;
       case "r":
         setTool("remove");
+        break;
+      case "t":
+        setTool("text");
         break;
       case "l":
         setTool("line");
@@ -10039,7 +10403,7 @@ void main() {
       gl.bindBuffer(gl.ARRAY_BUFFER, buffers[name]);
       gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
     }
-    function show3(mesh, colorOf) {
+    function show4(mesh, colorOf) {
       const V = mesh.vertices, T = mesh.triangles, n5 = T.length / 3;
       const pos = new Float32Array(n5 * 9), nor = new Float32Array(n5 * 9), col = new Float32Array(n5 * 9);
       let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = 0;
@@ -10098,10 +10462,10 @@ void main() {
       gl.uniform1f(uZ, exaggeration);
       const lx = 0.3, ly = -0.5, lz = 0.8, ll = Math.hypot(lx, ly, lz);
       gl.uniform3f(uLight, lx / ll, ly / ll, lz / ll);
-      for (const [name, at] of [["pos", loc.pos], ["normal", loc.normal], ["color", loc.color]]) {
+      for (const [name, at2] of [["pos", loc.pos], ["normal", loc.normal], ["color", loc.color]]) {
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers[name]);
-        gl.enableVertexAttribArray(at);
-        gl.vertexAttribPointer(at, 3, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(at2);
+        gl.vertexAttribPointer(at2, 3, gl.FLOAT, false, 0, 0);
       }
       gl.drawArrays(gl.TRIANGLES, 0, count);
     }
@@ -10152,7 +10516,7 @@ void main() {
       render3();
     }, { passive: false });
     canvas.addEventListener("dblclick", reset);
-    return { show: show3, setExaggeration: (k) => {
+    return { show: show4, setExaggeration: (k) => {
       exaggeration = k;
       render3();
     }, reset, render: render3 };
@@ -10245,12 +10609,12 @@ void main() {
 </div>`;
   var SMALL = 2e4;
   function initExport3D(host2, button) {
-    const dlg4 = document.createElement("dialog");
-    dlg4.id = "dlg-3d";
-    dlg4.innerHTML = DIALOG;
-    document.body.append(dlg4);
-    dlg4.addEventListener("click", (e) => {
-      if (e.target === dlg4) dlg4.close();
+    const dlg5 = document.createElement("dialog");
+    dlg5.id = "dlg-3d";
+    dlg5.innerHTML = DIALOG;
+    document.body.append(dlg5);
+    dlg5.addEventListener("click", (e) => {
+      if (e.target === dlg5) dlg5.close();
     });
     let colors = [], counts2 = [], grid = null, gw = 0, gh = 0, cell = opts.detail;
     let order = [], note = "", lines2 = /* @__PURE__ */ new Set(), version = 0;
@@ -10348,7 +10712,7 @@ void main() {
     }
     function render3() {
       const { w, h } = size(), fl = isFlat();
-      for (const el of dlg4.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
+      for (const el of dlg5.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
       $("#m3-mode-flat").classList.toggle("active", fl);
       $("#m3-go").title = fl ? t("The model, one part per color with its filament") : t("The model, with the filament changes for PrusaSlicer");
@@ -10685,7 +11049,7 @@ void main() {
       const real = host2.realSize();
       if (real) opts.width = +real.w.toFixed(2);
       $("#m3-summary").textContent = t("Reading the picture…");
-      dlg4.showModal();
+      dlg5.showModal();
       await analyse().catch(() => toast(t("Could not read the picture.")));
     };
   }
@@ -11180,16 +11544,16 @@ ${sections.join("\n")}
 
   // src/shared/examples-ui.ts
   function initExamples(button, examples) {
-    const dlg4 = document.createElement("dialog");
-    dlg4.id = "dlg-examples";
-    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg5 = document.createElement("dialog");
+    dlg5.id = "dlg-examples";
+    dlg5.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
 <div class="ex-list"></div>`;
-    document.body.append(dlg4);
-    dlg4.addEventListener("click", (e) => {
-      if (e.target === dlg4) dlg4.close();
+    document.body.append(dlg5);
+    dlg5.addEventListener("click", (e) => {
+      if (e.target === dlg5) dlg5.close();
     });
-    const list = dlg4.querySelector(".ex-list");
+    const list = dlg5.querySelector(".ex-list");
     for (const ex of examples) {
       const card = document.createElement("button");
       card.className = "ex-card";
@@ -11198,7 +11562,7 @@ ${sections.join("\n")}
       card.querySelector("b").textContent = ex.title;
       card.querySelector(".note").textContent = ex.text;
       card.onclick = async () => {
-        dlg4.close();
+        dlg5.close();
         await ex.open();
       };
       list.append(card);
@@ -11207,7 +11571,7 @@ ${sections.join("\n")}
       list.querySelectorAll("img").forEach((img, k) => {
         if (!img.src) img.src = examples[k].preview();
       });
-      dlg4.showModal();
+      dlg5.showModal();
     };
   }
 
@@ -11219,19 +11583,19 @@ ${sections.join("\n")}
 <p class="guide-text"></p>
 <div class="row dlg-foot"><span class="note guide-count"></span><button class="guide-back">${t("Back")}</button><button class="guide-next primary"></button></div>`;
     document.body.append(card);
-    let at = 0, marked = null;
+    let at2 = 0, marked = null;
     const mark2 = (el) => {
       marked?.classList.remove("guide-target");
       marked = el;
       marked?.classList.add("guide-target");
     };
     function draw() {
-      const s = steps2[at];
+      const s = steps2[at2];
       card.querySelector("h2").textContent = s.title;
       card.querySelector(".guide-text").textContent = s.text;
-      card.querySelector(".guide-count").textContent = t("{k} of {n}", { k: at + 1, n: steps2.length });
-      card.querySelector(".guide-back").disabled = at === 0;
-      card.querySelector(".guide-next").textContent = at === steps2.length - 1 ? t("Done") : t("Next");
+      card.querySelector(".guide-count").textContent = t("{k} of {n}", { k: at2 + 1, n: steps2.length });
+      card.querySelector(".guide-back").disabled = at2 === 0;
+      card.querySelector(".guide-next").textContent = at2 === steps2.length - 1 ? t("Done") : t("Next");
       const el = s.target ? document.querySelector(s.target) : null;
       mark2(el && el.offsetParent ? el : null);
       marked?.scrollIntoView({ block: "nearest", inline: "nearest" });
@@ -11241,20 +11605,20 @@ ${sections.join("\n")}
       card.close();
       lsSet(key, "1");
     }
-    function show3() {
-      at = 0;
+    function show4() {
+      at2 = 0;
       draw();
       if (!card.open) card.show();
     }
     card.querySelector(".guide-close").onclick = close2;
     card.querySelector(".guide-back").onclick = () => {
-      at = Math.max(0, at - 1);
+      at2 = Math.max(0, at2 - 1);
       draw();
     };
     card.querySelector(".guide-next").onclick = () => {
-      if (at === steps2.length - 1) close2();
+      if (at2 === steps2.length - 1) close2();
       else {
-        at++;
+        at2++;
         draw();
       }
     };
@@ -11264,9 +11628,9 @@ ${sections.join("\n")}
         close2();
       }
     });
-    button.onclick = show3;
-    if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith("discordsays.com")) setTimeout(show3, 600);
-    return { show: show3 };
+    button.onclick = show4;
+    if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith("discordsays.com")) setTimeout(show4, 600);
+    return { show: show4 };
   }
 
   // src/raster/examples.ts
@@ -11310,8 +11674,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.8.0" : "dev";
+  var VERSION = true ? "1.9.0" : "dev";
   var RELEASES = [
+    {
+      version: "1.9.0",
+      date: "2026-10-13",
+      items: [
+        "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit."
+      ]
+    },
     {
       version: "1.8.0",
       date: "2026-10-13",
@@ -11400,12 +11771,12 @@ ${sections.join("\n")}
   ];
   var KEY3 = "mz-version";
   function initWhatsNew() {
-    const dlg4 = document.createElement("dialog");
-    dlg4.id = "dlg-whats-new";
-    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
-    document.body.append(dlg4);
-    dlg4.addEventListener("click", (e) => {
-      if (e.target === dlg4) dlg4.close();
+    const dlg5 = document.createElement("dialog");
+    dlg5.id = "dlg-whats-new";
+    dlg5.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
+    document.body.append(dlg5);
+    dlg5.addEventListener("click", (e) => {
+      if (e.target === dlg5) dlg5.close();
     });
     const button = document.createElement("button");
     button.id = "st-version";
@@ -11420,23 +11791,23 @@ ${sections.join("\n")}
     button.onclick = () => {
       button.classList.remove("new");
       lsSet(KEY3, VERSION);
-      dlg4.showModal();
+      dlg5.showModal();
     };
   }
 
   // src/shared/history-ui.ts
   function initHistoryUI(host2, button) {
-    const dlg4 = document.createElement("dialog");
-    dlg4.id = "dlg-history";
-    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg5 = document.createElement("dialog");
+    dlg5.id = "dlg-history";
+    dlg5.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${esc(host2.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
-    document.body.append(dlg4);
-    dlg4.addEventListener("click", (e) => {
-      if (e.target === dlg4) dlg4.close();
+    document.body.append(dlg5);
+    dlg5.addEventListener("click", (e) => {
+      if (e.target === dlg5) dlg5.close();
     });
-    const list = dlg4.querySelector("#hist-list");
+    const list = dlg5.querySelector("#hist-list");
     let thumbs = [];
     async function render3() {
       thumbs.forEach((u) => URL.revokeObjectURL(u));
@@ -11482,7 +11853,7 @@ ${sections.join("\n")}
         };
         restore2.textContent = t("Restore");
         restore2.onclick = async () => {
-          dlg4.close();
+          dlg5.close();
           await host2.restore(v);
         };
         row.append(pin, rename, restore2);
@@ -11499,9 +11870,9 @@ ${sections.join("\n")}
     }
     button.onclick = () => {
       render3();
-      dlg4.showModal();
+      dlg5.showModal();
     };
-    dlg4.querySelector("#hist-save").onclick = async () => {
+    dlg5.querySelector("#hist-save").onclick = async () => {
       toast(await host2.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
