@@ -12,8 +12,10 @@ export const FILES = {
   // the AI engine: with WebGPU (faster, needs the bigger build) or without
   ortGpu: { url: ORT('ort-wasm-simd-threaded.asyncify.wasm'), bytes: 26781914 },
   ortCpu: { url: ORT('ort-wasm-simd-threaded.wasm'), bytes: 14239897 },
-  samEncoder: { url: HF('Xenova/slimsam-77-uniform', '5850ab45f587c112167512ffef949107115e26a0', 'onnx/vision_encoder_quantized.onnx'), bytes: 8882165 },
-  samDecoder: { url: HF('Xenova/slimsam-77-uniform', '5850ab45f587c112167512ffef949107115e26a0', 'onnx/prompt_encoder_mask_decoder_quantized.onnx'), bytes: 4903810 },
+  // MobileSAM (Apache-2.0; ONNX export MIT): its attention works in small windows – SlimSAM's global attention
+  // needed about 2 GB in a browser, and iOS closed the tab
+  msamEncoder: { url: HF('Acly/MobileSAM', '0d3b403339b4674a82493d5e97964dd78089ddc8', 'mobile_sam_image_encoder.onnx'), bytes: 28157093 },
+  msamDecoder: { url: HF('Acly/MobileSAM', '0d3b403339b4674a82493d5e97964dd78089ddc8', 'sam_mask_decoder_multi.onnx'), bytes: 16496559 },
   migan: { url: HF('andraniksargsyan/migan', '406830d0fa60666da0071c342ad2fbc8f30c5c64', 'migan_pipeline_v2.onnx'), bytes: 28079181 },
   modnet: { url: HF('Xenova/modnet', 'fa2fa546052fba4c08921230a26cc69a333fca12', 'onnx/model_quantized.onnx'), bytes: 6632188 },
   u2netp: { url: HF('BritishWerewolf/U-2-Netp', '7112208dbac3a3642496c8d54e2f0f9bb3dc1dc8', 'onnx/model.onnx'), bytes: 4574861 },

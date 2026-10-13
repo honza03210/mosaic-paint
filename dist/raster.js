@@ -1106,7 +1106,8 @@
     "Shadows": "Stíny",
     "Highlights": "Světla",
     "Midtones": "Střední tóny",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Hezčí ikony pro zpět / znovu, přiblížení, přizpůsobení a nápovědu; Úpravy jsou na liště i v rychlé nabídce s novými posuvníky – stíny, světla, teplota, odstín, živost, vybledlost a vinětace. Obrácení výběru (Ctrl+I) v obou aplikacích."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Hezčí ikony pro zpět / znovu, přiblížení, přizpůsobení a nápovědu; Úpravy jsou na liště i v rychlé nabídce s novými posuvníky – stíny, světla, teplota, odstín, živost, vybledlost a vinětace. Obrácení výběru (Ctrl+I) v obou aplikacích.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výběr objektu (AI) už na telefonech nepadá: teď používá MobileSAM, který potřebuje čtvrtinu paměti (a je rychlejší). Stahování je větší (45 MB); starý model se odstraní."
   };
 
   // src/shared/i18n-de.ts
@@ -2216,7 +2217,8 @@
     "Shadows": "Tiefen",
     "Highlights": "Lichter",
     "Midtones": "Mitteltöne",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Objekt auswählen (KI) stürzt auf Handys nicht mehr ab: es nutzt jetzt MobileSAM, das ein Viertel des Speichers braucht (und schneller ist). Der Download ist größer (45 MB); das alte Modell wird entfernt."
   };
 
   // src/shared/i18n-sk.ts
@@ -3326,7 +3328,8 @@
     "Shadows": "Tiene",
     "Highlights": "Svetlá",
     "Midtones": "Stredné tóny",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Krajšie ikony pre späť / znova, priblíženie, prispôsobenie a pomocníka; Úpravy sú na lište aj v rýchlej ponuke s novými posúvačmi – tiene, svetlá, teplota, odtieň, živosť, vyblednutie a vinetácia. Obrátenie výberu (Ctrl+I) v oboch aplikáciách."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Krajšie ikony pre späť / znova, priblíženie, prispôsobenie a pomocníka; Úpravy sú na lište aj v rýchlej ponuke s novými posúvačmi – tiene, svetlá, teplota, odtieň, živosť, vyblednutie a vinetácia. Obrátenie výberu (Ctrl+I) v oboch aplikáciách.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výber objektu (AI) už na telefónoch nepadá: teraz používa MobileSAM, ktorý potrebuje štvrtinu pamäte (a je rýchlejší). Sťahovanie je väčšie (45 MB); starý model sa odstráni."
   };
 
   // src/shared/i18n-pl.ts
@@ -4436,7 +4439,8 @@
     "Shadows": "Cienie",
     "Highlights": "Światła",
     "Midtones": "Półtony",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Ładniejsze ikony cofania / ponawiania, powiększania, dopasowania i pomocy; Dopasuj na pasku i w szybkim menu, z nowymi suwakami – cienie, światła, ciepło, zabarwienie, jaskrawość, wyblaknięcie i winieta. Odwracanie zaznaczenia (Ctrl+I) w obu aplikacjach."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Ładniejsze ikony cofania / ponawiania, powiększania, dopasowania i pomocy; Dopasuj na pasku i w szybkim menu, z nowymi suwakami – cienie, światła, ciepło, zabarwienie, jaskrawość, wyblaknięcie i winieta. Odwracanie zaznaczenia (Ctrl+I) w obu aplikacjach.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Zaznaczanie obiektu (AI) nie wywala się już na telefonach: używa teraz MobileSAM, który potrzebuje jednej czwartej pamięci (i jest szybszy). Pobieranie jest większe (45 MB); stary model zostaje usunięty."
   };
 
   // src/shared/i18n.ts
@@ -11115,8 +11119,10 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     // the AI engine: with WebGPU (faster, needs the bigger build) or without
     ortGpu: { url: ORT("ort-wasm-simd-threaded.asyncify.wasm"), bytes: 26781914 },
     ortCpu: { url: ORT("ort-wasm-simd-threaded.wasm"), bytes: 14239897 },
-    samEncoder: { url: HF("Xenova/slimsam-77-uniform", "5850ab45f587c112167512ffef949107115e26a0", "onnx/vision_encoder_quantized.onnx"), bytes: 8882165 },
-    samDecoder: { url: HF("Xenova/slimsam-77-uniform", "5850ab45f587c112167512ffef949107115e26a0", "onnx/prompt_encoder_mask_decoder_quantized.onnx"), bytes: 4903810 },
+    // MobileSAM (Apache-2.0; ONNX export MIT): its attention works in small windows – SlimSAM's global attention
+    // needed about 2 GB in a browser, and iOS closed the tab
+    msamEncoder: { url: HF("Acly/MobileSAM", "0d3b403339b4674a82493d5e97964dd78089ddc8", "mobile_sam_image_encoder.onnx"), bytes: 28157093 },
+    msamDecoder: { url: HF("Acly/MobileSAM", "0d3b403339b4674a82493d5e97964dd78089ddc8", "sam_mask_decoder_multi.onnx"), bytes: 16496559 },
     migan: { url: HF("andraniksargsyan/migan", "406830d0fa60666da0071c342ad2fbc8f30c5c64", "migan_pipeline_v2.onnx"), bytes: 28079181 },
     modnet: { url: HF("Xenova/modnet", "fa2fa546052fba4c08921230a26cc69a333fca12", "onnx/model_quantized.onnx"), bytes: 6632188 },
     u2netp: { url: HF("BritishWerewolf/U-2-Netp", "7112208dbac3a3642496c8d54e2f0f9bb3dc1dc8", "onnx/model.onnx"), bytes: 4574861 },
@@ -11155,7 +11161,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
       return t("Select object (AI)");
     }, get what() {
       return t("Tap an object to select it.");
-    }, files: ["samEncoder", "samDecoder"], engine: true, license: "SlimSAM – Apache-2.0" },
+    }, files: ["msamEncoder", "msamDecoder"], engine: true, license: "MobileSAM – Apache-2.0" },
     { id: "inpaint", get name() {
       return t("Object removal (AI)");
     }, get what() {
@@ -11359,8 +11365,19 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
       };
     }
   }
+  async function pruneCache() {
+    const c = await cache2();
+    if (!c) return;
+    const known = new Set(Object.values(FILES).map((f) => f.url));
+    try {
+      for (const r of await c.keys()) if (!known.has(r.url)) await c.delete(r);
+    } catch {
+    }
+  }
   var bindAddons = () => {
-    if ($("#addons")) renderAddons();
+    pruneCache().then(() => {
+      if ($("#addons")) renderAddons();
+    });
   };
 
   // src/raster/ai-features.ts
@@ -11432,17 +11449,17 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
   var samSize = { w: 0, h: 0 };
   async function selectObjectAt(p, op) {
     try {
-      if (!await prepare("select", ["samEncoder", "samDecoder"])) return;
+      if (!await prepare("select", ["msamEncoder", "msamDecoder"])) return;
       const key = `${imageVersion()}:${doc.width}x${doc.height}`;
       if (key !== samKey) {
         busy2(t("Looking at the picture…"));
         const img = picture(SAM);
-        await call("samEncode", { key, img: { width: img.width, height: img.height, data: img.data } });
+        await call("msamEncode", { key, img: { width: img.width, height: img.height, data: img.data } });
         samKey = key;
         samSize = { w: img.width, h: img.height };
       }
       const k = samSize.w / doc.width;
-      const m = await call("samMask", { points: [{ x: p.x * k, y: p.y * k, label: 1 }] });
+      const m = await call("msamMask", { points: [{ x: p.x * k, y: p.y * k, label: 1 }] });
       setSelectionMask(fullSize(m, samSize.w, samSize.h), op);
       if (!state.sel) toast(t("Nothing found there – tap the middle of the object."));
     } catch (e) {
@@ -13631,8 +13648,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.3.0" : "dev";
+  var VERSION = true ? "2.3.1" : "dev";
   var RELEASES = [
+    {
+      version: "2.3.1",
+      date: "2026-10-13",
+      items: [
+        "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed."
+      ]
+    },
     {
       version: "2.3.0",
       date: "2026-10-13",

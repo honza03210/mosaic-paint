@@ -148,7 +148,7 @@ Some features need a one-time download. Nothing is downloaded until you agree to
 
 | Add-on | What it does | Download |
 | --- | --- | --- |
-| Select object (AI) | Select › **Object (AI)**: tap an object to select it (SlimSAM) | 14 MB |
+| Select object (AI) | Select › **Object (AI)**: tap an object to select it (MobileSAM – light enough for phones) | 45 MB |
 | Object removal (AI) | **Remove** › Fill with **AI**: a trained model fills the spot (MI-GAN) | 28 MB |
 | Background removal – people / any subject | **Remove background…**: transparent background, or select the subject (MODNet / U²-Netp) | 7 / 5 MB |
 | Read text (OCR) | **Read text…**: the text in the image or selection, to copy (Tesseract) | 7 MB + 2–3 MB per language |

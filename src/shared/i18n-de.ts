@@ -2212,4 +2212,6 @@ export const DE: Record<string, string> = {
     'Mitteltöne',
   'Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.':
     'Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps.',
+  'Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.':
+    'Objekt auswählen (KI) stürzt auf Handys nicht mehr ab: es nutzt jetzt MobileSAM, das ein Viertel des Speichers braucht (und schneller ist). Der Download ist größer (45 MB); das alte Modell wird entfernt.',
 };

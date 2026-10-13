@@ -10,8 +10,8 @@ test('Select object on a phone: a lean start, one feature’s models; the CPU en
     window.__aiCalls = [];
     window.__aiStub = (op, a) => {
       window.__aiCalls.push([op, op === 'init' ? { gpu: a.gpu, lean: a.lean } : op === 'keepOnly' ? a.keep : null]);
-      if (op === 'samEncode') { window.__s = { w: a.img.width, h: a.img.height }; return true; }
-      if (op === 'samMask') return new Uint8Array(window.__s.w * window.__s.h).fill(255);
+      if (op === 'msamEncode') { window.__s = { w: a.img.width, h: a.img.height }; return true; }
+      if (op === 'msamMask') return new Uint8Array(window.__s.w * window.__s.h).fill(255);
       return op === 'has' ? false : true;
     };
   });
@@ -32,5 +32,5 @@ test('Select object on a phone: a lean start, one feature’s models; the CPU en
   const init = calls.find(c => c[0] === 'init')[1];
   expect(init.lean).toBe(true);
   if (iphone) expect(init.gpu).toBe(false);
-  expect(calls.find(c => c[0] === 'keepOnly')[1]).toEqual(['samEncoder', 'samDecoder']);
+  expect(calls.find(c => c[0] === 'keepOnly')[1]).toEqual(['msamEncoder', 'msamDecoder']);
 });

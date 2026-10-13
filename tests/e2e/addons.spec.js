@@ -14,8 +14,8 @@ async function setup(page) {
     window.__aiCalls = [];
     window.__aiStub = (op, a) => {
       window.__aiCalls.push(op);
-      if (op === 'samMask') { const { w, h } = window.__samSize; const m = new Uint8Array(w * h); for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) m[y * w + x] = Math.hypot(x - w / 2, y - h / 2) < w / 4 ? 255 : 0; return m; }
-      if (op === 'samEncode') { window.__samSize = { w: a.img.width, h: a.img.height }; return true; }
+      if (op === 'msamMask') { const { w, h } = window.__samSize; const m = new Uint8Array(w * h); for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) m[y * w + x] = Math.hypot(x - w / 2, y - h / 2) < w / 4 ? 255 : 0; return m; }
+      if (op === 'msamEncode') { window.__samSize = { w: a.img.width, h: a.img.height }; return true; }
       if (op === 'inpaint') { const d = new Uint8ClampedArray(a.img.data.length); for (let i = 0; i < d.length; i += 4) d.set([0, 200, 0, 255], i); return d; }
       if (op === 'matte') { const { width: w, height: h } = a.img, m = new Uint8Array(w * h); for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) m[y * w + x] = Math.hypot(x - w / 2, y - h / 2) < w / 4 ? 255 : 0; return m; }
       if (op === 'depth') { const { width: w, height: h } = a.img, d = new Float32Array(w * h); for (let i = 0; i < d.length; i++) d[i] = (i % w) / w; return d; }
@@ -56,11 +56,11 @@ test('Select object: asks first (with the size), downloads only after OK, then s
   await d.locator('button[value=ok]').click();
   await expect.poll(() => page.evaluate(() => !!RZ.state.sel)).toBe(true);
   expect(fetched.length).toBe(3); // the engine and the two parts of the model
-  expect(await page.evaluate(() => window.__aiCalls)).toEqual(expect.arrayContaining(['init', 'load', 'samEncode', 'samMask']));
+  expect(await page.evaluate(() => window.__aiCalls)).toEqual(expect.arrayContaining(['init', 'load', 'msamEncode', 'msamMask']));
   // a second tap needs no download and no new encoding of the same picture
   await tap(page, 100, 50);
   expect(fetched.length).toBe(3);
-  expect(await page.evaluate(() => window.__aiCalls.filter(c => c === 'samEncode').length)).toBe(1);
+  expect(await page.evaluate(() => window.__aiCalls.filter(c => c === 'msamEncode').length)).toBe(1);
   // the list in the side panel
   await page.locator('summary', { hasText: 'Add-ons' }).click();
   const row = page.locator('#addons .addon-row[data-id=select]');

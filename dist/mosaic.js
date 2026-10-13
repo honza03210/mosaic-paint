@@ -1112,7 +1112,8 @@
     "Shadows": "Stíny",
     "Highlights": "Světla",
     "Midtones": "Střední tóny",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Hezčí ikony pro zpět / znovu, přiblížení, přizpůsobení a nápovědu; Úpravy jsou na liště i v rychlé nabídce s novými posuvníky – stíny, světla, teplota, odstín, živost, vybledlost a vinětace. Obrácení výběru (Ctrl+I) v obou aplikacích."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Hezčí ikony pro zpět / znovu, přiblížení, přizpůsobení a nápovědu; Úpravy jsou na liště i v rychlé nabídce s novými posuvníky – stíny, světla, teplota, odstín, živost, vybledlost a vinětace. Obrácení výběru (Ctrl+I) v obou aplikacích.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výběr objektu (AI) už na telefonech nepadá: teď používá MobileSAM, který potřebuje čtvrtinu paměti (a je rychlejší). Stahování je větší (45 MB); starý model se odstraní."
   };
 
   // src/shared/i18n-de.ts
@@ -2222,7 +2223,8 @@
     "Shadows": "Tiefen",
     "Highlights": "Lichter",
     "Midtones": "Mitteltöne",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Objekt auswählen (KI) stürzt auf Handys nicht mehr ab: es nutzt jetzt MobileSAM, das ein Viertel des Speichers braucht (und schneller ist). Der Download ist größer (45 MB); das alte Modell wird entfernt."
   };
 
   // src/shared/i18n-sk.ts
@@ -3332,7 +3334,8 @@
     "Shadows": "Tiene",
     "Highlights": "Svetlá",
     "Midtones": "Stredné tóny",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Krajšie ikony pre späť / znova, priblíženie, prispôsobenie a pomocníka; Úpravy sú na lište aj v rýchlej ponuke s novými posúvačmi – tiene, svetlá, teplota, odtieň, živosť, vyblednutie a vinetácia. Obrátenie výberu (Ctrl+I) v oboch aplikáciách."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Krajšie ikony pre späť / znova, priblíženie, prispôsobenie a pomocníka; Úpravy sú na lište aj v rýchlej ponuke s novými posúvačmi – tiene, svetlá, teplota, odtieň, živosť, vyblednutie a vinetácia. Obrátenie výberu (Ctrl+I) v oboch aplikáciách.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výber objektu (AI) už na telefónoch nepadá: teraz používa MobileSAM, ktorý potrebuje štvrtinu pamäte (a je rýchlejší). Sťahovanie je väčšie (45 MB); starý model sa odstráni."
   };
 
   // src/shared/i18n-pl.ts
@@ -4442,7 +4445,8 @@
     "Shadows": "Cienie",
     "Highlights": "Światła",
     "Midtones": "Półtony",
-    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Ładniejsze ikony cofania / ponawiania, powiększania, dopasowania i pomocy; Dopasuj na pasku i w szybkim menu, z nowymi suwakami – cienie, światła, ciepło, zabarwienie, jaskrawość, wyblaknięcie i winieta. Odwracanie zaznaczenia (Ctrl+I) w obu aplikacjach."
+    "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Ładniejsze ikony cofania / ponawiania, powiększania, dopasowania i pomocy; Dopasuj na pasku i w szybkim menu, z nowymi suwakami – cienie, światła, ciepło, zabarwienie, jaskrawość, wyblaknięcie i winieta. Odwracanie zaznaczenia (Ctrl+I) w obu aplikacjach.",
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Zaznaczanie obiektu (AI) nie wywala się już na telefonach: używa teraz MobileSAM, który potrzebuje jednej czwartej pamięci (i jest szybszy). Pobieranie jest większe (45 MB); stary model zostaje usunięty."
   };
 
   // src/shared/i18n.ts
@@ -14127,8 +14131,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.3.0" : "dev";
+  var VERSION = true ? "2.3.1" : "dev";
   var RELEASES = [
+    {
+      version: "2.3.1",
+      date: "2026-10-13",
+      items: [
+        "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed."
+      ]
+    },
     {
       version: "2.3.0",
       date: "2026-10-13",

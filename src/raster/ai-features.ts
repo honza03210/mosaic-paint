@@ -87,17 +87,17 @@ const SAM = 1024;
 let samKey = '', samSize = { w: 0, h: 0 };
 async function selectObjectAt(p: Pt, op: SelMode): Promise<void> {
   try {
-    if (!(await prepare('select', ['samEncoder', 'samDecoder']))) return;
+    if (!(await prepare('select', ['msamEncoder', 'msamDecoder']))) return;
     const key = `${imageVersion()}:${doc.width}x${doc.height}`;
     if (key !== samKey) {
       busy(t('Looking at the picture…'));
       const img = picture(SAM);
-      await call('samEncode', { key, img: { width: img.width, height: img.height, data: img.data } });
+      await call('msamEncode', { key, img: { width: img.width, height: img.height, data: img.data } });
       samKey = key;
       samSize = { w: img.width, h: img.height };
     }
     const k = samSize.w / doc.width;
-    const m = await call<Uint8Array>('samMask', { points: [{ x: p.x * k, y: p.y * k, label: 1 }] });
+    const m = await call<Uint8Array>('msamMask', { points: [{ x: p.x * k, y: p.y * k, label: 1 }] });
     setSelectionMask(fullSize(m, samSize.w, samSize.h), op);
     if (!state.sel) toast(t('Nothing found there – tap the middle of the object.'));
   } catch (e) { failed(e); }

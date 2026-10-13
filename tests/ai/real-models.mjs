@@ -2,7 +2,7 @@
 // browser. Not part of the normal tests (the models are big): download them into a folder, then
 //   AI_MODELS=<folder> node --experimental-strip-types tests/ai/real-models.mjs
 // with onnxruntime-node installed somewhere it can be imported from (ORT=<path to onnxruntime-node>).
-// Files: sam_enc.onnx, sam_dec.onnx (SlimSAM quantized), migan.onnx, modnet.onnx, depth.onnx, u2netp.onnx.
+// Files: mobile_sam_image_encoder.onnx, sam_mask_decoder_multi.onnx (MobileSAM), migan.onnx, modnet.onnx, depth.onnx, u2netp.onnx.
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import * as P from '../../src/ai/prep.ts';
@@ -26,18 +26,19 @@ for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
 const img = { width: W, height: H, data };
 const inBall = (x, y) => Math.hypot(x - 160, y - 120) < 60;
 
-console.log('SlimSAM: tap the ball');
+console.log('MobileSAM: tap the ball');
 {
-  const enc = await model('sam_enc.onnx'), dec = await model('sam_dec.onnx');
-  const { pixels, scale } = P.samInput(img);
+  const enc = await model('mobile_sam_image_encoder.onnx'), dec = await model('sam_mask_decoder_multi.onnx');
+  const inp = P.mobileSamInput(img);
   let t = Date.now();
-  const e = await enc.run({ pixel_values: new ort.Tensor('float32', pixels, [1, 3, 1024, 1024]) });
+  const e = await enc.run({ input_image: new ort.Tensor('float32', inp.pixels, [inp.h, inp.w, 3]) });
   console.log('  encoder', Date.now() - t, 'ms');
-  const { coords, labels } = P.samPoints([{ x: 160, y: 120, label: 1 }], scale);
+  const { coords, labels } = P.mobileSamPoints([{ x: 160, y: 120, label: 1 }], inp.scale);
   t = Date.now();
-  const r = await dec.run({ input_points: new ort.Tensor('float32', coords, [1, 1, 1, 2]), input_labels: new ort.Tensor('int64', labels, [1, 1, 1]), image_embeddings: e.image_embeddings, image_positional_embeddings: e.image_positional_embeddings });
-  console.log('  decoder', Date.now() - t, 'ms');
-  const m = P.samMask(r.pred_masks.data, r.iou_scores.data, W, H, scale);
+  const r = await dec.run({ image_embeddings: e.image_embeddings, point_coords: new ort.Tensor('float32', coords, [1, labels.length, 2]), point_labels: new ort.Tensor('float32', labels, [1, labels.length]),
+    mask_input: new ort.Tensor('float32', new Float32Array(256 * 256), [1, 1, 256, 256]), has_mask_input: new ort.Tensor('float32', new Float32Array([0]), [1]), orig_im_size: new ort.Tensor('float32', new Float32Array([H, W]), [2]) });
+  console.log('  decoder', Date.now() - t, 'ms', r.masks.dims.join('×'));
+  const m = P.mobileSamMask(r.masks.data, r.iou_predictions.data, W, H);
   let inter = 0, uni = 0;
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const a = m[y * W + x] > 0, b = inBall(x, y); if (a && b) inter++; if (a || b) uni++; }
   check(inter / uni > 0.85, `mask matches the ball (IoU ${(inter / uni).toFixed(2)})`);

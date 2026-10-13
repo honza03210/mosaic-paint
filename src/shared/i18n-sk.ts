@@ -2212,4 +2212,6 @@ export const SK: Record<string, string> = {
     'Stredné tóny',
   'Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.':
     'Krajšie ikony pre späť / znova, priblíženie, prispôsobenie a pomocníka; Úpravy sú na lište aj v rýchlej ponuke s novými posúvačmi – tiene, svetlá, teplota, odtieň, živosť, vyblednutie a vinetácia. Obrátenie výberu (Ctrl+I) v oboch aplikáciách.',
+  'Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.':
+    'Výber objektu (AI) už na telefónoch nepadá: teraz používa MobileSAM, ktorý potrebuje štvrtinu pamäte (a je rýchlejší). Sťahovanie je väčšie (45 MB); starý model sa odstráni.',
 };

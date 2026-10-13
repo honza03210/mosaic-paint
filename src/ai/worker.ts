@@ -1,6 +1,6 @@
 /* The AI worker (dist/ai-worker.js, a module worker): runs the add-ons' models with ONNX Runtime Web, away
    from the page so it never freezes. The page hands it the engine and the models (from the add-on cache);
-   it keeps the sessions, and SAM's picture encoding between taps. WebGPU where there is one, else the CPU. */
+   it keeps the sessions, and MobileSAM's picture encoding between taps. WebGPU where there is one, else the CPU. */
 import * as ortGpu from 'onnxruntime-web/webgpu';
 import * as ortCpu from 'onnxruntime-web/wasm';
 import * as P from './prep.ts';
@@ -10,23 +10,26 @@ let ort: Ort | null = null, gpu = false;
 /** a phone (or little memory): ONNX Runtime's memory arena off – it grows to about 2 GB for SAM's encoder,
     more than iOS lets a tab have; without it about 100 MB, if slower */
 let lean = false;
+/** more session options (for measuring) */
+let extra: Record<string, unknown> = {};
 const sessions = new Map<string, any>();
-/** SAM's encoding of the current picture (tapping again only runs the small decoder) */
-let sam: { key: string; emb: any; pos: any; w: number; h: number; scale: number } | null = null;
+/** MobileSAM's encoding of the current picture (tapping again only runs the small decoder) */
+let msam: { key: string; emb: any; w: number; h: number; scale: number } | null = null;
 
 async function session(name: string): Promise<any> {
   const s = sessions.get(name);
   if (!s) throw new Error(`model ${name} not loaded`);
   return s;
 }
-const memoryOptions = () => (lean ? { enableCpuMemArena: false, enableMemPattern: false } : {});
+const memoryOptions = () => ({ ...(lean ? { enableCpuMemArena: false, enableMemPattern: false } : {}), ...extra });
 const T = (type: 'float32' | 'uint8' | 'int64', data: any, dims: number[]) => new ort.Tensor(type, data, dims);
 
 const ops: Record<string, (a: any) => Promise<unknown> | unknown> = {
-  init(a: { gpu: boolean; wasm: ArrayBuffer; lean?: boolean }) {
+  init(a: { gpu: boolean; wasm: ArrayBuffer; lean?: boolean; options?: Record<string, unknown> }) {
     if (ort) return gpu;
     gpu = a.gpu;
     lean = !!a.lean;
+    extra = a.options || {};
     ort = (a.gpu ? ortGpu : ortCpu) as Ort;
     ort.env.wasm.wasmBinary = a.wasm;
     ort.env.wasm.numThreads = 1;
@@ -39,7 +42,7 @@ const ops: Record<string, (a: any) => Promise<unknown> | unknown> = {
     for (const [name, s] of sessions) {
       if (a.keep.includes(name)) continue;
       sessions.delete(name);
-      if (name === 'samEncoder') sam = null;
+      if (name === 'msamEncoder') msam = null;
       await s.release?.();
     }
     return true;
@@ -58,23 +61,25 @@ const ops: Record<string, (a: any) => Promise<unknown> | unknown> = {
     sessions.set(a.name, s);
     return true;
   },
-  /** Encodes the picture for SAM (once per picture: key). */
-  async samEncode(a: { key: string; img: P.Rgba }) {
-    if (sam?.key === a.key) return true;
-    const { pixels, scale } = P.samInput(a.img);
-    const r = await (await session('samEncoder')).run({ pixel_values: T('float32', pixels, [1, 3, 1024, 1024]) });
-    sam = { key: a.key, emb: r.image_embeddings, pos: r.image_positional_embeddings, w: a.img.width, h: a.img.height, scale };
+  /** MobileSAM: encodes the picture (once per picture: key). Much lighter than SlimSAM in a browser – its
+      attention works in small windows (SlimSAM's global attention needs about 2 GB here). */
+  async msamEncode(a: { key: string; img: P.Rgba }) {
+    if (msam?.key === a.key) return true;
+    msam = null;
+    const inp = P.mobileSamInput(a.img);
+    const r = await (await session('msamEncoder')).run({ input_image: T('float32', inp.pixels, [inp.h, inp.w, 3]) });
+    msam = { key: a.key, emb: r.image_embeddings, w: a.img.width, h: a.img.height, scale: inp.scale };
     return true;
   },
-  /** The object at the tapped points (labels 1: it, 0: not it) as a mask, 0 / 255 per pixel. */
-  async samMask(a: { points: { x: number; y: number; label: number }[] }) {
-    if (!sam) throw new Error('no picture encoded');
-    const { coords, labels } = P.samPoints(a.points, sam.scale), n = a.points.length;
-    const r = await (await session('samDecoder')).run({
-      input_points: T('float32', coords, [1, 1, n, 2]), input_labels: T('int64', labels, [1, 1, n]),
-      image_embeddings: sam.emb, image_positional_embeddings: sam.pos,
+  async msamMask(a: { points: { x: number; y: number; label: number }[] }) {
+    if (!msam) throw new Error('no picture encoded');
+    const { coords, labels } = P.mobileSamPoints(a.points, msam.scale), n = labels.length;
+    const r = await (await session('msamDecoder')).run({
+      image_embeddings: msam.emb, point_coords: T('float32', coords, [1, n, 2]), point_labels: T('float32', labels, [1, n]),
+      mask_input: T('float32', new Float32Array(256 * 256), [1, 1, 256, 256]), has_mask_input: T('float32', new Float32Array([0]), [1]),
+      orig_im_size: T('float32', new Float32Array([msam.h, msam.w]), [2]),
     });
-    return P.samMask(r.pred_masks.data as Float32Array, r.iou_scores.data as Float32Array, sam.w, sam.h, sam.scale);
+    return P.mobileSamMask(r.masks.data as Float32Array, r.iou_predictions.data as Float32Array, msam.w, msam.h);
   },
   /** Fills the hole (mask > 127) with MI-GAN: RGBA back. */
   async inpaint(a: { img: P.Rgba; mask: Uint8Array }) {

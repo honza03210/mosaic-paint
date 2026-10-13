@@ -51,30 +51,7 @@ function sample(p: Float32Array | Float64Array | number[], W: number, H: number,
   return (p[y0 * W + x0] * (1 - tx) + p[y0 * W + x1] * tx) * (1 - ty) + (p[y1 * W + x0] * (1 - tx) + p[y1 * W + x1] * tx) * ty;
 }
 
-// ---- Segment Anything (SlimSAM): tap an object --------------------------------------------------------------
 export const IMAGENET = { mean: [0.485, 0.456, 0.406], std: [0.229, 0.224, 0.225] };
-/** The picture for SAM's encoder: longest side 1024, padded to 1024 × 1024. scale: picture → model pixels. */
-export function samInput(img: Rgba): { pixels: Float32Array; scale: number } {
-  const scale = 1024 / Math.max(img.width, img.height), rw = Math.round(img.width * scale), rh = Math.round(img.height * scale);
-  const small = resize(img, rw, rh);
-  return { pixels: toPlanes(small, rw, rh, IMAGENET.mean, IMAGENET.std, 1024, 1024), scale };
-}
-/** Tapped points as SAM wants them: coordinates in model pixels, labels (1: this, 0: not this). */
-export function samPoints(points: { x: number; y: number; label: number }[], scale: number): { coords: Float32Array; labels: BigInt64Array } {
-  const coords = new Float32Array(points.length * 2), labels = new BigInt64Array(points.length);
-  points.forEach((p, i) => { coords[i * 2] = p.x * scale; coords[i * 2 + 1] = p.y * scale; labels[i] = BigInt(p.label); });
-  return { coords, labels };
-}
-/** SAM's best mask (of its three guesses, by its own score) at the picture's size: 0 or 255 per pixel. */
-export function samMask(masks: Float32Array, scores: Float32Array, w: number, h: number, scale: number): Uint8Array {
-  let best = 0;
-  for (let k = 1; k < scores.length; k++) if (scores[k] > scores[best]) best = k;
-  const plane = masks.subarray(best * 256 * 256, (best + 1) * 256 * 256), out = new Uint8Array(w * h);
-  // picture pixel → model pixel (× scale) → mask pixel (÷ 4: the masks are 256 for the 1024 square)
-  const k = scale / 4;
-  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) out[y * w + x] = sample(plane, 256, 256, (x + 0.5) * k, (y + 0.5) * k) > 0 ? 255 : 0;
-  return out;
-}
 
 // ---- background removal --------------------------------------------------------------------------------------
 /** MODNet's input: shortest side 512, both sides multiples of 32, values −1…1. */
@@ -136,5 +113,33 @@ export function miganInput(img: Rgba, hole: Uint8Array): { image: Uint8Array; ma
 export function miganOut(res: Uint8Array, w: number, h: number): Uint8ClampedArray<ArrayBuffer> {
   const n = w * h, out = new Uint8ClampedArray(n * 4);
   for (let i = 0; i < n; i++) { out[i * 4] = res[i]; out[i * 4 + 1] = res[n + i]; out[i * 4 + 2] = res[2 * n + i]; out[i * 4 + 3] = 255; }
+  return out;
+}
+
+// ---- MobileSAM (the phone-friendly Segment Anything) ----------------------------------------------------------
+/** MobileSAM's encoder takes the picture itself: longest side 1024, RGB 0…255, rows × columns × 3 (it
+    normalizes and pads inside). scale: picture → model pixels. */
+export function mobileSamInput(img: Rgba): { pixels: Float32Array; w: number; h: number; scale: number } {
+  const scale = 1024 / Math.max(img.width, img.height), w = Math.max(1, Math.round(img.width * scale)), h = Math.max(1, Math.round(img.height * scale));
+  const small = resize(img, w, h), pixels = new Float32Array(w * h * 3);
+  for (let i = 0; i < w * h; i++) {
+    const a = small[i * 4 + 3] / 255;
+    for (let c = 0; c < 3; c++) pixels[i * 3 + c] = small[i * 4 + c] * a + 255 * (1 - a);
+  }
+  return { pixels, w, h, scale };
+}
+/** The decoder's points: in model pixels, with SAM's padding point (label −1) when there is no box. */
+export function mobileSamPoints(points: { x: number; y: number; label: number }[], scale: number): { coords: Float32Array; labels: Float32Array } {
+  const n = points.length + 1, coords = new Float32Array(n * 2), labels = new Float32Array(n);
+  points.forEach((p, i) => { coords[i * 2] = p.x * scale; coords[i * 2 + 1] = p.y * scale; labels[i] = p.label; });
+  labels[n - 1] = -1;
+  return { coords, labels };
+}
+/** The best of the decoder's masks (they come at the picture's size, as logits): 0 or 255 per pixel. */
+export function mobileSamMask(masks: Float32Array, scores: Float32Array, w: number, h: number): Uint8Array {
+  let best = 0;
+  for (let k = 1; k < scores.length; k++) if (scores[k] > scores[best]) best = k;
+  const plane = masks.subarray(best * w * h, (best + 1) * w * h), out = new Uint8Array(w * h);
+  for (let i = 0; i < out.length; i++) out[i] = plane[i] > 0 ? 255 : 0;
   return out;
 }

@@ -47,7 +47,7 @@ export function ocrLangs(): { code: string; file: FileId }[] {
 }
 
 export const ADDONS: Addon[] = [
-  { id: 'select', get name() { return t('Select object (AI)'); }, get what() { return t('Tap an object to select it.'); }, files: ['samEncoder', 'samDecoder'], engine: true, license: 'SlimSAM – Apache-2.0' },
+  { id: 'select', get name() { return t('Select object (AI)'); }, get what() { return t('Tap an object to select it.'); }, files: ['msamEncoder', 'msamDecoder'], engine: true, license: 'MobileSAM – Apache-2.0' },
   { id: 'inpaint', get name() { return t('Object removal (AI)'); }, get what() { return t('Remove fills the spot with a trained model – better on objects and structure than the built-in fill.'); }, files: ['migan'], engine: true, license: 'MI-GAN (Picsart) – MIT' },
   { id: 'bg-people', get name() { return t('Background removal – people'); }, get what() { return t('Removes the background behind people (portraits).'); }, files: ['modnet'], engine: true, license: 'MODNet – Apache-2.0' },
   { id: 'bg-any', get name() { return t('Background removal – any subject'); }, get what() { return t('Removes the background behind the main subject: objects, animals, products.'); }, files: ['u2netp'], engine: true, license: 'U²-Netp – Apache-2.0' },
@@ -225,4 +225,11 @@ export async function renderAddons(): Promise<void> {
     };
   }
 }
-export const bindAddons = (): void => { if ($('#addons')) renderAddons(); };
+/** Removes downloads no add-on uses any more (an add-on that changed its model leaves the old one behind). */
+export async function pruneCache(): Promise<void> {
+  const c = await cache();
+  if (!c) return;
+  const known = new Set(Object.values(FILES).map(f => f.url));
+  try { for (const r of await c.keys()) if (!known.has(r.url)) await c.delete(r); } catch { /* best effort */ }
+}
+export const bindAddons = (): void => { pruneCache().then(() => { if ($('#addons')) renderAddons(); }); };
