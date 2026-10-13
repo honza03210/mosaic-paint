@@ -6,13 +6,15 @@ import { state, on, savePrefs } from './state.ts';
 import { stage, view, toDoc, updateView, fitView, zoomAt, zoomCenter, actualSize, requestRender } from './canvas.ts';
 import { undo, redo, restoreCurrent, commit, steps, dropLastStep } from './history.ts';
 import { pickAt, curve, finishCurve, curveBack, cancelCurve, undoFreshCloneSource } from './paint.ts';
-import { place, cancelFloating, deselect, selectAll, copy, clearSelection, pasteImage, pasteInternal } from './select.ts';
+import { place, cancelFloating, deselect, selectAll, invertSelection, copy, clearSelection, pasteImage, pasteInternal } from './select.ts';
 import { pasteColors, renderPalette, setFill, setStroke } from './palette.ts';
 import { tools, setTool } from './tools.ts';
 import { save, openFile, openImageFile, confirmDiscard } from './files.ts';
 import { setSides, setBrushSize, nextTip } from './panel.ts';
 import { t } from '../shared/i18n.ts';
 import { initQuickMenu } from '../shared/quick-menu.ts';
+import { ICONS } from '../shared/icons.ts';
+import { openAdjust } from './adjust-ui.ts';
 
 // ---- pointer & pinch ------------------------------------------------------------------------------------
 const pointers = new Map<number, Pt>();
@@ -132,6 +134,7 @@ function onKey(e: KeyboardEvent): void {
     else if (k === 's') save();
     else if (k === 'o') openFile();
     else if (k === 'a') { setTool('select'); selectAll(); }
+    else if (k === 'i') { setTool('select'); invertSelection(); }
     else if (k === 'c' || k === 'x') {
       if (window.getSelection && String(window.getSelection())) return; // copying text from the page
       copy(k === 'x');
@@ -188,6 +191,7 @@ export function bindInput(): void {
   initQuickMenu({
     surface: view,
     tools: ['brush', 'pencil', 'eraser', 'clone', 'bucket', 'picker', 'line', 'select'],
+    extra: [{ icon: ICONS.adjust, label: t('Adjust colors'), run: openAdjust }],
     state, setFill, setStroke,
     names: { fill: t('Paint'), stroke: t('Outline') },
     size: { input: '#opt-size', min: 1, max: 200, label: t('Size'), unit: () => 'px' },

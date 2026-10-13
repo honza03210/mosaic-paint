@@ -35,20 +35,20 @@
   <button id="btn-history" title="Earlier versions of your drawing">History</button>
   <button id="btn-share" title="Share the mosaic as a link">Share</button>
   <span class="sep"></span>
-  <button id="btn-undo" title="Undo (Ctrl+Z)">↶</button>
-  <button id="btn-redo" title="Redo (Ctrl+Y)">↷</button>
+  <button id="btn-undo" class="icon" title="Undo (Ctrl+Z)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5l-4 4 4 4"/><path d="M3.5 8.5h8.25a4.25 4.25 0 0 1 0 8.5H9"/></svg></button>
+  <button id="btn-redo" class="icon" title="Redo (Ctrl+Y)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5l4 4-4 4"/><path d="M16.5 8.5H8.25a4.25 4.25 0 0 0 0 8.5H11"/></svg></button>
   <span class="sep"></span>
-  <button id="btn-zoomout" title="Zoom out (-)">−</button>
+  <button id="btn-zoomout" class="icon" title="Zoom out (-)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M12.6 12.6l4.4 4.4M6 8.5h5"/></svg></button>
   <span id="zoom-label">100%</span>
-  <button id="btn-zoomin" title="Zoom in (+)">+</button>
-  <button id="btn-fit" title="Fit page (0)">Fit</button>
+  <button id="btn-zoomin" class="icon" title="Zoom in (+)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M12.6 12.6l4.4 4.4M6 8.5h5M8.5 6v5"/></svg></button>
+  <button id="btn-fit" class="icon" title="Fit page (0)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5V3h4.5M12.5 3H17v4.5M17 12.5V17h-4.5M7.5 17H3v-4.5"/></svg></button>
   <span class="sep"></span>
   <select id="view-filter" title="See the mosaic in black &amp; white or as color-blind people see it (screen only)"></select>
   <button id="btn-contrast" class="expert" title="Mark tiles that blend into a neighbouring tile of another color">Contrast</button>
-  <button id="btn-guide" title="A short guide to the app" aria-label="Guide">?</button>
+  <button id="btn-guide" class="icon" title="A short guide to the app" aria-label="Guide"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M7.7 7.8a2.4 2.4 0 1 1 3.3 2.2c-.6.3-1 .8-1 1.5v.5"/><circle cx="10" cy="14.4" r=".5" class="dot"/></svg></button>
   <select id="lang-select" title="Language" aria-label="Language"></select>
   <button id="btn-install" hidden title="Install as an app that also works offline">Install app</button>
-  <button id="btn-panel" title="Show the side panel">☰</button>
+  <button id="btn-panel" class="icon" title="Show the side panel"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg></button>
   <input type="file" id="file-input" accept=".svg,image/svg+xml" hidden>
 </header>
 
@@ -344,6 +344,7 @@
         <button id="btn-dup" title="Ctrl+D">Duplicate</button>
         <button id="btn-front">To front</button>
         <button id="btn-back">To back</button>
+        <button id="btn-sel-invert" title="Select the other shapes instead (Ctrl+I)">Invert</button>
       </div>
       <div class="row"><button id="btn-mix-sel" title="Give the selected painted areas random colors from the mix">Mix colors</button></div>
     </section>

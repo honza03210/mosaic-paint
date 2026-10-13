@@ -100,3 +100,13 @@ test('vector: the menu opens without starting a line; a polygon in progress is s
   // finished (where the browser reports the double-tap as a double-click) or still being drawn – never lost
   expect(await page.evaluate(() => document.querySelectorAll('#mz-shapes polygon').length || (MZ.state.freePts || []).length >= 3)).toBeTruthy();
 });
+
+test('raster: Adjust colors from the quick menu', async ({ page }) => {
+  await openRaster(page);
+  const p = await center(page, '#view');
+  await doubleTap(page, p);
+  await expect(menu(page)).toBeVisible();
+  await page.locator('#quick-menu .qm-icon[aria-label="Adjust colors"]').tap();
+  await expect(menu(page)).toBeHidden();
+  await expect(page.locator('#dlg-adjust')).toBeVisible();
+});

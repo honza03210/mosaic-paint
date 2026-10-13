@@ -2168,4 +2168,48 @@ export const PL: Record<string, string> = {
     'Tego wideo nie da się tu odtworzyć – spróbuj GIF-a albo zrzutu ekranu.',
   'GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.':
     'GIF-y i wideo: otwórz je (w Discordzie także GIF, wideo lub GIF z Tenora / Giphy z czatu) i wybierz klatkę do edycji – suwakiem, krokami klatek lub odtwarzaniem.',
+  'Everything was selected – now nothing is.':
+    'Zaznaczone było wszystko – teraz nic.',
+  'Invert':
+    'Odwróć',
+  'Select the other shapes instead (Ctrl+I)':
+    'Zaznacz zamiast tego pozostałe kształty (Ctrl+I)',
+  'Adjust':
+    'Dopasuj',
+  'Invert selection':
+    'Odwróć zaznaczenie',
+  'Invert the selection':
+    'Odwróć zaznaczenie',
+  'Brightness, contrast, warmth and the other photo sliders – for the selection or the whole image':
+    'Jasność, kontrast, ciepło i inne suwaki zdjęć – dla zaznaczenia lub całego obrazu',
+  'Select what isn\'t selected (Ctrl+I)':
+    'Zaznacz to, co nie jest zaznaczone (Ctrl+I)',
+  'Light':
+    'Światło',
+  'Detail and effects':
+    'Szczegóły i efekty',
+  'Levels':
+    'Poziomy',
+  'Vibrance':
+    'Jaskrawość',
+  'Warmth':
+    'Ciepło',
+  'Tint':
+    'Zabarwienie',
+  'Fade':
+    'Wyblaknięcie',
+  'Vignette':
+    'Winieta',
+  'Black point':
+    'Punkt czerni',
+  'White point':
+    'Punkt bieli',
+  'Shadows':
+    'Cienie',
+  'Highlights':
+    'Światła',
+  'Midtones':
+    'Półtony',
+  'Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.':
+    'Ładniejsze ikony cofania / ponawiania, powiększania, dopasowania i pomocy; Dopasuj na pasku i w szybkim menu, z nowymi suwakami – cienie, światła, ciepło, zabarwienie, jaskrawość, wyblaknięcie i winieta. Odwracanie zaznaczenia (Ctrl+I) w obu aplikacjach.',
 };

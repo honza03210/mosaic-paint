@@ -1,7 +1,8 @@
 /* Accessible names for buttons that show only a symbol (↑ ↓ ✕ ☰ ★ ✎ ? …): their tooltip becomes what a
    screen reader says, also for buttons added later and when a tooltip changes. Imported by both apps. */
 
-const SYMBOLS = /^[^\p{L}\p{N}]{1,3}$/u;
+// (an icon button has no text at all)
+const SYMBOLS = /^[^\p{L}\p{N}]{0,3}$/u;
 
 function label(b: Element): void {
   if (b.tagName !== 'BUTTON') return;

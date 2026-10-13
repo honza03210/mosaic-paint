@@ -81,3 +81,27 @@ test('healing puts the patch’s texture in the colors around the healed spot', 
   // outside the mask nothing changed
   assert.deepEqual(px(out, w, 2, 2), px(dst, w, 2, 2));
 });
+
+test('shadows lift the dark tones more than the light ones; highlights pull the light ones down; the ends stay', () => {
+  const sh = toneLUT({ ...NO_ADJUST, shadows: 100 }), hi = toneLUT({ ...NO_ADJUST, highlights: -100 });
+  assert.ok(sh[60] - 60 > sh[200] - 200 && sh[60] > 80, `shadows ${sh[60]} ${sh[200]}`);
+  assert.ok(200 - hi[200] > 60 - hi[60] && hi[200] < 180, `highlights ${hi[60]} ${hi[200]}`);
+  assert.equal(sh[0], 0); assert.equal(sh[255], 255); assert.equal(hi[255], 255);
+  const fade = toneLUT({ ...NO_ADJUST, fade: 100 });
+  assert.ok(fade[0] > 25 && fade[255] < 245, 'a matte black and white');
+});
+
+test('warmth, tint, vibrance and vignette', () => {
+  const px = (rgb, a, w = 1, h = 1, x = 0, y = 0) => { const d = new Uint8ClampedArray(w * h * 4); for (let i = 0; i < w * h; i++) d.set([...rgb, 255], i * 4); const o = applyAdjust(d, w, h, { ...NO_ADJUST, ...a }); return [...o.slice((y * w + x) * 4, (y * w + x) * 4 + 3)]; };
+  const warm = px([128, 128, 128], { warmth: 100 });
+  assert.ok(warm[0] > 140 && warm[2] < 116, 'warmer: more red, less blue');
+  assert.ok(px([128, 128, 128], { tint: 100 })[1] < 115, 'magenta: less green');
+  // vibrance: a dull color gains more saturation than a vivid one
+  const sat = ([r, g, b]) => (Math.max(r, g, b) - Math.min(r, g, b)) / Math.max(r, g, b);
+  const dull = [140, 120, 110], vivid = [230, 40, 30];
+  assert.ok(sat(px(dull, { vibrance: 100 })) - sat(dull) > sat(px(vivid, { vibrance: 100 })) - sat(vivid));
+  // vignette: the corner darker, the middle the same
+  assert.ok(px([200, 200, 200], { vignette: 100 }, 41, 41, 0, 0)[0] < 120);
+  assert.deepEqual(px([200, 200, 200], { vignette: 100 }, 41, 41, 20, 20), [200, 200, 200]);
+  assert.ok(px([100, 100, 100], { vignette: -100 }, 41, 41, 0, 0)[0] > 140, 'a light vignette');
+});

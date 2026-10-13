@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '2.3.0', date: '2026-10-13', items: [
+      'Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.',
+    ],
+  },
+  {
     version: '2.2.0', date: '2026-10-13', items: [
       'GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.',
     ],

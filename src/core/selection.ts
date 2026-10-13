@@ -143,6 +143,12 @@ export function toBack(): void {
   for (const el of [...state.selection].reverse()) el.parentNode.insertBefore(el, el.parentNode.firstChild);
   if (state.selection.size) commit();
 }
+/** The shapes that aren't selected become the selection (and the selected ones not). */
+export function invertSelection(): void {
+  if (state.tool !== 'select') setTool('select');
+  state.selection = new Set(allShapes().filter(el => selectable(el) && !state.selection.has(el)));
+  selectionChanged();
+}
 export function selectAll(): void {
   if (state.tool !== 'select') setTool('select');
   state.selection = new Set(allShapes().filter(selectable));

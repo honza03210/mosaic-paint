@@ -501,3 +501,15 @@ dialog.sheet .dlg-foot { position: sticky; bottom: calc(-12px - var(--saib)); ba
 #dlg-frame .fr-canvas[hidden], #dlg-frame .fr-video[hidden] { display: none; }
 #dlg-frame .fr-slider { width: 100%; margin: 12px 0 4px; accent-color: var(--accent); height: 28px; }
 #dlg-frame .fr-controls button { min-width: 44px; min-height: 40px; }
+
+/* icons (icons.ts): outlines in the text color */
+svg.ic { width: 18px; height: 18px; display: block; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+svg.ic .dot, svg.ic .knob { fill: currentColor; }
+svg.ic .knob { stroke: var(--panel2); stroke-width: 1.2; }
+button.icon { padding: 4px 7px; display: inline-grid; place-items: center; min-width: 32px; min-height: 28px; }
+.qm-icon svg.ic { width: 21px; height: 21px; }
+@media (max-width: 760px) { button.icon { min-width: 40px; min-height: 36px; } svg.ic { width: 20px; height: 20px; } }
+#dlg-adjust .adj-group { margin: 10px 0 2px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+button.icon-text { display: inline-flex; align-items: center; gap: 5px; }
+button.icon-text svg.ic { width: 16px; height: 16px; }
+.qm-extra { display: contents; }

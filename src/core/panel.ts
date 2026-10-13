@@ -5,7 +5,7 @@ import { curveNote } from '../shared/curve-notes.ts';
 import { $, $$, state, isFill, fmt, clamp, emit, toast, unit } from './env.ts';
 import { ngonData, setNgon } from './doc.ts';
 import { applyDoc, applyLayers, fitView, zoomCenter, drawGuides } from './view.ts';
-import { deleteSel, duplicate, toFront, toBack } from './selection.ts';
+import { deleteSel, duplicate, toFront, toBack, invertSelection } from './selection.ts';
 import { gapTol, commitGeometry } from './areas.ts';
 import { commit, undo, redo, docChanged } from './history.ts';
 import { savePrefs, bindPalette } from './palette.ts';
@@ -185,6 +185,7 @@ export function bindPanel(): void {
   $('#btn-del').onclick = deleteSel;
   $('#btn-dup').onclick = duplicate;
   $('#btn-front').onclick = toFront;
+  $('#btn-sel-invert').onclick = invertSelection;
   $('#btn-back').onclick = toBack;
 
   // page

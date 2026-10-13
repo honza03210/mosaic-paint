@@ -2168,4 +2168,48 @@ export const SK: Record<string, string> = {
     'Toto video sa tu nedá prehrať – skúste GIF alebo jeho snímku obrazovky.',
   'GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.':
     'GIFy a videá: otvorte ich (v Discorde aj GIF, video alebo GIF z Tenoru / Giphy z chatu) a vyberte snímku na úpravu – posúvačom, po snímkach alebo prehraním.',
+  'Everything was selected – now nothing is.':
+    'Vybraté bolo všetko – teraz nie je nič.',
+  'Invert':
+    'Obrátiť',
+  'Select the other shapes instead (Ctrl+I)':
+    'Vybrať namiesto toho ostatné tvary (Ctrl+I)',
+  'Adjust':
+    'Úpravy',
+  'Invert selection':
+    'Obrátiť výber',
+  'Invert the selection':
+    'Obrátiť výber',
+  'Brightness, contrast, warmth and the other photo sliders – for the selection or the whole image':
+    'Jas, kontrast, teplota a ďalšie posúvače pre fotky – pre výber alebo celý obrázok',
+  'Select what isn\'t selected (Ctrl+I)':
+    'Vybrať, čo vybraté nie je (Ctrl+I)',
+  'Light':
+    'Svetlo',
+  'Detail and effects':
+    'Detaily a efekty',
+  'Levels':
+    'Úrovne',
+  'Vibrance':
+    'Živosť',
+  'Warmth':
+    'Teplota',
+  'Tint':
+    'Odtieň',
+  'Fade':
+    'Vyblednutie',
+  'Vignette':
+    'Vinetácia',
+  'Black point':
+    'Bod čiernej',
+  'White point':
+    'Bod bielej',
+  'Shadows':
+    'Tiene',
+  'Highlights':
+    'Svetlá',
+  'Midtones':
+    'Stredné tóny',
+  'Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.':
+    'Krajšie ikony pre späť / znova, priblíženie, prispôsobenie a pomocníka; Úpravy sú na lište aj v rýchlej ponuke s novými posúvačmi – tiene, svetlá, teplota, odtieň, živosť, vyblednutie a vinetácia. Obrátenie výberu (Ctrl+I) v oboch aplikáciách.',
 };

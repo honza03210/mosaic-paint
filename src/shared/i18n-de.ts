@@ -2168,4 +2168,48 @@ export const DE: Record<string, string> = {
     'Dieses Video lässt sich hier nicht abspielen – versuche ein GIF oder einen Screenshot davon.',
   'GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.':
     'GIFs und Videos: öffne eines (in Discord auch ein GIF, ein Video oder ein Tenor- / Giphy-GIF aus dem Chat) und wähle das Bild zum Bearbeiten – mit Schieberegler, Einzelbildschritten und Abspielen.',
+  'Everything was selected – now nothing is.':
+    'Alles war ausgewählt – jetzt nichts mehr.',
+  'Invert':
+    'Umkehren',
+  'Select the other shapes instead (Ctrl+I)':
+    'Stattdessen die anderen Formen auswählen (Strg+I)',
+  'Adjust':
+    'Anpassen',
+  'Invert selection':
+    'Auswahl umkehren',
+  'Invert the selection':
+    'Die Auswahl umkehren',
+  'Brightness, contrast, warmth and the other photo sliders – for the selection or the whole image':
+    'Helligkeit, Kontrast, Wärme und die anderen Foto-Regler – für die Auswahl oder das ganze Bild',
+  'Select what isn\'t selected (Ctrl+I)':
+    'Auswählen, was nicht ausgewählt ist (Strg+I)',
+  'Light':
+    'Licht',
+  'Detail and effects':
+    'Details und Effekte',
+  'Levels':
+    'Tonwerte',
+  'Vibrance':
+    'Dynamik',
+  'Warmth':
+    'Wärme',
+  'Tint':
+    'Farbton',
+  'Fade':
+    'Verblassen',
+  'Vignette':
+    'Vignette',
+  'Black point':
+    'Schwarzpunkt',
+  'White point':
+    'Weißpunkt',
+  'Shadows':
+    'Tiefen',
+  'Highlights':
+    'Lichter',
+  'Midtones':
+    'Mitteltöne',
+  'Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.':
+    'Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps.',
 };

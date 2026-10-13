@@ -105,6 +105,14 @@ export function deselect(): void {
   state.sel = null;
   selectionChanged();
 }
+/** Everything that isn't selected becomes the selection (nothing selected: all of it). */
+export function invertSelection(): void {
+  if (state.floating) place();
+  const m = selectionFullMask() || new Uint8Array(doc.width * doc.height);
+  for (let i = 0; i < m.length; i++) m[i] = 255 - m[i];
+  setSelectionMask(m, 'new');
+  if (!state.sel) toast(t('Everything was selected – now nothing is.'));
+}
 export function selectAll(): void {
   if (state.floating) place();
   state.sel = { x: 0, y: 0, w: doc.width, h: doc.height };
@@ -157,8 +165,9 @@ export const selectTool: Tool = {
       return;
     }
     const op = opFor(e);
-    // drag inside the selection: move it (Alt: a copy) – unless adding to it or taking from it
-    if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === 'new') {
+    // drag inside the selection: move it (Alt: a copy) – unless adding to it or taking from it, or tapping with
+    // the wand or Object (a tap there always selects anew, as a magic wand does)
+    if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === 'new' && state.selShape !== 'wand' && state.selShape !== 'object') {
       lift(e.altKey);
       state.action = { type: 'move', dx: p.x - state.floating.x, dy: p.y - state.floating.y };
       selectionChanged();

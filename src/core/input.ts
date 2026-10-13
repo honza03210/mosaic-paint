@@ -3,7 +3,7 @@ import type { Pt } from '../lib/geometry.ts';
 import { $, state, rt, svg, stage, previewG, snapG, clamp, handlers, toast, unit, typingIn } from './env.ts';
 import { toDoc, updateView, fitView, zoomAt, zoomCenter, drawGuides } from './view.ts';
 import { snapPoint } from './snap.ts';
-import { selectionChanged, moveElements, deleteSel, duplicate, selectAll } from './selection.ts';
+import { selectionChanged, moveElements, deleteSel, duplicate, selectAll, invertSelection } from './selection.ts';
 import { commitFor } from './areas.ts';
 import { commit, restoreCurrent, undo, redo, steps, dropLastStep } from './history.ts';
 import { savePrefs, pasteColors, setFill, setStroke } from './palette.ts';
@@ -157,6 +157,7 @@ function onKey(e: KeyboardEvent): void {
     else if (k === 'o') openFile();
     else if (k === 'd') duplicate();
     else if (k === 'a') selectAll();
+    else if (k === 'i') invertSelection();
     else return;
     e.preventDefault();
     return;

@@ -5,6 +5,7 @@
    Shared by both apps; each gives what it has through QuickHost. */
 import { $, lsGet, lsSet, toast } from './ui.ts';
 import { t } from './i18n.ts';
+import { ICONS } from './icons.ts';
 
 export interface QuickHost {
   /** the drawing surface (taps on it are watched) */
@@ -18,6 +19,8 @@ export interface QuickHost {
   setStroke(c: string | null, apply: boolean): void;
   /** the size field (brush size / line width): its input, the slider's range and what it is called */
   size: { input: string; min: number; max: number; label: string; unit: () => string };
+  /** more buttons for the top row: an icon, a name and what they do */
+  extra?: { icon: string; label: string; run: () => void }[];
   /** a shape is being drawn: a double-tap belongs to it */
   busy(): boolean;
   /** a count of undo steps made so far; undoes the last one without keeping it for redo */
@@ -49,9 +52,10 @@ function build(): HTMLElement {
   el.hidden = true;
   el.innerHTML = `<div class="qm-card">
 <div class="qm-row qm-head">
-  <button class="qm-icon" data-act="undo" title="${t('Undo')}" aria-label="${t('Undo')}">↶</button>
-  <button class="qm-icon" data-act="redo" title="${t('Redo')}" aria-label="${t('Redo')}">↷</button>
+  <button class="qm-icon" data-act="undo" title="${t('Undo')}" aria-label="${t('Undo')}">${ICONS.undo}</button>
+  <button class="qm-icon" data-act="redo" title="${t('Redo')}" aria-label="${t('Redo')}">${ICONS.redo}</button>
   <button class="qm-icon" data-act="fit" title="${t('Fit to the screen')}" aria-label="${t('Fit to the screen')}"><svg viewBox="0 0 20 20"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4" class="st"/></svg></button>
+  <span class="qm-extra"></span>
   <span class="qm-grow"></span>
   <button class="qm-icon" data-act="close" title="${t('Close')}" aria-label="${t('Close')}">✕</button>
 </div>
@@ -66,6 +70,16 @@ function build(): HTMLElement {
 </div>`;
   document.body.append(el);
   el.querySelector<HTMLElement>('.qm-slabel').textContent = host.size.label;
+  const extra = el.querySelector('.qm-extra');
+  for (const x of host.extra || []) {
+    const b = document.createElement('button');
+    b.className = 'qm-icon';
+    b.title = x.label;
+    b.setAttribute('aria-label', x.label);
+    b.innerHTML = x.icon;
+    b.onclick = () => { close(); x.run(); };
+    extra.append(b);
+  }
   // a tap outside closes it (and does nothing else)
   el.addEventListener('pointerdown', (e) => { if (e.target === el) { e.preventDefault(); close(); } });
   el.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } });

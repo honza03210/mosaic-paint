@@ -13,15 +13,12 @@ import { commit, restoreCurrent } from './history.ts';
 import { place, selectionMask } from './select.ts';
 
 /** slider: key, label, min, max; the midtones slider is −100…100 and stands for gamma 2^(v/50) */
-const SLIDERS: [keyof Adjust, string, number, number][] = [
-  ['brightness', 'Brightness', -100, 100],
-  ['contrast', 'Contrast', -100, 100],
-  ['saturation', 'Saturation', -100, 100],
-  ['black', 'Shadows', 0, 254],
-  ['gamma', 'Midtones', -100, 100],
-  ['white', 'Highlights', 1, 255],
-  ['sharpen', 'Sharpen', 0, 100],
-  ['denoise', 'Smooth noise', 0, 100],
+type Slider = [keyof Adjust, string, number, number];
+const GROUPS: [string, Slider[]][] = [
+  ['Light', [['brightness', 'Brightness', -100, 100], ['contrast', 'Contrast', -100, 100], ['shadows', 'Shadows', -100, 100], ['highlights', 'Highlights', -100, 100]]],
+  ['Color', [['saturation', 'Saturation', -100, 100], ['vibrance', 'Vibrance', -100, 100], ['warmth', 'Warmth', -100, 100], ['tint', 'Tint', -100, 100]]],
+  ['Detail and effects', [['sharpen', 'Sharpen', 0, 100], ['denoise', 'Smooth noise', 0, 100], ['fade', 'Fade', 0, 100], ['vignette', 'Vignette', -100, 100]]],
+  ['Levels', [['black', 'Black point', 0, 254], ['gamma', 'Midtones', -100, 100], ['white', 'White point', 1, 255]]],
 ];
 const toSlider = (k: keyof Adjust, v: number) => (k === 'gamma' ? Math.round(Math.log2(v) * 50) : v);
 const fromSlider = (k: keyof Adjust, v: number) => (k === 'gamma' ? Math.pow(2, v / 50) : v);
@@ -36,7 +33,7 @@ function build(): HTMLDialogElement {
   d.id = 'dlg-adjust';
   d.className = 'sheet';
   d.innerHTML = `<div class="dlg-head"><h2>${t('Adjust colors')}</h2><span class="adj-busy note"></span></div>
-<div class="adj-grid">${SLIDERS.map(([k, label, min, max]) => `<label class="adj-row"><span>${t(label)}</span><input type="range" data-k="${k}" min="${min}" max="${max}" step="1"><output></output></label>`).join('')}</div>
+${GROUPS.map(([title, sliders]) => `<h3 class="adj-group">${t(title)}</h3><div class="adj-grid">${sliders.map(([k, label, min, max]) => `<label class="adj-row"><span>${t(label)}</span><input type="range" data-k="${k}" min="${min}" max="${max}" step="1"><output></output></label>`).join('')}</div>`).join('')}
 <div class="row dlg-foot">
   <button class="adj-auto" title="${t('Stretch the picture’s tones to the full range')}">${t('Auto')}</button>
   <button class="adj-reset">${t('Reset')}</button>

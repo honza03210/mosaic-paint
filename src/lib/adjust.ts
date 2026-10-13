@@ -1,5 +1,5 @@
 /* Photo fixes on RGBA pixels: noise removal, levels (black point, white point, midtones), brightness,
-   contrast, saturation and sharpening. Pure functions on plain arrays, so they run in the worker and in
+   contrast, shadows, highlights, fade, warmth, tint, saturation, vibrance, vignette and sharpening. Pure functions on plain arrays, so they run in the worker and in
    tests. Transparent pixels keep their alpha. */
 
 export interface Adjust {
@@ -15,11 +15,26 @@ export interface Adjust {
   sharpen: number;
   /** 0…100: how strongly noise is smoothed (edges are kept) */
   denoise: number;
+  /** −100…100: the dark tones lighter (or darker), the light tones darker (or lighter) */
+  shadows: number;
+  highlights: number;
+  /** 0…100: a matte look – black lifted, contrast softened */
+  fade: number;
+  /** −100…100: cooler (blue) … warmer (yellow); green … magenta */
+  warmth: number;
+  tint: number;
+  /** −100…100: saturation that boosts the dull colors more than the vivid ones (skin stays natural) */
+  vibrance: number;
+  /** −100…100: the corners darker (or lighter) */
+  vignette: number;
 }
-export const NO_ADJUST: Adjust = { brightness: 0, contrast: 0, saturation: 0, black: 0, white: 255, gamma: 1, sharpen: 0, denoise: 0 };
+export const NO_ADJUST: Adjust = {
+  brightness: 0, contrast: 0, saturation: 0, black: 0, white: 255, gamma: 1, sharpen: 0, denoise: 0,
+  shadows: 0, highlights: 0, fade: 0, warmth: 0, tint: 0, vibrance: 0, vignette: 0,
+};
 export const isNoAdjust = (a: Adjust): boolean => (Object.keys(NO_ADJUST) as (keyof Adjust)[]).every(k => a[k] === NO_ADJUST[k]);
 
-/** The tone curve for one channel value: levels, then brightness and contrast. */
+/** The tone curve for one channel value: levels, brightness and contrast, shadows and highlights, fade. */
 export function toneLUT(a: Adjust): Uint8ClampedArray {
   const lut = new Uint8ClampedArray(256), lo = Math.min(a.black, a.white - 1), hi = Math.max(a.white, lo + 1);
   const c = a.contrast / 100, k = c >= 0 ? 1 / Math.max(0.01, 1 - c) : 1 + c, b = a.brightness / 100 * 255;
@@ -27,6 +42,12 @@ export function toneLUT(a: Adjust): Uint8ClampedArray {
     let x = Math.min(1, Math.max(0, (v - lo) / (hi - lo)));
     x = Math.pow(x, 1 / a.gamma) * 255;
     x = (x - 128) * k + 128 + b;
+    // shadows and highlights: bumps that are strongest a third and two thirds of the way up (ends stay put)
+    const y = Math.min(1, Math.max(0, x / 255)), bump = 27 / 4;
+    x += 255 * 0.25 * bump * ((a.shadows / 100) * y * (1 - y) * (1 - y) + (a.highlights / 100) * y * y * (1 - y));
+    // fade: black lifted, the range squeezed a little
+    const f = a.fade / 100;
+    if (f) x = 255 * f * 0.14 + x * (1 - f * 0.22);
     lut[v] = Math.round(x);
   }
   return lut;
@@ -106,12 +127,28 @@ function sharpen(out: Uint8ClampedArray, w: number, h: number, amount: number): 
 export function applyAdjust(data: Uint8ClampedArray | Uint8Array, w: number, h: number, a: Adjust): Uint8ClampedArray<ArrayBuffer> {
   const out = new Uint8ClampedArray(data);
   if (a.denoise > 0) denoise(out, w, h, a.denoise);
-  const lut = toneLUT(a), s = 1 + a.saturation / 100;
-  for (let i = 0; i < out.length; i += 4) {
+  const lut = toneLUT(a), s = 1 + a.saturation / 100, vib = a.vibrance / 100, warm = a.warmth / 100 * 28, tint = a.tint / 100 * 22;
+  const vg = a.vignette / 100, cx = w / 2, cy = h / 2, rmax = Math.hypot(cx, cy) || 1;
+  for (let i = 0, p = 0; i < out.length; i += 4, p++) {
     let r = lut[out[i]], g = lut[out[i + 1]], b = lut[out[i + 2]];
+    // warmth: red up and blue down (or back); tint: magenta (green down) or green
+    if (warm) { r += warm; b -= warm; }
+    if (tint) { g -= tint; r += tint / 2; b += tint / 2; }
     if (s !== 1) {
       const l = 0.299 * r + 0.587 * g + 0.114 * b;
       r = l + (r - l) * s; g = l + (g - l) * s; b = l + (b - l) * s;
+    }
+    if (vib) {
+      // more for the dull colors: how saturated it is already holds it back
+      const mx = Math.max(r, g, b), mn = Math.min(r, g, b), sat = mx > 0 ? (mx - mn) / mx : 0, k = 1 + vib * (1 - sat);
+      const l = 0.299 * r + 0.587 * g + 0.114 * b;
+      r = l + (r - l) * k; g = l + (g - l) * k; b = l + (b - l) * k;
+    }
+    if (vg) {
+      // from the middle out: nothing in the inner part, most in the corners
+      const x = p % w, y = (p - x) / w, d = Math.hypot(x + 0.5 - cx, y + 0.5 - cy) / rmax, e = Math.max(0, (d - 0.35) / 0.65), m = e * e * (3 - 2 * e);
+      const f = vg > 0 ? 1 - 0.65 * vg * m : 1, add = vg < 0 ? -vg * m * 0.65 : 0;
+      r = r * f + (255 - r) * add; g = g * f + (255 - g) * add; b = b * f + (255 - b) * add;
     }
     out[i] = r; out[i + 1] = g; out[i + 2] = b;
   }
