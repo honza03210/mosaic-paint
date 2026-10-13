@@ -7,6 +7,9 @@ import * as P from './prep.ts';
 
 type Ort = typeof ortGpu;
 let ort: Ort | null = null, gpu = false;
+/** a phone (or little memory): ONNX Runtime's memory arena off – it grows to about 2 GB for SAM's encoder,
+    more than iOS lets a tab have; without it about 100 MB, if slower */
+let lean = false;
 const sessions = new Map<string, any>();
 /** SAM's encoding of the current picture (tapping again only runs the small decoder) */
 let sam: { key: string; emb: any; pos: any; w: number; h: number; scale: number } | null = null;
@@ -16,12 +19,14 @@ async function session(name: string): Promise<any> {
   if (!s) throw new Error(`model ${name} not loaded`);
   return s;
 }
+const memoryOptions = () => (lean ? { enableCpuMemArena: false, enableMemPattern: false } : {});
 const T = (type: 'float32' | 'uint8' | 'int64', data: any, dims: number[]) => new ort.Tensor(type, data, dims);
 
 const ops: Record<string, (a: any) => Promise<unknown> | unknown> = {
-  init(a: { gpu: boolean; wasm: ArrayBuffer }) {
+  init(a: { gpu: boolean; wasm: ArrayBuffer; lean?: boolean }) {
     if (ort) return gpu;
     gpu = a.gpu;
+    lean = !!a.lean;
     ort = (a.gpu ? ortGpu : ortCpu) as Ort;
     ort.env.wasm.wasmBinary = a.wasm;
     ort.env.wasm.numThreads = 1;
@@ -29,16 +34,26 @@ const ops: Record<string, (a: any) => Promise<unknown> | unknown> = {
     return gpu;
   },
   has: (a: { name: string }) => sessions.has(a.name),
+  /** Lets go of the models not in keep (a phone keeps one feature's models at a time). */
+  async keepOnly(a: { keep: string[] }) {
+    for (const [name, s] of sessions) {
+      if (a.keep.includes(name)) continue;
+      sessions.delete(name);
+      if (name === 'samEncoder') sam = null;
+      await s.release?.();
+    }
+    return true;
+  },
   async load(a: { name: string; model: ArrayBuffer }) {
     if (sessions.has(a.name)) return true;
     const bytes = new Uint8Array(a.model);
     let s;
     try {
-      s = await ort.InferenceSession.create(bytes, { executionProviders: gpu ? ['webgpu', 'wasm'] : ['wasm'] });
+      s = await ort.InferenceSession.create(bytes, { executionProviders: gpu ? ['webgpu', 'wasm'] : ['wasm'], ...memoryOptions() });
     } catch (e) {
       // WebGPU there but not working (an old driver): the CPU then
       if (!gpu) throw e;
-      s = await ort.InferenceSession.create(bytes, { executionProviders: ['wasm'] });
+      s = await ort.InferenceSession.create(bytes, { executionProviders: ['wasm'], ...memoryOptions() });
     }
     sessions.set(a.name, s);
     return true;

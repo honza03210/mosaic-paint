@@ -153,7 +153,7 @@ Some features need a one-time download. Nothing is downloaded until you agree to
 | Read text (OCR) | **Read text…**: the text in the image or selection, to copy (Tesseract) | 7 MB + 2–3 MB per language |
 | Depth for 3D relief (AI) | **3D relief…** from AI depth (Depth Anything V2 small) | 27 MB |
 
-The AI add-ons share one engine (ONNX Runtime Web, downloaded once: 27 MB with WebGPU, 14 MB without). **3D relief…** also works without any download, from the picture's brightness (light or dark high – a lithophane).
+The AI add-ons share one engine (ONNX Runtime Web, downloaded once: 27 MB with WebGPU, 14 MB without – iPhone and iPad use the one without). On phones it works in less memory (slower, but iOS closes tabs that take much more than a gigabyte) and keeps one feature's models at a time. **3D relief…** also works without any download, from the picture's brightness (light or dark high – a lithophane).
 
 ## Files
 

@@ -23,7 +23,20 @@ export interface Addon {
   unavailable?: () => string | null;
 }
 /** WebGPU (tests can turn it off with window.__noWebGPU, to try the other engine) */
-const hasGpu = () => typeof navigator !== 'undefined' && 'gpu' in navigator && !(globalThis as any).__noWebGPU;
+const nav = () => (typeof navigator === 'undefined' ? null : navigator);
+/** iPhone and iPad (all their browsers are Safari's engine; iPadOS says it is a Mac, but has touch) */
+const appleMobile = () => { const n = nav(); return !!n && (/iPhone|iPad|iPod/.test(n.userAgent) || (/Macintosh/.test(n.userAgent) && n.maxTouchPoints > 1)); };
+/**
+ * A phone or tablet, or little memory: the AI then works in less memory (slower) and keeps one feature's
+ * models at a time – iOS closes a tab that takes much more than a gigabyte. (Tests can set window.__lowMemory.)
+ */
+export const lowMemory = (): boolean => {
+  const n = nav() as any;
+  return !!(globalThis as any).__lowMemory || appleMobile() || (!!n && /Android|Mobile/.test(n.userAgent)) || (n?.deviceMemory ?? 8) <= 4;
+};
+/** WebGPU – not on iPhone / iPad, where it is new in Safari's engine and the CPU is the safe way (tests can turn it
+    off with window.__noWebGPU, to try the other engine) */
+const hasGpu = () => { const n = nav(); return !!n && 'gpu' in n && !appleMobile() && !(globalThis as any).__noWebGPU; };
 /** The engine file this device uses. */
 export const engineFile = (): FileId => (hasGpu() ? 'ortGpu' : 'ortCpu');
 /** The text-recognition languages: English and the app's language. */
@@ -92,10 +105,12 @@ export async function getFile(id: FileId, progress?: (got: number) => void): Pro
   const buf = new Uint8Array(got);
   let o = 0;
   for (const p of parts) { buf.set(p, o); o += p.length; }
-  memory.set(f.url, buf.buffer.slice(0));
+  // kept in the browser's cache; only where that is missing or full, in memory for this visit
+  let stored = false;
   if (c) {
-    try { await c.put(f.url, new Response(buf, { headers: { 'content-type': 'application/octet-stream' } })); } catch { /* full: kept for this visit only */ }
+    try { await c.put(f.url, new Response(buf, { headers: { 'content-type': 'application/octet-stream' } })); stored = true; } catch { /* full */ }
   }
+  if (!stored) memory.set(f.url, buf.buffer.slice(0));
   return buf.buffer;
 }
 /** Removes an add-on's files that no other installed add-on needs (the shared engine stays while one does). */

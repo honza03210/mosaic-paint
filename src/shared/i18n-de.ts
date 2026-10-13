@@ -2148,4 +2148,6 @@ export const DE: Record<string, string> = {
     'Alle Ebenen in einer Datei speichern (OpenRaster – GIMP, Krita und andere öffnen sie); Öffnen… öffnet sie wieder',
   'Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.':
     'Ebenen in der Raster-App: auf die aktive Ebene malen, ein- / ausblenden, Deckkraft, verschieben, zusammenfügen, reduzieren – Rückgängig kennt alles. Ebenen speichern behält sie in einer OpenRaster-Datei (.ora – GIMP und Krita öffnen sie), und das automatische Speichern auch.',
+  'The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature\'s models at a time.':
+    'Die KI-Add-ons auf Handys: viel weniger Speicher (kein Absturz mehr beim Auswählen eines Objekts auf dem iPhone) – auf iPhone und iPad die CPU-Engine, und immer nur die Modelle einer Funktion.',
 };

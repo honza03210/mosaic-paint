@@ -2148,4 +2148,6 @@ export const PL: Record<string, string> = {
     'Zapisz wszystkie warstwy w jednym pliku (OpenRaster – otwiera go GIMP, Krita i inne); Otwórz… otwiera go ponownie',
   'Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.':
     'Warstwy w aplikacji rastrowej: malowanie na aktywnej warstwie, pokazywanie / ukrywanie, krycie, przesuwanie, scalanie, spłaszczanie – Cofnij zna wszystko. Zapisz warstwy zachowuje je w pliku OpenRaster (.ora – otwiera go GIMP i Krita), zachowuje je też automatyczny zapis.',
+  'The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature\'s models at a time.':
+    'Dodatki AI na telefonach: znacznie mniej pamięci (zaznaczanie obiektu na iPhonie już się nie wywala) – na iPhonie i iPadzie silnik CPU i zawsze modele tylko jednej funkcji.',
 };

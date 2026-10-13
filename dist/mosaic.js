@@ -1080,7 +1080,8 @@
     "Put this layer onto the one under it": "Vložit tuto vrstvu do té pod ní",
     "All the layers as one": "Všechny vrstvy v jednu",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Uložit všechny vrstvy do jednoho souboru (OpenRaster – otevře ho GIMP, Krita a další); Otevřít… ho zase otevře",
-    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrové aplikaci: malování do aktivní vrstvy, zobrazení / skrytí, krytí, přesun, sloučení – Zpět zná všechno. Uložit vrstvy je zachová v souboru OpenRaster (.ora – otevře ho GIMP i Krita) a zachová je i automatické ukládání."
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrové aplikaci: malování do aktivní vrstvy, zobrazení / skrytí, krytí, přesun, sloučení – Zpět zná všechno. Uložit vrstvy je zachová v souboru OpenRaster (.ora – otevře ho GIMP i Krita) a zachová je i automatické ukládání.",
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Doplňky AI na telefonech: mnohem méně paměti (výběr objektu už na iPhonu nespadne) – na iPhonu a iPadu jádro pro procesor a vždy jen modely jedné funkce."
   };
 
   // src/shared/i18n-de.ts
@@ -2158,7 +2159,8 @@
     "Put this layer onto the one under it": "Diese Ebene auf die darunter legen",
     "All the layers as one": "Alle Ebenen zu einer",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Alle Ebenen in einer Datei speichern (OpenRaster – GIMP, Krita und andere öffnen sie); Öffnen… öffnet sie wieder",
-    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Ebenen in der Raster-App: auf die aktive Ebene malen, ein- / ausblenden, Deckkraft, verschieben, zusammenfügen, reduzieren – Rückgängig kennt alles. Ebenen speichern behält sie in einer OpenRaster-Datei (.ora – GIMP und Krita öffnen sie), und das automatische Speichern auch."
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Ebenen in der Raster-App: auf die aktive Ebene malen, ein- / ausblenden, Deckkraft, verschieben, zusammenfügen, reduzieren – Rückgängig kennt alles. Ebenen speichern behält sie in einer OpenRaster-Datei (.ora – GIMP und Krita öffnen sie), und das automatische Speichern auch.",
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Die KI-Add-ons auf Handys: viel weniger Speicher (kein Absturz mehr beim Auswählen eines Objekts auf dem iPhone) – auf iPhone und iPad die CPU-Engine, und immer nur die Modelle einer Funktion."
   };
 
   // src/shared/i18n-sk.ts
@@ -3236,7 +3238,8 @@
     "Put this layer onto the one under it": "Vložiť túto vrstvu do tej pod ňou",
     "All the layers as one": "Všetky vrstvy do jednej",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Uložiť všetky vrstvy do jedného súboru (OpenRaster – otvorí ho GIMP, Krita a ďalšie); Otvoriť… ho zase otvorí",
-    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrovej aplikácii: maľovanie do aktívnej vrstvy, zobrazenie / skrytie, krytie, presun, zlúčenie – Späť pozná všetko. Uložiť vrstvy ich zachová v súbore OpenRaster (.ora – otvorí ho GIMP aj Krita) a zachová ich aj automatické ukladanie."
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrovej aplikácii: maľovanie do aktívnej vrstvy, zobrazenie / skrytie, krytie, presun, zlúčenie – Späť pozná všetko. Uložiť vrstvy ich zachová v súbore OpenRaster (.ora – otvorí ho GIMP aj Krita) a zachová ich aj automatické ukladanie.",
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Doplnky AI na telefónoch: oveľa menej pamäte (výber objektu už na iPhone nespadne) – na iPhone a iPade jadro pre procesor a vždy len modely jednej funkcie."
   };
 
   // src/shared/i18n-pl.ts
@@ -4314,7 +4317,8 @@
     "Put this layer onto the one under it": "Nałóż tę warstwę na tę pod nią",
     "All the layers as one": "Wszystkie warstwy w jedną",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Zapisz wszystkie warstwy w jednym pliku (OpenRaster – otwiera go GIMP, Krita i inne); Otwórz… otwiera go ponownie",
-    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Warstwy w aplikacji rastrowej: malowanie na aktywnej warstwie, pokazywanie / ukrywanie, krycie, przesuwanie, scalanie, spłaszczanie – Cofnij zna wszystko. Zapisz warstwy zachowuje je w pliku OpenRaster (.ora – otwiera go GIMP i Krita), zachowuje je też automatyczny zapis."
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Warstwy w aplikacji rastrowej: malowanie na aktywnej warstwie, pokazywanie / ukrywanie, krycie, przesuwanie, scalanie, spłaszczanie – Cofnij zna wszystko. Zapisz warstwy zachowuje je w pliku OpenRaster (.ora – otwiera go GIMP i Krita), zachowuje je też automatyczny zapis.",
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Dodatki AI na telefonach: znacznie mniej pamięci (zaznaczanie obiektu na iPhonie już się nie wywala) – na iPhonie i iPadzie silnik CPU i zawsze modele tylko jednej funkcji."
   };
 
   // src/shared/i18n.ts
@@ -13593,8 +13597,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.1.0" : "dev";
+  var VERSION = true ? "2.1.1" : "dev";
   var RELEASES = [
+    {
+      version: "2.1.1",
+      date: "2026-10-13",
+      items: [
+        "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time."
+      ]
+    },
     {
       version: "2.1.0",
       date: "2026-10-13",

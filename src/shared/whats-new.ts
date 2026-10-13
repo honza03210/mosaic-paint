@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '2.1.1', date: '2026-10-13', items: [
+      'The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature\'s models at a time.',
+    ],
+  },
+  {
     version: '2.1.0', date: '2026-10-13', items: [
       'Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.',
     ],

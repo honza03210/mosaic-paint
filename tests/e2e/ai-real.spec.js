@@ -27,8 +27,10 @@ async function agree(page) {
   await d.locator('button[value=ok]').click();
 }
 
-for (const engine of ['webgpu', 'cpu']) test(`the add-ons, downloaded and run for real (${engine})`, async ({ page }) => {
-  if (engine === 'cpu') await page.addInitScript(() => { window.__noWebGPU = true; });
+// phone: as on an iPhone – the CPU engine, the memory arena off, one feature's models at a time
+for (const engine of ['webgpu', 'cpu', 'phone']) test(`the add-ons, downloaded and run for real (${engine})`, async ({ page }) => {
+  if (engine !== 'webgpu') await page.addInitScript(() => { window.__noWebGPU = true; });
+  if (engine === 'phone') await page.addInitScript(() => { window.__lowMemory = true; });
   page.on('console', m => console.log('console:', m.type(), m.text()));
   page.on('pageerror', e => console.log('pageerror:', e.message));
   page.on('requestfailed', r => console.log('failed:', r.url().slice(0, 120), r.failure()?.errorText));

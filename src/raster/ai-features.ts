@@ -7,7 +7,7 @@ import * as Relief from '../lib/relief.ts';
 import { stl } from '../lib/model3d.ts';
 import { $, toast } from '../shared/ui.ts';
 import { t } from '../shared/i18n.ts';
-import { ensureAddon, getFile, engineFile, ocrLangs, FILES, mb, bindAddons, type FileId } from '../shared/addons.ts';
+import { ensureAddon, getFile, engineFile, ocrLangs, FILES, mb, bindAddons, lowMemory, type FileId } from '../shared/addons.ts';
 import { state, savePrefs } from './state.ts';
 import { doc, dctx, makeCanvas, requestRender } from './canvas.ts';
 import { commit, imageVersion } from './history.ts';
@@ -46,7 +46,9 @@ function call<T>(op: string, args: unknown, transfer: Transferable[] = []): Prom
 async function prepare(addonId: string, models: FileId[]): Promise<boolean> {
   if (!(await ensureAddon(addonId))) return false;
   const engine = engineFile();
-  await call('init', { gpu: engine === 'ortGpu', wasm: await getFile(engine) });
+  await call('init', { gpu: engine === 'ortGpu', wasm: await getFile(engine), lean: lowMemory() });
+  // a phone keeps only this feature's models
+  if (lowMemory()) await call('keepOnly', { keep: models });
   for (const m of models) {
     if (await call<boolean>('has', { name: m })) continue;
     toast(t('Starting the AI…'));

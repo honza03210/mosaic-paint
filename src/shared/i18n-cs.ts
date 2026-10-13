@@ -2148,4 +2148,6 @@ export const CS: Record<string, string> = {
     'Uložit všechny vrstvy do jednoho souboru (OpenRaster – otevře ho GIMP, Krita a další); Otevřít… ho zase otevře',
   'Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.':
     'Vrstvy v rastrové aplikaci: malování do aktivní vrstvy, zobrazení / skrytí, krytí, přesun, sloučení – Zpět zná všechno. Uložit vrstvy je zachová v souboru OpenRaster (.ora – otevře ho GIMP i Krita) a zachová je i automatické ukládání.',
+  'The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature\'s models at a time.':
+    'Doplňky AI na telefonech: mnohem méně paměti (výběr objektu už na iPhonu nespadne) – na iPhonu a iPadu jádro pro procesor a vždy jen modely jedné funkce.',
 };
