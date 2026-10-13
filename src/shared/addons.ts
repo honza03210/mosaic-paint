@@ -58,9 +58,13 @@ const source = (url: string) => (inDiscord() ? `/.proxy/api/fetch?u=${encodeURIC
 async function cache(): Promise<Cache | null> {
   try { return await caches.open(CACHE); } catch { return null; }
 }
+/** Downloads kept for this visit too: where the browser has no Cache Storage (or won't keep the files), the
+    add-ons still work until the page is closed. */
+const memory = new Map<string, ArrayBuffer>();
 export async function hasFile(id: FileId): Promise<boolean> {
+  if (memory.has(FILES[id].url)) return true;
   const c = await cache();
-  return !!c && !!(await c.match(FILES[id].url));
+  try { return !!c && !!(await c.match(FILES[id].url)); } catch { return false; }
 }
 export async function isInstalled(a: Addon): Promise<boolean> {
   for (const f of filesOf(a)) if (!(await hasFile(f))) return false;
@@ -68,8 +72,10 @@ export async function isInstalled(a: Addon): Promise<boolean> {
 }
 /** A downloaded file (from the cache; a file that is missing is downloaded – no question asked, so ask first). */
 export async function getFile(id: FileId, progress?: (got: number) => void): Promise<ArrayBuffer> {
-  const f = FILES[id], c = await cache();
-  const hit = c && await c.match(f.url);
+  const f = FILES[id], kept = memory.get(f.url);
+  if (kept) return kept.slice(0);
+  const c = await cache();
+  const hit = c && await c.match(f.url).catch(() => undefined);
   if (hit) return hit.arrayBuffer();
   const r = await fetch(source(f.url));
   if (!r.ok || !r.body) throw new Error(t('Download failed ({status}).', { status: r.status }));
@@ -86,18 +92,18 @@ export async function getFile(id: FileId, progress?: (got: number) => void): Pro
   const buf = new Uint8Array(got);
   let o = 0;
   for (const p of parts) { buf.set(p, o); o += p.length; }
+  memory.set(f.url, buf.buffer.slice(0));
   if (c) {
-    try { await c.put(f.url, new Response(buf, { headers: { 'content-type': 'application/octet-stream' } })); } catch { /* full: it still works this time */ }
+    try { await c.put(f.url, new Response(buf, { headers: { 'content-type': 'application/octet-stream' } })); } catch { /* full: kept for this visit only */ }
   }
   return buf.buffer;
 }
 /** Removes an add-on's files that no other installed add-on needs (the shared engine stays while one does). */
 export async function removeAddon(a: Addon): Promise<void> {
-  const c = await cache();
-  if (!c) return;
+  const c = await cache() || { delete: async () => true } as unknown as Cache;
   const keep = new Set<FileId>();
   for (const b of ADDONS) if (b !== a && await isInstalled(b)) for (const f of filesOf(b)) keep.add(f);
-  for (const f of filesOf(a)) if (!keep.has(f)) await c.delete(FILES[f].url);
+  for (const f of filesOf(a)) if (!keep.has(f)) { memory.delete(FILES[f].url); await c.delete(FILES[f].url); }
 }
 
 export const mb = (bytes: number): string => (bytes >= 1e6 ? `${(bytes / 1e6).toFixed(bytes >= 1e7 ? 0 : 1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} kB`);
@@ -144,8 +150,13 @@ async function ensure(id: string): Promise<boolean> {
 <div class="row dlg-foot"><button value="cancel" formnovalidate>${esc(t('Cancel'))}</button><button value="ok" class="primary">${esc(t('Download {size}', { size: mb(total) }))}</button></div>
 </form>`;
   d.returnValue = '';
+  // the answer comes from the buttons themselves (Esc: no) – not from the close event, which comes a moment
+  // later: a tap in between must not get this answer
   const ok = await new Promise<boolean>((resolve) => {
-    d.addEventListener('close', () => resolve(d.returnValue === 'ok'), { once: true });
+    const answer = (yes: boolean) => (e?: Event) => { e?.preventDefault(); d.oncancel = null; d.close(); resolve(yes); };
+    d.querySelector<HTMLElement>('button[value=ok]').onclick = answer(true);
+    d.querySelector<HTMLElement>('button[value=cancel]').onclick = answer(false);
+    d.oncancel = answer(false);
     d.showModal();
   });
   if (!ok) return false;

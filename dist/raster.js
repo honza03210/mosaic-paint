@@ -10218,17 +10218,25 @@ ${shapes.join("\n")}
       return null;
     }
   }
+  var memory = /* @__PURE__ */ new Map();
   async function hasFile(id) {
+    if (memory.has(FILES[id].url)) return true;
     const c = await cache2();
-    return !!c && !!await c.match(FILES[id].url);
+    try {
+      return !!c && !!await c.match(FILES[id].url);
+    } catch {
+      return false;
+    }
   }
   async function isInstalled(a) {
     for (const f of filesOf(a)) if (!await hasFile(f)) return false;
     return true;
   }
   async function getFile(id, progress) {
-    const f = FILES[id], c = await cache2();
-    const hit = c && await c.match(f.url);
+    const f = FILES[id], kept = memory.get(f.url);
+    if (kept) return kept.slice(0);
+    const c = await cache2();
+    const hit = c && await c.match(f.url).catch(() => void 0);
     if (hit) return hit.arrayBuffer();
     const r = await fetch(source(f.url));
     if (!r.ok || !r.body) throw new Error(t("Download failed ({status}).", { status: r.status }));
@@ -10247,6 +10255,7 @@ ${shapes.join("\n")}
       buf.set(p, o);
       o += p.length;
     }
+    memory.set(f.url, buf.buffer.slice(0));
     if (c) {
       try {
         await c.put(f.url, new Response(buf, { headers: { "content-type": "application/octet-stream" } }));
@@ -10256,11 +10265,13 @@ ${shapes.join("\n")}
     return buf.buffer;
   }
   async function removeAddon(a) {
-    const c = await cache2();
-    if (!c) return;
+    const c = await cache2() || { delete: async () => true };
     const keep = /* @__PURE__ */ new Set();
     for (const b of ADDONS) if (b !== a && await isInstalled(b)) for (const f of filesOf(b)) keep.add(f);
-    for (const f of filesOf(a)) if (!keep.has(f)) await c.delete(FILES[f].url);
+    for (const f of filesOf(a)) if (!keep.has(f)) {
+      memory.delete(FILES[f].url);
+      await c.delete(FILES[f].url);
+    }
   }
   var mb = (bytes) => bytes >= 1e6 ? `${(bytes / 1e6).toFixed(bytes >= 1e7 ? 0 : 1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} kB`;
   async function missing(a) {
@@ -10305,7 +10316,15 @@ ${shapes.join("\n")}
 </form>`;
     d.returnValue = "";
     const ok = await new Promise((resolve) => {
-      d.addEventListener("close", () => resolve(d.returnValue === "ok"), { once: true });
+      const answer = (yes) => (e) => {
+        e?.preventDefault();
+        d.oncancel = null;
+        d.close();
+        resolve(yes);
+      };
+      d.querySelector("button[value=ok]").onclick = answer(true);
+      d.querySelector("button[value=cancel]").onclick = answer(false);
+      d.oncancel = answer(false);
       d.showModal();
     });
     if (!ok) return false;

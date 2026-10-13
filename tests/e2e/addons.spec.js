@@ -23,8 +23,11 @@ async function setup(page) {
     };
     window.__ocrStub = { recognize: async () => 'HELLO from the stand-in' };
   });
+  page.on('console', m => { if (/addon-dialog|error/i.test(m.text())) console.log('page:', m.text()); });
   await page.goto('raster.html');
   await page.waitForFunction(() => window.RZ && window.RZ.ready);
+  // (for a stuck test: every add-on question, as it comes)
+  await page.evaluate(() => new MutationObserver(() => { const d = document.querySelector('#dlg-addon'); if (d?.open) console.log('addon-dialog: ' + d.textContent.slice(0, 60)); }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open'] }));
   await page.evaluate(() => { RZ.blank(200, 100, '#808080'); });
   await page.click('#btn-fit');
   return fetched;
@@ -64,7 +67,7 @@ test('Select object: asks first (with the size), downloads only after OK, then s
   await expect(row).toContainText('installed');
   await row.locator('.addon-remove').click();
   await expect(row.locator('.addon-get')).toBeVisible();
-  expect(await page.evaluate(async () => (await (await caches.open('mosaic-paint-addons-1')).keys()).length)).toBe(0);
+  expect(await page.evaluate(async () => { try { return (await (await caches.open('mosaic-paint-addons-1')).keys()).length; } catch { return 0; } })).toBe(0);
 });
 
 test('background removal, AI fill for Remove, Read text and the 3D relief', async ({ page }) => {
