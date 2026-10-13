@@ -47,7 +47,7 @@
   <select id="lang-select" title="Language" aria-label="Language"></select>
   <button id="btn-install" hidden title="Install as an app that also works offline">Install app</button>
   <button id="btn-panel" title="Show the side panel">☰</button>
-  <input type="file" id="file-input" accept="image/*" hidden>
+  <input type="file" id="file-input" accept="image/*,.ora" hidden>
 </header>
 
 <div id="main">
@@ -246,6 +246,25 @@
       <p class="note">Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.</p>
     </section>
 
+    <section id="layers-section">
+      <h3>Layers</h3>
+      <ol id="layer-list" aria-label="Layers – the top one first"></ol>
+      <div class="row"><label class="grow">Opacity <input id="layer-opacity" type="range" min="0" max="100"></label><span id="layer-opacity-label" class="note"></span></div>
+      <div class="row btns small">
+        <button id="btn-layer-add" title="A new, empty layer above this one">New</button>
+        <button id="btn-layer-dup" title="A copy of this layer">Duplicate</button>
+        <button id="btn-layer-up" title="Move this layer up" aria-label="Move up">↑</button>
+        <button id="btn-layer-down" title="Move this layer down" aria-label="Move down">↓</button>
+        <button id="btn-layer-del" title="Delete this layer">Delete</button>
+      </div>
+      <div class="row btns small">
+        <button id="btn-layer-merge" title="Put this layer onto the one under it">Merge down</button>
+        <button id="btn-layer-flatten" title="All the layers as one">Flatten</button>
+        <button id="btn-layer-ora" title="Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again">Save layers (.ora)</button>
+      </div>
+      <p class="note">Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.</p>
+    </section>
+
     <section>
       <h3>Mosaic</h3>
       <div class="row"><button id="btn-mosaic" class="primary" title="Turn the image (or the selection) into tiles with grout">Make a mosaic…</button></div>
@@ -411,7 +430,7 @@
 <dialog id="dlg-export">
   <form method="dialog" class="dlg-head"><h2>Export</h2><button title="Close">✕</button></form>
   <div class="row">
-    <label>Format <select id="ex-format"><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option><option value="image/png">PNG</option></select></label>
+    <label>Format <select id="ex-format"><option value="image/jpeg">JPEG</option><option value="image/webp">WebP</option><option value="image/png">PNG</option><option value="ora">Layers (.ora)</option></select></label>
     <label id="ex-quality-row">Quality <input id="ex-quality" type="number" min="10" max="100" step="5" value="90"> %</label>
   </div>
   <p class="note">JPEG has no transparency: transparent parts become white.</p>

@@ -71,3 +71,27 @@ export async function zip(entries: ZipEntry[], { compress = true } = {}): Promis
   for (const p of [...parts, ...central, end]) { out.set(p, o); o += p.length; }
   return out;
 }
+
+/** The files in a ZIP archive (stored or deflated entries), by name. */
+export async function unzip(data: Uint8Array): Promise<Map<string, Uint8Array>> {
+  const v = new DataView(data.buffer, data.byteOffset, data.byteLength), out = new Map<string, Uint8Array>();
+  // the end record: in the last 64 kB (after it may come a comment)
+  let end = -1;
+  for (let i = data.length - 22; i >= Math.max(0, data.length - 65557); i--) if (v.getUint32(i, true) === 0x06054b50) { end = i; break; }
+  if (end < 0) throw new Error('not a ZIP file');
+  const count = v.getUint16(end + 10, true);
+  let p = v.getUint32(end + 16, true);
+  const dec = new TextDecoder();
+  for (let k = 0; k < count; k++) {
+    if (v.getUint32(p, true) !== 0x02014b50) throw new Error('broken ZIP file');
+    const method = v.getUint16(p + 10, true), size = v.getUint32(p + 20, true), nameLen = v.getUint16(p + 28, true);
+    const extraLen = v.getUint16(p + 30, true), commentLen = v.getUint16(p + 32, true), local = v.getUint32(p + 42, true);
+    const name = dec.decode(data.subarray(p + 46, p + 46 + nameLen));
+    // the data starts after the local header (whose name and extra field may differ in length)
+    const start = local + 30 + v.getUint16(local + 26, true) + v.getUint16(local + 28, true), body = data.subarray(start, start + size);
+    if (method === 0) out.set(name, body.slice());
+    else if (method === 8) out.set(name, new Uint8Array(await new Response(new Blob([body.slice()]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer()));
+    p += 46 + nameLen + extraLen + commentLen;
+  }
+  return out;
+}

@@ -2092,4 +2092,60 @@ export const PL: Record<string, string> = {
     'Dodatki działające na Twoim urządzeniu, pobierane dopiero po akceptacji rozmiaru: zaznaczanie obiektu (stuknięciem), usuwanie obiektów przez AI, usuwanie tła, odczyt tekstu (OCR) i głębia do reliefów 3D. Panel boczny je wyświetla i znów usuwa.',
   '3D relief…: a printable relief (STL) from the picture\'s brightness – or a lithophane – or from AI depth.':
     'Relief 3D…: relief do druku (STL) z jasności obrazu – albo litofan – albo z głębi AI.',
+  'Layer {n}':
+    'Warstwa {n}',
+  'Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.':
+    'Zapisano jako jeden obraz – warstwy zachowa Zapisz warstwy (.ora) w sekcji Warstwy.',
+  'The last layer can’t be deleted.':
+    'Ostatniej warstwy nie można usunąć.',
+  'There is no layer under this one.':
+    'Pod tą warstwą nie ma żadnej.',
+  'Name of the layer:':
+    'Nazwa warstwy:',
+  'Hide this layer':
+    'Ukryj tę warstwę',
+  'Show this layer':
+    'Pokaż tę warstwę',
+  'Show {name}':
+    'Pokaż {name}',
+  'Saved {name} with {n} {n|layer|layers}.':
+    'Zapisano {name} z {n} {n|warstwą|warstwami|warstwami}.',
+  'Opened {name} ({n} {n|layer|layers}).':
+    'Otwarto {name} ({n} {n|warstwa|warstwy|warstw}).',
+  'Could not read this OpenRaster file.':
+    'Nie udało się odczytać tego pliku OpenRaster.',
+  'Merge down':
+    'Scal w dół',
+  'Flatten':
+    'Spłaszcz',
+  'Save layers (.ora)':
+    'Zapisz warstwy (.ora)',
+  'Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.':
+    'Malowanie i inne narzędzia działają na aktywnej warstwie. Stuknij warstwę, aby ją aktywować, kliknij dwukrotnie, aby zmienić nazwę. Zapisz zapisuje obraz tak, jak wygląda; Zapisz warstwy zachowuje warstwy.',
+  'Layers (.ora)':
+    'Warstwy (.ora)',
+  'Layers – the top one first':
+    'Warstwy – najwyższa pierwsza',
+  'A new, empty layer above this one':
+    'Nowa, pusta warstwa nad tą',
+  'A copy of this layer':
+    'Kopia tej warstwy',
+  'Move this layer up':
+    'Przesuń warstwę w górę',
+  'Move up':
+    'W górę',
+  'Move this layer down':
+    'Przesuń warstwę w dół',
+  'Move down':
+    'W dół',
+  'Delete this layer':
+    'Usuń tę warstwę',
+  'Put this layer onto the one under it':
+    'Nałóż tę warstwę na tę pod nią',
+  'All the layers as one':
+    'Wszystkie warstwy w jedną',
+  'Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again':
+    'Zapisz wszystkie warstwy w jednym pliku (OpenRaster – otwiera go GIMP, Krita i inne); Otwórz… otwiera go ponownie',
+  'Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.':
+    'Warstwy w aplikacji rastrowej: malowanie na aktywnej warstwie, pokazywanie / ukrywanie, krycie, przesuwanie, scalanie, spłaszczanie – Cofnij zna wszystko. Zapisz warstwy zachowuje je w pliku OpenRaster (.ora – otwiera go GIMP i Krita), zachowuje je też automatyczny zapis.',
 };

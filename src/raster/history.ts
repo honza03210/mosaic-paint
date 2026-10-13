@@ -1,38 +1,67 @@
-/* Undo / redo (snapshots of the pixels), the unsaved-changes mark, autosave in the browser and versions. */
+/* Undo / redo (snapshots of the layers – a layer's pixels are kept once while they don't change), the unsaved-changes mark, autosave in the browser and versions. */
 import { Store } from '../lib/store.ts';
 import * as R from '../lib/raster.ts';
 import { $, toast } from '../shared/ui.ts';
 import { canvasToPng } from '../shared/clipboard.ts';
 import { state, rt, emit } from './state.ts';
-import { doc, dctx, setSize, requestRender } from './canvas.ts';
+import { doc, requestRender, layers, active, makeLayer, setLayers, flat, type Layer } from './canvas.ts';
 import { t } from '../shared/i18n.ts';
 
-let history: ImageData[] = [], index = -1, made = 0, changes = 0;
+interface LayerSnap { id: number; name: string; visible: boolean; opacity: number; rev: number; data: ImageData }
+interface Snap { w: number; h: number; active: number; layers: LayerSnap[] }
+let history: Snap[] = [], index = -1, made = 0, changes = 0;
 /** Changes with every new step, undo and redo (to know when the picture is not the same any more). */
 export const imageVersion = (): number => changes;
 /** Snapshots take width × height × 4 bytes: big images get fewer undo steps. */
 const MAX_BYTES = 400e6, MAX_STEPS = 100;
-const snapshot = (): ImageData => dctx.getImageData(0, 0, doc.width, doc.height);
+/** The layers now; pixels of a layer that hasn't changed since the step before are shared with it. */
+function snapshot(prev?: Snap): Snap {
+  return {
+    w: doc.width, h: doc.height, active,
+    layers: layers.map((L) => {
+      const same = prev?.layers.find(p => p.id === L.id && p.rev === L.rev && prev.w === doc.width && prev.h === doc.height);
+      return { id: L.id, name: L.name, visible: L.visible, opacity: L.opacity, rev: L.rev, data: same ? same.data : L.ctx.getImageData(0, 0, doc.width, doc.height) };
+    }),
+  };
+}
+/** The bytes all the steps keep (shared pixels counted once). */
+function bytes(): number {
+  const seen = new Set<ImageData>();
+  for (const s of history) for (const l of s.layers) seen.add(l.data);
+  let n = 0;
+  for (const d of seen) n += d.data.length;
+  return n;
+}
 
 export function resetHistory(): void { history = [snapshot()]; index = 0; updateUndoUI(); }
 /** Records the current image as an undo step. */
 export function commit(): void {
   made++;
   changes++;
+  // a step changes the active layer (layer commands mark the others they change themselves)
+  layers[active].rev++;
   history.splice(index + 1);
-  history.push(snapshot());
-  let bytes = history.reduce((t, s) => t + s.data.length, 0);
-  while (history.length > 2 && (history.length > MAX_STEPS || bytes > MAX_BYTES)) bytes -= history.shift().data.length;
+  history.push(snapshot(history[history.length - 1]));
+  while (history.length > 2 && (history.length > MAX_STEPS || bytes() > MAX_BYTES)) history.shift();
   index = history.length - 1;
   rt.dirty = true;
   afterChange();
 }
-function restore(s: ImageData): void {
+function restore(s: Snap): void {
   changes++;
-  if (s.width !== doc.width || s.height !== doc.height) setSize(s.width, s.height);
-  dctx.putImageData(s, 0, 0);
+  const now = layers[active], byId = new Map(layers.map(L => [L.id, L] as const));
+  const list: Layer[] = s.layers.map((ls) => {
+    const L = byId.get(ls.id) || makeLayer(s.w, s.h, ls.name, ls.id);
+    const resized = L.canvas.width !== s.w || L.canvas.height !== s.h;
+    if (resized) { L.canvas.width = s.w; L.canvas.height = s.h; }
+    // the active layer always (a stroke or a lift may have changed it since the step), others when they differ
+    if (resized || L === now || L.rev !== ls.rev) L.ctx.putImageData(ls.data, 0, 0);
+    Object.assign(L, { name: ls.name, visible: ls.visible, opacity: ls.opacity, rev: ls.rev });
+    return L;
+  });
+  setLayers(list, s.active);
   state.floating = null;
-  if (state.sel && (state.sel.x + state.sel.w > s.width || state.sel.y + state.sel.h > s.height)) state.sel = null;
+  if (state.sel && (state.sel.x + state.sel.w > s.w || state.sel.y + state.sel.h > s.h)) state.sel = null;
   rt.dirty = true;
   afterChange();
 }
@@ -83,8 +112,9 @@ export function scheduleAutosave(): void {
 async function autosaveNow(): Promise<void> {
   try {
     // stored as bytes: Safari can't keep Blobs in IndexedDB in private windows
-    const png = await (await canvasToPng(doc)).arrayBuffer();
-    await Store.set('raster', { png, fileName: rt.fileName, time: Date.now() });
+    const png = await (await canvasToPng(flat())).arrayBuffer();
+    const more = layers.length > 1 ? await Promise.all(layers.map(async L => ({ name: L.name, visible: L.visible, opacity: L.opacity, png: await (await canvasToPng(L.canvas)).arrayBuffer() }))) : undefined;
+    await Store.set('raster', { png, layers: more, active, fileName: rt.fileName, time: Date.now() });
   } catch {
     toast(t('Autosave failed – remember to save your image.'));
   }
@@ -99,18 +129,20 @@ export async function saveVersion(note: string): Promise<boolean> {
   lastVersionAt = Date.now();
   try {
     // counted before the picture is taken (that waits): both as the image is now
-    const colors = R.countColors(dctx.getImageData(0, 0, doc.width, doc.height), 100000);
-    const png = await (await canvasToPng(doc)).arrayBuffer();
+    const f = flat(), colors = R.countColors(f.getContext('2d').getImageData(0, 0, f.width, f.height), 100000);
+    const png = await (await canvasToPng(f)).arrayBuffer();
     await Store.addVersion({ app: 'raster', time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height, size: { w: doc.width, h: doc.height, unit: 'px' }, colors });
     await Store.trimVersions(MAX_VERSIONS, 'raster');
     return true;
   } catch { return false; }
 }
 /** The autosaved image, if any. */
-export async function loadAutosave(): Promise<{ png: Blob; fileName: string } | null> {
+export interface SavedLayer { name: string; visible: boolean; opacity: number; png: Blob }
+export async function loadAutosave(): Promise<{ png: Blob; fileName: string; layers?: SavedLayer[]; active?: number } | null> {
   try {
     const rec = await Store.get('raster');
     if (!rec || !rec.png) return null;
-    return { png: rec.png instanceof Blob ? rec.png : new Blob([rec.png], { type: 'image/png' }), fileName: rec.fileName };
+    const blob = (b: Blob | ArrayBuffer) => (b instanceof Blob ? b : new Blob([b], { type: 'image/png' }));
+    return { png: blob(rec.png), fileName: rec.fileName, layers: rec.layers?.map((l: any) => ({ ...l, png: blob(l.png) })), active: rec.active };
   } catch { return null; }
 }

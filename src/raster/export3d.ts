@@ -4,7 +4,7 @@ import * as R from '../lib/raster.ts';
 import { $ } from '../shared/ui.ts';
 import { initExport3D } from '../shared/export3d.ts';
 import { state, rt } from './state.ts';
-import { doc, getImage, makeCanvas } from './canvas.ts';
+import { doc, flatImage as getImage, flat, makeCanvas } from './canvas.ts';
 import { suggestColors } from './palette.ts';
 import { t } from '../shared/i18n.ts';
 
@@ -18,7 +18,7 @@ export function bindExport3D(): void {
       const c = makeCanvas(w, h), x = c.getContext('2d');
       // enlarging keeps pixels sharp (pixel mosaics); shrinking averages
       x.imageSmoothingEnabled = w < doc.width;
-      x.drawImage(doc, 0, 0, w, h);
+      x.drawImage(flat(), 0, 0, w, h);
       return c;
     },
     colors() {

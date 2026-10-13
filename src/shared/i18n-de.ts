@@ -2092,4 +2092,60 @@ export const DE: Record<string, string> = {
     'Add-ons, die auf deinem Gerät laufen und erst nach Zustimmung zu ihrer Größe heruntergeladen werden: Objekt auswählen (antippen), KI-Objektentfernung, Hintergrund entfernen, Text lesen (OCR) und Tiefe für 3D-Reliefs. Die Seitenleiste listet sie auf und entfernt sie wieder.',
   '3D relief…: a printable relief (STL) from the picture\'s brightness – or a lithophane – or from AI depth.':
     '3D-Relief…: ein druckbares Relief (STL) aus der Helligkeit des Bildes – oder eine Lithophanie – oder aus KI-Tiefe.',
+  'Layer {n}':
+    'Ebene {n}',
+  'Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.':
+    'Als ein Bild gespeichert – Ebenen speichern (.ora) im Bereich Ebenen behält die Ebenen.',
+  'The last layer can’t be deleted.':
+    'Die letzte Ebene kann nicht gelöscht werden.',
+  'There is no layer under this one.':
+    'Unter dieser Ebene liegt keine.',
+  'Name of the layer:':
+    'Name der Ebene:',
+  'Hide this layer':
+    'Diese Ebene ausblenden',
+  'Show this layer':
+    'Diese Ebene einblenden',
+  'Show {name}':
+    '{name} anzeigen',
+  'Saved {name} with {n} {n|layer|layers}.':
+    '{name} mit {n} {n|Ebene|Ebenen} gespeichert.',
+  'Opened {name} ({n} {n|layer|layers}).':
+    '{name} geöffnet ({n} {n|Ebene|Ebenen}).',
+  'Could not read this OpenRaster file.':
+    'Diese OpenRaster-Datei konnte nicht gelesen werden.',
+  'Merge down':
+    'Nach unten zusammenfügen',
+  'Flatten':
+    'Auf eine Ebene reduzieren',
+  'Save layers (.ora)':
+    'Ebenen speichern (.ora)',
+  'Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.':
+    'Malen und die anderen Werkzeuge wirken auf die aktive Ebene. Tippe eine Ebene an, um sie zu aktivieren, Doppelklick benennt sie um. Speichern sichert das Bild, wie es aussieht; Ebenen speichern behält die Ebenen.',
+  'Layers (.ora)':
+    'Ebenen (.ora)',
+  'Layers – the top one first':
+    'Ebenen – die oberste zuerst',
+  'A new, empty layer above this one':
+    'Eine neue, leere Ebene über dieser',
+  'A copy of this layer':
+    'Eine Kopie dieser Ebene',
+  'Move this layer up':
+    'Diese Ebene nach oben',
+  'Move up':
+    'Nach oben',
+  'Move this layer down':
+    'Diese Ebene nach unten',
+  'Move down':
+    'Nach unten',
+  'Delete this layer':
+    'Diese Ebene löschen',
+  'Put this layer onto the one under it':
+    'Diese Ebene auf die darunter legen',
+  'All the layers as one':
+    'Alle Ebenen zu einer',
+  'Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again':
+    'Alle Ebenen in einer Datei speichern (OpenRaster – GIMP, Krita und andere öffnen sie); Öffnen… öffnet sie wieder',
+  'Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.':
+    'Ebenen in der Raster-App: auf die aktive Ebene malen, ein- / ausblenden, Deckkraft, verschieben, zusammenfügen, reduzieren – Rückgängig kennt alles. Ebenen speichern behält sie in einer OpenRaster-Datei (.ora – GIMP und Krita öffnen sie), und das automatische Speichern auch.',
 };

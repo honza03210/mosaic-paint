@@ -482,3 +482,13 @@ dialog.sheet .dlg-foot { position: sticky; bottom: calc(-12px - var(--saib)); ba
 #dlg-ocr .ocr-text { width: 100%; font: 14px/1.4 ui-monospace, monospace; background: #1b1c1f; color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px; }
 #dlg-relief .rl-preview { display: block; max-width: 100%; max-height: 40vh; margin: 8px auto; border: 1px solid var(--border); image-rendering: auto; }
 #dlg-relief .row.wrap, #dlg-bg .row.wrap { flex-wrap: wrap; gap: 6px 14px; }
+
+/* layers (raster, layers.ts) */
+#layer-list { list-style: none; margin: 0 0 6px; padding: 0; border: 1px solid var(--border); border-radius: 8px; max-height: 240px; overflow: auto; }
+#layer-list li { display: flex; align-items: center; gap: 8px; padding: 4px 6px; cursor: pointer; border-bottom: 1px solid var(--border); }
+#layer-list li:last-child { border-bottom: 0; }
+#layer-list li.active { background: rgba(43, 140, 255, .18); box-shadow: inset 3px 0 0 var(--accent); }
+#layer-list .layer-eye { width: 30px; height: 30px; padding: 0; flex: none; background: transparent; border: 0; font-size: 16px; }
+#layer-list .layer-eye[aria-pressed=false] { color: var(--muted); }
+#layer-list .layer-thumb { flex: none; width: 48px; height: 36px; border-radius: 4px; background: repeating-conic-gradient(#666 0 25%, #888 0 50%) 0 0 / 8px 8px; }
+#layer-list .layer-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

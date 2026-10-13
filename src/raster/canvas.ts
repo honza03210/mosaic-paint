@@ -9,11 +9,35 @@ export const stage = $('#stage') as HTMLElement;
 export const view = $('#view') as HTMLCanvasElement;
 const vctx = view.getContext('2d');
 
-/** The image being edited. */
-export const doc = document.createElement('canvas');
-doc.width = 800;
-doc.height = 600;
-export const dctx = doc.getContext('2d', { willReadFrequently: true });
+/** One layer of the image: its pixels, name, whether it shows, how opaque it is. rev changes with its pixels
+    (undo keeps a layer's pixels once for as long as they don't change). */
+export interface Layer { id: number; canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; name: string; visible: boolean; opacity: number; rev: number }
+let nextId = 1;
+export function makeLayer(w: number, h: number, name: string, id = nextId): Layer {
+  const canvas = makeCanvas(w, h);
+  nextId = Math.max(nextId, id + 1);
+  return { id, canvas, ctx: canvas.getContext('2d', { willReadFrequently: true }), name, visible: true, opacity: 1, rev: 0 };
+}
+/** The layers, bottom first. Painting, filling, selecting work on the active one (doc / dctx). */
+export const layers: Layer[] = [];
+export let active = 0;
+/** The image being edited: the active layer. */
+export let doc: HTMLCanvasElement;
+export let dctx: CanvasRenderingContext2D;
+/** Makes layer i the one being edited. */
+export function useLayer(i: number): void {
+  active = Math.max(0, Math.min(layers.length - 1, i));
+  doc = layers[active].canvas;
+  dctx = layers[active].ctx;
+}
+layers.push(makeLayer(800, 600, 'Layer 1'));
+useLayer(0);
+/** Replaces all the layers (a new or opened image, undo). */
+export function setLayers(list: Layer[], activeIndex: number): void {
+  layers.splice(0, layers.length, ...list);
+  useLayer(activeIndex);
+  emit('layers');
+}
 
 export const W = (): number => doc.width;
 export const H = (): number => doc.height;
@@ -24,12 +48,39 @@ export function makeCanvas(w: number, h: number): HTMLCanvasElement {
   c.height = Math.max(1, h);
   return c;
 }
-/** Changes the image size (the content is cleared; the caller redraws it). */
+/** Changes the image size: every layer, cleared (the caller redraws the active one – for the whole picture
+    changing size or orientation use mapLayers). */
 export function setSize(w: number, h: number): void {
-  if (doc.width !== w) doc.width = w;
-  if (doc.height !== h) doc.height = h;
+  for (const L of layers) {
+    if (L.canvas.width !== w) L.canvas.width = w;
+    if (L.canvas.height !== h) L.canvas.height = h;
+    L.rev++;
+  }
   emit('size');
 }
+/** Every layer turned into what fn makes of it (rotating, flipping, cropping, resizing the whole picture). */
+export function mapLayers(fn: (c: HTMLCanvasElement) => HTMLCanvasElement): void {
+  for (const L of layers) {
+    const c = fn(L.canvas);
+    L.canvas.width = c.width;
+    L.canvas.height = c.height;
+    L.ctx.drawImage(c, 0, 0);
+    L.rev++;
+  }
+  emit('size');
+}
+/** The picture as it looks: the visible layers on top of each other (the active canvas itself when it is the only one). */
+export function flat(): HTMLCanvasElement {
+  if (layers.length === 1 && layers[0].visible && layers[0].opacity === 1) return doc;
+  const c = makeCanvas(doc.width, doc.height), x = c.getContext('2d');
+  for (const L of layers) {
+    if (!L.visible) continue;
+    x.globalAlpha = L.opacity;
+    x.drawImage(L.canvas, 0, 0);
+  }
+  return c;
+}
+export const flatImage = (): ImageData => { const c = flat(); return c.getContext('2d').getImageData(0, 0, c.width, c.height); };
 export const getImage = (x = 0, y = 0, w = doc.width, h = doc.height): ImageData => dctx.getImageData(x, y, w, h);
 
 // ---- view ---------------------------------------------------------------------------------------
@@ -117,9 +168,16 @@ export function render(): void {
   // zoomed in: sharp square pixels; zoomed out: smooth
   vctx.imageSmoothingEnabled = k < 1;
   vctx.setTransform(k, 0, 0, k, ox, oy);
-  vctx.drawImage(doc, 0, 0);
+  // the layers, bottom first; moved or pasted pixels float just above the active one
   const f = state.floating;
-  if (f) vctx.drawImage(f.canvas, f.x, f.y);
+  layers.forEach((L, i) => {
+    if (L.visible) {
+      vctx.globalAlpha = L.opacity;
+      vctx.drawImage(L.canvas, 0, 0);
+    }
+    if (i === active && f) { vctx.globalAlpha = L.visible ? L.opacity : 1; vctx.drawImage(f.canvas, f.x, f.y); }
+    vctx.globalAlpha = 1;
+  });
   if (state.preview) {
     vctx.save();
     state.preview(vctx, 1 / k);

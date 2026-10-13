@@ -4,7 +4,7 @@ import { packBytes, unpackBytes } from '../lib/pack.ts';
 import { $, toast, typingIn } from '../shared/ui.ts';
 import { canvasToPng } from '../shared/clipboard.ts';
 import { rt } from './state.ts';
-import { doc, fitView } from './canvas.ts';
+import { flat, fitView } from './canvas.ts';
 import { pauseAutosave, saveVersion, scheduleAutosave, updateTitle } from './history.ts';
 import { setTool } from './tools.ts';
 import { loadCanvas, fileToCanvas } from './files.ts';
@@ -14,7 +14,7 @@ const LONG = 64 * 1024, MAX = 2 * 1024 * 1024; // links get unwieldy above ~64 K
 let link = '', viewing = false;
 
 async function makeLink(): Promise<void> {
-  const png = new Uint8Array(await (await canvasToPng(doc)).arrayBuffer());
+  const png = new Uint8Array(await (await canvasToPng(flat())).arrayBuffer());
   link = `${location.origin}${location.pathname}#view=${packBytes(png)}`;
   const kb = Math.round(link.length / 1024);
   $('#share-link').value = link;
@@ -24,7 +24,7 @@ async function makeLink(): Promise<void> {
   $('#share-copy').disabled = link.length > MAX;
 }
 async function shareFile(): Promise<void> {
-  const file = new File([await canvasToPng(doc)], rt.fileName, { type: 'image/png' });
+  const file = new File([await canvasToPng(flat())], rt.fileName, { type: 'image/png' });
   try { await navigator.share({ files: [file], title: rt.fileName }); } catch (e) { if (e.name !== 'AbortError') toast(t('Sharing failed.')); }
 }
 

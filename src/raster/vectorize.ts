@@ -7,7 +7,7 @@ import { Store } from '../lib/store.ts';
 import { $, toast, working } from '../shared/ui.ts';
 import { run, isCancelled } from '../shared/work.ts';
 import { state, rt, savePrefs } from './state.ts';
-import { doc, getImage } from './canvas.ts';
+import { doc, flatImage as getImage } from './canvas.ts';
 import { colorRows } from './report.ts';
 import { t } from '../shared/i18n.ts';
 

@@ -6,7 +6,7 @@ import type { Box } from '../lib/raster.ts';
 import { $, toast, loadImg } from '../shared/ui.ts';
 import { canCopyImages, copyImage, canvasToPng, svgToCanvas, svgSize } from '../shared/clipboard.ts';
 import { state, emit } from './state.ts';
-import { doc, dctx, view, makeCanvas, setSize, toDoc, requestRender, fitView } from './canvas.ts';
+import { doc, dctx, view, makeCanvas, toDoc, requestRender, fitView, flat, mapLayers, layers } from './canvas.ts';
 import { commit, restoreCurrent, afterChange } from './history.ts';
 import type { Tool } from './paint.ts';
 import { t } from '../shared/i18n.ts';
@@ -234,7 +234,8 @@ export const selectTool: Tool = {
 /** The pixels to copy: the floating ones, the selection (cut to its shape), or the whole image. */
 function copySource(): HTMLCanvasElement {
   if (state.floating) return state.floating.canvas;
-  const b = state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
+  if (!state.sel) return flat();
+  const b = state.sel;
   const c = makeCanvas(b.w, b.h), x = c.getContext('2d');
   x.drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
   const mask = state.sel?.mask;
@@ -273,9 +274,15 @@ export function crop(): void {
   if (state.floating) place();
   const b = state.sel;
   if (!b) { toast(t('Select the part to keep first.')); return; }
-  const c = copySource();
-  setSize(b.w, b.h);
-  dctx.drawImage(c, 0, 0);
+  // every layer, cut to the selection's box (and its shape)
+  const mask = b.mask ? maskCanvas(b, b.mask) : null;
+  mapLayers((old) => {
+    const c = makeCanvas(b.w, b.h), x = c.getContext('2d');
+    x.drawImage(old, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+    if (mask) { x.globalCompositeOperation = 'destination-in'; x.drawImage(mask, 0, 0); }
+    return c;
+  });
+  for (const L of layers) L.rev++;
   state.sel = null;
   commit();
   selectionChanged();
@@ -309,10 +316,9 @@ export async function pasteImage(src: Blob | HTMLCanvasElement): Promise<void> {
   if (state.floating) place();
   if ((c.width > doc.width || c.height > doc.height)
     && await askYes(t('The pasted image ({w} × {h}) is bigger than this one ({W} × {H}). Enlarge the canvas to fit it?', { w: c.width, h: c.height, W: doc.width, H: doc.height }))) {
-    const keep = makeCanvas(doc.width, doc.height);
-    keep.getContext('2d').drawImage(doc, 0, 0);
-    setSize(Math.max(doc.width, c.width), Math.max(doc.height, c.height));
-    dctx.drawImage(keep, 0, 0);
+    const W = Math.max(doc.width, c.width), H = Math.max(doc.height, c.height);
+    mapLayers((old) => { const n = makeCanvas(W, H); n.getContext('2d').drawImage(old, 0, 0); return n; });
+    for (const L of layers) L.rev++;
     commit();
     fitView();
   }

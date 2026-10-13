@@ -7,7 +7,7 @@ import { $$, toast } from '../shared/ui.ts';
 import { canvasToPng } from '../shared/clipboard.ts';
 import { initShell } from '../shared/shell.ts';
 import { state, rt, loadPrefs } from './state.ts';
-import { stage, doc, dctx, getImage, toDoc, fitView } from './canvas.ts';
+import { stage, doc, dctx, getImage, toDoc, fitView, flat, layers } from './canvas.ts';
 import { resetHistory, afterChange, updateTitle, startAutosave, loadAutosave, commit } from './history.ts';
 import { renderPalette, renderPaletteSelect } from './palette.ts';
 import { selectionChanged, pasteImage } from './select.ts';
@@ -15,6 +15,7 @@ import { setTool, setMode } from './tools.ts';
 import { loadCanvas, fileToCanvas, openImageFile } from './files.ts';
 import { bindPanel } from './panel.ts';
 import { bindAiFeatures } from './ai-features.ts';
+import { bindLayers, restoreLayers } from './layers.ts';
 import { bindInput } from './input.ts';
 import { bindExport3D } from './export3d.ts';
 import { bindReport } from './report.ts';
@@ -32,6 +33,7 @@ loadPrefs();
 bindPanel();
 bindInput();
 bindAiFeatures();
+bindLayers();
 bindExport3D();
 bindReport();
 bindPrint();
@@ -67,7 +69,10 @@ requestAnimationFrame(fitView);
 
 /** For the end-to-end tests and for poking around in the browser console. */
 const RZ = {
-  state, rt, doc, ready: false,
+  state, rt, ready: false,
+  /** the active layer's canvas (tests draw on it) */
+  get doc() { return doc; },
+  layers,
   /** '#rrggbb' at an image pixel, or null where it is transparent */
   colorAt: (x: number, y: number): string | null => R.colorAt(getImage(Math.floor(x), Math.floor(y), 1, 1), 0, 0),
   alphaAt: (x: number, y: number): number => getImage(Math.floor(x), Math.floor(y), 1, 1).data[3],
@@ -89,7 +94,7 @@ const RZ = {
 Object.assign(RZ, {
   // for the Discord Activity (src/discord/activity.ts): open a picture, get the image as PNG, messages and texts
   openImage: async (blob: Blob, name: string) => { await openImageFile(new File([blob], name, { type: blob.type })); },
-  png: () => canvasToPng(doc),
+  png: () => canvasToPng(flat()),
   toast,
   t,
 });
@@ -101,6 +106,8 @@ Object.assign(RZ, {
     const c = await fileToCanvas(rec.png);
     if (c) {
       loadCanvas(c, rec.fileName || 'mosaic.png');
+      // the layers, when there were several
+      if (rec.layers?.length > 1) await restoreLayers(rec.layers, rec.active);
       rt.fileName = rec.fileName || 'mosaic.png';
       updateTitle();
     }

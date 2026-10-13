@@ -3,12 +3,13 @@ import * as R from '../lib/raster.ts';
 import { $, toast, download, loadImg } from '../shared/ui.ts';
 import { canvasToPng, svgToCanvas, svgSize } from '../shared/clipboard.ts';
 import { state, rt } from './state.ts';
-import { doc, dctx, makeCanvas, setSize, fitView } from './canvas.ts';
+import { doc, dctx, makeCanvas, fitView, flat, mapLayers, makeLayer, setLayers, layers } from './canvas.ts';
 import { Store, type Version } from '../lib/store.ts';
 import { commit, resetHistory, afterChange, updateTitle, saveVersion, scheduleAutosave } from './history.ts';
 import { selectionChanged } from './select.ts';
 import { t, lang } from '../shared/i18n.ts';
 import { ask, askYes } from '../shared/dialogs.ts';
+import { exportOra, openOra } from './layers.ts';
 
 export const MAX_SIDE = 8000;
 const IMAGE_TYPES = [{ description: t('Images'), accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.svg'] } }];
@@ -20,8 +21,8 @@ export async function confirmDiscard(): Promise<boolean> {
 }
 /** Replaces the image with a canvas (opened file, new image) and starts a fresh undo history. */
 export function loadCanvas(c: HTMLCanvasElement, name: string): void {
-  setSize(c.width, c.height);
-  dctx.clearRect(0, 0, c.width, c.height);
+  // one layer with the picture
+  setLayers([makeLayer(c.width, c.height, t('Layer {n}', { n: 1 }))], 0);
   dctx.drawImage(c, 0, 0);
   state.sel = null;
   state.floating = null;
@@ -62,6 +63,8 @@ function scaled(c: HTMLCanvasElement, k: number): HTMLCanvasElement {
   return out;
 }
 export async function openImageFile(f: File): Promise<boolean> {
+  // an OpenRaster file: its layers
+  if (/.ora$/i.test(f.name) || f.type === 'image/openraster') return openOra(f, f.name);
   let c = await fileToCanvas(f);
   if (!c) { toast(t('Could not read {name} as an image.', { name: f.name })); return false; }
   const side = Math.max(c.width, c.height);
@@ -128,7 +131,9 @@ export async function restoreVersion(v: Version): Promise<void> {
   toast(t('Restored the version from {time}', { time: new Date(v.time).toLocaleString(lang) }));
 }
 export async function save(): Promise<void> {
-  const png = await canvasToPng(doc), w = window as any;
+  // a PNG is the picture as it looks; the layers are kept in an .ora file (Export…)
+  if (layers.length > 1) toast(t('Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.'));
+  const png = await canvasToPng(flat()), w = window as any;
   if (w.showSaveFilePicker) {
     try {
       if (!rt.fileHandle) rt.fileHandle = await w.showSaveFilePicker({ suggestedName: rt.fileName, types: PNG_TYPES });
@@ -151,13 +156,15 @@ export async function save(): Promise<void> {
 }
 /** JPEG / WebP / PNG download. JPEG has no transparency, so it gets a white background. */
 export function exportAs(type: string, quality: number): void {
-  let c = doc;
+  if (type === 'ora') { exportOra(); return; }
+  let c = flat();
   if (type === 'image/jpeg') {
+    const f = c;
     c = makeCanvas(doc.width, doc.height);
     const x = c.getContext('2d');
     x.fillStyle = '#ffffff';
     x.fillRect(0, 0, c.width, c.height);
-    x.drawImage(doc, 0, 0);
+    x.drawImage(f, 0, 0);
   }
   const ext = { 'image/jpeg': '.jpg', 'image/webp': '.webp', 'image/png': '.png' }[type] || '.png';
   c.toBlob(b => (b ? download(b, baseName(rt.fileName) + ext) : toast(t('Export failed.'))), type, quality);
@@ -166,15 +173,14 @@ export function exportAs(type: string, quality: number): void {
 /** Scales the picture to w × h (smooth when shrinking, sharp pixels when enlarging). */
 export function resizeImage(w: number, h: number): void {
   if (w === doc.width && h === doc.height) return;
-  const old = makeCanvas(doc.width, doc.height);
-  old.getContext('2d').drawImage(doc, 0, 0);
-  const shrink = w < old.width || h < old.height;
-  setSize(w, h);
-  dctx.save();
-  dctx.imageSmoothingEnabled = shrink;
-  dctx.imageSmoothingQuality = 'high';
-  dctx.drawImage(old, 0, 0, w, h);
-  dctx.restore();
+  const shrink = w < doc.width || h < doc.height;
+  mapLayers((old) => {
+    const c = makeCanvas(w, h), x = c.getContext('2d');
+    x.imageSmoothingEnabled = shrink;
+    x.imageSmoothingQuality = 'high';
+    x.drawImage(old, 0, 0, w, h);
+    return c;
+  });
   state.sel = null;
   commit();
   selectionChanged();
@@ -183,11 +189,11 @@ export function resizeImage(w: number, h: number): void {
 /** Changes the canvas to w × h, keeping the picture centered (new space is transparent). */
 export function canvasSize(w: number, h: number): void {
   if (w === doc.width && h === doc.height) return;
-  const old = makeCanvas(doc.width, doc.height);
-  old.getContext('2d').drawImage(doc, 0, 0);
-  setSize(w, h);
-  dctx.clearRect(0, 0, w, h);
-  dctx.drawImage(old, Math.round((w - old.width) / 2), Math.round((h - old.height) / 2));
+  mapLayers((old) => {
+    const c = makeCanvas(w, h);
+    c.getContext('2d').drawImage(old, Math.round((w - old.width) / 2), Math.round((h - old.height) / 2));
+    return c;
+  });
   state.sel = null;
   commit();
   selectionChanged();

@@ -4,7 +4,7 @@ import * as R from '../lib/raster.ts';
 import * as Printing from '../lib/print.ts';
 import { $, toast } from '../shared/ui.ts';
 import { state, rt, savePrefs } from './state.ts';
-import { doc, getImage } from './canvas.ts';
+import { doc, flatImage, flat } from './canvas.ts';
 import { colorRows, mmPerPixel, type ColorRow } from './report.ts';
 import { t, num } from '../shared/i18n.ts';
 import * as Shared from '../shared/printing.ts';
@@ -16,14 +16,14 @@ const title = () => rt.fileName.replace(/\.[a-z0-9]+$/i, '');
 
 /** The picture as SVG markup in pixel units, for the print page. style: 'colors' | 'both' | 'numbers'. */
 function printArt(style: string): { art: string; rows: ColorRow[] } | null {
-  const W = doc.width, H = doc.height, p = R.pieces(getImage()), rows = colorRows(p), k = mmPerPixel();
+  const W = doc.width, H = doc.height, p = R.pieces(flatImage()), rows = colorRows(p), k = mmPerPixel();
   if (style !== 'colors' && p.colors.length > MAX_PIECES) {
     toast(t('This picture has {n} pieces – too many to number. Make a mosaic or reduce it to the palette first.', { n: p.colors.length }));
     return null;
   }
   const parts: string[] = [];
   if (style === 'numbers') parts.push(`<rect width="${W}" height="${H}" fill="#ffffff"/>`);
-  else parts.push(`<image href="${doc.toDataURL('image/png')}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none" style="image-rendering:pixelated"/>`);
+  else parts.push(`<image href="${flat().toDataURL('image/png')}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none" style="image-rendering:pixelated"/>`);
   if (style !== 'colors') {
     if (style === 'numbers') parts.push(`<path d="${R.pieceOutlines(p, W, H)}" fill="none" stroke="#444444" stroke-width="${n(0.25 / k)}"/>`);
     // numbers where they fit: at least ~2.6 mm of room on paper

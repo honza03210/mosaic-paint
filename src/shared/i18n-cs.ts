@@ -2092,4 +2092,60 @@ export const CS: Record<string, string> = {
     'Doplňky, které běží ve vašem zařízení a stáhnou se až po odsouhlasení velikosti: Výběr objektu (klepnutím), odstraňování objektů AI, odstranění pozadí, Čtení textu (OCR) a hloubka pro 3D reliéfy. Postranní panel je vypisuje a umí je zase odstranit.',
   '3D relief…: a printable relief (STL) from the picture\'s brightness – or a lithophane – or from AI depth.':
     '3D reliéf…: reliéf k tisku (STL) podle jasu obrázku – nebo litofanie – nebo podle hloubky z AI.',
+  'Layer {n}':
+    'Vrstva {n}',
+  'Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.':
+    'Uloženo jako jeden obrázek – vrstvy zachová Uložit vrstvy (.ora) v části Vrstvy.',
+  'The last layer can’t be deleted.':
+    'Poslední vrstvu nelze smazat.',
+  'There is no layer under this one.':
+    'Pod touto vrstvou žádná není.',
+  'Name of the layer:':
+    'Název vrstvy:',
+  'Hide this layer':
+    'Skrýt tuto vrstvu',
+  'Show this layer':
+    'Zobrazit tuto vrstvu',
+  'Show {name}':
+    'Zobrazit {name}',
+  'Saved {name} with {n} {n|layer|layers}.':
+    'Uloženo {name} s {n} {n|vrstvou|vrstvami|vrstvami}.',
+  'Opened {name} ({n} {n|layer|layers}).':
+    'Otevřeno {name} ({n} {n|vrstva|vrstvy|vrstev}).',
+  'Could not read this OpenRaster file.':
+    'Tento soubor OpenRaster se nepodařilo přečíst.',
+  'Merge down':
+    'Sloučit dolů',
+  'Flatten':
+    'Sloučit vše',
+  'Save layers (.ora)':
+    'Uložit vrstvy (.ora)',
+  'Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.':
+    'Malování a ostatní nástroje pracují v aktivní vrstvě. Klepnutím vrstvu aktivujete, dvojklikem přejmenujete. Uložit uloží obrázek, jak vypadá; Uložit vrstvy zachová vrstvy.',
+  'Layers (.ora)':
+    'Vrstvy (.ora)',
+  'Layers – the top one first':
+    'Vrstvy – horní první',
+  'A new, empty layer above this one':
+    'Nová prázdná vrstva nad touto',
+  'A copy of this layer':
+    'Kopie této vrstvy',
+  'Move this layer up':
+    'Posunout vrstvu nahoru',
+  'Move up':
+    'Nahoru',
+  'Move this layer down':
+    'Posunout vrstvu dolů',
+  'Move down':
+    'Dolů',
+  'Delete this layer':
+    'Smazat tuto vrstvu',
+  'Put this layer onto the one under it':
+    'Vložit tuto vrstvu do té pod ní',
+  'All the layers as one':
+    'Všechny vrstvy v jednu',
+  'Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again':
+    'Uložit všechny vrstvy do jednoho souboru (OpenRaster – otevře ho GIMP, Krita a další); Otevřít… ho zase otevře',
+  'Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.':
+    'Vrstvy v rastrové aplikaci: malování do aktivní vrstvy, zobrazení / skrytí, krytí, přesun, sloučení – Zpět zná všechno. Uložit vrstvy je zachová v souboru OpenRaster (.ora – otevře ho GIMP i Krita) a zachová je i automatické ukládání.',
 };

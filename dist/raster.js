@@ -1046,7 +1046,35 @@
     "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Rozpoznat text v obrázku nebo výběru a zkopírovat ho (doplněk – před stažením se zeptá)",
     "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Reliéf pro 3D tisk (STL) podle jasu obrázku, nebo podle hloubky z AI",
     "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Doplňky, které běží ve vašem zařízení a stáhnou se až po odsouhlasení velikosti: Výběr objektu (klepnutím), odstraňování objektů AI, odstranění pozadí, Čtení textu (OCR) a hloubka pro 3D reliéfy. Postranní panel je vypisuje a umí je zase odstranit.",
-    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D reliéf…: reliéf k tisku (STL) podle jasu obrázku – nebo litofanie – nebo podle hloubky z AI."
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D reliéf…: reliéf k tisku (STL) podle jasu obrázku – nebo litofanie – nebo podle hloubky z AI.",
+    "Layer {n}": "Vrstva {n}",
+    "Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.": "Uloženo jako jeden obrázek – vrstvy zachová Uložit vrstvy (.ora) v části Vrstvy.",
+    "The last layer can’t be deleted.": "Poslední vrstvu nelze smazat.",
+    "There is no layer under this one.": "Pod touto vrstvou žádná není.",
+    "Name of the layer:": "Název vrstvy:",
+    "Hide this layer": "Skrýt tuto vrstvu",
+    "Show this layer": "Zobrazit tuto vrstvu",
+    "Show {name}": "Zobrazit {name}",
+    "Saved {name} with {n} {n|layer|layers}.": "Uloženo {name} s {n} {n|vrstvou|vrstvami|vrstvami}.",
+    "Opened {name} ({n} {n|layer|layers}).": "Otevřeno {name} ({n} {n|vrstva|vrstvy|vrstev}).",
+    "Could not read this OpenRaster file.": "Tento soubor OpenRaster se nepodařilo přečíst.",
+    "Merge down": "Sloučit dolů",
+    "Flatten": "Sloučit vše",
+    "Save layers (.ora)": "Uložit vrstvy (.ora)",
+    "Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.": "Malování a ostatní nástroje pracují v aktivní vrstvě. Klepnutím vrstvu aktivujete, dvojklikem přejmenujete. Uložit uloží obrázek, jak vypadá; Uložit vrstvy zachová vrstvy.",
+    "Layers (.ora)": "Vrstvy (.ora)",
+    "Layers – the top one first": "Vrstvy – horní první",
+    "A new, empty layer above this one": "Nová prázdná vrstva nad touto",
+    "A copy of this layer": "Kopie této vrstvy",
+    "Move this layer up": "Posunout vrstvu nahoru",
+    "Move up": "Nahoru",
+    "Move this layer down": "Posunout vrstvu dolů",
+    "Move down": "Dolů",
+    "Delete this layer": "Smazat tuto vrstvu",
+    "Put this layer onto the one under it": "Vložit tuto vrstvu do té pod ní",
+    "All the layers as one": "Všechny vrstvy v jednu",
+    "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Uložit všechny vrstvy do jednoho souboru (OpenRaster – otevře ho GIMP, Krita a další); Otevřít… ho zase otevře",
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrové aplikaci: malování do aktivní vrstvy, zobrazení / skrytí, krytí, přesun, sloučení – Zpět zná všechno. Uložit vrstvy je zachová v souboru OpenRaster (.ora – otevře ho GIMP i Krita) a zachová je i automatické ukládání."
   };
 
   // src/shared/i18n-de.ts
@@ -2096,7 +2124,35 @@
     "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Den Text im Bild oder in der Auswahl erkennen, um ihn zu kopieren (ein Add-on – fragt vor dem Download)",
     "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Ein 3D-druckbares Relief (STL) aus der Helligkeit des Bildes oder aus KI-Tiefe",
     "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Add-ons, die auf deinem Gerät laufen und erst nach Zustimmung zu ihrer Größe heruntergeladen werden: Objekt auswählen (antippen), KI-Objektentfernung, Hintergrund entfernen, Text lesen (OCR) und Tiefe für 3D-Reliefs. Die Seitenleiste listet sie auf und entfernt sie wieder.",
-    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D-Relief…: ein druckbares Relief (STL) aus der Helligkeit des Bildes – oder eine Lithophanie – oder aus KI-Tiefe."
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D-Relief…: ein druckbares Relief (STL) aus der Helligkeit des Bildes – oder eine Lithophanie – oder aus KI-Tiefe.",
+    "Layer {n}": "Ebene {n}",
+    "Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.": "Als ein Bild gespeichert – Ebenen speichern (.ora) im Bereich Ebenen behält die Ebenen.",
+    "The last layer can’t be deleted.": "Die letzte Ebene kann nicht gelöscht werden.",
+    "There is no layer under this one.": "Unter dieser Ebene liegt keine.",
+    "Name of the layer:": "Name der Ebene:",
+    "Hide this layer": "Diese Ebene ausblenden",
+    "Show this layer": "Diese Ebene einblenden",
+    "Show {name}": "{name} anzeigen",
+    "Saved {name} with {n} {n|layer|layers}.": "{name} mit {n} {n|Ebene|Ebenen} gespeichert.",
+    "Opened {name} ({n} {n|layer|layers}).": "{name} geöffnet ({n} {n|Ebene|Ebenen}).",
+    "Could not read this OpenRaster file.": "Diese OpenRaster-Datei konnte nicht gelesen werden.",
+    "Merge down": "Nach unten zusammenfügen",
+    "Flatten": "Auf eine Ebene reduzieren",
+    "Save layers (.ora)": "Ebenen speichern (.ora)",
+    "Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.": "Malen und die anderen Werkzeuge wirken auf die aktive Ebene. Tippe eine Ebene an, um sie zu aktivieren, Doppelklick benennt sie um. Speichern sichert das Bild, wie es aussieht; Ebenen speichern behält die Ebenen.",
+    "Layers (.ora)": "Ebenen (.ora)",
+    "Layers – the top one first": "Ebenen – die oberste zuerst",
+    "A new, empty layer above this one": "Eine neue, leere Ebene über dieser",
+    "A copy of this layer": "Eine Kopie dieser Ebene",
+    "Move this layer up": "Diese Ebene nach oben",
+    "Move up": "Nach oben",
+    "Move this layer down": "Diese Ebene nach unten",
+    "Move down": "Nach unten",
+    "Delete this layer": "Diese Ebene löschen",
+    "Put this layer onto the one under it": "Diese Ebene auf die darunter legen",
+    "All the layers as one": "Alle Ebenen zu einer",
+    "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Alle Ebenen in einer Datei speichern (OpenRaster – GIMP, Krita und andere öffnen sie); Öffnen… öffnet sie wieder",
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Ebenen in der Raster-App: auf die aktive Ebene malen, ein- / ausblenden, Deckkraft, verschieben, zusammenfügen, reduzieren – Rückgängig kennt alles. Ebenen speichern behält sie in einer OpenRaster-Datei (.ora – GIMP und Krita öffnen sie), und das automatische Speichern auch."
   };
 
   // src/shared/i18n-sk.ts
@@ -3146,7 +3202,35 @@
     "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Rozpoznať text v obrázku alebo výbere a skopírovať ho (doplnok – pred stiahnutím sa opýta)",
     "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Reliéf na 3D tlač (STL) podľa jasu obrázka, alebo podľa hĺbky z AI",
     "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Doplnky, ktoré bežia vo vašom zariadení a stiahnu sa až po odsúhlasení veľkosti: Výber objektu (ťuknutím), odstraňovanie objektov AI, odstránenie pozadia, Čítanie textu (OCR) a hĺbka pre 3D reliéfy. Bočný panel ich vypisuje a vie ich zase odstrániť.",
-    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D reliéf…: reliéf na tlač (STL) podľa jasu obrázka – alebo litofánia – alebo podľa hĺbky z AI."
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D reliéf…: reliéf na tlač (STL) podľa jasu obrázka – alebo litofánia – alebo podľa hĺbky z AI.",
+    "Layer {n}": "Vrstva {n}",
+    "Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.": "Uložené ako jeden obrázok – vrstvy zachová Uložiť vrstvy (.ora) v časti Vrstvy.",
+    "The last layer can’t be deleted.": "Poslednú vrstvu nemožno zmazať.",
+    "There is no layer under this one.": "Pod touto vrstvou žiadna nie je.",
+    "Name of the layer:": "Názov vrstvy:",
+    "Hide this layer": "Skryť túto vrstvu",
+    "Show this layer": "Zobraziť túto vrstvu",
+    "Show {name}": "Zobraziť {name}",
+    "Saved {name} with {n} {n|layer|layers}.": "Uložené {name} s {n} {n|vrstvou|vrstvami|vrstvami}.",
+    "Opened {name} ({n} {n|layer|layers}).": "Otvorené {name} ({n} {n|vrstva|vrstvy|vrstiev}).",
+    "Could not read this OpenRaster file.": "Tento súbor OpenRaster sa nepodarilo prečítať.",
+    "Merge down": "Zlúčiť nadol",
+    "Flatten": "Zlúčiť všetko",
+    "Save layers (.ora)": "Uložiť vrstvy (.ora)",
+    "Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.": "Maľovanie a ostatné nástroje pracujú v aktívnej vrstve. Ťuknutím vrstvu aktivujete, dvojklikom premenujete. Uložiť uloží obrázok, ako vyzerá; Uložiť vrstvy zachová vrstvy.",
+    "Layers (.ora)": "Vrstvy (.ora)",
+    "Layers – the top one first": "Vrstvy – horná prvá",
+    "A new, empty layer above this one": "Nová prázdna vrstva nad touto",
+    "A copy of this layer": "Kópia tejto vrstvy",
+    "Move this layer up": "Posunúť vrstvu nahor",
+    "Move up": "Nahor",
+    "Move this layer down": "Posunúť vrstvu nadol",
+    "Move down": "Nadol",
+    "Delete this layer": "Zmazať túto vrstvu",
+    "Put this layer onto the one under it": "Vložiť túto vrstvu do tej pod ňou",
+    "All the layers as one": "Všetky vrstvy do jednej",
+    "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Uložiť všetky vrstvy do jedného súboru (OpenRaster – otvorí ho GIMP, Krita a ďalšie); Otvoriť… ho zase otvorí",
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrovej aplikácii: maľovanie do aktívnej vrstvy, zobrazenie / skrytie, krytie, presun, zlúčenie – Späť pozná všetko. Uložiť vrstvy ich zachová v súbore OpenRaster (.ora – otvorí ho GIMP aj Krita) a zachová ich aj automatické ukladanie."
   };
 
   // src/shared/i18n-pl.ts
@@ -4196,7 +4280,35 @@
     "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Rozpoznaj tekst na obrazie lub w zaznaczeniu, aby go skopiować (dodatek – pyta przed pobraniem)",
     "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Relief do druku 3D (STL) z jasności obrazu albo z głębi AI",
     "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Dodatki działające na Twoim urządzeniu, pobierane dopiero po akceptacji rozmiaru: zaznaczanie obiektu (stuknięciem), usuwanie obiektów przez AI, usuwanie tła, odczyt tekstu (OCR) i głębia do reliefów 3D. Panel boczny je wyświetla i znów usuwa.",
-    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "Relief 3D…: relief do druku (STL) z jasności obrazu – albo litofan – albo z głębi AI."
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "Relief 3D…: relief do druku (STL) z jasności obrazu – albo litofan – albo z głębi AI.",
+    "Layer {n}": "Warstwa {n}",
+    "Saved as one picture – Save layers (.ora) in the Layers section keeps the layers.": "Zapisano jako jeden obraz – warstwy zachowa Zapisz warstwy (.ora) w sekcji Warstwy.",
+    "The last layer can’t be deleted.": "Ostatniej warstwy nie można usunąć.",
+    "There is no layer under this one.": "Pod tą warstwą nie ma żadnej.",
+    "Name of the layer:": "Nazwa warstwy:",
+    "Hide this layer": "Ukryj tę warstwę",
+    "Show this layer": "Pokaż tę warstwę",
+    "Show {name}": "Pokaż {name}",
+    "Saved {name} with {n} {n|layer|layers}.": "Zapisano {name} z {n} {n|warstwą|warstwami|warstwami}.",
+    "Opened {name} ({n} {n|layer|layers}).": "Otwarto {name} ({n} {n|warstwa|warstwy|warstw}).",
+    "Could not read this OpenRaster file.": "Nie udało się odczytać tego pliku OpenRaster.",
+    "Merge down": "Scal w dół",
+    "Flatten": "Spłaszcz",
+    "Save layers (.ora)": "Zapisz warstwy (.ora)",
+    "Painting and the other tools work on the active layer. Tap a layer to make it active, double-click to rename. Save keeps the picture as it looks; Save layers keeps the layers.": "Malowanie i inne narzędzia działają na aktywnej warstwie. Stuknij warstwę, aby ją aktywować, kliknij dwukrotnie, aby zmienić nazwę. Zapisz zapisuje obraz tak, jak wygląda; Zapisz warstwy zachowuje warstwy.",
+    "Layers (.ora)": "Warstwy (.ora)",
+    "Layers – the top one first": "Warstwy – najwyższa pierwsza",
+    "A new, empty layer above this one": "Nowa, pusta warstwa nad tą",
+    "A copy of this layer": "Kopia tej warstwy",
+    "Move this layer up": "Przesuń warstwę w górę",
+    "Move up": "W górę",
+    "Move this layer down": "Przesuń warstwę w dół",
+    "Move down": "W dół",
+    "Delete this layer": "Usuń tę warstwę",
+    "Put this layer onto the one under it": "Nałóż tę warstwę na tę pod nią",
+    "All the layers as one": "Wszystkie warstwy w jedną",
+    "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Zapisz wszystkie warstwy w jednym pliku (OpenRaster – otwiera go GIMP, Krita i inne); Otwórz… otwiera go ponownie",
+    "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Warstwy w aplikacji rastrowej: malowanie na aktywnej warstwie, pokazywanie / ukrywanie, krycie, przesuwanie, scalanie, spłaszczanie – Cofnij zna wszystko. Zapisz warstwy zachowuje je w pliku OpenRaster (.ora – otwiera go GIMP i Krita), zachowuje je też automatyczny zapis."
   };
 
   // src/shared/i18n.ts
@@ -4539,8 +4651,8 @@
     return [...m].sort((a, b) => b[1] - a[1]).map(([k]) => hex(k >> 16, k >> 8 & 255, k & 255));
   }
   function samplePixels(img, n5) {
-    const out = [], d = img.data, total2 = img.width * img.height, step = Math.max(1, Math.floor(total2 / n5));
-    for (let p = 0; p < total2; p += step) {
+    const out = [], d = img.data, total2 = img.width * img.height, step2 = Math.max(1, Math.floor(total2 / n5));
+    for (let p = 0; p < total2; p += step2) {
       const i = p * 4;
       if (d[i + 3] >= 128) out.push([d[i], d[i + 1], d[i + 2]]);
     }
@@ -5095,7 +5207,7 @@
     const hex3 = q(".cp-hex"), now = q(".cp-new");
     let [h, s, v] = toHsv(initial || "#808080") || [0, 0, 0.5];
     const color = () => fromHsv(h, s, v);
-    const draw = (fromField = false) => {
+    const draw2 = (fromField = false) => {
       sv.style.backgroundColor = `hsl(${h}, 100%, 50%)`;
       knob.style.left = `${s * 100}%`;
       knob.style.top = `${(1 - v) * 100}%`;
@@ -5109,7 +5221,7 @@
       const r = sv.getBoundingClientRect();
       s = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
       v = 1 - Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
-      draw();
+      draw2();
     };
     sv.onpointerdown = (e) => {
       sv.setPointerCapture(e.pointerId);
@@ -5119,26 +5231,26 @@
       if (sv.hasPointerCapture(e.pointerId)) pick(e);
     };
     sv.onkeydown = (e) => {
-      const step = e.shiftKey ? 0.1 : 0.02, moves = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] };
+      const step2 = e.shiftKey ? 0.1 : 0.02, moves = { ArrowLeft: [-step2, 0], ArrowRight: [step2, 0], ArrowUp: [0, step2], ArrowDown: [0, -step2] };
       const m = moves[e.key];
       if (!m) return;
       e.preventDefault();
       s = Math.min(1, Math.max(0, s + m[0]));
       v = Math.min(1, Math.max(0, v + m[1]));
-      draw();
+      draw2();
     };
     hue.oninput = () => {
       h = +hue.value;
-      draw();
+      draw2();
     };
     hex3.oninput = () => {
       const c = norm(hex3.value), hsv = c && toHsv(c);
       if (hsv) {
         [h, s, v] = hsv;
-        draw(true);
+        draw2(true);
       }
     };
-    draw();
+    draw2();
     d.returnValue = "cancel";
     return new Promise((resolve) => {
       d.addEventListener("close", () => {
@@ -5557,21 +5669,58 @@
   var stage = $("#stage");
   var view = $("#view");
   var vctx = view.getContext("2d");
-  var doc = document.createElement("canvas");
-  doc.width = 800;
-  doc.height = 600;
-  var dctx = doc.getContext("2d", { willReadFrequently: true });
+  var nextId = 1;
+  function makeLayer(w, h, name, id = nextId) {
+    const canvas = makeCanvas(w, h);
+    nextId = Math.max(nextId, id + 1);
+    return { id, canvas, ctx: canvas.getContext("2d", { willReadFrequently: true }), name, visible: true, opacity: 1, rev: 0 };
+  }
+  var layers = [];
+  var active = 0;
+  var doc;
+  var dctx;
+  function useLayer(i) {
+    active = Math.max(0, Math.min(layers.length - 1, i));
+    doc = layers[active].canvas;
+    dctx = layers[active].ctx;
+  }
+  layers.push(makeLayer(800, 600, "Layer 1"));
+  useLayer(0);
+  function setLayers(list, activeIndex) {
+    layers.splice(0, layers.length, ...list);
+    useLayer(activeIndex);
+    emit("layers");
+  }
   function makeCanvas(w, h) {
     const c = document.createElement("canvas");
     c.width = Math.max(1, w);
     c.height = Math.max(1, h);
     return c;
   }
-  function setSize(w, h) {
-    if (doc.width !== w) doc.width = w;
-    if (doc.height !== h) doc.height = h;
+  function mapLayers(fn) {
+    for (const L of layers) {
+      const c = fn(L.canvas);
+      L.canvas.width = c.width;
+      L.canvas.height = c.height;
+      L.ctx.drawImage(c, 0, 0);
+      L.rev++;
+    }
     emit("size");
   }
+  function flat() {
+    if (layers.length === 1 && layers[0].visible && layers[0].opacity === 1) return doc;
+    const c = makeCanvas(doc.width, doc.height), x = c.getContext("2d");
+    for (const L of layers) {
+      if (!L.visible) continue;
+      x.globalAlpha = L.opacity;
+      x.drawImage(L.canvas, 0, 0);
+    }
+    return c;
+  }
+  var flatImage = () => {
+    const c = flat();
+    return c.getContext("2d").getImageData(0, 0, c.width, c.height);
+  };
   var getImage = (x = 0, y = 0, w = doc.width, h = doc.height) => dctx.getImageData(x, y, w, h);
   function toDoc(cx, cy) {
     const r = view.getBoundingClientRect(), v = state.view;
@@ -5660,9 +5809,18 @@
     vctx.restore();
     vctx.imageSmoothingEnabled = k < 1;
     vctx.setTransform(k, 0, 0, k, ox, oy);
-    vctx.drawImage(doc, 0, 0);
     const f = state.floating;
-    if (f) vctx.drawImage(f.canvas, f.x, f.y);
+    layers.forEach((L, i) => {
+      if (L.visible) {
+        vctx.globalAlpha = L.opacity;
+        vctx.drawImage(L.canvas, 0, 0);
+      }
+      if (i === active && f) {
+        vctx.globalAlpha = L.visible ? L.opacity : 1;
+        vctx.drawImage(f.canvas, f.x, f.y);
+      }
+      vctx.globalAlpha = 1;
+    });
     if (state.preview) {
       vctx.save();
       state.preview(vctx, 1 / k);
@@ -5813,7 +5971,24 @@
   var imageVersion = () => changes;
   var MAX_BYTES = 4e8;
   var MAX_STEPS = 100;
-  var snapshot = () => dctx.getImageData(0, 0, doc.width, doc.height);
+  function snapshot(prev) {
+    return {
+      w: doc.width,
+      h: doc.height,
+      active,
+      layers: layers.map((L) => {
+        const same = prev?.layers.find((p) => p.id === L.id && p.rev === L.rev && prev.w === doc.width && prev.h === doc.height);
+        return { id: L.id, name: L.name, visible: L.visible, opacity: L.opacity, rev: L.rev, data: same ? same.data : L.ctx.getImageData(0, 0, doc.width, doc.height) };
+      })
+    };
+  }
+  function bytes() {
+    const seen = /* @__PURE__ */ new Set();
+    for (const s of history2) for (const l of s.layers) seen.add(l.data);
+    let n5 = 0;
+    for (const d of seen) n5 += d.data.length;
+    return n5;
+  }
   function resetHistory() {
     history2 = [snapshot()];
     index = 0;
@@ -5822,20 +5997,31 @@
   function commit() {
     made++;
     changes++;
+    layers[active].rev++;
     history2.splice(index + 1);
-    history2.push(snapshot());
-    let bytes = history2.reduce((t2, s) => t2 + s.data.length, 0);
-    while (history2.length > 2 && (history2.length > MAX_STEPS || bytes > MAX_BYTES)) bytes -= history2.shift().data.length;
+    history2.push(snapshot(history2[history2.length - 1]));
+    while (history2.length > 2 && (history2.length > MAX_STEPS || bytes() > MAX_BYTES)) history2.shift();
     index = history2.length - 1;
     rt.dirty = true;
     afterChange();
   }
   function restore(s) {
     changes++;
-    if (s.width !== doc.width || s.height !== doc.height) setSize(s.width, s.height);
-    dctx.putImageData(s, 0, 0);
+    const now = layers[active], byId = new Map(layers.map((L) => [L.id, L]));
+    const list = s.layers.map((ls) => {
+      const L = byId.get(ls.id) || makeLayer(s.w, s.h, ls.name, ls.id);
+      const resized = L.canvas.width !== s.w || L.canvas.height !== s.h;
+      if (resized) {
+        L.canvas.width = s.w;
+        L.canvas.height = s.h;
+      }
+      if (resized || L === now || L.rev !== ls.rev) L.ctx.putImageData(ls.data, 0, 0);
+      Object.assign(L, { name: ls.name, visible: ls.visible, opacity: ls.opacity, rev: ls.rev });
+      return L;
+    });
+    setLayers(list, s.active);
     state.floating = null;
-    if (state.sel && (state.sel.x + state.sel.w > s.width || state.sel.y + state.sel.h > s.height)) state.sel = null;
+    if (state.sel && (state.sel.x + state.sel.w > s.w || state.sel.y + state.sel.h > s.h)) state.sel = null;
     rt.dirty = true;
     afterChange();
   }
@@ -5891,8 +6077,9 @@
   }
   async function autosaveNow() {
     try {
-      const png = await (await canvasToPng(doc)).arrayBuffer();
-      await Store.set("raster", { png, fileName: rt.fileName, time: Date.now() });
+      const png = await (await canvasToPng(flat())).arrayBuffer();
+      const more = layers.length > 1 ? await Promise.all(layers.map(async (L) => ({ name: L.name, visible: L.visible, opacity: L.opacity, png: await (await canvasToPng(L.canvas)).arrayBuffer() }))) : void 0;
+      await Store.set("raster", { png, layers: more, active, fileName: rt.fileName, time: Date.now() });
     } catch {
       toast(t("Autosave failed – remember to save your image."));
     }
@@ -5904,8 +6091,8 @@
   async function saveVersion(note) {
     lastVersionAt = Date.now();
     try {
-      const colors = countColors(dctx.getImageData(0, 0, doc.width, doc.height), 1e5);
-      const png = await (await canvasToPng(doc)).arrayBuffer();
+      const f = flat(), colors = countColors(f.getContext("2d").getImageData(0, 0, f.width, f.height), 1e5);
+      const png = await (await canvasToPng(f)).arrayBuffer();
       await Store.addVersion({ app: "raster", time: Date.now(), name: rt.fileName, note, png, tiles: doc.width * doc.height, size: { w: doc.width, h: doc.height, unit: "px" }, colors });
       await Store.trimVersions(MAX_VERSIONS, "raster");
       return true;
@@ -5917,7 +6104,8 @@
     try {
       const rec = await Store.get("raster");
       if (!rec || !rec.png) return null;
-      return { png: rec.png instanceof Blob ? rec.png : new Blob([rec.png], { type: "image/png" }), fileName: rec.fileName };
+      const blob = (b) => b instanceof Blob ? b : new Blob([b], { type: "image/png" });
+      return { png: blob(rec.png), fileName: rec.fileName, layers: rec.layers?.map((l) => ({ ...l, png: blob(l.png) })), active: rec.active };
     } catch {
       return null;
     }
@@ -5996,7 +6184,7 @@
   // src/lib/patterns.ts
   var rect = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
   var odd = (j) => (j % 2 + 2) % 2 === 1;
-  var range = (a0, a1, step) => [Math.floor(a0 / step) - 1, Math.ceil(a1 / step) + 1];
+  var range = (a0, a1, step2) => [Math.floor(a0 / step2) - 1, Math.ceil(a1 / step2) + 1];
   function cells(type, s, b) {
     const out = [];
     if (type === "square") {
@@ -6676,7 +6864,8 @@
   };
   function copySource() {
     if (state.floating) return state.floating.canvas;
-    const b = state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
+    if (!state.sel) return flat();
+    const b = state.sel;
     const c = makeCanvas(b.w, b.h), x = c.getContext("2d");
     x.drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
     const mask2 = state.sel?.mask;
@@ -6719,9 +6908,17 @@
       toast(t("Select the part to keep first."));
       return;
     }
-    const c = copySource();
-    setSize(b.w, b.h);
-    dctx.drawImage(c, 0, 0);
+    const mask2 = b.mask ? maskCanvas(b, b.mask) : null;
+    mapLayers((old) => {
+      const c = makeCanvas(b.w, b.h), x = c.getContext("2d");
+      x.drawImage(old, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+      if (mask2) {
+        x.globalCompositeOperation = "destination-in";
+        x.drawImage(mask2, 0, 0);
+      }
+      return c;
+    });
+    for (const L of layers) L.rev++;
     state.sel = null;
     commit();
     selectionChanged();
@@ -6761,10 +6958,13 @@
     }
     if (state.floating) place();
     if ((c.width > doc.width || c.height > doc.height) && await askYes(t("The pasted image ({w} × {h}) is bigger than this one ({W} × {H}). Enlarge the canvas to fit it?", { w: c.width, h: c.height, W: doc.width, H: doc.height }))) {
-      const keep = makeCanvas(doc.width, doc.height);
-      keep.getContext("2d").drawImage(doc, 0, 0);
-      setSize(Math.max(doc.width, c.width), Math.max(doc.height, c.height));
-      dctx.drawImage(keep, 0, 0);
+      const W = Math.max(doc.width, c.width), H = Math.max(doc.height, c.height);
+      mapLayers((old) => {
+        const n5 = makeCanvas(W, H);
+        n5.getContext("2d").drawImage(old, 0, 0);
+        return n5;
+      });
+      for (const L of layers) L.rev++;
       commit();
       fitView();
     }
@@ -6828,10 +7028,10 @@
       }
       return out2;
     }
-    const step = type === "bezier3" ? 3 : 2, P2 = closed ? [...pts, pts[0]] : pts, out = [];
+    const step2 = type === "bezier3" ? 3 : 2, P2 = closed ? [...pts, pts[0]] : pts, out = [];
     let i = 0;
     while (i < P2.length - 1) {
-      const k = Math.min(step, P2.length - 1 - i), p = P2[i], q = P2[i + k];
+      const k = Math.min(step2, P2.length - 1 - i), p = P2[i], q = P2[i + k];
       out.push(k === 3 ? { a: p, b: P2[i + 1], c: P2[i + 2], d: q } : k === 2 ? quad(p, P2[i + 1], q) : straight(p, q));
       i += k;
     }
@@ -6840,8 +7040,8 @@
   function onCurve(type, n5, closed, i) {
     if (type === "catmull") return true;
     if (type === "bspline") return !closed && (i === 0 || i === n5 - 1);
-    const step = type === "bezier3" ? 3 : 2;
-    return i % step === 0 || !closed && i === n5 - 1;
+    const step2 = type === "bezier3" ? 3 : 2;
+    return i % step2 === 0 || !closed && i === n5 - 1;
   }
   function cubicAt(s, t2) {
     const u = 1 - t2, a = u * u * u, b = 3 * u * u * t2, c = 3 * u * t2 * t2, d = t2 * t2 * t2;
@@ -7012,7 +7212,7 @@
   }
 
   // worker-source:worker-source
-  var worker_source_default = '(()=>{var q=null,et=new Map;function be(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let o=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,o=q.fillStyle),et.set(t,o),o}function nt(e){if(Array.isArray(e))return e;if(/^#[0-9a-f]{6}$/i.test(e))return[1,3,5].map(o=>parseInt(e.slice(o,o+2),16));let t=be(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(o=>parseInt(t.slice(o,o+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let o=g=>(g/=255,g<=.04045?g/12.92:Math.pow((g+.055)/1.055,2.4)),r=o(e),i=o(t),s=o(n),u=(r*.4124+i*.3576+s*.1805)/.95047,l=r*.2126+i*.7152+s*.0722,a=(r*.0193+i*.1192+s*.9505)/1.08883,m=g=>g>216/24389?Math.cbrt(g):(24389/27*g+16)/116,f=m(u),c=m(l),h=m(a);return[116*c-16,500*(f-c),200*(c-h)]}function xt([e,t,n]){let o=(e+16)/116,r=o+t/500,i=o-n/200,s=c=>c**3>216/24389?c**3:(116*c-16)/(24389/27),u=.95047*s(r),l=s(o),a=1.08883*s(i),m=c=>c<=.0031308?12.92*c:1.055*Math.pow(c,1/2.4)-.055;return"#"+[3.2406*u-1.5372*l-.4986*a,-.9689*u+1.8758*l+.0415*a,.0557*u-.204*l+1.057*a].map(c=>Math.round(Math.max(0,Math.min(1,m(c)))*255)).map(c=>c.toString(16).padStart(2,"0")).join("")}function dt(e,t,n){n=n||t.map(s=>G(nt(s)));let o=G(e),r=null,i=1/0;return t.forEach((s,u)=>{let l=n[u],a=(o[0]-l[0])**2+(o[1]-l[1])**2+(o[2]-l[2])**2;a<i&&(i=a,r=s)}),r}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(o=>G(wt(o))),n=new Map;return(o,r,i)=>{let s=o<<16|r<<8|i,u=n.get(s);return u||(u=dt([o,r,i],e,t),n.set(s,u)),u}}function At(e,t){let{width:n,height:o}=e,r=e.data,i=Mt(n,o),s=i.data,u=Math.max(2,Math.round(t.tile)),l=Math.min(u-1,Math.max(0,Math.round(t.grout))),a=t.palette&&t.palette.length?Pt(t.palette):null,m=Y(t.groutColor),f=new Map,c=0;for(let h=0,g=0;h<o;h+=u,g++){let d=t.bricks&&g%2?-Math.floor(u/2):0;for(let k=d;k<n;k+=u){let p=Math.max(0,k),y=Math.min(n,k+u),w=Math.min(o,h+u),v=0,R=0,P=0,S=0,b=0;for(let M=h;M<w-(w===h+u?l:0);M++)for(let I=p;I<Math.min(y,k+u-l);I++){let U=(M*n+I)*4;b++,!(r[U+3]<128)&&(v+=r[U],R+=r[U+1],P+=r[U+2],S++)}let x=S>0&&S>=b/2,A=[0,0,0,0];if(x){v=Math.round(v/S),R=Math.round(R/S),P=Math.round(P/S);let M=a?a(v,R,P):st(v,R,P);A=Y(M),f.set(M,(f.get(M)||0)+1),c++}for(let M=h;M<w;M++)for(let I=p;I<y;I++){let U=I>=k+u-l||M>=h+u-l;ot(s,(M*n+I)*4,U?x?m:[0,0,0,0]:A)}}}return{img:i,counts:f,tiles:c}}function vt(e){let{width:t,height:n,data:o}=e,r=t*n,i=new Int32Array(r).fill(-1),s=[],u=[],l=m=>o[m*4+3]<128?-1:o[m*4]<<16|o[m*4+1]<<8|o[m*4+2],a=[];for(let m=0;m<r;m++){if(i[m]>=0)continue;let f=l(m);if(f<0)continue;let c=s.length,h=0;for(i[m]=c,a.push(m);a.length;){let g=a.pop(),d=g%t;h++;for(let k of[d>0?g-1:-1,d<t-1?g+1:-1,g-t,g+t])k<0||k>=r||i[k]>=0||l(k)!==f||(i[k]=c,a.push(k))}s.push(st(f>>16,f>>8&255,f&255)),u.push(h)}return{labels:i,colors:s,sizes:u}}function kt(e,t,n,o,r){let i=[],s=e.data;for(let l=0;l<5;l++)for(let a=0;a<5;a++){let m=Math.floor(t+o*(l+.5)/5),f=Math.floor(n+r*(a+.5)/5);if(m<0||f<0||m>=e.width||f>=e.height)continue;let c=(f*e.width+m)*4;s[c+3]>=128&&i.push(G([s[c],s[c+1],s[c+2]]))}if(i.length<2)return 0;let u=[0,1,2].map(l=>i.reduce((a,m)=>a+m[l],0)/i.length);return i.reduce((l,a)=>l+Math.hypot(a[0]-u[0],a[1]-u[1],a[2]-u[2]),0)/i.length}function pe(e,t,n,o){let r=n.length,i=n.map(l=>l.y),s=Math.max(0,Math.floor(Math.min(...i))),u=Math.min(t-1,Math.ceil(Math.max(...i)));for(let l=s;l<=u;l++){let a=l+.5,m=[];for(let f=0;f<r;f++){let c=n[f],h=n[(f+1)%r];c.y<=a!=h.y<=a&&m.push(c.x+(a-c.y)*(h.x-c.x)/(h.y-c.y))}m.sort((f,c)=>f-c);for(let f=0;f+1<m.length;f+=2){let c=Math.max(0,Math.ceil(m[f]-.5)),h=Math.min(e-1,Math.floor(m[f+1]-.5));for(let g=c;g<=h;g++)o(l*e+g)}}}function St(e,t,n){let{width:o,height:r}=e,i=e.data,s=Mt(o,r),u=s.data,l=n.palette&&n.palette.length?Pt(n.palette):null,a=new Map,m=[],f=0;for(let h of t){let g=0,d=0,k=0,p=0,y=0,w=[];if(pe(o,r,h,P=>{w.push(P),y++;let S=P*4;i[S+3]<128||(g+=i[S],d+=i[S+1],k+=i[S+2],p++)}),!p||p<y/2)continue;g=Math.round(g/p),d=Math.round(d/p),k=Math.round(k/p);let v=l?l(g,d,k):st(g,d,k),R=Y(v);for(let P of w)ot(u,P*4,R);a.set(v,(a.get(v)||0)+1),f++,m.push(h)}let c=Math.max(0,n.grout)/2;if(c>0){let h=Y(n.groutColor);for(let g of m)for(let d=0;d<g.length;d++){let k=g[d],p=g[(d+1)%g.length],y=p.x-k.x,w=p.y-k.y,v=y*y+w*w||1,R=Math.max(0,Math.floor(Math.min(k.x,p.x)-c)),P=Math.min(o-1,Math.ceil(Math.max(k.x,p.x)+c)),S=Math.max(0,Math.floor(Math.min(k.y,p.y)-c)),b=Math.min(r-1,Math.ceil(Math.max(k.y,p.y)+c));for(let x=S;x<=b;x++)for(let A=R;A<=P;A++){let M=A+.5,I=x+.5,U=Math.max(0,Math.min(1,((M-k.x)*y+(I-k.y)*w)/v)),B=k.x+U*y-M,$=k.y+U*w-I;B*B+$*$<=c*c&&ot(u,(x*o+A)*4,h)}}}return{img:s,counts:a,tiles:f}}function It(e){let t=new Map;return e.colors.forEach((n,o)=>{let r=t.get(n)||{n:0,color:n,pieces:0,pixels:0};r.pieces++,r.pixels+=e.sizes[o],t.set(n,r)}),[...t.values()].sort((n,o)=>o.pixels-n.pixels).map((n,o)=>({...n,n:o+1}))}var ge=.01;function Ut(e){ge=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,o)=>e*o-t*n;function xe(e,t,n){let o=n.x-t.x,r=n.y-t.y,i=o*o+r*r,s=i?((e.x-t.x)*o+(e.y-t.y)*r)/i:0;return s=Math.max(0,Math.min(1,s)),{x:t.x+o*s,y:t.y+r*s,t:s}}function de(e,t,n,o){let r=t.x-e.x,i=t.y-e.y,s=o.x-n.x,u=o.y-n.y,l=it(r,i,s,u);if(Math.abs(l)<1e-12)return null;let a=n.x-e.x,m=n.y-e.y,f=it(a,m,s,u)/l,c=it(a,m,r,i)/l;return f<0||f>1||c<0||c>1?null:{x:e.x+r*f,y:e.y+i*f,t:f,u:c}}function Bt(e,t){let n=!1;for(let o=0,r=t.length-1;o<t.length;r=o++){let i=t[o],s=t[r];i.y>e.y!=s.y>e.y&&e.x<(s.x-i.x)*(e.y-i.y)/(s.y-i.y)+i.x&&(n=!n)}return n}function $t(e,t,n,o,r){let i=[];for(let s=0;s<e;s++){let u=r+s*2*Math.PI/e;i.push({x:t+o*Math.cos(u),y:n+o*Math.sin(u)})}return i}function at(e,t,n,o){let r=[0,1];for(let a of n)for(let m=0,f=a.length;m<f;m++){let c=de(e,t,a[m],a[(m+1)%f]);c&&r.push(c.t)}r.sort((a,m)=>a-m);let i=a=>({x:e.x+(t.x-e.x)*a,y:e.y+(t.y-e.y)*a}),s=[],u=null,l=0;for(let a=0;a+1<r.length;a++){let m=r[a],f=r[a+1];f-m<1e-9||(o(i((m+f)/2))?(u===null&&(u=m),l=f):u!==null&&(s.push({a:i(u),b:i(l)}),u=null))}return u!==null&&s.push({a:i(u),b:i(l)}),s}function lt(e,t){let n=1/0;for(let o of t)for(let r=0,i=o.length;r<i;r++)n=Math.min(n,H(e,xe(e,o[r],o[(r+1)%i])));return n}var V=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let o=[];if(e==="square"){let[r,i]=z(n.x0,n.x1,t),[s,u]=z(n.y0,n.y1,t);for(let l=r;l<=i;l++)for(let a=s;a<=u;a++)o.push(V(l*t,a*t,t,t))}else if(e==="brick"){let r=2*t,[i,s]=z(n.y0,n.y1,t);for(let u=i;u<=s;u++){let l=ct(u)?t:0,[a,m]=z(n.x0-l,n.x1-l,r);for(let f=a;f<=m;f++)o.push(V(l+f*r,u*t,r,t))}}else if(e==="hex"){let r=Math.sqrt(3)*t,i=1.5*t,[s,u]=z(n.y0,n.y1,i);for(let l=s;l<=u;l++){let a=ct(l)?r/2:0,[m,f]=z(n.x0-a,n.x1-a,r);for(let c=m;c<=f;c++)o.push($t(6,a+c*r,l*i,t,-Math.PI/2))}}else if(e==="triangle"){let r=t*Math.sqrt(3)/2,[i,s]=z(n.y0,n.y1,r);for(let u=i;u<=s;u++){let l=u*r,a=ct(u)?t/2:0,[m,f]=z(n.x0-a,n.x1-a,t);for(let c=m;c<=f;c++){let h=a+c*t;o.push([{x:h,y:l+r},{x:h+t/2,y:l},{x:h+t,y:l+r}]),o.push([{x:h+t/2,y:l},{x:h+1.5*t,y:l},{x:h+t,y:l+r}])}}}else if(e==="herringbone"){let r=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([f,c])=>[f/t,c/t]),i=r.map(([f,c])=>(f+c)/4),s=r.map(([f,c])=>(f-c)/2),u=Math.floor(Math.min(...i))-2,l=Math.ceil(Math.max(...i))+2,a=Math.floor(Math.min(...s))-2,m=Math.ceil(Math.max(...s))+2;for(let f=u;f<=l;f++)for(let c=a;c<=m;c++)o.push(V((2*f+c)*t,(2*f-c)*t,t,2*t)),o.push(V((2*f+1+c)*t,(2*f+1-c)*t,2*t,t))}return o}function Ft(e,t){let n=new Map;for(let r of e){let i=r.b.x-r.a.x,s=r.b.y-r.a.y,u=Math.hypot(i,s);if(u<t)continue;i/=u,s/=u,(i<-1e-9||Math.abs(i)<=1e-9&&s<0)&&(i=-i,s=-s);let l=-s*r.a.x+i*r.a.y,a=Math.round(Math.atan2(s,i)*1e6)+"|"+Math.round(l/(t*10)),m=i*r.a.x+s*r.a.y,f=i*r.b.x+s*r.b.y;(n.get(a)||n.set(a,{dx:i,dy:s,off:l,list:[]}).get(a)).list.push([Math.min(m,f),Math.max(m,f)])}let o=[];for(let r of n.values()){r.list.sort((l,a)=>l[0]-a[0]);let i=l=>({x:r.dx*l-r.dy*r.off,y:r.dy*l+r.dx*r.off}),[s,u]=r.list[0];for(let l=1;l<=r.list.length;l++){let a=r.list[l];if(a&&a[0]<=u+t){u=Math.max(u,a[1]);continue}o.push({a:i(s),b:i(u)}),a&&([s,u]=a)}}return o}function jt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}];function Me(e,t,n,o){let r=n?t*2:t,i=n?t/2:t,s=[],u=(l,a,m)=>{if(!(l>=e.x+e.w-1e-9||a>=e.y+e.h-1e-9))if(m>i*1.0001&&o(l,a,m,m)){let f=m/2;u(l,a,f),u(l+f,a,f),u(l,a+f,f),u(l+f,a+f,f)}else s.push({x:l,y:a,s:m})};for(let l=0;l*r<e.h;l++)for(let a=0;a*r<e.w;a++)u(e.x+a*r,e.y+l*r,r);return s}function we(e,t){let n=[];for(let o=0,r=e.length;o<r;o++){let i=e[o],s=e[(o+1)%r],u=t(i),l=t(s);if(u<=0&&n.push(i),u<0&&l>0||u>0&&l<0){let a=u/(u-l);n.push({x:i.x+(s.x-i.x)*a,y:i.y+(s.y-i.y)*a})}}return n}function Pe(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,o=new Map,r=(s,u)=>s+","+u;e.forEach((s,u)=>{let l=r(Math.floor(s.x/n),Math.floor(s.y/n));(o.get(l)||o.set(l,[]).get(l)).push(u)});let i=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((s,u)=>{let l=Math.floor(s.x/n),a=Math.floor(s.y/n),m=N(t.x,t.y,t.w,t.h),f=()=>Math.max(...m.map(c=>H(c,s)));for(let c=0;c<=i&&m.length>=3&&!((c-1)*n>2*f());c++){let h=[];for(let g=l-c;g<=l+c;g++)for(let d=a-c;d<=a+c;d++)if(Math.max(Math.abs(g-l),Math.abs(d-a))===c)for(let k of o.get(r(g,d))||[])k!==u&&h.push(k);h.sort((g,d)=>H(e[g],s)-H(e[d],s));for(let g of h){let d=e[g],k=d.x-s.x,p=d.y-s.y,y=(s.x+d.x)/2,w=(s.y+d.y)/2;if(m=we(m,v=>(v.x-y)*k+(v.y-w)*p),m.length<3)break}}return m}).filter(s=>s.length>=3)}function Z({style:e,box:t,size:n,detail:o=0,busy:r=()=>!1,seed:i=1}){let s=o>0;if(e==="hex"){let l=n/Math.sqrt(3);return Lt("hex",l,{x0:-l,y0:-l,x1:t.w+l,y1:t.h+l}).map(a=>a.map(m=>({x:m.x+t.x,y:m.y+t.y})))}if(e==="brick"){let l=[];for(let a=0;a*n<t.h;a++){let m=a%2?-n:0;for(let f=t.x+m;f<t.x+t.w;f+=2*n){let c=t.y+a*n;s&&r(f,c,2*n,n)?l.push(N(f,c,n,n),N(f+n,c,n,n)):l.push(N(f,c,2*n,n))}}return l}let u=Me(t,n,s,r);if(e==="irregular"){let l=jt(i),a=u.map(m=>({x:m.x+m.s*(.5+(l()-.5)*.7),y:m.y+m.s*(.5+(l()-.5)*.7)})).filter(m=>m.x>=t.x&&m.y>=t.y&&m.x<=t.x+t.w&&m.y<=t.y+t.h);return Pe(a,t)}return u.map(l=>N(l.x,l.y,l.s,l.s))}function Ct(e,t,n,o){let r=o*10,i=a=>Math.round(a.x/r)+","+Math.round(a.y/r),s=new Set,u=[],l=a=>n(a)&&lt(a,t)>o*20;for(let a of e)for(let m=0;m<a.length;m++){let f=a[m],c=a[(m+1)%a.length],h=i(f),g=i(c),d=h<g?h+"|"+g:g+"|"+h;h===g||s.has(d)||(s.add(d),u.push(...at(f,c,t,l)))}return Ft(u,o)}function Tt(e,t,n=1,o=16){if(!e.length)return[];t=Math.min(t,e.length);let r=jt(n),i=(l,a)=>(l[0]-a[0])**2+(l[1]-a[1])**2+(l[2]-a[2])**2,s=[e[Math.floor(r()*e.length)]];for(;s.length<t;){let l=e.map(f=>Math.min(...s.map(c=>i(f,c)))),a=r()*l.reduce((f,c)=>f+c,0),m=0;for(;m<e.length-1&&(a-=l[m])>0;)m++;s.push(e[m])}let u=[];for(let l=0;l<o;l++){let a=s.map(()=>[0,0,0]);u=s.map(()=>0);for(let m of e){let f=0,c=1/0;s.forEach((h,g)=>{let d=i(m,h);d<c&&(c=d,f=g)}),a[f][0]+=m[0],a[f][1]+=m[1],a[f][2]+=m[2],u[f]++}s.forEach((m,f)=>{u[f]&&(s[f]=a[f].map(c=>c/u[f]))})}return s.map((l,a)=>({c:l,n:u[a]})).sort((l,a)=>a.n-l.n).map(l=>l.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function Ae(e,t,n){let o=new Uint8Array(t*n),r=[];for(let i=0;i<n;i++)for(let s=0;s<t;s++){let u=i*t+s,l=e[u];if(l<0||o[u])continue;let a=1;for(;s+a<t&&e[u+a]===l&&!o[u+a];)a++;let m=1;t:for(;i+m<n;){let f=(i+m)*t+s;for(let c=0;c<a;c++)if(e[f+c]!==l||o[f+c])break t;m++}for(let f=i;f<i+m;f++)o.fill(1,f*t+s,f*t+s+a);r.push({x:s,y:i,w:a,h:m,level:l})}return r}function ve(e,t){let n=new Int16Array(e.length);for(let o=0;o<e.length;o++)n[o]=e[o]===-2?0:e[o]<0?t.baseLayers:_(e[o],t);return n}function Gt(e,t){let n=e.length,o=ve(e,t),r=new Int16Array(n);for(let i=0;i<n;i++)r[i]=Math.max(0,e[i]);return{bottom:new Int16Array(n),top:o,level:r}}function mt(e,t,n,o,r){let i=(b,x)=>b>=0&&x>=0&&b<t&&x<n,s=(b,x)=>i(b,x)?e.bottom[x*t+b]:0,u=(b,x)=>{if(!i(b,x))return 0;let A=x*t+b;return e.top[A]>e.bottom[A]?e.top[A]:e.bottom[A]},l=(b,x)=>u(b,x)>s(b,x),a=(b,x)=>i(b,x)?e.level[x*t+b]:0,m=[],f=b=>n-b,c=new Int16Array(t*n),h=b=>{let x=new Map,A=[];for(let M=0;M<n;M++)for(let I=0;I<t;I++){let U=M*t+I;if(!l(I,M)){c[U]=-1;continue}let B=b(I,M)*4096+a(I,M),$=x.get(B);$==null&&($=A.length,x.set(B,$),A.push(B)),c[U]=$}return{rs:Ae(c,t,n),vals:A}};{let{rs:b,vals:x}=h(u);for(let A of b){let M=x[A.level];m.push({o:[A.x,f(A.y+A.h),Math.floor(M/4096)],u:[A.w,0,0],v:[0,A.h,0],level:M%4096})}}{let{rs:b,vals:x}=h(s);for(let A of b){let M=x[A.level];m.push({o:[A.x,f(A.y+A.h),Math.floor(M/4096)],u:[0,A.h,0],v:[A.w,0,0],level:M%4096})}}let g=(b,x,A,M)=>{if(x<=b)return[];if(M<=A||M<=b||A>=x)return[[b,x]];let I=[];return A>b&&I.push([b,A]),M<x&&I.push([M,x]),I},d=(b,x)=>l(b,x)?[s(b,x),u(b,x)]:[0,0];for(let b=0;b<=n;b++)for(let x=0;x<t;){let[A,M]=d(x,b-1),[I,U]=d(x,b);if(A===I&&M===U){x++;continue}let B=x+1;for(;B<t;B++){let[L,F]=d(B,b-1),[j,T]=d(B,b);if(L!==A||F!==M||j!==I||T!==U)break}let $=f(b);for(let[L,F]of g(A,M,I,U))m.push({o:[x,$,L],u:[B-x,0,0],v:[0,0,F-L],level:a(x,b-1)});for(let[L,F]of g(I,U,A,M))m.push({o:[x,$,L],u:[0,0,F-L],v:[B-x,0,0],level:a(x,b)});x=B}for(let b=0;b<=t;b++)for(let x=n-1;x>=0;){let[A,M]=d(b-1,x),[I,U]=d(b,x);if(A===I&&M===U){x--;continue}let B=x-1;for(;B>=0;B--){let[F,j]=d(b-1,B),[T,O]=d(b,B);if(F!==A||j!==M||T!==I||O!==U)break}let $=f(x+1),L=x-B;for(let[F,j]of g(I,U,A,M))m.push({o:[b,$,F],u:[0,0,j-F],v:[0,L,0],level:a(b,x)});for(let[F,j]of g(A,M,I,U))m.push({o:[b,$,F],u:[0,L,0],v:[0,0,j-F],level:a(b-1,x)});x=B}let k=[new Map,new Map,new Map],p=(b,x,A)=>b.o.map((M,I)=>M+x*b.u[I]+A*b.v[I]),y=(b,x)=>x===0?b[1]*1e5+b[2]:x===1?b[0]*1e5+b[2]:b[0]*1e5+b[1];for(let b of m)for(let[x,A]of[[0,0],[1,0],[1,1],[0,1]]){let M=p(b,x,A);for(let I=0;I<3;I++){let U=y(M,I),B=k[I].get(U);B||k[I].set(U,B=[]),B.push(M[I])}}for(let b of k)for(let[x,A]of b)b.set(x,[...new Set(A)].sort((M,I)=>M-I));let w=[],v=[],R=[],P=new Map,S=b=>{let x=(b[0]*2e5+b[1]*2)*2e5+b[2]*2,A=P.get(x);return A==null&&(A=w.length/3,P.set(x,A),w.push(b[0]*o,b[1]*o,b[2]*r)),A};for(let b of m){let x=[p(b,0,0),p(b,1,0),p(b,1,1),p(b,0,1)],A=[];for(let I=0;I<4;I++){let U=x[I],B=x[(I+1)%4],$=U.findIndex((T,O)=>T!==B[O]);A.push(U);let L=Math.min(U[$],B[$]),F=Math.max(U[$],B[$]),j=(k[$].get(y(U,$))||[]).filter(T=>T>L&&T<F);U[$]>B[$]&&j.reverse();for(let T of j){let O=[...U];O[$]=T,A.push(O)}}let M=A.map(S);if(M.length===4)v.push(M[0],M[1],M[2],M[0],M[2],M[3]),R.push(b.level,b.level);else{let I=S(p(b,.5,.5));for(let U=0;U<M.length;U++)v.push(I,M[U],M[(U+1)%M.length]),R.push(b.level)}}return{vertices:w,triangles:v,levels:R}}function zt(e,t,n,o,r,i){let s=Int16Array.from(e),u=t*n,l=new Int32Array(u),a=new Float32Array(u),m=i.heightOf||(c=>c===-2?0:(c<0?r.baseLayers:_(c,r))*r.layerHeight),f=0;for(let c=0;c<12;c++){l.fill(-1);let h=[],g=[];for(let P=0;P<u;P++){if(l[P]>=0)continue;let S=h.length,b=s[P];for(h.push(b),l[P]=S,g.push(P);g.length;){let x=g.pop(),A=x%t;for(let M of[A>0?x-1:-1,A<t-1?x+1:-1,x-t,x+t])M<0||M>=u||l[M]>=0||s[M]!==b||(l[M]=S,g.push(M))}}let d=Math.SQRT2;for(let P=0;P<u;P++){let S=P%t,b=P/t|0,x=l[P],A=S===0||b===0||S===t-1||b===n-1||l[P-1]!==x||l[P+1]!==x||l[P-t]!==x||l[P+t]!==x;a[P]=A?1:1e9}for(let P=0;P<n;P++)for(let S=0;S<t;S++){let b=P*t+S;a[b]<=1||(a[b]=Math.min(a[b],a[b-1]+1,a[b-t]+1,a[b-t-1]+d,a[b-t+1]+d))}for(let P=n-1;P>=0;P--)for(let S=t-1;S>=0;S--){let b=P*t+S;a[b]<=1||(a[b]=Math.min(a[b],a[b+1]+1,a[b+t]+1,a[b+t+1]+d,a[b+t-1]+d))}let k=new Float32Array(h.length);for(let P=0;P<u;P++)a[P]>k[l[P]]&&(k[l[P]]=a[P]);let p=h.map(()=>new Map),y=new Float64Array(h.length).fill(1/0),w=(P,S)=>{let b=l[P],x=l[S];if(b===x)return;let A=s[P],M=s[S];y[b]=Math.min(y[b],m(M)),y[x]=Math.min(y[x],m(A)),M<A&&p[b].set(M,(p[b].get(M)||0)+1),A<M&&p[x].set(A,(p[x].get(A)||0)+1)};for(let P=0;P<n;P++)for(let S=0;S<t;S++){let b=P*t+S;S<t-1&&w(b,b+1),P<n-1&&w(b,b+t)}let v=new Int16Array(h.length).fill(-32768),R=0;if(h.forEach((P,S)=>{let b=m(P)-y[S];if(!(b>1e-9)||!p[S].size)return;let x=Math.max(1,2*k[S]-1)*o;if(x>=i.minWidth&&b<=i.maxRatio*x)return;let A=-2,M=-1;for(let[I,U]of p[S])(U>M||U===M&&I>A)&&(A=I,M=U);v[S]=A,R++}),!R)break;for(let P=0;P<u;P++){let S=v[l[P]];S!==-32768&&(s[P]=S)}f+=R}return{grid:s,lowered:f}}function ft(e,t="Mosaic Paint"){let n=e.vertices,o=e.triangles,r=o.length/3,i=new ArrayBuffer(84+r*50),s=new DataView(i),u=`${t} – multi-color by layer`.slice(0,80);for(let a=0;a<u.length;a++)s.setUint8(a,u.charCodeAt(a)&127);s.setUint32(80,r,!0);let l=84;for(let a=0;a<r;a++){let m=[0,1,2].map(R=>o[a*3+R]*3),f=n[m[1]]-n[m[0]],c=n[m[1]+1]-n[m[0]+1],h=n[m[1]+2]-n[m[0]+2],g=n[m[2]]-n[m[0]],d=n[m[2]+1]-n[m[0]+1],k=n[m[2]+2]-n[m[0]+2],p=c*k-h*d,y=h*g-f*k,w=f*d-c*g,v=Math.hypot(p,y,w)||1;p/=v,y/=v,w/=v;for(let R of[p,y,w])s.setFloat32(l,R,!0),l+=4;for(let R of m)for(let P=0;P<3;P++)s.setFloat32(l,n[R+P],!0),l+=4;s.setUint16(l,0,!0),l+=2}return i}function Dt(e,t){return e.map((n,o)=>{let r=o===0?1:_(o-1,t)+1,i=_(o,t);return{color:n,fromLayer:r,toLayer:i,changeAtLayer:o===0?null:r,z:o===0?null:+(r*t.layerHeight).toFixed(3)}})}var D=-3,ke=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,o,r){let i=Math.max(0,Math.round(o.frame)),s=t+2*i,u=n+2*i,l=new Int16Array(s*u).fill(D);for(let c=0;c<n;c++)for(let h=0;h<t;h++)l[(c+i)*s+h+i]=e[c*t+h];let a=Math.min(o.corner,s/2,u/2),m=o.hole/2,f=ke(o,r);for(let c=0;c<u;c++)for(let h=0;h<s;h++){let g=h+.5,d=c+.5;if(a>0){let k=g<a?a:g>s-a?s-a:g,p=d<a?a:d>u-a?u-a:d;if((g-k)**2+(d-p)**2>a*a){l[c*s+h]=-2;continue}}m>0&&(g-s/2)**2+(d-f)**2<=m*m&&(l[c*s+h]=-2)}return{grid:l,w:s,h:u}}function _t(e,t,n,o){let r=new Uint8Array(e*t),i=n/2;if(i<=0)return r;let s=[o,e-o],u=[o,t-o];for(let l of s)for(let a of u)for(let m=Math.max(0,Math.floor(a-i));m<Math.min(t,Math.ceil(a+i));m++)for(let f=Math.max(0,Math.floor(l-i));f<Math.min(e,Math.ceil(l+i));f++)(f+.5-l)**2+(m+.5-a)**2<=i*i&&(r[m*e+f]=1);return r}function qt(e,t,n,o=2){let r=n;for(let i=0;i<t.length;i++){if(!t[i])continue;let s=0;for(let u of e)u.top[i]>u.bottom[i]&&(s=Math.max(s,u.top[i]));s>0&&(r=Math.min(r,s-o))}if(r=Math.max(0,r),!r)return 0;for(let i=0;i<t.length;i++)if(t[i])for(let s of e)s.top[i]>s.bottom[i]&&s.bottom[i]<r&&(s.bottom[i]=r,s.top[i]<r&&(s.top[i]=r));return r}function Ht(e,t,n,o){let r=e.length,i={bottom:new Int16Array(r).fill(t),top:new Int16Array(r),level:new Int16Array(r).fill(o)};for(let s=0;s<r;s++)e[s]===D&&(i.top[s]=n);return i}var C=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function Se(e,t,n){let o=e.vertices,r=e.triangles,i=[];i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${C(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let s of t)i.push(`<base name="${C(s)}" displaycolor="${s.toUpperCase()}FF"/>`);i.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${C(n)}">`,"<mesh>","<vertices>");for(let s=0;s<o.length;s+=3)i.push(`<vertex x="${E(o[s])}" y="${E(o[s+1])}" z="${E(o[s+2])}"/>`);i.push("</vertices>","<triangles>");for(let s=0;s<r.length;s+=3)i.push(`<triangle v1="${r[s]}" v2="${r[s+1]}" v3="${r[s+2]}" pid="1" p1="${Math.max(0,e.levels[s/3])}"/>`);return i.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),i.join(`\n`)}function Ie(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:Se(e,t.map(o=>o.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:Ie(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,o=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return r=>r===-2?0:r<0?t.baseLayers*t.layerHeight:e[r]?o:n}function Yt(e,t,n,o,r,i){let s=t*n,u=[];if(i.baseLayers>0){let l=new Int16Array(s);for(let a=0;a<s;a++)e[a]!==-2&&(l[a]=i.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(s),top:l,level:new Int16Array(s)}})}for(let l=0;l<o;l++){let a=new Int16Array(s).fill(i.baseLayers),m=new Int16Array(s),f=new Int16Array(s).fill(l),c=i.baseLayers+(r[l]?Math.max(1,i.tileLayers-i.groutRecess):i.tileLayers),h=!1;for(let g=0;g<s;g++)e[g]===l&&(m[g]=c,h=!0);h&&u.push({part:l,solid:{bottom:a,top:m,level:f}})}return u}function Vt(e,t,n="prusa"){return n==="bambu"?Re(e,t):Ue(e,t)}function Re(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',o=(a,m)=>`${a.toString(16).padStart(8,"0")}-0000-4000-8000-${m.toString(16).padStart(12,"0")}`,r=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((a,m)=>{let f=a.mesh.vertices,c=a.mesh.triangles;r.push(`<object id="${m+1}" p:UUID="${o(1,m)}" type="model">`,"<mesh>","<vertices>");for(let h=0;h<f.length;h+=3)r.push(`<vertex x="${E(f[h])}" y="${E(f[h+1])}" z="${E(f[h+2])}"/>`);r.push("</vertices>","<triangles>");for(let h=0;h<c.length;h+=3)r.push(`<triangle v1="${c[h]}" v2="${c[h+1]}" v3="${c[h+2]}"/>`);r.push("</triangles>","</mesh>","</object>")}),r.push("</resources>","<build/>","</model>");let i=e.length+1,s="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${C(t)}</metadata>`,"<resources>",`<object id="${i}" p:UUID="${o(2,0)}" type="model">`,"<components>"];e.forEach((a,m)=>u.push(`<component p:path="${s}" objectid="${m+1}" p:UUID="${o(3,m)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${o(4,0)}">`,`<item objectid="${i}" p:UUID="${o(5,0)}" printable="1"/>`,"</build>","</model>");let l=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${i}">`,`<metadata key="name" value="${C(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((a,m)=>l.push(`<part id="${m+1}" subtype="normal_part">`,`<metadata key="name" value="${C(a.name)}"/>`,`<metadata key="extruder" value="${a.filament||m+1}"/>`,"</part>")),l.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",s)},{name:"3D/Objects/object_1.model",data:r.join(`\n`)},{name:"Metadata/model_settings.config",data:l.join(`\n`)}]}function Ue(e,t){let n=[],o=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${C(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let s of e)n.push(`<base name="${C(s.name)}" displaycolor="${s.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${C(t)}">`,"<mesh>","<vertices>");for(let s of e){let u=s.mesh.vertices;for(let l=0;l<u.length;l+=3)n.push(`<vertex x="${E(u[l])}" y="${E(u[l+1])}" z="${E(u[l+2])}"/>`)}n.push("</vertices>","<triangles>"),o.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${C(t)}"/>`);let r=0,i=0;return e.forEach((s,u)=>{let l=s.mesh.triangles,a=l.length/3;for(let m=0;m<l.length;m+=3)n.push(`<triangle v1="${l[m]+r}" v2="${l[m+1]+r}" v3="${l[m+2]+r}" pid="2" p1="${u}"/>`);o.push(`<volume firstid="${i}" lastid="${i+a-1}">`,`<metadata type="volume" key="name" value="${C(s.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${s.filament||u+1}"/>`,"</volume>"),r+=s.mesh.vertices.length/3,i+=a}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),o.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:o.join(`\n`)}]}function Zt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let o=t.vertices.length/3;for(let r of n.vertices)t.vertices.push(r);for(let r of n.triangles)t.triangles.push(r+o);for(let r of n.levels)t.levels.push(r)}return t}var K=null;function $e(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let o=n;for(let r=0;r<8;r++)o=o&1?3988292384^o>>>1:o>>>1;K[n]=o>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function Le(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,o=[],r=[],i=0;for(let f of e){let c=n.encode(f.name),h=typeof f.data=="string"?n.encode(f.data):f.data,g=$e(h),d=t?await Le(h):null,k=!!d&&d.length<h.length,p=k?d:h,y=new Uint8Array(30+c.length),w=new DataView(y.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,k?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,g,!0),w.setUint32(18,p.length,!0),w.setUint32(22,h.length,!0),w.setUint16(26,c.length,!0),y.set(c,30);let v=new Uint8Array(46+c.length),R=new DataView(v.buffer);R.setUint32(0,33639248,!0),R.setUint16(4,20,!0),R.setUint16(6,20,!0),R.setUint16(8,2048,!0),R.setUint16(10,k?8:0,!0),R.setUint16(12,0,!0),R.setUint16(14,33,!0),R.setUint32(16,g,!0),R.setUint32(20,p.length,!0),R.setUint32(24,h.length,!0),R.setUint16(28,c.length,!0),R.setUint32(42,i,!0),v.set(c,46),o.push(y,p),r.push(v),i+=y.length+p.length}let s=r.reduce((f,c)=>f+c.length,0),u=new Uint8Array(22),l=new DataView(u.buffer);l.setUint32(0,101010256,!0),l.setUint16(8,e.length,!0),l.setUint16(10,e.length,!0),l.setUint32(12,s,!0),l.setUint32(16,i,!0);let a=new Uint8Array(i+s+22),m=0;for(let f of[...o,...r,u])a.set(f,m),m+=f.length;return a}var Xt=2,Fe=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),je=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,o,r,i,s,u,l){let a=r.filter(h=>i[h]>0),m={list:a,grid:new Int16Array(0),counts:[],lowered:0},f=Int16Array.from(e),c=0;for(let h=0;h<4;h++){l?.(h/4);let g=new Int16Array(s.length).fill(-1);a.forEach((w,v)=>{g[w]=v});let d=f.map(w=>w<0?-1:g[w]),k=u.mode==="flat"?Jt(a.map(w=>s[w]),Qt(u)):void 0,p=zt(d,t,n,o,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:k});c+=p.lowered;let y=a.map(()=>0);for(let w=0;w<p.grid.length;w++){let v=p.grid[w];v>=0&&y[v]++,f[w]=v<0?-1:a[v]}if(m={list:a,grid:p.grid,counts:y,lowered:c},y.every(w=>w>0))break;a=a.filter((w,v)=>y[v]>0)}return m}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,o,r){let i=Ot(e,t,n,{frame:r.frame/o,corner:r.corner/o,hole:r.hole/o},Xt/o),s=(r.magnet/2+Xt+r.corner*.3)/o;return{...i,mask:r.magnet>0?_t(i.w,i.h,r.magnet/o,s):null}}function ee(e,t,n){let o=t.length,r;if(n.mode==="flat")r=Yt(e.grid,e.w,e.h,o,t,Qt(n)),n.frame>0&&r.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(o,n),0)});else{let i=Gt(e.grid,W(n)),s=Kt(o,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(i.top[u]=s,i.level[u]=o-1);r=[{part:0,solid:i}]}return e.mask&&qt(r.map(i=>i.solid),e.mask,je(n.magnetDepth,n),Fe),r}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Zt(ee(n,e.grout,t).map(o=>mt(o.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o}=e,r=te(n.grid,n.w,n.h,n.cell,o);t?.(.05);let i=ee(r,n.grout,o);t?.(.15);let s=i.map((a,m)=>{let f=mt(a.solid,r.w,r.h,n.cell,o.layerHeight);return t?.(.15+.7*(m+1)/i.length),f}),u=s.reduce((a,m)=>a+m.triangles.length/3,0),l=(a,m,f)=>({fileName:a,type:m,data:f,triangles:u,parts:s.length});if(o.mode==="flat"){let a=i.map((f,c)=>{let h=Math.max(0,f.part),g=e.colors[h];return{name:f.part===D?e.labels.frame:f.part<0?e.labels.base:`${f.part+1} ${g}`,color:g,mesh:s[c],filament:h+1}});if(e.kind==="3mf")return l(e.name+".3mf","model/3mf",await Q(Vt(a,e.name,e.slicer)));let m=i.map((f,c)=>({name:`${e.name}-${f.part===D?"frame":f.part<0?"base":`${f.part+1}-${e.colors[f.part].slice(1)}`}.stl`,data:new Uint8Array(ft(a[c].mesh,a[c].name))}));return l(e.name+"-stl.zip","application/zip",await Q(m))}return e.kind==="3mf"?l(e.name+".3mf","model/3mf",await Q(Nt(s[0],Dt(e.colors,W(o)),e.name))):l(e.name+".stl","model/stl",new Uint8Array(ft(s[0],e.name)))}function se(e,t,n,o,r){let i=(f,c)=>f<0||c<0||f>=t||c>=n?-1:e[c*t+f],s=t+1,u=(f,c)=>c*s+f,l=Array.from({length:o},()=>new Map),a=(f,c,h,g,d)=>{let k=l[f],p=u(c,h),y=k.get(p);y?y.push(u(g,d)):k.set(p,[u(g,d)])};for(let f=0;f<n;f++)for(let c=0;c<t;c++){r&&c===0&&f%64===0&&r(.5*f/n);let h=e[f*t+c];h<0||(i(c,f-1)!==h&&a(h,c+1,f,c,f),i(c-1,f)!==h&&a(h,c,f,c,f+1),i(c,f+1)!==h&&a(h,c,f+1,c+1,f+1),i(c+1,f)!==h&&a(h,c+1,f+1,c+1,f))}let m=[];for(let f=0;f<o;f++){r&&f%256===0&&r(.5+.5*f/o);let c=l[f],h=[];for(let[g]of c)for(;c.get(g)&&c.get(g).length;){let d=[g],k=g,p=oe(c,g,-1,s);for(;p!==g;){d.push(p);let y=oe(c,p,k,s);k=p,p=y}h.push(Te(d,s))}m.push(h)}return m}function oe(e,t,n,o){let r=e.get(t),i=0;if(r.length>1&&n>=0){let u=t%o-n%o,l=Math.floor(t/o)-Math.floor(n/o),a=m=>{let f=m%o-t%o,c=Math.floor(m/o)-Math.floor(t/o);return f===l&&c===-u?0:f===u&&c===l?1:2};for(let m=1;m<r.length;m++)a(r[m])<a(r[i])&&(i=m)}let s=r[i];return r.splice(i,1),r.length||e.delete(t),s}function Te(e,t){let n=e.map(i=>({x:i%t,y:Math.floor(i/t)})),o=n.length,r=[];for(let i=0;i<o;i++){let s=n[(i+o-1)%o],u=n[i],l=n[(i+1)%o];(u.x-s.x)*(l.y-u.y)-(u.y-s.y)*(l.x-u.x)!==0&&r.push(u)}return r}function bt(e){let t=0;for(let n=0,o=e.length;n<o;n++){let r=e[n],i=e[(n+1)%o];t+=r.x*i.y-i.x*r.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,o,r){let i=e.width,s=e.height,u=n/i,l=vt(e);r?.(.15);let a=new Int32Array(l.colors.length).fill(-1),m=[];l.colors.forEach((w,v)=>{w!==t&&(a[v]=m.length,m.push(w))});let f=l.labels.map(w=>w<0?-1:a[w]),c=se(f,i,s,m.length,r&&(w=>r(.15+.8*w))),h=[],g=w=>w.map(v=>`${tt(v.x*u)},${tt(v.y*u)}`).join(" ");c.forEach((w,v)=>{if(w.length===1)h.push(`<polygon points="${g(w[0])}" fill="${m[v]}" stroke="none"/>`);else{let P=[...w].sort((S,b)=>Math.abs(bt(b))-Math.abs(bt(S))).map(S=>"M"+g(S).replace(/ /g,"L")+"Z").join("");h.push(`<path d="${P}" fill="${m[v]}" fill-rule="evenodd" stroke="none"/>`)}});let d=tt(n),k=tt(s*u),p=[...new Set(It(l).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${d} ${k}" width="${d}mm" height="${k}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:p,paletteName:o,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${d}" height="${k}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${h.join(`\n`)}\n</g>\n</svg>`,tiles:m.length}}function Ee({data:e,W:t,H:n,box:o}){return r=>{let i=Math.floor((r.x-o.x)/o.w*t),s=Math.floor((r.y-o.y)/o.h*n);if(i<0||s<0||i>=t||s>=n)return null;let u=(s*t+i)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Ge(e,t,n,o,r){let i=[];for(let u=0;u<5;u++)for(let l=0;l<5;l++){let a=e({x:t+o*(u+.5)/5,y:n+r*(l+.5)/5});a&&i.push(G(a))}if(i.length<2)return 0;let s=[0,1,2].map(u=>i.reduce((l,a)=>l+a[u],0)/i.length);return i.reduce((u,l)=>u+Math.hypot(l[0]-s[0],l[1]-s[1],l[2]-s[2]),0)/i.length}function ze(e,t,n){let o=[];for(let r=0;r<70;r++)for(let i=0;i<70;i++){let s=e({x:t.x+t.w*(r+.5)/70,y:t.y+t.h*(i+.5)/70});s&&o.push(G(s))}return[...new Set(Tt(o,n,7).map(xt))]}function ae(e,t){Ut(e.eps);let n=Ee(e.photo),o=e.page,r=[{x:o.x,y:o.y},{x:o.x+o.w,y:o.y},{x:o.x+o.w,y:o.y+o.h},{x:o.x,y:o.y+o.h}],i=4+(1-e.detail/100)*26,s=(a,m,f,c)=>Ge(n,a,m,f,c)>i,u=Z({style:e.style,box:o,size:e.size,detail:e.detail/100,busy:s,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let l=Ct(u,[r],a=>Bt(a,r),e.eps);return t?.(.85),{tiles:u.length,lines:l,palette:e.suggest?ze(n,e.photo.box,e.suggest):[]}}var De=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=De[t].exec(e);return n?+n[1]:null},Oe=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,_e=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,o=0,r=!1,i=0,s=!1,u=!1,l=new Set,a=new Map,m=[],f=null;for(let c=0,h=0;c<e.length;h++){let g=e.indexOf(`\n`,c);g<0&&(g=e.length);let d=e.slice(c,g);c=g+1,t&&h%5e4===0&&t(c/e.length);let k=d.indexOf(";");if(k>=0){let y=Oe.exec(d.slice(k));y&&(u=_e.test(y[1])),d=d.slice(0,k)}if(d=d.trim(),!d)continue;let p=d.split(/\\s/,1)[0].toUpperCase();if(p==="G0"||p==="G1"){let y=J(d,"Z"),w=J(d,"E");if(y!=null&&(n=y),w!=null){let v=r?w>0:w>o;if(r||(o=w),v&&!u&&(J(d,"X")!=null||J(d,"Y")!=null)){let R=Math.round(n*1e3)/1e3;l.add(R);let P=a.get(i);P?(P.from=Math.min(P.from,R),P.to=Math.max(P.to,R)):a.set(i,{from:R,to:R}),f&&(m.push({...f,z:R}),f=null),s=!0}}}else if(p==="G92"){let y=J(d,"E");y!=null&&(o=y)}else if(p==="M82")r=!1;else if(p==="M83")r=!0;else if(p==="M600")f={kind:"M600"};else if(/^T\\d+$/.test(p)){let y=+p.slice(1);s&&y!==i&&(f={kind:"tool",tool:y}),i=y}}return{layers:l.size,top:l.size?Math.max(...l):0,changes:m,tools:[...a].map(([c,h])=>({tool:c,...h})).sort((c,h)=>c.tool-h.tool)}}function qe(e){let t=new Uint8ClampedArray(256),n=Math.min(e.black,e.white-1),o=Math.max(e.white,n+1),r=e.contrast/100,i=r>=0?1/Math.max(.01,1-r):1+r,s=e.brightness/100*255;for(let u=0;u<256;u++){let l=Math.min(1,Math.max(0,(u-n)/(o-n)));l=Math.pow(l,1/e.gamma)*255,l=(l-128)*i+128+s,t[u]=Math.round(l)}return t}function ue(e,t,n,o){let r=Float32Array.from(e),i=new Float32Array(r.length);o=Math.max(1,Math.round(o));for(let s=0;s<3;s++){for(let u=0;u<n;u++){let l=u*t,a=0;for(let m=-o;m<=o;m++)a+=r[l+Math.min(t-1,Math.max(0,m))];for(let m=0;m<t;m++)i[l+m]=a/(2*o+1),a+=r[l+Math.min(t-1,m+o+1)]-r[l+Math.max(0,m-o)]}for(let u=0;u<t;u++){let l=0;for(let a=-o;a<=o;a++)l+=i[Math.min(n-1,Math.max(0,a))*t+u];for(let a=0;a<n;a++)r[a*t+u]=l/(2*o+1),l+=i[Math.min(n-1,a+o+1)*t+u]-i[Math.max(0,a-o)*t+u]}}return r}function ce(e,t){let n=[new Float32Array(t),new Float32Array(t),new Float32Array(t)];for(let o=0;o<t;o++)n[0][o]=e[o*4],n[1][o]=e[o*4+1],n[2][o]=e[o*4+2];return n}function He(e,t,n,o){let r=t*n,i=ce(e,r),s=1+Math.round(o/40),u=6+o*.4,l=i.map(a=>ue(a,t,n,s));for(let a=0;a<r;a++){let m=Math.hypot(i[0][a]-l[0][a],i[1][a]-l[1][a],i[2][a]-l[2][a]),f=o/100*Math.exp(-(m*m)/(2*u*u));for(let c=0;c<3;c++)e[a*4+c]=i[c][a]+(l[c][a]-i[c][a])*f}}function Ne(e,t,n,o){let r=t*n,i=ce(e,r),s=o/100*1.5,u=i.map(l=>ue(l,t,n,1));for(let l=0;l<r;l++)for(let a=0;a<3;a++)e[l*4+a]=i[a][l]+(i[a][l]-u[a][l])*s}function me(e,t,n,o){let r=new Uint8ClampedArray(e);o.denoise>0&&He(r,t,n,o.denoise);let i=qe(o),s=1+o.saturation/100;for(let u=0;u<r.length;u+=4){let l=i[r[u]],a=i[r[u+1]],m=i[r[u+2]];if(s!==1){let f=.299*l+.587*a+.114*m;l=f+(l-f)*s,a=f+(a-f)*s,m=f+(m-f)*s}r[u]=l,r[u+1]=a,r[u+2]=m}return o.sharpen>0&&Ne(r,t,n,o.sharpen),r}function Je(e){let t=Math.max(1,Math.floor(e.w/2)),n=Math.max(1,Math.floor(e.h/2)),o=new Float32Array(t*n*3),r=new Uint8Array(t*n);for(let i=0;i<n;i++)for(let s=0;s<t;s++){let u=0,l=0,a=0,m=0,f=0;for(let h=0;h<2;h++)for(let g=0;g<2;g++){let d=Math.min(e.w-1,2*s+g),k=Math.min(e.h-1,2*i+h),p=k*e.w+d;if(e.hole[p]){f++;continue}l+=e.px[p*3],a+=e.px[p*3+1],m+=e.px[p*3+2],u++}let c=i*t+s;f&&(r[c]=1),u&&(o[c*3]=l/u,o[c*3+1]=a/u,o[c*3+2]=m/u)}return{w:t,h:n,px:o,hole:r}}function Ye(e){let{w:t,h:n,px:o}=e,r=new Uint8Array(t*n);for(let s=0;s<t*n;s++)r[s]=e.hole[s]?0:1;let i=t*n-r.reduce((s,u)=>s+u,0);for(;i>0;){let s=[];for(let u=0;u<t*n;u++){if(r[u])continue;let l=u%t,a=(u-l)/t,m=0,f=0,c=0,h=0;for(let g=-1;g<=1;g++)for(let d=-1;d<=1;d++){let k=l+d,p=a+g;if(k<0||p<0||k>=t||p>=n)continue;let y=p*t+k;r[y]&&(f+=o[y*3],c+=o[y*3+1],h+=o[y*3+2],m++)}m&&(o[u*3]=f/m,o[u*3+1]=c/m,o[u*3+2]=h/m,s.push(u))}if(!s.length)break;for(let u of s)r[u]=1;i-=s.length}}function Ve(e){let t=e>>>0||1;return()=>(t=t*1664525+1013904223>>>0)/4294967296}function Ze(e,t,n,o){let{w:r,h:i,px:s,hole:u}=e,l=[],a=new Uint8Array(r*i),m=new Int32Array((r+1)*(i+1));for(let p=0;p<i;p++)for(let y=0;y<r;y++)m[(p+1)*(r+1)+y+1]=u[p*r+y]+m[p*(r+1)+y+1]+m[(p+1)*(r+1)+y]-m[p*(r+1)+y];let f=(p,y,w,v)=>m[(v+1)*(r+1)+w+1]-m[y*(r+1)+w+1]-m[(v+1)*(r+1)+p]+m[y*(r+1)+p];for(let p=3;p<i-3;p++)for(let y=3;y<r-3;y++)f(y-3,p-3,y+3,p+3)||(a[p*r+y]=1,l.push(p*r+y));let c=[];for(let p=0;p<i;p++)for(let y=0;y<r;y++)f(Math.max(0,y-3),Math.max(0,p-3),Math.min(r-1,y+3),Math.min(i-1,p+3))&&c.push(p*r+y);let h=t||new Int32Array(r*i).fill(-1);if(!l.length)return h;let g=new Float32Array(r*i).fill(1/0),d=(p,y,w)=>{let v=p%r,R=(p-v)/r,P=y%r,S=(y-P)/r,b=0,x=0;for(let A=-3;A<=3;A++){let M=R+A;if(!(M<0||M>=i)){for(let I=-3;I<=3;I++){let U=v+I;if(U<0||U>=r)continue;let B=(M*r+U)*3,$=((S+A)*r+P+I)*3,L=s[B]-s[$],F=s[B+1]-s[$+1],j=s[B+2]-s[$+2];b+=L*L+F*F+j*j,x++}if(b>w*x)return 1/0}}return x?b/x:1/0},k=(p,y)=>{if(y<0||!a[y])return;let w=d(p,y,g[p]);w<g[p]&&(g[p]=w,h[p]=y)};for(let p of c)(h[p]<0||!a[h[p]])&&(h[p]=l[Math.floor(o()*l.length)]),g[p]=d(p,h[p],1/0);for(let p=0;p<n;p++){let y=p%2?-1:1;for(let v=0;v<c.length;v++){let R=c[y>0?v:c.length-1-v],P=R%r,S=y;if(P-S>=0&&P-S<r){let M=h[R-S];M>=0&&k(R,M+S)}if(R-S*r>=0&&R-S*r<r*i){let M=h[R-S*r];M>=0&&k(R,M+S*r)}let b=Math.max(r,i),x=h[R]%r,A=(h[R]-x)/r;for(;b>=1;){let M=Math.round(x+(o()*2-1)*b),I=Math.round(A+(o()*2-1)*b);M>=0&&I>=0&&M<r&&I<i&&k(R,I*r+M),b/=2}}let w=new Float32Array(r*i*4);for(let v of c){let R=h[v];if(R<0)continue;let P=v%r,S=(v-P)/r,b=R%r,x=(R-b)/r,A=Math.exp(-g[v]/2e3);for(let M=-3;M<=3;M++)for(let I=-3;I<=3;I++){let U=P+I,B=S+M;if(U<0||B<0||U>=r||B>=i||!u[B*r+U])continue;let $=(B*r+U)*4,L=((x+M)*r+b+I)*3;w[$]+=s[L]*A,w[$+1]+=s[L+1]*A,w[$+2]+=s[L+2]*A,w[$+3]+=A}}for(let v=0;v<r*i;v++)!u[v]||!w[v*4+3]||(s[v*3]=w[v*4]/w[v*4+3],s[v*3+1]=w[v*4+1]/w[v*4+3],s[v*3+2]=w[v*4+2]/w[v*4+3]);for(let v of c)g[v]=d(v,h[v],1/0)}return h}function fe(e,t,n=()=>{}){let{width:o,height:r,data:i}=e,s=new Float32Array(o*r*3),u=new Uint8Array(o*r);for(let c=0;c<o*r;c++)u[c]=t[c]>127?1:0,s[c*3]=i[c*4],s[c*3+1]=i[c*4+1],s[c*3+2]=i[c*4+2];let l=[{w:o,h:r,px:s,hole:u}];for(;l[l.length-1].w>48&&l[l.length-1].h>48;)l.push(Je(l[l.length-1]));let a=Ve(12345),m=null;for(let c=l.length-1;c>=0;c--){let h=l[c];if(c===l.length-1)Ye(h);else{let d=l[c+1],k=new Int32Array(h.w*h.h).fill(-1);for(let p=0;p<h.h;p++)for(let y=0;y<h.w;y++){let w=p*h.w+y,v=Math.min(d.w-1,y>>1),R=Math.min(d.h-1,p>>1),P=R*d.w+v;h.hole[w]&&(h.px[w*3]=d.px[P*3],h.px[w*3+1]=d.px[P*3+1],h.px[w*3+2]=d.px[P*3+2]);let S=m?m[P]:-1;if(S>=0){let b=S%d.w,x=(S-b)/d.w;k[w]=Math.min(h.h-1,2*x+(p&1))*h.w+Math.min(h.w-1,2*b+(y&1))}}m=k}m=Ze(h,m,c===0?3:c===1?4:6,a),n(1-c/l.length)}let f=new Uint8ClampedArray(i);for(let c=0;c<o*r;c++)u[c]&&(f[c*4]=s[c*3],f[c*4+1]=s[c*3+1],f[c*4+2]=s[c*3+2],f[c*4+3]=255);return f}function Xe(e,t){let n=e.img,o=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!o)return At(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let r=4+(1-e.detail/100)*26,i=(l,a,m,f)=>kt(n,l,a,m,f)>r,s=e.shape==="brick"?e.tile/2:e.tile,u=Z({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:s,detail:e.detail/100,busy:i,seed:7});return t(.5),St(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var he={mosaic:(e,t)=>Xe(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t),inpaint:(e,t)=>({width:e.img.width,height:e.img.height,data:fe(e.img,e.mask,t)}),adjust:e=>({width:e.img.width,height:e.img.height,data:me(e.img.data,e.img.width,e.img.height,e.adjust)})};function pt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let o of Object.values(e))pt(o,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:o}=e.data,r=0,i=s=>{let u=Date.now();u-r>100&&(r=u,gt({id:t,progress:s}))};try{let s=await he[n](o,i);gt({id:t,result:s},pt(s))}catch(s){gt({id:t,error:String(s?.message||s)})}};})();\n';
+  var worker_source_default = '(()=>{var q=null,et=new Map;function be(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let o=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,o=q.fillStyle),et.set(t,o),o}function nt(e){if(Array.isArray(e))return e;if(/^#[0-9a-f]{6}$/i.test(e))return[1,3,5].map(o=>parseInt(e.slice(o,o+2),16));let t=be(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(o=>parseInt(t.slice(o,o+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let o=g=>(g/=255,g<=.04045?g/12.92:Math.pow((g+.055)/1.055,2.4)),r=o(e),i=o(t),s=o(n),u=(r*.4124+i*.3576+s*.1805)/.95047,l=r*.2126+i*.7152+s*.0722,a=(r*.0193+i*.1192+s*.9505)/1.08883,m=g=>g>216/24389?Math.cbrt(g):(24389/27*g+16)/116,f=m(u),c=m(l),h=m(a);return[116*c-16,500*(f-c),200*(c-h)]}function xt([e,t,n]){let o=(e+16)/116,r=o+t/500,i=o-n/200,s=c=>c**3>216/24389?c**3:(116*c-16)/(24389/27),u=.95047*s(r),l=s(o),a=1.08883*s(i),m=c=>c<=.0031308?12.92*c:1.055*Math.pow(c,1/2.4)-.055;return"#"+[3.2406*u-1.5372*l-.4986*a,-.9689*u+1.8758*l+.0415*a,.0557*u-.204*l+1.057*a].map(c=>Math.round(Math.max(0,Math.min(1,m(c)))*255)).map(c=>c.toString(16).padStart(2,"0")).join("")}function yt(e,t,n){n=n||t.map(s=>G(nt(s)));let o=G(e),r=null,i=1/0;return t.forEach((s,u)=>{let l=n[u],a=(o[0]-l[0])**2+(o[1]-l[1])**2+(o[2]-l[2])**2;a<i&&(i=a,r=s)}),r}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(o=>G(wt(o))),n=new Map;return(o,r,i)=>{let s=o<<16|r<<8|i,u=n.get(s);return u||(u=yt([o,r,i],e,t),n.set(s,u)),u}}function At(e,t){let{width:n,height:o}=e,r=e.data,i=Mt(n,o),s=i.data,u=Math.max(2,Math.round(t.tile)),l=Math.min(u-1,Math.max(0,Math.round(t.grout))),a=t.palette&&t.palette.length?Pt(t.palette):null,m=Y(t.groutColor),f=new Map,c=0;for(let h=0,g=0;h<o;h+=u,g++){let y=t.bricks&&g%2?-Math.floor(u/2):0;for(let k=y;k<n;k+=u){let p=Math.max(0,k),d=Math.min(n,k+u),w=Math.min(o,h+u),v=0,U=0,P=0,S=0,b=0;for(let M=h;M<w-(w===h+u?l:0);M++)for(let I=p;I<Math.min(d,k+u-l);I++){let R=(M*n+I)*4;b++,!(r[R+3]<128)&&(v+=r[R],U+=r[R+1],P+=r[R+2],S++)}let x=S>0&&S>=b/2,A=[0,0,0,0];if(x){v=Math.round(v/S),U=Math.round(U/S),P=Math.round(P/S);let M=a?a(v,U,P):st(v,U,P);A=Y(M),f.set(M,(f.get(M)||0)+1),c++}for(let M=h;M<w;M++)for(let I=p;I<d;I++){let R=I>=k+u-l||M>=h+u-l;ot(s,(M*n+I)*4,R?x?m:[0,0,0,0]:A)}}}return{img:i,counts:f,tiles:c}}function vt(e){let{width:t,height:n,data:o}=e,r=t*n,i=new Int32Array(r).fill(-1),s=[],u=[],l=m=>o[m*4+3]<128?-1:o[m*4]<<16|o[m*4+1]<<8|o[m*4+2],a=[];for(let m=0;m<r;m++){if(i[m]>=0)continue;let f=l(m);if(f<0)continue;let c=s.length,h=0;for(i[m]=c,a.push(m);a.length;){let g=a.pop(),y=g%t;h++;for(let k of[y>0?g-1:-1,y<t-1?g+1:-1,g-t,g+t])k<0||k>=r||i[k]>=0||l(k)!==f||(i[k]=c,a.push(k))}s.push(st(f>>16,f>>8&255,f&255)),u.push(h)}return{labels:i,colors:s,sizes:u}}function kt(e,t,n,o,r){let i=[],s=e.data;for(let l=0;l<5;l++)for(let a=0;a<5;a++){let m=Math.floor(t+o*(l+.5)/5),f=Math.floor(n+r*(a+.5)/5);if(m<0||f<0||m>=e.width||f>=e.height)continue;let c=(f*e.width+m)*4;s[c+3]>=128&&i.push(G([s[c],s[c+1],s[c+2]]))}if(i.length<2)return 0;let u=[0,1,2].map(l=>i.reduce((a,m)=>a+m[l],0)/i.length);return i.reduce((l,a)=>l+Math.hypot(a[0]-u[0],a[1]-u[1],a[2]-u[2]),0)/i.length}function pe(e,t,n,o){let r=n.length,i=n.map(l=>l.y),s=Math.max(0,Math.floor(Math.min(...i))),u=Math.min(t-1,Math.ceil(Math.max(...i)));for(let l=s;l<=u;l++){let a=l+.5,m=[];for(let f=0;f<r;f++){let c=n[f],h=n[(f+1)%r];c.y<=a!=h.y<=a&&m.push(c.x+(a-c.y)*(h.x-c.x)/(h.y-c.y))}m.sort((f,c)=>f-c);for(let f=0;f+1<m.length;f+=2){let c=Math.max(0,Math.ceil(m[f]-.5)),h=Math.min(e-1,Math.floor(m[f+1]-.5));for(let g=c;g<=h;g++)o(l*e+g)}}}function St(e,t,n){let{width:o,height:r}=e,i=e.data,s=Mt(o,r),u=s.data,l=n.palette&&n.palette.length?Pt(n.palette):null,a=new Map,m=[],f=0;for(let h of t){let g=0,y=0,k=0,p=0,d=0,w=[];if(pe(o,r,h,P=>{w.push(P),d++;let S=P*4;i[S+3]<128||(g+=i[S],y+=i[S+1],k+=i[S+2],p++)}),!p||p<d/2)continue;g=Math.round(g/p),y=Math.round(y/p),k=Math.round(k/p);let v=l?l(g,y,k):st(g,y,k),U=Y(v);for(let P of w)ot(u,P*4,U);a.set(v,(a.get(v)||0)+1),f++,m.push(h)}let c=Math.max(0,n.grout)/2;if(c>0){let h=Y(n.groutColor);for(let g of m)for(let y=0;y<g.length;y++){let k=g[y],p=g[(y+1)%g.length],d=p.x-k.x,w=p.y-k.y,v=d*d+w*w||1,U=Math.max(0,Math.floor(Math.min(k.x,p.x)-c)),P=Math.min(o-1,Math.ceil(Math.max(k.x,p.x)+c)),S=Math.max(0,Math.floor(Math.min(k.y,p.y)-c)),b=Math.min(r-1,Math.ceil(Math.max(k.y,p.y)+c));for(let x=S;x<=b;x++)for(let A=U;A<=P;A++){let M=A+.5,I=x+.5,R=Math.max(0,Math.min(1,((M-k.x)*d+(I-k.y)*w)/v)),B=k.x+R*d-M,$=k.y+R*w-I;B*B+$*$<=c*c&&ot(u,(x*o+A)*4,h)}}}return{img:s,counts:a,tiles:f}}function It(e){let t=new Map;return e.colors.forEach((n,o)=>{let r=t.get(n)||{n:0,color:n,pieces:0,pixels:0};r.pieces++,r.pixels+=e.sizes[o],t.set(n,r)}),[...t.values()].sort((n,o)=>o.pixels-n.pixels).map((n,o)=>({...n,n:o+1}))}var ge=.01;function Rt(e){ge=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,o)=>e*o-t*n;function xe(e,t,n){let o=n.x-t.x,r=n.y-t.y,i=o*o+r*r,s=i?((e.x-t.x)*o+(e.y-t.y)*r)/i:0;return s=Math.max(0,Math.min(1,s)),{x:t.x+o*s,y:t.y+r*s,t:s}}function ye(e,t,n,o){let r=t.x-e.x,i=t.y-e.y,s=o.x-n.x,u=o.y-n.y,l=it(r,i,s,u);if(Math.abs(l)<1e-12)return null;let a=n.x-e.x,m=n.y-e.y,f=it(a,m,s,u)/l,c=it(a,m,r,i)/l;return f<0||f>1||c<0||c>1?null:{x:e.x+r*f,y:e.y+i*f,t:f,u:c}}function Bt(e,t){let n=!1;for(let o=0,r=t.length-1;o<t.length;r=o++){let i=t[o],s=t[r];i.y>e.y!=s.y>e.y&&e.x<(s.x-i.x)*(e.y-i.y)/(s.y-i.y)+i.x&&(n=!n)}return n}function $t(e,t,n,o,r){let i=[];for(let s=0;s<e;s++){let u=r+s*2*Math.PI/e;i.push({x:t+o*Math.cos(u),y:n+o*Math.sin(u)})}return i}function at(e,t,n,o){let r=[0,1];for(let a of n)for(let m=0,f=a.length;m<f;m++){let c=ye(e,t,a[m],a[(m+1)%f]);c&&r.push(c.t)}r.sort((a,m)=>a-m);let i=a=>({x:e.x+(t.x-e.x)*a,y:e.y+(t.y-e.y)*a}),s=[],u=null,l=0;for(let a=0;a+1<r.length;a++){let m=r[a],f=r[a+1];f-m<1e-9||(o(i((m+f)/2))?(u===null&&(u=m),l=f):u!==null&&(s.push({a:i(u),b:i(l)}),u=null))}return u!==null&&s.push({a:i(u),b:i(l)}),s}function lt(e,t){let n=1/0;for(let o of t)for(let r=0,i=o.length;r<i;r++)n=Math.min(n,H(e,xe(e,o[r],o[(r+1)%i])));return n}var Z=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let o=[];if(e==="square"){let[r,i]=z(n.x0,n.x1,t),[s,u]=z(n.y0,n.y1,t);for(let l=r;l<=i;l++)for(let a=s;a<=u;a++)o.push(Z(l*t,a*t,t,t))}else if(e==="brick"){let r=2*t,[i,s]=z(n.y0,n.y1,t);for(let u=i;u<=s;u++){let l=ct(u)?t:0,[a,m]=z(n.x0-l,n.x1-l,r);for(let f=a;f<=m;f++)o.push(Z(l+f*r,u*t,r,t))}}else if(e==="hex"){let r=Math.sqrt(3)*t,i=1.5*t,[s,u]=z(n.y0,n.y1,i);for(let l=s;l<=u;l++){let a=ct(l)?r/2:0,[m,f]=z(n.x0-a,n.x1-a,r);for(let c=m;c<=f;c++)o.push($t(6,a+c*r,l*i,t,-Math.PI/2))}}else if(e==="triangle"){let r=t*Math.sqrt(3)/2,[i,s]=z(n.y0,n.y1,r);for(let u=i;u<=s;u++){let l=u*r,a=ct(u)?t/2:0,[m,f]=z(n.x0-a,n.x1-a,t);for(let c=m;c<=f;c++){let h=a+c*t;o.push([{x:h,y:l+r},{x:h+t/2,y:l},{x:h+t,y:l+r}]),o.push([{x:h+t/2,y:l},{x:h+1.5*t,y:l},{x:h+t,y:l+r}])}}}else if(e==="herringbone"){let r=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([f,c])=>[f/t,c/t]),i=r.map(([f,c])=>(f+c)/4),s=r.map(([f,c])=>(f-c)/2),u=Math.floor(Math.min(...i))-2,l=Math.ceil(Math.max(...i))+2,a=Math.floor(Math.min(...s))-2,m=Math.ceil(Math.max(...s))+2;for(let f=u;f<=l;f++)for(let c=a;c<=m;c++)o.push(Z((2*f+c)*t,(2*f-c)*t,t,2*t)),o.push(Z((2*f+1+c)*t,(2*f+1-c)*t,2*t,t))}return o}function Ft(e,t){let n=new Map;for(let r of e){let i=r.b.x-r.a.x,s=r.b.y-r.a.y,u=Math.hypot(i,s);if(u<t)continue;i/=u,s/=u,(i<-1e-9||Math.abs(i)<=1e-9&&s<0)&&(i=-i,s=-s);let l=-s*r.a.x+i*r.a.y,a=Math.round(Math.atan2(s,i)*1e6)+"|"+Math.round(l/(t*10)),m=i*r.a.x+s*r.a.y,f=i*r.b.x+s*r.b.y;(n.get(a)||n.set(a,{dx:i,dy:s,off:l,list:[]}).get(a)).list.push([Math.min(m,f),Math.max(m,f)])}let o=[];for(let r of n.values()){r.list.sort((l,a)=>l[0]-a[0]);let i=l=>({x:r.dx*l-r.dy*r.off,y:r.dy*l+r.dx*r.off}),[s,u]=r.list[0];for(let l=1;l<=r.list.length;l++){let a=r.list[l];if(a&&a[0]<=u+t){u=Math.max(u,a[1]);continue}o.push({a:i(s),b:i(u)}),a&&([s,u]=a)}}return o}function jt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}];function Me(e,t,n,o){let r=n?t*2:t,i=n?t/2:t,s=[],u=(l,a,m)=>{if(!(l>=e.x+e.w-1e-9||a>=e.y+e.h-1e-9))if(m>i*1.0001&&o(l,a,m,m)){let f=m/2;u(l,a,f),u(l+f,a,f),u(l,a+f,f),u(l+f,a+f,f)}else s.push({x:l,y:a,s:m})};for(let l=0;l*r<e.h;l++)for(let a=0;a*r<e.w;a++)u(e.x+a*r,e.y+l*r,r);return s}function we(e,t){let n=[];for(let o=0,r=e.length;o<r;o++){let i=e[o],s=e[(o+1)%r],u=t(i),l=t(s);if(u<=0&&n.push(i),u<0&&l>0||u>0&&l<0){let a=u/(u-l);n.push({x:i.x+(s.x-i.x)*a,y:i.y+(s.y-i.y)*a})}}return n}function Pe(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,o=new Map,r=(s,u)=>s+","+u;e.forEach((s,u)=>{let l=r(Math.floor(s.x/n),Math.floor(s.y/n));(o.get(l)||o.set(l,[]).get(l)).push(u)});let i=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((s,u)=>{let l=Math.floor(s.x/n),a=Math.floor(s.y/n),m=N(t.x,t.y,t.w,t.h),f=()=>Math.max(...m.map(c=>H(c,s)));for(let c=0;c<=i&&m.length>=3&&!((c-1)*n>2*f());c++){let h=[];for(let g=l-c;g<=l+c;g++)for(let y=a-c;y<=a+c;y++)if(Math.max(Math.abs(g-l),Math.abs(y-a))===c)for(let k of o.get(r(g,y))||[])k!==u&&h.push(k);h.sort((g,y)=>H(e[g],s)-H(e[y],s));for(let g of h){let y=e[g],k=y.x-s.x,p=y.y-s.y,d=(s.x+y.x)/2,w=(s.y+y.y)/2;if(m=we(m,v=>(v.x-d)*k+(v.y-w)*p),m.length<3)break}}return m}).filter(s=>s.length>=3)}function V({style:e,box:t,size:n,detail:o=0,busy:r=()=>!1,seed:i=1}){let s=o>0;if(e==="hex"){let l=n/Math.sqrt(3);return Lt("hex",l,{x0:-l,y0:-l,x1:t.w+l,y1:t.h+l}).map(a=>a.map(m=>({x:m.x+t.x,y:m.y+t.y})))}if(e==="brick"){let l=[];for(let a=0;a*n<t.h;a++){let m=a%2?-n:0;for(let f=t.x+m;f<t.x+t.w;f+=2*n){let c=t.y+a*n;s&&r(f,c,2*n,n)?l.push(N(f,c,n,n),N(f+n,c,n,n)):l.push(N(f,c,2*n,n))}}return l}let u=Me(t,n,s,r);if(e==="irregular"){let l=jt(i),a=u.map(m=>({x:m.x+m.s*(.5+(l()-.5)*.7),y:m.y+m.s*(.5+(l()-.5)*.7)})).filter(m=>m.x>=t.x&&m.y>=t.y&&m.x<=t.x+t.w&&m.y<=t.y+t.h);return Pe(a,t)}return u.map(l=>N(l.x,l.y,l.s,l.s))}function Ct(e,t,n,o){let r=o*10,i=a=>Math.round(a.x/r)+","+Math.round(a.y/r),s=new Set,u=[],l=a=>n(a)&&lt(a,t)>o*20;for(let a of e)for(let m=0;m<a.length;m++){let f=a[m],c=a[(m+1)%a.length],h=i(f),g=i(c),y=h<g?h+"|"+g:g+"|"+h;h===g||s.has(y)||(s.add(y),u.push(...at(f,c,t,l)))}return Ft(u,o)}function Tt(e,t,n=1,o=16){if(!e.length)return[];t=Math.min(t,e.length);let r=jt(n),i=(l,a)=>(l[0]-a[0])**2+(l[1]-a[1])**2+(l[2]-a[2])**2,s=[e[Math.floor(r()*e.length)]];for(;s.length<t;){let l=e.map(f=>Math.min(...s.map(c=>i(f,c)))),a=r()*l.reduce((f,c)=>f+c,0),m=0;for(;m<e.length-1&&(a-=l[m])>0;)m++;s.push(e[m])}let u=[];for(let l=0;l<o;l++){let a=s.map(()=>[0,0,0]);u=s.map(()=>0);for(let m of e){let f=0,c=1/0;s.forEach((h,g)=>{let y=i(m,h);y<c&&(c=y,f=g)}),a[f][0]+=m[0],a[f][1]+=m[1],a[f][2]+=m[2],u[f]++}s.forEach((m,f)=>{u[f]&&(s[f]=a[f].map(c=>c/u[f]))})}return s.map((l,a)=>({c:l,n:u[a]})).sort((l,a)=>a.n-l.n).map(l=>l.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function Ae(e,t,n){let o=new Uint8Array(t*n),r=[];for(let i=0;i<n;i++)for(let s=0;s<t;s++){let u=i*t+s,l=e[u];if(l<0||o[u])continue;let a=1;for(;s+a<t&&e[u+a]===l&&!o[u+a];)a++;let m=1;t:for(;i+m<n;){let f=(i+m)*t+s;for(let c=0;c<a;c++)if(e[f+c]!==l||o[f+c])break t;m++}for(let f=i;f<i+m;f++)o.fill(1,f*t+s,f*t+s+a);r.push({x:s,y:i,w:a,h:m,level:l})}return r}function ve(e,t){let n=new Int16Array(e.length);for(let o=0;o<e.length;o++)n[o]=e[o]===-2?0:e[o]<0?t.baseLayers:_(e[o],t);return n}function Gt(e,t){let n=e.length,o=ve(e,t),r=new Int16Array(n);for(let i=0;i<n;i++)r[i]=Math.max(0,e[i]);return{bottom:new Int16Array(n),top:o,level:r}}function mt(e,t,n,o,r){let i=(b,x)=>b>=0&&x>=0&&b<t&&x<n,s=(b,x)=>i(b,x)?e.bottom[x*t+b]:0,u=(b,x)=>{if(!i(b,x))return 0;let A=x*t+b;return e.top[A]>e.bottom[A]?e.top[A]:e.bottom[A]},l=(b,x)=>u(b,x)>s(b,x),a=(b,x)=>i(b,x)?e.level[x*t+b]:0,m=[],f=b=>n-b,c=new Int16Array(t*n),h=b=>{let x=new Map,A=[];for(let M=0;M<n;M++)for(let I=0;I<t;I++){let R=M*t+I;if(!l(I,M)){c[R]=-1;continue}let B=b(I,M)*4096+a(I,M),$=x.get(B);$==null&&($=A.length,x.set(B,$),A.push(B)),c[R]=$}return{rs:Ae(c,t,n),vals:A}};{let{rs:b,vals:x}=h(u);for(let A of b){let M=x[A.level];m.push({o:[A.x,f(A.y+A.h),Math.floor(M/4096)],u:[A.w,0,0],v:[0,A.h,0],level:M%4096})}}{let{rs:b,vals:x}=h(s);for(let A of b){let M=x[A.level];m.push({o:[A.x,f(A.y+A.h),Math.floor(M/4096)],u:[0,A.h,0],v:[A.w,0,0],level:M%4096})}}let g=(b,x,A,M)=>{if(x<=b)return[];if(M<=A||M<=b||A>=x)return[[b,x]];let I=[];return A>b&&I.push([b,A]),M<x&&I.push([M,x]),I},y=(b,x)=>l(b,x)?[s(b,x),u(b,x)]:[0,0];for(let b=0;b<=n;b++)for(let x=0;x<t;){let[A,M]=y(x,b-1),[I,R]=y(x,b);if(A===I&&M===R){x++;continue}let B=x+1;for(;B<t;B++){let[L,F]=y(B,b-1),[j,T]=y(B,b);if(L!==A||F!==M||j!==I||T!==R)break}let $=f(b);for(let[L,F]of g(A,M,I,R))m.push({o:[x,$,L],u:[B-x,0,0],v:[0,0,F-L],level:a(x,b-1)});for(let[L,F]of g(I,R,A,M))m.push({o:[x,$,L],u:[0,0,F-L],v:[B-x,0,0],level:a(x,b)});x=B}for(let b=0;b<=t;b++)for(let x=n-1;x>=0;){let[A,M]=y(b-1,x),[I,R]=y(b,x);if(A===I&&M===R){x--;continue}let B=x-1;for(;B>=0;B--){let[F,j]=y(b-1,B),[T,O]=y(b,B);if(F!==A||j!==M||T!==I||O!==R)break}let $=f(x+1),L=x-B;for(let[F,j]of g(I,R,A,M))m.push({o:[b,$,F],u:[0,0,j-F],v:[0,L,0],level:a(b,x)});for(let[F,j]of g(A,M,I,R))m.push({o:[b,$,F],u:[0,L,0],v:[0,0,j-F],level:a(b-1,x)});x=B}let k=[new Map,new Map,new Map],p=(b,x,A)=>b.o.map((M,I)=>M+x*b.u[I]+A*b.v[I]),d=(b,x)=>x===0?b[1]*1e5+b[2]:x===1?b[0]*1e5+b[2]:b[0]*1e5+b[1];for(let b of m)for(let[x,A]of[[0,0],[1,0],[1,1],[0,1]]){let M=p(b,x,A);for(let I=0;I<3;I++){let R=d(M,I),B=k[I].get(R);B||k[I].set(R,B=[]),B.push(M[I])}}for(let b of k)for(let[x,A]of b)b.set(x,[...new Set(A)].sort((M,I)=>M-I));let w=[],v=[],U=[],P=new Map,S=b=>{let x=(b[0]*2e5+b[1]*2)*2e5+b[2]*2,A=P.get(x);return A==null&&(A=w.length/3,P.set(x,A),w.push(b[0]*o,b[1]*o,b[2]*r)),A};for(let b of m){let x=[p(b,0,0),p(b,1,0),p(b,1,1),p(b,0,1)],A=[];for(let I=0;I<4;I++){let R=x[I],B=x[(I+1)%4],$=R.findIndex((T,O)=>T!==B[O]);A.push(R);let L=Math.min(R[$],B[$]),F=Math.max(R[$],B[$]),j=(k[$].get(d(R,$))||[]).filter(T=>T>L&&T<F);R[$]>B[$]&&j.reverse();for(let T of j){let O=[...R];O[$]=T,A.push(O)}}let M=A.map(S);if(M.length===4)v.push(M[0],M[1],M[2],M[0],M[2],M[3]),U.push(b.level,b.level);else{let I=S(p(b,.5,.5));for(let R=0;R<M.length;R++)v.push(I,M[R],M[(R+1)%M.length]),U.push(b.level)}}return{vertices:w,triangles:v,levels:U}}function zt(e,t,n,o,r,i){let s=Int16Array.from(e),u=t*n,l=new Int32Array(u),a=new Float32Array(u),m=i.heightOf||(c=>c===-2?0:(c<0?r.baseLayers:_(c,r))*r.layerHeight),f=0;for(let c=0;c<12;c++){l.fill(-1);let h=[],g=[];for(let P=0;P<u;P++){if(l[P]>=0)continue;let S=h.length,b=s[P];for(h.push(b),l[P]=S,g.push(P);g.length;){let x=g.pop(),A=x%t;for(let M of[A>0?x-1:-1,A<t-1?x+1:-1,x-t,x+t])M<0||M>=u||l[M]>=0||s[M]!==b||(l[M]=S,g.push(M))}}let y=Math.SQRT2;for(let P=0;P<u;P++){let S=P%t,b=P/t|0,x=l[P],A=S===0||b===0||S===t-1||b===n-1||l[P-1]!==x||l[P+1]!==x||l[P-t]!==x||l[P+t]!==x;a[P]=A?1:1e9}for(let P=0;P<n;P++)for(let S=0;S<t;S++){let b=P*t+S;a[b]<=1||(a[b]=Math.min(a[b],a[b-1]+1,a[b-t]+1,a[b-t-1]+y,a[b-t+1]+y))}for(let P=n-1;P>=0;P--)for(let S=t-1;S>=0;S--){let b=P*t+S;a[b]<=1||(a[b]=Math.min(a[b],a[b+1]+1,a[b+t]+1,a[b+t+1]+y,a[b+t-1]+y))}let k=new Float32Array(h.length);for(let P=0;P<u;P++)a[P]>k[l[P]]&&(k[l[P]]=a[P]);let p=h.map(()=>new Map),d=new Float64Array(h.length).fill(1/0),w=(P,S)=>{let b=l[P],x=l[S];if(b===x)return;let A=s[P],M=s[S];d[b]=Math.min(d[b],m(M)),d[x]=Math.min(d[x],m(A)),M<A&&p[b].set(M,(p[b].get(M)||0)+1),A<M&&p[x].set(A,(p[x].get(A)||0)+1)};for(let P=0;P<n;P++)for(let S=0;S<t;S++){let b=P*t+S;S<t-1&&w(b,b+1),P<n-1&&w(b,b+t)}let v=new Int16Array(h.length).fill(-32768),U=0;if(h.forEach((P,S)=>{let b=m(P)-d[S];if(!(b>1e-9)||!p[S].size)return;let x=Math.max(1,2*k[S]-1)*o;if(x>=i.minWidth&&b<=i.maxRatio*x)return;let A=-2,M=-1;for(let[I,R]of p[S])(R>M||R===M&&I>A)&&(A=I,M=R);v[S]=A,U++}),!U)break;for(let P=0;P<u;P++){let S=v[l[P]];S!==-32768&&(s[P]=S)}f+=U}return{grid:s,lowered:f}}function ft(e,t="Mosaic Paint"){let n=e.vertices,o=e.triangles,r=o.length/3,i=new ArrayBuffer(84+r*50),s=new DataView(i),u=`${t} – multi-color by layer`.slice(0,80);for(let a=0;a<u.length;a++)s.setUint8(a,u.charCodeAt(a)&127);s.setUint32(80,r,!0);let l=84;for(let a=0;a<r;a++){let m=[0,1,2].map(U=>o[a*3+U]*3),f=n[m[1]]-n[m[0]],c=n[m[1]+1]-n[m[0]+1],h=n[m[1]+2]-n[m[0]+2],g=n[m[2]]-n[m[0]],y=n[m[2]+1]-n[m[0]+1],k=n[m[2]+2]-n[m[0]+2],p=c*k-h*y,d=h*g-f*k,w=f*y-c*g,v=Math.hypot(p,d,w)||1;p/=v,d/=v,w/=v;for(let U of[p,d,w])s.setFloat32(l,U,!0),l+=4;for(let U of m)for(let P=0;P<3;P++)s.setFloat32(l,n[U+P],!0),l+=4;s.setUint16(l,0,!0),l+=2}return i}function Dt(e,t){return e.map((n,o)=>{let r=o===0?1:_(o-1,t)+1,i=_(o,t);return{color:n,fromLayer:r,toLayer:i,changeAtLayer:o===0?null:r,z:o===0?null:+(r*t.layerHeight).toFixed(3)}})}var D=-3,ke=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,o,r){let i=Math.max(0,Math.round(o.frame)),s=t+2*i,u=n+2*i,l=new Int16Array(s*u).fill(D);for(let c=0;c<n;c++)for(let h=0;h<t;h++)l[(c+i)*s+h+i]=e[c*t+h];let a=Math.min(o.corner,s/2,u/2),m=o.hole/2,f=ke(o,r);for(let c=0;c<u;c++)for(let h=0;h<s;h++){let g=h+.5,y=c+.5;if(a>0){let k=g<a?a:g>s-a?s-a:g,p=y<a?a:y>u-a?u-a:y;if((g-k)**2+(y-p)**2>a*a){l[c*s+h]=-2;continue}}m>0&&(g-s/2)**2+(y-f)**2<=m*m&&(l[c*s+h]=-2)}return{grid:l,w:s,h:u}}function _t(e,t,n,o){let r=new Uint8Array(e*t),i=n/2;if(i<=0)return r;let s=[o,e-o],u=[o,t-o];for(let l of s)for(let a of u)for(let m=Math.max(0,Math.floor(a-i));m<Math.min(t,Math.ceil(a+i));m++)for(let f=Math.max(0,Math.floor(l-i));f<Math.min(e,Math.ceil(l+i));f++)(f+.5-l)**2+(m+.5-a)**2<=i*i&&(r[m*e+f]=1);return r}function qt(e,t,n,o=2){let r=n;for(let i=0;i<t.length;i++){if(!t[i])continue;let s=0;for(let u of e)u.top[i]>u.bottom[i]&&(s=Math.max(s,u.top[i]));s>0&&(r=Math.min(r,s-o))}if(r=Math.max(0,r),!r)return 0;for(let i=0;i<t.length;i++)if(t[i])for(let s of e)s.top[i]>s.bottom[i]&&s.bottom[i]<r&&(s.bottom[i]=r,s.top[i]<r&&(s.top[i]=r));return r}function Ht(e,t,n,o){let r=e.length,i={bottom:new Int16Array(r).fill(t),top:new Int16Array(r),level:new Int16Array(r).fill(o)};for(let s=0;s<r;s++)e[s]===D&&(i.top[s]=n);return i}var C=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function Se(e,t,n){let o=e.vertices,r=e.triangles,i=[];i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${C(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let s of t)i.push(`<base name="${C(s)}" displaycolor="${s.toUpperCase()}FF"/>`);i.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${C(n)}">`,"<mesh>","<vertices>");for(let s=0;s<o.length;s+=3)i.push(`<vertex x="${E(o[s])}" y="${E(o[s+1])}" z="${E(o[s+2])}"/>`);i.push("</vertices>","<triangles>");for(let s=0;s<r.length;s+=3)i.push(`<triangle v1="${r[s]}" v2="${r[s+1]}" v3="${r[s+2]}" pid="1" p1="${Math.max(0,e.levels[s/3])}"/>`);return i.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),i.join(`\n`)}function Ie(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:Se(e,t.map(o=>o.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:Ie(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,o=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return r=>r===-2?0:r<0?t.baseLayers*t.layerHeight:e[r]?o:n}function Yt(e,t,n,o,r,i){let s=t*n,u=[];if(i.baseLayers>0){let l=new Int16Array(s);for(let a=0;a<s;a++)e[a]!==-2&&(l[a]=i.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(s),top:l,level:new Int16Array(s)}})}for(let l=0;l<o;l++){let a=new Int16Array(s).fill(i.baseLayers),m=new Int16Array(s),f=new Int16Array(s).fill(l),c=i.baseLayers+(r[l]?Math.max(1,i.tileLayers-i.groutRecess):i.tileLayers),h=!1;for(let g=0;g<s;g++)e[g]===l&&(m[g]=c,h=!0);h&&u.push({part:l,solid:{bottom:a,top:m,level:f}})}return u}function Zt(e,t,n="prusa"){return n==="bambu"?Ue(e,t):Re(e,t)}function Ue(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',o=(a,m)=>`${a.toString(16).padStart(8,"0")}-0000-4000-8000-${m.toString(16).padStart(12,"0")}`,r=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((a,m)=>{let f=a.mesh.vertices,c=a.mesh.triangles;r.push(`<object id="${m+1}" p:UUID="${o(1,m)}" type="model">`,"<mesh>","<vertices>");for(let h=0;h<f.length;h+=3)r.push(`<vertex x="${E(f[h])}" y="${E(f[h+1])}" z="${E(f[h+2])}"/>`);r.push("</vertices>","<triangles>");for(let h=0;h<c.length;h+=3)r.push(`<triangle v1="${c[h]}" v2="${c[h+1]}" v3="${c[h+2]}"/>`);r.push("</triangles>","</mesh>","</object>")}),r.push("</resources>","<build/>","</model>");let i=e.length+1,s="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${C(t)}</metadata>`,"<resources>",`<object id="${i}" p:UUID="${o(2,0)}" type="model">`,"<components>"];e.forEach((a,m)=>u.push(`<component p:path="${s}" objectid="${m+1}" p:UUID="${o(3,m)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${o(4,0)}">`,`<item objectid="${i}" p:UUID="${o(5,0)}" printable="1"/>`,"</build>","</model>");let l=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${i}">`,`<metadata key="name" value="${C(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((a,m)=>l.push(`<part id="${m+1}" subtype="normal_part">`,`<metadata key="name" value="${C(a.name)}"/>`,`<metadata key="extruder" value="${a.filament||m+1}"/>`,"</part>")),l.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",s)},{name:"3D/Objects/object_1.model",data:r.join(`\n`)},{name:"Metadata/model_settings.config",data:l.join(`\n`)}]}function Re(e,t){let n=[],o=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${C(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let s of e)n.push(`<base name="${C(s.name)}" displaycolor="${s.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${C(t)}">`,"<mesh>","<vertices>");for(let s of e){let u=s.mesh.vertices;for(let l=0;l<u.length;l+=3)n.push(`<vertex x="${E(u[l])}" y="${E(u[l+1])}" z="${E(u[l+2])}"/>`)}n.push("</vertices>","<triangles>"),o.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${C(t)}"/>`);let r=0,i=0;return e.forEach((s,u)=>{let l=s.mesh.triangles,a=l.length/3;for(let m=0;m<l.length;m+=3)n.push(`<triangle v1="${l[m]+r}" v2="${l[m+1]+r}" v3="${l[m+2]+r}" pid="2" p1="${u}"/>`);o.push(`<volume firstid="${i}" lastid="${i+a-1}">`,`<metadata type="volume" key="name" value="${C(s.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${s.filament||u+1}"/>`,"</volume>"),r+=s.mesh.vertices.length/3,i+=a}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),o.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:o.join(`\n`)}]}function Vt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let o=t.vertices.length/3;for(let r of n.vertices)t.vertices.push(r);for(let r of n.triangles)t.triangles.push(r+o);for(let r of n.levels)t.levels.push(r)}return t}var K=null;function $e(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let o=n;for(let r=0;r<8;r++)o=o&1?3988292384^o>>>1:o>>>1;K[n]=o>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function Le(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,o=[],r=[],i=0;for(let f of e){let c=n.encode(f.name),h=typeof f.data=="string"?n.encode(f.data):f.data,g=$e(h),y=t?await Le(h):null,k=!!y&&y.length<h.length,p=k?y:h,d=new Uint8Array(30+c.length),w=new DataView(d.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,k?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,g,!0),w.setUint32(18,p.length,!0),w.setUint32(22,h.length,!0),w.setUint16(26,c.length,!0),d.set(c,30);let v=new Uint8Array(46+c.length),U=new DataView(v.buffer);U.setUint32(0,33639248,!0),U.setUint16(4,20,!0),U.setUint16(6,20,!0),U.setUint16(8,2048,!0),U.setUint16(10,k?8:0,!0),U.setUint16(12,0,!0),U.setUint16(14,33,!0),U.setUint32(16,g,!0),U.setUint32(20,p.length,!0),U.setUint32(24,h.length,!0),U.setUint16(28,c.length,!0),U.setUint32(42,i,!0),v.set(c,46),o.push(d,p),r.push(v),i+=d.length+p.length}let s=r.reduce((f,c)=>f+c.length,0),u=new Uint8Array(22),l=new DataView(u.buffer);l.setUint32(0,101010256,!0),l.setUint16(8,e.length,!0),l.setUint16(10,e.length,!0),l.setUint32(12,s,!0),l.setUint32(16,i,!0);let a=new Uint8Array(i+s+22),m=0;for(let f of[...o,...r,u])a.set(f,m),m+=f.length;return a}var Xt=2,Fe=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),je=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,o,r,i,s,u,l){let a=r.filter(h=>i[h]>0),m={list:a,grid:new Int16Array(0),counts:[],lowered:0},f=Int16Array.from(e),c=0;for(let h=0;h<4;h++){l?.(h/4);let g=new Int16Array(s.length).fill(-1);a.forEach((w,v)=>{g[w]=v});let y=f.map(w=>w<0?-1:g[w]),k=u.mode==="flat"?Jt(a.map(w=>s[w]),Qt(u)):void 0,p=zt(y,t,n,o,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:k});c+=p.lowered;let d=a.map(()=>0);for(let w=0;w<p.grid.length;w++){let v=p.grid[w];v>=0&&d[v]++,f[w]=v<0?-1:a[v]}if(m={list:a,grid:p.grid,counts:d,lowered:c},d.every(w=>w>0))break;a=a.filter((w,v)=>d[v]>0)}return m}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,o,r){let i=Ot(e,t,n,{frame:r.frame/o,corner:r.corner/o,hole:r.hole/o},Xt/o),s=(r.magnet/2+Xt+r.corner*.3)/o;return{...i,mask:r.magnet>0?_t(i.w,i.h,r.magnet/o,s):null}}function ee(e,t,n){let o=t.length,r;if(n.mode==="flat")r=Yt(e.grid,e.w,e.h,o,t,Qt(n)),n.frame>0&&r.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(o,n),0)});else{let i=Gt(e.grid,W(n)),s=Kt(o,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(i.top[u]=s,i.level[u]=o-1);r=[{part:0,solid:i}]}return e.mask&&qt(r.map(i=>i.solid),e.mask,je(n.magnetDepth,n),Fe),r}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Vt(ee(n,e.grout,t).map(o=>mt(o.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o}=e,r=te(n.grid,n.w,n.h,n.cell,o);t?.(.05);let i=ee(r,n.grout,o);t?.(.15);let s=i.map((a,m)=>{let f=mt(a.solid,r.w,r.h,n.cell,o.layerHeight);return t?.(.15+.7*(m+1)/i.length),f}),u=s.reduce((a,m)=>a+m.triangles.length/3,0),l=(a,m,f)=>({fileName:a,type:m,data:f,triangles:u,parts:s.length});if(o.mode==="flat"){let a=i.map((f,c)=>{let h=Math.max(0,f.part),g=e.colors[h];return{name:f.part===D?e.labels.frame:f.part<0?e.labels.base:`${f.part+1} ${g}`,color:g,mesh:s[c],filament:h+1}});if(e.kind==="3mf")return l(e.name+".3mf","model/3mf",await Q(Zt(a,e.name,e.slicer)));let m=i.map((f,c)=>({name:`${e.name}-${f.part===D?"frame":f.part<0?"base":`${f.part+1}-${e.colors[f.part].slice(1)}`}.stl`,data:new Uint8Array(ft(a[c].mesh,a[c].name))}));return l(e.name+"-stl.zip","application/zip",await Q(m))}return e.kind==="3mf"?l(e.name+".3mf","model/3mf",await Q(Nt(s[0],Dt(e.colors,W(o)),e.name))):l(e.name+".stl","model/stl",new Uint8Array(ft(s[0],e.name)))}function se(e,t,n,o,r){let i=(f,c)=>f<0||c<0||f>=t||c>=n?-1:e[c*t+f],s=t+1,u=(f,c)=>c*s+f,l=Array.from({length:o},()=>new Map),a=(f,c,h,g,y)=>{let k=l[f],p=u(c,h),d=k.get(p);d?d.push(u(g,y)):k.set(p,[u(g,y)])};for(let f=0;f<n;f++)for(let c=0;c<t;c++){r&&c===0&&f%64===0&&r(.5*f/n);let h=e[f*t+c];h<0||(i(c,f-1)!==h&&a(h,c+1,f,c,f),i(c-1,f)!==h&&a(h,c,f,c,f+1),i(c,f+1)!==h&&a(h,c,f+1,c+1,f+1),i(c+1,f)!==h&&a(h,c+1,f+1,c+1,f))}let m=[];for(let f=0;f<o;f++){r&&f%256===0&&r(.5+.5*f/o);let c=l[f],h=[];for(let[g]of c)for(;c.get(g)&&c.get(g).length;){let y=[g],k=g,p=oe(c,g,-1,s);for(;p!==g;){y.push(p);let d=oe(c,p,k,s);k=p,p=d}h.push(Te(y,s))}m.push(h)}return m}function oe(e,t,n,o){let r=e.get(t),i=0;if(r.length>1&&n>=0){let u=t%o-n%o,l=Math.floor(t/o)-Math.floor(n/o),a=m=>{let f=m%o-t%o,c=Math.floor(m/o)-Math.floor(t/o);return f===l&&c===-u?0:f===u&&c===l?1:2};for(let m=1;m<r.length;m++)a(r[m])<a(r[i])&&(i=m)}let s=r[i];return r.splice(i,1),r.length||e.delete(t),s}function Te(e,t){let n=e.map(i=>({x:i%t,y:Math.floor(i/t)})),o=n.length,r=[];for(let i=0;i<o;i++){let s=n[(i+o-1)%o],u=n[i],l=n[(i+1)%o];(u.x-s.x)*(l.y-u.y)-(u.y-s.y)*(l.x-u.x)!==0&&r.push(u)}return r}function bt(e){let t=0;for(let n=0,o=e.length;n<o;n++){let r=e[n],i=e[(n+1)%o];t+=r.x*i.y-i.x*r.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,o,r){let i=e.width,s=e.height,u=n/i,l=vt(e);r?.(.15);let a=new Int32Array(l.colors.length).fill(-1),m=[];l.colors.forEach((w,v)=>{w!==t&&(a[v]=m.length,m.push(w))});let f=l.labels.map(w=>w<0?-1:a[w]),c=se(f,i,s,m.length,r&&(w=>r(.15+.8*w))),h=[],g=w=>w.map(v=>`${tt(v.x*u)},${tt(v.y*u)}`).join(" ");c.forEach((w,v)=>{if(w.length===1)h.push(`<polygon points="${g(w[0])}" fill="${m[v]}" stroke="none"/>`);else{let P=[...w].sort((S,b)=>Math.abs(bt(b))-Math.abs(bt(S))).map(S=>"M"+g(S).replace(/ /g,"L")+"Z").join("");h.push(`<path d="${P}" fill="${m[v]}" fill-rule="evenodd" stroke="none"/>`)}});let y=tt(n),k=tt(s*u),p=[...new Set(It(l).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${y} ${k}" width="${y}mm" height="${k}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:p,paletteName:o,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${y}" height="${k}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${h.join(`\n`)}\n</g>\n</svg>`,tiles:m.length}}function Ee({data:e,W:t,H:n,box:o}){return r=>{let i=Math.floor((r.x-o.x)/o.w*t),s=Math.floor((r.y-o.y)/o.h*n);if(i<0||s<0||i>=t||s>=n)return null;let u=(s*t+i)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Ge(e,t,n,o,r){let i=[];for(let u=0;u<5;u++)for(let l=0;l<5;l++){let a=e({x:t+o*(u+.5)/5,y:n+r*(l+.5)/5});a&&i.push(G(a))}if(i.length<2)return 0;let s=[0,1,2].map(u=>i.reduce((l,a)=>l+a[u],0)/i.length);return i.reduce((u,l)=>u+Math.hypot(l[0]-s[0],l[1]-s[1],l[2]-s[2]),0)/i.length}function ze(e,t,n){let o=[];for(let r=0;r<70;r++)for(let i=0;i<70;i++){let s=e({x:t.x+t.w*(r+.5)/70,y:t.y+t.h*(i+.5)/70});s&&o.push(G(s))}return[...new Set(Tt(o,n,7).map(xt))]}function ae(e,t){Rt(e.eps);let n=Ee(e.photo),o=e.page,r=[{x:o.x,y:o.y},{x:o.x+o.w,y:o.y},{x:o.x+o.w,y:o.y+o.h},{x:o.x,y:o.y+o.h}],i=4+(1-e.detail/100)*26,s=(a,m,f,c)=>Ge(n,a,m,f,c)>i,u=V({style:e.style,box:o,size:e.size,detail:e.detail/100,busy:s,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let l=Ct(u,[r],a=>Bt(a,r),e.eps);return t?.(.85),{tiles:u.length,lines:l,palette:e.suggest?ze(n,e.photo.box,e.suggest):[]}}var De=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=De[t].exec(e);return n?+n[1]:null},Oe=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,_e=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,o=0,r=!1,i=0,s=!1,u=!1,l=new Set,a=new Map,m=[],f=null;for(let c=0,h=0;c<e.length;h++){let g=e.indexOf(`\n`,c);g<0&&(g=e.length);let y=e.slice(c,g);c=g+1,t&&h%5e4===0&&t(c/e.length);let k=y.indexOf(";");if(k>=0){let d=Oe.exec(y.slice(k));d&&(u=_e.test(d[1])),y=y.slice(0,k)}if(y=y.trim(),!y)continue;let p=y.split(/\\s/,1)[0].toUpperCase();if(p==="G0"||p==="G1"){let d=J(y,"Z"),w=J(y,"E");if(d!=null&&(n=d),w!=null){let v=r?w>0:w>o;if(r||(o=w),v&&!u&&(J(y,"X")!=null||J(y,"Y")!=null)){let U=Math.round(n*1e3)/1e3;l.add(U);let P=a.get(i);P?(P.from=Math.min(P.from,U),P.to=Math.max(P.to,U)):a.set(i,{from:U,to:U}),f&&(m.push({...f,z:U}),f=null),s=!0}}}else if(p==="G92"){let d=J(y,"E");d!=null&&(o=d)}else if(p==="M82")r=!1;else if(p==="M83")r=!0;else if(p==="M600")f={kind:"M600"};else if(/^T\\d+$/.test(p)){let d=+p.slice(1);s&&d!==i&&(f={kind:"tool",tool:d}),i=d}}return{layers:l.size,top:l.size?Math.max(...l):0,changes:m,tools:[...a].map(([c,h])=>({tool:c,...h})).sort((c,h)=>c.tool-h.tool)}}function qe(e){let t=new Uint8ClampedArray(256),n=Math.min(e.black,e.white-1),o=Math.max(e.white,n+1),r=e.contrast/100,i=r>=0?1/Math.max(.01,1-r):1+r,s=e.brightness/100*255;for(let u=0;u<256;u++){let l=Math.min(1,Math.max(0,(u-n)/(o-n)));l=Math.pow(l,1/e.gamma)*255,l=(l-128)*i+128+s,t[u]=Math.round(l)}return t}function ue(e,t,n,o){let r=Float32Array.from(e),i=new Float32Array(r.length);o=Math.max(1,Math.round(o));for(let s=0;s<3;s++){for(let u=0;u<n;u++){let l=u*t,a=0;for(let m=-o;m<=o;m++)a+=r[l+Math.min(t-1,Math.max(0,m))];for(let m=0;m<t;m++)i[l+m]=a/(2*o+1),a+=r[l+Math.min(t-1,m+o+1)]-r[l+Math.max(0,m-o)]}for(let u=0;u<t;u++){let l=0;for(let a=-o;a<=o;a++)l+=i[Math.min(n-1,Math.max(0,a))*t+u];for(let a=0;a<n;a++)r[a*t+u]=l/(2*o+1),l+=i[Math.min(n-1,a+o+1)*t+u]-i[Math.max(0,a-o)*t+u]}}return r}function ce(e,t){let n=[new Float32Array(t),new Float32Array(t),new Float32Array(t)];for(let o=0;o<t;o++)n[0][o]=e[o*4],n[1][o]=e[o*4+1],n[2][o]=e[o*4+2];return n}function He(e,t,n,o){let r=t*n,i=ce(e,r),s=1+Math.round(o/40),u=6+o*.4,l=i.map(a=>ue(a,t,n,s));for(let a=0;a<r;a++){let m=Math.hypot(i[0][a]-l[0][a],i[1][a]-l[1][a],i[2][a]-l[2][a]),f=o/100*Math.exp(-(m*m)/(2*u*u));for(let c=0;c<3;c++)e[a*4+c]=i[c][a]+(l[c][a]-i[c][a])*f}}function Ne(e,t,n,o){let r=t*n,i=ce(e,r),s=o/100*1.5,u=i.map(l=>ue(l,t,n,1));for(let l=0;l<r;l++)for(let a=0;a<3;a++)e[l*4+a]=i[a][l]+(i[a][l]-u[a][l])*s}function me(e,t,n,o){let r=new Uint8ClampedArray(e);o.denoise>0&&He(r,t,n,o.denoise);let i=qe(o),s=1+o.saturation/100;for(let u=0;u<r.length;u+=4){let l=i[r[u]],a=i[r[u+1]],m=i[r[u+2]];if(s!==1){let f=.299*l+.587*a+.114*m;l=f+(l-f)*s,a=f+(a-f)*s,m=f+(m-f)*s}r[u]=l,r[u+1]=a,r[u+2]=m}return o.sharpen>0&&Ne(r,t,n,o.sharpen),r}function Je(e){let t=Math.max(1,Math.floor(e.w/2)),n=Math.max(1,Math.floor(e.h/2)),o=new Float32Array(t*n*3),r=new Uint8Array(t*n);for(let i=0;i<n;i++)for(let s=0;s<t;s++){let u=0,l=0,a=0,m=0,f=0;for(let h=0;h<2;h++)for(let g=0;g<2;g++){let y=Math.min(e.w-1,2*s+g),k=Math.min(e.h-1,2*i+h),p=k*e.w+y;if(e.hole[p]){f++;continue}l+=e.px[p*3],a+=e.px[p*3+1],m+=e.px[p*3+2],u++}let c=i*t+s;f&&(r[c]=1),u&&(o[c*3]=l/u,o[c*3+1]=a/u,o[c*3+2]=m/u)}return{w:t,h:n,px:o,hole:r}}function Ye(e){let{w:t,h:n,px:o}=e,r=new Uint8Array(t*n);for(let s=0;s<t*n;s++)r[s]=e.hole[s]?0:1;let i=t*n-r.reduce((s,u)=>s+u,0);for(;i>0;){let s=[];for(let u=0;u<t*n;u++){if(r[u])continue;let l=u%t,a=(u-l)/t,m=0,f=0,c=0,h=0;for(let g=-1;g<=1;g++)for(let y=-1;y<=1;y++){let k=l+y,p=a+g;if(k<0||p<0||k>=t||p>=n)continue;let d=p*t+k;r[d]&&(f+=o[d*3],c+=o[d*3+1],h+=o[d*3+2],m++)}m&&(o[u*3]=f/m,o[u*3+1]=c/m,o[u*3+2]=h/m,s.push(u))}if(!s.length)break;for(let u of s)r[u]=1;i-=s.length}}function Ze(e){let t=e>>>0||1;return()=>(t=t*1664525+1013904223>>>0)/4294967296}function Ve(e,t,n,o){let{w:r,h:i,px:s,hole:u}=e,l=[],a=new Uint8Array(r*i),m=new Int32Array((r+1)*(i+1));for(let p=0;p<i;p++)for(let d=0;d<r;d++)m[(p+1)*(r+1)+d+1]=u[p*r+d]+m[p*(r+1)+d+1]+m[(p+1)*(r+1)+d]-m[p*(r+1)+d];let f=(p,d,w,v)=>m[(v+1)*(r+1)+w+1]-m[d*(r+1)+w+1]-m[(v+1)*(r+1)+p]+m[d*(r+1)+p];for(let p=3;p<i-3;p++)for(let d=3;d<r-3;d++)f(d-3,p-3,d+3,p+3)||(a[p*r+d]=1,l.push(p*r+d));let c=[];for(let p=0;p<i;p++)for(let d=0;d<r;d++)f(Math.max(0,d-3),Math.max(0,p-3),Math.min(r-1,d+3),Math.min(i-1,p+3))&&c.push(p*r+d);let h=t||new Int32Array(r*i).fill(-1);if(!l.length)return h;let g=new Float32Array(r*i).fill(1/0),y=(p,d,w)=>{let v=p%r,U=(p-v)/r,P=d%r,S=(d-P)/r,b=0,x=0;for(let A=-3;A<=3;A++){let M=U+A;if(!(M<0||M>=i)){for(let I=-3;I<=3;I++){let R=v+I;if(R<0||R>=r)continue;let B=(M*r+R)*3,$=((S+A)*r+P+I)*3,L=s[B]-s[$],F=s[B+1]-s[$+1],j=s[B+2]-s[$+2];b+=L*L+F*F+j*j,x++}if(b>w*x)return 1/0}}return x?b/x:1/0},k=(p,d)=>{if(d<0||!a[d])return;let w=y(p,d,g[p]);w<g[p]&&(g[p]=w,h[p]=d)};for(let p of c)(h[p]<0||!a[h[p]])&&(h[p]=l[Math.floor(o()*l.length)]),g[p]=y(p,h[p],1/0);for(let p=0;p<n;p++){let d=p%2?-1:1;for(let v=0;v<c.length;v++){let U=c[d>0?v:c.length-1-v],P=U%r,S=d;if(P-S>=0&&P-S<r){let M=h[U-S];M>=0&&k(U,M+S)}if(U-S*r>=0&&U-S*r<r*i){let M=h[U-S*r];M>=0&&k(U,M+S*r)}let b=Math.max(r,i),x=h[U]%r,A=(h[U]-x)/r;for(;b>=1;){let M=Math.round(x+(o()*2-1)*b),I=Math.round(A+(o()*2-1)*b);M>=0&&I>=0&&M<r&&I<i&&k(U,I*r+M),b/=2}}let w=new Float32Array(r*i*4);for(let v of c){let U=h[v];if(U<0)continue;let P=v%r,S=(v-P)/r,b=U%r,x=(U-b)/r,A=Math.exp(-g[v]/2e3);for(let M=-3;M<=3;M++)for(let I=-3;I<=3;I++){let R=P+I,B=S+M;if(R<0||B<0||R>=r||B>=i||!u[B*r+R])continue;let $=(B*r+R)*4,L=((x+M)*r+b+I)*3;w[$]+=s[L]*A,w[$+1]+=s[L+1]*A,w[$+2]+=s[L+2]*A,w[$+3]+=A}}for(let v=0;v<r*i;v++)!u[v]||!w[v*4+3]||(s[v*3]=w[v*4]/w[v*4+3],s[v*3+1]=w[v*4+1]/w[v*4+3],s[v*3+2]=w[v*4+2]/w[v*4+3]);for(let v of c)g[v]=y(v,h[v],1/0)}return h}function fe(e,t,n=()=>{}){let{width:o,height:r,data:i}=e,s=new Float32Array(o*r*3),u=new Uint8Array(o*r);for(let c=0;c<o*r;c++)u[c]=t[c]>127?1:0,s[c*3]=i[c*4],s[c*3+1]=i[c*4+1],s[c*3+2]=i[c*4+2];let l=[{w:o,h:r,px:s,hole:u}];for(;l[l.length-1].w>48&&l[l.length-1].h>48;)l.push(Je(l[l.length-1]));let a=Ze(12345),m=null;for(let c=l.length-1;c>=0;c--){let h=l[c];if(c===l.length-1)Ye(h);else{let y=l[c+1],k=new Int32Array(h.w*h.h).fill(-1);for(let p=0;p<h.h;p++)for(let d=0;d<h.w;d++){let w=p*h.w+d,v=Math.min(y.w-1,d>>1),U=Math.min(y.h-1,p>>1),P=U*y.w+v;h.hole[w]&&(h.px[w*3]=y.px[P*3],h.px[w*3+1]=y.px[P*3+1],h.px[w*3+2]=y.px[P*3+2]);let S=m?m[P]:-1;if(S>=0){let b=S%y.w,x=(S-b)/y.w;k[w]=Math.min(h.h-1,2*x+(p&1))*h.w+Math.min(h.w-1,2*b+(d&1))}}m=k}m=Ve(h,m,c===0?3:c===1?4:6,a),n(1-c/l.length)}let f=new Uint8ClampedArray(i);for(let c=0;c<o*r;c++)u[c]&&(f[c*4]=s[c*3],f[c*4+1]=s[c*3+1],f[c*4+2]=s[c*3+2],f[c*4+3]=255);return f}function Xe(e,t){let n=e.img,o=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!o)return At(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let r=4+(1-e.detail/100)*26,i=(l,a,m,f)=>kt(n,l,a,m,f)>r,s=e.shape==="brick"?e.tile/2:e.tile,u=V({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:s,detail:e.detail/100,busy:i,seed:7});return t(.5),St(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var he={mosaic:(e,t)=>Xe(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t),inpaint:(e,t)=>({width:e.img.width,height:e.img.height,data:fe(e.img,e.mask,t)}),adjust:e=>({width:e.img.width,height:e.img.height,data:me(e.img.data,e.img.width,e.img.height,e.adjust)})};function pt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let o of Object.values(e))pt(o,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:o}=e.data,r=0,i=s=>{let u=Date.now();u-r>100&&(r=u,gt({id:t,progress:s}))};try{let s=await he[n](o,i);gt({id:t,result:s},pt(s))}catch(s){gt({id:t,error:String(s?.message||s)})}};})();\n';
 
   // src/lib/model3d.ts
   var topLayer = (i, s) => s.baseLayers + (i + 1) * s.layersPerColor;
@@ -7613,6 +7813,29 @@
     }
     return out;
   }
+  async function unzip(data) {
+    const v = new DataView(data.buffer, data.byteOffset, data.byteLength), out = /* @__PURE__ */ new Map();
+    let end = -1;
+    for (let i = data.length - 22; i >= Math.max(0, data.length - 65557); i--) if (v.getUint32(i, true) === 101010256) {
+      end = i;
+      break;
+    }
+    if (end < 0) throw new Error("not a ZIP file");
+    const count = v.getUint16(end + 10, true);
+    let p = v.getUint32(end + 16, true);
+    const dec = new TextDecoder();
+    for (let k = 0; k < count; k++) {
+      if (v.getUint32(p, true) !== 33639248) throw new Error("broken ZIP file");
+      const method = v.getUint16(p + 10, true), size = v.getUint32(p + 20, true), nameLen = v.getUint16(p + 28, true);
+      const extraLen = v.getUint16(p + 30, true), commentLen = v.getUint16(p + 32, true), local = v.getUint32(p + 42, true);
+      const name = dec.decode(data.subarray(p + 46, p + 46 + nameLen));
+      const start = local + 30 + v.getUint16(local + 26, true) + v.getUint16(local + 28, true), body = data.subarray(start, start + size);
+      if (method === 0) out.set(name, body.slice());
+      else if (method === 8) out.set(name, new Uint8Array(await new Response(new Blob([body.slice()]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).arrayBuffer()));
+      p += 46 + nameLen + extraLen + commentLen;
+    }
+    return out;
+  }
 
   // src/lib/build3d.ts
   var MARGIN = 2;
@@ -7887,7 +8110,7 @@ ${shapes.join("\n")}
   function readGcode(text, progress) {
     let z = 0, e = 0, relative = false, tool = 0, printed = false, notModel = false;
     const zs = /* @__PURE__ */ new Set(), tools2 = /* @__PURE__ */ new Map(), changes2 = [];
-    let pending = null;
+    let pending2 = null;
     for (let at2 = 0, n5 = 0; at2 < text.length; n5++) {
       let end = text.indexOf("\n", at2);
       if (end < 0) end = text.length;
@@ -7917,9 +8140,9 @@ ${shapes.join("\n")}
               r.from = Math.min(r.from, key);
               r.to = Math.max(r.to, key);
             } else tools2.set(tool, { from: key, to: key });
-            if (pending) {
-              changes2.push({ ...pending, z: key });
-              pending = null;
+            if (pending2) {
+              changes2.push({ ...pending2, z: key });
+              pending2 = null;
             }
             printed = true;
           }
@@ -7929,10 +8152,10 @@ ${shapes.join("\n")}
         if (ne != null) e = ne;
       } else if (cmd === "M82") relative = false;
       else if (cmd === "M83") relative = true;
-      else if (cmd === "M600") pending = { kind: "M600" };
+      else if (cmd === "M600") pending2 = { kind: "M600" };
       else if (/^T\d+$/.test(cmd)) {
         const next = +cmd.slice(1);
-        if (printed && next !== tool) pending = { kind: "tool", tool: next };
+        if (printed && next !== tool) pending2 = { kind: "tool", tool: next };
         tool = next;
       }
     }
@@ -8357,7 +8580,7 @@ ${shapes.join("\n")}
 
   // src/raster/paint.ts
   function constrain(a, b) {
-    const ang = Math.atan2(b.y - a.y, b.x - a.x), step = Math.PI / 12, q = Math.round(ang / step) * step;
+    const ang = Math.atan2(b.y - a.y, b.x - a.x), step2 = Math.PI / 12, q = Math.round(ang / step2) * step2;
     const L = Math.hypot(b.x - a.x, b.y - a.y) * Math.cos(ang - q);
     return { x: a.x + L * Math.cos(q), y: a.y + L * Math.sin(q) };
   }
@@ -8466,13 +8689,13 @@ ${shapes.join("\n")}
     st.dirty = b ? { x0: Math.min(b.x0, x0), y0: Math.min(b.y0, y0), x1: Math.max(b.x1, x1), y1: Math.max(b.y1, y1) } : { x0, y0, x1, y1 };
   }
   function stampLine(st, tip2, a, b, sa, sb) {
-    const len = Math.hypot(b.x - a.x, b.y - a.y), step = Math.max(1, Math.min(sa, sb) * (tip2 === "spray" ? 0.25 : 0.1));
+    const len = Math.hypot(b.x - a.x, b.y - a.y), step2 = Math.max(1, Math.min(sa, sb) * (tip2 === "spray" ? 0.25 : 0.1));
     if (len === 0) {
       stamp(st, tip2, a, sa);
       return;
     }
     let d = st.carry;
-    for (; d <= len; d += step) {
+    for (; d <= len; d += step2) {
       const k = d / len;
       stamp(st, tip2, { x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k }, sa + (sb - sa) * k);
     }
@@ -8988,7 +9211,7 @@ ${shapes.join("\n")}
     const pad = Math.ceil((s.outline ? s.outlineWidth : 0) + (s.shadow ? s.size * 0.15 + 6 : 0) + 2);
     const textW = Math.max(1, ...widths), textH = lh * lines2.length;
     const bend = s.curve / 100 * Math.PI * 1.4;
-    const draw = (x, fn) => {
+    const draw2 = (x, fn) => {
       x.save();
       if (s.shadow) {
         x.shadowColor = "rgba(0,0,0,.55)";
@@ -9014,7 +9237,7 @@ ${shapes.join("\n")}
     if (Math.abs(bend) < 0.01) {
       const w = Math.ceil(textW) + 2 * pad, h = textH + 2 * pad;
       const c2 = makeCanvas(w, h);
-      draw(c2.getContext("2d"), (x) => {
+      draw2(c2.getContext("2d"), (x) => {
         x.textAlign = s.align;
         const ax = s.align === "left" ? pad : s.align === "right" ? w - pad : w / 2;
         lines2.forEach((l, i) => paint(x, l, ax, pad + lh * i + lh / 2));
@@ -9025,7 +9248,7 @@ ${shapes.join("\n")}
     const radii = lines2.map((_, i) => up ? R + (lines2.length - 1 - i) * lh : R + i * lh);
     const outer = Math.max(...radii) + lh / 2, S = Math.ceil(2 * outer) + 2 * pad;
     const big = makeCanvas(S, S), cx = S / 2, cy = S / 2;
-    draw(big.getContext("2d"), (x) => {
+    draw2(big.getContext("2d"), (x) => {
       x.textAlign = "center";
       lines2.forEach((l, i) => {
         const r = radii[i], lw = widths[i];
@@ -9286,6 +9509,234 @@ ${shapes.join("\n")}
     emit("mode");
   }
 
+  // src/lib/html.ts
+  var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+  // src/raster/layers.ts
+  var nextName = () => t("Layer {n}", { n: layers.length + 1 });
+  function step(fn) {
+    if (state.floating) place();
+    fn();
+    commit();
+    renderLayers();
+  }
+  function addLayer() {
+    step(() => {
+      const L = makeLayer(doc.width, doc.height, nextName());
+      layers.splice(active + 1, 0, L);
+      useLayer(active + 1);
+    });
+  }
+  function duplicateLayer() {
+    step(() => {
+      const src = layers[active], L = makeLayer(doc.width, doc.height, t("{name} copy", { name: src.name }));
+      L.ctx.drawImage(src.canvas, 0, 0);
+      Object.assign(L, { visible: src.visible, opacity: src.opacity });
+      layers.splice(active + 1, 0, L);
+      useLayer(active + 1);
+    });
+  }
+  function deleteLayer() {
+    if (layers.length < 2) {
+      toast(t("The last layer can’t be deleted."));
+      return;
+    }
+    step(() => {
+      layers.splice(active, 1);
+      useLayer(Math.max(0, active - 1));
+    });
+  }
+  function moveLayer(up) {
+    const to = active + (up ? 1 : -1);
+    if (to < 0 || to >= layers.length) return;
+    step(() => {
+      [layers[active], layers[to]] = [layers[to], layers[active]];
+      useLayer(to);
+    });
+  }
+  function mergeDown() {
+    if (active < 1) {
+      toast(t("There is no layer under this one."));
+      return;
+    }
+    step(() => {
+      const top = layers[active], below = layers[active - 1];
+      if (top.visible) {
+        below.ctx.globalAlpha = top.opacity;
+        below.ctx.drawImage(top.canvas, 0, 0);
+        below.ctx.globalAlpha = 1;
+      }
+      below.rev++;
+      layers.splice(active, 1);
+      useLayer(active - 1);
+    });
+  }
+  function flattenAll() {
+    if (layers.length < 2) return;
+    step(() => {
+      const f = flat(), L = makeLayer(doc.width, doc.height, t("Layer {n}", { n: 1 }));
+      L.ctx.drawImage(f, 0, 0);
+      setLayers([L], 0);
+    });
+  }
+  function setVisible(i, v) {
+    step(() => {
+      layers[i].visible = v;
+    });
+  }
+  function selectLayer(i) {
+    if (i === active) return;
+    if (state.floating) place();
+    useLayer(i);
+    renderLayers();
+    selectionChanged();
+    requestRender();
+  }
+  async function rename(i) {
+    const name = await ask(t("Name of the layer:"), layers[i].name);
+    if (name == null || !name.trim()) return;
+    step(() => {
+      layers[i].name = name.trim().slice(0, 60);
+    });
+  }
+  var pending = 0;
+  var shownOpacity = 1;
+  function renderLayers() {
+    cancelAnimationFrame(pending);
+    pending = requestAnimationFrame(draw);
+  }
+  function draw() {
+    const list = $("#layer-list");
+    if (!list) return;
+    list.innerHTML = layers.map((L, i) => `<li class="layer${i === active ? " active" : ""}" data-i="${i}" aria-current="${i === active}">
+<button class="layer-eye" aria-pressed="${L.visible}" title="${esc(L.visible ? t("Hide this layer") : t("Show this layer"))}" aria-label="${esc(t("Show {name}", { name: L.name }))}">${L.visible ? "◉" : "○"}</button>
+<canvas class="layer-thumb" width="48" height="36"></canvas>
+<span class="layer-name" title="${esc(t("Double-click to rename"))}">${esc(L.name)}</span>
+</li>`).reverse().join("");
+    for (const li of list.querySelectorAll("li")) {
+      const i = +li.dataset.i, L = layers[i], c = li.querySelector("canvas"), x = c.getContext("2d");
+      const k = Math.min(c.width / L.canvas.width, c.height / L.canvas.height), w = L.canvas.width * k, h = L.canvas.height * k;
+      x.drawImage(L.canvas, (c.width - w) / 2, (c.height - h) / 2, w, h);
+      li.onclick = (e) => {
+        if (!e.target.closest(".layer-eye")) selectLayer(i);
+      };
+      li.ondblclick = () => rename(i);
+      li.querySelector(".layer-eye").onclick = () => setVisible(i, !L.visible);
+    }
+    const op = $("#layer-opacity");
+    shownOpacity = layers[active].opacity;
+    op.value = String(Math.round(shownOpacity * 100));
+    $("#layer-opacity-label").textContent = `${op.value} %`;
+    $("#btn-layer-del").disabled = layers.length < 2;
+    $("#btn-layer-merge").disabled = active < 1;
+    $("#btn-layer-flatten").disabled = layers.length < 2;
+    $("#btn-layer-up").disabled = active >= layers.length - 1;
+    $("#btn-layer-down").disabled = active < 1;
+  }
+  var pngBytes = async (c) => new Uint8Array(await (await canvasToPng(c)).arrayBuffer());
+  async function exportOra() {
+    if (state.floating) place();
+    const files = [{ name: "mimetype", data: "image/openraster" }];
+    const stack = [];
+    for (let i = layers.length - 1; i >= 0; i--) {
+      const L = layers[i], src = `data/layer${i}.png`;
+      files.push({ name: src, data: await pngBytes(L.canvas) });
+      stack.push(`  <layer name="${esc(L.name)}" src="${src}" x="0" y="0" opacity="${L.opacity.toFixed(3)}" visibility="${L.visible ? "visible" : "hidden"}"/>`);
+    }
+    const f = flat(), k = Math.min(1, 256 / Math.max(f.width, f.height)), th = makeCanvas(Math.round(f.width * k), Math.round(f.height * k));
+    th.getContext("2d").drawImage(f, 0, 0, th.width, th.height);
+    files.push({ name: "stack.xml", data: `<?xml version="1.0" encoding="UTF-8"?>
+<image version="0.0.5" w="${doc.width}" h="${doc.height}">
+<stack>
+${stack.join("\n")}
+</stack>
+</image>
+` });
+    files.push({ name: "mergedimage.png", data: await pngBytes(f) }, { name: "Thumbnails/thumbnail.png", data: await pngBytes(th) });
+    const data = await zip(files, { compress: false });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([data.slice()], { type: "image/openraster" }));
+    a.download = rt.fileName.replace(/\.[a-z0-9]+$/i, "") + ".ora";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4e3);
+    toast(t("Saved {name} with {n} {n|layer|layers}.", { name: a.download, n: layers.length }));
+  }
+  var imageOf = (bytes2) => createImageBitmap(new Blob([bytes2.slice()], { type: "image/png" })).then((b) => {
+    const c = makeCanvas(b.width, b.height);
+    c.getContext("2d").drawImage(b, 0, 0);
+    return c;
+  });
+  async function openOra(file, name) {
+    try {
+      const files = await unzip(new Uint8Array(await file.arrayBuffer()));
+      const xml = new DOMParser().parseFromString(new TextDecoder().decode(files.get("stack.xml")), "application/xml");
+      const img = xml.querySelector("image"), W = +img.getAttribute("w"), H = +img.getAttribute("h");
+      const list = [];
+      for (const el of [...xml.querySelectorAll("layer")].reverse()) {
+        const data = files.get(el.getAttribute("src") || "");
+        if (!data) continue;
+        const c = await imageOf(data), L = makeLayer(W, H, el.getAttribute("name") || t("Layer {n}", { n: list.length + 1 }));
+        L.ctx.drawImage(c, +el.getAttribute("x") || 0, +el.getAttribute("y") || 0);
+        L.opacity = Math.max(0, Math.min(1, el.hasAttribute("opacity") ? +el.getAttribute("opacity") : 1));
+        L.visible = el.getAttribute("visibility") !== "hidden";
+        list.push(L);
+      }
+      if (!list.length || !(W > 0 && H > 0)) throw new Error("no layers");
+      setLayers(list, list.length - 1);
+      state.sel = null;
+      state.floating = null;
+      rt.fileName = name.replace(/\.[a-z0-9]+$/i, "") + ".png";
+      rt.fileHandle = null;
+      resetHistory();
+      rt.dirty = false;
+      afterChange();
+      selectionChanged();
+      fitView();
+      renderLayers();
+      toast(t("Opened {name} ({n} {n|layer|layers}).", { name, n: list.length }));
+      return true;
+    } catch {
+      toast(t("Could not read this OpenRaster file."));
+      return false;
+    }
+  }
+  async function restoreLayers(saved, activeIndex) {
+    const list = [];
+    for (const s of saved) {
+      const c = await imageOf(new Uint8Array(await s.png.arrayBuffer())), L = makeLayer(c.width, c.height, s.name);
+      L.ctx.drawImage(c, 0, 0);
+      Object.assign(L, { visible: s.visible, opacity: s.opacity });
+      list.push(L);
+    }
+    setLayers(list, Math.min(activeIndex ?? list.length - 1, list.length - 1));
+    resetHistory();
+    renderLayers();
+  }
+  function bindLayers() {
+    $("#btn-layer-add").onclick = addLayer;
+    $("#btn-layer-dup").onclick = duplicateLayer;
+    $("#btn-layer-del").onclick = deleteLayer;
+    $("#btn-layer-up").onclick = () => moveLayer(true);
+    $("#btn-layer-down").onclick = () => moveLayer(false);
+    $("#btn-layer-merge").onclick = mergeDown;
+    $("#btn-layer-flatten").onclick = flattenAll;
+    $("#btn-layer-ora").onclick = () => exportOra();
+    const op = $("#layer-opacity");
+    op.oninput = () => {
+      layers[active].opacity = +op.value / 100;
+      $("#layer-opacity-label").textContent = `${op.value} %`;
+      requestRender();
+    };
+    op.onchange = () => {
+      const v = +op.value / 100;
+      if (v !== shownOpacity) step(() => {
+        layers[active].opacity = v;
+      });
+    };
+    for (const ev of ["change", "layers", "size"]) on(ev, renderLayers);
+    renderLayers();
+  }
+
   // src/raster/files.ts
   var MAX_SIDE = 8e3;
   var IMAGE_TYPES = [{ description: t("Images"), accept: { "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"] } }];
@@ -9295,8 +9746,7 @@ ${shapes.join("\n")}
     return !rt.dirty || askYes(t("Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)"));
   }
   function loadCanvas(c, name) {
-    setSize(c.width, c.height);
-    dctx.clearRect(0, 0, c.width, c.height);
+    setLayers([makeLayer(c.width, c.height, t("Layer {n}", { n: 1 }))], 0);
     dctx.drawImage(c, 0, 0);
     state.sel = null;
     state.floating = null;
@@ -9338,6 +9788,7 @@ ${shapes.join("\n")}
     return out;
   }
   async function openImageFile(f) {
+    if (/.ora$/i.test(f.name) || f.type === "image/openraster") return openOra(f, f.name);
     let c = await fileToCanvas(f);
     if (!c) {
       toast(t("Could not read {name} as an image.", { name: f.name }));
@@ -9415,7 +9866,8 @@ ${shapes.join("\n")}
     toast(t("Restored the version from {time}", { time: new Date(v.time).toLocaleString(lang) }));
   }
   async function save() {
-    const png = await canvasToPng(doc), w = window;
+    if (layers.length > 1) toast(t("Saved as one picture – Save layers (.ora) in the Layers section keeps the layers."));
+    const png = await canvasToPng(flat()), w = window;
     if (w.showSaveFilePicker) {
       try {
         if (!rt.fileHandle) rt.fileHandle = await w.showSaveFilePicker({ suggestedName: rt.fileName, types: PNG_TYPES });
@@ -9437,28 +9889,32 @@ ${shapes.join("\n")}
     updateTitle();
   }
   function exportAs(type, quality) {
-    let c = doc;
+    if (type === "ora") {
+      exportOra();
+      return;
+    }
+    let c = flat();
     if (type === "image/jpeg") {
+      const f = c;
       c = makeCanvas(doc.width, doc.height);
       const x = c.getContext("2d");
       x.fillStyle = "#ffffff";
       x.fillRect(0, 0, c.width, c.height);
-      x.drawImage(doc, 0, 0);
+      x.drawImage(f, 0, 0);
     }
     const ext = { "image/jpeg": ".jpg", "image/webp": ".webp", "image/png": ".png" }[type] || ".png";
     c.toBlob((b) => b ? download(b, baseName(rt.fileName) + ext) : toast(t("Export failed.")), type, quality);
   }
   function resizeImage(w, h) {
     if (w === doc.width && h === doc.height) return;
-    const old = makeCanvas(doc.width, doc.height);
-    old.getContext("2d").drawImage(doc, 0, 0);
-    const shrink2 = w < old.width || h < old.height;
-    setSize(w, h);
-    dctx.save();
-    dctx.imageSmoothingEnabled = shrink2;
-    dctx.imageSmoothingQuality = "high";
-    dctx.drawImage(old, 0, 0, w, h);
-    dctx.restore();
+    const shrink2 = w < doc.width || h < doc.height;
+    mapLayers((old) => {
+      const c = makeCanvas(w, h), x = c.getContext("2d");
+      x.imageSmoothingEnabled = shrink2;
+      x.imageSmoothingQuality = "high";
+      x.drawImage(old, 0, 0, w, h);
+      return c;
+    });
     state.sel = null;
     commit();
     selectionChanged();
@@ -9466,11 +9922,11 @@ ${shapes.join("\n")}
   }
   function canvasSize(w, h) {
     if (w === doc.width && h === doc.height) return;
-    const old = makeCanvas(doc.width, doc.height);
-    old.getContext("2d").drawImage(doc, 0, 0);
-    setSize(w, h);
-    dctx.clearRect(0, 0, w, h);
-    dctx.drawImage(old, Math.round((w - old.width) / 2), Math.round((h - old.height) / 2));
+    mapLayers((old) => {
+      const c = makeCanvas(w, h);
+      c.getContext("2d").drawImage(old, Math.round((w - old.width) / 2), Math.round((h - old.height) / 2));
+      return c;
+    });
     state.sel = null;
     commit();
     selectionChanged();
@@ -9478,46 +9934,44 @@ ${shapes.join("\n")}
   }
 
   // src/raster/transform.ts
-  function replaceWith(c) {
-    setSize(c.width, c.height);
-    dctx.clearRect(0, 0, c.width, c.height);
-    dctx.drawImage(c, 0, 0);
+  function transformAll(fn) {
+    if (state.floating) place();
+    mapLayers(fn);
+    for (const L of layers) L.rev++;
     state.sel = null;
     commit();
     selectionChanged();
     fitView();
   }
-  function current() {
-    if (state.floating) place();
-    const c = makeCanvas(doc.width, doc.height);
-    c.getContext("2d").drawImage(doc, 0, 0);
-    return c;
-  }
   function rotate(deg) {
     const a = (deg % 360 + 360) % 360;
     if (!a) return;
-    const old = current(), rad = a * Math.PI / 180, quarter = a % 90 === 0;
+    const w = doc.width, h = doc.height, rad = a * Math.PI / 180, quarter = a % 90 === 0;
     const cos = Math.abs(Math.cos(rad)), sin = Math.abs(Math.sin(rad));
-    const W = quarter ? a % 180 ? old.height : old.width : Math.ceil(old.width * cos + old.height * sin - 1e-6);
-    const H = quarter ? a % 180 ? old.width : old.height : Math.ceil(old.width * sin + old.height * cos - 1e-6);
+    const W = quarter ? a % 180 ? h : w : Math.ceil(w * cos + h * sin - 1e-6);
+    const H = quarter ? a % 180 ? w : h : Math.ceil(w * sin + h * cos - 1e-6);
     if (W > MAX_SIDE || H > MAX_SIDE) {
       toast(t("Enter a size from 1 to {max} px.", { max: MAX_SIDE }));
       return;
     }
-    const c = makeCanvas(W, H), x = c.getContext("2d");
-    x.imageSmoothingEnabled = !quarter;
-    x.imageSmoothingQuality = "high";
-    x.translate(W / 2, H / 2);
-    x.rotate(rad);
-    x.drawImage(old, -old.width / 2, -old.height / 2);
-    replaceWith(c);
+    transformAll((old) => {
+      const c = makeCanvas(W, H), x = c.getContext("2d");
+      x.imageSmoothingEnabled = !quarter;
+      x.imageSmoothingQuality = "high";
+      x.translate(W / 2, H / 2);
+      x.rotate(rad);
+      x.drawImage(old, -old.width / 2, -old.height / 2);
+      return c;
+    });
   }
   function flip(horizontal) {
-    const old = current(), c = makeCanvas(old.width, old.height), x = c.getContext("2d");
-    x.translate(horizontal ? old.width : 0, horizontal ? 0 : old.height);
-    x.scale(horizontal ? -1 : 1, horizontal ? 1 : -1);
-    x.drawImage(old, 0, 0);
-    replaceWith(c);
+    transformAll((old) => {
+      const c = makeCanvas(old.width, old.height), x = c.getContext("2d");
+      x.translate(horizontal ? old.width : 0, horizontal ? 0 : old.height);
+      x.scale(horizontal ? -1 : 1, horizontal ? 1 : -1);
+      x.drawImage(old, 0, 0);
+      return c;
+    });
   }
   function cropToSelection() {
     if (!state.sel && !state.floating) {
@@ -9528,7 +9982,7 @@ ${shapes.join("\n")}
   }
   function trim() {
     if (state.floating) place();
-    const b = trimBox(getImage());
+    const b = trimBox(flatImage());
     if (!b) {
       toast(t("The image is all one color – nothing to trim."));
       return;
@@ -9537,9 +9991,11 @@ ${shapes.join("\n")}
       toast(t("There is no border to trim."));
       return;
     }
-    const c = makeCanvas(b.w, b.h);
-    c.getContext("2d").drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
-    replaceWith(c);
+    transformAll((old) => {
+      const c = makeCanvas(b.w, b.h);
+      c.getContext("2d").drawImage(old, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+      return c;
+    });
     toast(t("Trimmed to {w} × {h} px.", { w: b.w, h: b.h }));
   }
 
@@ -10135,9 +10591,6 @@ ${shapes.join("\n")}
     return { vertices, triangles, levels: new Array(triangles.length / 3).fill(0) };
   }
 
-  // src/lib/html.ts
-  var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-
   // src/shared/addon-files.ts
   var HF = (repo, rev, path) => `https://huggingface.co/${repo}/resolve/${rev}/${path}`;
   var ORT = (f) => `https://cdn.jsdelivr.net/npm/onnxruntime-web@1.30.0/dist/${f}`;
@@ -10273,7 +10726,7 @@ ${shapes.join("\n")}
       await c.delete(FILES[f].url);
     }
   }
-  var mb = (bytes) => bytes >= 1e6 ? `${(bytes / 1e6).toFixed(bytes >= 1e7 ? 0 : 1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} kB`;
+  var mb = (bytes2) => bytes2 >= 1e6 ? `${(bytes2 / 1e6).toFixed(bytes2 >= 1e7 ? 0 : 1)} MB` : `${Math.max(1, Math.round(bytes2 / 1e3))} kB`;
   async function missing(a) {
     const out = [];
     for (const f of filesOf(a)) if (!await hasFile(f)) out.push(f);
@@ -10416,8 +10869,8 @@ ${shapes.join("\n")}
     for (const m of models) {
       if (await call("has", { name: m })) continue;
       toast(t("Starting the AI…"));
-      const bytes = await getFile(m);
-      await call("load", { name: m, model: bytes }, [bytes]);
+      const bytes2 = await getFile(m);
+      await call("load", { name: m, model: bytes2 }, [bytes2]);
     }
     return true;
   }
@@ -11563,7 +12016,7 @@ void main() {
     const isLine = (ci) => lines2.has(colors[ci]);
     const buildOpts = () => ({ ...opts, maxRatio: MAX_RATIO });
     const settings = () => printSettings(buildOpts());
-    const flat = () => flatSettings(buildOpts());
+    const flat2 = () => flatSettings(buildOpts());
     const isFlat = () => opts.mode === "flat";
     const size = () => {
       const a = host2.aspect();
@@ -11700,7 +12153,7 @@ void main() {
         if (box5.children[k] !== row) box5.insertBefore(row, box5.children[k] || null);
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
-      const fs = flat();
+      const fs = flat2();
       const atBase = unpainted ? " · " + (opts.baseLayers ? t("unpainted parts stay at the base ({h} mm)", { h: num(+f2(opts.baseLayers * opts.layerHeight)) }) : t("unpainted parts are left open")) : "";
       const lowered = m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "";
       let summary = !list.length ? t("Nothing is painted yet.") : (fl ? t("{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})", { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers }) : t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 })) + atBase + lowered;
@@ -11794,7 +12247,7 @@ void main() {
       return out;
     }
     function flatPlanText(m) {
-      const fs = flat(), list = m.list, { w, h } = size(), slicer2 = opts.slicer === "bambu" ? "Bambu Studio / OrcaSlicer" : "PrusaSlicer";
+      const fs = flat2(), list = m.list, { w, h } = size(), slicer2 = opts.slicer === "bambu" ? "Bambu Studio / OrcaSlicer" : "PrusaSlicer";
       const v = { name: base(), w: f2(w), h: f2(h), lh: fs.layerHeight, base: fs.baseLayers, tile: fs.tileLayers, recess: fs.groutRecess, total: f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight), slicer: slicer2 };
       const lines3 = [
         t("Mosaic Paint – multi-filament plan for {name}.3mf", v),
@@ -12004,11 +12457,11 @@ void main() {
       async render(w, h) {
         const c = makeCanvas(w, h), x = c.getContext("2d");
         x.imageSmoothingEnabled = w < doc.width;
-        x.drawImage(doc, 0, 0, w, h);
+        x.drawImage(flat(), 0, 0, w, h);
         return c;
       },
       colors() {
-        const img = getImage(), own = uniqueColors(img, MAX_COLORS);
+        const img = flatImage(), own = uniqueColors(img, MAX_COLORS);
         const grout = (list) => list.includes(state.mosaic.groutColor) ? [state.mosaic.groutColor] : [];
         if (own) return { colors: own, lines: grout(own) };
         if (state.palette.length) return { colors: [...state.palette], lines: grout(state.palette), note: t("The picture has many colors: it is snapped to the current palette (use “Reduce to palette” to see the result first).") };
@@ -12190,14 +12643,14 @@ ${sections.join("\n")}
   var n3 = (v) => String(Math.round(v * 1e3) / 1e3);
   var title = () => rt.fileName.replace(/\.[a-z0-9]+$/i, "");
   function printArt(style) {
-    const W = doc.width, H = doc.height, p = pieces(getImage()), rows2 = colorRows(p), k = mmPerPixel();
+    const W = doc.width, H = doc.height, p = pieces(flatImage()), rows2 = colorRows(p), k = mmPerPixel();
     if (style !== "colors" && p.colors.length > MAX_PIECES) {
       toast(t("This picture has {n} pieces – too many to number. Make a mosaic or reduce it to the palette first.", { n: p.colors.length }));
       return null;
     }
     const parts = [];
     if (style === "numbers") parts.push(`<rect width="${W}" height="${H}" fill="#ffffff"/>`);
-    else parts.push(`<image href="${doc.toDataURL("image/png")}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none" style="image-rendering:pixelated"/>`);
+    else parts.push(`<image href="${flat().toDataURL("image/png")}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="none" style="image-rendering:pixelated"/>`);
     if (style !== "colors") {
       if (style === "numbers") parts.push(`<path d="${pieceOutlines(p, W, H)}" fill="none" stroke="#444444" stroke-width="${n3(0.25 / k)}"/>`);
       const num4 = new Map(rows2.map((r) => [r.color, r.n])), centres = pieceCentres(p, W, H), labels = [];
@@ -12259,9 +12712,9 @@ ${sections.join("\n")}
   }
 
   // src/lib/pack.ts
-  var b64url = (bytes) => {
+  var b64url = (bytes2) => {
     let s = "";
-    for (let i = 0; i < bytes.length; i += 32768) s += String.fromCharCode.apply(null, Array.from(bytes.subarray(i, i + 32768)));
+    for (let i = 0; i < bytes2.length; i += 32768) s += String.fromCharCode.apply(null, Array.from(bytes2.subarray(i, i + 32768)));
     return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   };
   var fromB64url = (s) => {
@@ -12270,7 +12723,7 @@ ${sections.join("\n")}
     for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
     return out;
   };
-  var packBytes = (bytes) => "p" + b64url(bytes);
+  var packBytes = (bytes2) => "p" + b64url(bytes2);
   var unpackBytes = (s) => fromB64url(s.slice(1));
 
   // src/raster/share.ts
@@ -12279,7 +12732,7 @@ ${sections.join("\n")}
   var link = "";
   var viewing = false;
   async function makeLink() {
-    const png = new Uint8Array(await (await canvasToPng(doc)).arrayBuffer());
+    const png = new Uint8Array(await (await canvasToPng(flat())).arrayBuffer());
     link = `${location.origin}${location.pathname}#view=${packBytes(png)}`;
     const kb = Math.round(link.length / 1024);
     $("#share-link").value = link;
@@ -12287,7 +12740,7 @@ ${sections.join("\n")}
     $("#share-copy").disabled = link.length > MAX;
   }
   async function shareFile() {
-    const file = new File([await canvasToPng(doc)], rt.fileName, { type: "image/png" });
+    const file = new File([await canvasToPng(flat())], rt.fileName, { type: "image/png" });
     try {
       await navigator.share({ files: [file], title: rt.fileName });
     } catch (e) {
@@ -12366,17 +12819,17 @@ ${sections.join("\n")}
   var n4 = (v) => String(Math.round(v * 1e3) / 1e3);
   var paletteName = () => rt.fileName.replace(/\.[a-z0-9]+$/i, "");
   function vectorSVG(grout, widthMm) {
-    return piecesSvg(getImage(), grout, widthMm, paletteName());
+    return piecesSvg(flatImage(), grout, widthMm, paletteName());
   }
   function fillDialog() {
-    const rows2 = colorRows(pieces(getImage())), sel = $("#vz-grout");
+    const rows2 = colorRows(pieces(flatImage())), sel = $("#vz-grout");
     sel.innerHTML = `<option value="">${t("No grout – every piece is a tile")}</option>` + rows2.map((r) => `<option value="${r.color}">${r.color} – ${t("{n} {n|piece|pieces}", { n: r.pieces })}</option>`).join("");
     sel.value = rows2.some((r) => r.color === state.mosaic.groutColor) ? state.mosaic.groutColor : "";
     $("#vz-width").value = state.realWidth;
     info();
   }
   function info() {
-    const grout = $("#vz-grout").value || null, rows2 = colorRows(pieces(getImage()));
+    const grout = $("#vz-grout").value || null, rows2 = colorRows(pieces(flatImage()));
     const tiles = rows2.filter((r) => r.color !== grout).reduce((s, r) => s + r.pieces, 0);
     const size = { n: tiles, w: n4(state.realWidth), h: n4(state.realWidth * doc.height / doc.width) };
     $("#vz-info").textContent = tiles > MAX_TILES ? t("{n} {n|tile|tiles} at {w} × {h} mm – too many: make a mosaic or reduce the picture to the palette first.", size) : t("{n} {n|tile|tiles} at {w} × {h} mm.", size);
@@ -12402,7 +12855,7 @@ ${sections.join("\n")}
       const job = working(t("Tracing the tiles…"));
       let res;
       try {
-        res = await run2("vectorize", { img: getImage(), grout: $("#vz-grout").value || null, widthMm: state.realWidth, name: paletteName() }, { progress: job.set });
+        res = await run2("vectorize", { img: flatImage(), grout: $("#vz-grout").value || null, widthMm: state.realWidth, name: paletteName() }, { progress: job.set });
       } catch (e) {
         job.done();
         if (!isCancelled(e)) toast(t("Could not trace the tiles."));
@@ -12530,7 +12983,7 @@ ${sections.join("\n")}
       marked = el;
       marked?.classList.add("guide-target");
     };
-    function draw() {
+    function draw2() {
       const s = steps2[at2];
       card.querySelector("h2").textContent = s.title;
       card.querySelector(".guide-text").textContent = s.text;
@@ -12548,19 +13001,19 @@ ${sections.join("\n")}
     }
     function show4() {
       at2 = 0;
-      draw();
+      draw2();
       if (!card.open) card.show();
     }
     card.querySelector(".guide-close").onclick = close2;
     card.querySelector(".guide-back").onclick = () => {
       at2 = Math.max(0, at2 - 1);
-      draw();
+      draw2();
     };
     card.querySelector(".guide-next").onclick = () => {
       if (at2 === steps2.length - 1) close2();
       else {
         at2++;
-        draw();
+        draw2();
       }
     };
     card.addEventListener("keydown", (e) => {
@@ -12615,8 +13068,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.0.0" : "dev";
+  var VERSION = true ? "2.1.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.1.0",
+      date: "2026-10-13",
+      items: [
+        "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too."
+      ]
+    },
     {
       version: "2.0.0",
       date: "2026-10-13",
@@ -12788,15 +13248,15 @@ ${sections.join("\n")}
           v.colors != null ? t("{n} {n|color|colors}", { n: v.colors }) : ""
         ].filter(Boolean);
         row.innerHTML = `<img src="${url2}" alt=""><div class="hist-info"><b>${v.pinned ? "★ " : ""}${esc(v.title || when)}</b><span>${esc(facts.join(" · "))}</span></div>`;
-        const pin = document.createElement("button"), rename = document.createElement("button"), restore2 = document.createElement("button");
+        const pin = document.createElement("button"), rename2 = document.createElement("button"), restore2 = document.createElement("button");
         pin.className = "hist-pin";
         pin.textContent = "★";
         pin.title = v.pinned ? t("Unpin – it may be cleared with old versions") : t("Pin – kept when old versions are cleared");
         pin.setAttribute("aria-pressed", String(!!v.pinned));
         pin.onclick = () => change(v, { pinned: !v.pinned });
-        rename.textContent = "✎";
-        rename.title = rename.ariaLabel = t("Name this version");
-        rename.onclick = async () => {
+        rename2.textContent = "✎";
+        rename2.title = rename2.ariaLabel = t("Name this version");
+        rename2.onclick = async () => {
           const title2 = await ask(t("Name of this version:"), v.title || "");
           if (title2 != null) change(v, { title: title2.trim() || void 0 });
         };
@@ -12805,7 +13265,7 @@ ${sections.join("\n")}
           dlg6.close();
           await host2.restore(v);
         };
-        row.append(pin, rename, restore2);
+        row.append(pin, rename2, restore2);
         list.append(row);
       }
     }
@@ -12832,6 +13292,7 @@ ${sections.join("\n")}
   bindPanel();
   bindInput();
   bindAiFeatures();
+  bindLayers();
   bindExport3D();
   bindReport();
   bindPrint();
@@ -12866,8 +13327,12 @@ ${sections.join("\n")}
   var RZ = {
     state,
     rt,
-    doc,
     ready: false,
+    /** the active layer's canvas (tests draw on it) */
+    get doc() {
+      return doc;
+    },
+    layers,
     /** '#rrggbb' at an image pixel, or null where it is transparent */
     colorAt: (x, y) => colorAt(getImage(Math.floor(x), Math.floor(y), 1, 1), 0, 0),
     alphaAt: (x, y) => getImage(Math.floor(x), Math.floor(y), 1, 1).data[3],
@@ -12903,7 +13368,7 @@ ${sections.join("\n")}
     openImage: async (blob, name) => {
       await openImageFile(new File([blob], name, { type: blob.type }));
     },
-    png: () => canvasToPng(doc),
+    png: () => canvasToPng(flat()),
     toast,
     t
   });
@@ -12914,6 +13379,7 @@ ${sections.join("\n")}
       const c = await fileToCanvas(rec.png);
       if (c) {
         loadCanvas(c, rec.fileName || "mosaic.png");
+        if (rec.layers?.length > 1) await restoreLayers(rec.layers, rec.active);
         rt.fileName = rec.fileName || "mosaic.png";
         updateTitle();
       }
