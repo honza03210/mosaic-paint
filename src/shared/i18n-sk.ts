@@ -1806,4 +1806,30 @@ export const SK: Record<string, string> = {
     'Zapnuté: zdroj sa posúva so štetcom od ťahu k ťahu. Vypnuté: každý ťah začne kopírovať zo zdroja',
   'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.':
     'Nástroj Klonovanie v rastrovej aplikácii (S): maľujte kópiou inej časti obrázka. Ťuknite (alebo Alt+klik) tam, odkiaľ kopírovať, namaľujte kópiu, kotúčik zdroja posuniete prstom; zarovnane aj nie, s veľkosťou, hrotom, krytím a prítlakom pera ako pri štetci.',
+  'Adjust colors':
+    'Úprava farieb',
+  'Stretch the picture’s tones to the full range':
+    'Roztiahnuť tóny obrázka na celý rozsah',
+  'Auto':
+    'Automaticky',
+  'Reset':
+    'Vrátiť',
+  'Hold to see the picture as it was':
+    'Podržte na zobrazenie pôvodného obrázka',
+  'Colors adjusted.':
+    'Farby upravené.',
+  'Heal':
+    'Retuš',
+  'Adjust colors…':
+    'Upraviť farby…',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun',
+  'Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)':
+    'Retuš – ako Klonovanie, ale kópia prevezme farbu a svetlo miesta, kam maľujete: na škvrny, bodky a škrabance (J)',
+  'Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image':
+    'Jas, kontrast, sýtosť, úrovne, doostrenie a vyhladenie šumu – pre výber alebo celý obrázok',
+  'Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).':
+    'Úpravy fotiek v rastrovej aplikácii: Upraviť farby… – jas, kontrast, sýtosť, úrovne s tlačidlom Automaticky, doostrenie a vyhladenie šumu, so živým náhľadom (podržaním Predtým porovnáte).',
+  'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.':
+    'Retušovací štetec (J): premaľuje škvrny, bodky a škrabance textúrou odinakiaľ, vo farbe a svetle daného miesta.',
 };

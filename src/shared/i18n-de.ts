@@ -1806,4 +1806,30 @@ export const DE: Record<string, string> = {
     'An: die Quelle wandert von Strich zu Strich mit dem Pinsel. Aus: jeder Strich kopiert wieder ab der Quelle',
   'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.':
     'Klon-Werkzeug in der Raster-App (S): mit einer Kopie eines anderen Bildteils malen. Tippen (oder Alt+Klick), wovon kopiert wird, die Kopie malen, die Quellscheibe mit dem Finger verschieben; ausgerichtet oder nicht, mit Größe, Spitze, Deckkraft und Stiftdruck des Pinsels.',
+  'Adjust colors':
+    'Farben anpassen',
+  'Stretch the picture’s tones to the full range':
+    'Die Tonwerte des Bildes auf den vollen Umfang strecken',
+  'Auto':
+    'Automatisch',
+  'Reset':
+    'Zurücksetzen',
+  'Hold to see the picture as it was':
+    'Gedrückt halten, um das Bild wie vorher zu sehen',
+  'Colors adjusted.':
+    'Farben angepasst.',
+  'Heal':
+    'Reparieren',
+  'Adjust colors…':
+    'Farben anpassen…',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben',
+  'Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)':
+    'Reparieren – wie Klonen, aber die Kopie übernimmt Farbe und Licht der Stelle, an der du malst: für Makel, Flecken und Kratzer (J)',
+  'Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image':
+    'Helligkeit, Kontrast, Sättigung, Tonwerte, Schärfen und Rauschglättung – für die Auswahl oder das ganze Bild',
+  'Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).':
+    'Fotokorrekturen in der Raster-App: Farben anpassen… – Helligkeit, Kontrast, Sättigung, Tonwerte mit Automatisch, Schärfen und Rauschglättung, mit Live-Vorschau (Vorher gedrückt halten zum Vergleichen).',
+  'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.':
+    'Reparatur-Pinsel (J): übermalt Makel, Flecken und Kratzer mit Struktur von anderswo, in Farbe und Licht der Stelle.',
 };

@@ -1,6 +1,6 @@
 {
   "name": "mosaic-paint",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "description": "Vector editor for designing and coloring mosaics",
   "scripts": {
@@ -24,5 +24,9 @@
     "globals": "^17.13.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.71.1"
+  },
+  "dependencies": {
+    "onnxruntime-web": "^1.30.0",
+    "tesseract.js": "^7.0.0"
   }
 }

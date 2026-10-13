@@ -129,7 +129,7 @@ export function render(): void {
   const c = state.cursor;
   // clone: the source disc – the brush's outline with a grip to drag it by (where it copies from while painting)
   const cs = state.clone, at = cs.live || cs.src;
-  if (state.tool === 'clone' && at) {
+  if ((state.tool === 'clone' || state.tool === 'heal') && at) {
     const r = Math.max(state.size / 2, 3 / k), g = 14 / k;
     vctx.beginPath();
     vctx.arc(at.x, at.y, r, 0, Math.PI * 2);
@@ -152,7 +152,7 @@ export function render(): void {
     vctx.strokeStyle = '#2b8cff';
     vctx.stroke();
   }
-  if (c && ['brush', 'pencil', 'eraser', 'clone'].includes(state.tool) && !state.space) {
+  if (c && ['brush', 'pencil', 'eraser', 'clone', 'heal'].includes(state.tool) && !state.space) {
     const r = state.size / 2;
     vctx.beginPath();
     if (state.tool === 'pencil') {

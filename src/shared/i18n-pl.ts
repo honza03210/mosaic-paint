@@ -1806,4 +1806,30 @@ export const PL: Record<string, string> = {
     'Włączone: źródło przesuwa się z pędzlem od pociągnięcia do pociągnięcia. Wyłączone: każde pociągnięcie kopiuje od źródła',
   'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.':
     'Narzędzie Klonowanie w aplikacji rastrowej (S): maluj kopią innej części obrazu. Stuknij (lub Alt+klik) miejsce, z którego kopiować, namaluj kopię, krążek źródła przesuń palcem; wyrównane lub nie, z rozmiarem, końcówką, kryciem i naciskiem pióra jak u pędzla.',
+  'Adjust colors':
+    'Dopasuj kolory',
+  'Stretch the picture’s tones to the full range':
+    'Rozciągnij tony obrazu na pełny zakres',
+  'Auto':
+    'Auto',
+  'Reset':
+    'Resetuj',
+  'Hold to see the picture as it was':
+    'Przytrzymaj, aby zobaczyć obraz sprzed zmian',
+  'Colors adjusted.':
+    'Kolory dopasowane.',
+  'Heal':
+    'Korekta',
+  'Adjust colors…':
+    'Dopasuj kolory…',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń',
+  'Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)':
+    'Korekta – jak Klonowanie, ale kopia przejmuje kolor i światło miejsca, gdzie malujesz: na skazy, plamki i rysy (J)',
+  'Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image':
+    'Jasność, kontrast, nasycenie, poziomy, wyostrzanie i wygładzanie szumu – dla zaznaczenia lub całego obrazu',
+  'Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).':
+    'Poprawki zdjęć w aplikacji rastrowej: Dopasuj kolory… – jasność, kontrast, nasycenie, poziomy z przyciskiem Auto, wyostrzanie i wygładzanie szumu, z podglądem na żywo (przytrzymaj Przedtem, aby porównać).',
+  'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.':
+    'Pędzel korygujący (J): zamalowuje skazy, plamki i rysy fakturą z innego miejsca, w kolorze i świetle poprawianego miejsca.',
 };

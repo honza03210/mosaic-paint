@@ -8,6 +8,7 @@ import * as Geo from '../lib/geometry.ts';
 import type { Pt } from '../lib/geometry.ts';
 import * as R from '../lib/raster.ts';
 import * as Curves from '../lib/curves.ts';
+import { heal } from '../lib/heal.ts';
 import { toast } from '../shared/ui.ts';
 import { state } from './state.ts';
 import { doc, dctx, makeCanvas, getImage, requestRender, toDoc } from './canvas.ts';
@@ -156,21 +157,25 @@ function flushStamps(st: Stamps, ctx: CanvasRenderingContext2D): void {
 // ---- brush, pencil, eraser: freehand strokes ----------------------------------------------------------------
 const sizeAt = (e: PointerEvent) => R.pressureSize(state.size, e, state.pressure);
 
-interface Stroke { kind: string; tip: string; offset?: Pt; copy?: HTMLCanvasElement; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; stamps: Stamps | null; timer: number; shift: boolean; start: Pt; last: Pt; lastSize: number; erase: boolean; alpha: number }
+interface Stroke { kind: string; tip: string; offset?: Pt; copy?: HTMLCanvasElement; box?: { x0: number; y0: number; x1: number; y1: number }; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; stamps: Stamps | null; timer: number; shift: boolean; start: Pt; last: Pt; lastSize: number; erase: boolean; alpha: number }
 function beginStroke(kind: string, p: Pt, size: number): Stroke {
   const base = makeCanvas(doc.width, doc.height);
   base.getContext('2d').drawImage(doc, 0, 0);
   const layer = makeCanvas(doc.width, doc.height);
-  const erase = kind === 'eraser' || (kind !== 'clone' && !state.fill);
+  const copying = kind === 'clone' || kind === 'heal';
+  const erase = kind === 'eraser' || (!copying && !state.fill);
   // the pencil paints exact colors: always fully opaque
   const alpha = kind === 'pencil' ? 1 : state.opacity;
   const tip = kind === 'pencil' ? 'pencil' : TIPS.includes(state.tip) ? state.tip : 'round';
   const stamps = ['soft', 'spray', 'chalk'].includes(tip) ? newStamps(erase ? '#000' : paintColor()) : null;
   // clone: copies from the source, as far from the brush as the source is from its anchor
-  const c = state.clone, offset = kind === 'clone' && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : undefined;
+  const c = state.clone, offset = copying && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : undefined;
   return { kind, tip, offset, base, layer, lctx: layer.getContext('2d'), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
 }
 function strokeSegment(s: Stroke, a: Pt, b: Pt, size = state.size, sizeA = size): void {
+  // where the stroke has been (for healing)
+  const m = Math.max(size, sizeA) / 2 + 2, bx = s.box;
+  s.box = { x0: Math.min(bx ? bx.x0 : Infinity, a.x - m, b.x - m), y0: Math.min(bx ? bx.y0 : Infinity, a.y - m, b.y - m), x1: Math.max(bx ? bx.x1 : -Infinity, a.x + m, b.x + m), y1: Math.max(bx ? bx.y1 : -Infinity, a.y + m, b.y + m) };
   const color = s.erase ? '#000' : paintColor();
   if (s.tip === 'pencil') hardLine(s.lctx, a, b, size, paintColor());
   else if (s.tip === 'calligraphy') nibLine(s.lctx, a, b, sizeA, size, color);
@@ -183,7 +188,7 @@ function compose(s: Stroke): void {
   dctx.globalCompositeOperation = 'copy';
   dctx.drawImage(s.base, 0, 0);
   dctx.restore();
-  if (s.kind === 'clone' && s.offset) {
+  if ((s.kind === 'clone' || s.kind === 'heal') && s.offset) {
     // the stroke (its shape and softness) filled with the picture as it was, shifted by the offset
     const c = s.copy || (s.copy = makeCanvas(doc.width, doc.height)), x = c.getContext('2d');
     x.globalCompositeOperation = 'copy';
@@ -279,8 +284,30 @@ export function updateCloneUI(): void {
 }
 /** Near enough to grab the source disc (a finger's width on the screen, or the brush outline). */
 const onSourceDisc = (p: Pt): boolean => !!state.clone.src && Math.hypot(p.x - state.clone.src.x, p.y - state.clone.src.y) < Math.max(26 / state.view.s, state.size / 2);
-const cloneBrush = freehand('clone');
-const cloneTool: Tool = {
+/** Healing, when the stroke ends: the copied texture takes the color and light around the painted spot. */
+function healStroke(s: Stroke): void {
+  if (!s.box || !s.offset) return;
+  const r = Math.max(4, Math.round(s.lastSize * 0.75)), b = s.box;
+  const x0 = Math.max(0, Math.floor(b.x0) - 2 * r), y0 = Math.max(0, Math.floor(b.y0) - 2 * r);
+  const x1 = Math.min(doc.width, Math.ceil(b.x1) + 2 * r), y1 = Math.min(doc.height, Math.ceil(b.y1) + 2 * r), w = x1 - x0, h = y1 - y0;
+  if (w <= 0 || h <= 0) return;
+  const dst = s.base.getContext('2d').getImageData(x0, y0, w, h);
+  // the patch: the picture shifted by the offset (whole, not cut to the stroke)
+  const pc = makeCanvas(w, h), px = pc.getContext('2d');
+  px.drawImage(s.base, -(x0 + s.offset.x), -(y0 + s.offset.y));
+  const src = px.getImageData(0, 0, w, h), lay = s.lctx.getImageData(x0, y0, w, h), mask = new Uint8ClampedArray(w * h);
+  for (let i = 0; i < mask.length; i++) mask[i] = lay.data[i * 4 + 3];
+  const out = heal(dst.data, src.data, mask, w, h, r);
+  // the opacity, as for the other brushes
+  if (s.alpha < 1) for (let i = 0; i < out.length; i++) out[i] = dst.data[i] + (out[i] - dst.data[i]) * s.alpha;
+  dctx.putImageData(new ImageData(out, w, h), x0, y0);
+  requestRender();
+}
+
+/** Clone and Heal: set a source, paint a copy of it (Heal blends the copy in when the stroke ends). */
+function copyTool(kind: 'clone' | 'heal'): Tool {
+const cloneBrush = freehand(kind);
+return {
   down(e, p) {
     const c = state.clone;
     // set the source: Alt+click, after "Set source", or the first tap of all (no keys needed on a phone)
@@ -315,11 +342,13 @@ const cloneTool: Tool = {
       c.src = { x: c.anchor.x + a.s.offset.x, y: c.anchor.y + a.s.offset.y };
     }
     c.live = null;
+    if (kind === 'heal' && a && a.type === 'stroke') healStroke(a.s);
     cloneBrush.up(e, p);
     updateCloneUI();
     requestRender();
   },
 };
+}
 
 // ---- line ---------------------------------------------------------------------------------------------------
 function drawShapeLine(ctx: CanvasRenderingContext2D, a: Pt, b: Pt, color: string): void {
@@ -571,6 +600,6 @@ const bucketTool: Tool = {
 const pickerTool: Tool = { down(e, p) { pickAt(p); }, move() {}, up() {} };
 
 export const paintTools: Record<string, Tool> = {
-  brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'), clone: cloneTool,
+  brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'), clone: copyTool('clone'), heal: copyTool('heal'),
   line: lineTool, ngon: ngonTool, ellipse: ellipseTool, curve: curveTool, bucket: bucketTool, picker: pickerTool,
 };

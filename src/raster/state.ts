@@ -37,6 +37,8 @@ export const state = {
   view: { x: 0, y: 0, s: 1 },
   /** the rectangle selection (whole pixels), or null */
   sel: null as Box | null,
+  /** a selection that is not a rectangle: how much of each pixel of sel is selected (0…255), sel.w × sel.h */
+  selMask: null as Uint8Array | null,
   floating: null as Floating | null,
   /** the gesture in progress */
   action: null as any,

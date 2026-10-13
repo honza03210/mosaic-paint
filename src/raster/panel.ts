@@ -11,6 +11,7 @@ import { newImage, openFile, openImageFile, save, exportAs, resizeImage, canvasS
 import { rotate, flip, cropToSelection, trim } from './transform.ts';
 import { bindMosaic } from './mosaic.ts';
 import { TIPS, cancelCurve, pickCloneSource, updateCloneUI } from './paint.ts';
+import { openAdjust } from './adjust-ui.ts';
 import * as Curves from '../lib/curves.ts';
 import { curveNote } from '../shared/curve-notes.ts';
 import { t } from '../shared/i18n.ts';
@@ -105,6 +106,7 @@ export function bindPanel(): void {
   bindCheck('#opt-pressure', 'pressure');
   bindCheck('#opt-clone-aligned', 'cloneAligned');
   $('#btn-clone-source').onclick = () => pickCloneSource();
+  $('#btn-adjust').onclick = () => openAdjust();
   updateCloneUI();
 
   // polygon

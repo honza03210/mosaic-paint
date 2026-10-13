@@ -1806,4 +1806,30 @@ export const CS: Record<string, string> = {
     'Zapnuto: zdroj se posouvá se štětcem od tahu k tahu. Vypnuto: každý tah začne kopírovat ze zdroje',
   'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.':
     'Nástroj Klonování v rastrové aplikaci (S): malujte kopií jiné části obrázku. Klepněte (nebo Alt+klik) tam, odkud kopírovat, namalujte kopii, kotouček zdroje posunete prstem; zarovnaně i ne, s velikostí, hrotem, krytím a přítlakem pera jako u štětce.',
+  'Adjust colors':
+    'Úprava barev',
+  'Stretch the picture’s tones to the full range':
+    'Roztáhnout tóny obrázku na celý rozsah',
+  'Auto':
+    'Automaticky',
+  'Reset':
+    'Vrátit',
+  'Hold to see the picture as it was':
+    'Podržte pro zobrazení původního obrázku',
+  'Colors adjusted.':
+    'Barvy upraveny.',
+  'Heal':
+    'Retuš',
+  'Adjust colors…':
+    'Upravit barvy…',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun',
+  'Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)':
+    'Retuš – jako Klonování, ale kopie převezme barvu a světlo místa, kam malujete: na skvrny, tečky a škrábance (J)',
+  'Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image':
+    'Jas, kontrast, sytost, úrovně, doostření a vyhlazení šumu – pro výběr nebo celý obrázek',
+  'Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).':
+    'Úpravy fotek v rastrové aplikaci: Upravit barvy… – jas, kontrast, sytost, úrovně s tlačítkem Automaticky, doostření a vyhlazení šumu, s živým náhledem (podržením Předtím porovnáte).',
+  'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.':
+    'Retušovací štětec (J): přemaluje skvrny, tečky a škrábance texturou odjinud, v barvě a světle daného místa.',
 };

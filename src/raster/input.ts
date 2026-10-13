@@ -151,6 +151,7 @@ function onKey(e: KeyboardEvent): void {
     case 'p': setTool('pencil'); break;
     case 'e': setTool('eraser'); break;
     case 's': setTool('clone'); break;
+    case 'j': setTool('heal'); break;
     case 'l': setTool('line'); break;
     case 'g': setTool('ngon'); break;
     case 'o': setTool('ellipse'); break;

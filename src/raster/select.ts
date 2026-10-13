@@ -21,6 +21,8 @@ function clip(b: Box): Box | null {
   const x0 = Math.max(0, b.x), y0 = Math.max(0, b.y), x1 = Math.min(doc.width, b.x + b.w), y1 = Math.min(doc.height, b.y + b.h);
   return x1 > x0 && y1 > y0 ? { x: x0, y: y0, w: x1 - x0, h: y1 - y0 } : null;
 }
+/** How much of each pixel of the selection's box is selected (null: all of it – a rectangle). */
+export const selectionMask = (): Uint8Array | null => (state.sel && state.selMask && state.selMask.length === state.sel.w * state.sel.h ? state.selMask : null);
 export function selectionChanged(): void {
   const b = floatBox() || state.sel;
   $('#sel-section').hidden = !b;

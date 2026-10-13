@@ -67,6 +67,9 @@
     <button data-tool="clone" title="Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)">
       <svg viewBox="0 0 20 20"><path d="M7.5 2.5h5v3.5l-1.2 3.5H8.7L7.5 6z" class="st"/><path d="M3 10.5h14v3.5H3z" class="st"/><path d="M5 17h10" class="st"/></svg>
     </button>
+    <button data-tool="heal" title="Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)">
+      <svg viewBox="0 0 20 20"><rect x="2.5" y="7" width="15" height="6" rx="3" class="st" transform="rotate(-40 10 10)"/><path d="M9 9.2h2v2H9z"/><path d="M7.3 10.3h1.4v1.4H7.3zM11.3 8.3h1.4v1.4h-1.4z"/></svg>
+    </button>
     <button data-tool="line" title="Line (L)">
       <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg>
     </button>
@@ -135,19 +138,19 @@
       <p class="note">Click a swatch = paint color · right-click = outline color · double-click = edit (also recolors the image). The ∅ swatch paints transparent. Palettes are shared with the vector app.</p>
     </section>
 
-    <section class="tool-opts" data-for="clone">
-      <h3>Clone</h3>
+    <section class="tool-opts" data-for="clone heal">
+      <h3><span class="tool-opts" data-for="clone">Clone</span><span class="tool-opts" data-for="heal">Heal</span></h3>
       <div class="row"><button id="btn-clone-source" title="The next tap or click sets where to copy from (or Alt+click)">Set source</button><span id="clone-status" class="note"></span></div>
       <label class="chk" title="On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source"><input type="checkbox" id="opt-clone-aligned"> Aligned – the source follows the brush</label>
       <p class="note">Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush's.</p>
     </section>
 
-    <section class="tool-opts" data-for="brush pencil eraser clone line">
+    <section class="tool-opts" data-for="brush pencil eraser clone heal line">
       <h3>Brush</h3>
       <div class="row">
         <label class="grow">Size <input id="opt-size-range" type="range" min="1" max="100"></label>
       </div>
-      <div class="tool-opts row" data-for="brush eraser clone">
+      <div class="tool-opts row" data-for="brush eraser clone heal">
         <label title="The shape of the brush and eraser">Tip <select id="opt-tip">
           <option value="round">Round</option>
           <option value="soft">Soft (airbrush)</option>
@@ -249,6 +252,9 @@
         <button id="btn-rotate">Rotate</button>
       </div>
       <div class="row small">
+        <button id="btn-adjust" title="Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image">Adjust colors…</button>
+      </div>
+      <div class="row small">
         <button id="btn-img-crop" title="Keep only the selection (select it with the Select tool first)">Crop to selection</button>
         <button id="btn-trim" title="Cut off the empty or one-color border around the picture">Trim edges</button>
       </div>
@@ -259,7 +265,7 @@
       <details>
         <summary>Keyboard &amp; mouse</summary>
         <table class="keys">
-          <tr><td>V B P E L G O C F I H</td><td>Select, Brush, Pencil, Eraser, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan</td></tr>
+          <tr><td>V B P E S J L G O C F I H</td><td>Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan</td></tr>
           <tr><td>[ ]</td><td>Smaller / bigger brush</td></tr>
           <tr><td>Shift+B</td><td>Next brush tip</td></tr>
           <tr><td>3 – 9</td><td>Polygon sides</td></tr>

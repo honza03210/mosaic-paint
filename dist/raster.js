@@ -903,7 +903,20 @@
     "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonování – malujte kopií jiné části obrázku · Alt+klik nebo první klepnutí nastaví, odkud kopírovat (S)",
     "The next tap or click sets where to copy from (or Alt+click)": "Další klepnutí nebo kliknutí nastaví, odkud kopírovat (nebo Alt+klik)",
     "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "Zapnuto: zdroj se posouvá se štětcem od tahu k tahu. Vypnuto: každý tah začne kopírovat ze zdroje",
-    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Nástroj Klonování v rastrové aplikaci (S): malujte kopií jiné části obrázku. Klepněte (nebo Alt+klik) tam, odkud kopírovat, namalujte kopii, kotouček zdroje posunete prstem; zarovnaně i ne, s velikostí, hrotem, krytím a přítlakem pera jako u štětce."
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Nástroj Klonování v rastrové aplikaci (S): malujte kopií jiné části obrázku. Klepněte (nebo Alt+klik) tam, odkud kopírovat, namalujte kopii, kotouček zdroje posunete prstem; zarovnaně i ne, s velikostí, hrotem, krytím a přítlakem pera jako u štětce.",
+    "Adjust colors": "Úprava barev",
+    "Stretch the picture’s tones to the full range": "Roztáhnout tóny obrázku na celý rozsah",
+    "Auto": "Automaticky",
+    "Reset": "Vrátit",
+    "Hold to see the picture as it was": "Podržte pro zobrazení původního obrázku",
+    "Colors adjusted.": "Barvy upraveny.",
+    "Heal": "Retuš",
+    "Adjust colors…": "Upravit barvy…",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
+    "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Retuš – jako Klonování, ale kopie převezme barvu a světlo místa, kam malujete: na skvrny, tečky a škrábance (J)",
+    "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Jas, kontrast, sytost, úrovně, doostření a vyhlazení šumu – pro výběr nebo celý obrázek",
+    "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Úpravy fotek v rastrové aplikaci: Upravit barvy… – jas, kontrast, sytost, úrovně s tlačítkem Automaticky, doostření a vyhlazení šumu, s živým náhledem (podržením Předtím porovnáte).",
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Retušovací štětec (J): přemaluje skvrny, tečky a škrábance texturou odjinud, v barvě a světle daného místa."
   };
 
   // src/shared/i18n-de.ts
@@ -1810,7 +1823,20 @@
     "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonen – mit einer Kopie eines anderen Bildteils malen · Alt+Klick oder das erste Tippen legt fest, wovon kopiert wird (S)",
     "The next tap or click sets where to copy from (or Alt+click)": "Das nächste Tippen oder Klicken legt fest, wovon kopiert wird (oder Alt+Klick)",
     "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "An: die Quelle wandert von Strich zu Strich mit dem Pinsel. Aus: jeder Strich kopiert wieder ab der Quelle",
-    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Klon-Werkzeug in der Raster-App (S): mit einer Kopie eines anderen Bildteils malen. Tippen (oder Alt+Klick), wovon kopiert wird, die Kopie malen, die Quellscheibe mit dem Finger verschieben; ausgerichtet oder nicht, mit Größe, Spitze, Deckkraft und Stiftdruck des Pinsels."
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Klon-Werkzeug in der Raster-App (S): mit einer Kopie eines anderen Bildteils malen. Tippen (oder Alt+Klick), wovon kopiert wird, die Kopie malen, die Quellscheibe mit dem Finger verschieben; ausgerichtet oder nicht, mit Größe, Spitze, Deckkraft und Stiftdruck des Pinsels.",
+    "Adjust colors": "Farben anpassen",
+    "Stretch the picture’s tones to the full range": "Die Tonwerte des Bildes auf den vollen Umfang strecken",
+    "Auto": "Automatisch",
+    "Reset": "Zurücksetzen",
+    "Hold to see the picture as it was": "Gedrückt halten, um das Bild wie vorher zu sehen",
+    "Colors adjusted.": "Farben angepasst.",
+    "Heal": "Reparieren",
+    "Adjust colors…": "Farben anpassen…",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
+    "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Reparieren – wie Klonen, aber die Kopie übernimmt Farbe und Licht der Stelle, an der du malst: für Makel, Flecken und Kratzer (J)",
+    "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Helligkeit, Kontrast, Sättigung, Tonwerte, Schärfen und Rauschglättung – für die Auswahl oder das ganze Bild",
+    "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Fotokorrekturen in der Raster-App: Farben anpassen… – Helligkeit, Kontrast, Sättigung, Tonwerte mit Automatisch, Schärfen und Rauschglättung, mit Live-Vorschau (Vorher gedrückt halten zum Vergleichen).",
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Reparatur-Pinsel (J): übermalt Makel, Flecken und Kratzer mit Struktur von anderswo, in Farbe und Licht der Stelle."
   };
 
   // src/shared/i18n-sk.ts
@@ -2717,7 +2743,20 @@
     "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonovanie – maľujte kópiou inej časti obrázka · Alt+klik alebo prvé ťuknutie nastaví, odkiaľ kopírovať (S)",
     "The next tap or click sets where to copy from (or Alt+click)": "Ďalšie ťuknutie alebo kliknutie nastaví, odkiaľ kopírovať (alebo Alt+klik)",
     "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "Zapnuté: zdroj sa posúva so štetcom od ťahu k ťahu. Vypnuté: každý ťah začne kopírovať zo zdroja",
-    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Nástroj Klonovanie v rastrovej aplikácii (S): maľujte kópiou inej časti obrázka. Ťuknite (alebo Alt+klik) tam, odkiaľ kopírovať, namaľujte kópiu, kotúčik zdroja posuniete prstom; zarovnane aj nie, s veľkosťou, hrotom, krytím a prítlakom pera ako pri štetci."
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Nástroj Klonovanie v rastrovej aplikácii (S): maľujte kópiou inej časti obrázka. Ťuknite (alebo Alt+klik) tam, odkiaľ kopírovať, namaľujte kópiu, kotúčik zdroja posuniete prstom; zarovnane aj nie, s veľkosťou, hrotom, krytím a prítlakom pera ako pri štetci.",
+    "Adjust colors": "Úprava farieb",
+    "Stretch the picture’s tones to the full range": "Roztiahnuť tóny obrázka na celý rozsah",
+    "Auto": "Automaticky",
+    "Reset": "Vrátiť",
+    "Hold to see the picture as it was": "Podržte na zobrazenie pôvodného obrázka",
+    "Colors adjusted.": "Farby upravené.",
+    "Heal": "Retuš",
+    "Adjust colors…": "Upraviť farby…",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
+    "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Retuš – ako Klonovanie, ale kópia prevezme farbu a svetlo miesta, kam maľujete: na škvrny, bodky a škrabance (J)",
+    "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Jas, kontrast, sýtosť, úrovne, doostrenie a vyhladenie šumu – pre výber alebo celý obrázok",
+    "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Úpravy fotiek v rastrovej aplikácii: Upraviť farby… – jas, kontrast, sýtosť, úrovne s tlačidlom Automaticky, doostrenie a vyhladenie šumu, so živým náhľadom (podržaním Predtým porovnáte).",
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Retušovací štetec (J): premaľuje škvrny, bodky a škrabance textúrou odinakiaľ, vo farbe a svetle daného miesta."
   };
 
   // src/shared/i18n-pl.ts
@@ -3624,7 +3663,20 @@
     "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonowanie – maluj kopią innej części obrazu · Alt+klik lub pierwsze stuknięcie ustawia, skąd kopiować (S)",
     "The next tap or click sets where to copy from (or Alt+click)": "Następne stuknięcie lub kliknięcie ustawia, skąd kopiować (lub Alt+klik)",
     "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "Włączone: źródło przesuwa się z pędzlem od pociągnięcia do pociągnięcia. Wyłączone: każde pociągnięcie kopiuje od źródła",
-    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Narzędzie Klonowanie w aplikacji rastrowej (S): maluj kopią innej części obrazu. Stuknij (lub Alt+klik) miejsce, z którego kopiować, namaluj kopię, krążek źródła przesuń palcem; wyrównane lub nie, z rozmiarem, końcówką, kryciem i naciskiem pióra jak u pędzla."
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Narzędzie Klonowanie w aplikacji rastrowej (S): maluj kopią innej części obrazu. Stuknij (lub Alt+klik) miejsce, z którego kopiować, namaluj kopię, krążek źródła przesuń palcem; wyrównane lub nie, z rozmiarem, końcówką, kryciem i naciskiem pióra jak u pędzla.",
+    "Adjust colors": "Dopasuj kolory",
+    "Stretch the picture’s tones to the full range": "Rozciągnij tony obrazu na pełny zakres",
+    "Auto": "Auto",
+    "Reset": "Resetuj",
+    "Hold to see the picture as it was": "Przytrzymaj, aby zobaczyć obraz sprzed zmian",
+    "Colors adjusted.": "Kolory dopasowane.",
+    "Heal": "Korekta",
+    "Adjust colors…": "Dopasuj kolory…",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
+    "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Korekta – jak Klonowanie, ale kopia przejmuje kolor i światło miejsca, gdzie malujesz: na skazy, plamki i rysy (J)",
+    "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Jasność, kontrast, nasycenie, poziomy, wyostrzanie i wygładzanie szumu – dla zaznaczenia lub całego obrazu",
+    "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Poprawki zdjęć w aplikacji rastrowej: Dopasuj kolory… – jasność, kontrast, nasycenie, poziomy z przyciskiem Auto, wyostrzanie i wygładzanie szumu, z podglądem na żywo (przytrzymaj Przedtem, aby porównać).",
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Pędzel korygujący (J): zamalowuje skazy, plamki i rysy fakturą z innego miejsca, w kolorze i świetle poprawianego miejsca."
   };
 
   // src/shared/i18n.ts
@@ -4640,14 +4692,14 @@
     }
     let paletteKey = "";
     function render3() {
-      const box4 = $("#palette");
+      const box5 = $("#palette");
       const counts2 = host2.counts(), key = st.palette.join();
-      if (key === paletteKey && box4.children.length === st.palette.length + 1) {
-        [null, ...st.palette].forEach((c, i) => updateSwatch(box4.children[i], c, counts2));
+      if (key === paletteKey && box5.children.length === st.palette.length + 1) {
+        [null, ...st.palette].forEach((c, i) => updateSwatch(box5.children[i], c, counts2));
       } else {
         paletteKey = key;
-        box4.innerHTML = "";
-        for (const c of [null, ...st.palette]) box4.append(makeSwatch(c, counts2));
+        box5.innerHTML = "";
+        for (const c of [null, ...st.palette]) box5.append(makeSwatch(c, counts2));
       }
       const fb = $("#ac-fill"), sb = $("#ac-stroke");
       fb.className = "acbox" + (st.fill ? "" : " none");
@@ -4918,6 +4970,8 @@
     view: { x: 0, y: 0, s: 1 },
     /** the rectangle selection (whole pixels), or null */
     sel: null,
+    /** a selection that is not a rectangle: how much of each pixel of sel is selected (0…255), sel.w × sel.h */
+    selMask: null,
     floating: null,
     /** the gesture in progress */
     action: null,
@@ -5092,7 +5146,7 @@
     }
     const c = state.cursor;
     const cs = state.clone, at = cs.live || cs.src;
-    if (state.tool === "clone" && at) {
+    if ((state.tool === "clone" || state.tool === "heal") && at) {
       const r = Math.max(state.size / 2, 3 / k), g = 14 / k;
       vctx.beginPath();
       vctx.arc(at.x, at.y, r, 0, Math.PI * 2);
@@ -5115,7 +5169,7 @@
       vctx.strokeStyle = "#2b8cff";
       vctx.stroke();
     }
-    if (c && ["brush", "pencil", "eraser", "clone"].includes(state.tool) && !state.space) {
+    if (c && ["brush", "pencil", "eraser", "clone", "heal"].includes(state.tool) && !state.space) {
       const r = state.size / 2;
       vctx.beginPath();
       if (state.tool === "pencil") {
@@ -5153,8 +5207,8 @@
       vctx.strokeStyle = "rgba(128,128,128,.35)";
       vctx.stroke();
     }
-    const box4 = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : state.sel;
-    if (box4) dashedRect(Math.round(ox + box4.x * k), Math.round(oy + box4.y * k), Math.round(box4.w * k), Math.round(box4.h * k));
+    const box5 = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : state.sel;
+    if (box5) dashedRect(Math.round(ox + box5.x * k), Math.round(oy + box5.y * k), Math.round(box5.w * k), Math.round(box5.h * k));
   }
   new ResizeObserver(() => {
     if (!fitted) fitView();
@@ -5485,11 +5539,11 @@
     };
   }
   var rect2 = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
-  function quadLeaves(box4, size, adaptive, busy) {
+  function quadLeaves(box5, size, adaptive, busy2) {
     const top = adaptive ? size * 2 : size, min = adaptive ? size / 2 : size, out = [];
     const visit = (x, y, s) => {
-      if (x >= box4.x + box4.w - 1e-9 || y >= box4.y + box4.h - 1e-9) return;
-      if (s > min * 1.0001 && busy(x, y, s, s)) {
+      if (x >= box5.x + box5.w - 1e-9 || y >= box5.y + box5.h - 1e-9) return;
+      if (s > min * 1.0001 && busy2(x, y, s, s)) {
         const h = s / 2;
         visit(x, y, h);
         visit(x + h, y, h);
@@ -5497,7 +5551,7 @@
         visit(x + h, y + h, h);
       } else out.push({ x, y, s });
     };
-    for (let j = 0; j * top < box4.h; j++) for (let i = 0; i * top < box4.w; i++) visit(box4.x + i * top, box4.y + j * top, top);
+    for (let j = 0; j * top < box5.h; j++) for (let i = 0; i * top < box5.w; i++) visit(box5.x + i * top, box5.y + j * top, top);
     return out;
   }
   function clipHalf(poly, f) {
@@ -5512,17 +5566,17 @@
     }
     return out;
   }
-  function voronoi(seeds, box4) {
-    const cell = Math.sqrt(box4.w * box4.h / Math.max(1, seeds.length)) || 1, grid = /* @__PURE__ */ new Map();
+  function voronoi(seeds, box5) {
+    const cell = Math.sqrt(box5.w * box5.h / Math.max(1, seeds.length)) || 1, grid = /* @__PURE__ */ new Map();
     const key = (i, j) => i + "," + j;
     seeds.forEach((s, idx) => {
       const k = key(Math.floor(s.x / cell), Math.floor(s.y / cell));
       (grid.get(k) || grid.set(k, []).get(k)).push(idx);
     });
-    const maxRing = Math.ceil(Math.max(box4.w, box4.h) / cell) + 1;
+    const maxRing = Math.ceil(Math.max(box5.w, box5.h) / cell) + 1;
     return seeds.map((s, idx) => {
       const ci = Math.floor(s.x / cell), cj = Math.floor(s.y / cell);
-      let poly = rect2(box4.x, box4.y, box4.w, box4.h);
+      let poly = rect2(box5.x, box5.y, box5.w, box5.h);
       const radius = () => Math.max(...poly.map((p) => dist(p, s)));
       for (let r = 0; r <= maxRing && poly.length >= 3; r++) {
         if ((r - 1) * cell > 2 * radius()) break;
@@ -5541,29 +5595,29 @@
       return poly;
     }).filter((p) => p.length >= 3);
   }
-  function cells2({ style, box: box4, size, detail = 0, busy = () => false, seed = 1 }) {
+  function cells2({ style, box: box5, size, detail = 0, busy: busy2 = () => false, seed = 1 }) {
     const adaptive = detail > 0;
     if (style === "hex") {
       const s = size / Math.sqrt(3);
-      return cells("hex", s, { x0: -s, y0: -s, x1: box4.w + s, y1: box4.h + s }).map((poly) => poly.map((p) => ({ x: p.x + box4.x, y: p.y + box4.y })));
+      return cells("hex", s, { x0: -s, y0: -s, x1: box5.w + s, y1: box5.h + s }).map((poly) => poly.map((p) => ({ x: p.x + box5.x, y: p.y + box5.y })));
     }
     if (style === "brick") {
       const out = [];
-      for (let j = 0; j * size < box4.h; j++) {
+      for (let j = 0; j * size < box5.h; j++) {
         const off = j % 2 ? -size : 0;
-        for (let x = box4.x + off; x < box4.x + box4.w; x += 2 * size) {
-          const y = box4.y + j * size;
-          if (adaptive && busy(x, y, 2 * size, size)) out.push(rect2(x, y, size, size), rect2(x + size, y, size, size));
+        for (let x = box5.x + off; x < box5.x + box5.w; x += 2 * size) {
+          const y = box5.y + j * size;
+          if (adaptive && busy2(x, y, 2 * size, size)) out.push(rect2(x, y, size, size), rect2(x + size, y, size, size));
           else out.push(rect2(x, y, 2 * size, size));
         }
       }
       return out;
     }
-    const leaves = quadLeaves(box4, size, adaptive, busy);
+    const leaves = quadLeaves(box5, size, adaptive, busy2);
     if (style === "irregular") {
       const rnd = rng(seed);
-      const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box4.x && p.y >= box4.y && p.x <= box4.x + box4.w && p.y <= box4.y + box4.h);
-      return voronoi(seeds, box4);
+      const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box5.x && p.y >= box5.y && p.x <= box5.x + box5.w && p.y <= box5.y + box5.h);
+      return voronoi(seeds, box5);
     }
     return leaves.map((l) => rect2(l.x, l.y, l.s, l.s));
   }
@@ -5673,6 +5727,7 @@
     const x0 = Math.max(0, b.x), y0 = Math.max(0, b.y), x1 = Math.min(doc.width, b.x + b.w), y1 = Math.min(doc.height, b.y + b.h);
     return x1 > x0 && y1 > y0 ? { x: x0, y: y0, w: x1 - x0, h: y1 - y0 } : null;
   }
+  var selectionMask = () => state.sel && state.selMask && state.selMask.length === state.sel.w * state.sel.h ? state.selMask : null;
   function selectionChanged() {
     const b = floatBox() || state.sel;
     $("#sel-section").hidden = !b;
@@ -5947,6 +6002,136 @@
     return { cx: a.x + Math.sign(b.x - a.x || 1) * rx, cy: a.y + Math.sign(b.y - a.y || 1) * ry, rx, ry };
   }
 
+  // src/lib/adjust.ts
+  var NO_ADJUST = { brightness: 0, contrast: 0, saturation: 0, black: 0, white: 255, gamma: 1, sharpen: 0, denoise: 0 };
+  var isNoAdjust = (a) => Object.keys(NO_ADJUST).every((k) => a[k] === NO_ADJUST[k]);
+  function toneLUT(a) {
+    const lut = new Uint8ClampedArray(256), lo = Math.min(a.black, a.white - 1), hi = Math.max(a.white, lo + 1);
+    const c = a.contrast / 100, k = c >= 0 ? 1 / Math.max(0.01, 1 - c) : 1 + c, b = a.brightness / 100 * 255;
+    for (let v = 0; v < 256; v++) {
+      let x = Math.min(1, Math.max(0, (v - lo) / (hi - lo)));
+      x = Math.pow(x, 1 / a.gamma) * 255;
+      x = (x - 128) * k + 128 + b;
+      lut[v] = Math.round(x);
+    }
+    return lut;
+  }
+  function autoLevels(data) {
+    const hist = new Uint32Array(256);
+    let n5 = 0;
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] < 128) continue;
+      hist[Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2])]++;
+      n5++;
+    }
+    if (!n5) return { black: 0, white: 255 };
+    const cut = n5 * 5e-3;
+    let black = 0, white = 255, s = 0;
+    for (; black < 255; black++) {
+      s += hist[black];
+      if (s > cut) break;
+    }
+    s = 0;
+    for (; white > 0; white--) {
+      s += hist[white];
+      if (s > cut) break;
+    }
+    return white - black < 8 ? { black: 0, white: 255 } : { black, white };
+  }
+  function blurPlane(src, w, h, r) {
+    const a = Float32Array.from(src), b = new Float32Array(a.length);
+    r = Math.max(1, Math.round(r));
+    for (let pass = 0; pass < 3; pass++) {
+      for (let y = 0; y < h; y++) {
+        const row = y * w;
+        let sum = 0;
+        for (let i = -r; i <= r; i++) sum += a[row + Math.min(w - 1, Math.max(0, i))];
+        for (let x = 0; x < w; x++) {
+          b[row + x] = sum / (2 * r + 1);
+          sum += a[row + Math.min(w - 1, x + r + 1)] - a[row + Math.max(0, x - r)];
+        }
+      }
+      for (let x = 0; x < w; x++) {
+        let sum = 0;
+        for (let i = -r; i <= r; i++) sum += b[Math.min(h - 1, Math.max(0, i)) * w + x];
+        for (let y = 0; y < h; y++) {
+          a[y * w + x] = sum / (2 * r + 1);
+          sum += b[Math.min(h - 1, y + r + 1) * w + x] - b[Math.max(0, y - r) * w + x];
+        }
+      }
+    }
+    return a;
+  }
+  function planes(data, n5) {
+    const p = [new Float32Array(n5), new Float32Array(n5), new Float32Array(n5)];
+    for (let i = 0; i < n5; i++) {
+      p[0][i] = data[i * 4];
+      p[1][i] = data[i * 4 + 1];
+      p[2][i] = data[i * 4 + 2];
+    }
+    return p;
+  }
+  function denoise(out, w, h, strength) {
+    const n5 = w * h, p = planes(out, n5), r = 1 + Math.round(strength / 40), sigma = 6 + strength * 0.4;
+    const blur = p.map((c) => blurPlane(c, w, h, r));
+    for (let i = 0; i < n5; i++) {
+      const d = Math.hypot(p[0][i] - blur[0][i], p[1][i] - blur[1][i], p[2][i] - blur[2][i]);
+      const k = strength / 100 * Math.exp(-(d * d) / (2 * sigma * sigma));
+      for (let c = 0; c < 3; c++) out[i * 4 + c] = p[c][i] + (blur[c][i] - p[c][i]) * k;
+    }
+  }
+  function sharpen(out, w, h, amount) {
+    const n5 = w * h, p = planes(out, n5), k = amount / 100 * 1.5;
+    const blur = p.map((c) => blurPlane(c, w, h, 1));
+    for (let i = 0; i < n5; i++) for (let c = 0; c < 3; c++) out[i * 4 + c] = p[c][i] + (p[c][i] - blur[c][i]) * k;
+  }
+  function applyAdjust(data, w, h, a) {
+    const out = new Uint8ClampedArray(data);
+    if (a.denoise > 0) denoise(out, w, h, a.denoise);
+    const lut = toneLUT(a), s = 1 + a.saturation / 100;
+    for (let i = 0; i < out.length; i += 4) {
+      let r = lut[out[i]], g = lut[out[i + 1]], b = lut[out[i + 2]];
+      if (s !== 1) {
+        const l = 0.299 * r + 0.587 * g + 0.114 * b;
+        r = l + (r - l) * s;
+        g = l + (g - l) * s;
+        b = l + (b - l) * s;
+      }
+      out[i] = r;
+      out[i + 1] = g;
+      out[i + 2] = b;
+    }
+    if (a.sharpen > 0) sharpen(out, w, h, a.sharpen);
+    return out;
+  }
+
+  // src/lib/heal.ts
+  function heal(dst, src, mask2, w, h, r) {
+    const n5 = w * h, out = new Uint8ClampedArray(dst);
+    const keep = new Float32Array(n5), use = new Float32Array(n5);
+    for (let i = 0; i < n5; i++) {
+      use[i] = mask2[i] / 255;
+      keep[i] = 1 - use[i];
+    }
+    const wsum = blurPlane(keep, w, h, r), usum = blurPlane(use, w, h, r);
+    for (let c = 0; c < 3; c++) {
+      const d = new Float32Array(n5), s = new Float32Array(n5);
+      for (let i = 0; i < n5; i++) {
+        d[i] = dst[i * 4 + c] * keep[i];
+        s[i] = src[i * 4 + c] * use[i];
+      }
+      const bd = blurPlane(d, w, h, r), bs = blurPlane(s, w, h, r);
+      for (let i = 0; i < n5; i++) {
+        const m = mask2[i] / 255;
+        if (!m) continue;
+        const own = bs[i] / Math.max(usum[i], 1e-3), around = wsum[i] > 1e-3 ? bd[i] / wsum[i] : own;
+        const v = src[i * 4 + c] + (around - own);
+        out[i * 4 + c] = dst[i * 4 + c] + (v - dst[i * 4 + c]) * m;
+      }
+    }
+    return out;
+  }
+
   // src/raster/paint.ts
   function constrain(a, b) {
     const ang = Math.atan2(b.y - a.y, b.x - a.x), step = Math.PI / 12, q = Math.round(ang / step) * step;
@@ -6080,14 +6265,17 @@
     const base = makeCanvas(doc.width, doc.height);
     base.getContext("2d").drawImage(doc, 0, 0);
     const layer = makeCanvas(doc.width, doc.height);
-    const erase = kind === "eraser" || kind !== "clone" && !state.fill;
+    const copying = kind === "clone" || kind === "heal";
+    const erase = kind === "eraser" || !copying && !state.fill;
     const alpha = kind === "pencil" ? 1 : state.opacity;
     const tip2 = kind === "pencil" ? "pencil" : TIPS.includes(state.tip) ? state.tip : "round";
     const stamps = ["soft", "spray", "chalk"].includes(tip2) ? newStamps(erase ? "#000" : paintColor()) : null;
-    const c = state.clone, offset = kind === "clone" && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : void 0;
+    const c = state.clone, offset = copying && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : void 0;
     return { kind, tip: tip2, offset, base, layer, lctx: layer.getContext("2d"), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
   }
   function strokeSegment(s, a, b, size = state.size, sizeA = size) {
+    const m = Math.max(size, sizeA) / 2 + 2, bx = s.box;
+    s.box = { x0: Math.min(bx ? bx.x0 : Infinity, a.x - m, b.x - m), y0: Math.min(bx ? bx.y0 : Infinity, a.y - m, b.y - m), x1: Math.max(bx ? bx.x1 : -Infinity, a.x + m, b.x + m), y1: Math.max(bx ? bx.y1 : -Infinity, a.y + m, b.y + m) };
     const color = s.erase ? "#000" : paintColor();
     if (s.tip === "pencil") hardLine(s.lctx, a, b, size, paintColor());
     else if (s.tip === "calligraphy") nibLine(s.lctx, a, b, sizeA, size, color);
@@ -6101,7 +6289,7 @@
     dctx.globalCompositeOperation = "copy";
     dctx.drawImage(s.base, 0, 0);
     dctx.restore();
-    if (s.kind === "clone" && s.offset) {
+    if ((s.kind === "clone" || s.kind === "heal") && s.offset) {
       const c = s.copy || (s.copy = makeCanvas(doc.width, doc.height)), x = c.getContext("2d");
       x.globalCompositeOperation = "copy";
       x.drawImage(s.base, -s.offset.x, -s.offset.y);
@@ -6195,49 +6383,68 @@
     if (note) note.textContent = c.picking ? t("Tap the image where to copy from") : c.src ? t("Copying from {x}, {y}", c.src) : t("No source yet: the first tap sets it");
   }
   var onSourceDisc = (p) => !!state.clone.src && Math.hypot(p.x - state.clone.src.x, p.y - state.clone.src.y) < Math.max(26 / state.view.s, state.size / 2);
-  var cloneBrush = freehand("clone");
-  var cloneTool = {
-    down(e, p) {
-      const c = state.clone;
-      if (e.altKey || c.picking || !c.src) {
-        const first = !c.src;
-        setCloneSource(p);
-        if (first || !e.altKey) toast(t("Source set – now paint where the copy goes."));
-        return;
-      }
-      if (onSourceDisc(p)) {
-        state.action = { type: "clone-source", dx: c.src.x - p.x, dy: c.src.y - p.y };
-        return;
-      }
-      if (!state.cloneAligned || !c.anchor) c.anchor = { x: Math.round(p.x), y: Math.round(p.y) };
-      cloneBrush.down(e, p);
-    },
-    move(e, p) {
-      const a = state.action;
-      if (a && a.type === "clone-source") {
-        state.clone.src = { x: Math.round(p.x + a.dx), y: Math.round(p.y + a.dy) };
+  function healStroke(s) {
+    if (!s.box || !s.offset) return;
+    const r = Math.max(4, Math.round(s.lastSize * 0.75)), b = s.box;
+    const x0 = Math.max(0, Math.floor(b.x0) - 2 * r), y0 = Math.max(0, Math.floor(b.y0) - 2 * r);
+    const x1 = Math.min(doc.width, Math.ceil(b.x1) + 2 * r), y1 = Math.min(doc.height, Math.ceil(b.y1) + 2 * r), w = x1 - x0, h = y1 - y0;
+    if (w <= 0 || h <= 0) return;
+    const dst = s.base.getContext("2d").getImageData(x0, y0, w, h);
+    const pc = makeCanvas(w, h), px = pc.getContext("2d");
+    px.drawImage(s.base, -(x0 + s.offset.x), -(y0 + s.offset.y));
+    const src = px.getImageData(0, 0, w, h), lay = s.lctx.getImageData(x0, y0, w, h), mask2 = new Uint8ClampedArray(w * h);
+    for (let i = 0; i < mask2.length; i++) mask2[i] = lay.data[i * 4 + 3];
+    const out = heal(dst.data, src.data, mask2, w, h, r);
+    if (s.alpha < 1) for (let i = 0; i < out.length; i++) out[i] = dst.data[i] + (out[i] - dst.data[i]) * s.alpha;
+    dctx.putImageData(new ImageData(out, w, h), x0, y0);
+    requestRender();
+  }
+  function copyTool(kind) {
+    const cloneBrush = freehand(kind);
+    return {
+      down(e, p) {
+        const c = state.clone;
+        if (e.altKey || c.picking || !c.src) {
+          const first = !c.src;
+          setCloneSource(p);
+          if (first || !e.altKey) toast(t("Source set – now paint where the copy goes."));
+          return;
+        }
+        if (onSourceDisc(p)) {
+          state.action = { type: "clone-source", dx: c.src.x - p.x, dy: c.src.y - p.y };
+          return;
+        }
+        if (!state.cloneAligned || !c.anchor) c.anchor = { x: Math.round(p.x), y: Math.round(p.y) };
+        cloneBrush.down(e, p);
+      },
+      move(e, p) {
+        const a = state.action;
+        if (a && a.type === "clone-source") {
+          state.clone.src = { x: Math.round(p.x + a.dx), y: Math.round(p.y + a.dy) };
+          updateCloneUI();
+          requestRender();
+          return;
+        }
+        cloneBrush.move(e, p);
+      },
+      up(e, p) {
+        const a = state.action, c = state.clone;
+        if (a && a.type === "clone-source") {
+          state.action = null;
+          return;
+        }
+        if (a && a.type === "stroke" && state.cloneAligned && a.s.offset) {
+          c.anchor = { x: Math.round(a.s.last.x), y: Math.round(a.s.last.y) };
+          c.src = { x: c.anchor.x + a.s.offset.x, y: c.anchor.y + a.s.offset.y };
+        }
+        c.live = null;
+        if (kind === "heal" && a && a.type === "stroke") healStroke(a.s);
+        cloneBrush.up(e, p);
         updateCloneUI();
         requestRender();
-        return;
       }
-      cloneBrush.move(e, p);
-    },
-    up(e, p) {
-      const a = state.action, c = state.clone;
-      if (a && a.type === "clone-source") {
-        state.action = null;
-        return;
-      }
-      if (a && a.type === "stroke" && state.cloneAligned && a.s.offset) {
-        c.anchor = { x: Math.round(a.s.last.x), y: Math.round(a.s.last.y) };
-        c.src = { x: c.anchor.x + a.s.offset.x, y: c.anchor.y + a.s.offset.y };
-      }
-      c.live = null;
-      cloneBrush.up(e, p);
-      updateCloneUI();
-      requestRender();
-    }
-  };
+    };
+  }
   function drawShapeLine(ctx2, a, b, color) {
     if (state.smooth) smoothLine(ctx2, a, b, state.size, color);
     else hardLine(ctx2, a, b, state.size, color);
@@ -6504,9 +6711,9 @@
     const x = Math.floor(p.x), y = Math.floor(p.y);
     if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return false;
     const im = getImage();
-    const box4 = floodFill(im, x, y, rgba(state.fill), state.tolerance, state.contiguous);
-    if (!box4) return false;
-    dctx.putImageData(im, 0, 0, box4.x, box4.y, box4.w, box4.h);
+    const box5 = floodFill(im, x, y, rgba(state.fill), state.tolerance, state.contiguous);
+    if (!box5) return false;
+    dctx.putImageData(im, 0, 0, box5.x, box5.y, box5.w, box5.h);
     commit();
     return true;
   }
@@ -6536,7 +6743,8 @@
     brush: freehand("brush"),
     pencil: freehand("pencil"),
     eraser: freehand("eraser"),
-    clone: cloneTool,
+    clone: copyTool("clone"),
+    heal: copyTool("heal"),
     line: lineTool,
     ngon: ngonTool,
     ellipse: ellipseTool,
@@ -6847,7 +7055,7 @@
   }
 
   // worker-source:worker-source
-  var worker_source_default = '(()=>{var q=null,et=new Map;function ce(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let o=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,o=q.fillStyle),et.set(t,o),o}function nt(e){if(Array.isArray(e))return e;if(/^#[0-9a-f]{6}$/i.test(e))return[1,3,5].map(o=>parseInt(e.slice(o,o+2),16));let t=ce(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(o=>parseInt(t.slice(o,o+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let o=p=>(p/=255,p<=.04045?p/12.92:Math.pow((p+.055)/1.055,2.4)),s=o(e),i=o(t),r=o(n),u=(s*.4124+i*.3576+r*.1805)/.95047,l=s*.2126+i*.7152+r*.0722,a=(s*.0193+i*.1192+r*.9505)/1.08883,m=p=>p>216/24389?Math.cbrt(p):(24389/27*p+16)/116,c=m(u),f=m(l),b=m(a);return[116*f-16,500*(c-f),200*(f-b)]}function xt([e,t,n]){let o=(e+16)/116,s=o+t/500,i=o-n/200,r=f=>f**3>216/24389?f**3:(116*f-16)/(24389/27),u=.95047*r(s),l=r(o),a=1.08883*r(i),m=f=>f<=.0031308?12.92*f:1.055*Math.pow(f,1/2.4)-.055;return"#"+[3.2406*u-1.5372*l-.4986*a,-.9689*u+1.8758*l+.0415*a,.0557*u-.204*l+1.057*a].map(f=>Math.round(Math.max(0,Math.min(1,m(f)))*255)).map(f=>f.toString(16).padStart(2,"0")).join("")}function dt(e,t,n){n=n||t.map(r=>G(nt(r)));let o=G(e),s=null,i=1/0;return t.forEach((r,u)=>{let l=n[u],a=(o[0]-l[0])**2+(o[1]-l[1])**2+(o[2]-l[2])**2;a<i&&(i=a,s=r)}),s}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(o=>G(wt(o))),n=new Map;return(o,s,i)=>{let r=o<<16|s<<8|i,u=n.get(r);return u||(u=dt([o,s,i],e,t),n.set(r,u)),u}}function vt(e,t){let{width:n,height:o}=e,s=e.data,i=Mt(n,o),r=i.data,u=Math.max(2,Math.round(t.tile)),l=Math.min(u-1,Math.max(0,Math.round(t.grout))),a=t.palette&&t.palette.length?Pt(t.palette):null,m=Y(t.groutColor),c=new Map,f=0;for(let b=0,p=0;b<o;b+=u,p++){let x=t.bricks&&p%2?-Math.floor(u/2):0;for(let P=x;P<n;P+=u){let v=Math.max(0,P),k=Math.min(n,P+u),w=Math.min(o,b+u),R=0,I=0,y=0,A=0,h=0;for(let d=b;d<w-(w===b+u?l:0);d++)for(let S=v;S<Math.min(k,P+u-l);S++){let B=(d*n+S)*4;h++,!(s[B+3]<128)&&(R+=s[B],I+=s[B+1],y+=s[B+2],A++)}let g=A>0&&A>=h/2,M=[0,0,0,0];if(g){R=Math.round(R/A),I=Math.round(I/A),y=Math.round(y/A);let d=a?a(R,I,y):st(R,I,y);M=Y(d),c.set(d,(c.get(d)||0)+1),f++}for(let d=b;d<w;d++)for(let S=v;S<k;S++){let B=S>=P+u-l||d>=b+u-l;ot(r,(d*n+S)*4,B?g?m:[0,0,0,0]:M)}}}return{img:i,counts:c,tiles:f}}function kt(e){let{width:t,height:n,data:o}=e,s=t*n,i=new Int32Array(s).fill(-1),r=[],u=[],l=m=>o[m*4+3]<128?-1:o[m*4]<<16|o[m*4+1]<<8|o[m*4+2],a=[];for(let m=0;m<s;m++){if(i[m]>=0)continue;let c=l(m);if(c<0)continue;let f=r.length,b=0;for(i[m]=f,a.push(m);a.length;){let p=a.pop(),x=p%t;b++;for(let P of[x>0?p-1:-1,x<t-1?p+1:-1,p-t,p+t])P<0||P>=s||i[P]>=0||l(P)!==c||(i[P]=f,a.push(P))}r.push(st(c>>16,c>>8&255,c&255)),u.push(b)}return{labels:i,colors:r,sizes:u}}function St(e,t,n,o,s){let i=[],r=e.data;for(let l=0;l<5;l++)for(let a=0;a<5;a++){let m=Math.floor(t+o*(l+.5)/5),c=Math.floor(n+s*(a+.5)/5);if(m<0||c<0||m>=e.width||c>=e.height)continue;let f=(c*e.width+m)*4;r[f+3]>=128&&i.push(G([r[f],r[f+1],r[f+2]]))}if(i.length<2)return 0;let u=[0,1,2].map(l=>i.reduce((a,m)=>a+m[l],0)/i.length);return i.reduce((l,a)=>l+Math.hypot(a[0]-u[0],a[1]-u[1],a[2]-u[2]),0)/i.length}function me(e,t,n,o){let s=n.length,i=n.map(l=>l.y),r=Math.max(0,Math.floor(Math.min(...i))),u=Math.min(t-1,Math.ceil(Math.max(...i)));for(let l=r;l<=u;l++){let a=l+.5,m=[];for(let c=0;c<s;c++){let f=n[c],b=n[(c+1)%s];f.y<=a!=b.y<=a&&m.push(f.x+(a-f.y)*(b.x-f.x)/(b.y-f.y))}m.sort((c,f)=>c-f);for(let c=0;c+1<m.length;c+=2){let f=Math.max(0,Math.ceil(m[c]-.5)),b=Math.min(e-1,Math.floor(m[c+1]-.5));for(let p=f;p<=b;p++)o(l*e+p)}}}function At(e,t,n){let{width:o,height:s}=e,i=e.data,r=Mt(o,s),u=r.data,l=n.palette&&n.palette.length?Pt(n.palette):null,a=new Map,m=[],c=0;for(let b of t){let p=0,x=0,P=0,v=0,k=0,w=[];if(me(o,s,b,y=>{w.push(y),k++;let A=y*4;i[A+3]<128||(p+=i[A],x+=i[A+1],P+=i[A+2],v++)}),!v||v<k/2)continue;p=Math.round(p/v),x=Math.round(x/v),P=Math.round(P/v);let R=l?l(p,x,P):st(p,x,P),I=Y(R);for(let y of w)ot(u,y*4,I);a.set(R,(a.get(R)||0)+1),c++,m.push(b)}let f=Math.max(0,n.grout)/2;if(f>0){let b=Y(n.groutColor);for(let p of m)for(let x=0;x<p.length;x++){let P=p[x],v=p[(x+1)%p.length],k=v.x-P.x,w=v.y-P.y,R=k*k+w*w||1,I=Math.max(0,Math.floor(Math.min(P.x,v.x)-f)),y=Math.min(o-1,Math.ceil(Math.max(P.x,v.x)+f)),A=Math.max(0,Math.floor(Math.min(P.y,v.y)-f)),h=Math.min(s-1,Math.ceil(Math.max(P.y,v.y)+f));for(let g=A;g<=h;g++)for(let M=I;M<=y;M++){let d=M+.5,S=g+.5,B=Math.max(0,Math.min(1,((d-P.x)*k+(S-P.y)*w)/R)),$=P.x+B*k-d,U=P.y+B*w-S;$*$+U*U<=f*f&&ot(u,(g*o+M)*4,b)}}}return{img:r,counts:a,tiles:c}}function Rt(e){let t=new Map;return e.colors.forEach((n,o)=>{let s=t.get(n)||{n:0,color:n,pieces:0,pixels:0};s.pieces++,s.pixels+=e.sizes[o],t.set(n,s)}),[...t.values()].sort((n,o)=>o.pixels-n.pixels).map((n,o)=>({...n,n:o+1}))}var fe=.01;function Bt(e){fe=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,o)=>e*o-t*n;function he(e,t,n){let o=n.x-t.x,s=n.y-t.y,i=o*o+s*s,r=i?((e.x-t.x)*o+(e.y-t.y)*s)/i:0;return r=Math.max(0,Math.min(1,r)),{x:t.x+o*r,y:t.y+s*r,t:r}}function be(e,t,n,o){let s=t.x-e.x,i=t.y-e.y,r=o.x-n.x,u=o.y-n.y,l=it(s,i,r,u);if(Math.abs(l)<1e-12)return null;let a=n.x-e.x,m=n.y-e.y,c=it(a,m,r,u)/l,f=it(a,m,s,i)/l;return c<0||c>1||f<0||f>1?null:{x:e.x+s*c,y:e.y+i*c,t:c,u:f}}function $t(e,t){let n=!1;for(let o=0,s=t.length-1;o<t.length;s=o++){let i=t[o],r=t[s];i.y>e.y!=r.y>e.y&&e.x<(r.x-i.x)*(e.y-i.y)/(r.y-i.y)+i.x&&(n=!n)}return n}function Ut(e,t,n,o,s){let i=[];for(let r=0;r<e;r++){let u=s+r*2*Math.PI/e;i.push({x:t+o*Math.cos(u),y:n+o*Math.sin(u)})}return i}function at(e,t,n,o){let s=[0,1];for(let a of n)for(let m=0,c=a.length;m<c;m++){let f=be(e,t,a[m],a[(m+1)%c]);f&&s.push(f.t)}s.sort((a,m)=>a-m);let i=a=>({x:e.x+(t.x-e.x)*a,y:e.y+(t.y-e.y)*a}),r=[],u=null,l=0;for(let a=0;a+1<s.length;a++){let m=s[a],c=s[a+1];c-m<1e-9||(o(i((m+c)/2))?(u===null&&(u=m),l=c):u!==null&&(r.push({a:i(u),b:i(l)}),u=null))}return u!==null&&r.push({a:i(u),b:i(l)}),r}function lt(e,t){let n=1/0;for(let o of t)for(let s=0,i=o.length;s<i;s++)n=Math.min(n,H(e,he(e,o[s],o[(s+1)%i])));return n}var Z=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let o=[];if(e==="square"){let[s,i]=z(n.x0,n.x1,t),[r,u]=z(n.y0,n.y1,t);for(let l=s;l<=i;l++)for(let a=r;a<=u;a++)o.push(Z(l*t,a*t,t,t))}else if(e==="brick"){let s=2*t,[i,r]=z(n.y0,n.y1,t);for(let u=i;u<=r;u++){let l=ct(u)?t:0,[a,m]=z(n.x0-l,n.x1-l,s);for(let c=a;c<=m;c++)o.push(Z(l+c*s,u*t,s,t))}}else if(e==="hex"){let s=Math.sqrt(3)*t,i=1.5*t,[r,u]=z(n.y0,n.y1,i);for(let l=r;l<=u;l++){let a=ct(l)?s/2:0,[m,c]=z(n.x0-a,n.x1-a,s);for(let f=m;f<=c;f++)o.push(Ut(6,a+f*s,l*i,t,-Math.PI/2))}}else if(e==="triangle"){let s=t*Math.sqrt(3)/2,[i,r]=z(n.y0,n.y1,s);for(let u=i;u<=r;u++){let l=u*s,a=ct(u)?t/2:0,[m,c]=z(n.x0-a,n.x1-a,t);for(let f=m;f<=c;f++){let b=a+f*t;o.push([{x:b,y:l+s},{x:b+t/2,y:l},{x:b+t,y:l+s}]),o.push([{x:b+t/2,y:l},{x:b+1.5*t,y:l},{x:b+t,y:l+s}])}}}else if(e==="herringbone"){let s=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([c,f])=>[c/t,f/t]),i=s.map(([c,f])=>(c+f)/4),r=s.map(([c,f])=>(c-f)/2),u=Math.floor(Math.min(...i))-2,l=Math.ceil(Math.max(...i))+2,a=Math.floor(Math.min(...r))-2,m=Math.ceil(Math.max(...r))+2;for(let c=u;c<=l;c++)for(let f=a;f<=m;f++)o.push(Z((2*c+f)*t,(2*c-f)*t,t,2*t)),o.push(Z((2*c+1+f)*t,(2*c+1-f)*t,2*t,t))}return o}function Ft(e,t){let n=new Map;for(let s of e){let i=s.b.x-s.a.x,r=s.b.y-s.a.y,u=Math.hypot(i,r);if(u<t)continue;i/=u,r/=u,(i<-1e-9||Math.abs(i)<=1e-9&&r<0)&&(i=-i,r=-r);let l=-r*s.a.x+i*s.a.y,a=Math.round(Math.atan2(r,i)*1e6)+"|"+Math.round(l/(t*10)),m=i*s.a.x+r*s.a.y,c=i*s.b.x+r*s.b.y;(n.get(a)||n.set(a,{dx:i,dy:r,off:l,list:[]}).get(a)).list.push([Math.min(m,c),Math.max(m,c)])}let o=[];for(let s of n.values()){s.list.sort((l,a)=>l[0]-a[0]);let i=l=>({x:s.dx*l-s.dy*s.off,y:s.dy*l+s.dx*s.off}),[r,u]=s.list[0];for(let l=1;l<=s.list.length;l++){let a=s.list[l];if(a&&a[0]<=u+t){u=Math.max(u,a[1]);continue}o.push({a:i(r),b:i(u)}),a&&([r,u]=a)}}return o}function Tt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}];function ge(e,t,n,o){let s=n?t*2:t,i=n?t/2:t,r=[],u=(l,a,m)=>{if(!(l>=e.x+e.w-1e-9||a>=e.y+e.h-1e-9))if(m>i*1.0001&&o(l,a,m,m)){let c=m/2;u(l,a,c),u(l+c,a,c),u(l,a+c,c),u(l+c,a+c,c)}else r.push({x:l,y:a,s:m})};for(let l=0;l*s<e.h;l++)for(let a=0;a*s<e.w;a++)u(e.x+a*s,e.y+l*s,s);return r}function xe(e,t){let n=[];for(let o=0,s=e.length;o<s;o++){let i=e[o],r=e[(o+1)%s],u=t(i),l=t(r);if(u<=0&&n.push(i),u<0&&l>0||u>0&&l<0){let a=u/(u-l);n.push({x:i.x+(r.x-i.x)*a,y:i.y+(r.y-i.y)*a})}}return n}function de(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,o=new Map,s=(r,u)=>r+","+u;e.forEach((r,u)=>{let l=s(Math.floor(r.x/n),Math.floor(r.y/n));(o.get(l)||o.set(l,[]).get(l)).push(u)});let i=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((r,u)=>{let l=Math.floor(r.x/n),a=Math.floor(r.y/n),m=N(t.x,t.y,t.w,t.h),c=()=>Math.max(...m.map(f=>H(f,r)));for(let f=0;f<=i&&m.length>=3&&!((f-1)*n>2*c());f++){let b=[];for(let p=l-f;p<=l+f;p++)for(let x=a-f;x<=a+f;x++)if(Math.max(Math.abs(p-l),Math.abs(x-a))===f)for(let P of o.get(s(p,x))||[])P!==u&&b.push(P);b.sort((p,x)=>H(e[p],r)-H(e[x],r));for(let p of b){let x=e[p],P=x.x-r.x,v=x.y-r.y,k=(r.x+x.x)/2,w=(r.y+x.y)/2;if(m=xe(m,R=>(R.x-k)*P+(R.y-w)*v),m.length<3)break}}return m}).filter(r=>r.length>=3)}function V({style:e,box:t,size:n,detail:o=0,busy:s=()=>!1,seed:i=1}){let r=o>0;if(e==="hex"){let l=n/Math.sqrt(3);return Lt("hex",l,{x0:-l,y0:-l,x1:t.w+l,y1:t.h+l}).map(a=>a.map(m=>({x:m.x+t.x,y:m.y+t.y})))}if(e==="brick"){let l=[];for(let a=0;a*n<t.h;a++){let m=a%2?-n:0;for(let c=t.x+m;c<t.x+t.w;c+=2*n){let f=t.y+a*n;r&&s(c,f,2*n,n)?l.push(N(c,f,n,n),N(c+n,f,n,n)):l.push(N(c,f,2*n,n))}}return l}let u=ge(t,n,r,s);if(e==="irregular"){let l=Tt(i),a=u.map(m=>({x:m.x+m.s*(.5+(l()-.5)*.7),y:m.y+m.s*(.5+(l()-.5)*.7)})).filter(m=>m.x>=t.x&&m.y>=t.y&&m.x<=t.x+t.w&&m.y<=t.y+t.h);return de(a,t)}return u.map(l=>N(l.x,l.y,l.s,l.s))}function jt(e,t,n,o){let s=o*10,i=a=>Math.round(a.x/s)+","+Math.round(a.y/s),r=new Set,u=[],l=a=>n(a)&&lt(a,t)>o*20;for(let a of e)for(let m=0;m<a.length;m++){let c=a[m],f=a[(m+1)%a.length],b=i(c),p=i(f),x=b<p?b+"|"+p:p+"|"+b;b===p||r.has(x)||(r.add(x),u.push(...at(c,f,t,l)))}return Ft(u,o)}function Ct(e,t,n=1,o=16){if(!e.length)return[];t=Math.min(t,e.length);let s=Tt(n),i=(l,a)=>(l[0]-a[0])**2+(l[1]-a[1])**2+(l[2]-a[2])**2,r=[e[Math.floor(s()*e.length)]];for(;r.length<t;){let l=e.map(c=>Math.min(...r.map(f=>i(c,f)))),a=s()*l.reduce((c,f)=>c+f,0),m=0;for(;m<e.length-1&&(a-=l[m])>0;)m++;r.push(e[m])}let u=[];for(let l=0;l<o;l++){let a=r.map(()=>[0,0,0]);u=r.map(()=>0);for(let m of e){let c=0,f=1/0;r.forEach((b,p)=>{let x=i(m,b);x<f&&(f=x,c=p)}),a[c][0]+=m[0],a[c][1]+=m[1],a[c][2]+=m[2],u[c]++}r.forEach((m,c)=>{u[c]&&(r[c]=a[c].map(f=>f/u[c]))})}return r.map((l,a)=>({c:l,n:u[a]})).sort((l,a)=>a.n-l.n).map(l=>l.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function ye(e,t,n){let o=new Uint8Array(t*n),s=[];for(let i=0;i<n;i++)for(let r=0;r<t;r++){let u=i*t+r,l=e[u];if(l<0||o[u])continue;let a=1;for(;r+a<t&&e[u+a]===l&&!o[u+a];)a++;let m=1;t:for(;i+m<n;){let c=(i+m)*t+r;for(let f=0;f<a;f++)if(e[c+f]!==l||o[c+f])break t;m++}for(let c=i;c<i+m;c++)o.fill(1,c*t+r,c*t+r+a);s.push({x:r,y:i,w:a,h:m,level:l})}return s}function Me(e,t){let n=new Int16Array(e.length);for(let o=0;o<e.length;o++)n[o]=e[o]===-2?0:e[o]<0?t.baseLayers:_(e[o],t);return n}function Gt(e,t){let n=e.length,o=Me(e,t),s=new Int16Array(n);for(let i=0;i<n;i++)s[i]=Math.max(0,e[i]);return{bottom:new Int16Array(n),top:o,level:s}}function mt(e,t,n,o,s){let i=(h,g)=>h>=0&&g>=0&&h<t&&g<n,r=(h,g)=>i(h,g)?e.bottom[g*t+h]:0,u=(h,g)=>{if(!i(h,g))return 0;let M=g*t+h;return e.top[M]>e.bottom[M]?e.top[M]:e.bottom[M]},l=(h,g)=>u(h,g)>r(h,g),a=(h,g)=>i(h,g)?e.level[g*t+h]:0,m=[],c=h=>n-h,f=new Int16Array(t*n),b=h=>{let g=new Map,M=[];for(let d=0;d<n;d++)for(let S=0;S<t;S++){let B=d*t+S;if(!l(S,d)){f[B]=-1;continue}let $=h(S,d)*4096+a(S,d),U=g.get($);U==null&&(U=M.length,g.set($,U),M.push($)),f[B]=U}return{rs:ye(f,t,n),vals:M}};{let{rs:h,vals:g}=b(u);for(let M of h){let d=g[M.level];m.push({o:[M.x,c(M.y+M.h),Math.floor(d/4096)],u:[M.w,0,0],v:[0,M.h,0],level:d%4096})}}{let{rs:h,vals:g}=b(r);for(let M of h){let d=g[M.level];m.push({o:[M.x,c(M.y+M.h),Math.floor(d/4096)],u:[0,M.h,0],v:[M.w,0,0],level:d%4096})}}let p=(h,g,M,d)=>{if(g<=h)return[];if(d<=M||d<=h||M>=g)return[[h,g]];let S=[];return M>h&&S.push([h,M]),d<g&&S.push([d,g]),S},x=(h,g)=>l(h,g)?[r(h,g),u(h,g)]:[0,0];for(let h=0;h<=n;h++)for(let g=0;g<t;){let[M,d]=x(g,h-1),[S,B]=x(g,h);if(M===S&&d===B){g++;continue}let $=g+1;for(;$<t;$++){let[F,L]=x($,h-1),[j,C]=x($,h);if(F!==M||L!==d||j!==S||C!==B)break}let U=c(h);for(let[F,L]of p(M,d,S,B))m.push({o:[g,U,F],u:[$-g,0,0],v:[0,0,L-F],level:a(g,h-1)});for(let[F,L]of p(S,B,M,d))m.push({o:[g,U,F],u:[0,0,L-F],v:[$-g,0,0],level:a(g,h)});g=$}for(let h=0;h<=t;h++)for(let g=n-1;g>=0;){let[M,d]=x(h-1,g),[S,B]=x(h,g);if(M===S&&d===B){g--;continue}let $=g-1;for(;$>=0;$--){let[L,j]=x(h-1,$),[C,O]=x(h,$);if(L!==M||j!==d||C!==S||O!==B)break}let U=c(g+1),F=g-$;for(let[L,j]of p(S,B,M,d))m.push({o:[h,U,L],u:[0,0,j-L],v:[0,F,0],level:a(h,g)});for(let[L,j]of p(M,d,S,B))m.push({o:[h,U,L],u:[0,F,0],v:[0,0,j-L],level:a(h-1,g)});g=$}let P=[new Map,new Map,new Map],v=(h,g,M)=>h.o.map((d,S)=>d+g*h.u[S]+M*h.v[S]),k=(h,g)=>g===0?h[1]*1e5+h[2]:g===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of m)for(let[g,M]of[[0,0],[1,0],[1,1],[0,1]]){let d=v(h,g,M);for(let S=0;S<3;S++){let B=k(d,S),$=P[S].get(B);$||P[S].set(B,$=[]),$.push(d[S])}}for(let h of P)for(let[g,M]of h)h.set(g,[...new Set(M)].sort((d,S)=>d-S));let w=[],R=[],I=[],y=new Map,A=h=>{let g=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,M=y.get(g);return M==null&&(M=w.length/3,y.set(g,M),w.push(h[0]*o,h[1]*o,h[2]*s)),M};for(let h of m){let g=[v(h,0,0),v(h,1,0),v(h,1,1),v(h,0,1)],M=[];for(let S=0;S<4;S++){let B=g[S],$=g[(S+1)%4],U=B.findIndex((C,O)=>C!==$[O]);M.push(B);let F=Math.min(B[U],$[U]),L=Math.max(B[U],$[U]),j=(P[U].get(k(B,U))||[]).filter(C=>C>F&&C<L);B[U]>$[U]&&j.reverse();for(let C of j){let O=[...B];O[U]=C,M.push(O)}}let d=M.map(A);if(d.length===4)R.push(d[0],d[1],d[2],d[0],d[2],d[3]),I.push(h.level,h.level);else{let S=A(v(h,.5,.5));for(let B=0;B<d.length;B++)R.push(S,d[B],d[(B+1)%d.length]),I.push(h.level)}}return{vertices:w,triangles:R,levels:I}}function zt(e,t,n,o,s,i){let r=Int16Array.from(e),u=t*n,l=new Int32Array(u),a=new Float32Array(u),m=i.heightOf||(f=>f===-2?0:(f<0?s.baseLayers:_(f,s))*s.layerHeight),c=0;for(let f=0;f<12;f++){l.fill(-1);let b=[],p=[];for(let y=0;y<u;y++){if(l[y]>=0)continue;let A=b.length,h=r[y];for(b.push(h),l[y]=A,p.push(y);p.length;){let g=p.pop(),M=g%t;for(let d of[M>0?g-1:-1,M<t-1?g+1:-1,g-t,g+t])d<0||d>=u||l[d]>=0||r[d]!==h||(l[d]=A,p.push(d))}}let x=Math.SQRT2;for(let y=0;y<u;y++){let A=y%t,h=y/t|0,g=l[y],M=A===0||h===0||A===t-1||h===n-1||l[y-1]!==g||l[y+1]!==g||l[y-t]!==g||l[y+t]!==g;a[y]=M?1:1e9}for(let y=0;y<n;y++)for(let A=0;A<t;A++){let h=y*t+A;a[h]<=1||(a[h]=Math.min(a[h],a[h-1]+1,a[h-t]+1,a[h-t-1]+x,a[h-t+1]+x))}for(let y=n-1;y>=0;y--)for(let A=t-1;A>=0;A--){let h=y*t+A;a[h]<=1||(a[h]=Math.min(a[h],a[h+1]+1,a[h+t]+1,a[h+t+1]+x,a[h+t-1]+x))}let P=new Float32Array(b.length);for(let y=0;y<u;y++)a[y]>P[l[y]]&&(P[l[y]]=a[y]);let v=b.map(()=>new Map),k=new Float64Array(b.length).fill(1/0),w=(y,A)=>{let h=l[y],g=l[A];if(h===g)return;let M=r[y],d=r[A];k[h]=Math.min(k[h],m(d)),k[g]=Math.min(k[g],m(M)),d<M&&v[h].set(d,(v[h].get(d)||0)+1),M<d&&v[g].set(M,(v[g].get(M)||0)+1)};for(let y=0;y<n;y++)for(let A=0;A<t;A++){let h=y*t+A;A<t-1&&w(h,h+1),y<n-1&&w(h,h+t)}let R=new Int16Array(b.length).fill(-32768),I=0;if(b.forEach((y,A)=>{let h=m(y)-k[A];if(!(h>1e-9)||!v[A].size)return;let g=Math.max(1,2*P[A]-1)*o;if(g>=i.minWidth&&h<=i.maxRatio*g)return;let M=-2,d=-1;for(let[S,B]of v[A])(B>d||B===d&&S>M)&&(M=S,d=B);R[A]=M,I++}),!I)break;for(let y=0;y<u;y++){let A=R[l[y]];A!==-32768&&(r[y]=A)}c+=I}return{grid:r,lowered:c}}function ft(e,t="Mosaic Paint"){let n=e.vertices,o=e.triangles,s=o.length/3,i=new ArrayBuffer(84+s*50),r=new DataView(i),u=`${t} – multi-color by layer`.slice(0,80);for(let a=0;a<u.length;a++)r.setUint8(a,u.charCodeAt(a)&127);r.setUint32(80,s,!0);let l=84;for(let a=0;a<s;a++){let m=[0,1,2].map(I=>o[a*3+I]*3),c=n[m[1]]-n[m[0]],f=n[m[1]+1]-n[m[0]+1],b=n[m[1]+2]-n[m[0]+2],p=n[m[2]]-n[m[0]],x=n[m[2]+1]-n[m[0]+1],P=n[m[2]+2]-n[m[0]+2],v=f*P-b*x,k=b*p-c*P,w=c*x-f*p,R=Math.hypot(v,k,w)||1;v/=R,k/=R,w/=R;for(let I of[v,k,w])r.setFloat32(l,I,!0),l+=4;for(let I of m)for(let y=0;y<3;y++)r.setFloat32(l,n[I+y],!0),l+=4;r.setUint16(l,0,!0),l+=2}return i}function Dt(e,t){return e.map((n,o)=>{let s=o===0?1:_(o-1,t)+1,i=_(o,t);return{color:n,fromLayer:s,toLayer:i,changeAtLayer:o===0?null:s,z:o===0?null:+(s*t.layerHeight).toFixed(3)}})}var D=-3,we=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,o,s){let i=Math.max(0,Math.round(o.frame)),r=t+2*i,u=n+2*i,l=new Int16Array(r*u).fill(D);for(let f=0;f<n;f++)for(let b=0;b<t;b++)l[(f+i)*r+b+i]=e[f*t+b];let a=Math.min(o.corner,r/2,u/2),m=o.hole/2,c=we(o,s);for(let f=0;f<u;f++)for(let b=0;b<r;b++){let p=b+.5,x=f+.5;if(a>0){let P=p<a?a:p>r-a?r-a:p,v=x<a?a:x>u-a?u-a:x;if((p-P)**2+(x-v)**2>a*a){l[f*r+b]=-2;continue}}m>0&&(p-r/2)**2+(x-c)**2<=m*m&&(l[f*r+b]=-2)}return{grid:l,w:r,h:u}}function _t(e,t,n,o){let s=new Uint8Array(e*t),i=n/2;if(i<=0)return s;let r=[o,e-o],u=[o,t-o];for(let l of r)for(let a of u)for(let m=Math.max(0,Math.floor(a-i));m<Math.min(t,Math.ceil(a+i));m++)for(let c=Math.max(0,Math.floor(l-i));c<Math.min(e,Math.ceil(l+i));c++)(c+.5-l)**2+(m+.5-a)**2<=i*i&&(s[m*e+c]=1);return s}function qt(e,t,n,o=2){let s=n;for(let i=0;i<t.length;i++){if(!t[i])continue;let r=0;for(let u of e)u.top[i]>u.bottom[i]&&(r=Math.max(r,u.top[i]));r>0&&(s=Math.min(s,r-o))}if(s=Math.max(0,s),!s)return 0;for(let i=0;i<t.length;i++)if(t[i])for(let r of e)r.top[i]>r.bottom[i]&&r.bottom[i]<s&&(r.bottom[i]=s,r.top[i]<s&&(r.top[i]=s));return s}function Ht(e,t,n,o){let s=e.length,i={bottom:new Int16Array(s).fill(t),top:new Int16Array(s),level:new Int16Array(s).fill(o)};for(let r=0;r<s;r++)e[r]===D&&(i.top[r]=n);return i}var T=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function Pe(e,t,n){let o=e.vertices,s=e.triangles,i=[];i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${T(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let r of t)i.push(`<base name="${T(r)}" displaycolor="${r.toUpperCase()}FF"/>`);i.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${T(n)}">`,"<mesh>","<vertices>");for(let r=0;r<o.length;r+=3)i.push(`<vertex x="${E(o[r])}" y="${E(o[r+1])}" z="${E(o[r+2])}"/>`);i.push("</vertices>","<triangles>");for(let r=0;r<s.length;r+=3)i.push(`<triangle v1="${s[r]}" v2="${s[r+1]}" v3="${s[r+2]}" pid="1" p1="${Math.max(0,e.levels[r/3])}"/>`);return i.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),i.join(`\n`)}function ve(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:Pe(e,t.map(o=>o.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:ve(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,o=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return s=>s===-2?0:s<0?t.baseLayers*t.layerHeight:e[s]?o:n}function Yt(e,t,n,o,s,i){let r=t*n,u=[];if(i.baseLayers>0){let l=new Int16Array(r);for(let a=0;a<r;a++)e[a]!==-2&&(l[a]=i.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(r),top:l,level:new Int16Array(r)}})}for(let l=0;l<o;l++){let a=new Int16Array(r).fill(i.baseLayers),m=new Int16Array(r),c=new Int16Array(r).fill(l),f=i.baseLayers+(s[l]?Math.max(1,i.tileLayers-i.groutRecess):i.tileLayers),b=!1;for(let p=0;p<r;p++)e[p]===l&&(m[p]=f,b=!0);b&&u.push({part:l,solid:{bottom:a,top:m,level:c}})}return u}function Zt(e,t,n="prusa"){return n==="bambu"?ke(e,t):Se(e,t)}function ke(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',o=(a,m)=>`${a.toString(16).padStart(8,"0")}-0000-4000-8000-${m.toString(16).padStart(12,"0")}`,s=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((a,m)=>{let c=a.mesh.vertices,f=a.mesh.triangles;s.push(`<object id="${m+1}" p:UUID="${o(1,m)}" type="model">`,"<mesh>","<vertices>");for(let b=0;b<c.length;b+=3)s.push(`<vertex x="${E(c[b])}" y="${E(c[b+1])}" z="${E(c[b+2])}"/>`);s.push("</vertices>","<triangles>");for(let b=0;b<f.length;b+=3)s.push(`<triangle v1="${f[b]}" v2="${f[b+1]}" v3="${f[b+2]}"/>`);s.push("</triangles>","</mesh>","</object>")}),s.push("</resources>","<build/>","</model>");let i=e.length+1,r="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${T(t)}</metadata>`,"<resources>",`<object id="${i}" p:UUID="${o(2,0)}" type="model">`,"<components>"];e.forEach((a,m)=>u.push(`<component p:path="${r}" objectid="${m+1}" p:UUID="${o(3,m)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${o(4,0)}">`,`<item objectid="${i}" p:UUID="${o(5,0)}" printable="1"/>`,"</build>","</model>");let l=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${i}">`,`<metadata key="name" value="${T(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((a,m)=>l.push(`<part id="${m+1}" subtype="normal_part">`,`<metadata key="name" value="${T(a.name)}"/>`,`<metadata key="extruder" value="${a.filament||m+1}"/>`,"</part>")),l.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",r)},{name:"3D/Objects/object_1.model",data:s.join(`\n`)},{name:"Metadata/model_settings.config",data:l.join(`\n`)}]}function Se(e,t){let n=[],o=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${T(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let r of e)n.push(`<base name="${T(r.name)}" displaycolor="${r.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${T(t)}">`,"<mesh>","<vertices>");for(let r of e){let u=r.mesh.vertices;for(let l=0;l<u.length;l+=3)n.push(`<vertex x="${E(u[l])}" y="${E(u[l+1])}" z="${E(u[l+2])}"/>`)}n.push("</vertices>","<triangles>"),o.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${T(t)}"/>`);let s=0,i=0;return e.forEach((r,u)=>{let l=r.mesh.triangles,a=l.length/3;for(let m=0;m<l.length;m+=3)n.push(`<triangle v1="${l[m]+s}" v2="${l[m+1]+s}" v3="${l[m+2]+s}" pid="2" p1="${u}"/>`);o.push(`<volume firstid="${i}" lastid="${i+a-1}">`,`<metadata type="volume" key="name" value="${T(r.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${r.filament||u+1}"/>`,"</volume>"),s+=r.mesh.vertices.length/3,i+=a}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),o.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:o.join(`\n`)}]}function Vt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let o=t.vertices.length/3;for(let s of n.vertices)t.vertices.push(s);for(let s of n.triangles)t.triangles.push(s+o);for(let s of n.levels)t.levels.push(s)}return t}var K=null;function Re(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let o=n;for(let s=0;s<8;s++)o=o&1?3988292384^o>>>1:o>>>1;K[n]=o>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function Ie(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,o=[],s=[],i=0;for(let c of e){let f=n.encode(c.name),b=typeof c.data=="string"?n.encode(c.data):c.data,p=Re(b),x=t?await Ie(b):null,P=!!x&&x.length<b.length,v=P?x:b,k=new Uint8Array(30+f.length),w=new DataView(k.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,p,!0),w.setUint32(18,v.length,!0),w.setUint32(22,b.length,!0),w.setUint16(26,f.length,!0),k.set(f,30);let R=new Uint8Array(46+f.length),I=new DataView(R.buffer);I.setUint32(0,33639248,!0),I.setUint16(4,20,!0),I.setUint16(6,20,!0),I.setUint16(8,2048,!0),I.setUint16(10,P?8:0,!0),I.setUint16(12,0,!0),I.setUint16(14,33,!0),I.setUint32(16,p,!0),I.setUint32(20,v.length,!0),I.setUint32(24,b.length,!0),I.setUint16(28,f.length,!0),I.setUint32(42,i,!0),R.set(f,46),o.push(k,v),s.push(R),i+=k.length+v.length}let r=s.reduce((c,f)=>c+f.length,0),u=new Uint8Array(22),l=new DataView(u.buffer);l.setUint32(0,101010256,!0),l.setUint16(8,e.length,!0),l.setUint16(10,e.length,!0),l.setUint32(12,r,!0),l.setUint32(16,i,!0);let a=new Uint8Array(i+r+22),m=0;for(let c of[...o,...s,u])a.set(c,m),m+=c.length;return a}var Xt=2,Be=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),$e=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,o,s,i,r,u,l){let a=s.filter(b=>i[b]>0),m={list:a,grid:new Int16Array(0),counts:[],lowered:0},c=Int16Array.from(e),f=0;for(let b=0;b<4;b++){l?.(b/4);let p=new Int16Array(r.length).fill(-1);a.forEach((w,R)=>{p[w]=R});let x=c.map(w=>w<0?-1:p[w]),P=u.mode==="flat"?Jt(a.map(w=>r[w]),Qt(u)):void 0,v=zt(x,t,n,o,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:P});f+=v.lowered;let k=a.map(()=>0);for(let w=0;w<v.grid.length;w++){let R=v.grid[w];R>=0&&k[R]++,c[w]=R<0?-1:a[R]}if(m={list:a,grid:v.grid,counts:k,lowered:f},k.every(w=>w>0))break;a=a.filter((w,R)=>k[R]>0)}return m}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,o,s){let i=Ot(e,t,n,{frame:s.frame/o,corner:s.corner/o,hole:s.hole/o},Xt/o),r=(s.magnet/2+Xt+s.corner*.3)/o;return{...i,mask:s.magnet>0?_t(i.w,i.h,s.magnet/o,r):null}}function ee(e,t,n){let o=t.length,s;if(n.mode==="flat")s=Yt(e.grid,e.w,e.h,o,t,Qt(n)),n.frame>0&&s.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(o,n),0)});else{let i=Gt(e.grid,W(n)),r=Kt(o,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(i.top[u]=r,i.level[u]=o-1);s=[{part:0,solid:i}]}return e.mask&&qt(s.map(i=>i.solid),e.mask,$e(n.magnetDepth,n),Be),s}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Vt(ee(n,e.grout,t).map(o=>mt(o.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o}=e,s=te(n.grid,n.w,n.h,n.cell,o);t?.(.05);let i=ee(s,n.grout,o);t?.(.15);let r=i.map((a,m)=>{let c=mt(a.solid,s.w,s.h,n.cell,o.layerHeight);return t?.(.15+.7*(m+1)/i.length),c}),u=r.reduce((a,m)=>a+m.triangles.length/3,0),l=(a,m,c)=>({fileName:a,type:m,data:c,triangles:u,parts:r.length});if(o.mode==="flat"){let a=i.map((c,f)=>{let b=Math.max(0,c.part),p=e.colors[b];return{name:c.part===D?e.labels.frame:c.part<0?e.labels.base:`${c.part+1} ${p}`,color:p,mesh:r[f],filament:b+1}});if(e.kind==="3mf")return l(e.name+".3mf","model/3mf",await Q(Zt(a,e.name,e.slicer)));let m=i.map((c,f)=>({name:`${e.name}-${c.part===D?"frame":c.part<0?"base":`${c.part+1}-${e.colors[c.part].slice(1)}`}.stl`,data:new Uint8Array(ft(a[f].mesh,a[f].name))}));return l(e.name+"-stl.zip","application/zip",await Q(m))}return e.kind==="3mf"?l(e.name+".3mf","model/3mf",await Q(Nt(r[0],Dt(e.colors,W(o)),e.name))):l(e.name+".stl","model/stl",new Uint8Array(ft(r[0],e.name)))}function se(e,t,n,o,s){let i=(c,f)=>c<0||f<0||c>=t||f>=n?-1:e[f*t+c],r=t+1,u=(c,f)=>f*r+c,l=Array.from({length:o},()=>new Map),a=(c,f,b,p,x)=>{let P=l[c],v=u(f,b),k=P.get(v);k?k.push(u(p,x)):P.set(v,[u(p,x)])};for(let c=0;c<n;c++)for(let f=0;f<t;f++){s&&f===0&&c%64===0&&s(.5*c/n);let b=e[c*t+f];b<0||(i(f,c-1)!==b&&a(b,f+1,c,f,c),i(f-1,c)!==b&&a(b,f,c,f,c+1),i(f,c+1)!==b&&a(b,f,c+1,f+1,c+1),i(f+1,c)!==b&&a(b,f+1,c+1,f+1,c))}let m=[];for(let c=0;c<o;c++){s&&c%256===0&&s(.5+.5*c/o);let f=l[c],b=[];for(let[p]of f)for(;f.get(p)&&f.get(p).length;){let x=[p],P=p,v=oe(f,p,-1,r);for(;v!==p;){x.push(v);let k=oe(f,v,P,r);P=v,v=k}b.push(Le(x,r))}m.push(b)}return m}function oe(e,t,n,o){let s=e.get(t),i=0;if(s.length>1&&n>=0){let u=t%o-n%o,l=Math.floor(t/o)-Math.floor(n/o),a=m=>{let c=m%o-t%o,f=Math.floor(m/o)-Math.floor(t/o);return c===l&&f===-u?0:c===u&&f===l?1:2};for(let m=1;m<s.length;m++)a(s[m])<a(s[i])&&(i=m)}let r=s[i];return s.splice(i,1),s.length||e.delete(t),r}function Le(e,t){let n=e.map(i=>({x:i%t,y:Math.floor(i/t)})),o=n.length,s=[];for(let i=0;i<o;i++){let r=n[(i+o-1)%o],u=n[i],l=n[(i+1)%o];(u.x-r.x)*(l.y-u.y)-(u.y-r.y)*(l.x-u.x)!==0&&s.push(u)}return s}function bt(e){let t=0;for(let n=0,o=e.length;n<o;n++){let s=e[n],i=e[(n+1)%o];t+=s.x*i.y-i.x*s.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,o,s){let i=e.width,r=e.height,u=n/i,l=kt(e);s?.(.15);let a=new Int32Array(l.colors.length).fill(-1),m=[];l.colors.forEach((w,R)=>{w!==t&&(a[R]=m.length,m.push(w))});let c=l.labels.map(w=>w<0?-1:a[w]),f=se(c,i,r,m.length,s&&(w=>s(.15+.8*w))),b=[],p=w=>w.map(R=>`${tt(R.x*u)},${tt(R.y*u)}`).join(" ");f.forEach((w,R)=>{if(w.length===1)b.push(`<polygon points="${p(w[0])}" fill="${m[R]}" stroke="none"/>`);else{let y=[...w].sort((A,h)=>Math.abs(bt(h))-Math.abs(bt(A))).map(A=>"M"+p(A).replace(/ /g,"L")+"Z").join("");b.push(`<path d="${y}" fill="${m[R]}" fill-rule="evenodd" stroke="none"/>`)}});let x=tt(n),P=tt(r*u),v=[...new Set(Rt(l).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${x} ${P}" width="${x}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:v,paletteName:o,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${x}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${b.join(`\n`)}\n</g>\n</svg>`,tiles:m.length}}function Fe({data:e,W:t,H:n,box:o}){return s=>{let i=Math.floor((s.x-o.x)/o.w*t),r=Math.floor((s.y-o.y)/o.h*n);if(i<0||r<0||i>=t||r>=n)return null;let u=(r*t+i)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Te(e,t,n,o,s){let i=[];for(let u=0;u<5;u++)for(let l=0;l<5;l++){let a=e({x:t+o*(u+.5)/5,y:n+s*(l+.5)/5});a&&i.push(G(a))}if(i.length<2)return 0;let r=[0,1,2].map(u=>i.reduce((l,a)=>l+a[u],0)/i.length);return i.reduce((u,l)=>u+Math.hypot(l[0]-r[0],l[1]-r[1],l[2]-r[2]),0)/i.length}function je(e,t,n){let o=[];for(let s=0;s<70;s++)for(let i=0;i<70;i++){let r=e({x:t.x+t.w*(s+.5)/70,y:t.y+t.h*(i+.5)/70});r&&o.push(G(r))}return[...new Set(Ct(o,n,7).map(xt))]}function ae(e,t){Bt(e.eps);let n=Fe(e.photo),o=e.page,s=[{x:o.x,y:o.y},{x:o.x+o.w,y:o.y},{x:o.x+o.w,y:o.y+o.h},{x:o.x,y:o.y+o.h}],i=4+(1-e.detail/100)*26,r=(a,m,c,f)=>Te(n,a,m,c,f)>i,u=V({style:e.style,box:o,size:e.size,detail:e.detail/100,busy:r,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let l=jt(u,[s],a=>$t(a,s),e.eps);return t?.(.85),{tiles:u.length,lines:l,palette:e.suggest?je(n,e.photo.box,e.suggest):[]}}var Ce=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=Ce[t].exec(e);return n?+n[1]:null},Ee=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,Ge=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,o=0,s=!1,i=0,r=!1,u=!1,l=new Set,a=new Map,m=[],c=null;for(let f=0,b=0;f<e.length;b++){let p=e.indexOf(`\n`,f);p<0&&(p=e.length);let x=e.slice(f,p);f=p+1,t&&b%5e4===0&&t(f/e.length);let P=x.indexOf(";");if(P>=0){let k=Ee.exec(x.slice(P));k&&(u=Ge.test(k[1])),x=x.slice(0,P)}if(x=x.trim(),!x)continue;let v=x.split(/\\s/,1)[0].toUpperCase();if(v==="G0"||v==="G1"){let k=J(x,"Z"),w=J(x,"E");if(k!=null&&(n=k),w!=null){let R=s?w>0:w>o;if(s||(o=w),R&&!u&&(J(x,"X")!=null||J(x,"Y")!=null)){let I=Math.round(n*1e3)/1e3;l.add(I);let y=a.get(i);y?(y.from=Math.min(y.from,I),y.to=Math.max(y.to,I)):a.set(i,{from:I,to:I}),c&&(m.push({...c,z:I}),c=null),r=!0}}}else if(v==="G92"){let k=J(x,"E");k!=null&&(o=k)}else if(v==="M82")s=!1;else if(v==="M83")s=!0;else if(v==="M600")c={kind:"M600"};else if(/^T\\d+$/.test(v)){let k=+v.slice(1);r&&k!==i&&(c={kind:"tool",tool:k}),i=k}}return{layers:l.size,top:l.size?Math.max(...l):0,changes:m,tools:[...a].map(([f,b])=>({tool:f,...b})).sort((f,b)=>f.tool-b.tool)}}function ze(e,t){let n=e.img,o=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!o)return vt(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let s=4+(1-e.detail/100)*26,i=(l,a,m,c)=>St(n,l,a,m,c)>s,r=e.shape==="brick"?e.tile/2:e.tile,u=V({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:r,detail:e.detail/100,busy:i,seed:7});return t(.5),At(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var ue={mosaic:(e,t)=>ze(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t)};function pt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let o of Object.values(e))pt(o,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:o}=e.data,s=0,i=r=>{let u=Date.now();u-s>100&&(s=u,gt({id:t,progress:r}))};try{let r=await ue[n](o,i);gt({id:t,result:r},pt(r))}catch(r){gt({id:t,error:String(r?.message||r)})}};})();\n';
+  var worker_source_default = '(()=>{var q=null,et=new Map;function he(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let r=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,r=q.fillStyle),et.set(t,r),r}function nt(e){if(Array.isArray(e))return e;if(/^#[0-9a-f]{6}$/i.test(e))return[1,3,5].map(r=>parseInt(e.slice(r,r+2),16));let t=he(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(r=>parseInt(t.slice(r,r+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let r=p=>(p/=255,p<=.04045?p/12.92:Math.pow((p+.055)/1.055,2.4)),s=r(e),i=r(t),l=r(n),u=(s*.4124+i*.3576+l*.1805)/.95047,a=s*.2126+i*.7152+l*.0722,o=(s*.0193+i*.1192+l*.9505)/1.08883,c=p=>p>216/24389?Math.cbrt(p):(24389/27*p+16)/116,m=c(u),f=c(a),b=c(o);return[116*f-16,500*(m-f),200*(f-b)]}function dt([e,t,n]){let r=(e+16)/116,s=r+t/500,i=r-n/200,l=f=>f**3>216/24389?f**3:(116*f-16)/(24389/27),u=.95047*l(s),a=l(r),o=1.08883*l(i),c=f=>f<=.0031308?12.92*f:1.055*Math.pow(f,1/2.4)-.055;return"#"+[3.2406*u-1.5372*a-.4986*o,-.9689*u+1.8758*a+.0415*o,.0557*u-.204*a+1.057*o].map(f=>Math.round(Math.max(0,Math.min(1,c(f)))*255)).map(f=>f.toString(16).padStart(2,"0")).join("")}function xt(e,t,n){n=n||t.map(l=>G(nt(l)));let r=G(e),s=null,i=1/0;return t.forEach((l,u)=>{let a=n[u],o=(r[0]-a[0])**2+(r[1]-a[1])**2+(r[2]-a[2])**2;o<i&&(i=o,s=l)}),s}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(r=>G(wt(r))),n=new Map;return(r,s,i)=>{let l=r<<16|s<<8|i,u=n.get(l);return u||(u=xt([r,s,i],e,t),n.set(l,u)),u}}function At(e,t){let{width:n,height:r}=e,s=e.data,i=Mt(n,r),l=i.data,u=Math.max(2,Math.round(t.tile)),a=Math.min(u-1,Math.max(0,Math.round(t.grout))),o=t.palette&&t.palette.length?Pt(t.palette):null,c=Y(t.groutColor),m=new Map,f=0;for(let b=0,p=0;b<r;b+=u,p++){let d=t.bricks&&p%2?-Math.floor(u/2):0;for(let P=d;P<n;P+=u){let A=Math.max(0,P),v=Math.min(n,P+u),w=Math.min(r,b+u),R=0,I=0,y=0,S=0,h=0;for(let x=b;x<w-(w===b+u?a:0);x++)for(let k=A;k<Math.min(v,P+u-a);k++){let U=(x*n+k)*4;h++,!(s[U+3]<128)&&(R+=s[U],I+=s[U+1],y+=s[U+2],S++)}let g=S>0&&S>=h/2,M=[0,0,0,0];if(g){R=Math.round(R/S),I=Math.round(I/S),y=Math.round(y/S);let x=o?o(R,I,y):st(R,I,y);M=Y(x),m.set(x,(m.get(x)||0)+1),f++}for(let x=b;x<w;x++)for(let k=A;k<v;k++){let U=k>=P+u-a||x>=b+u-a;ot(l,(x*n+k)*4,U?g?c:[0,0,0,0]:M)}}}return{img:i,counts:m,tiles:f}}function vt(e){let{width:t,height:n,data:r}=e,s=t*n,i=new Int32Array(s).fill(-1),l=[],u=[],a=c=>r[c*4+3]<128?-1:r[c*4]<<16|r[c*4+1]<<8|r[c*4+2],o=[];for(let c=0;c<s;c++){if(i[c]>=0)continue;let m=a(c);if(m<0)continue;let f=l.length,b=0;for(i[c]=f,o.push(c);o.length;){let p=o.pop(),d=p%t;b++;for(let P of[d>0?p-1:-1,d<t-1?p+1:-1,p-t,p+t])P<0||P>=s||i[P]>=0||a(P)!==m||(i[P]=f,o.push(P))}l.push(st(m>>16,m>>8&255,m&255)),u.push(b)}return{labels:i,colors:l,sizes:u}}function kt(e,t,n,r,s){let i=[],l=e.data;for(let a=0;a<5;a++)for(let o=0;o<5;o++){let c=Math.floor(t+r*(a+.5)/5),m=Math.floor(n+s*(o+.5)/5);if(c<0||m<0||c>=e.width||m>=e.height)continue;let f=(m*e.width+c)*4;l[f+3]>=128&&i.push(G([l[f],l[f+1],l[f+2]]))}if(i.length<2)return 0;let u=[0,1,2].map(a=>i.reduce((o,c)=>o+c[a],0)/i.length);return i.reduce((a,o)=>a+Math.hypot(o[0]-u[0],o[1]-u[1],o[2]-u[2]),0)/i.length}function be(e,t,n,r){let s=n.length,i=n.map(a=>a.y),l=Math.max(0,Math.floor(Math.min(...i))),u=Math.min(t-1,Math.ceil(Math.max(...i)));for(let a=l;a<=u;a++){let o=a+.5,c=[];for(let m=0;m<s;m++){let f=n[m],b=n[(m+1)%s];f.y<=o!=b.y<=o&&c.push(f.x+(o-f.y)*(b.x-f.x)/(b.y-f.y))}c.sort((m,f)=>m-f);for(let m=0;m+1<c.length;m+=2){let f=Math.max(0,Math.ceil(c[m]-.5)),b=Math.min(e-1,Math.floor(c[m+1]-.5));for(let p=f;p<=b;p++)r(a*e+p)}}}function St(e,t,n){let{width:r,height:s}=e,i=e.data,l=Mt(r,s),u=l.data,a=n.palette&&n.palette.length?Pt(n.palette):null,o=new Map,c=[],m=0;for(let b of t){let p=0,d=0,P=0,A=0,v=0,w=[];if(be(r,s,b,y=>{w.push(y),v++;let S=y*4;i[S+3]<128||(p+=i[S],d+=i[S+1],P+=i[S+2],A++)}),!A||A<v/2)continue;p=Math.round(p/A),d=Math.round(d/A),P=Math.round(P/A);let R=a?a(p,d,P):st(p,d,P),I=Y(R);for(let y of w)ot(u,y*4,I);o.set(R,(o.get(R)||0)+1),m++,c.push(b)}let f=Math.max(0,n.grout)/2;if(f>0){let b=Y(n.groutColor);for(let p of c)for(let d=0;d<p.length;d++){let P=p[d],A=p[(d+1)%p.length],v=A.x-P.x,w=A.y-P.y,R=v*v+w*w||1,I=Math.max(0,Math.floor(Math.min(P.x,A.x)-f)),y=Math.min(r-1,Math.ceil(Math.max(P.x,A.x)+f)),S=Math.max(0,Math.floor(Math.min(P.y,A.y)-f)),h=Math.min(s-1,Math.ceil(Math.max(P.y,A.y)+f));for(let g=S;g<=h;g++)for(let M=I;M<=y;M++){let x=M+.5,k=g+.5,U=Math.max(0,Math.min(1,((x-P.x)*v+(k-P.y)*w)/R)),B=P.x+U*v-x,$=P.y+U*w-k;B*B+$*$<=f*f&&ot(u,(g*r+M)*4,b)}}}return{img:l,counts:o,tiles:m}}function Rt(e){let t=new Map;return e.colors.forEach((n,r)=>{let s=t.get(n)||{n:0,color:n,pieces:0,pixels:0};s.pieces++,s.pixels+=e.sizes[r],t.set(n,s)}),[...t.values()].sort((n,r)=>r.pixels-n.pixels).map((n,r)=>({...n,n:r+1}))}var pe=.01;function Ut(e){pe=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,r)=>e*r-t*n;function ge(e,t,n){let r=n.x-t.x,s=n.y-t.y,i=r*r+s*s,l=i?((e.x-t.x)*r+(e.y-t.y)*s)/i:0;return l=Math.max(0,Math.min(1,l)),{x:t.x+r*l,y:t.y+s*l,t:l}}function de(e,t,n,r){let s=t.x-e.x,i=t.y-e.y,l=r.x-n.x,u=r.y-n.y,a=it(s,i,l,u);if(Math.abs(a)<1e-12)return null;let o=n.x-e.x,c=n.y-e.y,m=it(o,c,l,u)/a,f=it(o,c,s,i)/a;return m<0||m>1||f<0||f>1?null:{x:e.x+s*m,y:e.y+i*m,t:m,u:f}}function Bt(e,t){let n=!1;for(let r=0,s=t.length-1;r<t.length;s=r++){let i=t[r],l=t[s];i.y>e.y!=l.y>e.y&&e.x<(l.x-i.x)*(e.y-i.y)/(l.y-i.y)+i.x&&(n=!n)}return n}function $t(e,t,n,r,s){let i=[];for(let l=0;l<e;l++){let u=s+l*2*Math.PI/e;i.push({x:t+r*Math.cos(u),y:n+r*Math.sin(u)})}return i}function at(e,t,n,r){let s=[0,1];for(let o of n)for(let c=0,m=o.length;c<m;c++){let f=de(e,t,o[c],o[(c+1)%m]);f&&s.push(f.t)}s.sort((o,c)=>o-c);let i=o=>({x:e.x+(t.x-e.x)*o,y:e.y+(t.y-e.y)*o}),l=[],u=null,a=0;for(let o=0;o+1<s.length;o++){let c=s[o],m=s[o+1];m-c<1e-9||(r(i((c+m)/2))?(u===null&&(u=c),a=m):u!==null&&(l.push({a:i(u),b:i(a)}),u=null))}return u!==null&&l.push({a:i(u),b:i(a)}),l}function lt(e,t){let n=1/0;for(let r of t)for(let s=0,i=r.length;s<i;s++)n=Math.min(n,H(e,ge(e,r[s],r[(s+1)%i])));return n}var Z=(e,t,n,r)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+r},{x:e,y:t+r}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let r=[];if(e==="square"){let[s,i]=z(n.x0,n.x1,t),[l,u]=z(n.y0,n.y1,t);for(let a=s;a<=i;a++)for(let o=l;o<=u;o++)r.push(Z(a*t,o*t,t,t))}else if(e==="brick"){let s=2*t,[i,l]=z(n.y0,n.y1,t);for(let u=i;u<=l;u++){let a=ct(u)?t:0,[o,c]=z(n.x0-a,n.x1-a,s);for(let m=o;m<=c;m++)r.push(Z(a+m*s,u*t,s,t))}}else if(e==="hex"){let s=Math.sqrt(3)*t,i=1.5*t,[l,u]=z(n.y0,n.y1,i);for(let a=l;a<=u;a++){let o=ct(a)?s/2:0,[c,m]=z(n.x0-o,n.x1-o,s);for(let f=c;f<=m;f++)r.push($t(6,o+f*s,a*i,t,-Math.PI/2))}}else if(e==="triangle"){let s=t*Math.sqrt(3)/2,[i,l]=z(n.y0,n.y1,s);for(let u=i;u<=l;u++){let a=u*s,o=ct(u)?t/2:0,[c,m]=z(n.x0-o,n.x1-o,t);for(let f=c;f<=m;f++){let b=o+f*t;r.push([{x:b,y:a+s},{x:b+t/2,y:a},{x:b+t,y:a+s}]),r.push([{x:b+t/2,y:a},{x:b+1.5*t,y:a},{x:b+t,y:a+s}])}}}else if(e==="herringbone"){let s=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([m,f])=>[m/t,f/t]),i=s.map(([m,f])=>(m+f)/4),l=s.map(([m,f])=>(m-f)/2),u=Math.floor(Math.min(...i))-2,a=Math.ceil(Math.max(...i))+2,o=Math.floor(Math.min(...l))-2,c=Math.ceil(Math.max(...l))+2;for(let m=u;m<=a;m++)for(let f=o;f<=c;f++)r.push(Z((2*m+f)*t,(2*m-f)*t,t,2*t)),r.push(Z((2*m+1+f)*t,(2*m+1-f)*t,2*t,t))}return r}function Ft(e,t){let n=new Map;for(let s of e){let i=s.b.x-s.a.x,l=s.b.y-s.a.y,u=Math.hypot(i,l);if(u<t)continue;i/=u,l/=u,(i<-1e-9||Math.abs(i)<=1e-9&&l<0)&&(i=-i,l=-l);let a=-l*s.a.x+i*s.a.y,o=Math.round(Math.atan2(l,i)*1e6)+"|"+Math.round(a/(t*10)),c=i*s.a.x+l*s.a.y,m=i*s.b.x+l*s.b.y;(n.get(o)||n.set(o,{dx:i,dy:l,off:a,list:[]}).get(o)).list.push([Math.min(c,m),Math.max(c,m)])}let r=[];for(let s of n.values()){s.list.sort((a,o)=>a[0]-o[0]);let i=a=>({x:s.dx*a-s.dy*s.off,y:s.dy*a+s.dx*s.off}),[l,u]=s.list[0];for(let a=1;a<=s.list.length;a++){let o=s.list[a];if(o&&o[0]<=u+t){u=Math.max(u,o[1]);continue}r.push({a:i(l),b:i(u)}),o&&([l,u]=o)}}return r}function jt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,r)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+r},{x:e,y:t+r}];function ye(e,t,n,r){let s=n?t*2:t,i=n?t/2:t,l=[],u=(a,o,c)=>{if(!(a>=e.x+e.w-1e-9||o>=e.y+e.h-1e-9))if(c>i*1.0001&&r(a,o,c,c)){let m=c/2;u(a,o,m),u(a+m,o,m),u(a,o+m,m),u(a+m,o+m,m)}else l.push({x:a,y:o,s:c})};for(let a=0;a*s<e.h;a++)for(let o=0;o*s<e.w;o++)u(e.x+o*s,e.y+a*s,s);return l}function Me(e,t){let n=[];for(let r=0,s=e.length;r<s;r++){let i=e[r],l=e[(r+1)%s],u=t(i),a=t(l);if(u<=0&&n.push(i),u<0&&a>0||u>0&&a<0){let o=u/(u-a);n.push({x:i.x+(l.x-i.x)*o,y:i.y+(l.y-i.y)*o})}}return n}function we(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,r=new Map,s=(l,u)=>l+","+u;e.forEach((l,u)=>{let a=s(Math.floor(l.x/n),Math.floor(l.y/n));(r.get(a)||r.set(a,[]).get(a)).push(u)});let i=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((l,u)=>{let a=Math.floor(l.x/n),o=Math.floor(l.y/n),c=N(t.x,t.y,t.w,t.h),m=()=>Math.max(...c.map(f=>H(f,l)));for(let f=0;f<=i&&c.length>=3&&!((f-1)*n>2*m());f++){let b=[];for(let p=a-f;p<=a+f;p++)for(let d=o-f;d<=o+f;d++)if(Math.max(Math.abs(p-a),Math.abs(d-o))===f)for(let P of r.get(s(p,d))||[])P!==u&&b.push(P);b.sort((p,d)=>H(e[p],l)-H(e[d],l));for(let p of b){let d=e[p],P=d.x-l.x,A=d.y-l.y,v=(l.x+d.x)/2,w=(l.y+d.y)/2;if(c=Me(c,R=>(R.x-v)*P+(R.y-w)*A),c.length<3)break}}return c}).filter(l=>l.length>=3)}function V({style:e,box:t,size:n,detail:r=0,busy:s=()=>!1,seed:i=1}){let l=r>0;if(e==="hex"){let a=n/Math.sqrt(3);return Lt("hex",a,{x0:-a,y0:-a,x1:t.w+a,y1:t.h+a}).map(o=>o.map(c=>({x:c.x+t.x,y:c.y+t.y})))}if(e==="brick"){let a=[];for(let o=0;o*n<t.h;o++){let c=o%2?-n:0;for(let m=t.x+c;m<t.x+t.w;m+=2*n){let f=t.y+o*n;l&&s(m,f,2*n,n)?a.push(N(m,f,n,n),N(m+n,f,n,n)):a.push(N(m,f,2*n,n))}}return a}let u=ye(t,n,l,s);if(e==="irregular"){let a=jt(i),o=u.map(c=>({x:c.x+c.s*(.5+(a()-.5)*.7),y:c.y+c.s*(.5+(a()-.5)*.7)})).filter(c=>c.x>=t.x&&c.y>=t.y&&c.x<=t.x+t.w&&c.y<=t.y+t.h);return we(o,t)}return u.map(a=>N(a.x,a.y,a.s,a.s))}function Ct(e,t,n,r){let s=r*10,i=o=>Math.round(o.x/s)+","+Math.round(o.y/s),l=new Set,u=[],a=o=>n(o)&&lt(o,t)>r*20;for(let o of e)for(let c=0;c<o.length;c++){let m=o[c],f=o[(c+1)%o.length],b=i(m),p=i(f),d=b<p?b+"|"+p:p+"|"+b;b===p||l.has(d)||(l.add(d),u.push(...at(m,f,t,a)))}return Ft(u,r)}function Tt(e,t,n=1,r=16){if(!e.length)return[];t=Math.min(t,e.length);let s=jt(n),i=(a,o)=>(a[0]-o[0])**2+(a[1]-o[1])**2+(a[2]-o[2])**2,l=[e[Math.floor(s()*e.length)]];for(;l.length<t;){let a=e.map(m=>Math.min(...l.map(f=>i(m,f)))),o=s()*a.reduce((m,f)=>m+f,0),c=0;for(;c<e.length-1&&(o-=a[c])>0;)c++;l.push(e[c])}let u=[];for(let a=0;a<r;a++){let o=l.map(()=>[0,0,0]);u=l.map(()=>0);for(let c of e){let m=0,f=1/0;l.forEach((b,p)=>{let d=i(c,b);d<f&&(f=d,m=p)}),o[m][0]+=c[0],o[m][1]+=c[1],o[m][2]+=c[2],u[m]++}l.forEach((c,m)=>{u[m]&&(l[m]=o[m].map(f=>f/u[m]))})}return l.map((a,o)=>({c:a,n:u[o]})).sort((a,o)=>o.n-a.n).map(a=>a.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function Pe(e,t,n){let r=new Uint8Array(t*n),s=[];for(let i=0;i<n;i++)for(let l=0;l<t;l++){let u=i*t+l,a=e[u];if(a<0||r[u])continue;let o=1;for(;l+o<t&&e[u+o]===a&&!r[u+o];)o++;let c=1;t:for(;i+c<n;){let m=(i+c)*t+l;for(let f=0;f<o;f++)if(e[m+f]!==a||r[m+f])break t;c++}for(let m=i;m<i+c;m++)r.fill(1,m*t+l,m*t+l+o);s.push({x:l,y:i,w:o,h:c,level:a})}return s}function Ae(e,t){let n=new Int16Array(e.length);for(let r=0;r<e.length;r++)n[r]=e[r]===-2?0:e[r]<0?t.baseLayers:_(e[r],t);return n}function Gt(e,t){let n=e.length,r=Ae(e,t),s=new Int16Array(n);for(let i=0;i<n;i++)s[i]=Math.max(0,e[i]);return{bottom:new Int16Array(n),top:r,level:s}}function mt(e,t,n,r,s){let i=(h,g)=>h>=0&&g>=0&&h<t&&g<n,l=(h,g)=>i(h,g)?e.bottom[g*t+h]:0,u=(h,g)=>{if(!i(h,g))return 0;let M=g*t+h;return e.top[M]>e.bottom[M]?e.top[M]:e.bottom[M]},a=(h,g)=>u(h,g)>l(h,g),o=(h,g)=>i(h,g)?e.level[g*t+h]:0,c=[],m=h=>n-h,f=new Int16Array(t*n),b=h=>{let g=new Map,M=[];for(let x=0;x<n;x++)for(let k=0;k<t;k++){let U=x*t+k;if(!a(k,x)){f[U]=-1;continue}let B=h(k,x)*4096+o(k,x),$=g.get(B);$==null&&($=M.length,g.set(B,$),M.push(B)),f[U]=$}return{rs:Pe(f,t,n),vals:M}};{let{rs:h,vals:g}=b(u);for(let M of h){let x=g[M.level];c.push({o:[M.x,m(M.y+M.h),Math.floor(x/4096)],u:[M.w,0,0],v:[0,M.h,0],level:x%4096})}}{let{rs:h,vals:g}=b(l);for(let M of h){let x=g[M.level];c.push({o:[M.x,m(M.y+M.h),Math.floor(x/4096)],u:[0,M.h,0],v:[M.w,0,0],level:x%4096})}}let p=(h,g,M,x)=>{if(g<=h)return[];if(x<=M||x<=h||M>=g)return[[h,g]];let k=[];return M>h&&k.push([h,M]),x<g&&k.push([x,g]),k},d=(h,g)=>a(h,g)?[l(h,g),u(h,g)]:[0,0];for(let h=0;h<=n;h++)for(let g=0;g<t;){let[M,x]=d(g,h-1),[k,U]=d(g,h);if(M===k&&x===U){g++;continue}let B=g+1;for(;B<t;B++){let[F,L]=d(B,h-1),[C,T]=d(B,h);if(F!==M||L!==x||C!==k||T!==U)break}let $=m(h);for(let[F,L]of p(M,x,k,U))c.push({o:[g,$,F],u:[B-g,0,0],v:[0,0,L-F],level:o(g,h-1)});for(let[F,L]of p(k,U,M,x))c.push({o:[g,$,F],u:[0,0,L-F],v:[B-g,0,0],level:o(g,h)});g=B}for(let h=0;h<=t;h++)for(let g=n-1;g>=0;){let[M,x]=d(h-1,g),[k,U]=d(h,g);if(M===k&&x===U){g--;continue}let B=g-1;for(;B>=0;B--){let[L,C]=d(h-1,B),[T,O]=d(h,B);if(L!==M||C!==x||T!==k||O!==U)break}let $=m(g+1),F=g-B;for(let[L,C]of p(k,U,M,x))c.push({o:[h,$,L],u:[0,0,C-L],v:[0,F,0],level:o(h,g)});for(let[L,C]of p(M,x,k,U))c.push({o:[h,$,L],u:[0,F,0],v:[0,0,C-L],level:o(h-1,g)});g=B}let P=[new Map,new Map,new Map],A=(h,g,M)=>h.o.map((x,k)=>x+g*h.u[k]+M*h.v[k]),v=(h,g)=>g===0?h[1]*1e5+h[2]:g===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of c)for(let[g,M]of[[0,0],[1,0],[1,1],[0,1]]){let x=A(h,g,M);for(let k=0;k<3;k++){let U=v(x,k),B=P[k].get(U);B||P[k].set(U,B=[]),B.push(x[k])}}for(let h of P)for(let[g,M]of h)h.set(g,[...new Set(M)].sort((x,k)=>x-k));let w=[],R=[],I=[],y=new Map,S=h=>{let g=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,M=y.get(g);return M==null&&(M=w.length/3,y.set(g,M),w.push(h[0]*r,h[1]*r,h[2]*s)),M};for(let h of c){let g=[A(h,0,0),A(h,1,0),A(h,1,1),A(h,0,1)],M=[];for(let k=0;k<4;k++){let U=g[k],B=g[(k+1)%4],$=U.findIndex((T,O)=>T!==B[O]);M.push(U);let F=Math.min(U[$],B[$]),L=Math.max(U[$],B[$]),C=(P[$].get(v(U,$))||[]).filter(T=>T>F&&T<L);U[$]>B[$]&&C.reverse();for(let T of C){let O=[...U];O[$]=T,M.push(O)}}let x=M.map(S);if(x.length===4)R.push(x[0],x[1],x[2],x[0],x[2],x[3]),I.push(h.level,h.level);else{let k=S(A(h,.5,.5));for(let U=0;U<x.length;U++)R.push(k,x[U],x[(U+1)%x.length]),I.push(h.level)}}return{vertices:w,triangles:R,levels:I}}function zt(e,t,n,r,s,i){let l=Int16Array.from(e),u=t*n,a=new Int32Array(u),o=new Float32Array(u),c=i.heightOf||(f=>f===-2?0:(f<0?s.baseLayers:_(f,s))*s.layerHeight),m=0;for(let f=0;f<12;f++){a.fill(-1);let b=[],p=[];for(let y=0;y<u;y++){if(a[y]>=0)continue;let S=b.length,h=l[y];for(b.push(h),a[y]=S,p.push(y);p.length;){let g=p.pop(),M=g%t;for(let x of[M>0?g-1:-1,M<t-1?g+1:-1,g-t,g+t])x<0||x>=u||a[x]>=0||l[x]!==h||(a[x]=S,p.push(x))}}let d=Math.SQRT2;for(let y=0;y<u;y++){let S=y%t,h=y/t|0,g=a[y],M=S===0||h===0||S===t-1||h===n-1||a[y-1]!==g||a[y+1]!==g||a[y-t]!==g||a[y+t]!==g;o[y]=M?1:1e9}for(let y=0;y<n;y++)for(let S=0;S<t;S++){let h=y*t+S;o[h]<=1||(o[h]=Math.min(o[h],o[h-1]+1,o[h-t]+1,o[h-t-1]+d,o[h-t+1]+d))}for(let y=n-1;y>=0;y--)for(let S=t-1;S>=0;S--){let h=y*t+S;o[h]<=1||(o[h]=Math.min(o[h],o[h+1]+1,o[h+t]+1,o[h+t+1]+d,o[h+t-1]+d))}let P=new Float32Array(b.length);for(let y=0;y<u;y++)o[y]>P[a[y]]&&(P[a[y]]=o[y]);let A=b.map(()=>new Map),v=new Float64Array(b.length).fill(1/0),w=(y,S)=>{let h=a[y],g=a[S];if(h===g)return;let M=l[y],x=l[S];v[h]=Math.min(v[h],c(x)),v[g]=Math.min(v[g],c(M)),x<M&&A[h].set(x,(A[h].get(x)||0)+1),M<x&&A[g].set(M,(A[g].get(M)||0)+1)};for(let y=0;y<n;y++)for(let S=0;S<t;S++){let h=y*t+S;S<t-1&&w(h,h+1),y<n-1&&w(h,h+t)}let R=new Int16Array(b.length).fill(-32768),I=0;if(b.forEach((y,S)=>{let h=c(y)-v[S];if(!(h>1e-9)||!A[S].size)return;let g=Math.max(1,2*P[S]-1)*r;if(g>=i.minWidth&&h<=i.maxRatio*g)return;let M=-2,x=-1;for(let[k,U]of A[S])(U>x||U===x&&k>M)&&(M=k,x=U);R[S]=M,I++}),!I)break;for(let y=0;y<u;y++){let S=R[a[y]];S!==-32768&&(l[y]=S)}m+=I}return{grid:l,lowered:m}}function ft(e,t="Mosaic Paint"){let n=e.vertices,r=e.triangles,s=r.length/3,i=new ArrayBuffer(84+s*50),l=new DataView(i),u=`${t} – multi-color by layer`.slice(0,80);for(let o=0;o<u.length;o++)l.setUint8(o,u.charCodeAt(o)&127);l.setUint32(80,s,!0);let a=84;for(let o=0;o<s;o++){let c=[0,1,2].map(I=>r[o*3+I]*3),m=n[c[1]]-n[c[0]],f=n[c[1]+1]-n[c[0]+1],b=n[c[1]+2]-n[c[0]+2],p=n[c[2]]-n[c[0]],d=n[c[2]+1]-n[c[0]+1],P=n[c[2]+2]-n[c[0]+2],A=f*P-b*d,v=b*p-m*P,w=m*d-f*p,R=Math.hypot(A,v,w)||1;A/=R,v/=R,w/=R;for(let I of[A,v,w])l.setFloat32(a,I,!0),a+=4;for(let I of c)for(let y=0;y<3;y++)l.setFloat32(a,n[I+y],!0),a+=4;l.setUint16(a,0,!0),a+=2}return i}function Dt(e,t){return e.map((n,r)=>{let s=r===0?1:_(r-1,t)+1,i=_(r,t);return{color:n,fromLayer:s,toLayer:i,changeAtLayer:r===0?null:s,z:r===0?null:+(s*t.layerHeight).toFixed(3)}})}var D=-3,ve=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,r,s){let i=Math.max(0,Math.round(r.frame)),l=t+2*i,u=n+2*i,a=new Int16Array(l*u).fill(D);for(let f=0;f<n;f++)for(let b=0;b<t;b++)a[(f+i)*l+b+i]=e[f*t+b];let o=Math.min(r.corner,l/2,u/2),c=r.hole/2,m=ve(r,s);for(let f=0;f<u;f++)for(let b=0;b<l;b++){let p=b+.5,d=f+.5;if(o>0){let P=p<o?o:p>l-o?l-o:p,A=d<o?o:d>u-o?u-o:d;if((p-P)**2+(d-A)**2>o*o){a[f*l+b]=-2;continue}}c>0&&(p-l/2)**2+(d-m)**2<=c*c&&(a[f*l+b]=-2)}return{grid:a,w:l,h:u}}function _t(e,t,n,r){let s=new Uint8Array(e*t),i=n/2;if(i<=0)return s;let l=[r,e-r],u=[r,t-r];for(let a of l)for(let o of u)for(let c=Math.max(0,Math.floor(o-i));c<Math.min(t,Math.ceil(o+i));c++)for(let m=Math.max(0,Math.floor(a-i));m<Math.min(e,Math.ceil(a+i));m++)(m+.5-a)**2+(c+.5-o)**2<=i*i&&(s[c*e+m]=1);return s}function qt(e,t,n,r=2){let s=n;for(let i=0;i<t.length;i++){if(!t[i])continue;let l=0;for(let u of e)u.top[i]>u.bottom[i]&&(l=Math.max(l,u.top[i]));l>0&&(s=Math.min(s,l-r))}if(s=Math.max(0,s),!s)return 0;for(let i=0;i<t.length;i++)if(t[i])for(let l of e)l.top[i]>l.bottom[i]&&l.bottom[i]<s&&(l.bottom[i]=s,l.top[i]<s&&(l.top[i]=s));return s}function Ht(e,t,n,r){let s=e.length,i={bottom:new Int16Array(s).fill(t),top:new Int16Array(s),level:new Int16Array(s).fill(r)};for(let l=0;l<s;l++)e[l]===D&&(i.top[l]=n);return i}var j=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function ke(e,t,n){let r=e.vertices,s=e.triangles,i=[];i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${j(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let l of t)i.push(`<base name="${j(l)}" displaycolor="${l.toUpperCase()}FF"/>`);i.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${j(n)}">`,"<mesh>","<vertices>");for(let l=0;l<r.length;l+=3)i.push(`<vertex x="${E(r[l])}" y="${E(r[l+1])}" z="${E(r[l+2])}"/>`);i.push("</vertices>","<triangles>");for(let l=0;l<s.length;l+=3)i.push(`<triangle v1="${s[l]}" v2="${s[l+1]}" v3="${s[l+2]}" pid="1" p1="${Math.max(0,e.levels[l/3])}"/>`);return i.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),i.join(`\n`)}function Se(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:ke(e,t.map(r=>r.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:Se(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,r=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return s=>s===-2?0:s<0?t.baseLayers*t.layerHeight:e[s]?r:n}function Yt(e,t,n,r,s,i){let l=t*n,u=[];if(i.baseLayers>0){let a=new Int16Array(l);for(let o=0;o<l;o++)e[o]!==-2&&(a[o]=i.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(l),top:a,level:new Int16Array(l)}})}for(let a=0;a<r;a++){let o=new Int16Array(l).fill(i.baseLayers),c=new Int16Array(l),m=new Int16Array(l).fill(a),f=i.baseLayers+(s[a]?Math.max(1,i.tileLayers-i.groutRecess):i.tileLayers),b=!1;for(let p=0;p<l;p++)e[p]===a&&(c[p]=f,b=!0);b&&u.push({part:a,solid:{bottom:o,top:c,level:m}})}return u}function Zt(e,t,n="prusa"){return n==="bambu"?Re(e,t):Ie(e,t)}function Re(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',r=(o,c)=>`${o.toString(16).padStart(8,"0")}-0000-4000-8000-${c.toString(16).padStart(12,"0")}`,s=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((o,c)=>{let m=o.mesh.vertices,f=o.mesh.triangles;s.push(`<object id="${c+1}" p:UUID="${r(1,c)}" type="model">`,"<mesh>","<vertices>");for(let b=0;b<m.length;b+=3)s.push(`<vertex x="${E(m[b])}" y="${E(m[b+1])}" z="${E(m[b+2])}"/>`);s.push("</vertices>","<triangles>");for(let b=0;b<f.length;b+=3)s.push(`<triangle v1="${f[b]}" v2="${f[b+1]}" v3="${f[b+2]}"/>`);s.push("</triangles>","</mesh>","</object>")}),s.push("</resources>","<build/>","</model>");let i=e.length+1,l="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${j(t)}</metadata>`,"<resources>",`<object id="${i}" p:UUID="${r(2,0)}" type="model">`,"<components>"];e.forEach((o,c)=>u.push(`<component p:path="${l}" objectid="${c+1}" p:UUID="${r(3,c)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${r(4,0)}">`,`<item objectid="${i}" p:UUID="${r(5,0)}" printable="1"/>`,"</build>","</model>");let a=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${i}">`,`<metadata key="name" value="${j(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((o,c)=>a.push(`<part id="${c+1}" subtype="normal_part">`,`<metadata key="name" value="${j(o.name)}"/>`,`<metadata key="extruder" value="${o.filament||c+1}"/>`,"</part>")),a.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",l)},{name:"3D/Objects/object_1.model",data:s.join(`\n`)},{name:"Metadata/model_settings.config",data:a.join(`\n`)}]}function Ie(e,t){let n=[],r=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${j(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let l of e)n.push(`<base name="${j(l.name)}" displaycolor="${l.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${j(t)}">`,"<mesh>","<vertices>");for(let l of e){let u=l.mesh.vertices;for(let a=0;a<u.length;a+=3)n.push(`<vertex x="${E(u[a])}" y="${E(u[a+1])}" z="${E(u[a+2])}"/>`)}n.push("</vertices>","<triangles>"),r.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${j(t)}"/>`);let s=0,i=0;return e.forEach((l,u)=>{let a=l.mesh.triangles,o=a.length/3;for(let c=0;c<a.length;c+=3)n.push(`<triangle v1="${a[c]+s}" v2="${a[c+1]+s}" v3="${a[c+2]+s}" pid="2" p1="${u}"/>`);r.push(`<volume firstid="${i}" lastid="${i+o-1}">`,`<metadata type="volume" key="name" value="${j(l.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${l.filament||u+1}"/>`,"</volume>"),s+=l.mesh.vertices.length/3,i+=o}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),r.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:r.join(`\n`)}]}function Vt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let r=t.vertices.length/3;for(let s of n.vertices)t.vertices.push(s);for(let s of n.triangles)t.triangles.push(s+r);for(let s of n.levels)t.levels.push(s)}return t}var K=null;function Be(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let r=n;for(let s=0;s<8;s++)r=r&1?3988292384^r>>>1:r>>>1;K[n]=r>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function $e(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,r=[],s=[],i=0;for(let m of e){let f=n.encode(m.name),b=typeof m.data=="string"?n.encode(m.data):m.data,p=Be(b),d=t?await $e(b):null,P=!!d&&d.length<b.length,A=P?d:b,v=new Uint8Array(30+f.length),w=new DataView(v.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,p,!0),w.setUint32(18,A.length,!0),w.setUint32(22,b.length,!0),w.setUint16(26,f.length,!0),v.set(f,30);let R=new Uint8Array(46+f.length),I=new DataView(R.buffer);I.setUint32(0,33639248,!0),I.setUint16(4,20,!0),I.setUint16(6,20,!0),I.setUint16(8,2048,!0),I.setUint16(10,P?8:0,!0),I.setUint16(12,0,!0),I.setUint16(14,33,!0),I.setUint32(16,p,!0),I.setUint32(20,A.length,!0),I.setUint32(24,b.length,!0),I.setUint16(28,f.length,!0),I.setUint32(42,i,!0),R.set(f,46),r.push(v,A),s.push(R),i+=v.length+A.length}let l=s.reduce((m,f)=>m+f.length,0),u=new Uint8Array(22),a=new DataView(u.buffer);a.setUint32(0,101010256,!0),a.setUint16(8,e.length,!0),a.setUint16(10,e.length,!0),a.setUint32(12,l,!0),a.setUint32(16,i,!0);let o=new Uint8Array(i+l+22),c=0;for(let m of[...r,...s,u])o.set(m,c),c+=m.length;return o}var Xt=2,Le=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),Fe=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,r,s,i,l,u,a){let o=s.filter(b=>i[b]>0),c={list:o,grid:new Int16Array(0),counts:[],lowered:0},m=Int16Array.from(e),f=0;for(let b=0;b<4;b++){a?.(b/4);let p=new Int16Array(l.length).fill(-1);o.forEach((w,R)=>{p[w]=R});let d=m.map(w=>w<0?-1:p[w]),P=u.mode==="flat"?Jt(o.map(w=>l[w]),Qt(u)):void 0,A=zt(d,t,n,r,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:P});f+=A.lowered;let v=o.map(()=>0);for(let w=0;w<A.grid.length;w++){let R=A.grid[w];R>=0&&v[R]++,m[w]=R<0?-1:o[R]}if(c={list:o,grid:A.grid,counts:v,lowered:f},v.every(w=>w>0))break;o=o.filter((w,R)=>v[R]>0)}return c}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,r,s){let i=Ot(e,t,n,{frame:s.frame/r,corner:s.corner/r,hole:s.hole/r},Xt/r),l=(s.magnet/2+Xt+s.corner*.3)/r;return{...i,mask:s.magnet>0?_t(i.w,i.h,s.magnet/r,l):null}}function ee(e,t,n){let r=t.length,s;if(n.mode==="flat")s=Yt(e.grid,e.w,e.h,r,t,Qt(n)),n.frame>0&&s.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(r,n),0)});else{let i=Gt(e.grid,W(n)),l=Kt(r,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(i.top[u]=l,i.level[u]=r-1);s=[{part:0,solid:i}]}return e.mask&&qt(s.map(i=>i.solid),e.mask,Fe(n.magnetDepth,n),Le),s}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Vt(ee(n,e.grout,t).map(r=>mt(r.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o:r}=e,s=te(n.grid,n.w,n.h,n.cell,r);t?.(.05);let i=ee(s,n.grout,r);t?.(.15);let l=i.map((o,c)=>{let m=mt(o.solid,s.w,s.h,n.cell,r.layerHeight);return t?.(.15+.7*(c+1)/i.length),m}),u=l.reduce((o,c)=>o+c.triangles.length/3,0),a=(o,c,m)=>({fileName:o,type:c,data:m,triangles:u,parts:l.length});if(r.mode==="flat"){let o=i.map((m,f)=>{let b=Math.max(0,m.part),p=e.colors[b];return{name:m.part===D?e.labels.frame:m.part<0?e.labels.base:`${m.part+1} ${p}`,color:p,mesh:l[f],filament:b+1}});if(e.kind==="3mf")return a(e.name+".3mf","model/3mf",await Q(Zt(o,e.name,e.slicer)));let c=i.map((m,f)=>({name:`${e.name}-${m.part===D?"frame":m.part<0?"base":`${m.part+1}-${e.colors[m.part].slice(1)}`}.stl`,data:new Uint8Array(ft(o[f].mesh,o[f].name))}));return a(e.name+"-stl.zip","application/zip",await Q(c))}return e.kind==="3mf"?a(e.name+".3mf","model/3mf",await Q(Nt(l[0],Dt(e.colors,W(r)),e.name))):a(e.name+".stl","model/stl",new Uint8Array(ft(l[0],e.name)))}function se(e,t,n,r,s){let i=(m,f)=>m<0||f<0||m>=t||f>=n?-1:e[f*t+m],l=t+1,u=(m,f)=>f*l+m,a=Array.from({length:r},()=>new Map),o=(m,f,b,p,d)=>{let P=a[m],A=u(f,b),v=P.get(A);v?v.push(u(p,d)):P.set(A,[u(p,d)])};for(let m=0;m<n;m++)for(let f=0;f<t;f++){s&&f===0&&m%64===0&&s(.5*m/n);let b=e[m*t+f];b<0||(i(f,m-1)!==b&&o(b,f+1,m,f,m),i(f-1,m)!==b&&o(b,f,m,f,m+1),i(f,m+1)!==b&&o(b,f,m+1,f+1,m+1),i(f+1,m)!==b&&o(b,f+1,m+1,f+1,m))}let c=[];for(let m=0;m<r;m++){s&&m%256===0&&s(.5+.5*m/r);let f=a[m],b=[];for(let[p]of f)for(;f.get(p)&&f.get(p).length;){let d=[p],P=p,A=oe(f,p,-1,l);for(;A!==p;){d.push(A);let v=oe(f,A,P,l);P=A,A=v}b.push(Ce(d,l))}c.push(b)}return c}function oe(e,t,n,r){let s=e.get(t),i=0;if(s.length>1&&n>=0){let u=t%r-n%r,a=Math.floor(t/r)-Math.floor(n/r),o=c=>{let m=c%r-t%r,f=Math.floor(c/r)-Math.floor(t/r);return m===a&&f===-u?0:m===u&&f===a?1:2};for(let c=1;c<s.length;c++)o(s[c])<o(s[i])&&(i=c)}let l=s[i];return s.splice(i,1),s.length||e.delete(t),l}function Ce(e,t){let n=e.map(i=>({x:i%t,y:Math.floor(i/t)})),r=n.length,s=[];for(let i=0;i<r;i++){let l=n[(i+r-1)%r],u=n[i],a=n[(i+1)%r];(u.x-l.x)*(a.y-u.y)-(u.y-l.y)*(a.x-u.x)!==0&&s.push(u)}return s}function bt(e){let t=0;for(let n=0,r=e.length;n<r;n++){let s=e[n],i=e[(n+1)%r];t+=s.x*i.y-i.x*s.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,r,s){let i=e.width,l=e.height,u=n/i,a=vt(e);s?.(.15);let o=new Int32Array(a.colors.length).fill(-1),c=[];a.colors.forEach((w,R)=>{w!==t&&(o[R]=c.length,c.push(w))});let m=a.labels.map(w=>w<0?-1:o[w]),f=se(m,i,l,c.length,s&&(w=>s(.15+.8*w))),b=[],p=w=>w.map(R=>`${tt(R.x*u)},${tt(R.y*u)}`).join(" ");f.forEach((w,R)=>{if(w.length===1)b.push(`<polygon points="${p(w[0])}" fill="${c[R]}" stroke="none"/>`);else{let y=[...w].sort((S,h)=>Math.abs(bt(h))-Math.abs(bt(S))).map(S=>"M"+p(S).replace(/ /g,"L")+"Z").join("");b.push(`<path d="${y}" fill="${c[R]}" fill-rule="evenodd" stroke="none"/>`)}});let d=tt(n),P=tt(l*u),A=[...new Set(Rt(a).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${d} ${P}" width="${d}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:A,paletteName:r,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${d}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${b.join(`\n`)}\n</g>\n</svg>`,tiles:c.length}}function Te({data:e,W:t,H:n,box:r}){return s=>{let i=Math.floor((s.x-r.x)/r.w*t),l=Math.floor((s.y-r.y)/r.h*n);if(i<0||l<0||i>=t||l>=n)return null;let u=(l*t+i)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Ee(e,t,n,r,s){let i=[];for(let u=0;u<5;u++)for(let a=0;a<5;a++){let o=e({x:t+r*(u+.5)/5,y:n+s*(a+.5)/5});o&&i.push(G(o))}if(i.length<2)return 0;let l=[0,1,2].map(u=>i.reduce((a,o)=>a+o[u],0)/i.length);return i.reduce((u,a)=>u+Math.hypot(a[0]-l[0],a[1]-l[1],a[2]-l[2]),0)/i.length}function Ge(e,t,n){let r=[];for(let s=0;s<70;s++)for(let i=0;i<70;i++){let l=e({x:t.x+t.w*(s+.5)/70,y:t.y+t.h*(i+.5)/70});l&&r.push(G(l))}return[...new Set(Tt(r,n,7).map(dt))]}function ae(e,t){Ut(e.eps);let n=Te(e.photo),r=e.page,s=[{x:r.x,y:r.y},{x:r.x+r.w,y:r.y},{x:r.x+r.w,y:r.y+r.h},{x:r.x,y:r.y+r.h}],i=4+(1-e.detail/100)*26,l=(o,c,m,f)=>Ee(n,o,c,m,f)>i,u=V({style:e.style,box:r,size:e.size,detail:e.detail/100,busy:l,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let a=Ct(u,[s],o=>Bt(o,s),e.eps);return t?.(.85),{tiles:u.length,lines:a,palette:e.suggest?Ge(n,e.photo.box,e.suggest):[]}}var ze=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=ze[t].exec(e);return n?+n[1]:null},De=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,Oe=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,r=0,s=!1,i=0,l=!1,u=!1,a=new Set,o=new Map,c=[],m=null;for(let f=0,b=0;f<e.length;b++){let p=e.indexOf(`\n`,f);p<0&&(p=e.length);let d=e.slice(f,p);f=p+1,t&&b%5e4===0&&t(f/e.length);let P=d.indexOf(";");if(P>=0){let v=De.exec(d.slice(P));v&&(u=Oe.test(v[1])),d=d.slice(0,P)}if(d=d.trim(),!d)continue;let A=d.split(/\\s/,1)[0].toUpperCase();if(A==="G0"||A==="G1"){let v=J(d,"Z"),w=J(d,"E");if(v!=null&&(n=v),w!=null){let R=s?w>0:w>r;if(s||(r=w),R&&!u&&(J(d,"X")!=null||J(d,"Y")!=null)){let I=Math.round(n*1e3)/1e3;a.add(I);let y=o.get(i);y?(y.from=Math.min(y.from,I),y.to=Math.max(y.to,I)):o.set(i,{from:I,to:I}),m&&(c.push({...m,z:I}),m=null),l=!0}}}else if(A==="G92"){let v=J(d,"E");v!=null&&(r=v)}else if(A==="M82")s=!1;else if(A==="M83")s=!0;else if(A==="M600")m={kind:"M600"};else if(/^T\\d+$/.test(A)){let v=+A.slice(1);l&&v!==i&&(m={kind:"tool",tool:v}),i=v}}return{layers:a.size,top:a.size?Math.max(...a):0,changes:c,tools:[...o].map(([f,b])=>({tool:f,...b})).sort((f,b)=>f.tool-b.tool)}}function _e(e){let t=new Uint8ClampedArray(256),n=Math.min(e.black,e.white-1),r=Math.max(e.white,n+1),s=e.contrast/100,i=s>=0?1/Math.max(.01,1-s):1+s,l=e.brightness/100*255;for(let u=0;u<256;u++){let a=Math.min(1,Math.max(0,(u-n)/(r-n)));a=Math.pow(a,1/e.gamma)*255,a=(a-128)*i+128+l,t[u]=Math.round(a)}return t}function ue(e,t,n,r){let s=Float32Array.from(e),i=new Float32Array(s.length);r=Math.max(1,Math.round(r));for(let l=0;l<3;l++){for(let u=0;u<n;u++){let a=u*t,o=0;for(let c=-r;c<=r;c++)o+=s[a+Math.min(t-1,Math.max(0,c))];for(let c=0;c<t;c++)i[a+c]=o/(2*r+1),o+=s[a+Math.min(t-1,c+r+1)]-s[a+Math.max(0,c-r)]}for(let u=0;u<t;u++){let a=0;for(let o=-r;o<=r;o++)a+=i[Math.min(n-1,Math.max(0,o))*t+u];for(let o=0;o<n;o++)s[o*t+u]=a/(2*r+1),a+=i[Math.min(n-1,o+r+1)*t+u]-i[Math.max(0,o-r)*t+u]}}return s}function ce(e,t){let n=[new Float32Array(t),new Float32Array(t),new Float32Array(t)];for(let r=0;r<t;r++)n[0][r]=e[r*4],n[1][r]=e[r*4+1],n[2][r]=e[r*4+2];return n}function qe(e,t,n,r){let s=t*n,i=ce(e,s),l=1+Math.round(r/40),u=6+r*.4,a=i.map(o=>ue(o,t,n,l));for(let o=0;o<s;o++){let c=Math.hypot(i[0][o]-a[0][o],i[1][o]-a[1][o],i[2][o]-a[2][o]),m=r/100*Math.exp(-(c*c)/(2*u*u));for(let f=0;f<3;f++)e[o*4+f]=i[f][o]+(a[f][o]-i[f][o])*m}}function He(e,t,n,r){let s=t*n,i=ce(e,s),l=r/100*1.5,u=i.map(a=>ue(a,t,n,1));for(let a=0;a<s;a++)for(let o=0;o<3;o++)e[a*4+o]=i[o][a]+(i[o][a]-u[o][a])*l}function me(e,t,n,r){let s=new Uint8ClampedArray(e);r.denoise>0&&qe(s,t,n,r.denoise);let i=_e(r),l=1+r.saturation/100;for(let u=0;u<s.length;u+=4){let a=i[s[u]],o=i[s[u+1]],c=i[s[u+2]];if(l!==1){let m=.299*a+.587*o+.114*c;a=m+(a-m)*l,o=m+(o-m)*l,c=m+(c-m)*l}s[u]=a,s[u+1]=o,s[u+2]=c}return r.sharpen>0&&He(s,t,n,r.sharpen),s}function Ne(e,t){let n=e.img,r=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!r)return At(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let s=4+(1-e.detail/100)*26,i=(a,o,c,m)=>kt(n,a,o,c,m)>s,l=e.shape==="brick"?e.tile/2:e.tile,u=V({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:l,detail:e.detail/100,busy:i,seed:7});return t(.5),St(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var fe={mosaic:(e,t)=>Ne(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t),adjust:e=>({width:e.img.width,height:e.img.height,data:me(e.img.data,e.img.width,e.img.height,e.adjust)})};function pt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let r of Object.values(e))pt(r,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:r}=e.data,s=0,i=l=>{let u=Date.now();u-s>100&&(s=u,gt({id:t,progress:l}))};try{let l=await fe[n](r,i);gt({id:t,result:l},pt(l))}catch(l){gt({id:t,error:String(l?.message||l)})}};})();\n';
 
   // src/lib/model3d.ts
   var topLayer = (i, s) => s.baseLayers + (i + 1) * s.layersPerColor;
@@ -7158,30 +7366,30 @@
     return { grid: out, w: W, h: H };
   }
   function pocketMask(w, h, d, inset) {
-    const mask = new Uint8Array(w * h), r = d / 2;
-    if (r <= 0) return mask;
+    const mask2 = new Uint8Array(w * h), r = d / 2;
+    if (r <= 0) return mask2;
     const xs = [inset, w - inset], ys = [inset, h - inset];
     for (const px of xs) for (const py of ys) {
       for (let y = Math.max(0, Math.floor(py - r)); y < Math.min(h, Math.ceil(py + r)); y++) {
         for (let x = Math.max(0, Math.floor(px - r)); x < Math.min(w, Math.ceil(px + r)); x++) {
-          if ((x + 0.5 - px) ** 2 + (y + 0.5 - py) ** 2 <= r * r) mask[y * w + x] = 1;
+          if ((x + 0.5 - px) ** 2 + (y + 0.5 - py) ** 2 <= r * r) mask2[y * w + x] = 1;
         }
       }
     }
-    return mask;
+    return mask2;
   }
-  function cutPockets(solids2, mask, depth, keep = 2) {
+  function cutPockets(solids2, mask2, depth, keep = 2) {
     let used = depth;
-    for (let i = 0; i < mask.length; i++) {
-      if (!mask[i]) continue;
+    for (let i = 0; i < mask2.length; i++) {
+      if (!mask2[i]) continue;
       let top = 0;
       for (const s of solids2) if (s.top[i] > s.bottom[i]) top = Math.max(top, s.top[i]);
       if (top > 0) used = Math.min(used, top - keep);
     }
     used = Math.max(0, used);
     if (!used) return 0;
-    for (let i = 0; i < mask.length; i++) {
-      if (!mask[i]) continue;
+    for (let i = 0; i < mask2.length; i++) {
+      if (!mask2[i]) continue;
       for (const s of solids2) if (s.top[i] > s.bottom[i] && s.bottom[i] < used) {
         s.bottom[i] = used;
         if (s.top[i] < used) s.top[i] = used;
@@ -7586,12 +7794,12 @@
       for (const [start] of m) {
         while (m.get(start) && m.get(start).length) {
           const ring = [start];
-          let prev = start, cur = take(m, start, -1, V);
-          while (cur !== start) {
-            ring.push(cur);
-            const next = take(m, cur, prev, V);
-            prev = cur;
-            cur = next;
+          let prev = start, cur2 = take(m, start, -1, V);
+          while (cur2 !== start) {
+            ring.push(cur2);
+            const next = take(m, cur2, prev, V);
+            prev = cur2;
+            cur2 = next;
           }
           list.push(simplify(ring, V));
         }
@@ -7671,9 +7879,9 @@ ${shapes.join("\n")}
   }
 
   // src/lib/photo.ts
-  function sampler({ data, W, H, box: box4 }) {
+  function sampler({ data, W, H, box: box5 }) {
     return (p) => {
-      const u = Math.floor((p.x - box4.x) / box4.w * W), v = Math.floor((p.y - box4.y) / box4.h * H);
+      const u = Math.floor((p.x - box5.x) / box5.w * W), v = Math.floor((p.y - box5.y) / box5.h * H);
       if (u < 0 || v < 0 || u >= W || v >= H) return null;
       const i = (v * W + u) * 4;
       return data[i + 3] < 20 ? null : [data[i], data[i + 1], data[i + 2]];
@@ -7689,10 +7897,10 @@ ${shapes.join("\n")}
     const m = [0, 1, 2].map((k) => labs.reduce((s, l) => s + l[k], 0) / labs.length);
     return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
   }
-  function suggestPalette(at, box4, n5) {
+  function suggestPalette(at, box5, n5) {
     const labs = [];
     for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
-      const c = at({ x: box4.x + box4.w * (i + 0.5) / 70, y: box4.y + box4.h * (j + 0.5) / 70 });
+      const c = at({ x: box5.x + box5.w * (i + 0.5) / 70, y: box5.y + box5.h * (j + 0.5) / 70 });
       if (c) labs.push(toLab(c));
     }
     return [...new Set(kmeans(labs, n5, 7).map(fromLab))];
@@ -7702,8 +7910,8 @@ ${shapes.join("\n")}
     const at = sampler(j.photo), d = j.page;
     const page2 = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
     const bar = 4 + (1 - j.detail / 100) * 26;
-    const busy = (x, y, w, h) => detailAt2(at, x, y, w, h) > bar;
-    const cells3 = cells2({ style: j.style, box: d, size: j.size, detail: j.detail / 100, busy, seed: j.seed });
+    const busy2 = (x, y, w, h) => detailAt2(at, x, y, w, h) > bar;
+    const cells3 = cells2({ style: j.style, box: d, size: j.size, detail: j.detail / 100, busy: busy2, seed: j.seed });
     progress?.(0.5);
     if (cells3.length > j.maxTiles) return { tiles: cells3.length, lines: [], palette: [] };
     const lines2 = lines(cells3, [page2], (p) => pointInPolygon(p, page2), j.eps);
@@ -7806,9 +8014,9 @@ ${shapes.join("\n")}
       return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette: m.palette, bricks: m.shape === "offset" });
     }
     const bar = 4 + (1 - m.detail / 100) * 26;
-    const busy = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
+    const busy2 = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
     const size = m.shape === "brick" ? m.tile / 2 : m.tile;
-    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
+    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy: busy2, seed: 7 });
     progress(0.5);
     return mosaicCells(img, cells3, { grout: m.grout, groutColor: m.groutColor, palette: m.palette });
   }
@@ -7819,7 +8027,8 @@ ${shapes.join("\n")}
     photoMosaic: (a, p) => photoMosaic(a, p),
     gcode: (a, p) => readGcode(a.text, p),
     view3d: (a) => viewMesh(a.shape, a.o),
-    export3d: (a, p) => exportModel(a, p)
+    export3d: (a, p) => exportModel(a, p),
+    adjust: (a) => ({ width: a.img.width, height: a.img.height, data: applyAdjust(a.img.data, a.img.width, a.img.height, a.adjust) })
   };
 
   // src/shared/work.ts
@@ -8011,6 +8220,162 @@ ${shapes.join("\n")}
     $("#btn-reduce").onclick = reduceToPalette;
   }
 
+  // src/raster/adjust-ui.ts
+  var SLIDERS = [
+    ["brightness", "Brightness", -100, 100],
+    ["contrast", "Contrast", -100, 100],
+    ["saturation", "Saturation", -100, 100],
+    ["black", "Shadows", 0, 254],
+    ["gamma", "Midtones", -100, 100],
+    ["white", "Highlights", 1, 255],
+    ["sharpen", "Sharpen", 0, 100],
+    ["denoise", "Smooth noise", 0, 100]
+  ];
+  var toSlider = (k, v) => k === "gamma" ? Math.round(Math.log2(v) * 50) : v;
+  var fromSlider = (k, v) => k === "gamma" ? Math.pow(2, v / 50) : v;
+  var dlg3 = null;
+  var box3;
+  var original;
+  var mask = null;
+  var cur = { ...NO_ADJUST };
+  var busy = Promise.resolve();
+  var timer2 = 0;
+  var comparing = false;
+  function build() {
+    const d = document.createElement("dialog");
+    d.id = "dlg-adjust";
+    d.className = "sheet";
+    d.innerHTML = `<div class="dlg-head"><h2>${t("Adjust colors")}</h2><span class="adj-busy note"></span></div>
+<div class="adj-grid">${SLIDERS.map(([k, label2, min, max]) => `<label class="adj-row"><span>${t(label2)}</span><input type="range" data-k="${k}" min="${min}" max="${max}" step="1"><output></output></label>`).join("")}</div>
+<div class="row dlg-foot">
+  <button class="adj-auto" title="${t("Stretch the picture’s tones to the full range")}">${t("Auto")}</button>
+  <button class="adj-reset">${t("Reset")}</button>
+  <button class="adj-compare" title="${t("Hold to see the picture as it was")}">${t("Before")}</button>
+  <span class="grow"></span>
+  <button class="adj-cancel">${t("Cancel")}</button>
+  <button class="adj-apply primary">${t("Apply")}</button>
+</div>`;
+    document.body.append(d);
+    for (const inp of d.querySelectorAll("input[type=range]")) {
+      inp.addEventListener("input", () => {
+        const k = inp.dataset.k;
+        cur[k] = fromSlider(k, +inp.value);
+        if (k === "black" && cur.black >= cur.white) cur.white = Math.min(255, cur.black + 1);
+        if (k === "white" && cur.white <= cur.black) cur.black = Math.max(0, cur.white - 1);
+        show2();
+        schedule();
+      });
+    }
+    d.querySelector(".adj-auto").onclick = () => {
+      Object.assign(cur, autoLevels(original.data));
+      show2();
+      schedule();
+    };
+    d.querySelector(".adj-reset").onclick = () => {
+      cur = { ...NO_ADJUST };
+      show2();
+      schedule();
+    };
+    const cmp = d.querySelector(".adj-compare");
+    const before = (on2) => {
+      comparing = on2;
+      if (on2) {
+        clearTimeout(timer2);
+        putRegion(original.data);
+      } else schedule(0);
+    };
+    cmp.onpointerdown = (e) => {
+      cmp.setPointerCapture(e.pointerId);
+      before(true);
+    };
+    cmp.onpointerup = cmp.onpointercancel = () => before(false);
+    cmp.onkeydown = (e) => {
+      if (e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        if (!e.repeat) before(true);
+      }
+    };
+    cmp.onkeyup = (e) => {
+      if (e.key === " " || e.key === "Enter") before(false);
+    };
+    d.querySelector(".adj-cancel").onclick = () => d.close("cancel");
+    d.querySelector(".adj-apply").onclick = async () => {
+      clearTimeout(timer2);
+      await busy.catch(() => {
+      });
+      await update();
+      d.close("apply");
+    };
+    d.addEventListener("close", () => {
+      clearTimeout(timer2);
+      if (d.returnValue === "apply" && !isNoAdjust(cur)) {
+        commit();
+        toast(t("Colors adjusted."));
+      } else restoreCurrent();
+    });
+    return d;
+  }
+  function show2() {
+    for (const inp of dlg3.querySelectorAll("input[type=range]")) {
+      const k = inp.dataset.k;
+      inp.value = String(toSlider(k, cur[k]));
+      inp.nextElementSibling.textContent = k === "gamma" ? cur.gamma.toFixed(2) : String(Math.round(cur[k]));
+    }
+  }
+  function putRegion(data) {
+    const im = new ImageData(new Uint8ClampedArray(data), box3.w, box3.h);
+    if (mask) {
+      const o = original.data, d = im.data;
+      for (let i = 0; i < mask.length; i++) {
+        const m = mask[i] / 255;
+        if (m >= 1) continue;
+        for (let c = 0; c < 4; c++) d[i * 4 + c] = o[i * 4 + c] + (d[i * 4 + c] - o[i * 4 + c]) * m;
+      }
+    }
+    dctx.putImageData(im, box3.x, box3.y);
+    requestRender();
+  }
+  function schedule(ms = 60) {
+    clearTimeout(timer2);
+    timer2 = window.setTimeout(() => {
+      busy = update();
+    }, ms);
+  }
+  async function update() {
+    const label2 = dlg3.querySelector(".adj-busy");
+    if (isNoAdjust(cur)) {
+      if (!comparing) putRegion(original.data);
+      label2.textContent = "";
+      return;
+    }
+    label2.textContent = t("Working…");
+    try {
+      const img = { width: box3.w, height: box3.h, data: new Uint8ClampedArray(original.data) };
+      const out = await run2("adjust", { img, adjust: { ...cur } }, { lane: "adjust" });
+      if (dlg3.open && !comparing) putRegion(out.data);
+      label2.textContent = "";
+    } catch (e) {
+      if (!isCancelled(e)) {
+        label2.textContent = "";
+        throw e;
+      }
+    }
+  }
+  function openAdjust() {
+    if (state.floating) place();
+    dlg3 = dlg3 || build();
+    const s = state.sel;
+    box3 = s ? { x: s.x, y: s.y, w: s.w, h: s.h } : { x: 0, y: 0, w: doc.width, h: doc.height };
+    mask = s ? selectionMask() : null;
+    original = dctx.getImageData(box3.x, box3.y, box3.w, box3.h);
+    cur = { ...NO_ADJUST };
+    comparing = false;
+    show2();
+    dlg3.querySelector(".adj-busy").textContent = "";
+    dlg3.returnValue = "";
+    dlg3.showModal();
+  }
+
   // src/shared/curve-notes.ts
   var NOTES = {
     catmull: () => t("The curve runs smoothly through every point you click."),
@@ -8130,6 +8495,7 @@ ${shapes.join("\n")}
     bindCheck("#opt-pressure", "pressure");
     bindCheck("#opt-clone-aligned", "cloneAligned");
     $("#btn-clone-source").onclick = () => pickCloneSource();
+    $("#btn-adjust").onclick = () => openAdjust();
     updateCloneUI();
     const sides = $("#opt-sides");
     sides.onchange = () => setSides(+sides.value);
@@ -8220,18 +8586,18 @@ ${shapes.join("\n")}
   var TAP_PX = 12;
   var PAIR_PX = 32;
   var host;
-  var box3 = null;
+  var box4 = null;
   var target = "fill";
   var hideTimer = 0;
-  var toSlider = (v) => {
+  var toSlider2 = (v) => {
     const { min, max } = host.size;
     return Math.round(1e3 * Math.log(Math.min(max, Math.max(min, v)) / min) / Math.log(max / min));
   };
-  var fromSlider = (k) => {
+  var fromSlider2 = (k) => {
     const { min, max } = host.size, v = min * Math.pow(max / min, k / 1e3);
     return v >= 10 ? Math.round(v) : v >= 1 ? Math.round(v * 2) / 2 : Math.round(v * 10) / 10;
   };
-  function build() {
+  function build2() {
     const el = document.createElement("div");
     el.id = "quick-menu";
     el.setAttribute("role", "dialog");
@@ -8296,17 +8662,17 @@ ${shapes.join("\n")}
     const range2 = el.querySelector(".qm-size input");
     range2.addEventListener("input", () => {
       const inp = $(host.size.input);
-      inp.value = String(fromSlider(+range2.value));
+      inp.value = String(fromSlider2(+range2.value));
       inp.dispatchEvent(new Event("change"));
       renderSize();
     });
     return el;
   }
   function renderHead() {
-    for (const k of ["undo", "redo"]) box3.querySelector(`[data-act="${k}"]`).disabled = $(`#btn-${k}`).disabled;
+    for (const k of ["undo", "redo"]) box4.querySelector(`[data-act="${k}"]`).disabled = $(`#btn-${k}`).disabled;
   }
   function renderTools() {
-    const wrap = box3.querySelector(".qm-tools");
+    const wrap = box4.querySelector(".qm-tools");
     wrap.innerHTML = "";
     for (const id of host.tools) {
       const src = document.querySelector(`#tools button[data-tool="${id}"]`);
@@ -8323,7 +8689,7 @@ ${shapes.join("\n")}
   }
   function renderColors() {
     const st = host.state;
-    for (const b of box3.querySelectorAll(".qm-target")) {
+    for (const b of box4.querySelectorAll(".qm-target")) {
       const which = b.dataset.target, c = st[which];
       b.classList.toggle("active", which === target);
       b.setAttribute("aria-checked", String(which === target));
@@ -8331,7 +8697,7 @@ ${shapes.join("\n")}
       b.querySelector(".qm-chip").classList.toggle("none", !c);
       b.querySelector(".qm-tname").textContent = host.names[which];
     }
-    const wrap = box3.querySelector(".qm-swatches"), now = st[target];
+    const wrap = box4.querySelector(".qm-swatches"), now = st[target];
     wrap.innerHTML = "";
     const n5 = st.palette.length, rows2 = n5 > 7 ? 2 : 1;
     wrap.classList.toggle("scroll", n5 > 14);
@@ -8350,19 +8716,19 @@ ${shapes.join("\n")}
   }
   function renderSize() {
     const v = parseFloat($(host.size.input).value) || host.size.min;
-    box3.querySelector(".qm-size input").value = String(toSlider(v));
-    box3.querySelector(".qm-size output").textContent = `${v} ${host.size.unit()}`;
+    box4.querySelector(".qm-size input").value = String(toSlider2(v));
+    box4.querySelector(".qm-size output").textContent = `${v} ${host.size.unit()}`;
   }
   function openQuickMenu(x, y) {
-    box3 = box3 || build();
+    box4 = box4 || build2();
     renderHead();
     renderTools();
     renderColors();
     renderSize();
     clearTimeout(hideTimer);
-    box3.classList.remove("closing");
-    box3.hidden = false;
-    const card = box3.querySelector(".qm-card");
+    box4.classList.remove("closing");
+    box4.hidden = false;
+    const card = box4.querySelector(".qm-card");
     card.classList.remove("in");
     const pad = getComputedStyle(document.body), m = 10;
     const top0 = parseFloat(pad.paddingTop) + m, left0 = parseFloat(pad.paddingLeft) + m;
@@ -8375,27 +8741,27 @@ ${shapes.join("\n")}
     card.style.left = `${left}px`;
     card.style.top = `${top}px`;
     card.style.transformOrigin = `${x - left}px ${y - top}px`;
-    box3.style.setProperty("--qx", `${x}px`);
-    box3.style.setProperty("--qy", `${y}px`);
+    box4.style.setProperty("--qx", `${x}px`);
+    box4.style.setProperty("--qy", `${y}px`);
     void card.offsetWidth;
     card.classList.add("in");
-    box3.classList.remove("ripple");
-    void box3.offsetWidth;
-    box3.classList.add("ripple");
+    box4.classList.remove("ripple");
+    void box4.offsetWidth;
+    box4.classList.add("ripple");
   }
-  var quickMenuOpen = () => !!box3 && !box3.hidden && !box3.classList.contains("closing");
+  var quickMenuOpen = () => !!box4 && !box4.hidden && !box4.classList.contains("closing");
   function close() {
     if (!quickMenuOpen()) return;
-    box3.querySelector(".qm-card").classList.remove("in");
-    box3.classList.add("closing");
+    box4.querySelector(".qm-card").classList.remove("in");
+    box4.classList.add("closing");
     hideTimer = window.setTimeout(() => {
-      box3.hidden = true;
-      box3.classList.remove("closing");
+      box4.hidden = true;
+      box4.classList.remove("closing");
     }, 160);
   }
   function initQuickMenu(h) {
     host = h;
-    let cur = null;
+    let cur2 = null;
     let last = null;
     let swallow = null;
     const stop = (e) => {
@@ -8406,7 +8772,7 @@ ${shapes.join("\n")}
     s.addEventListener("pointerdown", (ev) => {
       const e = ev;
       if (e.pointerType !== "touch" || !e.isPrimary) {
-        cur = last = null;
+        cur2 = last = null;
         return;
       }
       hintOnce();
@@ -8419,7 +8785,7 @@ ${shapes.join("\n")}
         return;
       }
       last = null;
-      cur = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, steps: h.steps(), busy: h.busy(), moved: false };
+      cur2 = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, steps: h.steps(), busy: h.busy(), moved: false };
     }, true);
     s.addEventListener("pointermove", (ev) => {
       const e = ev;
@@ -8428,7 +8794,7 @@ ${shapes.join("\n")}
         stop(e);
         return;
       }
-      if (cur && e.pointerId === cur.id && Math.hypot(e.clientX - cur.x, e.clientY - cur.y) > TAP_PX) cur.moved = true;
+      if (cur2 && e.pointerId === cur2.id && Math.hypot(e.clientX - cur2.x, e.clientY - cur2.y) > TAP_PX) cur2.moved = true;
     }, true);
     s.addEventListener("pointerup", (ev) => {
       const e = ev;
@@ -8439,10 +8805,10 @@ ${shapes.join("\n")}
         if (open3) openQuickMenu(e.clientX, e.clientY);
         return;
       }
-      if (cur && e.pointerId === cur.id && !cur.moved && !cur.busy && e.timeStamp - cur.t < TAP_MS) {
-        last = { x: e.clientX, y: e.clientY, t: e.timeStamp, steps: cur.steps };
+      if (cur2 && e.pointerId === cur2.id && !cur2.moved && !cur2.busy && e.timeStamp - cur2.t < TAP_MS) {
+        last = { x: e.clientX, y: e.clientY, t: e.timeStamp, steps: cur2.steps };
       }
-      cur = null;
+      cur2 = null;
     }, true);
     s.addEventListener("pointercancel", (ev) => {
       const e = ev;
@@ -8450,7 +8816,7 @@ ${shapes.join("\n")}
         swallow = null;
         stop(e);
       }
-      cur = last = null;
+      cur2 = last = null;
     }, true);
     s.addEventListener("dblclick", (e) => {
       if (quickMenuOpen()) stop(e);
@@ -8644,6 +9010,9 @@ ${shapes.join("\n")}
         break;
       case "s":
         setTool("clone");
+        break;
+      case "j":
+        setTool("heal");
         break;
       case "l":
         setTool("line");
@@ -8864,7 +9233,7 @@ void main() {
       gl.bindBuffer(gl.ARRAY_BUFFER, buffers[name]);
       gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
     }
-    function show2(mesh, colorOf) {
+    function show3(mesh, colorOf) {
       const V = mesh.vertices, T = mesh.triangles, n5 = T.length / 3;
       const pos = new Float32Array(n5 * 9), nor = new Float32Array(n5 * 9), col = new Float32Array(n5 * 9);
       let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = 0;
@@ -8977,7 +9346,7 @@ void main() {
       render3();
     }, { passive: false });
     canvas.addEventListener("dblclick", reset);
-    return { show: show2, setExaggeration: (k) => {
+    return { show: show3, setExaggeration: (k) => {
       exaggeration = k;
       render3();
     }, reset, render: render3 };
@@ -9070,12 +9439,12 @@ void main() {
 </div>`;
   var SMALL = 2e4;
   function initExport3D(host2, button) {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-3d";
-    dlg3.innerHTML = DIALOG;
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-3d";
+    dlg4.innerHTML = DIALOG;
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
     let colors = [], counts2 = [], grid = null, gw = 0, gh = 0, cell = opts.detail;
     let order = [], note = "", lines2 = /* @__PURE__ */ new Set(), version = 0;
@@ -9092,7 +9461,7 @@ void main() {
     const normalize = () => {
       order = [...order.filter(isLine), ...order.filter((ci) => !isLine(ci))];
     };
-    const busy = (text) => {
+    const busy2 = (text) => {
       $("#m3-busy").textContent = text;
     };
     let cached = null, cachedKey = "", wanted = "";
@@ -9108,17 +9477,17 @@ void main() {
       }
       if (wanted !== key) {
         wanted = key;
-        busy(t("Working out the model…"));
-        run2("towers", job, { progress: (f) => busy(t("Working out the model… {p} %", { p: Math.round(f * 100) })) }).then((m) => {
+        busy2(t("Working out the model…"));
+        run2("towers", job, { progress: (f) => busy2(t("Working out the model… {p} %", { p: Math.round(f * 100) })) }).then((m) => {
           if (wanted !== key) return;
           cached = m;
           cachedKey = key;
-          busy("");
+          busy2("");
           render3();
         }, (e) => {
           if (isCancelled(e) || wanted !== key) return;
           wanted = "";
-          busy("");
+          busy2("");
           toast(t("Could not build the 3D model."));
         });
       }
@@ -9173,7 +9542,7 @@ void main() {
     }
     function render3() {
       const { w, h } = size(), fl = isFlat();
-      for (const el of dlg3.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
+      for (const el of dlg4.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
       $("#m3-mode-flat").classList.toggle("active", fl);
       $("#m3-go").title = fl ? t("The model, one part per color with its filament") : t("The model, with the filament changes for PrusaSlicer");
@@ -9192,7 +9561,7 @@ void main() {
       ].filter(Boolean).join(" ");
       $("#m3-note").hidden = !warn;
       $("#m3-note").textContent = warn;
-      const plan = colorPlan(list.map((i) => colors[i]), s), total2 = gw * gh || 1, box4 = $("#m3-order");
+      const plan = colorPlan(list.map((i) => colors[i]), s), total2 = gw * gh || 1, box5 = $("#m3-order");
       const keep = new Set(list.map((ci) => colors[ci]));
       for (const [c, el] of rows2) if (!keep.has(c)) {
         el.remove();
@@ -9217,7 +9586,7 @@ void main() {
         tag.classList.toggle("on", isLine(ci));
         up.disabled = k === 0 || isLine(list[k - 1]) !== isLine(ci);
         down.disabled = k === list.length - 1 || isLine(list[k + 1]) !== isLine(ci);
-        if (box4.children[k] !== row) box4.insertBefore(row, box4.children[k] || null);
+        if (box5.children[k] !== row) box5.insertBefore(row, box5.children[k] || null);
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
       const fs = flat();
@@ -9377,18 +9746,18 @@ void main() {
             return f.found == null ? t("Filament {k} ({color}) is not used – assign it to the part “{k} {color}”", { k: f.filament, color: f.color }) : f.ok ? t("Filament {k} ({color}) prints up to {z} mm", { k: f.filament, color: f.color, z: mm(f.top) }) : t("Filament {k} ({color}) prints up to {found} mm instead of {z} mm", { k: f.filament, color: f.color, found: mm(f.found), z: mm(f.top) });
         }
       };
-      const bad = findings.filter((f) => !f.ok).length, box4 = $("#m3-check");
+      const bad = findings.filter((f) => !f.ok).length, box5 = $("#m3-check");
       const head = !g.layers ? t("No printing found in {name} – is it a G-code file?", { name }) : bad ? t("{name}: {n} {n|thing|things} to look at", { name, n: bad }) : t("{name}: everything matches the plan", { name });
-      box4.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f) => `<li class="${f.ok ? "ok" : "bad"}">${f.ok ? "✓" : "✗"} ${esc(say(f))}</li>`).join("") + "</ul>" : "");
-      box4.classList.toggle("bad", !g.layers || bad > 0);
-      box4.hidden = false;
+      box5.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f) => `<li class="${f.ok ? "ok" : "bad"}">${f.ok ? "✓" : "✗"} ${esc(say(f))}</li>`).join("") + "</ul>" : "");
+      box5.classList.toggle("bad", !g.layers || bad > 0);
+      box5.hidden = false;
     }
     async function save2(kind) {
       const m = model();
       if (!m || !m.list.length) return;
       const btn = $(kind === "3mf" ? "#m3-go" : "#m3-stl");
       btn.disabled = true;
-      busy(t("Building the 3D model…"));
+      busy2(t("Building the 3D model…"));
       try {
         const r = await run2("export3d", {
           kind,
@@ -9398,7 +9767,7 @@ void main() {
           name: base(),
           slicer: opts.slicer,
           labels: { base: t("Base"), frame: t("Frame") }
-        }, { progress: (f) => busy(t("Building the 3D model… {p} %", { p: Math.round(f * 100) })) });
+        }, { progress: (f) => busy2(t("Building the 3D model… {p} %", { p: Math.round(f * 100) })) });
         download(new Blob([r.data], { type: r.type }), r.fileName);
         const v = { name: base(), n: r.triangles, c: m.list.length - 1 };
         if (isFlat()) {
@@ -9409,14 +9778,14 @@ void main() {
       } catch (e) {
         if (!isCancelled(e)) toast(t("Could not build the 3D model."));
       } finally {
-        busy("");
+        busy2("");
         btn.disabled = false;
       }
     }
-    let timer2;
+    let timer3;
     const reanalyse = () => {
-      clearTimeout(timer2);
-      timer2 = setTimeout(() => analyse().catch(() => toast(t("Could not read the picture."))), 50);
+      clearTimeout(timer3);
+      timer3 = setTimeout(() => analyse().catch(() => toast(t("Could not read the picture."))), 50);
     };
     const CAN_BE_0 = ["baseLayers", "minWidth", "groutRecess", "frame", "frameRaise", "corner", "hole", "magnet"];
     const bindNum = (id, key, min, max, whole, again) => {
@@ -9492,14 +9861,14 @@ void main() {
       input.value = "";
       const m = model();
       if (!file || !m || !m.list.length) return;
-      busy(t("Reading the G-code…"));
+      busy2(t("Reading the G-code…"));
       try {
-        const g = await run2("gcode", { text: await file.text() }, { progress: (f) => busy(t("Reading the G-code… {p} %", { p: Math.round(f * 100) })) });
+        const g = await run2("gcode", { text: await file.text() }, { progress: (f) => busy2(t("Reading the G-code… {p} %", { p: Math.round(f * 100) })) });
         showCheck(file.name, g, m);
       } catch (e) {
         if (!isCancelled(e)) toast(t("Could not read {name}.", { name: file.name }));
       } finally {
-        busy("");
+        busy2("");
       }
     };
     $("#m3-plan").onclick = () => {
@@ -9510,7 +9879,7 @@ void main() {
       const real = host2.realSize();
       if (real) opts.width = +real.w.toFixed(2);
       $("#m3-summary").textContent = t("Reading the picture…");
-      dlg3.showModal();
+      dlg4.showModal();
       await analyse().catch(() => toast(t("Could not read the picture.")));
     };
   }
@@ -9642,10 +10011,10 @@ void main() {
     const opts2 = (orientation ? [orientation] : ["portrait", "landscape"]).map((o) => sheetsFor(wmm, hmm, area2(paperKey, o), mode2));
     return opts2.length > 1 && opts2[1].cost < opts2[0].cost ? opts2[1] : opts2[0];
   }
-  function sheetSections(box4, k, L, { title: title2 = "", prefix = "" } = {}) {
+  function sheetSections(box5, k, L, { title: title2 = "", prefix = "" } = {}) {
     const multi = L.sheets.length > 1;
     return L.sheets.map((s) => {
-      const vb = [box4.x + s.x / k, box4.y + s.y / k, s.w / k, s.h / k];
+      const vb = [box5.x + s.x / k, box5.y + s.y / k, s.w / k, s.h / k];
       const shade = [];
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
@@ -9660,11 +10029,11 @@ void main() {
     if (L.sheets.length === 1) return t("One {paper} sheet ({orientation}) at real size.", { paper: L.paper.name, orientation: o });
     return t("{n} {paper} {n|sheet|sheets} ({orientation}, {rows} × {cols}, overlapping {overlap} mm) at real size.", { n: L.sheets.length, paper: L.paper.name, orientation: o, rows: L.rows, cols: L.cols, overlap: OVERLAP });
   }
-  function overviewSection(box4, k, A, rects, heading, extra = "") {
-    const s = Math.min(A.aw / (box4.w * k), (A.ah - 20) / (box4.h * k));
+  function overviewSection(box5, k, A, rects, heading, extra = "") {
+    const s = Math.min(A.aw / (box5.w * k), (A.ah - 20) / (box5.h * k));
     const stroke = 0.6 / k / s;
     const marks = rects.map((r) => `<rect x="${n2(r.x)}" y="${n2(r.y)}" width="${n2(r.w)}" height="${n2(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n2(stroke)}"/><text x="${n2(r.x + r.w / 2)}" y="${n2(r.y + r.h / 2)}" font-size="${n2(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
-    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box4.x, box4.y, box4.w, box4.h].map(n2).join(" ")}" style="width:${n2(box4.w * k * s)}mm;height:${n2(box4.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
+    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box5.x, box5.y, box5.w, box5.h].map(n2).join(" ")}" style="width:${n2(box5.w * k * s)}mm;height:${n2(box5.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
   }
   function page({ art, sections, paper = "a4", orientation = "portrait", title: title2 = "Mosaic" }) {
     const p = PAPERS[paper] || PAPERS.a4;
@@ -9687,20 +10056,20 @@ ${sections.join("\n")}
 <script>window.onload = () => setTimeout(() => window.print(), 400);<\/script>
 </body></html>`;
   }
-  function html({ art, box: box4, unit, mmPerUnit = 0, paper = "a4", mode: mode2 = "real", legend = "", title: title2 = "Mosaic" }) {
+  function html({ art, box: box5, unit, mmPerUnit = 0, paper = "a4", mode: mode2 = "real", legend = "", title: title2 = "Mosaic" }) {
     const k = mmPerUnit || MM[unit] || MM.px;
-    const L = layout2(box4.w * k, box4.h * k, paper, mode2);
+    const L = layout2(box5.w * k, box5.h * k, paper, mode2);
     const sections = [];
     if (L.sheets.length > 1) {
       sections.push(overviewSection(
-        box4,
+        box5,
         k,
         L,
-        L.sheets.map((s) => ({ x: box4.x + s.x / k, y: box4.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
-        `${title2} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n2(box4.w * k / 10)), h: num(+n2(box4.h * k / 10)) })
+        L.sheets.map((s) => ({ x: box5.x + s.x / k, y: box5.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
+        `${title2} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n2(box5.w * k / 10)), h: num(+n2(box5.h * k / 10)) })
       ));
     }
-    sections.push(...sheetSections(box4, k, L, { title: title2 }));
+    sections.push(...sheetSections(box5, k, L, { title: title2 }));
     if (legend) sections.push(`<section class="sheet legend">${legend}</section>`);
     return page({ art, sections, paper, orientation: L.orientation, title: title2 });
   }
@@ -10005,16 +10374,16 @@ ${sections.join("\n")}
 
   // src/shared/examples-ui.ts
   function initExamples(button, examples) {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-examples";
-    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-examples";
+    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
 <div class="ex-list"></div>`;
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
-    const list = dlg3.querySelector(".ex-list");
+    const list = dlg4.querySelector(".ex-list");
     for (const ex of examples) {
       const card = document.createElement("button");
       card.className = "ex-card";
@@ -10023,7 +10392,7 @@ ${sections.join("\n")}
       card.querySelector("b").textContent = ex.title;
       card.querySelector(".note").textContent = ex.text;
       card.onclick = async () => {
-        dlg3.close();
+        dlg4.close();
         await ex.open();
       };
       list.append(card);
@@ -10032,7 +10401,7 @@ ${sections.join("\n")}
       list.querySelectorAll("img").forEach((img, k) => {
         if (!img.src) img.src = examples[k].preview();
       });
-      dlg3.showModal();
+      dlg4.showModal();
     };
   }
 
@@ -10066,7 +10435,7 @@ ${sections.join("\n")}
       card.close();
       lsSet(key, "1");
     }
-    function show2() {
+    function show3() {
       at = 0;
       draw();
       if (!card.open) card.show();
@@ -10089,9 +10458,9 @@ ${sections.join("\n")}
         close2();
       }
     });
-    button.onclick = show2;
-    if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith("discordsays.com")) setTimeout(show2, 600);
-    return { show: show2 };
+    button.onclick = show3;
+    if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith("discordsays.com")) setTimeout(show3, 600);
+    return { show: show3 };
   }
 
   // src/raster/examples.ts
@@ -10135,8 +10504,16 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.6.0" : "dev";
+  var VERSION = true ? "1.7.0" : "dev";
   var RELEASES = [
+    {
+      version: "1.7.0",
+      date: "2026-10-13",
+      items: [
+        "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).",
+        "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot."
+      ]
+    },
     {
       version: "1.6.0",
       date: "2026-10-13",
@@ -10209,12 +10586,12 @@ ${sections.join("\n")}
   ];
   var KEY3 = "mz-version";
   function initWhatsNew() {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-whats-new";
-    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-whats-new";
+    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
     const button = document.createElement("button");
     button.id = "st-version";
@@ -10229,23 +10606,23 @@ ${sections.join("\n")}
     button.onclick = () => {
       button.classList.remove("new");
       lsSet(KEY3, VERSION);
-      dlg3.showModal();
+      dlg4.showModal();
     };
   }
 
   // src/shared/history-ui.ts
   function initHistoryUI(host2, button) {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-history";
-    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-history";
+    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${esc(host2.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
-    const list = dlg3.querySelector("#hist-list");
+    const list = dlg4.querySelector("#hist-list");
     let thumbs = [];
     async function render3() {
       thumbs.forEach((u) => URL.revokeObjectURL(u));
@@ -10291,7 +10668,7 @@ ${sections.join("\n")}
         };
         restore2.textContent = t("Restore");
         restore2.onclick = async () => {
-          dlg3.close();
+          dlg4.close();
           await host2.restore(v);
         };
         row.append(pin, rename, restore2);
@@ -10308,9 +10685,9 @@ ${sections.join("\n")}
     }
     button.onclick = () => {
       render3();
-      dlg3.showModal();
+      dlg4.showModal();
     };
-    dlg3.querySelector("#hist-save").onclick = async () => {
+    dlg4.querySelector("#hist-save").onclick = async () => {
       toast(await host2.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
