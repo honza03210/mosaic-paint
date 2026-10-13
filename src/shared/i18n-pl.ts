@@ -2150,4 +2150,22 @@ export const PL: Record<string, string> = {
     'Warstwy w aplikacji rastrowej: malowanie na aktywnej warstwie, pokazywanie / ukrywanie, krycie, przesuwanie, scalanie, spłaszczanie – Cofnij zna wszystko. Zapisz warstwy zachowuje je w pliku OpenRaster (.ora – otwiera go GIMP i Krita), zachowuje je też automatyczny zapis.',
   'The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature\'s models at a time.':
     'Dodatki AI na telefonach: znacznie mniej pamięci (zaznaczanie obiektu na iPhonie już się nie wywala) – na iPhonie i iPadzie silnik CPU i zawsze modele tylko jednej funkcji.',
+  'Frame {n} of {count}':
+    'Klatka {n} z {count}',
+  '{s} s of {total} s':
+    '{s} s z {total} s',
+  'Choose a frame':
+    'Wybierz klatkę',
+  'One frame back':
+    'Klatka wstecz',
+  'Play / pause':
+    'Odtwórz / pauza',
+  'One frame on':
+    'Klatka dalej',
+  'Use this frame':
+    'Użyj tej klatki',
+  'This video can’t be played here – try a GIF or a screenshot of it.':
+    'Tego wideo nie da się tu odtworzyć – spróbuj GIF-a albo zrzutu ekranu.',
+  'GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.':
+    'GIF-y i wideo: otwórz je (w Discordzie także GIF, wideo lub GIF z Tenora / Giphy z czatu) i wybierz klatkę do edycji – suwakiem, krokami klatek lub odtwarzaniem.',
 };

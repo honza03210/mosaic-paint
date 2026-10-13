@@ -2150,4 +2150,22 @@ export const CS: Record<string, string> = {
     'Vrstvy v rastrové aplikaci: malování do aktivní vrstvy, zobrazení / skrytí, krytí, přesun, sloučení – Zpět zná všechno. Uložit vrstvy je zachová v souboru OpenRaster (.ora – otevře ho GIMP i Krita) a zachová je i automatické ukládání.',
   'The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature\'s models at a time.':
     'Doplňky AI na telefonech: mnohem méně paměti (výběr objektu už na iPhonu nespadne) – na iPhonu a iPadu jádro pro procesor a vždy jen modely jedné funkce.',
+  'Frame {n} of {count}':
+    'Snímek {n} z {count}',
+  '{s} s of {total} s':
+    '{s} s z {total} s',
+  'Choose a frame':
+    'Vyberte snímek',
+  'One frame back':
+    'O snímek zpět',
+  'Play / pause':
+    'Přehrát / pozastavit',
+  'One frame on':
+    'O snímek dál',
+  'Use this frame':
+    'Použít tento snímek',
+  'This video can’t be played here – try a GIF or a screenshot of it.':
+    'Toto video tu nejde přehrát – zkuste GIF nebo jeho snímek obrazovky.',
+  'GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.':
+    'GIFy a videa: otevřete je (v Discordu i GIF, video nebo GIF z Tenoru / Giphy z chatu) a vyberte snímek k úpravě – posuvníkem, po snímcích nebo přehráním.',
 };

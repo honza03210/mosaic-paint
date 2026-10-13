@@ -492,3 +492,12 @@ dialog.sheet .dlg-foot { position: sticky; bottom: calc(-12px - var(--saib)); ba
 #layer-list .layer-eye[aria-pressed=false] { color: var(--muted); }
 #layer-list .layer-thumb { flex: none; width: 48px; height: 36px; border-radius: 4px; background: repeating-conic-gradient(#666 0 25%, #888 0 50%) 0 0 / 8px 8px; }
 #layer-list .layer-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* choosing a frame of a GIF or a video (frames.ts) */
+#dlg-frame { width: min(640px, 96vw); }
+#dlg-frame .fr-stage { display: grid; place-items: center; background: repeating-conic-gradient(#555 0 25%, #666 0 50%) 0 0 / 16px 16px; border-radius: 8px; overflow: hidden; }
+#dlg-frame .fr-canvas, #dlg-frame .fr-video { display: block; width: 100%; height: auto; max-height: 50vh; object-fit: contain; }
+#dlg-frame .fr-canvas { image-rendering: pixelated; }
+#dlg-frame .fr-canvas[hidden], #dlg-frame .fr-video[hidden] { display: none; }
+#dlg-frame .fr-slider { width: 100%; margin: 12px 0 4px; accent-color: var(--accent); height: 28px; }
+#dlg-frame .fr-controls button { min-width: 44px; min-height: 40px; }

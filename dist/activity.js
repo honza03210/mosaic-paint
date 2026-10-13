@@ -9655,8 +9655,10 @@
     post.title = t2("Post the picture in this channel, as a reply to the message it came from");
     document.querySelector("#btn-new").before(post);
     const r = await call(`/pending?channel=${encodeURIComponent(sdk.channelId || "")}`, { headers: auth });
-    if (r.status === 200) await app.openImage(await r.blob(), decodeURIComponent(r.headers.get("x-filename") || "image.png"));
-    else if (r.status === 410) app.toast(t2("That image is no longer available in Discord."));
+    if (r.status === 200) {
+      const media = r.headers.get("x-media");
+      await app.openImage(await r.blob(), decodeURIComponent(r.headers.get("x-filename") || "image.png"), media ? { src: API.replace(/\/api$/, "") + media } : {});
+    } else if (r.status === 410) app.toast(t2("That image is no longer available in Discord."));
     else app.toast(t2("Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one."));
     post.onclick = async () => {
       post.disabled = true;

@@ -91,14 +91,60 @@ async function interaction(req: Request, env: Env): Promise<Response> {
   if (i.data.type === MESSAGE) {
     // the clicked message comes with the command
     const msg = i.data.resolved?.messages?.[i.data.target_id];
-    const image = (msg?.attachments || []).find((a: { content_type?: string }) => /^image\//.test(a.content_type || ''))
-      || (msg?.embeds || []).map((e: { image?: { url: string }; thumbnail?: { url: string } }) => e.image || e.thumbnail).find(Boolean);
-    if (!image) return reply('That message has no image to edit.');
-    Object.assign(pending, { messageId: msg.id, url: image.url, filename: image.filename || 'image.png', contentType: image.content_type || 'image/png' });
+    const image = pickMedia(msg);
+    if (!image) return reply('That message has no image, GIF or video to edit.');
+    Object.assign(pending, { messageId: msg.id, ...image });
   }
   const user = i.member?.user?.id || i.user?.id;
   await store(env, user).fetch('https://pending/put', { method: 'PUT', body: JSON.stringify(pending) });
   return json({ type: 12 }); // LAUNCH_ACTIVITY
+}
+
+/** The type of a file by its name (embeds don't say). */
+const typeOf = (url: string): string => {
+  const ext = /\.([a-z0-9]+)(?:[?#]|$)/i.exec(url)?.[1]?.toLowerCase() || '';
+  return { gif: 'image/gif', mp4: 'video/mp4', webm: 'video/webm', mov: 'video/quicktime', m4v: 'video/mp4', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' }[ext] || 'image/png';
+};
+const nameOf = (url: string, fallback: string): string => decodeURIComponent(/\/([^/?#]+)(?:[?#]|$)/.exec(url)?.[1] || fallback);
+interface Media { url: string; filename: string; contentType: string }
+/**
+ * What to edit from a message: the first image, GIF or video attached; else an embed's – a Tenor / Giphy "GIF"
+ * (a video), a picture, or a video link's still (a YouTube video itself can't be fetched).
+ */
+export function pickMedia(msg: any): Media | null {
+  const a = (msg?.attachments || []).find((x: { content_type?: string }) => /^(image|video)\//.test(x.content_type || ''));
+  if (a) return { url: a.url, filename: a.filename || 'image.png', contentType: a.content_type };
+  for (const e of msg?.embeds || []) {
+    const v = e.type === 'gifv' ? e.video : null, still = e.image || e.thumbnail, url = v ? (v.proxy_url || v.url) : still ? (still.proxy_url || still.url) : null;
+    if (url) return { url, filename: nameOf(url, v ? 'animation.mp4' : 'image.png'), contentType: v ? 'video/mp4' : typeOf(url) };
+  }
+  return null;
+}
+
+// ---- videos for the Activity's player ------------------------------------------------------------------------
+/** A <video> can't send the sign-in header: it gets an address signed by the Worker instead, valid for a while. */
+const MEDIA_MS = 30 * 60 * 1000;
+const MEDIA_HOSTS = /^(cdn\.discordapp\.com|media\.discordapp\.net|images-ext-\d+\.discordapp\.net)$/;
+async function hmac(secret: string, text: string): Promise<string> {
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(text)));
+  return [...sig].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+export async function mediaAddress(env: Env, url: string, now = Date.now()): Promise<string> {
+  const exp = String(now + MEDIA_MS);
+  return `/api/media?u=${encodeURIComponent(url)}&exp=${exp}&sig=${await hmac(env.DISCORD_CLIENT_SECRET, url + '|' + exp)}`;
+}
+/** The video for the player (byte ranges, so it can seek); only with a valid signature, only from Discord's media. */
+async function media(req: Request, env: Env, url: URL): Promise<Response> {
+  const u = url.searchParams.get('u') || '', exp = url.searchParams.get('exp') || '', sig = url.searchParams.get('sig') || '';
+  let host = '';
+  try { host = new URL(u).hostname; } catch { /* not a URL */ }
+  if (!MEDIA_HOSTS.test(host) || !(+exp > Date.now()) || sig !== await hmac(env.DISCORD_CLIENT_SECRET, u + '|' + exp)) return new Response('not allowed', { status: 403 });
+  const range = req.headers.get('range');
+  const r = await fetch(u, { headers: range ? { range } : {} });
+  const h = new Headers({ 'content-type': r.headers.get('content-type') || 'video/mp4', 'accept-ranges': 'bytes', 'cache-control': 'private, max-age=600' });
+  for (const k of ['content-length', 'content-range']) { const v = r.headers.get(k); if (v) h.set(k, v); }
+  return new Response(r.body, { status: r.status, headers: h });
 }
 
 // ---- the Activity's API ------------------------------------------------------------------------------------
@@ -145,9 +191,12 @@ async function pending(req: Request, env: Env, url: URL): Promise<Response> {
   if (!p?.url || p.channelId !== url.searchParams.get('channel') || Date.now() - p.time > PENDING_MS) return new Response(null, { status: 204 });
   const img = await fetch(p.url);
   if (!img.ok) return json({ error: 'the image is no longer available' }, 410);
-  return new Response(img.body, {
-    headers: { 'content-type': p.contentType, 'x-filename': encodeURIComponent(p.filename), 'cache-control': 'no-store' },
-  });
+  // the type the file really has (an embed's is only guessed from its name)
+  const type = /^(image|video)\//.test(img.headers.get('content-type') || '') ? img.headers.get('content-type') : p.contentType;
+  const headers: Record<string, string> = { 'content-type': type, 'x-filename': encodeURIComponent(p.filename), 'cache-control': 'no-store' };
+  // a video: also where the player can load it from (the page may not be allowed to play it from memory)
+  if (/^video\//.test(type)) headers['x-media'] = await mediaAddress(env, p.url);
+  return new Response(img.body, { headers });
 }
 
 /**
@@ -187,6 +236,7 @@ export default {
       if (url.pathname === '/api/pending' && req.method === 'GET') return await pending(req, env, url);
       if (url.pathname === '/api/post' && req.method === 'POST') return await post(req, env, url);
       if (url.pathname === '/api/fetch' && req.method === 'GET') return await addonFile(url);
+      if (url.pathname === '/api/media' && req.method === 'GET') return await media(req, env, url);
     } catch (e) {
       return json({ error: String((e as Error)?.message || e) }, 500);
     }

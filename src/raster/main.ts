@@ -93,7 +93,7 @@ const RZ = {
 };
 Object.assign(RZ, {
   // for the Discord Activity (src/discord/activity.ts): open a picture, get the image as PNG, messages and texts
-  openImage: async (blob: Blob, name: string) => { await openImageFile(new File([blob], name, { type: blob.type })); },
+  openImage: async (blob: Blob, name: string, o: { src?: string } = {}) => { await openImageFile(new File([blob], name, { type: blob.type }), o); },
   png: () => canvasToPng(flat()),
   toast,
   t,

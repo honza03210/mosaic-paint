@@ -1081,7 +1081,16 @@
     "All the layers as one": "Všechny vrstvy v jednu",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Uložit všechny vrstvy do jednoho souboru (OpenRaster – otevře ho GIMP, Krita a další); Otevřít… ho zase otevře",
     "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrové aplikaci: malování do aktivní vrstvy, zobrazení / skrytí, krytí, přesun, sloučení – Zpět zná všechno. Uložit vrstvy je zachová v souboru OpenRaster (.ora – otevře ho GIMP i Krita) a zachová je i automatické ukládání.",
-    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Doplňky AI na telefonech: mnohem méně paměti (výběr objektu už na iPhonu nespadne) – na iPhonu a iPadu jádro pro procesor a vždy jen modely jedné funkce."
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Doplňky AI na telefonech: mnohem méně paměti (výběr objektu už na iPhonu nespadne) – na iPhonu a iPadu jádro pro procesor a vždy jen modely jedné funkce.",
+    "Frame {n} of {count}": "Snímek {n} z {count}",
+    "{s} s of {total} s": "{s} s z {total} s",
+    "Choose a frame": "Vyberte snímek",
+    "One frame back": "O snímek zpět",
+    "Play / pause": "Přehrát / pozastavit",
+    "One frame on": "O snímek dál",
+    "Use this frame": "Použít tento snímek",
+    "This video can’t be played here – try a GIF or a screenshot of it.": "Toto video tu nejde přehrát – zkuste GIF nebo jeho snímek obrazovky.",
+    "GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.": "GIFy a videa: otevřete je (v Discordu i GIF, video nebo GIF z Tenoru / Giphy z chatu) a vyberte snímek k úpravě – posuvníkem, po snímcích nebo přehráním."
   };
 
   // src/shared/i18n-de.ts
@@ -2160,7 +2169,16 @@
     "All the layers as one": "Alle Ebenen zu einer",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Alle Ebenen in einer Datei speichern (OpenRaster – GIMP, Krita und andere öffnen sie); Öffnen… öffnet sie wieder",
     "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Ebenen in der Raster-App: auf die aktive Ebene malen, ein- / ausblenden, Deckkraft, verschieben, zusammenfügen, reduzieren – Rückgängig kennt alles. Ebenen speichern behält sie in einer OpenRaster-Datei (.ora – GIMP und Krita öffnen sie), und das automatische Speichern auch.",
-    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Die KI-Add-ons auf Handys: viel weniger Speicher (kein Absturz mehr beim Auswählen eines Objekts auf dem iPhone) – auf iPhone und iPad die CPU-Engine, und immer nur die Modelle einer Funktion."
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Die KI-Add-ons auf Handys: viel weniger Speicher (kein Absturz mehr beim Auswählen eines Objekts auf dem iPhone) – auf iPhone und iPad die CPU-Engine, und immer nur die Modelle einer Funktion.",
+    "Frame {n} of {count}": "Bild {n} von {count}",
+    "{s} s of {total} s": "{s} s von {total} s",
+    "Choose a frame": "Bild auswählen",
+    "One frame back": "Ein Bild zurück",
+    "Play / pause": "Abspielen / Pause",
+    "One frame on": "Ein Bild weiter",
+    "Use this frame": "Dieses Bild verwenden",
+    "This video can’t be played here – try a GIF or a screenshot of it.": "Dieses Video lässt sich hier nicht abspielen – versuche ein GIF oder einen Screenshot davon.",
+    "GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.": "GIFs und Videos: öffne eines (in Discord auch ein GIF, ein Video oder ein Tenor- / Giphy-GIF aus dem Chat) und wähle das Bild zum Bearbeiten – mit Schieberegler, Einzelbildschritten und Abspielen."
   };
 
   // src/shared/i18n-sk.ts
@@ -3239,7 +3257,16 @@
     "All the layers as one": "Všetky vrstvy do jednej",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Uložiť všetky vrstvy do jedného súboru (OpenRaster – otvorí ho GIMP, Krita a ďalšie); Otvoriť… ho zase otvorí",
     "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Vrstvy v rastrovej aplikácii: maľovanie do aktívnej vrstvy, zobrazenie / skrytie, krytie, presun, zlúčenie – Späť pozná všetko. Uložiť vrstvy ich zachová v súbore OpenRaster (.ora – otvorí ho GIMP aj Krita) a zachová ich aj automatické ukladanie.",
-    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Doplnky AI na telefónoch: oveľa menej pamäte (výber objektu už na iPhone nespadne) – na iPhone a iPade jadro pre procesor a vždy len modely jednej funkcie."
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Doplnky AI na telefónoch: oveľa menej pamäte (výber objektu už na iPhone nespadne) – na iPhone a iPade jadro pre procesor a vždy len modely jednej funkcie.",
+    "Frame {n} of {count}": "Snímka {n} z {count}",
+    "{s} s of {total} s": "{s} s z {total} s",
+    "Choose a frame": "Vyberte snímku",
+    "One frame back": "O snímku späť",
+    "Play / pause": "Prehrať / pozastaviť",
+    "One frame on": "O snímku ďalej",
+    "Use this frame": "Použiť túto snímku",
+    "This video can’t be played here – try a GIF or a screenshot of it.": "Toto video sa tu nedá prehrať – skúste GIF alebo jeho snímku obrazovky.",
+    "GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.": "GIFy a videá: otvorte ich (v Discorde aj GIF, video alebo GIF z Tenoru / Giphy z chatu) a vyberte snímku na úpravu – posúvačom, po snímkach alebo prehraním."
   };
 
   // src/shared/i18n-pl.ts
@@ -4318,7 +4345,16 @@
     "All the layers as one": "Wszystkie warstwy w jedną",
     "Save every layer in one file (OpenRaster – GIMP, Krita and others open it); Open… opens it again": "Zapisz wszystkie warstwy w jednym pliku (OpenRaster – otwiera go GIMP, Krita i inne); Otwórz… otwiera go ponownie",
     "Layers in the raster app: paint on the active layer, show / hide, opacity, move, merge, flatten – undo knows them all. Save layers keeps them in an OpenRaster file (.ora – GIMP and Krita open it), and autosave keeps them too.": "Warstwy w aplikacji rastrowej: malowanie na aktywnej warstwie, pokazywanie / ukrywanie, krycie, przesuwanie, scalanie, spłaszczanie – Cofnij zna wszystko. Zapisz warstwy zachowuje je w pliku OpenRaster (.ora – otwiera go GIMP i Krita), zachowuje je też automatyczny zapis.",
-    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Dodatki AI na telefonach: znacznie mniej pamięci (zaznaczanie obiektu na iPhonie już się nie wywala) – na iPhonie i iPadzie silnik CPU i zawsze modele tylko jednej funkcji."
+    "The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature's models at a time.": "Dodatki AI na telefonach: znacznie mniej pamięci (zaznaczanie obiektu na iPhonie już się nie wywala) – na iPhonie i iPadzie silnik CPU i zawsze modele tylko jednej funkcji.",
+    "Frame {n} of {count}": "Klatka {n} z {count}",
+    "{s} s of {total} s": "{s} s z {total} s",
+    "Choose a frame": "Wybierz klatkę",
+    "One frame back": "Klatka wstecz",
+    "Play / pause": "Odtwórz / pauza",
+    "One frame on": "Klatka dalej",
+    "Use this frame": "Użyj tej klatki",
+    "This video can’t be played here – try a GIF or a screenshot of it.": "Tego wideo nie da się tu odtworzyć – spróbuj GIF-a albo zrzutu ekranu.",
+    "GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.": "GIF-y i wideo: otwórz je (w Discordzie także GIF, wideo lub GIF z Tenora / Giphy z czatu) i wybierz klatkę do edycji – suwakiem, krokami klatek lub odtwarzaniem."
   };
 
   // src/shared/i18n.ts
@@ -9866,17 +9902,17 @@ ${sections.join("\n")}
 
   // src/shared/history-ui.ts
   function initHistoryUI(host2, button) {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-history";
-    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-history";
+    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${esc(host2.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
-    const list = dlg3.querySelector("#hist-list");
+    const list = dlg4.querySelector("#hist-list");
     let thumbs2 = [];
     async function render3() {
       thumbs2.forEach((u) => URL.revokeObjectURL(u));
@@ -9922,7 +9958,7 @@ ${sections.join("\n")}
         };
         restore2.textContent = t("Restore");
         restore2.onclick = async () => {
-          dlg3.close();
+          dlg4.close();
           await host2.restore(v);
         };
         row.append(pin, rename, restore2);
@@ -9939,9 +9975,9 @@ ${sections.join("\n")}
     }
     button.onclick = () => {
       render3();
-      dlg3.showModal();
+      dlg4.showModal();
     };
-    dlg3.querySelector("#hist-save").onclick = async () => {
+    dlg4.querySelector("#hist-save").onclick = async () => {
       toast(await host2.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
@@ -12719,12 +12755,12 @@ void main() {
 </div>`;
   var SMALL = 2e4;
   function initExport3D(host2, button) {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-3d";
-    dlg3.innerHTML = DIALOG;
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-3d";
+    dlg4.innerHTML = DIALOG;
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
     let colors = [], counts = [], grid = null, gw = 0, gh = 0, cell = opts2.detail;
     let order = [], note = "", lines2 = /* @__PURE__ */ new Set(), version = 0;
@@ -12822,7 +12858,7 @@ void main() {
     }
     function render3() {
       const { w, h } = size(), fl = isFlat();
-      for (const el of dlg3.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts2.mode;
+      for (const el of dlg4.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts2.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
       $("#m3-mode-flat").classList.toggle("active", fl);
       $("#m3-go").title = fl ? t("The model, one part per color with its filament") : t("The model, with the filament changes for PrusaSlicer");
@@ -13159,7 +13195,7 @@ void main() {
       const real = host2.realSize();
       if (real) opts2.width = +real.w.toFixed(2);
       $("#m3-summary").textContent = t("Reading the picture…");
-      dlg3.showModal();
+      dlg4.showModal();
       await analyse().catch(() => toast(t("Could not read the picture.")));
     };
   }
@@ -13418,16 +13454,16 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
 
   // src/shared/examples-ui.ts
   function initExamples(button, examples) {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-examples";
-    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-examples";
+    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
 <div class="ex-list"></div>`;
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
-    const list = dlg3.querySelector(".ex-list");
+    const list = dlg4.querySelector(".ex-list");
     for (const ex of examples) {
       const card = document.createElement("button");
       card.className = "ex-card";
@@ -13436,7 +13472,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       card.querySelector("b").textContent = ex.title;
       card.querySelector(".note").textContent = ex.text;
       card.onclick = async () => {
-        dlg3.close();
+        dlg4.close();
         await ex.open();
       };
       list.append(card);
@@ -13445,7 +13481,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       list.querySelectorAll("img").forEach((img, k) => {
         if (!img.src) img.src = examples[k].preview();
       });
-      dlg3.showModal();
+      dlg4.showModal();
     };
   }
 
@@ -13557,10 +13593,353 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
     { title: t("Start from an example"), text: t("Not sure where to begin? Open an example. The ? button shows this guide again."), target: "#btn-examples" }
   ], "mz-guide-vector");
 
+  // src/lib/gif.ts
+  function lzw(minCode, data, count) {
+    const out = new Uint8Array(count), clear = 1 << minCode, eoi = clear + 1;
+    const prefix = new Int16Array(4096), suffix = new Uint8Array(4096), stack = new Uint8Array(4097);
+    let size = minCode + 1, mask = (1 << size) - 1, next = eoi + 1, old = -1, first = 0;
+    let bits = 0, acc = 0, o = 0, p = 0;
+    for (let i = 0; i < clear; i++) {
+      prefix[i] = -1;
+      suffix[i] = i;
+    }
+    while (o < count) {
+      while (bits < size) {
+        if (p >= data.length) return out;
+        acc |= data[p++] << bits;
+        bits += 8;
+      }
+      const code = acc & mask;
+      acc >>>= size;
+      bits -= size;
+      if (code === clear) {
+        size = minCode + 1;
+        mask = (1 << size) - 1;
+        next = eoi + 1;
+        old = -1;
+        continue;
+      }
+      if (code === eoi) break;
+      let c = code, sp = 0;
+      if (old === -1) {
+        out[o++] = suffix[code];
+        old = code;
+        first = code;
+        continue;
+      }
+      if (code >= next) {
+        stack[sp++] = first;
+        c = old;
+      }
+      while (c >= clear) {
+        stack[sp++] = suffix[c];
+        c = prefix[c];
+      }
+      first = suffix[c];
+      stack[sp++] = first;
+      while (sp && o < count) out[o++] = stack[--sp];
+      if (next < 4096) {
+        prefix[next] = old;
+        suffix[next] = first;
+        next++;
+        if ((next & mask) === 0 && next < 4096) {
+          size++;
+          mask = (1 << size) - 1;
+        }
+      }
+      old = code;
+    }
+    return out;
+  }
+  function decodeGif(buf, each) {
+    if (buf.length < 13 || String.fromCharCode(buf[0], buf[1], buf[2]) !== "GIF") throw new Error("not a GIF");
+    const width = buf[6] | buf[7] << 8, height = buf[8] | buf[9] << 8, flags = buf[10];
+    let p = 13, global = null;
+    if (flags & 128) {
+      const n4 = 3 * (1 << (flags & 7) + 1);
+      global = buf.subarray(p, p + n4);
+      p += n4;
+    }
+    const canvas = new Uint8ClampedArray(width * height * 4), frames = [];
+    let delay = 100, transparent = -1, disposal = 0;
+    const subBlocks = () => {
+      const parts = [];
+      let len = 0;
+      while (p < buf.length && buf[p]) {
+        const n4 = buf[p];
+        parts.push(buf.subarray(p + 1, p + 1 + n4));
+        len += n4;
+        p += n4 + 1;
+      }
+      p++;
+      const out = new Uint8Array(len);
+      let o = 0;
+      for (const s of parts) {
+        out.set(s, o);
+        o += s.length;
+      }
+      return out;
+    };
+    while (p < buf.length) {
+      const b = buf[p++];
+      if (b === 59) break;
+      if (b === 33) {
+        const label2 = buf[p++];
+        if (label2 === 249 && buf[p] >= 4) {
+          const f3 = buf[p + 1];
+          disposal = f3 >> 2 & 7;
+          delay = (buf[p + 2] | buf[p + 3] << 8) * 10 || 100;
+          transparent = f3 & 1 ? buf[p + 4] : -1;
+        }
+        subBlocks();
+        continue;
+      }
+      if (b !== 44) break;
+      const x0 = buf[p] | buf[p + 1] << 8, y0 = buf[p + 2] | buf[p + 3] << 8, w = buf[p + 4] | buf[p + 5] << 8, h = buf[p + 6] | buf[p + 7] << 8, f = buf[p + 8];
+      p += 9;
+      let table = global;
+      if (f & 128) {
+        const n4 = 3 * (1 << (f & 7) + 1);
+        table = buf.subarray(p, p + n4);
+        p += n4;
+      }
+      const interlaced = !!(f & 64), minCode = buf[p++], idx = lzw(minCode, subBlocks(), w * h);
+      const before = disposal === 3 ? canvas.slice() : null;
+      const rows = [];
+      if (interlaced) for (const [start, step] of [[0, 8], [4, 8], [2, 4], [1, 2]]) for (let y = start; y < h; y += step) rows.push(y);
+      for (let r = 0; r < h; r++) {
+        const y = interlaced ? rows[r] : r, Y = y0 + y;
+        if (Y >= height) continue;
+        for (let x = 0; x < w; x++) {
+          const X = x0 + x, ci = idx[r * w + x];
+          if (X >= width || ci === transparent || !table || ci * 3 + 2 >= table.length) continue;
+          const o = (Y * width + X) * 4;
+          canvas[o] = table[ci * 3];
+          canvas[o + 1] = table[ci * 3 + 1];
+          canvas[o + 2] = table[ci * 3 + 2];
+          canvas[o + 3] = 255;
+        }
+      }
+      if (each) {
+        if (each(canvas, delay, frames.length)) return { width, height, frames };
+        frames.push({ rgba: new Uint8ClampedArray(0), delay });
+      } else frames.push({ rgba: canvas.slice(), delay });
+      if (disposal === 2) {
+        for (let y = y0; y < Math.min(height, y0 + h); y++) canvas.fill(0, (y * width + x0) * 4, (y * width + Math.min(width, x0 + w)) * 4);
+      } else if (disposal === 3 && before) canvas.set(before);
+      delay = 100;
+      transparent = -1;
+      disposal = 0;
+    }
+    if (!frames.length) throw new Error("no frames");
+    return { width, height, frames };
+  }
+
+  // src/shared/frames.ts
+  var isMotion = (b, name = "") => /^video\//.test(b.type) || b.type === "image/gif" || /\.(gif|mp4|webm|mov|m4v)$/i.test(name);
+  var isVideo = (b, name) => /^video\//.test(b.type) || /\.(mp4|webm|mov|m4v)$/i.test(name);
+  var PREVIEW = 480;
+  var canvasOf = (w, h) => {
+    const c = document.createElement("canvas");
+    c.width = Math.max(1, w);
+    c.height = Math.max(1, h);
+    return c;
+  };
+  async function gifSource(bytes, view) {
+    const W = bytes[6] | bytes[7] << 8, H = bytes[8] | bytes[9] << 8, k = Math.min(1, PREVIEW / Math.max(W, H, 1));
+    const small = [], delays = [], work = [];
+    const g = decodeGif(bytes, (rgba2, delay, i) => {
+      delays[i] = delay;
+      work.push(createImageBitmap(new ImageData(rgba2.slice(), W, H), { resizeWidth: Math.max(1, Math.round(W * k)), resizeHeight: Math.max(1, Math.round(H * k)), resizeQuality: "medium" }).then((b) => {
+        small[i] = b;
+      }));
+    });
+    await Promise.all(work);
+    const full = (i) => {
+      let out = null;
+      decodeGif(bytes, (rgba2, _d, k2) => {
+        if (k2 !== i) return false;
+        out = canvasOf(W, H);
+        out.getContext("2d").putImageData(new ImageData(rgba2.slice(), W, H), 0, 0);
+        return true;
+      });
+      return out;
+    };
+    if (g.frames.length < 2) return full(0);
+    view.width = small[0].width;
+    view.height = small[0].height;
+    return {
+      count: g.frames.length,
+      label: (i) => t("Frame {n} of {count}", { n: i + 1, count: g.frames.length }),
+      async show(i) {
+        view.getContext("2d").clearRect(0, 0, view.width, view.height);
+        view.getContext("2d").drawImage(small[i], 0, 0);
+      },
+      delay: (i) => Math.max(20, delays[i] || 100),
+      async take(i) {
+        return full(i);
+      },
+      close() {
+        for (const b of small) b.close();
+      }
+    };
+  }
+  function videoSource(blob, src, video) {
+    const url2 = URL.createObjectURL(blob);
+    const tryLoad = (s) => new Promise((resolve, reject) => {
+      video.onloadeddata = () => resolve();
+      video.onerror = () => reject(new Error("cannot play"));
+      video.src = s;
+      video.load();
+    });
+    return tryLoad(url2).catch(() => src ? tryLoad(src) : Promise.reject(new Error("cannot play"))).then(async () => {
+      if (!isFinite(video.duration)) {
+        await new Promise((resolve) => {
+          const done = () => {
+            if (isFinite(video.duration)) {
+              video.ondurationchange = null;
+              resolve();
+            }
+          };
+          video.ondurationchange = done;
+          video.currentTime = 1e7;
+          setTimeout(resolve, 3e3);
+        });
+        video.currentTime = 0;
+      }
+      const fps = 30, d = isFinite(video.duration) && video.duration > 0 ? video.duration : 0, count = Math.max(1, Math.floor(d * fps));
+      const seek = (i) => new Promise((resolve) => {
+        const tm = Math.min(Math.max(0, d - 1e-3), i / fps);
+        if (Math.abs(video.currentTime - tm) < 1e-3) {
+          resolve();
+          return;
+        }
+        video.onseeked = () => resolve();
+        video.currentTime = tm;
+      });
+      return {
+        count,
+        label: (i) => t("{s} s of {total} s", { s: (i / fps).toFixed(2), total: d.toFixed(1) }),
+        show: seek,
+        delay: () => 1e3 / fps,
+        async take(i) {
+          await seek(i);
+          const c = canvasOf(video.videoWidth, video.videoHeight);
+          c.getContext("2d").drawImage(video, 0, 0);
+          return c;
+        },
+        close() {
+          video.removeAttribute("src");
+          video.load();
+          URL.revokeObjectURL(url2);
+        }
+      };
+    });
+  }
+  var dlg3 = null;
+  function dialog() {
+    if (dlg3) return dlg3;
+    dlg3 = document.createElement("dialog");
+    dlg3.id = "dlg-frame";
+    dlg3.innerHTML = `<div class="dlg-head"><h2>${t("Choose a frame")}</h2></div>
+<div class="fr-stage"><canvas class="fr-canvas"></canvas><video class="fr-video" muted playsinline preload="auto"></video></div>
+<input class="fr-slider" type="range" min="0" step="1" aria-label="${t("Frame")}">
+<div class="row fr-controls">
+  <button class="fr-prev" title="${t("One frame back")}" aria-label="${t("One frame back")}">◀</button>
+  <button class="fr-play" title="${t("Play / pause")}" aria-label="${t("Play / pause")}">▶</button>
+  <button class="fr-next" title="${t("One frame on")}" aria-label="${t("One frame on")}">▶▏</button>
+  <span class="fr-label note grow"></span>
+</div>
+<div class="row dlg-foot"><button class="fr-cancel">${t("Cancel")}</button><button class="fr-ok primary">${t("Use this frame")}</button></div>`;
+    document.body.append(dlg3);
+    return dlg3;
+  }
+  async function chooseFrame(blob, name, o = {}) {
+    const d = dialog(), q = (s) => d.querySelector(s);
+    const view = q(".fr-canvas"), video = q(".fr-video"), slider = q(".fr-slider");
+    const vid = isVideo(blob, name);
+    view.hidden = vid;
+    video.hidden = !vid;
+    let src;
+    try {
+      if (vid) src = await videoSource(blob, o.src, video);
+      else {
+        const s = await gifSource(new Uint8Array(await blob.arrayBuffer()), view);
+        if (s instanceof HTMLCanvasElement) return s;
+        src = s;
+      }
+    } catch {
+      toast(vid ? t("This video can’t be played here – try a GIF or a screenshot of it.") : t("Could not read {name} as an image.", { name }));
+      return null;
+    }
+    let i = 0, playing = false, timer = 0;
+    const go = async (k) => {
+      i = Math.max(0, Math.min(src.count - 1, k));
+      slider.value = String(i);
+      q(".fr-label").textContent = src.label(i);
+      await src.show(i);
+    };
+    const stop = () => {
+      playing = false;
+      clearTimeout(timer);
+      q(".fr-play").textContent = "▶";
+    };
+    const tick = async () => {
+      if (!playing) return;
+      await go(i + 1 >= src.count ? 0 : i + 1);
+      timer = window.setTimeout(tick, src.delay(i));
+    };
+    slider.max = String(src.count - 1);
+    slider.oninput = () => {
+      stop();
+      go(+slider.value);
+    };
+    q(".fr-prev").onclick = () => {
+      stop();
+      go(i - 1);
+    };
+    q(".fr-next").onclick = () => {
+      stop();
+      go(i + 1);
+    };
+    q(".fr-play").onclick = () => {
+      if (playing) stop();
+      else {
+        playing = true;
+        q(".fr-play").textContent = "❚❚";
+        tick();
+      }
+    };
+    await go(0);
+    const pick2 = await new Promise((resolve) => {
+      const answer = (yes) => () => {
+        d.oncancel = null;
+        d.close();
+        resolve(yes);
+      };
+      q(".fr-ok").onclick = answer(true);
+      q(".fr-cancel").onclick = answer(false);
+      d.oncancel = answer(false);
+      d.showModal();
+    });
+    stop();
+    try {
+      return pick2 ? await src.take(i) : null;
+    } finally {
+      src.close();
+    }
+  }
+
   // src/features/discord-host.ts
   var MAX = 2400;
   Object.assign(MZ, {
-    async openImage(blob, name) {
+    async openImage(blob, name, o = {}) {
+      if (isMotion(blob, name)) {
+        const c = await chooseFrame(blob, name, o);
+        if (!c) return;
+        blob = await canvasToPng(c);
+        name = name.replace(/\.[a-z0-9]+$/i, "") + ".png";
+      }
       const url2 = URL.createObjectURL(blob);
       let w, h;
       try {
@@ -13597,8 +13976,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.1.1" : "dev";
+  var VERSION = true ? "2.2.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.2.0",
+      date: "2026-10-13",
+      items: [
+        "GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play."
+      ]
+    },
     {
       version: "2.1.1",
       date: "2026-10-13",
@@ -13716,12 +14102,12 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   ];
   var KEY2 = "mz-version";
   function initWhatsNew() {
-    const dlg3 = document.createElement("dialog");
-    dlg3.id = "dlg-whats-new";
-    dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
-    document.body.append(dlg3);
-    dlg3.addEventListener("click", (e) => {
-      if (e.target === dlg3) dlg3.close();
+    const dlg4 = document.createElement("dialog");
+    dlg4.id = "dlg-whats-new";
+    dlg4.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
+    document.body.append(dlg4);
+    dlg4.addEventListener("click", (e) => {
+      if (e.target === dlg4) dlg4.close();
     });
     const button = document.createElement("button");
     button.id = "st-version";
@@ -13736,7 +14122,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
     button.onclick = () => {
       button.classList.remove("new");
       lsSet(KEY2, VERSION);
-      dlg3.showModal();
+      dlg4.showModal();
     };
   }
 

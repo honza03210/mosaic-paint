@@ -2150,4 +2150,22 @@ export const DE: Record<string, string> = {
     'Ebenen in der Raster-App: auf die aktive Ebene malen, ein- / ausblenden, Deckkraft, verschieben, zusammenfügen, reduzieren – Rückgängig kennt alles. Ebenen speichern behält sie in einer OpenRaster-Datei (.ora – GIMP und Krita öffnen sie), und das automatische Speichern auch.',
   'The AI add-ons on phones: much less memory (no more crash on iPhone when selecting an object) – the CPU engine on iPhone and iPad, and one feature\'s models at a time.':
     'Die KI-Add-ons auf Handys: viel weniger Speicher (kein Absturz mehr beim Auswählen eines Objekts auf dem iPhone) – auf iPhone und iPad die CPU-Engine, und immer nur die Modelle einer Funktion.',
+  'Frame {n} of {count}':
+    'Bild {n} von {count}',
+  '{s} s of {total} s':
+    '{s} s von {total} s',
+  'Choose a frame':
+    'Bild auswählen',
+  'One frame back':
+    'Ein Bild zurück',
+  'Play / pause':
+    'Abspielen / Pause',
+  'One frame on':
+    'Ein Bild weiter',
+  'Use this frame':
+    'Dieses Bild verwenden',
+  'This video can’t be played here – try a GIF or a screenshot of it.':
+    'Dieses Video lässt sich hier nicht abspielen – versuche ein GIF oder einen Screenshot davon.',
+  'GIFs and videos: open one (or, in Discord, a GIF, a video or a Tenor / Giphy GIF from the chat) and choose the frame to edit – with a slider, frame steps and play.':
+    'GIFs und Videos: öffne eines (in Discord auch ein GIF, ein Video oder ein Tenor- / Giphy-GIF aus dem Chat) und wähle das Bild zum Bearbeiten – mit Schieberegler, Einzelbildschritten und Abspielen.',
 };

@@ -8,7 +8,8 @@ import { DiscordSDK, RPCCloseCodes } from '@discord/embedded-app-sdk';
 /** What the app offers the Activity (raster/main.ts, features/discord-host.ts). */
 interface Editor {
   ready: boolean;
-  openImage(blob: Blob, name: string): Promise<void>;
+  /** src: where a video can also be loaded from (the page may not play videos from memory here) */
+  openImage(blob: Blob, name: string, o?: { src?: string }): Promise<void>;
   png(): Promise<Blob>;
   toast(msg: string): void;
   t(s: string, vars?: Record<string, string | number>): string;
@@ -77,7 +78,10 @@ async function start(app: Editor): Promise<void> {
 
   // the image picked in the chat, if any
   const r = await call(`/pending?channel=${encodeURIComponent(sdk.channelId || '')}`, { headers: auth });
-  if (r.status === 200) await app.openImage(await r.blob(), decodeURIComponent(r.headers.get('x-filename') || 'image.png'));
+  if (r.status === 200) {
+    const media = r.headers.get('x-media');
+    await app.openImage(await r.blob(), decodeURIComponent(r.headers.get('x-filename') || 'image.png'), media ? { src: API.replace(/\/api$/, '') + media } : {});
+  }
   else if (r.status === 410) app.toast(t('That image is no longer available in Discord.'));
   else app.toast(t('Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.'));
 

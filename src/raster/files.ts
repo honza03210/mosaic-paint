@@ -10,6 +10,7 @@ import { selectionChanged } from './select.ts';
 import { t, lang } from '../shared/i18n.ts';
 import { ask, askYes } from '../shared/dialogs.ts';
 import { exportOra, openOra } from './layers.ts';
+import { isMotion, chooseFrame } from '../shared/frames.ts';
 
 export const MAX_SIDE = 8000;
 const IMAGE_TYPES = [{ description: t('Images'), accept: { 'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.svg'] } }];
@@ -62,10 +63,13 @@ function scaled(c: HTMLCanvasElement, k: number): HTMLCanvasElement {
   x.drawImage(c, 0, 0, out.width, out.height);
   return out;
 }
-export async function openImageFile(f: File): Promise<boolean> {
+/** Opens a picture file; a GIF or a video opens as the frame the user chooses (src: where a video can also be
+    loaded from, when the page may not play it from memory – inside Discord). */
+export async function openImageFile(f: File, o: { src?: string } = {}): Promise<boolean> {
   // an OpenRaster file: its layers
-  if (/.ora$/i.test(f.name) || f.type === 'image/openraster') return openOra(f, f.name);
-  let c = await fileToCanvas(f);
+  if (/\.ora$/i.test(f.name) || f.type === 'image/openraster') return openOra(f, f.name);
+  let c = isMotion(f, f.name) ? await chooseFrame(f, f.name, o) : await fileToCanvas(f);
+  if (!c && isMotion(f, f.name)) return false;
   if (!c) { toast(t('Could not read {name} as an image.', { name: f.name })); return false; }
   const side = Math.max(c.width, c.height);
   if (side > BIG) {

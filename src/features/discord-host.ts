@@ -6,12 +6,20 @@ import { MZ } from '../core/api.ts';
 import { loadPhoto, refImage, renderPhotoUI } from '../core/photo.ts';
 import { svgToCanvas, canvasToPng } from '../shared/clipboard.ts';
 import { t } from '../shared/i18n.ts';
+import { isMotion, chooseFrame } from '../shared/frames.ts';
 
 /** Largest side of a picture opened from the chat (as the photo layer keeps it). */
 const MAX = 2400;
 
 Object.assign(MZ, {
-  async openImage(blob: Blob, name: string): Promise<void> {
+  async openImage(blob: Blob, name: string, o: { src?: string } = {}): Promise<void> {
+    // a GIF or a video: the frame the user chooses
+    if (isMotion(blob, name)) {
+      const c = await chooseFrame(blob, name, o);
+      if (!c) return;
+      blob = await canvasToPng(c);
+      name = name.replace(/\.[a-z0-9]+$/i, '') + '.png';
+    }
     const url = URL.createObjectURL(blob);
     let w: number, h: number;
     try {

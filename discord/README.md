@@ -32,6 +32,10 @@ Activity (editor) ──sign in──▶ /api/token ──▶ /api/pending (the 
   both served by the same Worker; inside Discord they load `dist/activity.js` (`src/discord/activity.ts` in
   the main project), which talks to the Discord client. Switching apps keeps Discord's connection details
   in the address (and in the tab, should a page open without them), so the other app connects again.
+- GIFs and videos work too: the editor lets the user choose a frame. A Tenor / Giphy "GIF" is a video in the
+  message's embed; the Worker takes that. A video also gets a signed address on the Worker (`/api/media`,
+  valid 30 minutes, Discord's media only, with byte ranges) for the player, in case the Activity's frame may
+  not play it from memory.
 - The add-ons' downloads (AI models, the engine, text recognition) come through the Worker as well
   (`/api/fetch`): Discord lets an Activity load only from its own address. The Worker passes on exactly the
   files the app lists (`src/shared/addon-files.ts`, pinned versions) and lets Cloudflare cache them.
