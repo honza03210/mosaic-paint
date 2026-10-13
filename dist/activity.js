@@ -9658,8 +9658,10 @@
     if (r.status === 200) {
       const media = r.headers.get("x-media");
       await app.openImage(await r.blob(), decodeURIComponent(r.headers.get("x-filename") || "image.png"), media ? { src: API.replace(/\/api$/, "") + media } : {});
-    } else if (r.status === 410) app.toast(t2("That image is no longer available in Discord."));
-    else app.toast(t2("Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one."));
+    } else if (r.status === 410) {
+      const { status } = await r.json().catch(() => ({}));
+      app.toast(t2("That image is no longer available in Discord.") + (status ? ` (${status})` : ""));
+    } else app.toast(t2("Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one."));
     post.onclick = async () => {
       post.disabled = true;
       try {

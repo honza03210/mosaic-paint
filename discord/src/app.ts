@@ -51,6 +51,8 @@ export interface Pending {
   channelId: string; guildId: string | null; time: number;
   appId: string; token: string;
   messageId: string | null; url: string | null; filename: string; contentType: string;
+  /** another address of the same file (Discord's media proxy), tried when the first doesn't work */
+  alt?: string | null;
 }
 
 const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
@@ -106,20 +108,24 @@ const typeOf = (url: string): string => {
   return { gif: 'image/gif', mp4: 'video/mp4', webm: 'video/webm', mov: 'video/quicktime', m4v: 'video/mp4', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' }[ext] || 'image/png';
 };
 const nameOf = (url: string, fallback: string): string => decodeURIComponent(/\/([^/?#]+)(?:[?#]|$)/.exec(url)?.[1] || fallback);
-interface Media { url: string; filename: string; contentType: string }
+interface Media { url: string; filename: string; contentType: string; alt?: string | null }
 /**
  * What to edit from a message: the first image, GIF or video attached; else an embed's – a Tenor / Giphy "GIF"
  * (a video), a picture, or a video link's still (a YouTube video itself can't be fetched).
  */
 export function pickMedia(msg: any): Media | null {
   const a = (msg?.attachments || []).find((x: { content_type?: string }) => /^(image|video)\//.test(x.content_type || ''));
-  if (a) return { url: a.url, filename: a.filename || 'image.png', contentType: a.content_type };
+  if (a) return { url: a.url, filename: a.filename || 'image.png', contentType: a.content_type, alt: a.proxy_url || null };
   for (const e of msg?.embeds || []) {
     const v = e.type === 'gifv' ? e.video : null, still = e.image || e.thumbnail, url = v ? (v.proxy_url || v.url) : still ? (still.proxy_url || still.url) : null;
-    if (url) return { url, filename: nameOf(url, v ? 'animation.mp4' : 'image.png'), contentType: v ? 'video/mp4' : typeOf(url) };
+    const other = v ? (v.proxy_url ? v.url : null) : still && still.proxy_url ? still.url : null;
+    if (url) return { url, filename: nameOf(url, v ? 'animation.mp4' : 'image.png'), contentType: v ? 'video/mp4' : typeOf(url), alt: other };
   }
   return null;
 }
+
+/** A file from Discord's CDN (it wants to know who asks). */
+const getFile = (url: string, init: RequestInit = {}) => fetch(url, { ...init, headers: { 'user-agent': 'MosaicPaintActivity (https://github.com/honza03210/mosaic-paint, 2)', ...(init.headers as Record<string, string> || {}) } });
 
 // ---- videos for the Activity's player ------------------------------------------------------------------------
 /** A <video> can't send the sign-in header: it gets an address signed by the Worker instead, valid for a while. */
@@ -141,7 +147,7 @@ async function media(req: Request, env: Env, url: URL): Promise<Response> {
   try { host = new URL(u).hostname; } catch { /* not a URL */ }
   if (!MEDIA_HOSTS.test(host) || !(+exp > Date.now()) || sig !== await hmac(env.DISCORD_CLIENT_SECRET, u + '|' + exp)) return new Response('not allowed', { status: 403 });
   const range = req.headers.get('range');
-  const r = await fetch(u, { headers: range ? { range } : {} });
+  const r = await getFile(u, { headers: range ? { range } : {} });
   const h = new Headers({ 'content-type': r.headers.get('content-type') || 'video/mp4', 'accept-ranges': 'bytes', 'cache-control': 'private, max-age=600' });
   for (const k of ['content-length', 'content-range']) { const v = r.headers.get(k); if (v) h.set(k, v); }
   return new Response(r.body, { status: r.status, headers: h });
@@ -189,8 +195,13 @@ async function pending(req: Request, env: Env, url: URL): Promise<Response> {
   if (!user) return json({ error: 'not signed in' }, 401);
   const p = await pendingOf(env, user);
   if (!p?.url || p.channelId !== url.searchParams.get('channel') || Date.now() - p.time > PENDING_MS) return new Response(null, { status: 204 });
-  const img = await fetch(p.url);
-  if (!img.ok) return json({ error: 'the image is no longer available' }, 410);
+  // Discord's file; its media proxy when that doesn't answer (what went wrong goes to the log: npx wrangler tail)
+  let img = await getFile(p.url);
+  if (!img.ok && p.alt) { console.error('file fetch failed', img.status, p.url.slice(0, 80), '– trying the media proxy'); img = await getFile(p.alt); }
+  if (!img.ok) {
+    console.error('file fetch failed', img.status, (await img.text().catch(() => '')).slice(0, 200));
+    return json({ error: 'the image is no longer available', status: img.status }, 410);
+  }
   // the type the file really has (an embed's is only guessed from its name)
   const type = /^(image|video)\//.test(img.headers.get('content-type') || '') ? img.headers.get('content-type') : p.contentType;
   const headers: Record<string, string> = { 'content-type': type, 'x-filename': encodeURIComponent(p.filename), 'cache-control': 'no-store' };

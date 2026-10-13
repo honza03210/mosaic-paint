@@ -6,7 +6,8 @@ import worker, { pickMedia, mediaAddress } from '../../discord/src/app.ts';
 
 test('the first image, GIF or video attachment', () => {
   assert.deepEqual(pickMedia({ attachments: [{ url: 'https://cdn.discordapp.com/a/doc.pdf', content_type: 'application/pdf' }, { url: 'https://cdn.discordapp.com/a/clip.mp4', filename: 'clip.mp4', content_type: 'video/mp4' }] }),
-    { url: 'https://cdn.discordapp.com/a/clip.mp4', filename: 'clip.mp4', contentType: 'video/mp4' });
+    { url: 'https://cdn.discordapp.com/a/clip.mp4', filename: 'clip.mp4', contentType: 'video/mp4', alt: null });
+  assert.equal(pickMedia({ attachments: [{ url: 'https://cdn.discordapp.com/a/x.png', proxy_url: 'https://media.discordapp.net/a/x.png', content_type: 'image/png' }] }).alt, 'https://media.discordapp.net/a/x.png');
   assert.equal(pickMedia({ attachments: [{ url: 'https://cdn.discordapp.com/a/x.gif', filename: 'x.gif', content_type: 'image/gif' }] }).contentType, 'image/gif');
 });
 

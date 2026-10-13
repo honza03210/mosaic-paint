@@ -126,3 +126,29 @@ test('in a DM the link points there; after 15 minutes Discord no longer takes it
   edit().token = 'expired';
   assert.equal((await call('/api/post?channel=chan1', { method: 'POST', headers: auth, body: PNG })).status, 409);
 });
+
+test('the file is fetched with a User-Agent; when the CDN refuses it, the media proxy is tried', async () => {
+  const real = globalThis.fetch, seen = [];
+  globalThis.fetch = async (url, init = {}) => {
+    const u = String(url);
+    if (u.startsWith('https://cdn.discordapp.com/')) { seen.push(['cdn', new Headers(init.headers).get('user-agent')]); return new Response('no', { status: 403 }); }
+    if (u.startsWith('https://media.discordapp.net/')) { seen.push(['proxy']); return new Response(PNG, { headers: { 'content-type': 'image/png' } }); }
+    return real(url, init);
+  };
+  await worker.fetch(await signed(editImage([{ url: 'https://cdn.discordapp.com/a/cat.png', proxy_url: 'https://media.discordapp.net/a/cat.png', filename: 'cat.png', content_type: 'image/png' }])), env);
+  const r = await worker.fetch(new Request('https://w/api/pending?channel=chan1', { headers: { authorization: 'Bearer tok-ann' } }), env);
+  assert.equal(r.status, 200);
+  assert.deepEqual(new Uint8Array(await r.arrayBuffer()), PNG);
+  assert.equal(seen[0][0], 'cdn');
+  assert.match(seen[0][1], /MosaicPaint/);
+  assert.equal(seen[1][0], 'proxy');
+});
+
+test('when no address works, Discord’s answer comes back with the 410', async () => {
+  const real = globalThis.fetch;
+  globalThis.fetch = async (url, init = {}) => (String(url).includes('discordapp') ? new Response('gone', { status: 404 }) : real(url, init));
+  await worker.fetch(await signed(editImage([{ url: 'https://cdn.discordapp.com/a/cat.png', filename: 'cat.png', content_type: 'image/png' }])), env);
+  const r = await worker.fetch(new Request('https://w/api/pending?channel=chan1', { headers: { authorization: 'Bearer tok-ann' } }), env);
+  assert.equal(r.status, 410);
+  assert.equal((await r.json()).status, 404);
+});

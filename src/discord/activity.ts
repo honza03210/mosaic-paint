@@ -82,7 +82,11 @@ async function start(app: Editor): Promise<void> {
     const media = r.headers.get('x-media');
     await app.openImage(await r.blob(), decodeURIComponent(r.headers.get('x-filename') || 'image.png'), media ? { src: API.replace(/\/api$/, '') + media } : {});
   }
-  else if (r.status === 410) app.toast(t('That image is no longer available in Discord.'));
+  else if (r.status === 410) {
+    // with Discord's answer, to find out why
+    const { status } = await r.json().catch(() => ({})) as { status?: number };
+    app.toast(t('That image is no longer available in Discord.') + (status ? ` (${status})` : ''));
+  }
   else app.toast(t('Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one.'));
 
   post.onclick = async () => {
