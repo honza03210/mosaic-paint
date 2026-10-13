@@ -10,7 +10,7 @@ import { setTool, setMode } from './tools.ts';
 import { newImage, openFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
 import { rotate, flip, cropToSelection, trim } from './transform.ts';
 import { bindMosaic } from './mosaic.ts';
-import { TIPS, cancelCurve } from './paint.ts';
+import { TIPS, cancelCurve, pickCloneSource, updateCloneUI } from './paint.ts';
 import * as Curves from '../lib/curves.ts';
 import { curveNote } from '../shared/curve-notes.ts';
 import { t } from '../shared/i18n.ts';
@@ -103,6 +103,9 @@ export function bindPanel(): void {
   on('mode', () => { op.value = Math.round(state.opacity * 100); });
   bindCheck('#opt-smooth', 'smooth');
   bindCheck('#opt-pressure', 'pressure');
+  bindCheck('#opt-clone-aligned', 'cloneAligned');
+  $('#btn-clone-source').onclick = () => pickCloneSource();
+  updateCloneUI();
 
   // polygon
   const sides = $('#opt-sides');

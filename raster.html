@@ -64,6 +64,9 @@
     <button data-tool="eraser" title="Eraser (E)">
       <svg viewBox="0 0 20 20"><path d="M8 17L2 11l8-8 8 8-6 6z" class="st"/><path d="M5 8l7 7" class="st"/><path d="M8 17h9" class="st"/></svg>
     </button>
+    <button data-tool="clone" title="Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)">
+      <svg viewBox="0 0 20 20"><path d="M7.5 2.5h5v3.5l-1.2 3.5H8.7L7.5 6z" class="st"/><path d="M3 10.5h14v3.5H3z" class="st"/><path d="M5 17h10" class="st"/></svg>
+    </button>
     <button data-tool="line" title="Line (L)">
       <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg>
     </button>
@@ -132,12 +135,19 @@
       <p class="note">Click a swatch = paint color · right-click = outline color · double-click = edit (also recolors the image). The ∅ swatch paints transparent. Palettes are shared with the vector app.</p>
     </section>
 
-    <section class="tool-opts" data-for="brush pencil eraser line">
+    <section class="tool-opts" data-for="clone">
+      <h3>Clone</h3>
+      <div class="row"><button id="btn-clone-source" title="The next tap or click sets where to copy from (or Alt+click)">Set source</button><span id="clone-status" class="note"></span></div>
+      <label class="chk" title="On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source"><input type="checkbox" id="opt-clone-aligned"> Aligned – the source follows the brush</label>
+      <p class="note">Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush's.</p>
+    </section>
+
+    <section class="tool-opts" data-for="brush pencil eraser clone line">
       <h3>Brush</h3>
       <div class="row">
         <label class="grow">Size <input id="opt-size-range" type="range" min="1" max="100"></label>
       </div>
-      <div class="tool-opts row" data-for="brush eraser">
+      <div class="tool-opts row" data-for="brush eraser clone">
         <label title="The shape of the brush and eraser">Tip <select id="opt-tip">
           <option value="round">Round</option>
           <option value="soft">Soft (airbrush)</option>

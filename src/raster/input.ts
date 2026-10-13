@@ -5,7 +5,7 @@ import { imageFromPaste } from '../shared/clipboard.ts';
 import { state, on, savePrefs } from './state.ts';
 import { stage, view, toDoc, updateView, fitView, zoomAt, zoomCenter, actualSize, requestRender } from './canvas.ts';
 import { undo, redo, restoreCurrent, commit, steps, dropLastStep } from './history.ts';
-import { pickAt, curve, finishCurve, curveBack, cancelCurve } from './paint.ts';
+import { pickAt, curve, finishCurve, curveBack, cancelCurve, undoFreshCloneSource } from './paint.ts';
 import { place, cancelFloating, deselect, selectAll, copy, clearSelection, pasteImage, pasteInternal } from './select.ts';
 import { pasteColors, renderPalette, setFill, setStroke } from './palette.ts';
 import { tools, setTool } from './tools.ts';
@@ -150,6 +150,7 @@ function onKey(e: KeyboardEvent): void {
     case 'b': if (e.shiftKey) nextTip(); else setTool('brush'); break;
     case 'p': setTool('pencil'); break;
     case 'e': setTool('eraser'); break;
+    case 's': setTool('clone'); break;
     case 'l': setTool('line'); break;
     case 'g': setTool('ngon'); break;
     case 'o': setTool('ellipse'); break;
@@ -183,13 +184,13 @@ export function bindInput(): void {
   // touch screens: double-tap for the quick menu
   initQuickMenu({
     surface: view,
-    tools: ['brush', 'pencil', 'eraser', 'bucket', 'picker', 'line', 'ellipse', 'select'],
+    tools: ['brush', 'pencil', 'eraser', 'clone', 'bucket', 'picker', 'line', 'select'],
     state, setFill, setStroke,
     names: { fill: t('Paint'), stroke: t('Outline') },
     size: { input: '#opt-size', min: 1, max: 200, label: t('Size'), unit: () => 'px' },
     busy: () => !!curve.pts,
     steps, dropLastStep,
-    cancelPending() { cancelCurve(); state.action = null; state.preview = null; requestRender(); },
+    cancelPending() { cancelCurve(); undoFreshCloneSource(); state.action = null; state.preview = null; requestRender(); },
   });
   window.addEventListener('keydown', onKey);
   window.addEventListener('keyup', (e) => { if (e.key === ' ') { state.space = false; stage.classList.remove('space'); } });

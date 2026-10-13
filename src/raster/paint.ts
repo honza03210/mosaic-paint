@@ -1,4 +1,4 @@
-/* The painting tools: brush, pencil, eraser, line, regular polygon, ellipse, curve, paint bucket and color picker.
+/* The painting tools: brush, pencil, eraser, clone, line, regular polygon, ellipse, curve, paint bucket and color picker.
    Strokes are drawn on a separate layer and laid onto the image with the chosen opacity, so a stroke
    that crosses itself doesn't get darker. The color "none" (∅ swatch) paints transparent. With a pen
    (graphics tablet, stylus) the brush, pencil and eraser get thinner the lighter it presses. The brush and
@@ -156,17 +156,19 @@ function flushStamps(st: Stamps, ctx: CanvasRenderingContext2D): void {
 // ---- brush, pencil, eraser: freehand strokes ----------------------------------------------------------------
 const sizeAt = (e: PointerEvent) => R.pressureSize(state.size, e, state.pressure);
 
-interface Stroke { kind: string; tip: string; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; stamps: Stamps | null; timer: number; shift: boolean; start: Pt; last: Pt; lastSize: number; erase: boolean; alpha: number }
+interface Stroke { kind: string; tip: string; offset?: Pt; copy?: HTMLCanvasElement; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; stamps: Stamps | null; timer: number; shift: boolean; start: Pt; last: Pt; lastSize: number; erase: boolean; alpha: number }
 function beginStroke(kind: string, p: Pt, size: number): Stroke {
   const base = makeCanvas(doc.width, doc.height);
   base.getContext('2d').drawImage(doc, 0, 0);
   const layer = makeCanvas(doc.width, doc.height);
-  const erase = kind === 'eraser' || !state.fill;
+  const erase = kind === 'eraser' || (kind !== 'clone' && !state.fill);
   // the pencil paints exact colors: always fully opaque
   const alpha = kind === 'pencil' ? 1 : state.opacity;
   const tip = kind === 'pencil' ? 'pencil' : TIPS.includes(state.tip) ? state.tip : 'round';
   const stamps = ['soft', 'spray', 'chalk'].includes(tip) ? newStamps(erase ? '#000' : paintColor()) : null;
-  return { kind, tip, base, layer, lctx: layer.getContext('2d'), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
+  // clone: copies from the source, as far from the brush as the source is from its anchor
+  const c = state.clone, offset = kind === 'clone' && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : undefined;
+  return { kind, tip, offset, base, layer, lctx: layer.getContext('2d'), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
 }
 function strokeSegment(s: Stroke, a: Pt, b: Pt, size = state.size, sizeA = size): void {
   const color = s.erase ? '#000' : paintColor();
@@ -181,7 +183,16 @@ function compose(s: Stroke): void {
   dctx.globalCompositeOperation = 'copy';
   dctx.drawImage(s.base, 0, 0);
   dctx.restore();
-  applyLayer(s.layer, s.erase, s.alpha);
+  if (s.kind === 'clone' && s.offset) {
+    // the stroke (its shape and softness) filled with the picture as it was, shifted by the offset
+    const c = s.copy || (s.copy = makeCanvas(doc.width, doc.height)), x = c.getContext('2d');
+    x.globalCompositeOperation = 'copy';
+    x.drawImage(s.base, -s.offset.x, -s.offset.y);
+    x.globalCompositeOperation = 'destination-in';
+    x.drawImage(s.layer, 0, 0);
+    applyLayer(c, false, s.alpha);
+    state.clone.live = { x: s.last.x + s.offset.x, y: s.last.y + s.offset.y };
+  } else applyLayer(s.layer, s.erase, s.alpha);
   requestRender();
 }
 /** Spray, like an airbrush, keeps adding dots where the pointer is while it is held down. */
@@ -234,6 +245,81 @@ function freehand(kind: string): Tool {
     },
   };
 }
+
+// ---- clone: paint with a copy of another part of the image -------------------------------------------------------
+/** Sets where the next stroke copies from (a fresh start: the next stroke begins copying exactly there). */
+let lastSource = { src: null as Pt | null, anchor: null as Pt | null, at: -1e9 };
+export function setCloneSource(p: Pt): void {
+  const c = state.clone;
+  lastSource = { src: c.src, anchor: c.anchor, at: performance.now() };
+  c.src = { x: Math.round(p.x), y: Math.round(p.y) };
+  c.anchor = null;
+  c.picking = false;
+  updateCloneUI();
+  requestRender();
+}
+/** Takes back a source set just now (by the first tap of a double-tap that opens the quick menu). */
+export function undoFreshCloneSource(): void {
+  if (performance.now() - lastSource.at > 600) return;
+  Object.assign(state.clone, { src: lastSource.src, anchor: lastSource.anchor });
+  lastSource.at = -1e9;
+  updateCloneUI();
+}
+/** "Set source": the next tap or click sets it. */
+export function pickCloneSource(on = !state.clone.picking): void {
+  state.clone.picking = on;
+  updateCloneUI();
+  if (on) toast(t('Tap or click where to copy from.'));
+}
+export function updateCloneUI(): void {
+  const c = state.clone, b = document.getElementById('btn-clone-source'), note = document.getElementById('clone-status');
+  b?.classList.toggle('active', c.picking);
+  b?.setAttribute('aria-pressed', String(c.picking));
+  if (note) note.textContent = c.picking ? t('Tap the image where to copy from') : c.src ? t('Copying from {x}, {y}', c.src) : t('No source yet: the first tap sets it');
+}
+/** Near enough to grab the source disc (a finger's width on the screen, or the brush outline). */
+const onSourceDisc = (p: Pt): boolean => !!state.clone.src && Math.hypot(p.x - state.clone.src.x, p.y - state.clone.src.y) < Math.max(26 / state.view.s, state.size / 2);
+const cloneBrush = freehand('clone');
+const cloneTool: Tool = {
+  down(e, p) {
+    const c = state.clone;
+    // set the source: Alt+click, after "Set source", or the first tap of all (no keys needed on a phone)
+    if (e.altKey || c.picking || !c.src) {
+      const first = !c.src;
+      setCloneSource(p);
+      if (first || !e.altKey) toast(t('Source set – now paint where the copy goes.'));
+      return;
+    }
+    // the source disc can be dragged to another place
+    if (onSourceDisc(p)) { state.action = { type: 'clone-source', dx: c.src.x - p.x, dy: c.src.y - p.y }; return; }
+    // aligned: the offset from the first stroke stays; otherwise every stroke starts copying from the source
+    if (!state.cloneAligned || !c.anchor) c.anchor = { x: Math.round(p.x), y: Math.round(p.y) };
+    cloneBrush.down(e, p);
+  },
+  move(e, p) {
+    const a = state.action;
+    if (a && a.type === 'clone-source') {
+      state.clone.src = { x: Math.round(p.x + a.dx), y: Math.round(p.y + a.dy) };
+      updateCloneUI();
+      requestRender();
+      return;
+    }
+    cloneBrush.move(e, p);
+  },
+  up(e, p) {
+    const a = state.action, c = state.clone;
+    if (a && a.type === 'clone-source') { state.action = null; return; }
+    if (a && a.type === 'stroke' && state.cloneAligned && a.s.offset) {
+      // the source travels with the brush: it waits where the stroke ended, at the same offset
+      c.anchor = { x: Math.round(a.s.last.x), y: Math.round(a.s.last.y) };
+      c.src = { x: c.anchor.x + a.s.offset.x, y: c.anchor.y + a.s.offset.y };
+    }
+    c.live = null;
+    cloneBrush.up(e, p);
+    updateCloneUI();
+    requestRender();
+  },
+};
 
 // ---- line ---------------------------------------------------------------------------------------------------
 function drawShapeLine(ctx: CanvasRenderingContext2D, a: Pt, b: Pt, color: string): void {
@@ -485,6 +571,6 @@ const bucketTool: Tool = {
 const pickerTool: Tool = { down(e, p) { pickAt(p); }, move() {}, up() {} };
 
 export const paintTools: Record<string, Tool> = {
-  brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'),
+  brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'), clone: cloneTool,
   line: lineTool, ngon: ngonTool, ellipse: ellipseTool, curve: curveTool, bucket: bucketTool, picker: pickerTool,
 };

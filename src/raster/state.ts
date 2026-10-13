@@ -21,6 +21,12 @@ export const state = {
   nibAngle: 45,
   /** a pen paints thinner the lighter it presses */
   pressure: true,
+  /** clone: the source moves along with the brush from stroke to stroke (otherwise every stroke starts from it) */
+  cloneAligned: true,
+  /** clone, while the app runs: where the next stroke copies from (src), which brush point that belongs to
+      (anchor; none until the first stroke), the next tap sets the source (picking), the point being copied
+      during a stroke (live) */
+  clone: { src: null as { x: number; y: number } | null, anchor: null as { x: number; y: number } | null, picking: false, live: null as { x: number; y: number } | null },
   sides: 6, ngonFill: true, ngonOutline: false,
   ellipseMode: 'corner', curveType: 'catmull' as SplineType,
   tolerance: 24, contiguous: true,
@@ -52,7 +58,7 @@ export const rt = {
 
 // ---- remembered settings ---------------------------------------------------------------------------
 const KEY = 'mz-raster-prefs';
-const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'sides', 'ellipseMode', 'curveType', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
+const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'cloneAligned', 'sides', 'ellipseMode', 'curveType', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
 export function savePrefs(): void {
   const o: Record<string, unknown> = {};
   for (const k of PREF_KEYS) o[k] = state[k];

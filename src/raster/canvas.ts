@@ -127,7 +127,32 @@ export function render(): void {
   }
   // the brush outline under the pointer
   const c = state.cursor;
-  if (c && ['brush', 'pencil', 'eraser'].includes(state.tool) && !state.space) {
+  // clone: the source disc – the brush's outline with a grip to drag it by (where it copies from while painting)
+  const cs = state.clone, at = cs.live || cs.src;
+  if (state.tool === 'clone' && at) {
+    const r = Math.max(state.size / 2, 3 / k), g = 14 / k;
+    vctx.beginPath();
+    vctx.arc(at.x, at.y, r, 0, Math.PI * 2);
+    vctx.lineWidth = 1 / k;
+    vctx.strokeStyle = 'rgba(0,0,0,.7)';
+    vctx.stroke();
+    vctx.setLineDash([3 / k, 3 / k]);
+    vctx.strokeStyle = 'rgba(255,255,255,.9)';
+    vctx.stroke();
+    vctx.setLineDash([]);
+    vctx.beginPath();
+    vctx.arc(at.x, at.y, g, 0, Math.PI * 2);
+    vctx.fillStyle = cs.live ? 'rgba(43,140,255,.12)' : 'rgba(43,140,255,.28)';
+    vctx.fill();
+    vctx.moveTo(at.x - g * 0.55, at.y);
+    vctx.lineTo(at.x + g * 0.55, at.y);
+    vctx.moveTo(at.x, at.y - g * 0.55);
+    vctx.lineTo(at.x, at.y + g * 0.55);
+    vctx.lineWidth = 2 / k;
+    vctx.strokeStyle = '#2b8cff';
+    vctx.stroke();
+  }
+  if (c && ['brush', 'pencil', 'eraser', 'clone'].includes(state.tool) && !state.space) {
     const r = state.size / 2;
     vctx.beginPath();
     if (state.tool === 'pencil') {

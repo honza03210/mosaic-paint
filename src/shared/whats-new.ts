@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '1.6.0', date: '2026-10-13', items: [
+      'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.',
+    ],
+  },
+  {
     version: '1.5.0', date: '2026-10-13', items: [
       'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.',
     ],

@@ -1780,4 +1780,30 @@ export const PL: Record<string, string> = {
     'Wskazówka: stuknij dwukrotnie rysunek, aby otworzyć szybkie menu – narzędzia, kolory i rozmiar.',
   'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.':
     'Szybkie menu na telefonach i tabletach: stuknij dwukrotnie palcem rysunek – cofanie, główne narzędzia, kolory i rozmiar, dokładnie tam, gdzie rysujesz.',
+  'Tap or click where to copy from.':
+    'Stuknij lub kliknij miejsce, z którego kopiować.',
+  'Tap the image where to copy from':
+    'Stuknij obraz w miejscu, z którego kopiować',
+  'Copying from {x}, {y}':
+    'Kopiowanie z {x}, {y}',
+  'No source yet: the first tap sets it':
+    'Brak źródła: pierwsze stuknięcie je ustawi',
+  'Source set – now paint where the copy goes.':
+    'Źródło ustawione – teraz maluj tam, gdzie ma być kopia.',
+  'Clone':
+    'Klonowanie',
+  'Set source':
+    'Ustaw źródło',
+  'Aligned – the source follows the brush':
+    'Wyrównane – źródło podąża za pędzlem',
+  'Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush\'s.':
+    'Ustaw, skąd kopiować, a potem maluj tam, gdzie ma być kopia. Krążek źródła można przeciągnąć. Rozmiar, końcówka i krycie są jak u pędzla.',
+  'Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)':
+    'Klonowanie – maluj kopią innej części obrazu · Alt+klik lub pierwsze stuknięcie ustawia, skąd kopiować (S)',
+  'The next tap or click sets where to copy from (or Alt+click)':
+    'Następne stuknięcie lub kliknięcie ustawia, skąd kopiować (lub Alt+klik)',
+  'On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source':
+    'Włączone: źródło przesuwa się z pędzlem od pociągnięcia do pociągnięcia. Wyłączone: każde pociągnięcie kopiuje od źródła',
+  'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.':
+    'Narzędzie Klonowanie w aplikacji rastrowej (S): maluj kopią innej części obrazu. Stuknij (lub Alt+klik) miejsce, z którego kopiować, namaluj kopię, krążek źródła przesuń palcem; wyrównane lub nie, z rozmiarem, końcówką, kryciem i naciskiem pióra jak u pędzla.',
 };

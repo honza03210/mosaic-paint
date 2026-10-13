@@ -896,7 +896,20 @@
     "Choose any color": "Vybrat libovolnou barvu",
     "The palette is empty – use + to choose a color.": "Paleta je prázdná – barvu vyberete tlačítkem +.",
     "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Tip: dvojitým klepnutím na kresbu otevřete rychlou nabídku – nástroje, barvy a velikost.",
-    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Rychlá nabídka na telefonech a tabletech: dvojitým klepnutím prstem na kresbu máte po ruce zpět, hlavní nástroje, barvy a velikost – přímo tam, kde kreslíte."
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Rychlá nabídka na telefonech a tabletech: dvojitým klepnutím prstem na kresbu máte po ruce zpět, hlavní nástroje, barvy a velikost – přímo tam, kde kreslíte.",
+    "Tap or click where to copy from.": "Klepněte nebo klikněte tam, odkud kopírovat.",
+    "Tap the image where to copy from": "Klepněte do obrázku tam, odkud kopírovat",
+    "Copying from {x}, {y}": "Kopíruje se z {x}, {y}",
+    "No source yet: the first tap sets it": "Zdroj zatím není: nastaví ho první klepnutí",
+    "Source set – now paint where the copy goes.": "Zdroj nastaven – teď malujte tam, kam patří kopie.",
+    "Clone": "Klonování",
+    "Set source": "Nastavit zdroj",
+    "Aligned – the source follows the brush": "Zarovnaně – zdroj se posouvá se štětcem",
+    "Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush's.": "Nastavte, odkud kopírovat, a pak malujte tam, kam má kopie přijít. Kotouček zdroje přesunete tažením. Velikost, hrot a krytí jsou jako u štětce.",
+    "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonování – malujte kopií jiné části obrázku · Alt+klik nebo první klepnutí nastaví, odkud kopírovat (S)",
+    "The next tap or click sets where to copy from (or Alt+click)": "Další klepnutí nebo kliknutí nastaví, odkud kopírovat (nebo Alt+klik)",
+    "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "Zapnuto: zdroj se posouvá se štětcem od tahu k tahu. Vypnuto: každý tah začne kopírovat ze zdroje",
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Nástroj Klonování v rastrové aplikaci (S): malujte kopií jiné části obrázku. Klepněte (nebo Alt+klik) tam, odkud kopírovat, namalujte kopii, kotouček zdroje posunete prstem; zarovnaně i ne, s velikostí, hrotem, krytím a přítlakem pera jako u štětce."
   };
 
   // src/shared/i18n-de.ts
@@ -1790,7 +1803,20 @@
     "Choose any color": "Beliebige Farbe wählen",
     "The palette is empty – use + to choose a color.": "Die Palette ist leer – mit + eine Farbe wählen.",
     "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Tipp: Zweimal auf die Zeichnung tippen öffnet ein Schnellmenü – Werkzeuge, Farben und Größe.",
-    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Schnellmenü auf Handys und Tablets: zweimal mit dem Finger auf die Zeichnung tippen – Rückgängig, die wichtigsten Werkzeuge, Farben und Größe, genau dort, wo du zeichnest."
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Schnellmenü auf Handys und Tablets: zweimal mit dem Finger auf die Zeichnung tippen – Rückgängig, die wichtigsten Werkzeuge, Farben und Größe, genau dort, wo du zeichnest.",
+    "Tap or click where to copy from.": "Tippe oder klicke dorthin, wovon kopiert werden soll.",
+    "Tap the image where to copy from": "Tippe ins Bild, wovon kopiert werden soll",
+    "Copying from {x}, {y}": "Kopiert von {x}, {y}",
+    "No source yet: the first tap sets it": "Noch keine Quelle: das erste Tippen legt sie fest",
+    "Source set – now paint where the copy goes.": "Quelle gesetzt – jetzt dort malen, wo die Kopie hin soll.",
+    "Clone": "Klonen",
+    "Set source": "Quelle festlegen",
+    "Aligned – the source follows the brush": "Ausgerichtet – die Quelle folgt dem Pinsel",
+    "Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush's.": "Lege fest, wovon kopiert wird, und male dann dort, wo die Kopie hin soll. Die Quellscheibe lässt sich ziehen. Größe, Spitze und Deckkraft sind die des Pinsels.",
+    "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonen – mit einer Kopie eines anderen Bildteils malen · Alt+Klick oder das erste Tippen legt fest, wovon kopiert wird (S)",
+    "The next tap or click sets where to copy from (or Alt+click)": "Das nächste Tippen oder Klicken legt fest, wovon kopiert wird (oder Alt+Klick)",
+    "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "An: die Quelle wandert von Strich zu Strich mit dem Pinsel. Aus: jeder Strich kopiert wieder ab der Quelle",
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Klon-Werkzeug in der Raster-App (S): mit einer Kopie eines anderen Bildteils malen. Tippen (oder Alt+Klick), wovon kopiert wird, die Kopie malen, die Quellscheibe mit dem Finger verschieben; ausgerichtet oder nicht, mit Größe, Spitze, Deckkraft und Stiftdruck des Pinsels."
   };
 
   // src/shared/i18n-sk.ts
@@ -2684,7 +2710,20 @@
     "Choose any color": "Vybrať ľubovoľnú farbu",
     "The palette is empty – use + to choose a color.": "Paleta je prázdna – farbu vyberiete tlačidlom +.",
     "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Tip: dvojitým ťuknutím na kresbu otvoríte rýchlu ponuku – nástroje, farby a veľkosť.",
-    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Rýchla ponuka na telefónoch a tabletoch: dvojitým ťuknutím prstom na kresbu máte poruke späť, hlavné nástroje, farby a veľkosť – priamo tam, kde kreslíte."
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Rýchla ponuka na telefónoch a tabletoch: dvojitým ťuknutím prstom na kresbu máte poruke späť, hlavné nástroje, farby a veľkosť – priamo tam, kde kreslíte.",
+    "Tap or click where to copy from.": "Ťuknite alebo kliknite tam, odkiaľ kopírovať.",
+    "Tap the image where to copy from": "Ťuknite do obrázka tam, odkiaľ kopírovať",
+    "Copying from {x}, {y}": "Kopíruje sa z {x}, {y}",
+    "No source yet: the first tap sets it": "Zdroj zatiaľ nie je: nastaví ho prvé ťuknutie",
+    "Source set – now paint where the copy goes.": "Zdroj nastavený – teraz maľujte tam, kam patrí kópia.",
+    "Clone": "Klonovanie",
+    "Set source": "Nastaviť zdroj",
+    "Aligned – the source follows the brush": "Zarovnane – zdroj sa posúva so štetcom",
+    "Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush's.": "Nastavte, odkiaľ kopírovať, a potom maľujte tam, kam má kópia prísť. Kotúčik zdroja presuniete ťahaním. Veľkosť, hrot a krytie sú ako pri štetci.",
+    "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonovanie – maľujte kópiou inej časti obrázka · Alt+klik alebo prvé ťuknutie nastaví, odkiaľ kopírovať (S)",
+    "The next tap or click sets where to copy from (or Alt+click)": "Ďalšie ťuknutie alebo kliknutie nastaví, odkiaľ kopírovať (alebo Alt+klik)",
+    "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "Zapnuté: zdroj sa posúva so štetcom od ťahu k ťahu. Vypnuté: každý ťah začne kopírovať zo zdroja",
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Nástroj Klonovanie v rastrovej aplikácii (S): maľujte kópiou inej časti obrázka. Ťuknite (alebo Alt+klik) tam, odkiaľ kopírovať, namaľujte kópiu, kotúčik zdroja posuniete prstom; zarovnane aj nie, s veľkosťou, hrotom, krytím a prítlakom pera ako pri štetci."
   };
 
   // src/shared/i18n-pl.ts
@@ -3578,7 +3617,20 @@
     "Choose any color": "Wybierz dowolny kolor",
     "The palette is empty – use + to choose a color.": "Paleta jest pusta – wybierz kolor przyciskiem +.",
     "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Wskazówka: stuknij dwukrotnie rysunek, aby otworzyć szybkie menu – narzędzia, kolory i rozmiar.",
-    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Szybkie menu na telefonach i tabletach: stuknij dwukrotnie palcem rysunek – cofanie, główne narzędzia, kolory i rozmiar, dokładnie tam, gdzie rysujesz."
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Szybkie menu na telefonach i tabletach: stuknij dwukrotnie palcem rysunek – cofanie, główne narzędzia, kolory i rozmiar, dokładnie tam, gdzie rysujesz.",
+    "Tap or click where to copy from.": "Stuknij lub kliknij miejsce, z którego kopiować.",
+    "Tap the image where to copy from": "Stuknij obraz w miejscu, z którego kopiować",
+    "Copying from {x}, {y}": "Kopiowanie z {x}, {y}",
+    "No source yet: the first tap sets it": "Brak źródła: pierwsze stuknięcie je ustawi",
+    "Source set – now paint where the copy goes.": "Źródło ustawione – teraz maluj tam, gdzie ma być kopia.",
+    "Clone": "Klonowanie",
+    "Set source": "Ustaw źródło",
+    "Aligned – the source follows the brush": "Wyrównane – źródło podąża za pędzlem",
+    "Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush's.": "Ustaw, skąd kopiować, a potem maluj tam, gdzie ma być kopia. Krążek źródła można przeciągnąć. Rozmiar, końcówka i krycie są jak u pędzla.",
+    "Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)": "Klonowanie – maluj kopią innej części obrazu · Alt+klik lub pierwsze stuknięcie ustawia, skąd kopiować (S)",
+    "The next tap or click sets where to copy from (or Alt+click)": "Następne stuknięcie lub kliknięcie ustawia, skąd kopiować (lub Alt+klik)",
+    "On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source": "Włączone: źródło przesuwa się z pędzlem od pociągnięcia do pociągnięcia. Wyłączone: każde pociągnięcie kopiuje od źródła",
+    "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.": "Narzędzie Klonowanie w aplikacji rastrowej (S): maluj kopią innej części obrazu. Stuknij (lub Alt+klik) miejsce, z którego kopiować, namaluj kopię, krążek źródła przesuń palcem; wyrównane lub nie, z rozmiarem, końcówką, kryciem i naciskiem pióra jak u pędzla."
   };
 
   // src/shared/i18n.ts
@@ -12569,8 +12621,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.5.0" : "dev";
+  var VERSION = true ? "1.6.0" : "dev";
   var RELEASES = [
+    {
+      version: "1.6.0",
+      date: "2026-10-13",
+      items: [
+        "Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure."
+      ]
+    },
     {
       version: "1.5.0",
       date: "2026-10-13",

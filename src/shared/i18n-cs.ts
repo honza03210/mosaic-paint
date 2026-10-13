@@ -1780,4 +1780,30 @@ export const CS: Record<string, string> = {
     'Tip: dvojitým klepnutím na kresbu otevřete rychlou nabídku – nástroje, barvy a velikost.',
   'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.':
     'Rychlá nabídka na telefonech a tabletech: dvojitým klepnutím prstem na kresbu máte po ruce zpět, hlavní nástroje, barvy a velikost – přímo tam, kde kreslíte.',
+  'Tap or click where to copy from.':
+    'Klepněte nebo klikněte tam, odkud kopírovat.',
+  'Tap the image where to copy from':
+    'Klepněte do obrázku tam, odkud kopírovat',
+  'Copying from {x}, {y}':
+    'Kopíruje se z {x}, {y}',
+  'No source yet: the first tap sets it':
+    'Zdroj zatím není: nastaví ho první klepnutí',
+  'Source set – now paint where the copy goes.':
+    'Zdroj nastaven – teď malujte tam, kam patří kopie.',
+  'Clone':
+    'Klonování',
+  'Set source':
+    'Nastavit zdroj',
+  'Aligned – the source follows the brush':
+    'Zarovnaně – zdroj se posouvá se štětcem',
+  'Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush\'s.':
+    'Nastavte, odkud kopírovat, a pak malujte tam, kam má kopie přijít. Kotouček zdroje přesunete tažením. Velikost, hrot a krytí jsou jako u štětce.',
+  'Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)':
+    'Klonování – malujte kopií jiné části obrázku · Alt+klik nebo první klepnutí nastaví, odkud kopírovat (S)',
+  'The next tap or click sets where to copy from (or Alt+click)':
+    'Další klepnutí nebo kliknutí nastaví, odkud kopírovat (nebo Alt+klik)',
+  'On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source':
+    'Zapnuto: zdroj se posouvá se štětcem od tahu k tahu. Vypnuto: každý tah začne kopírovat ze zdroje',
+  'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.':
+    'Nástroj Klonování v rastrové aplikaci (S): malujte kopií jiné části obrázku. Klepněte (nebo Alt+klik) tam, odkud kopírovat, namalujte kopii, kotouček zdroje posunete prstem; zarovnaně i ne, s velikostí, hrotem, krytím a přítlakem pera jako u štětce.',
 };

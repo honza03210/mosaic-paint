@@ -1780,4 +1780,30 @@ export const DE: Record<string, string> = {
     'Tipp: Zweimal auf die Zeichnung tippen öffnet ein Schnellmenü – Werkzeuge, Farben und Größe.',
   'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.':
     'Schnellmenü auf Handys und Tablets: zweimal mit dem Finger auf die Zeichnung tippen – Rückgängig, die wichtigsten Werkzeuge, Farben und Größe, genau dort, wo du zeichnest.',
+  'Tap or click where to copy from.':
+    'Tippe oder klicke dorthin, wovon kopiert werden soll.',
+  'Tap the image where to copy from':
+    'Tippe ins Bild, wovon kopiert werden soll',
+  'Copying from {x}, {y}':
+    'Kopiert von {x}, {y}',
+  'No source yet: the first tap sets it':
+    'Noch keine Quelle: das erste Tippen legt sie fest',
+  'Source set – now paint where the copy goes.':
+    'Quelle gesetzt – jetzt dort malen, wo die Kopie hin soll.',
+  'Clone':
+    'Klonen',
+  'Set source':
+    'Quelle festlegen',
+  'Aligned – the source follows the brush':
+    'Ausgerichtet – die Quelle folgt dem Pinsel',
+  'Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush\'s.':
+    'Lege fest, wovon kopiert wird, und male dann dort, wo die Kopie hin soll. Die Quellscheibe lässt sich ziehen. Größe, Spitze und Deckkraft sind die des Pinsels.',
+  'Clone – paint with a copy of another part of the image · Alt+click or the first tap sets where to copy from (S)':
+    'Klonen – mit einer Kopie eines anderen Bildteils malen · Alt+Klick oder das erste Tippen legt fest, wovon kopiert wird (S)',
+  'The next tap or click sets where to copy from (or Alt+click)':
+    'Das nächste Tippen oder Klicken legt fest, wovon kopiert wird (oder Alt+Klick)',
+  'On: the source moves along with the brush from stroke to stroke. Off: every stroke starts copying from the source':
+    'An: die Quelle wandert von Strich zu Strich mit dem Pinsel. Aus: jeder Strich kopiert wieder ab der Quelle',
+  'Clone tool in the raster app (S): paint with a copy of another part of the image. Tap (or Alt+click) where to copy from, paint the copy, drag the source disc with a finger to move it; aligned or not, with the brush’s size, tip, opacity and pen pressure.':
+    'Klon-Werkzeug in der Raster-App (S): mit einer Kopie eines anderen Bildteils malen. Tippen (oder Alt+Klick), wovon kopiert wird, die Kopie malen, die Quellscheibe mit dem Finger verschieben; ausgerichtet oder nicht, mit Größe, Spitze, Deckkraft und Stiftdruck des Pinsels.',
 };
