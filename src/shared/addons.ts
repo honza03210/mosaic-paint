@@ -162,7 +162,8 @@ async function ensure(id: string): Promise<boolean> {
       });
       done += FILES[f].bytes;
     }
-    try { await navigator.storage?.persist?.(); } catch { /* best effort */ }
+    // ask to keep the files when space runs low – without waiting: Firefox asks the user, who may not answer
+    try { navigator.storage?.persist?.().catch(() => {}); } catch { /* best effort */ }
     d.close();
     toast(t('{name} is ready.', { name: a.name }));
     renderAddons();

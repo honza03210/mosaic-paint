@@ -10322,7 +10322,8 @@ ${shapes.join("\n")}
         done += FILES[f].bytes;
       }
       try {
-        await navigator.storage?.persist?.();
+        navigator.storage?.persist?.().catch(() => {
+        });
       } catch {
       }
       d.close();
