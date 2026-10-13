@@ -14124,7 +14124,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
     },
     t
   });
-  if (location.hostname.endsWith("discordsays.com") || window.__discordSdk) {
+  if ((location.hostname.endsWith("discordsays.com") || window.__discordSdk) && !document.querySelector('script[src="dist/activity.js"]')) {
     const s = document.createElement("script");
     s.src = "dist/activity.js";
     document.head.append(s);

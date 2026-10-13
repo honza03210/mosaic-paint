@@ -51,9 +51,12 @@ function keepDiscordDetails(): void {
   } catch { /* storage blocked: the address is all there is */ }
 }
 
-async function start(app: Editor): Promise<void> {
+/** Signs in while the editor is still starting (they don't need each other), then opens the picked picture. */
+async function start(app: Editor, ready: Promise<void>): Promise<void> {
   const t = app.t;
-  const { clientId } = await (await call('/config')).json() as { clientId: string };
+  // the app's ID: written into the page when it was deployed (else asked for)
+  const clientId = document.querySelector<HTMLMetaElement>('meta[name=discord-client-id]')?.content
+    || (await (await call('/config')).json() as { clientId: string }).clientId;
   const sdk: Sdk = (window as any).__discordSdk || new DiscordSDK(clientId);
   await sdk.ready();
   // sign in: Discord gives a one-time code, the Worker turns it into a token (it knows the app's secret)
@@ -66,8 +69,10 @@ async function start(app: Editor): Promise<void> {
     return;
   }
   const { access_token } = await signedIn.json() as { access_token: string };
-  await sdk.commands.authenticate({ access_token });
   const auth = { authorization: `Bearer ${access_token}` };
+  // the picture is asked for right away – Discord's own sign-in step and the editor's start-up meanwhile
+  const pending = call(`/pending?channel=${encodeURIComponent(sdk.channelId || '')}`, { headers: auth });
+  await Promise.all([sdk.commands.authenticate({ access_token }), ready]);
 
   // in Discord: a button to post the picture; things that don't fit inside Discord are hidden (style.css)
   document.body.classList.add('in-discord');
@@ -79,7 +84,7 @@ async function start(app: Editor): Promise<void> {
   document.querySelector('#btn-new').before(post);
 
   // the image picked in the chat, if any
-  const r = await call(`/pending?channel=${encodeURIComponent(sdk.channelId || '')}`, { headers: auth });
+  const r = await pending;
   if (r.status === 200) {
     const media = r.headers.get('x-media');
     await app.openImage(await r.blob(), decodeURIComponent(r.headers.get('x-filename') || 'image.png'), media ? { src: API.replace(/\/api$/, '') + media } : {});
@@ -115,9 +120,18 @@ async function start(app: Editor): Promise<void> {
 }
 
 keepDiscordDetails();
-appSwitch();
-// the editor finishes starting up first (it restores the last image)
-const editor = ((window as any).RZ || (window as any).MZ) as Editor;
-const t = (s: string) => editor.t(s);
-const wait = () => (editor?.ready ? start(editor).catch(() => editor.toast(t('Could not connect to Discord.'))) : setTimeout(wait, 50));
-wait();
+// (this script may run before the page is all there: the links are fixed when it is)
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', appSwitch); else appSwitch();
+// signing in starts at once – this script may even run before the editor's (it loads in parallel); the picture
+// opens when the editor has finished starting up (it restores the last image)
+const editorNow = () => ((window as any).RZ || (window as any).MZ) as Editor | undefined;
+const ready = new Promise<void>((resolve) => { const check = () => (editorNow()?.ready ? resolve() : setTimeout(check, 30)); check(); });
+/** The editor, once it is there (what start() needs before ready is only its texts and messages). */
+const editor: Editor = {
+  get ready() { return !!editorNow()?.ready; },
+  openImage: (b, n, o) => editorNow().openImage(b, n, o),
+  png: () => editorNow().png(),
+  toast: (m) => { void ready.then(() => editorNow().toast(m)); },
+  t: (s, v) => (editorNow() ? editorNow().t(s, v) : s),
+};
+start(editor, ready).catch(() => editor.toast(editor.t('Could not connect to Discord.')));

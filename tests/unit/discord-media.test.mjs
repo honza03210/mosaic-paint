@@ -11,6 +11,14 @@ test('the first image, GIF or video attachment', () => {
   assert.equal(pickMedia({ attachments: [{ url: 'https://cdn.discordapp.com/a/x.gif', filename: 'x.gif', content_type: 'image/gif' }] }).contentType, 'image/gif');
 });
 
+test('a big photo is fetched scaled to 2000 px by the media proxy (the original as the second try); small ones and GIFs as they are', () => {
+  const big = pickMedia({ attachments: [{ url: 'https://cdn.discordapp.com/a/p.jpg?ex=1&hm=2', proxy_url: 'https://media.discordapp.net/a/p.jpg?ex=1&hm=2', content_type: 'image/jpeg', width: 4032, height: 3024, filename: 'p.jpg' }] });
+  assert.equal(big.url, 'https://media.discordapp.net/a/p.jpg?ex=1&hm=2&width=2000&height=1500');
+  assert.equal(big.alt, 'https://cdn.discordapp.com/a/p.jpg?ex=1&hm=2');
+  assert.equal(pickMedia({ attachments: [{ url: 'https://cdn.discordapp.com/a/s.png', proxy_url: 'https://media.discordapp.net/a/s.png', content_type: 'image/png', width: 800, height: 600 }] }).url, 'https://cdn.discordapp.com/a/s.png');
+  assert.equal(pickMedia({ attachments: [{ url: 'https://cdn.discordapp.com/a/g.gif', proxy_url: 'https://media.discordapp.net/a/g.gif', content_type: 'image/gif', width: 4000, height: 3000 }] }).url, 'https://cdn.discordapp.com/a/g.gif');
+});
+
 test('embeds: a Tenor "GIF" is its video; a picture; a video link gives its still; nothing else', () => {
   const tenor = pickMedia({ attachments: [], embeds: [{ type: 'gifv', url: 'https://tenor.com/view/x', thumbnail: { url: 'https://media.tenor.com/a.png' }, video: { url: 'https://media.tenor.com/a.mp4', proxy_url: 'https://images-ext-1.discordapp.net/external/abc/https/media.tenor.com/a.mp4' } }] });
   assert.equal(tenor.url, 'https://images-ext-1.discordapp.net/external/abc/https/media.tenor.com/a.mp4');

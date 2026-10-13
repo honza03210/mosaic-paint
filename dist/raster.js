@@ -13997,7 +13997,7 @@ ${sections.join("\n")}
     RZ.ready = true;
     fromHash();
   })();
-  if (location.hostname.endsWith("discordsays.com") || window.__discordSdk) {
+  if ((location.hostname.endsWith("discordsays.com") || window.__discordSdk) && !document.querySelector('script[src="dist/activity.js"]')) {
     const s = document.createElement("script");
     s.src = "dist/activity.js";
     document.head.append(s);

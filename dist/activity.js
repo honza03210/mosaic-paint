@@ -274,8 +274,8 @@
     "set"
   ]);
   var getParsedType = (data) => {
-    const t2 = typeof data;
-    switch (t2) {
+    const t = typeof data;
+    switch (t) {
       case "undefined":
         return ZodParsedType.undefined;
       case "string":
@@ -4864,8 +4864,8 @@
           if (bits <= 64)
             return millerRabinTest(n, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]);
           var logN = Math.log(2) * bits.toJSNumber();
-          var t2 = Math.ceil(strict === true ? 2 * Math.pow(logN, 2) : logN);
-          for (var a = [], i2 = 0; i2 < t2; i2++) {
+          var t = Math.ceil(strict === true ? 2 * Math.pow(logN, 2) : logN);
+          for (var a = [], i2 = 0; i2 < t; i2++) {
             a.push(bigInt2(i2 + 2));
           }
           return millerRabinTest(n, a);
@@ -4875,32 +4875,32 @@
           var isPrime = isBasicPrime(this);
           if (isPrime !== undefined$1) return isPrime;
           var n = this.abs();
-          var t2 = iterations === undefined$1 ? 5 : iterations;
-          for (var a = [], i2 = 0; i2 < t2; i2++) {
+          var t = iterations === undefined$1 ? 5 : iterations;
+          for (var a = [], i2 = 0; i2 < t; i2++) {
             a.push(bigInt2.randBetween(2, n.minus(2), rng2));
           }
           return millerRabinTest(n, a);
         };
         NativeBigInt.prototype.isProbablePrime = SmallInteger.prototype.isProbablePrime = BigInteger2.prototype.isProbablePrime;
         BigInteger2.prototype.modInv = function(n) {
-          var t2 = bigInt2.zero, newT = bigInt2.one, r = parseValue(n), newR = this.abs(), q, lastT, lastR;
+          var t = bigInt2.zero, newT = bigInt2.one, r = parseValue(n), newR = this.abs(), q, lastT, lastR;
           while (!newR.isZero()) {
             q = r.divide(newR);
-            lastT = t2;
+            lastT = t;
             lastR = r;
-            t2 = newT;
+            t = newT;
             r = newR;
             newT = lastT.subtract(q.multiply(newT));
             newR = lastR.subtract(q.multiply(newR));
           }
           if (!r.isUnit()) throw new Error(this.toString() + " and " + n.toString() + " are not co-prime");
-          if (t2.compare(0) === -1) {
-            t2 = t2.add(n);
+          if (t.compare(0) === -1) {
+            t = t.add(n);
           }
           if (this.isNegative()) {
-            return t2.negate();
+            return t.negate();
           }
-          return t2;
+          return t;
         };
         NativeBigInt.prototype.modInv = SmallInteger.prototype.modInv = BigInteger2.prototype.modInv;
         BigInteger2.prototype.next = function() {
@@ -5032,8 +5032,8 @@
             var tmp = integerLogarithm(value, base.square(base));
             var p = tmp.p;
             var e = tmp.e;
-            var t2 = p.multiply(base);
-            return t2.compareTo(value) <= 0 ? { p: t2, e: e * 2 + 1 } : { p, e: e * 2 };
+            var t = p.multiply(base);
+            return t.compareTo(value) <= 0 ? { p: t, e: e * 2 + 1 } : { p, e: e * 2 };
           }
           return { p: bigInt2(1), e: 0 };
         }
@@ -5064,7 +5064,7 @@
           if (a.equals(b)) return a;
           if (a.isZero()) return b;
           if (b.isZero()) return a;
-          var c = Integer[1], d, t2;
+          var c = Integer[1], d, t;
           while (a.isEven() && b.isEven()) {
             d = min(roughLOB(a), roughLOB(b));
             a = a.divide(d);
@@ -5079,9 +5079,9 @@
               b = b.divide(roughLOB(b));
             }
             if (a.greater(b)) {
-              t2 = b;
+              t = b;
               b = a;
-              a = t2;
+              a = t;
             }
             b = b.subtract(a);
           } while (!b.isZero());
@@ -7610,7 +7610,7 @@
     return z2 && e > sd ? e : sd;
   };
   P.squareRoot = P.sqrt = function() {
-    var e, n, pr, r, s, t2, wpr, x = this, Ctor = x.constructor;
+    var e, n, pr, r, s, t, wpr, x = this, Ctor = x.constructor;
     if (x.s < 1) {
       if (!x.s) return new Ctor(0);
       throw Error(decimalError + "NaN");
@@ -7636,14 +7636,14 @@
     pr = Ctor.precision;
     s = wpr = pr + 3;
     for (; ; ) {
-      t2 = r;
-      r = t2.plus(divide(x, t2, wpr + 2)).times(0.5);
-      if (digitsToString(t2.d).slice(0, wpr) === (n = digitsToString(r.d)).slice(0, wpr)) {
+      t = r;
+      r = t.plus(divide(x, t, wpr + 2)).times(0.5);
+      if (digitsToString(t.d).slice(0, wpr) === (n = digitsToString(r.d)).slice(0, wpr)) {
         n = n.slice(wpr - 3, wpr + 1);
         if (s == wpr && n == "4999") {
-          round(t2, pr + 1, 0);
-          if (t2.times(t2).eq(x)) {
-            r = t2;
+          round(t, pr + 1, 0);
+          if (t.times(t).eq(x)) {
+            r = t;
             break;
           }
         } else if (n != "9999") {
@@ -7656,7 +7656,7 @@
     return round(r, pr);
   };
   P.times = P.mul = function(y) {
-    var carry, e, i, k, r, rL, t2, xdL, ydL, x = this, Ctor = x.constructor, xd = x.d, yd = (y = new Ctor(y)).d;
+    var carry, e, i, k, r, rL, t, xdL, ydL, x = this, Ctor = x.constructor, xd = x.d, yd = (y = new Ctor(y)).d;
     if (!x.s || !y.s) return new Ctor(0);
     y.s *= x.s;
     e = x.e + y.e;
@@ -7676,9 +7676,9 @@
     for (i = ydL; --i >= 0; ) {
       carry = 0;
       for (k = xdL + i; k > i; ) {
-        t2 = r[k] + yd[i] * xd[k - i - 1] + carry;
-        r[k--] = t2 % BASE | 0;
-        carry = t2 / BASE | 0;
+        t = r[k] + yd[i] * xd[k - i - 1] + carry;
+        r[k--] = t % BASE | 0;
+        carry = t / BASE | 0;
       }
       r[k] = (r[k] + carry) % BASE | 0;
     }
@@ -7915,7 +7915,7 @@
       for (; !a[0] && a.length > 1; ) a.shift();
     }
     return function(x, y, pr, dp) {
-      var cmp, e, i, k, prod, prodL, q, qd, rem, remL, rem0, sd, t2, xi, xL, yd0, yL, yz, Ctor = x.constructor, sign = x.s == y.s ? 1 : -1, xd = x.d, yd = y.d;
+      var cmp, e, i, k, prod, prodL, q, qd, rem, remL, rem0, sd, t, xi, xL, yd0, yL, yz, Ctor = x.constructor, sign = x.s == y.s ? 1 : -1, xd = x.d, yd = y.d;
       if (!x.s) return new Ctor(x);
       if (!y.s) throw Error(decimalError + "Division by zero");
       e = x.e - y.e;
@@ -7940,9 +7940,9 @@
         yd = yd[0];
         sd++;
         for (; (i < xL || k) && sd--; i++) {
-          t2 = k * BASE + (xd[i] || 0);
-          qd[i] = t2 / yd | 0;
-          k = t2 % yd | 0;
+          t = k * BASE + (xd[i] || 0);
+          qd[i] = t / yd | 0;
+          k = t % yd | 0;
         }
       } else {
         k = BASE / (yd[0] + 1) | 0;
@@ -8012,7 +8012,7 @@
     };
   })();
   function exp(x, sd) {
-    var denominator, guard, pow, sum, t2, wpr, i = 0, k = 0, Ctor = x.constructor, pr = Ctor.precision;
+    var denominator, guard, pow, sum, t, wpr, i = 0, k = 0, Ctor = x.constructor, pr = Ctor.precision;
     if (getBase10Exponent(x) > 16) throw Error(exponentOutOfRange + getBase10Exponent(x));
     if (!x.s) return new Ctor(ONE);
     if (sd == null) {
@@ -8021,9 +8021,9 @@
     } else {
       wpr = sd;
     }
-    t2 = new Ctor(0.03125);
+    t = new Ctor(0.03125);
     while (x.abs().gte(0.1)) {
-      x = x.times(t2);
+      x = x.times(t);
       k += 5;
     }
     guard = Math.log(mathpow(2, k)) / Math.LN10 * 2 + 5 | 0;
@@ -8033,13 +8033,13 @@
     for (; ; ) {
       pow = round(pow.times(x), wpr);
       denominator = denominator.times(++i);
-      t2 = sum.plus(divide(pow, denominator, wpr));
-      if (digitsToString(t2.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
+      t = sum.plus(divide(pow, denominator, wpr));
+      if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
         while (k--) sum = round(sum.times(sum), wpr);
         Ctor.precision = pr;
         return sd == null ? (external = true, round(sum, pr)) : sum;
       }
-      sum = t2;
+      sum = t;
     }
   }
   function getBase10Exponent(x) {
@@ -8061,7 +8061,7 @@
     return zs;
   }
   function ln(y, sd) {
-    var c, c0, denominator, e, numerator, sum, t2, wpr, x2, n = 1, guard = 10, x = y, xd = x.d, Ctor = x.constructor, pr = Ctor.precision;
+    var c, c0, denominator, e, numerator, sum, t, wpr, x2, n = 1, guard = 10, x = y, xd = x.d, Ctor = x.constructor, pr = Ctor.precision;
     if (x.s < 1) throw Error(decimalError + (x.s ? "NaN" : "-Infinity"));
     if (x.eq(ONE)) return new Ctor(0);
     if (sd == null) {
@@ -8094,8 +8094,8 @@
         x = new Ctor(c0 + "." + c.slice(1));
       }
     } else {
-      t2 = getLn10(Ctor, wpr + 2, pr).times(e + "");
-      x = ln(new Ctor(c0 + "." + c.slice(1)), wpr - guard).plus(t2);
+      t = getLn10(Ctor, wpr + 2, pr).times(e + "");
+      x = ln(new Ctor(c0 + "." + c.slice(1)), wpr - guard).plus(t);
       Ctor.precision = pr;
       return sd == null ? (external = true, round(x, pr)) : x;
     }
@@ -8104,15 +8104,15 @@
     denominator = 3;
     for (; ; ) {
       numerator = round(numerator.times(x2), wpr);
-      t2 = sum.plus(divide(numerator, new Ctor(denominator), wpr));
-      if (digitsToString(t2.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
+      t = sum.plus(divide(numerator, new Ctor(denominator), wpr));
+      if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum.d).slice(0, wpr)) {
         sum = sum.times(2);
         if (e !== 0) sum = sum.plus(getLn10(Ctor, wpr + 2, pr).times(e + ""));
         sum = divide(sum, new Ctor(n), wpr);
         Ctor.precision = pr;
         return sd == null ? (external = true, round(sum, pr)) : sum;
       }
-      sum = t2;
+      sum = t;
       denominator += 2;
     }
   }
@@ -9633,36 +9633,37 @@
     } catch {
     }
   }
-  async function start(app) {
-    const t2 = app.t;
-    const { clientId } = await (await call("/config")).json();
+  async function start(app, ready2) {
+    const t = app.t;
+    const clientId = document.querySelector("meta[name=discord-client-id]")?.content || (await (await call("/config")).json()).clientId;
     const sdk = window.__discordSdk || new DiscordSDK(clientId);
     await sdk.ready();
     const { code } = await sdk.commands.authorize({ client_id: clientId, response_type: "code", state: "", prompt: "none", scope: ["identify"] });
     const signedIn = await call("/token", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code }) });
     if (!signedIn.ok) {
       const { reason } = await signedIn.json().catch(() => ({}));
-      app.toast(t2("Could not sign in to Discord.") + (reason ? ` (${reason})` : ""));
+      app.toast(t("Could not sign in to Discord.") + (reason ? ` (${reason})` : ""));
       return;
     }
     const { access_token } = await signedIn.json();
-    await sdk.commands.authenticate({ access_token });
     const auth = { authorization: `Bearer ${access_token}` };
+    const pending = call(`/pending?channel=${encodeURIComponent(sdk.channelId || "")}`, { headers: auth });
+    await Promise.all([sdk.commands.authenticate({ access_token }), ready2]);
     document.body.classList.add("in-discord");
     const post = document.createElement("button");
     post.id = "btn-post-discord";
     post.className = "primary";
-    post.textContent = t2("Post to the channel");
-    post.title = t2("Post the picture in this channel, as a reply to the message it came from");
+    post.textContent = t("Post to the channel");
+    post.title = t("Post the picture in this channel, as a reply to the message it came from");
     document.querySelector("#btn-new").before(post);
-    const r = await call(`/pending?channel=${encodeURIComponent(sdk.channelId || "")}`, { headers: auth });
+    const r = await pending;
     if (r.status === 200) {
       const media = r.headers.get("x-media");
       await app.openImage(await r.blob(), decodeURIComponent(r.headers.get("x-filename") || "image.png"), media ? { src: API.replace(/\/api$/, "") + media } : {});
     } else if (r.status === 410) {
       const { status } = await r.json().catch(() => ({}));
-      app.toast(t2("That image is no longer available in Discord.") + (status ? ` (${status})` : ""));
-    } else app.toast(t2("Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one."));
+      app.toast(t("That image is no longer available in Discord.") + (status ? ` (${status})` : ""));
+    } else app.toast(t("Right-click an image in the chat › Apps › Edit image to edit it here – or open or paste one."));
     post.onclick = async () => {
       post.disabled = true;
       try {
@@ -9672,22 +9673,36 @@
           body: await app.png()
         });
         if (sent.ok) {
-          app.toast(t2("Posted to the channel."));
+          app.toast(t("Posted to the channel."));
           setTimeout(() => sdk.close(RPCCloseCodes.CLOSE_NORMAL, "posted"), 1200);
           return;
         }
-        app.toast(sent.status === 413 ? t2("The picture is too big for Discord – make it smaller (Image › Resize image).") : sent.status === 403 ? t2("Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.") : sent.status === 409 ? t2("More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.") : t2("Discord did not take the picture. Use Copy and paste it into the chat."));
+        app.toast(sent.status === 413 ? t("The picture is too big for Discord – make it smaller (Image › Resize image).") : sent.status === 403 ? t("Open the editor with “Edit image” (or the app’s launch button) in this chat to post here – or use Copy and paste the picture.") : sent.status === 409 ? t("More than 15 minutes have passed, and Discord no longer lets the app post. Use Copy and paste the picture into the chat.") : t("Discord did not take the picture. Use Copy and paste it into the chat."));
       } catch {
-        app.toast(t2("Could not reach the server."));
+        app.toast(t("Could not reach the server."));
       }
       post.disabled = false;
     };
   }
   keepDiscordDetails();
-  appSwitch();
-  var editor = window.RZ || window.MZ;
-  var t = (s) => editor.t(s);
-  var wait = () => editor?.ready ? start(editor).catch(() => editor.toast(t("Could not connect to Discord."))) : setTimeout(wait, 50);
-  wait();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", appSwitch);
+  else appSwitch();
+  var editorNow = () => window.RZ || window.MZ;
+  var ready = new Promise((resolve) => {
+    const check = () => editorNow()?.ready ? resolve() : setTimeout(check, 30);
+    check();
+  });
+  var editor = {
+    get ready() {
+      return !!editorNow()?.ready;
+    },
+    openImage: (b, n, o) => editorNow().openImage(b, n, o),
+    png: () => editorNow().png(),
+    toast: (m) => {
+      void ready.then(() => editorNow().toast(m));
+    },
+    t: (s, v) => editorNow() ? editorNow().t(s, v) : s
+  };
+  start(editor, ready).catch(() => editor.toast(editor.t("Could not connect to Discord.")));
 })();
 //# sourceMappingURL=activity.js.map

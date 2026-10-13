@@ -114,9 +114,20 @@ interface Media { url: string; filename: string; contentType: string; alt?: stri
  * What to edit from a message: the first image, GIF or video attached; else an embed's – a Tenor / Giphy "GIF"
  * (a video), a picture, or a video link's still (a YouTube video itself can't be fetched).
  */
+/** The longest side a photo is fetched at for editing (pixels). */
+export const EDIT_MAX = 2000;
 export function pickMedia(msg: any): Media | null {
   const a = (msg?.attachments || []).find((x: { content_type?: string }) => /^(image|video)\//.test(x.content_type || ''));
-  if (a) return { url: a.url, filename: a.filename || 'image.png', contentType: a.content_type, alt: a.proxy_url || null };
+  if (a) {
+    // a big photo comes scaled down by Discord's media proxy (a fraction of the bytes; the editor would offer
+    // to scale it to this anyway); the original stays the second try
+    const k = Math.min(1, EDIT_MAX / Math.max(a.width || 0, a.height || 0, 1));
+    if (k < 1 && a.proxy_url && /^image\/(jpeg|png|webp)$/.test(a.content_type)) {
+      const sized = `${a.proxy_url}${a.proxy_url.includes('?') ? '&' : '?'}width=${Math.round(a.width * k)}&height=${Math.round(a.height * k)}`;
+      return { url: sized, filename: a.filename || 'image.png', contentType: a.content_type, alt: a.url };
+    }
+    return { url: a.url, filename: a.filename || 'image.png', contentType: a.content_type, alt: a.proxy_url || null };
+  }
   for (const e of msg?.embeds || []) {
     const v = e.type === 'gifv' ? e.video : null, still = e.image || e.thumbnail, url = v ? (v.proxy_url || v.url) : still ? (still.proxy_url || still.url) : null;
     const other = v ? (v.proxy_url ? v.url : null) : still && still.proxy_url ? still.url : null;
@@ -161,12 +172,23 @@ async function pendingOf(env: Env, user: string): Promise<Pending | null> {
   return r.status === 200 ? await r.json() as Pending : null;
 }
 
+/** Users by access token, looked up when signing in (the picture is asked for right after: no second trip to
+    Discord when the same Worker instance answers, which it usually does). */
+const users = new Map<string, { id: Promise<string | null>; until: number }>();
+function lookUp(auth: string): Promise<string | null> {
+  const hit = users.get(auth);
+  if (hit && hit.until > Date.now()) return hit.id;
+  const id = fetch(`${API}/users/@me`, { headers: { authorization: auth } }).then(async r => (r.ok ? (await r.json() as { id: string }).id : null)).catch(() => null);
+  if (users.size > 500) users.clear();
+  users.set(auth, { id, until: Date.now() + 10 * 60 * 1000 });
+  id.then(v => { if (!v) users.delete(auth); });
+  return id;
+}
 /** The user an Activity's access token belongs to. */
 async function userOf(req: Request): Promise<string | null> {
   const auth = req.headers.get('authorization');
   if (!auth?.startsWith('Bearer ')) return null;
-  const r = await fetch(`${API}/users/@me`, { headers: { authorization: auth } });
-  return r.ok ? (await r.json() as { id: string }).id : null;
+  return lookUp(auth);
 }
 
 /** Signing in: the Activity's one-time code for an access token. */
@@ -187,6 +209,8 @@ async function token(req: Request, env: Env): Promise<Response> {
     return json({ error: 'could not sign in', reason }, 401);
   }
   const { access_token } = await r.json() as { access_token: string };
+  // who it is, already now (the picture is asked for next)
+  lookUp(`Bearer ${access_token}`);
   return json({ access_token });
 }
 

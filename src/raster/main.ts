@@ -118,7 +118,7 @@ Object.assign(RZ, {
   fromHash();
 })();
 // inside Discord (an Activity): the part that talks to Discord, loaded only there (it waits for RZ.ready)
-if (location.hostname.endsWith('discordsays.com') || (window as any).__discordSdk) {
+if ((location.hostname.endsWith('discordsays.com') || (window as any).__discordSdk) && !document.querySelector('script[src="dist/activity.js"]')) {
   const s = document.createElement('script');
   s.src = 'dist/activity.js';
   document.head.append(s);
