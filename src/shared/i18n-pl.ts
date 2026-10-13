@@ -1762,4 +1762,22 @@ export const PL: Record<string, string> = {
     'W Discordzie: Nowy, Zapisz jako, zmiana nazwy i inne pytania działają (są teraz zadawane na stronie), a przełączanie między aplikacjami zachowuje przycisk publikowania.',
   'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
     'Na telefonach w Discordzie górny pasek nie jest zasłaniany przez elementy sterujące Discorda.',
+  'Quick menu':
+    'Szybkie menu',
+  'Undo':
+    'Cofnij',
+  'Redo':
+    'Ponów',
+  'Fit to the screen':
+    'Dopasuj do ekranu',
+  'Which color':
+    'Który kolor',
+  'Choose any color':
+    'Wybierz dowolny kolor',
+  'The palette is empty – use + to choose a color.':
+    'Paleta jest pusta – wybierz kolor przyciskiem +.',
+  'Tip: double-tap the drawing for a quick menu – tools, colors and size.':
+    'Wskazówka: stuknij dwukrotnie rysunek, aby otworzyć szybkie menu – narzędzia, kolory i rozmiar.',
+  'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.':
+    'Szybkie menu na telefonach i tabletach: stuknij dwukrotnie palcem rysunek – cofanie, główne narzędzia, kolory i rozmiar, dokładnie tam, gdzie rysujesz.',
 };

@@ -102,6 +102,7 @@ A version is saved every few minutes while you work, and before you open, start 
 
 Draw with one finger; pinch with two fingers to zoom and pan. The ☰ button opens the side panel.
 The Done / Cancel bar finishes chained lines and free polygons.
+**Double-tap** the drawing with a finger for the quick menu, right where you draw: undo / redo, fit, the main tools, the paint (fill) and outline (line) colors with the palette, and the size. The first tap of the double-tap leaves no mark. While a polygon or curve is being drawn, a double-tap finishes it as before.
 
 ## 3D print (both apps)
 

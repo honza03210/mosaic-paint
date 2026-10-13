@@ -4,14 +4,15 @@ import { $, clamp, toast, typingIn, modalOpen } from '../shared/ui.ts';
 import { imageFromPaste } from '../shared/clipboard.ts';
 import { state, on, savePrefs } from './state.ts';
 import { stage, view, toDoc, updateView, fitView, zoomAt, zoomCenter, actualSize, requestRender } from './canvas.ts';
-import { undo, redo, restoreCurrent, commit } from './history.ts';
+import { undo, redo, restoreCurrent, commit, steps, dropLastStep } from './history.ts';
 import { pickAt, curve, finishCurve, curveBack, cancelCurve } from './paint.ts';
 import { place, cancelFloating, deselect, selectAll, copy, clearSelection, pasteImage, pasteInternal } from './select.ts';
-import { pasteColors, renderPalette } from './palette.ts';
+import { pasteColors, renderPalette, setFill, setStroke } from './palette.ts';
 import { tools, setTool } from './tools.ts';
 import { save, openFile, openImageFile, confirmDiscard } from './files.ts';
 import { setSides, setBrushSize, nextTip } from './panel.ts';
 import { t } from '../shared/i18n.ts';
+import { initQuickMenu } from '../shared/quick-menu.ts';
 
 // ---- pointer & pinch ------------------------------------------------------------------------------------
 const pointers = new Map<number, Pt>();
@@ -179,6 +180,17 @@ function onKey(e: KeyboardEvent): void {
 
 export function bindInput(): void {
   bindPointer();
+  // touch screens: double-tap for the quick menu
+  initQuickMenu({
+    surface: view,
+    tools: ['brush', 'pencil', 'eraser', 'bucket', 'picker', 'line', 'ellipse', 'select'],
+    state, setFill, setStroke,
+    names: { fill: t('Paint'), stroke: t('Outline') },
+    size: { input: '#opt-size', min: 1, max: 200, label: t('Size'), unit: () => 'px' },
+    busy: () => !!curve.pts,
+    steps, dropLastStep,
+    cancelPending() { cancelCurve(); state.action = null; state.preview = null; requestRender(); },
+  });
   window.addEventListener('keydown', onKey);
   window.addEventListener('keyup', (e) => { if (e.key === ' ') { state.space = false; stage.classList.remove('space'); } });
   window.addEventListener('blur', () => { state.space = false; stage.classList.remove('space'); });

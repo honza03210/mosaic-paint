@@ -11,7 +11,7 @@ import { cancelPending } from './tools.ts';
 import { t, lang } from '../shared/i18n.ts';
 
 interface Snapshot { defs: string; fills: string; shapes: string; doc: Doc }
-let history: Snapshot[] = [], hIndex = -1;
+let history: Snapshot[] = [], hIndex = -1, made = 0;
 const snapshot = (): Snapshot => ({ defs: defsG.innerHTML, fills: fillsG.innerHTML, shapes: shapesG.innerHTML, doc: { ...state.doc } });
 export function resetHistory(): void { history = [snapshot()]; hIndex = 0; updateUndoUI(); }
 export const getHistory = () => ({ history, hIndex });
@@ -20,6 +20,7 @@ export function setHistory(h: { history: Snapshot[]; hIndex: number }): void { h
 /** Records the current drawing as an undo step. paintOnly: only colors changed – cached geometry stays valid. */
 export function commit(paintOnly?: boolean): void {
   if (!paintOnly) touch();
+  made++;
   history.splice(hIndex + 1);
   history.push(snapshot());
   // up to 200 steps, but at most ~60 MB of snapshots (big mosaics get fewer undo steps)
@@ -44,6 +45,15 @@ export function restore(s: Snapshot): void {
 }
 /** Back to the last recorded step (drops changes made since, e.g. by a cancelled gesture). */
 export const restoreCurrent = (): void => restore(history[hIndex]);
+/** How many undo steps have been made (the quick menu checks whether a tap made one). */
+export const steps = (): number => made;
+/** Takes back the last step without keeping it for redo (a tap that turned out to be half of a double-tap). */
+export function dropLastStep(): void {
+  if (hIndex <= 0 || hIndex !== history.length - 1) return;
+  history.pop();
+  hIndex--;
+  restore(history[hIndex]);
+}
 export function undo(): void { if (hIndex > 0) { cancelPending(); restore(history[--hIndex]); } }
 export function redo(): void { if (hIndex < history.length - 1) { cancelPending(); restore(history[++hIndex]); } }
 function updateUndoUI(): void {

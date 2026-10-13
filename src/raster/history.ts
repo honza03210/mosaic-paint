@@ -7,7 +7,7 @@ import { state, rt, emit } from './state.ts';
 import { doc, dctx, setSize, requestRender } from './canvas.ts';
 import { t } from '../shared/i18n.ts';
 
-let history: ImageData[] = [], index = -1;
+let history: ImageData[] = [], index = -1, made = 0;
 /** Snapshots take width × height × 4 bytes: big images get fewer undo steps. */
 const MAX_BYTES = 400e6, MAX_STEPS = 100;
 const snapshot = (): ImageData => dctx.getImageData(0, 0, doc.width, doc.height);
@@ -15,6 +15,7 @@ const snapshot = (): ImageData => dctx.getImageData(0, 0, doc.width, doc.height)
 export function resetHistory(): void { history = [snapshot()]; index = 0; updateUndoUI(); }
 /** Records the current image as an undo step. */
 export function commit(): void {
+  made++;
   history.splice(index + 1);
   history.push(snapshot());
   let bytes = history.reduce((t, s) => t + s.data.length, 0);
@@ -33,6 +34,15 @@ function restore(s: ImageData): void {
 }
 /** Back to the last recorded step (drops changes since, e.g. a cancelled gesture or a lifted selection). */
 export const restoreCurrent = (): void => restore(history[index]);
+/** How many undo steps have been made (the quick menu checks whether a tap made one). */
+export const steps = (): number => made;
+/** Takes back the last step without keeping it for redo (a tap that turned out to be half of a double-tap). */
+export function dropLastStep(): void {
+  if (index <= 0 || index !== history.length - 1) return;
+  history.pop();
+  index--;
+  restore(history[index]);
+}
 export function undo(): void {
   // a pasted or moved selection that is not placed yet is simply dropped
   if (state.floating || state.action) { state.action = null; state.preview = null; restoreCurrent(); return; }

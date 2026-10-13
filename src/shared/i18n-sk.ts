@@ -1762,4 +1762,22 @@ export const SK: Record<string, string> = {
     'V Discorde: Nový, Uložiť ako, premenovanie a ďalšie otázky fungujú (pýtajú sa teraz priamo na stránke) a prepínanie medzi aplikáciami zachová tlačidlo na odoslanie.',
   'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
     'Na telefónoch v Discorde horná lišta nezasahuje pod ovládacie prvky Discordu.',
+  'Quick menu':
+    'Rýchla ponuka',
+  'Undo':
+    'Späť',
+  'Redo':
+    'Znova',
+  'Fit to the screen':
+    'Prispôsobiť obrazovke',
+  'Which color':
+    'Ktorá farba',
+  'Choose any color':
+    'Vybrať ľubovoľnú farbu',
+  'The palette is empty – use + to choose a color.':
+    'Paleta je prázdna – farbu vyberiete tlačidlom +.',
+  'Tip: double-tap the drawing for a quick menu – tools, colors and size.':
+    'Tip: dvojitým ťuknutím na kresbu otvoríte rýchlu ponuku – nástroje, farby a veľkosť.',
+  'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.':
+    'Rýchla ponuka na telefónoch a tabletoch: dvojitým ťuknutím prstom na kresbu máte poruke späť, hlavné nástroje, farby a veľkosť – priamo tam, kde kreslíte.',
 };

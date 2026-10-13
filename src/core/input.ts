@@ -5,8 +5,8 @@ import { toDoc, updateView, fitView, zoomAt, zoomCenter, drawGuides } from './vi
 import { snapPoint } from './snap.ts';
 import { selectionChanged, moveElements, deleteSel, duplicate, selectAll } from './selection.ts';
 import { commitFor } from './areas.ts';
-import { commit, restoreCurrent, undo, redo } from './history.ts';
-import { savePrefs, pasteColors } from './palette.ts';
+import { commit, restoreCurrent, undo, redo, steps, dropLastStep } from './history.ts';
+import { savePrefs, pasteColors, setFill, setStroke } from './palette.ts';
 import { loadPhoto, pastePhoto } from './photo.ts';
 import { imageFromPaste } from '../shared/clipboard.ts';
 import { save, openFile, loadFile, confirmDiscard } from './files.ts';
@@ -14,6 +14,7 @@ import { tools, setTool, cancelPending, updateStageActions, finishFree, freeBack
 import { setSides } from './panel.ts';
 import { t } from '../shared/i18n.ts';
 import { modalOpen } from '../shared/ui.ts';
+import { initQuickMenu } from '../shared/quick-menu.ts';
 
 function setTouch(on: boolean): void {
   rt.snapPx = on ? 18 : 10;
@@ -207,6 +208,17 @@ function onKey(e: KeyboardEvent): void {
 
 export function bindInput(): void {
   bindPointer();
+  // touch screens: double-tap for the quick menu
+  initQuickMenu({
+    surface: svg,
+    tools: ['select', 'line', 'free', 'ngon', 'ellipse', 'curve', 'bucket', 'pattern'],
+    state, setFill, setStroke,
+    names: { fill: t('Fill'), stroke: t('Line') },
+    size: { input: '#stroke-width', min: 0.1, max: 50, label: t('Line width'), unit },
+    busy: () => !!(state.lineStart || state.freePts),
+    steps, dropLastStep,
+    cancelPending() { cancelPending(); updateStageActions(); },
+  });
   window.addEventListener('keydown', onKey);
   window.addEventListener('keyup', (e) => {
     if (e.key === ' ') { state.space = false; stage.classList.remove('space'); }

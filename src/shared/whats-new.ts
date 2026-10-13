@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '1.5.0', date: '2026-10-13', items: [
+      'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.',
+    ],
+  },
+  {
     version: '1.4.0', date: '2026-10-12', items: [
       'Ellipses and curves in both apps: the Ellipse tool (O, Shift for a circle) and the Curve tool (C) – smooth through the points, smooth near them (B-spline), or cubic and quadratic Bézier.',
       'In the vector app, ellipses and curves stay exact curves: drag their points or axis ends to change them, and paint, cut and mirror them like any tile.',

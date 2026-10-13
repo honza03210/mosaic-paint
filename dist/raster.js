@@ -881,7 +881,16 @@
     "Outline color – the outline of polygons. Click to choose any color": "Barva obrysu – obrys mnohoúhelníků. Kliknutím vyberete libovolnou barvu",
     "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Vyberte libovolnou barvu: barevná plocha, posuvník odstínu a kód barvy (Vybrat… pod paletou, nebo klikněte na aktuální barvy).",
     "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "V Discordu: Nový, Uložit jako, přejmenování a další otázky fungují (ptají se teď přímo na stránce) a přepínání mezi aplikacemi zachová tlačítko pro odeslání.",
-    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefonech v Discordu horní lišta nezasahuje pod ovládací prvky Discordu."
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefonech v Discordu horní lišta nezasahuje pod ovládací prvky Discordu.",
+    "Quick menu": "Rychlá nabídka",
+    "Undo": "Zpět",
+    "Redo": "Znovu",
+    "Fit to the screen": "Přizpůsobit obrazovce",
+    "Which color": "Která barva",
+    "Choose any color": "Vybrat libovolnou barvu",
+    "The palette is empty – use + to choose a color.": "Paleta je prázdná – barvu vyberete tlačítkem +.",
+    "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Tip: dvojitým klepnutím na kresbu otevřete rychlou nabídku – nástroje, barvy a velikost.",
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Rychlá nabídka na telefonech a tabletech: dvojitým klepnutím prstem na kresbu máte po ruce zpět, hlavní nástroje, barvy a velikost – přímo tam, kde kreslíte."
   };
 
   // src/shared/i18n-de.ts
@@ -1766,7 +1775,16 @@
     "Outline color – the outline of polygons. Click to choose any color": "Umrissfarbe – der Umriss von Polygonen. Klicken, um eine beliebige Farbe zu wählen",
     "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Beliebige Farbe wählen: Farbfläche, Farbton-Regler und Farbcode (Wählen… unter der Palette, oder auf die aktuellen Farben klicken).",
     "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "In Discord: Neu, Speichern unter, Umbenennen und die anderen Fragen funktionieren (sie werden jetzt auf der Seite gestellt), und beim Wechsel zwischen den Apps bleibt die Schaltfläche zum Posten erhalten.",
-    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Auf Handys in Discord bleibt die obere Leiste frei von Discords eigenen Bedienelementen."
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Auf Handys in Discord bleibt die obere Leiste frei von Discords eigenen Bedienelementen.",
+    "Quick menu": "Schnellmenü",
+    "Undo": "Rückgängig",
+    "Redo": "Wiederholen",
+    "Fit to the screen": "An den Bildschirm anpassen",
+    "Which color": "Welche Farbe",
+    "Choose any color": "Beliebige Farbe wählen",
+    "The palette is empty – use + to choose a color.": "Die Palette ist leer – mit + eine Farbe wählen.",
+    "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Tipp: Zweimal auf die Zeichnung tippen öffnet ein Schnellmenü – Werkzeuge, Farben und Größe.",
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Schnellmenü auf Handys und Tablets: zweimal mit dem Finger auf die Zeichnung tippen – Rückgängig, die wichtigsten Werkzeuge, Farben und Größe, genau dort, wo du zeichnest."
   };
 
   // src/shared/i18n-sk.ts
@@ -2651,7 +2669,16 @@
     "Outline color – the outline of polygons. Click to choose any color": "Farba obrysu – obrys mnohouholníkov. Kliknutím vyberiete ľubovoľnú farbu",
     "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Vyberte ľubovoľnú farbu: farebná plocha, posúvač odtieňa a kód farby (Vybrať… pod paletou, alebo kliknite na aktuálne farby).",
     "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "V Discorde: Nový, Uložiť ako, premenovanie a ďalšie otázky fungujú (pýtajú sa teraz priamo na stránke) a prepínanie medzi aplikáciami zachová tlačidlo na odoslanie.",
-    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefónoch v Discorde horná lišta nezasahuje pod ovládacie prvky Discordu."
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefónoch v Discorde horná lišta nezasahuje pod ovládacie prvky Discordu.",
+    "Quick menu": "Rýchla ponuka",
+    "Undo": "Späť",
+    "Redo": "Znova",
+    "Fit to the screen": "Prispôsobiť obrazovke",
+    "Which color": "Ktorá farba",
+    "Choose any color": "Vybrať ľubovoľnú farbu",
+    "The palette is empty – use + to choose a color.": "Paleta je prázdna – farbu vyberiete tlačidlom +.",
+    "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Tip: dvojitým ťuknutím na kresbu otvoríte rýchlu ponuku – nástroje, farby a veľkosť.",
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Rýchla ponuka na telefónoch a tabletoch: dvojitým ťuknutím prstom na kresbu máte poruke späť, hlavné nástroje, farby a veľkosť – priamo tam, kde kreslíte."
   };
 
   // src/shared/i18n-pl.ts
@@ -3536,7 +3563,16 @@
     "Outline color – the outline of polygons. Click to choose any color": "Kolor obrysu – obrys wielokątów. Kliknij, aby wybrać dowolny kolor",
     "Choose any color: a color area, a hue slider and a color code (Choose… under the palette, or click the current colors).": "Wybierz dowolny kolor: pole koloru, suwak odcienia i kod koloru (Wybierz… pod paletą lub kliknij bieżące kolory).",
     "Inside Discord: New, Save as, renaming and the other questions work (they are asked in the page now), and switching between the apps keeps the Post button.": "W Discordzie: Nowy, Zapisz jako, zmiana nazwy i inne pytania działają (są teraz zadawane na stronie), a przełączanie między aplikacjami zachowuje przycisk publikowania.",
-    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefonach w Discordzie górny pasek nie jest zasłaniany przez elementy sterujące Discorda."
+    "On phones inside Discord, the top bar stays clear of Discord’s own controls.": "Na telefonach w Discordzie górny pasek nie jest zasłaniany przez elementy sterujące Discorda.",
+    "Quick menu": "Szybkie menu",
+    "Undo": "Cofnij",
+    "Redo": "Ponów",
+    "Fit to the screen": "Dopasuj do ekranu",
+    "Which color": "Który kolor",
+    "Choose any color": "Wybierz dowolny kolor",
+    "The palette is empty – use + to choose a color.": "Paleta jest pusta – wybierz kolor przyciskiem +.",
+    "Tip: double-tap the drawing for a quick menu – tools, colors and size.": "Wskazówka: stuknij dwukrotnie rysunek, aby otworzyć szybkie menu – narzędzia, kolory i rozmiar.",
+    "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.": "Szybkie menu na telefonach i tabletach: stuknij dwukrotnie palcem rysunek – cofanie, główne narzędzia, kolory i rozmiar, dokładnie tam, gdzie rysujesz."
   };
 
   // src/shared/i18n.ts
@@ -4510,8 +4546,8 @@
     o.paletteName = st.paletteName;
     lsSet(SHARED_KEY, JSON.stringify(o));
   }
-  function createPaletteUI(host) {
-    const st = host.state;
+  function createPaletteUI(host2) {
+    const st = host2.state;
     function uniqueName(base) {
       let n5 = base, i = 2;
       while (st.palettes[n5]) n5 = `${base} ${i++}`;
@@ -4530,7 +4566,7 @@
     function switchPalette(name) {
       if (!st.palettes[name]) return;
       st.paletteName = name;
-      host.save();
+      host2.save();
       renderSelect();
       render3();
     }
@@ -4546,20 +4582,20 @@
         st.palette.push(c);
         added++;
       }
-      host.save();
+      host2.save();
       render3();
       return added;
     }
     let paletteKey = "";
     function render3() {
-      const box3 = $("#palette");
-      const counts2 = host.counts(), key = st.palette.join();
-      if (key === paletteKey && box3.children.length === st.palette.length + 1) {
-        [null, ...st.palette].forEach((c, i) => updateSwatch(box3.children[i], c, counts2));
+      const box4 = $("#palette");
+      const counts2 = host2.counts(), key = st.palette.join();
+      if (key === paletteKey && box4.children.length === st.palette.length + 1) {
+        [null, ...st.palette].forEach((c, i) => updateSwatch(box4.children[i], c, counts2));
       } else {
         paletteKey = key;
-        box3.innerHTML = "";
-        for (const c of [null, ...st.palette]) box3.append(makeSwatch(c, counts2));
+        box4.innerHTML = "";
+        for (const c of [null, ...st.palette]) box4.append(makeSwatch(c, counts2));
       }
       const fb = $("#ac-fill"), sb = $("#ac-stroke");
       fb.className = "acbox" + (st.fill ? "" : " none");
@@ -4568,17 +4604,17 @@
         sb.className = "acbox" + (st.stroke ? "" : " none");
         sb.style.background = st.stroke || "";
       }
-      if (host.rendered) host.rendered();
+      if (host2.rendered) host2.rendered();
     }
     function updateSwatch(d, c, counts2) {
       d.classList.toggle("is-fill", c === st.fill);
       d.classList.toggle("is-stroke", c === st.stroke);
       const n5 = c ? counts2.get(c) || 0 : 0;
       const num4 = c ? st.palette.indexOf(c) + 1 : 0;
-      const N = host.names;
-      d.title = c ? `#${num4}  ${c}${n5 ? " – " + t("used by {what}", { what: host.usage(n5) }) : ""}
+      const N = host2.names;
+      d.title = c ? `#${num4}  ${c}${n5 ? " – " + t("used by {what}", { what: host2.usage(n5) }) : ""}
 ` + t("Click: {fill} · Right-click: {stroke} · Double-click: edit", { fill: N.fill, stroke: N.stroke }) : N.none;
-      d.setAttribute("aria-label", c ? `#${num4} ${c}${n5 ? " – " + t("used by {what}", { what: host.usage(n5) }) : ""}` : N.none);
+      d.setAttribute("aria-label", c ? `#${num4} ${c}${n5 ? " – " + t("used by {what}", { what: host2.usage(n5) }) : ""}` : N.none);
       d.setAttribute("aria-pressed", String(c === st.fill));
       let b = d.querySelector(".count");
       if (n5 && !b) {
@@ -4611,7 +4647,7 @@
         d.ondblclick = () => editColor(c);
       }
       d.onclick = (e) => {
-        if (e.shiftKey && host.shiftClick) host.shiftClick(c, e);
+        if (e.shiftKey && host2.shiftClick) host2.shiftClick(c, e);
         else setFill2(c, true);
       };
       d.oncontextmenu = (e) => {
@@ -4635,17 +4671,17 @@
     }
     function setFill2(c, apply) {
       st.fill = c;
-      host.save();
-      if (!(apply && host.applyFill && host.applyFill(c))) render3();
+      host2.save();
+      if (!(apply && host2.applyFill && host2.applyFill(c))) render3();
     }
     function setStroke2(c, apply) {
       st.stroke = c;
-      host.save();
-      if (!(apply && host.applyStroke && host.applyStroke(c))) render3();
+      host2.save();
+      if (!(apply && host2.applyStroke && host2.applyStroke(c))) render3();
     }
     function removeColor(c) {
       st.palette = st.palette.filter((x) => x !== c);
-      host.save();
+      host2.save();
       render3();
     }
     async function editColor(old) {
@@ -4662,8 +4698,8 @@
       else st.palette[i] = c;
       if (st.fill === old) st.fill = c;
       if (st.stroke === old) st.stroke = c;
-      host.save();
-      const msg = host.recolor ? host.recolor(old, c) : null;
+      host2.save();
+      const msg = host2.recolor ? host2.recolor(old, c) : null;
       if (msg) toast(msg);
       render3();
     }
@@ -4736,7 +4772,7 @@
         const f = st.fill;
         st.fill = st.stroke;
         st.stroke = f;
-        host.save();
+        host2.save();
         render3();
       };
       $("#pal-select").onchange = (e) => switchPalette(e.target.value);
@@ -4763,14 +4799,14 @@
         switchPalette(Object.keys(st.palettes)[0]);
       };
       $("#btn-pal-doc").onclick = () => {
-        const n5 = addColors2(host.docColors());
+        const n5 = addColors2(host2.docColors());
         toast(n5 ? t("Added {n} {n|color|colors} from the drawing.", { n: n5 }) : t("No new colors in the drawing."));
       };
       $("#btn-pal-export").onclick = () => download(new Blob([st.palette.join("\n") + "\n"], { type: "text/plain" }), st.paletteName + ".txt");
       $("#btn-pal-clear").onclick = async () => {
         if (await askYes(t("Remove all colors from this palette? (The drawing is not changed.)"))) {
           st.palette = [];
-          host.save();
+          host2.save();
           render3();
         }
       };
@@ -5035,8 +5071,8 @@
       vctx.strokeStyle = "rgba(128,128,128,.35)";
       vctx.stroke();
     }
-    const box3 = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : state.sel;
-    if (box3) dashedRect(Math.round(ox + box3.x * k), Math.round(oy + box3.y * k), Math.round(box3.w * k), Math.round(box3.h * k));
+    const box4 = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : state.sel;
+    if (box4) dashedRect(Math.round(ox + box4.x * k), Math.round(oy + box4.y * k), Math.round(box4.w * k), Math.round(box4.h * k));
   }
   new ResizeObserver(() => {
     if (!fitted) fitView();
@@ -5097,6 +5133,7 @@
   // src/raster/history.ts
   var history2 = [];
   var index = -1;
+  var made = 0;
   var MAX_BYTES = 4e8;
   var MAX_STEPS = 100;
   var snapshot = () => dctx.getImageData(0, 0, doc.width, doc.height);
@@ -5106,6 +5143,7 @@
     updateUndoUI();
   }
   function commit() {
+    made++;
     history2.splice(index + 1);
     history2.push(snapshot());
     let bytes = history2.reduce((t2, s) => t2 + s.data.length, 0);
@@ -5123,6 +5161,13 @@
     afterChange();
   }
   var restoreCurrent = () => restore(history2[index]);
+  var steps = () => made;
+  function dropLastStep() {
+    if (index <= 0 || index !== history2.length - 1) return;
+    history2.pop();
+    index--;
+    restore(history2[index]);
+  }
   function undo() {
     if (state.floating || state.action) {
       state.action = null;
@@ -5358,10 +5403,10 @@
     };
   }
   var rect2 = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
-  function quadLeaves(box3, size, adaptive, busy) {
+  function quadLeaves(box4, size, adaptive, busy) {
     const top = adaptive ? size * 2 : size, min = adaptive ? size / 2 : size, out = [];
     const visit = (x, y, s) => {
-      if (x >= box3.x + box3.w - 1e-9 || y >= box3.y + box3.h - 1e-9) return;
+      if (x >= box4.x + box4.w - 1e-9 || y >= box4.y + box4.h - 1e-9) return;
       if (s > min * 1.0001 && busy(x, y, s, s)) {
         const h = s / 2;
         visit(x, y, h);
@@ -5370,7 +5415,7 @@
         visit(x + h, y + h, h);
       } else out.push({ x, y, s });
     };
-    for (let j = 0; j * top < box3.h; j++) for (let i = 0; i * top < box3.w; i++) visit(box3.x + i * top, box3.y + j * top, top);
+    for (let j = 0; j * top < box4.h; j++) for (let i = 0; i * top < box4.w; i++) visit(box4.x + i * top, box4.y + j * top, top);
     return out;
   }
   function clipHalf(poly, f) {
@@ -5385,17 +5430,17 @@
     }
     return out;
   }
-  function voronoi(seeds, box3) {
-    const cell = Math.sqrt(box3.w * box3.h / Math.max(1, seeds.length)) || 1, grid = /* @__PURE__ */ new Map();
+  function voronoi(seeds, box4) {
+    const cell = Math.sqrt(box4.w * box4.h / Math.max(1, seeds.length)) || 1, grid = /* @__PURE__ */ new Map();
     const key = (i, j) => i + "," + j;
     seeds.forEach((s, idx) => {
       const k = key(Math.floor(s.x / cell), Math.floor(s.y / cell));
       (grid.get(k) || grid.set(k, []).get(k)).push(idx);
     });
-    const maxRing = Math.ceil(Math.max(box3.w, box3.h) / cell) + 1;
+    const maxRing = Math.ceil(Math.max(box4.w, box4.h) / cell) + 1;
     return seeds.map((s, idx) => {
       const ci = Math.floor(s.x / cell), cj = Math.floor(s.y / cell);
-      let poly = rect2(box3.x, box3.y, box3.w, box3.h);
+      let poly = rect2(box4.x, box4.y, box4.w, box4.h);
       const radius = () => Math.max(...poly.map((p) => dist(p, s)));
       for (let r = 0; r <= maxRing && poly.length >= 3; r++) {
         if ((r - 1) * cell > 2 * radius()) break;
@@ -5414,29 +5459,29 @@
       return poly;
     }).filter((p) => p.length >= 3);
   }
-  function cells2({ style, box: box3, size, detail = 0, busy = () => false, seed = 1 }) {
+  function cells2({ style, box: box4, size, detail = 0, busy = () => false, seed = 1 }) {
     const adaptive = detail > 0;
     if (style === "hex") {
       const s = size / Math.sqrt(3);
-      return cells("hex", s, { x0: -s, y0: -s, x1: box3.w + s, y1: box3.h + s }).map((poly) => poly.map((p) => ({ x: p.x + box3.x, y: p.y + box3.y })));
+      return cells("hex", s, { x0: -s, y0: -s, x1: box4.w + s, y1: box4.h + s }).map((poly) => poly.map((p) => ({ x: p.x + box4.x, y: p.y + box4.y })));
     }
     if (style === "brick") {
       const out = [];
-      for (let j = 0; j * size < box3.h; j++) {
+      for (let j = 0; j * size < box4.h; j++) {
         const off = j % 2 ? -size : 0;
-        for (let x = box3.x + off; x < box3.x + box3.w; x += 2 * size) {
-          const y = box3.y + j * size;
+        for (let x = box4.x + off; x < box4.x + box4.w; x += 2 * size) {
+          const y = box4.y + j * size;
           if (adaptive && busy(x, y, 2 * size, size)) out.push(rect2(x, y, size, size), rect2(x + size, y, size, size));
           else out.push(rect2(x, y, 2 * size, size));
         }
       }
       return out;
     }
-    const leaves = quadLeaves(box3, size, adaptive, busy);
+    const leaves = quadLeaves(box4, size, adaptive, busy);
     if (style === "irregular") {
       const rnd = rng(seed);
-      const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box3.x && p.y >= box3.y && p.x <= box3.x + box3.w && p.y <= box3.y + box3.h);
-      return voronoi(seeds, box3);
+      const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box4.x && p.y >= box4.y && p.x <= box4.x + box4.w && p.y <= box4.y + box4.h);
+      return voronoi(seeds, box4);
     }
     return leaves.map((l) => rect2(l.x, l.y, l.s, l.s));
   }
@@ -6297,9 +6342,9 @@
     const x = Math.floor(p.x), y = Math.floor(p.y);
     if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return false;
     const im = getImage();
-    const box3 = floodFill(im, x, y, rgba(state.fill), state.tolerance, state.contiguous);
-    if (!box3) return false;
-    dctx.putImageData(im, 0, 0, box3.x, box3.y, box3.w, box3.h);
+    const box4 = floodFill(im, x, y, rgba(state.fill), state.tolerance, state.contiguous);
+    if (!box4) return false;
+    dctx.putImageData(im, 0, 0, box4.x, box4.y, box4.w, box4.h);
     commit();
     return true;
   }
@@ -6871,7 +6916,7 @@
         if (x < w - 1) meet(p, p + 1);
         if (y < h - 1) meet(p, p + w);
       }
-      const target = new Int16Array(levels.length).fill(-32768);
+      const target2 = new Int16Array(levels.length).fill(-32768);
       let changed = 0;
       levels.forEach((lv, id) => {
         const relief = heightOf(lv) - lowest[id];
@@ -6883,12 +6928,12 @@
           best = nl;
           bestN = cnt;
         }
-        target[id] = best;
+        target2[id] = best;
         changed++;
       });
       if (!changed) break;
       for (let p = 0; p < n5; p++) {
-        const tl = target[label2[p]];
+        const tl = target2[label2[p]];
         if (tl !== -32768) grid[p] = tl;
       }
       lowered += changed;
@@ -7463,9 +7508,9 @@ ${shapes.join("\n")}
   }
 
   // src/lib/photo.ts
-  function sampler({ data, W, H, box: box3 }) {
+  function sampler({ data, W, H, box: box4 }) {
     return (p) => {
-      const u = Math.floor((p.x - box3.x) / box3.w * W), v = Math.floor((p.y - box3.y) / box3.h * H);
+      const u = Math.floor((p.x - box4.x) / box4.w * W), v = Math.floor((p.y - box4.y) / box4.h * H);
       if (u < 0 || v < 0 || u >= W || v >= H) return null;
       const i = (v * W + u) * 4;
       return data[i + 3] < 20 ? null : [data[i], data[i + 1], data[i + 2]];
@@ -7481,10 +7526,10 @@ ${shapes.join("\n")}
     const m = [0, 1, 2].map((k) => labs.reduce((s, l) => s + l[k], 0) / labs.length);
     return labs.reduce((s, l) => s + Math.hypot(l[0] - m[0], l[1] - m[1], l[2] - m[2]), 0) / labs.length;
   }
-  function suggestPalette(at, box3, n5) {
+  function suggestPalette(at, box4, n5) {
     const labs = [];
     for (let i = 0; i < 70; i++) for (let j = 0; j < 70; j++) {
-      const c = at({ x: box3.x + box3.w * (i + 0.5) / 70, y: box3.y + box3.h * (j + 0.5) / 70 });
+      const c = at({ x: box4.x + box4.w * (i + 0.5) / 70, y: box4.y + box4.h * (j + 0.5) / 70 });
       if (c) labs.push(toLab(c));
     }
     return [...new Set(kmeans(labs, n5, 7).map(fromLab))];
@@ -8003,6 +8048,260 @@ ${shapes.join("\n")}
     bindPalette();
   }
 
+  // src/shared/quick-menu.ts
+  var TAP_MS = 300;
+  var GAP_MS = 350;
+  var TAP_PX = 12;
+  var PAIR_PX = 32;
+  var host;
+  var box3 = null;
+  var target = "fill";
+  var hideTimer = 0;
+  var toSlider = (v) => {
+    const { min, max } = host.size;
+    return Math.round(1e3 * Math.log(Math.min(max, Math.max(min, v)) / min) / Math.log(max / min));
+  };
+  var fromSlider = (k) => {
+    const { min, max } = host.size, v = min * Math.pow(max / min, k / 1e3);
+    return v >= 10 ? Math.round(v) : v >= 1 ? Math.round(v * 2) / 2 : Math.round(v * 10) / 10;
+  };
+  function build() {
+    const el = document.createElement("div");
+    el.id = "quick-menu";
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-label", t("Quick menu"));
+    el.hidden = true;
+    el.innerHTML = `<div class="qm-card">
+<div class="qm-row qm-head">
+  <button class="qm-icon" data-act="undo" title="${t("Undo")}" aria-label="${t("Undo")}">↶</button>
+  <button class="qm-icon" data-act="redo" title="${t("Redo")}" aria-label="${t("Redo")}">↷</button>
+  <button class="qm-icon" data-act="fit" title="${t("Fit to the screen")}" aria-label="${t("Fit to the screen")}"><svg viewBox="0 0 20 20"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4" class="st"/></svg></button>
+  <span class="qm-grow"></span>
+  <button class="qm-icon" data-act="close" title="${t("Close")}" aria-label="${t("Close")}">✕</button>
+</div>
+<div class="qm-tools"></div>
+<div class="qm-row qm-targets" role="radiogroup" aria-label="${t("Which color")}">
+  <button class="qm-target" data-target="fill" role="radio"><span class="qm-chip"></span><span class="qm-tname"></span></button>
+  <button class="qm-target" data-target="stroke" role="radio"><span class="qm-chip"></span><span class="qm-tname"></span></button>
+  <button class="qm-icon qm-more" data-act="choose" title="${t("Choose any color")}" aria-label="${t("Choose any color")}"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5" class="st"/><path d="M10 6v8M6 10h8" class="st"/></svg></button>
+</div>
+<div class="qm-swatches"></div>
+<label class="qm-row qm-size"><span class="qm-slabel"></span><input type="range" min="0" max="1000" step="1"><output></output></label>
+</div>`;
+    document.body.append(el);
+    el.querySelector(".qm-slabel").textContent = host.size.label;
+    el.addEventListener("pointerdown", (e) => {
+      if (e.target === el) {
+        e.preventDefault();
+        close();
+      }
+    });
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        close();
+      }
+    });
+    el.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      if (b.dataset.tool) {
+        $(`#tools button[data-tool="${b.dataset.tool}"]`).click();
+        close();
+      } else if (b.dataset.target) {
+        target = b.dataset.target;
+        renderColors();
+      } else if (b.dataset.color != null) {
+        const c = b.dataset.color || null;
+        if (target === "fill") host.setFill(c, true);
+        else host.setStroke(c, true);
+        renderColors();
+        close();
+      } else if (b.dataset.act === "undo" || b.dataset.act === "redo") {
+        $(`#btn-${b.dataset.act}`).click();
+        renderHead();
+      } else if (b.dataset.act === "fit") {
+        $("#btn-fit").click();
+      } else if (b.dataset.act === "choose") {
+        close();
+        $(target === "fill" ? "#ac-fill" : "#ac-stroke").click();
+      } else if (b.dataset.act === "close") close();
+    });
+    const range2 = el.querySelector(".qm-size input");
+    range2.addEventListener("input", () => {
+      const inp = $(host.size.input);
+      inp.value = String(fromSlider(+range2.value));
+      inp.dispatchEvent(new Event("change"));
+      renderSize();
+    });
+    return el;
+  }
+  function renderHead() {
+    for (const k of ["undo", "redo"]) box3.querySelector(`[data-act="${k}"]`).disabled = $(`#btn-${k}`).disabled;
+  }
+  function renderTools() {
+    const wrap = box3.querySelector(".qm-tools");
+    wrap.innerHTML = "";
+    for (const id of host.tools) {
+      const src = document.querySelector(`#tools button[data-tool="${id}"]`);
+      if (!src || getComputedStyle(src).display === "none") continue;
+      const b = document.createElement("button");
+      b.className = "qm-tool" + (src.classList.contains("active") ? " active" : "");
+      b.dataset.tool = id;
+      b.title = src.title;
+      b.setAttribute("aria-label", src.title);
+      b.setAttribute("aria-pressed", String(src.classList.contains("active")));
+      b.innerHTML = src.querySelector("svg")?.outerHTML || "";
+      wrap.append(b);
+    }
+  }
+  function renderColors() {
+    const st = host.state;
+    for (const b of box3.querySelectorAll(".qm-target")) {
+      const which = b.dataset.target, c = st[which];
+      b.classList.toggle("active", which === target);
+      b.setAttribute("aria-checked", String(which === target));
+      b.querySelector(".qm-chip").style.background = c || "";
+      b.querySelector(".qm-chip").classList.toggle("none", !c);
+      b.querySelector(".qm-tname").textContent = host.names[which];
+    }
+    const wrap = box3.querySelector(".qm-swatches"), now = st[target];
+    wrap.innerHTML = "";
+    const n5 = st.palette.length, rows2 = n5 > 7 ? 2 : 1;
+    wrap.classList.toggle("scroll", n5 > 14);
+    wrap.style.setProperty("--qm-rows", String(rows2));
+    wrap.style.setProperty("--qm-cols", String(Math.max(1, Math.ceil(n5 / rows2))));
+    for (const c of st.palette) {
+      const s = document.createElement("button");
+      s.className = "qm-swatch" + (c === now ? " active" : "");
+      s.dataset.color = c;
+      s.style.background = c;
+      s.title = c;
+      s.setAttribute("aria-label", c);
+      wrap.append(s);
+    }
+    if (!st.palette.length) wrap.innerHTML = `<span class="qm-empty">${t("The palette is empty – use + to choose a color.")}</span>`;
+  }
+  function renderSize() {
+    const v = parseFloat($(host.size.input).value) || host.size.min;
+    box3.querySelector(".qm-size input").value = String(toSlider(v));
+    box3.querySelector(".qm-size output").textContent = `${v} ${host.size.unit()}`;
+  }
+  function openQuickMenu(x, y) {
+    box3 = box3 || build();
+    renderHead();
+    renderTools();
+    renderColors();
+    renderSize();
+    clearTimeout(hideTimer);
+    box3.classList.remove("closing");
+    box3.hidden = false;
+    const card = box3.querySelector(".qm-card");
+    card.classList.remove("in");
+    const pad = getComputedStyle(document.body), m = 10;
+    const top0 = parseFloat(pad.paddingTop) + m, left0 = parseFloat(pad.paddingLeft) + m;
+    const right = innerWidth - parseFloat(pad.paddingRight) - m, bottom = innerHeight - parseFloat(pad.paddingBottom) - m;
+    const w = card.offsetWidth, h = card.offsetHeight, gap = 28;
+    let top = y - gap - h;
+    if (top < top0) top = Math.min(y + gap, bottom - h);
+    top = Math.max(top0, top);
+    const left = Math.max(left0, Math.min(right - w, x - w / 2));
+    card.style.left = `${left}px`;
+    card.style.top = `${top}px`;
+    card.style.transformOrigin = `${x - left}px ${y - top}px`;
+    box3.style.setProperty("--qx", `${x}px`);
+    box3.style.setProperty("--qy", `${y}px`);
+    void card.offsetWidth;
+    card.classList.add("in");
+    box3.classList.remove("ripple");
+    void box3.offsetWidth;
+    box3.classList.add("ripple");
+  }
+  var quickMenuOpen = () => !!box3 && !box3.hidden && !box3.classList.contains("closing");
+  function close() {
+    if (!quickMenuOpen()) return;
+    box3.querySelector(".qm-card").classList.remove("in");
+    box3.classList.add("closing");
+    hideTimer = window.setTimeout(() => {
+      box3.hidden = true;
+      box3.classList.remove("closing");
+    }, 160);
+  }
+  function initQuickMenu(h) {
+    host = h;
+    let cur = null;
+    let last = null;
+    let swallow = null;
+    const stop = (e) => {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+    };
+    const s = h.surface;
+    s.addEventListener("pointerdown", (ev) => {
+      const e = ev;
+      if (e.pointerType !== "touch" || !e.isPrimary) {
+        cur = last = null;
+        return;
+      }
+      hintOnce();
+      if (last && e.timeStamp - last.t < GAP_MS && Math.hypot(e.clientX - last.x, e.clientY - last.y) < PAIR_PX) {
+        if (h.steps() === last.steps + 1) h.dropLastStep();
+        h.cancelPending();
+        last = null;
+        swallow = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false };
+        stop(e);
+        return;
+      }
+      last = null;
+      cur = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, steps: h.steps(), busy: h.busy(), moved: false };
+    }, true);
+    s.addEventListener("pointermove", (ev) => {
+      const e = ev;
+      if (swallow && e.pointerId === swallow.id) {
+        if (Math.hypot(e.clientX - swallow.x, e.clientY - swallow.y) > PAIR_PX) swallow.moved = true;
+        stop(e);
+        return;
+      }
+      if (cur && e.pointerId === cur.id && Math.hypot(e.clientX - cur.x, e.clientY - cur.y) > TAP_PX) cur.moved = true;
+    }, true);
+    s.addEventListener("pointerup", (ev) => {
+      const e = ev;
+      if (swallow && e.pointerId === swallow.id) {
+        const open3 = !swallow.moved;
+        swallow = null;
+        stop(e);
+        if (open3) openQuickMenu(e.clientX, e.clientY);
+        return;
+      }
+      if (cur && e.pointerId === cur.id && !cur.moved && !cur.busy && e.timeStamp - cur.t < TAP_MS) {
+        last = { x: e.clientX, y: e.clientY, t: e.timeStamp, steps: cur.steps };
+      }
+      cur = null;
+    }, true);
+    s.addEventListener("pointercancel", (ev) => {
+      const e = ev;
+      if (swallow && e.pointerId === swallow.id) {
+        swallow = null;
+        stop(e);
+      }
+      cur = last = null;
+    }, true);
+    s.addEventListener("dblclick", (e) => {
+      if (quickMenuOpen()) stop(e);
+    }, true);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && quickMenuOpen()) {
+        e.stopImmediatePropagation();
+        close();
+      }
+    }, true);
+  }
+  function hintOnce() {
+    if (navigator.webdriver || lsGet("mz-quick-hint")) return;
+    lsSet("mz-quick-hint", "1");
+    toast(t("Tip: double-tap the drawing for a quick menu – tools, colors and size."));
+  }
+
   // src/raster/input.ts
   var pointers = /* @__PURE__ */ new Map();
   var pinch = null;
@@ -8131,12 +8430,12 @@ ${shapes.join("\n")}
     }, { passive: false });
   }
   function onKey(e) {
-    const target = e.target;
-    if (typingIn(target)) {
-      if (e.key === "Escape") target.blur();
+    const target2 = e.target;
+    if (typingIn(target2)) {
+      if (e.key === "Escape") target2.blur();
       return;
     }
-    if (target.tagName === "INPUT" && e.key === " ") return;
+    if (target2.tagName === "INPUT" && e.key === " ") return;
     if (modalOpen()) return;
     const ctrl = e.ctrlKey || e.metaKey, k = e.key.toLowerCase();
     if (ctrl) {
@@ -8254,6 +8553,24 @@ ${shapes.join("\n")}
   }
   function bindInput() {
     bindPointer();
+    initQuickMenu({
+      surface: view,
+      tools: ["brush", "pencil", "eraser", "bucket", "picker", "line", "ellipse", "select"],
+      state,
+      setFill,
+      setStroke,
+      names: { fill: t("Paint"), stroke: t("Outline") },
+      size: { input: "#opt-size", min: 1, max: 200, label: t("Size"), unit: () => "px" },
+      busy: () => !!curve.pts,
+      steps,
+      dropLastStep,
+      cancelPending() {
+        cancelCurve();
+        state.action = null;
+        state.preview = null;
+        requestRender();
+      }
+    });
     window.addEventListener("keydown", onKey);
     window.addEventListener("keyup", (e) => {
       if (e.key === " ") {
@@ -8582,7 +8899,7 @@ void main() {
   <button id="m3-go" class="primary" title="${t("The model, with the filament changes for PrusaSlicer")}">${t("Download 3MF")}</button>
 </div>`;
   var SMALL = 2e4;
-  function initExport3D(host, button) {
+  function initExport3D(host2, button) {
     const dlg3 = document.createElement("dialog");
     dlg3.id = "dlg-3d";
     dlg3.innerHTML = DIALOG;
@@ -8599,7 +8916,7 @@ void main() {
     const flat = () => flatSettings(buildOpts());
     const isFlat = () => opts.mode === "flat";
     const size = () => {
-      const a = host.aspect();
+      const a = host2.aspect();
       return { w: opts.width, h: opts.width / a };
     };
     const normalize = () => {
@@ -8648,9 +8965,9 @@ void main() {
       if (w / cell * (h / cell) > MAX_CELLS) cell = Math.sqrt(w * h / MAX_CELLS);
       gw = Math.max(1, Math.round(w / cell));
       gh = Math.max(1, Math.round(h / cell));
-      const c = await host.render(gw, gh);
+      const c = await host2.render(gw, gh);
       const img = c.getContext("2d").getImageData(0, 0, gw, gh);
-      const cs = host.colors();
+      const cs = host2.colors();
       const prev = order.map((i) => colors[i]);
       colors = cs.colors;
       note = cs.note || "";
@@ -8705,7 +9022,7 @@ void main() {
       ].filter(Boolean).join(" ");
       $("#m3-note").hidden = !warn;
       $("#m3-note").textContent = warn;
-      const plan = colorPlan(list.map((i) => colors[i]), s), total2 = gw * gh || 1, box3 = $("#m3-order");
+      const plan = colorPlan(list.map((i) => colors[i]), s), total2 = gw * gh || 1, box4 = $("#m3-order");
       const keep = new Set(list.map((ci) => colors[ci]));
       for (const [c, el] of rows2) if (!keep.has(c)) {
         el.remove();
@@ -8730,7 +9047,7 @@ void main() {
         tag.classList.toggle("on", isLine(ci));
         up.disabled = k === 0 || isLine(list[k - 1]) !== isLine(ci);
         down.disabled = k === list.length - 1 || isLine(list[k + 1]) !== isLine(ci);
-        if (box3.children[k] !== row) box3.insertBefore(row, box3.children[k] || null);
+        if (box4.children[k] !== row) box4.insertBefore(row, box4.children[k] || null);
       });
       const unpainted = grid ? grid.filter((v) => v < 0).length : 0;
       const fs = flat();
@@ -8815,7 +9132,7 @@ void main() {
       x.imageSmoothingEnabled = k < 1;
       x.drawImage(small, 0, 0, cv.width, cv.height);
     }
-    const base = () => host.fileName().replace(/\.[a-z0-9]+$/i, "");
+    const base = () => host2.fileName().replace(/\.[a-z0-9]+$/i, "");
     function finishLines(m) {
       const out = [], list = m.list;
       if (opts.frame > 0) {
@@ -8890,11 +9207,11 @@ void main() {
             return f.found == null ? t("Filament {k} ({color}) is not used – assign it to the part “{k} {color}”", { k: f.filament, color: f.color }) : f.ok ? t("Filament {k} ({color}) prints up to {z} mm", { k: f.filament, color: f.color, z: mm(f.top) }) : t("Filament {k} ({color}) prints up to {found} mm instead of {z} mm", { k: f.filament, color: f.color, found: mm(f.found), z: mm(f.top) });
         }
       };
-      const bad = findings.filter((f) => !f.ok).length, box3 = $("#m3-check");
+      const bad = findings.filter((f) => !f.ok).length, box4 = $("#m3-check");
       const head = !g.layers ? t("No printing found in {name} – is it a G-code file?", { name }) : bad ? t("{name}: {n} {n|thing|things} to look at", { name, n: bad }) : t("{name}: everything matches the plan", { name });
-      box3.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f) => `<li class="${f.ok ? "ok" : "bad"}">${f.ok ? "✓" : "✗"} ${esc(say(f))}</li>`).join("") + "</ul>" : "");
-      box3.classList.toggle("bad", !g.layers || bad > 0);
-      box3.hidden = false;
+      box4.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f) => `<li class="${f.ok ? "ok" : "bad"}">${f.ok ? "✓" : "✗"} ${esc(say(f))}</li>`).join("") + "</ul>" : "");
+      box4.classList.toggle("bad", !g.layers || bad > 0);
+      box4.hidden = false;
     }
     async function save2(kind) {
       const m = model();
@@ -8985,7 +9302,7 @@ void main() {
     $("#m3-h").onchange = () => {
       const v = +$("#m3-h").value;
       if (v >= 5 && v <= 2e3) {
-        opts.width = v * host.aspect();
+        opts.width = v * host2.aspect();
         saveOpts();
       }
       reanalyse();
@@ -9020,7 +9337,7 @@ void main() {
       if (m && m.list.length) download(new Blob([planText(m)], { type: "text/plain" }), base() + "-3d-plan.txt");
     };
     button.onclick = async () => {
-      const real = host.realSize();
+      const real = host2.realSize();
       if (real) opts.width = +real.w.toFixed(2);
       $("#m3-summary").textContent = t("Reading the picture…");
       dlg3.showModal();
@@ -9155,10 +9472,10 @@ void main() {
     const opts2 = (orientation ? [orientation] : ["portrait", "landscape"]).map((o) => sheetsFor(wmm, hmm, area2(paperKey, o), mode2));
     return opts2.length > 1 && opts2[1].cost < opts2[0].cost ? opts2[1] : opts2[0];
   }
-  function sheetSections(box3, k, L, { title: title2 = "", prefix = "" } = {}) {
+  function sheetSections(box4, k, L, { title: title2 = "", prefix = "" } = {}) {
     const multi = L.sheets.length > 1;
     return L.sheets.map((s) => {
-      const vb = [box3.x + s.x / k, box3.y + s.y / k, s.w / k, s.h / k];
+      const vb = [box4.x + s.x / k, box4.y + s.y / k, s.w / k, s.h / k];
       const shade = [];
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
@@ -9173,11 +9490,11 @@ void main() {
     if (L.sheets.length === 1) return t("One {paper} sheet ({orientation}) at real size.", { paper: L.paper.name, orientation: o });
     return t("{n} {paper} {n|sheet|sheets} ({orientation}, {rows} × {cols}, overlapping {overlap} mm) at real size.", { n: L.sheets.length, paper: L.paper.name, orientation: o, rows: L.rows, cols: L.cols, overlap: OVERLAP });
   }
-  function overviewSection(box3, k, A, rects, heading, extra = "") {
-    const s = Math.min(A.aw / (box3.w * k), (A.ah - 20) / (box3.h * k));
+  function overviewSection(box4, k, A, rects, heading, extra = "") {
+    const s = Math.min(A.aw / (box4.w * k), (A.ah - 20) / (box4.h * k));
     const stroke = 0.6 / k / s;
     const marks = rects.map((r) => `<rect x="${n2(r.x)}" y="${n2(r.y)}" width="${n2(r.w)}" height="${n2(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n2(stroke)}"/><text x="${n2(r.x + r.w / 2)}" y="${n2(r.y + r.h / 2)}" font-size="${n2(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
-    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box3.x, box3.y, box3.w, box3.h].map(n2).join(" ")}" style="width:${n2(box3.w * k * s)}mm;height:${n2(box3.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
+    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box4.x, box4.y, box4.w, box4.h].map(n2).join(" ")}" style="width:${n2(box4.w * k * s)}mm;height:${n2(box4.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
   }
   function page({ art, sections, paper = "a4", orientation = "portrait", title: title2 = "Mosaic" }) {
     const p = PAPERS[paper] || PAPERS.a4;
@@ -9200,20 +9517,20 @@ ${sections.join("\n")}
 <script>window.onload = () => setTimeout(() => window.print(), 400);<\/script>
 </body></html>`;
   }
-  function html({ art, box: box3, unit, mmPerUnit = 0, paper = "a4", mode: mode2 = "real", legend = "", title: title2 = "Mosaic" }) {
+  function html({ art, box: box4, unit, mmPerUnit = 0, paper = "a4", mode: mode2 = "real", legend = "", title: title2 = "Mosaic" }) {
     const k = mmPerUnit || MM[unit] || MM.px;
-    const L = layout2(box3.w * k, box3.h * k, paper, mode2);
+    const L = layout2(box4.w * k, box4.h * k, paper, mode2);
     const sections = [];
     if (L.sheets.length > 1) {
       sections.push(overviewSection(
-        box3,
+        box4,
         k,
         L,
-        L.sheets.map((s) => ({ x: box3.x + s.x / k, y: box3.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
-        `${title2} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n2(box3.w * k / 10)), h: num(+n2(box3.h * k / 10)) })
+        L.sheets.map((s) => ({ x: box4.x + s.x / k, y: box4.y + s.y / k, w: s.w / k, h: s.h / k, label: s.label })),
+        `${title2} – ` + t("{n} sheets ({rows} × {cols}), real size {w} × {h} cm", { n: L.sheets.length, rows: L.rows, cols: L.cols, w: num(+n2(box4.w * k / 10)), h: num(+n2(box4.h * k / 10)) })
       ));
     }
-    sections.push(...sheetSections(box3, k, L, { title: title2 }));
+    sections.push(...sheetSections(box4, k, L, { title: title2 }));
     if (legend) sections.push(`<section class="sheet legend">${legend}</section>`);
     return page({ art, sections, paper, orientation: L.orientation, title: title2 });
   }
@@ -9550,7 +9867,7 @@ ${sections.join("\n")}
   }
 
   // src/shared/guide.ts
-  function initGuide(button, steps, key) {
+  function initGuide(button, steps2, key) {
     const card = document.createElement("dialog");
     card.id = "guide";
     card.innerHTML = `<div class="dlg-head"><h2></h2><button class="guide-close" title="${t("Close")}">✕</button></div>
@@ -9564,17 +9881,17 @@ ${sections.join("\n")}
       marked?.classList.add("guide-target");
     };
     function draw() {
-      const s = steps[at];
+      const s = steps2[at];
       card.querySelector("h2").textContent = s.title;
       card.querySelector(".guide-text").textContent = s.text;
-      card.querySelector(".guide-count").textContent = t("{k} of {n}", { k: at + 1, n: steps.length });
+      card.querySelector(".guide-count").textContent = t("{k} of {n}", { k: at + 1, n: steps2.length });
       card.querySelector(".guide-back").disabled = at === 0;
-      card.querySelector(".guide-next").textContent = at === steps.length - 1 ? t("Done") : t("Next");
+      card.querySelector(".guide-next").textContent = at === steps2.length - 1 ? t("Done") : t("Next");
       const el = s.target ? document.querySelector(s.target) : null;
       mark(el && el.offsetParent ? el : null);
       marked?.scrollIntoView({ block: "nearest", inline: "nearest" });
     }
-    function close() {
+    function close2() {
       mark(null);
       card.close();
       lsSet(key, "1");
@@ -9584,13 +9901,13 @@ ${sections.join("\n")}
       draw();
       if (!card.open) card.show();
     }
-    card.querySelector(".guide-close").onclick = close;
+    card.querySelector(".guide-close").onclick = close2;
     card.querySelector(".guide-back").onclick = () => {
       at = Math.max(0, at - 1);
       draw();
     };
     card.querySelector(".guide-next").onclick = () => {
-      if (at === steps.length - 1) close();
+      if (at === steps2.length - 1) close2();
       else {
         at++;
         draw();
@@ -9599,7 +9916,7 @@ ${sections.join("\n")}
     card.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        close();
+        close2();
       }
     });
     button.onclick = show2;
@@ -9648,8 +9965,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.4.0" : "dev";
+  var VERSION = true ? "1.5.0" : "dev";
   var RELEASES = [
+    {
+      version: "1.5.0",
+      date: "2026-10-13",
+      items: [
+        "Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw."
+      ]
+    },
     {
       version: "1.4.0",
       date: "2026-10-12",
@@ -9733,11 +10057,11 @@ ${sections.join("\n")}
   }
 
   // src/shared/history-ui.ts
-  function initHistoryUI(host, button) {
+  function initHistoryUI(host2, button) {
     const dlg3 = document.createElement("dialog");
     dlg3.id = "dlg-history";
     dlg3.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
-<p class="note">${esc(host.texts.intro)}</p>
+<p class="note">${esc(host2.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
     document.body.append(dlg3);
@@ -9751,27 +10075,27 @@ ${sections.join("\n")}
       thumbs = [];
       let versions;
       try {
-        versions = await host.list();
+        versions = await host2.list();
       } catch {
         list.innerHTML = `<p class="note">${t("Version history needs browser storage (IndexedDB), which is not available here.")}</p>`;
         return;
       }
       if (!versions.length) {
-        list.innerHTML = `<p class="note">${esc(host.texts.empty)}</p>`;
+        list.innerHTML = `<p class="note">${esc(host2.texts.empty)}</p>`;
         return;
       }
       list.innerHTML = "";
       for (const v of versions) {
         const row = document.createElement("div");
         row.className = "hist-row" + (v.pinned ? " pinned" : "");
-        const url2 = URL.createObjectURL(host.thumbnail(v));
+        const url2 = URL.createObjectURL(host2.thumbnail(v));
         thumbs.push(url2);
         const when = new Date(v.time).toLocaleString(lang);
         const facts = [
           v.title ? when : "",
           v.name,
           v.note,
-          host.detail(v),
+          host2.detail(v),
           v.size ? `${num(+v.size.w.toFixed(1))} × ${num(+v.size.h.toFixed(1))} ${v.size.unit}` : "",
           v.colors != null ? t("{n} {n|color|colors}", { n: v.colors }) : ""
         ].filter(Boolean);
@@ -9791,7 +10115,7 @@ ${sections.join("\n")}
         restore2.textContent = t("Restore");
         restore2.onclick = async () => {
           dlg3.close();
-          await host.restore(v);
+          await host2.restore(v);
         };
         row.append(pin, rename, restore2);
         list.append(row);
@@ -9810,7 +10134,7 @@ ${sections.join("\n")}
       dlg3.showModal();
     };
     dlg3.querySelector("#hist-save").onclick = async () => {
-      toast(await host.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
+      toast(await host2.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
   }

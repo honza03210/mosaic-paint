@@ -1762,4 +1762,22 @@ export const DE: Record<string, string> = {
     'In Discord: Neu, Speichern unter, Umbenennen und die anderen Fragen funktionieren (sie werden jetzt auf der Seite gestellt), und beim Wechsel zwischen den Apps bleibt die Schaltfläche zum Posten erhalten.',
   'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
     'Auf Handys in Discord bleibt die obere Leiste frei von Discords eigenen Bedienelementen.',
+  'Quick menu':
+    'Schnellmenü',
+  'Undo':
+    'Rückgängig',
+  'Redo':
+    'Wiederholen',
+  'Fit to the screen':
+    'An den Bildschirm anpassen',
+  'Which color':
+    'Welche Farbe',
+  'Choose any color':
+    'Beliebige Farbe wählen',
+  'The palette is empty – use + to choose a color.':
+    'Die Palette ist leer – mit + eine Farbe wählen.',
+  'Tip: double-tap the drawing for a quick menu – tools, colors and size.':
+    'Tipp: Zweimal auf die Zeichnung tippen öffnet ein Schnellmenü – Werkzeuge, Farben und Größe.',
+  'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.':
+    'Schnellmenü auf Handys und Tablets: zweimal mit dem Finger auf die Zeichnung tippen – Rückgängig, die wichtigsten Werkzeuge, Farben und Größe, genau dort, wo du zeichnest.',
 };

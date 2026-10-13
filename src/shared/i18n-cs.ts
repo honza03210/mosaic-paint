@@ -1762,4 +1762,22 @@ export const CS: Record<string, string> = {
     'V Discordu: Nový, Uložit jako, přejmenování a další otázky fungují (ptají se teď přímo na stránce) a přepínání mezi aplikacemi zachová tlačítko pro odeslání.',
   'On phones inside Discord, the top bar stays clear of Discord’s own controls.':
     'Na telefonech v Discordu horní lišta nezasahuje pod ovládací prvky Discordu.',
+  'Quick menu':
+    'Rychlá nabídka',
+  'Undo':
+    'Zpět',
+  'Redo':
+    'Znovu',
+  'Fit to the screen':
+    'Přizpůsobit obrazovce',
+  'Which color':
+    'Která barva',
+  'Choose any color':
+    'Vybrat libovolnou barvu',
+  'The palette is empty – use + to choose a color.':
+    'Paleta je prázdná – barvu vyberete tlačítkem +.',
+  'Tip: double-tap the drawing for a quick menu – tools, colors and size.':
+    'Tip: dvojitým klepnutím na kresbu otevřete rychlou nabídku – nástroje, barvy a velikost.',
+  'Quick menu on phones and tablets: double-tap the drawing with a finger for undo, the main tools, colors and size – right where you draw.':
+    'Rychlá nabídka na telefonech a tabletech: dvojitým klepnutím prstem na kresbu máte po ruce zpět, hlavní nástroje, barvy a velikost – přímo tam, kde kreslíte.',
 };

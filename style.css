@@ -393,3 +393,64 @@ body.working, body.working * { cursor: progress !important; }
 .cp-old, .cp-new { width: 34px; height: 26px; border-radius: 5px; border: 1px solid rgba(255, 255, 255, .25); }
 .cp-hex { flex: 1; min-width: 0; font-family: ui-monospace, monospace; }
 .acbox[role=button] { cursor: pointer; }
+
+/* the quick menu (quick-menu.ts): double-tap the drawing with a finger; it grows out of the finger */
+#quick-menu { position: fixed; inset: 0; z-index: 70; background: rgba(0, 0, 0, .12); touch-action: none; }
+#quick-menu[hidden] { display: none; }
+#quick-menu::before {
+  /* a ring where the finger tapped */
+  content: ""; position: absolute; left: var(--qx); top: var(--qy); width: 56px; height: 56px; margin: -28px 0 0 -28px;
+  border-radius: 50%; border: 2px solid var(--accent); opacity: 0; pointer-events: none;
+}
+#quick-menu.ripple::before { animation: qm-ripple .45s ease-out; }
+@keyframes qm-ripple { from { transform: scale(.3); opacity: .9; } to { transform: scale(1.5); opacity: 0; } }
+.qm-card {
+  position: absolute; width: min(296px, calc(100vw - 20px)); padding: 8px; display: flex; flex-direction: column; gap: 8px;
+  background: rgba(39, 40, 44, .94); border: 1px solid var(--border); border-radius: 20px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 255, 255, .03) inset;
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  opacity: 0; transform: scale(.35);
+  transition: transform .26s cubic-bezier(.2, 1.15, .35, 1), opacity .16s ease-out;
+}
+.qm-card.in { opacity: 1; transform: none; }
+/* the rows follow the card in, one after another */
+.qm-card > * { opacity: 0; transform: translateY(6px); transition: opacity .2s ease-out, transform .24s cubic-bezier(.2, 1.1, .35, 1); }
+.qm-card.in > * { opacity: 1; transform: none; }
+.qm-card.in > :nth-child(2) { transition-delay: .03s; }
+.qm-card.in > :nth-child(3) { transition-delay: .06s; }
+.qm-card.in > :nth-child(4) { transition-delay: .09s; }
+.qm-card.in > :nth-child(5) { transition-delay: .12s; }
+.qm-row { display: flex; align-items: center; gap: 6px; }
+.qm-grow { flex: 1; }
+.qm-card button { border: none; -webkit-tap-highlight-color: transparent; transition: transform .1s, background-color .15s; }
+.qm-card button:active:not(:disabled) { transform: scale(.92); }
+.qm-icon { width: 40px; height: 40px; padding: 0; border-radius: 12px; background: transparent; font-size: 19px; display: grid; place-items: center; }
+.qm-icon svg { width: 20px; height: 20px; }
+.qm-card svg .st { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; stroke-linecap: round; }
+.qm-head { border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.qm-tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.qm-tool { height: 50px; padding: 0; border-radius: 14px; background: var(--panel2); display: grid; place-items: center; }
+.qm-tool svg { width: 24px; height: 24px; fill: currentColor; }
+.qm-tool.active { background: var(--accent-fill); color: #fff; box-shadow: 0 4px 14px rgba(43, 140, 255, .35); }
+.qm-target { flex: 1; height: 42px; padding: 0 10px; border-radius: 14px; background: var(--panel2); display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 0 0 2px transparent inset; }
+.qm-target.active { box-shadow: 0 0 0 2px var(--accent) inset; }
+.qm-chip { width: 24px; height: 24px; border-radius: 50%; flex: none; border: 2px solid rgba(255, 255, 255, .25); }
+.qm-chip.none { background: repeating-conic-gradient(#888 0 25%, #ddd 0 50%) 0 0 / 8px 8px !important; }
+.qm-tname { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qm-swatches { display: grid; grid-template-columns: repeat(var(--qm-cols, 7), minmax(36px, 1fr)); justify-items: center; gap: 7px; padding: 3px; }
+.qm-swatches.scroll { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 36px; grid-template-rows: repeat(var(--qm-rows, 1), 36px);
+  justify-content: start; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.qm-swatches::-webkit-scrollbar { display: none; }
+.qm-swatch { width: 36px; height: 36px; padding: 0; border-radius: 50%; scroll-snap-align: start; box-shadow: 0 0 0 1px rgba(255, 255, 255, .18) inset; }
+.qm-swatch.active { box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--accent); }
+.qm-empty { color: var(--muted); padding: 6px 4px; grid-column: 1 / -1; white-space: normal; width: 260px; }
+.qm-size { padding: 0 4px 2px; }
+.qm-size input { flex: 1; accent-color: var(--accent); min-width: 0; height: 28px; }
+.qm-size output { min-width: 58px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) {
+  .qm-card, .qm-card > * { transition: opacity .12s; transform: none; }
+  #quick-menu.ripple::before { animation: none; }
+}
+#quick-menu.closing { pointer-events: none; background: transparent; transition: background-color .15s; }
+#quick-menu.closing .qm-card { transition-duration: .15s; transition-timing-function: ease-in; }
