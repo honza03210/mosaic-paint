@@ -9,6 +9,7 @@ import type { Pt } from '../lib/geometry.ts';
 import * as R from '../lib/raster.ts';
 import * as Curves from '../lib/curves.ts';
 import { heal } from '../lib/heal.ts';
+import { removeTool } from './remove.ts';
 import { toast } from '../shared/ui.ts';
 import { state } from './state.ts';
 import { doc, dctx, makeCanvas, getImage, requestRender, toDoc } from './canvas.ts';
@@ -600,6 +601,6 @@ const bucketTool: Tool = {
 const pickerTool: Tool = { down(e, p) { pickAt(p); }, move() {}, up() {} };
 
 export const paintTools: Record<string, Tool> = {
-  brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'), clone: copyTool('clone'), heal: copyTool('heal'),
+  brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'), clone: copyTool('clone'), heal: copyTool('heal'), remove: removeTool,
   line: lineTool, ngon: ngonTool, ellipse: ellipseTool, curve: curveTool, bucket: bucketTool, picker: pickerTool,
 };

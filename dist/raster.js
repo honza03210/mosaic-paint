@@ -916,7 +916,40 @@
     "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Retuš – jako Klonování, ale kopie převezme barvu a světlo místa, kam malujete: na skvrny, tečky a škrábance (J)",
     "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Jas, kontrast, sytost, úrovně, doostření a vyhlazení šumu – pro výběr nebo celý obrázek",
     "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Úpravy fotek v rastrové aplikaci: Upravit barvy… – jas, kontrast, sytost, úrovně s tlačítkem Automaticky, doostření a vyhlazení šumu, s živým náhledem (podržením Předtím porovnáte).",
-    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Retušovací štětec (J): přemaluje skvrny, tečky a škrábance texturou odjinud, v barvě a světle daného místa."
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Retušovací štětec (J): přemaluje skvrny, tečky a škrábance texturou odjinud, v barvě a světle daného místa.",
+    "Filling from the surroundings…": "Vyplňuje se z okolí…",
+    "Removed.": "Odstraněno.",
+    "Could not fill it: {why}": "Nepodařilo se vyplnit: {why}",
+    "Select what to remove first.": "Nejdřív vyberte, co odstranit.",
+    "Select": "Výběr",
+    "Rectangle": "Obdélník",
+    "Lasso": "Laso",
+    "Magnetic": "Magnetické",
+    "Wand": "Hůlka",
+    "Add": "Přidat",
+    "Subtract": "Ubrat",
+    "Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.": "Tažením uvnitř výběru ho přesunete. Kopírovat, Vymazat, Vyplnit z okolí a Upravit barvy respektují jeho tvar.",
+    "Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.": "Přemalujte, co má zmizet; po zvednutí se to vyplní z okolního obrázku. Nejlépe funguje na pozadí – tráva, nebe, zdi, kůže.",
+    "Fill with": "Vyplnit pomocí",
+    "Surroundings (built in)": "Okolí (vestavěné)",
+    "AI (add-on)": "AI (doplněk)",
+    "Fill from surroundings": "Vyplnit z okolí",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
+    "Shift / Alt + select": "Shift / Alt + výběr",
+    "Add to / take away from the selection": "Přidat k výběru / ubrat z výběru",
+    "Remove – paint over something to make it disappear: it is filled from the picture around it (R)": "Odstranit – přemalujte něco, aby to zmizelo: vyplní se to z okolního obrázku (R)",
+    "Shape": "Tvar",
+    "A rectangle: drag across": "Obdélník: táhněte přes",
+    "Freehand: draw around it": "Od ruky: obkreslete to",
+    "Draw roughly along an edge – the line snaps to it": "Kreslete zhruba podél hrany – čára se k ní přichytí",
+    "Tap a color: everything similar next to it (or anywhere)": "Klepněte na barvu: vše podobné vedle ní (nebo kdekoli)",
+    "New selection": "Nový výběr",
+    "Replace the selection": "Nahradit výběr",
+    "Add to the selection (or hold Shift)": "Přidat k výběru (nebo držte Shift)",
+    "Take away from the selection (or hold Alt)": "Ubrat z výběru (nebo držte Alt)",
+    "The selected part disappears: filled from the picture around it": "Vybraná část zmizí: vyplní se z okolního obrázku",
+    "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Výběry libovolného tvaru: Laso, Magnetické (přichytí se k hranám) a Hůlka (podle barvy), s Nový / Přidat / Ubrat (nebo Shift / Alt) – kopírování, mazání, přesun i Upravit barvy respektují tvar.",
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňování: štětec Odstranit (R) a Vyplnit z okolí pro výběr vyplní místo okolním obrázkem – s ohledem na obsah, přímo v zařízení."
   };
 
   // src/shared/i18n-de.ts
@@ -1836,7 +1869,40 @@
     "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Reparieren – wie Klonen, aber die Kopie übernimmt Farbe und Licht der Stelle, an der du malst: für Makel, Flecken und Kratzer (J)",
     "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Helligkeit, Kontrast, Sättigung, Tonwerte, Schärfen und Rauschglättung – für die Auswahl oder das ganze Bild",
     "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Fotokorrekturen in der Raster-App: Farben anpassen… – Helligkeit, Kontrast, Sättigung, Tonwerte mit Automatisch, Schärfen und Rauschglättung, mit Live-Vorschau (Vorher gedrückt halten zum Vergleichen).",
-    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Reparatur-Pinsel (J): übermalt Makel, Flecken und Kratzer mit Struktur von anderswo, in Farbe und Licht der Stelle."
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Reparatur-Pinsel (J): übermalt Makel, Flecken und Kratzer mit Struktur von anderswo, in Farbe und Licht der Stelle.",
+    "Filling from the surroundings…": "Wird aus der Umgebung gefüllt…",
+    "Removed.": "Entfernt.",
+    "Could not fill it: {why}": "Füllen nicht möglich: {why}",
+    "Select what to remove first.": "Wähle zuerst aus, was entfernt werden soll.",
+    "Select": "Auswahl",
+    "Rectangle": "Rechteck",
+    "Lasso": "Lasso",
+    "Magnetic": "Magnetisch",
+    "Wand": "Zauberstab",
+    "Add": "Hinzufügen",
+    "Subtract": "Abziehen",
+    "Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.": "Innerhalb der Auswahl ziehen, um sie zu verschieben. Kopieren, Löschen, Aus der Umgebung füllen und Farben anpassen folgen ihrer Form.",
+    "Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.": "Übermale, was verschwinden soll; beim Loslassen wird es aus dem umgebenden Bild gefüllt. Am besten auf Hintergründen – Gras, Himmel, Wände, Haut.",
+    "Fill with": "Füllen mit",
+    "Surroundings (built in)": "Umgebung (eingebaut)",
+    "AI (add-on)": "KI (Add-on)",
+    "Fill from surroundings": "Aus der Umgebung füllen",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
+    "Shift / Alt + select": "Umschalt / Alt + Auswahl",
+    "Add to / take away from the selection": "Zur Auswahl hinzufügen / von ihr abziehen",
+    "Remove – paint over something to make it disappear: it is filled from the picture around it (R)": "Entfernen – übermale etwas, damit es verschwindet: es wird aus dem umgebenden Bild gefüllt (R)",
+    "Shape": "Form",
+    "A rectangle: drag across": "Ein Rechteck: darüber ziehen",
+    "Freehand: draw around it": "Freihand: drumherum zeichnen",
+    "Draw roughly along an edge – the line snaps to it": "Grob an einer Kante entlang zeichnen – die Linie rastet daran ein",
+    "Tap a color: everything similar next to it (or anywhere)": "Auf eine Farbe tippen: alles Ähnliche daneben (oder überall)",
+    "New selection": "Neue Auswahl",
+    "Replace the selection": "Die Auswahl ersetzen",
+    "Add to the selection (or hold Shift)": "Zur Auswahl hinzufügen (oder Umschalt halten)",
+    "Take away from the selection (or hold Alt)": "Von der Auswahl abziehen (oder Alt halten)",
+    "The selected part disappears: filled from the picture around it": "Der ausgewählte Teil verschwindet: aus dem umgebenden Bild gefüllt",
+    "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Auswahlen jeder Form: Lasso, Magnetisch (rastet an Kanten ein) und Zauberstab (nach Farbe), mit Neu / Hinzufügen / Abziehen (oder Umschalt / Alt) – Kopieren, Löschen, Verschieben und Farben anpassen folgen der Form.",
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Dinge entfernen: der Entfernen-Pinsel (R) und Aus der Umgebung füllen für eine Auswahl füllen die Stelle mit dem umgebenden Bild – inhaltsbasiert, auf dem Gerät."
   };
 
   // src/shared/i18n-sk.ts
@@ -2756,7 +2822,40 @@
     "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Retuš – ako Klonovanie, ale kópia prevezme farbu a svetlo miesta, kam maľujete: na škvrny, bodky a škrabance (J)",
     "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Jas, kontrast, sýtosť, úrovne, doostrenie a vyhladenie šumu – pre výber alebo celý obrázok",
     "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Úpravy fotiek v rastrovej aplikácii: Upraviť farby… – jas, kontrast, sýtosť, úrovne s tlačidlom Automaticky, doostrenie a vyhladenie šumu, so živým náhľadom (podržaním Predtým porovnáte).",
-    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Retušovací štetec (J): premaľuje škvrny, bodky a škrabance textúrou odinakiaľ, vo farbe a svetle daného miesta."
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Retušovací štetec (J): premaľuje škvrny, bodky a škrabance textúrou odinakiaľ, vo farbe a svetle daného miesta.",
+    "Filling from the surroundings…": "Vypĺňa sa z okolia…",
+    "Removed.": "Odstránené.",
+    "Could not fill it: {why}": "Nepodarilo sa vyplniť: {why}",
+    "Select what to remove first.": "Najprv vyberte, čo odstrániť.",
+    "Select": "Výber",
+    "Rectangle": "Obdĺžnik",
+    "Lasso": "Laso",
+    "Magnetic": "Magnetické",
+    "Wand": "Palička",
+    "Add": "Pridať",
+    "Subtract": "Ubrať",
+    "Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.": "Ťahaním vnútri výberu ho presuniete. Kopírovať, Vymazať, Vyplniť z okolia a Upraviť farby rešpektujú jeho tvar.",
+    "Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.": "Premaľujte, čo má zmiznúť; po zdvihnutí sa to vyplní z okolitého obrázka. Najlepšie funguje na pozadí – tráva, obloha, steny, pokožka.",
+    "Fill with": "Vyplniť pomocou",
+    "Surroundings (built in)": "Okolie (vstavané)",
+    "AI (add-on)": "AI (doplnok)",
+    "Fill from surroundings": "Vyplniť z okolia",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
+    "Shift / Alt + select": "Shift / Alt + výber",
+    "Add to / take away from the selection": "Pridať k výberu / ubrať z výberu",
+    "Remove – paint over something to make it disappear: it is filled from the picture around it (R)": "Odstrániť – premaľujte niečo, aby to zmizlo: vyplní sa to z okolitého obrázka (R)",
+    "Shape": "Tvar",
+    "A rectangle: drag across": "Obdĺžnik: ťahajte cez",
+    "Freehand: draw around it": "Voľnou rukou: obkreslite to",
+    "Draw roughly along an edge – the line snaps to it": "Kreslite zhruba pozdĺž hrany – čiara sa k nej prichytí",
+    "Tap a color: everything similar next to it (or anywhere)": "Ťuknite na farbu: všetko podobné vedľa nej (alebo kdekoľvek)",
+    "New selection": "Nový výber",
+    "Replace the selection": "Nahradiť výber",
+    "Add to the selection (or hold Shift)": "Pridať k výberu (alebo držte Shift)",
+    "Take away from the selection (or hold Alt)": "Ubrať z výberu (alebo držte Alt)",
+    "The selected part disappears: filled from the picture around it": "Vybraná časť zmizne: vyplní sa z okolitého obrázka",
+    "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Výbery ľubovoľného tvaru: Laso, Magnetické (prichytí sa k hranám) a Palička (podľa farby), s Nový / Pridať / Ubrať (alebo Shift / Alt) – kopírovanie, mazanie, presun aj Upraviť farby rešpektujú tvar.",
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Odstraňovanie: štetec Odstrániť (R) a Vyplniť z okolia pre výber vyplnia miesto okolitým obrázkom – s ohľadom na obsah, priamo v zariadení."
   };
 
   // src/shared/i18n-pl.ts
@@ -3676,7 +3775,40 @@
     "Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)": "Korekta – jak Klonowanie, ale kopia przejmuje kolor i światło miejsca, gdzie malujesz: na skazy, plamki i rysy (J)",
     "Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image": "Jasność, kontrast, nasycenie, poziomy, wyostrzanie i wygładzanie szumu – dla zaznaczenia lub całego obrazu",
     "Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).": "Poprawki zdjęć w aplikacji rastrowej: Dopasuj kolory… – jasność, kontrast, nasycenie, poziomy z przyciskiem Auto, wyostrzanie i wygładzanie szumu, z podglądem na żywo (przytrzymaj Przedtem, aby porównać).",
-    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Pędzel korygujący (J): zamalowuje skazy, plamki i rysy fakturą z innego miejsca, w kolorze i świetle poprawianego miejsca."
+    "Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.": "Pędzel korygujący (J): zamalowuje skazy, plamki i rysy fakturą z innego miejsca, w kolorze i świetle poprawianego miejsca.",
+    "Filling from the surroundings…": "Wypełnianie z otoczenia…",
+    "Removed.": "Usunięto.",
+    "Could not fill it: {why}": "Nie udało się wypełnić: {why}",
+    "Select what to remove first.": "Najpierw zaznacz, co usunąć.",
+    "Select": "Zaznaczanie",
+    "Rectangle": "Prostokąt",
+    "Lasso": "Lasso",
+    "Magnetic": "Magnetyczne",
+    "Wand": "Różdżka",
+    "Add": "Dodaj",
+    "Subtract": "Odejmij",
+    "Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.": "Przeciągnij wewnątrz zaznaczenia, aby je przesunąć. Kopiuj, Wyczyść, Wypełnij z otoczenia i Dopasuj kolory trzymają się jego kształtu.",
+    "Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.": "Zamaluj to, co ma zniknąć; po uniesieniu zostanie wypełnione obrazem z otoczenia. Najlepiej działa na tłach – trawa, niebo, ściany, skóra.",
+    "Fill with": "Wypełnij przez",
+    "Surroundings (built in)": "Otoczenie (wbudowane)",
+    "AI (add-on)": "AI (dodatek)",
+    "Fill from surroundings": "Wypełnij z otoczenia",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
+    "Shift / Alt + select": "Shift / Alt + zaznaczanie",
+    "Add to / take away from the selection": "Dodaj do zaznaczenia / odejmij od niego",
+    "Remove – paint over something to make it disappear: it is filled from the picture around it (R)": "Usuń – zamaluj coś, aby zniknęło: zostanie wypełnione obrazem z otoczenia (R)",
+    "Shape": "Kształt",
+    "A rectangle: drag across": "Prostokąt: przeciągnij",
+    "Freehand: draw around it": "Odręcznie: obrysuj to",
+    "Draw roughly along an edge – the line snaps to it": "Rysuj mniej więcej wzdłuż krawędzi – linia się do niej przyciąga",
+    "Tap a color: everything similar next to it (or anywhere)": "Stuknij kolor: wszystko podobne obok (lub wszędzie)",
+    "New selection": "Nowe zaznaczenie",
+    "Replace the selection": "Zastąp zaznaczenie",
+    "Add to the selection (or hold Shift)": "Dodaj do zaznaczenia (lub przytrzymaj Shift)",
+    "Take away from the selection (or hold Alt)": "Odejmij od zaznaczenia (lub przytrzymaj Alt)",
+    "The selected part disappears: filled from the picture around it": "Zaznaczona część znika: wypełniona obrazem z otoczenia",
+    "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.": "Zaznaczenia dowolnego kształtu: Lasso, Magnetyczne (przyciąga się do krawędzi) i Różdżka (według koloru), z Nowe / Dodaj / Odejmij (lub Shift / Alt) – kopiowanie, czyszczenie, przesuwanie i Dopasuj kolory trzymają się kształtu.",
+    "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.": "Usuwanie: pędzel Usuń (R) i Wypełnij z otoczenia dla zaznaczenia wypełniają miejsce obrazem z otoczenia – z uwzględnieniem treści, na urządzeniu."
   };
 
   // src/shared/i18n.ts
@@ -4970,8 +5102,12 @@
     view: { x: 0, y: 0, s: 1 },
     /** the rectangle selection (whole pixels), or null */
     sel: null,
-    /** a selection that is not a rectangle: how much of each pixel of sel is selected (0…255), sel.w × sel.h */
-    selMask: null,
+    /** how the Select tool selects: a rectangle, freehand (lasso), along edges (magnetic) or by color (wand) */
+    selShape: "rect",
+    /** what a new selection does to the one there is: replaces it, adds to it or takes away from it */
+    selOp: "new",
+    /** how Remove fills: content-aware (built in) or with the AI add-on */
+    removeMethod: "builtin",
     floating: null,
     /** the gesture in progress */
     action: null,
@@ -4993,7 +5129,7 @@
     fileHandle: null
   };
   var KEY2 = "mz-raster-prefs";
-  var PREF_KEYS = ["mode", "tool", "fill", "stroke", "size", "tip", "nibAngle", "opacity", "smooth", "pressure", "cloneAligned", "sides", "ellipseMode", "curveType", "ngonFill", "ngonOutline", "tolerance", "contiguous", "grid", "mosaic", "realWidth"];
+  var PREF_KEYS = ["mode", "tool", "fill", "stroke", "size", "tip", "nibAngle", "opacity", "smooth", "pressure", "cloneAligned", "sides", "ellipseMode", "curveType", "ngonFill", "ngonOutline", "tolerance", "contiguous", "selShape", "removeMethod", "grid", "mosaic", "realWidth"];
   function savePrefs() {
     const o = {};
     for (const k of PREF_KEYS) o[k] = state[k];
@@ -5207,8 +5343,23 @@
       vctx.strokeStyle = "rgba(128,128,128,.35)";
       vctx.stroke();
     }
-    const box5 = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : state.sel;
-    if (box5) dashedRect(Math.round(ox + box5.x * k), Math.round(oy + box5.y * k), Math.round(box5.w * k), Math.round(box5.h * k));
+    const sel = state.sel, box5 = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : sel;
+    if (!f && sel?.edges) {
+      vctx.beginPath();
+      const e = sel.edges;
+      for (let i = 0; i < e.length; i += 4) {
+        vctx.moveTo(Math.round(ox + (sel.x + e[i]) * k) + 0.5, Math.round(oy + (sel.y + e[i + 1]) * k) + 0.5);
+        vctx.lineTo(Math.round(ox + (sel.x + e[i + 2]) * k) + 0.5, Math.round(oy + (sel.y + e[i + 3]) * k) + 0.5);
+      }
+      vctx.lineWidth = 1;
+      vctx.setLineDash([]);
+      vctx.strokeStyle = "#000";
+      vctx.stroke();
+      vctx.setLineDash([4, 4]);
+      vctx.strokeStyle = "#fff";
+      vctx.stroke();
+      vctx.setLineDash([]);
+    } else if (box5) dashedRect(Math.round(ox + box5.x * k), Math.round(oy + box5.y * k), Math.round(box5.w * k), Math.round(box5.h * k));
   }
   new ResizeObserver(() => {
     if (!fitted) fitView();
@@ -5717,8 +5868,198 @@
   } = ui;
   on("change", () => renderPalette());
 
+  // src/lib/selection.ts
+  function wandMask(img, x, y, tolerance, contiguous) {
+    const { width: W, height: H, data } = img, out = new Uint8Array(W * H);
+    if (x < 0 || y < 0 || x >= W || y >= H) return out;
+    const i0 = (y * W + x) * 4, r = data[i0], g = data[i0 + 1], b = data[i0 + 2], a = data[i0 + 3];
+    const t2 = tolerance * tolerance * 4;
+    const near = (i) => {
+      const j = i * 4, dr = data[j] - r, dg = data[j + 1] - g, db = data[j + 2] - b, da = data[j + 3] - a;
+      return dr * dr + dg * dg + db * db + da * da <= t2;
+    };
+    if (!contiguous) {
+      for (let i = 0; i < W * H; i++) if (near(i)) out[i] = 255;
+      return out;
+    }
+    const stack = [y * W + x];
+    out[y * W + x] = 255;
+    while (stack.length) {
+      const i = stack.pop(), px = i % W, py = (i - px) / W;
+      const visit = (j) => {
+        if (!out[j] && near(j)) {
+          out[j] = 255;
+          stack.push(j);
+        }
+      };
+      if (px > 0) visit(i - 1);
+      if (px < W - 1) visit(i + 1);
+      if (py > 0) visit(i - W);
+      if (py < H - 1) visit(i + W);
+    }
+    return out;
+  }
+  function combine(old, add, mode2) {
+    if (mode2 === "new" || !old) return mode2 === "subtract" ? new Uint8Array(add.length) : add;
+    const out = new Uint8Array(add.length);
+    for (let i = 0; i < add.length; i++) out[i] = mode2 === "add" ? Math.max(old[i], add[i]) : Math.max(0, old[i] - add[i]);
+    return out;
+  }
+  function maskBox(mask2, W, H) {
+    let x0 = W, y0 = H, x1 = -1, y1 = -1;
+    for (let y = 0; y < H; y++) {
+      const row = y * W;
+      for (let x = 0; x < W; x++) {
+        if (mask2[row + x] < 128) continue;
+        if (x < x0) x0 = x;
+        if (x > x1) x1 = x;
+        if (y < y0) y0 = y;
+        y1 = y;
+      }
+    }
+    return x1 < 0 ? null : { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+  }
+  function cropMask(mask2, W, b) {
+    const out = new Uint8Array(b.w * b.h);
+    for (let y = 0; y < b.h; y++) out.set(mask2.subarray((b.y + y) * W + b.x, (b.y + y) * W + b.x + b.w), y * b.w);
+    return out;
+  }
+  function fullMask(b, mask2, W, H) {
+    const out = new Uint8Array(W * H);
+    for (let y = 0; y < b.h; y++) {
+      const Y = b.y + y;
+      if (Y < 0 || Y >= H) continue;
+      for (let x = 0; x < b.w; x++) {
+        const X = b.x + x;
+        if (X >= 0 && X < W) out[Y * W + X] = mask2 ? mask2[y * b.w + x] : 255;
+      }
+    }
+    return out;
+  }
+  var isFull = (mask2) => mask2.every((v) => v >= 255);
+  function outline(mask2, w, h) {
+    const on2 = (x, y) => x >= 0 && y >= 0 && x < w && y < h && mask2[y * w + x] >= 128;
+    const out = [];
+    for (let y = 0; y <= h; y++) {
+      let start = -1;
+      for (let x = 0; x <= w; x++) {
+        const edge = x < w && on2(x, y - 1) !== on2(x, y);
+        if (edge && start < 0) start = x;
+        else if (!edge && start >= 0) {
+          out.push(start, y, x, y);
+          start = -1;
+        }
+      }
+    }
+    for (let x = 0; x <= w; x++) {
+      let start = -1;
+      for (let y = 0; y <= h; y++) {
+        const edge = y < h && on2(x - 1, y) !== on2(x, y);
+        if (edge && start < 0) start = y;
+        else if (!edge && start >= 0) {
+          out.push(x, start, x, y);
+          start = -1;
+        }
+      }
+    }
+    return out;
+  }
+  function edgeCost(img) {
+    const { width: W, height: H, data } = img, n5 = W * H, lum = new Float32Array(n5), cost2 = new Float32Array(n5);
+    for (let i = 0; i < n5; i++) lum[i] = 0.299 * data[i * 4] + 0.587 * data[i * 4 + 1] + 0.114 * data[i * 4 + 2];
+    let max = 1;
+    const g = new Float32Array(n5);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const L = (dx, dy) => lum[Math.min(H - 1, Math.max(0, y + dy)) * W + Math.min(W - 1, Math.max(0, x + dx))];
+      const gx = L(1, -1) + 2 * L(1, 0) + L(1, 1) - L(-1, -1) - 2 * L(-1, 0) - L(-1, 1);
+      const gy = L(-1, 1) + 2 * L(0, 1) + L(1, 1) - L(-1, -1) - 2 * L(0, -1) - L(1, -1);
+      const v = Math.hypot(gx, gy);
+      g[y * W + x] = v;
+      if (v > max) max = v;
+    }
+    for (let i = 0; i < n5; i++) cost2[i] = 1 - g[i] / max;
+    return cost2;
+  }
+  function cheapestPath(cost2, W, H, a, b, margin = 24) {
+    const ax = Math.round(a.x), ay = Math.round(a.y), bx = Math.round(b.x), by = Math.round(b.y);
+    const x0 = Math.max(0, Math.min(ax, bx) - margin), y0 = Math.max(0, Math.min(ay, by) - margin);
+    const x1 = Math.min(W - 1, Math.max(ax, bx) + margin), y1 = Math.min(H - 1, Math.max(ay, by) + margin);
+    const w = x1 - x0 + 1, h = y1 - y0 + 1, n5 = w * h;
+    const inBox = (x, y) => x >= x0 && y >= y0 && x <= x1 && y <= y1;
+    if (!inBox(ax, ay) || !inBox(bx, by)) return [a, b];
+    const dist2 = new Float32Array(n5).fill(Infinity), prev = new Int32Array(n5).fill(-1), done = new Uint8Array(n5);
+    const start = (ay - y0) * w + (ax - x0), goal = (by - y0) * w + (bx - x0);
+    const hd = [], hi = [];
+    const push = (d, i) => {
+      let k = hd.length;
+      hd.push(d);
+      hi.push(i);
+      while (k > 0) {
+        const p = k - 1 >> 1;
+        if (hd[p] <= hd[k]) break;
+        [hd[p], hd[k]] = [hd[k], hd[p]];
+        [hi[p], hi[k]] = [hi[k], hi[p]];
+        k = p;
+      }
+    };
+    const pop = () => {
+      const top = hi[0], ld = hd.pop(), li = hi.pop();
+      if (hd.length) {
+        hd[0] = ld;
+        hi[0] = li;
+        let k = 0;
+        for (; ; ) {
+          const l = 2 * k + 1, r = l + 1;
+          let m = k;
+          if (l < hd.length && hd[l] < hd[m]) m = l;
+          if (r < hd.length && hd[r] < hd[m]) m = r;
+          if (m === k) break;
+          [hd[m], hd[k]] = [hd[k], hd[m]];
+          [hi[m], hi[k]] = [hi[k], hi[m]];
+          k = m;
+        }
+      }
+      return top;
+    };
+    dist2[start] = 0;
+    push(0, start);
+    while (hd.length) {
+      const i = pop();
+      if (done[i]) continue;
+      done[i] = 1;
+      if (i === goal) break;
+      const x = i % w, y = (i - x) / w;
+      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+        if (!dx && !dy) continue;
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+        const j = ny * w + nx;
+        if (done[j]) continue;
+        const d = dist2[i] + (dx && dy ? 1.414 : 1) * (0.05 + cost2[(y0 + ny) * W + x0 + nx]);
+        if (d < dist2[j]) {
+          dist2[j] = d;
+          prev[j] = i;
+          push(d, j);
+        }
+      }
+    }
+    if (prev[goal] < 0 && goal !== start) return [a, b];
+    const path = [];
+    for (let i = goal; i >= 0; i = prev[i]) {
+      const x = i % w;
+      path.push({ x: x0 + x + 0.5, y: y0 + (i - x) / w + 0.5 });
+      if (i === start) break;
+    }
+    return path.reverse();
+  }
+
   // src/raster/select.ts
   var inside = (b, p) => p.x >= b.x && p.y >= b.y && p.x < b.x + b.w && p.y < b.y + b.h;
+  function inSelection(p) {
+    const b = state.sel;
+    if (!b || !inside(b, p)) return false;
+    return !b.mask || b.mask[Math.floor(p.y - b.y) * b.w + Math.floor(p.x - b.x)] >= 128;
+  }
   var floatBox = () => {
     const f = state.floating;
     return f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : null;
@@ -5727,7 +6068,32 @@
     const x0 = Math.max(0, b.x), y0 = Math.max(0, b.y), x1 = Math.min(doc.width, b.x + b.w), y1 = Math.min(doc.height, b.y + b.h);
     return x1 > x0 && y1 > y0 ? { x: x0, y: y0, w: x1 - x0, h: y1 - y0 } : null;
   }
-  var selectionMask = () => state.sel && state.selMask && state.selMask.length === state.sel.w * state.sel.h ? state.selMask : null;
+  var selectionMask = () => state.sel?.mask || null;
+  function selectionFullMask() {
+    const b = state.sel;
+    return b ? fullMask(b, b.mask || null, doc.width, doc.height) : null;
+  }
+  function setSelectionMask(m, op = "new") {
+    if (state.floating) place();
+    const full = combine(selectionFullMask(), m, op), box5 = maskBox(full, doc.width, doc.height);
+    if (!box5) {
+      state.sel = null;
+      selectionChanged();
+      return;
+    }
+    const mask2 = cropMask(full, doc.width, box5);
+    state.sel = isFull(mask2) ? box5 : { ...box5, mask: mask2, edges: outline(mask2, box5.w, box5.h) };
+    selectionChanged();
+  }
+  function maskCanvas(b, mask2) {
+    const c = makeCanvas(b.w, b.h), x = c.getContext("2d"), im = x.createImageData(b.w, b.h);
+    for (let i = 0; i < mask2.length; i++) {
+      im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = 255;
+      im.data[i * 4 + 3] = mask2[i];
+    }
+    x.putImageData(im, 0, 0);
+    return c;
+  }
   function selectionChanged() {
     const b = floatBox() || state.sel;
     $("#sel-section").hidden = !b;
@@ -5738,17 +6104,28 @@
   }
   function lift(copy2) {
     const b = state.sel;
-    const c = makeCanvas(b.w, b.h);
-    c.getContext("2d").drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
-    if (!copy2) dctx.clearRect(b.x, b.y, b.w, b.h);
-    state.floating = { canvas: c, x: b.x, y: b.y };
+    const c = makeCanvas(b.w, b.h), x = c.getContext("2d");
+    x.drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+    if (b.mask) {
+      const mc = maskCanvas(b, b.mask);
+      x.globalCompositeOperation = "destination-in";
+      x.drawImage(mc, 0, 0);
+      if (!copy2) {
+        dctx.save();
+        dctx.globalCompositeOperation = "destination-out";
+        dctx.drawImage(mc, b.x, b.y);
+        dctx.restore();
+      }
+    } else if (!copy2) dctx.clearRect(b.x, b.y, b.w, b.h);
+    state.floating = { canvas: c, x: b.x, y: b.y, mask: b.mask };
     state.sel = null;
   }
   function place() {
     const f = state.floating;
     if (!f) return false;
     dctx.drawImage(f.canvas, f.x, f.y);
-    state.sel = clip({ x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height });
+    const box5 = clip({ x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height });
+    state.sel = box5 && f.mask && box5.w === f.canvas.width && box5.h === f.canvas.height ? { ...box5, mask: f.mask, edges: outline(f.mask, box5.w, box5.h) } : box5;
     state.floating = null;
     commit();
     selectionChanged();
@@ -5769,6 +6146,37 @@
     state.sel = { x: 0, y: 0, w: doc.width, h: doc.height };
     selectionChanged();
   }
+  var opFor = (e) => e.shiftKey ? "add" : e.altKey ? "subtract" : state.selOp;
+  function polygonMask(pts) {
+    const c = makeCanvas(doc.width, doc.height), x = c.getContext("2d");
+    x.beginPath();
+    pts.forEach((p, i) => i ? x.lineTo(p.x, p.y) : x.moveTo(p.x, p.y));
+    x.closePath();
+    x.fillStyle = "#fff";
+    x.fill();
+    const d = x.getImageData(0, 0, doc.width, doc.height).data, m = new Uint8Array(doc.width * doc.height);
+    for (let i = 0; i < m.length; i++) m[i] = d[i * 4 + 3];
+    return m;
+  }
+  var cost = null;
+  function lassoPreview(pts, live = []) {
+    state.preview = (ctx2, px) => {
+      const all = [...pts, ...live];
+      if (all.length < 2) return;
+      ctx2.beginPath();
+      all.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+      ctx2.lineWidth = 2 * px;
+      ctx2.strokeStyle = "rgba(0,0,0,.7)";
+      ctx2.stroke();
+      ctx2.setLineDash([4 * px, 4 * px]);
+      ctx2.lineWidth = px;
+      ctx2.strokeStyle = "#fff";
+      ctx2.stroke();
+      ctx2.setLineDash([]);
+    };
+    requestRender();
+  }
+  var magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
   var selectTool = {
     down(e, p) {
       const fb = floatBox();
@@ -5776,16 +6184,35 @@
         state.action = { type: "move", dx: p.x - fb.x, dy: p.y - fb.y };
         return;
       }
-      if (!fb && state.sel && inside(state.sel, p)) {
+      const op = opFor(e);
+      if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === "new") {
         lift(e.altKey);
         state.action = { type: "move", dx: p.x - state.floating.x, dy: p.y - state.floating.y };
         selectionChanged();
         return;
       }
       if (fb) place();
-      state.action = { type: "marquee", a: { x: Math.round(p.x), y: Math.round(p.y) } };
-      state.sel = null;
-      selectionChanged();
+      const q = { x: Math.round(p.x), y: Math.round(p.y) };
+      if (state.selShape === "wand") {
+        const x = Math.floor(p.x), y = Math.floor(p.y);
+        if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
+        setSelectionMask(wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
+        return;
+      }
+      if (state.selShape === "lasso") {
+        state.action = { type: "lasso", op, pts: [p] };
+        return;
+      }
+      if (state.selShape === "magnetic") {
+        cost = edgeCost(dctx.getImageData(0, 0, doc.width, doc.height));
+        state.action = { type: "magnetic", op, anchors: [q], path: [q], live: [] };
+        return;
+      }
+      state.action = { type: "marquee", op, a: q };
+      if (op === "new") {
+        state.sel = null;
+        selectionChanged();
+      }
     },
     move(e, p) {
       const a = state.action;
@@ -5795,21 +6222,56 @@
         state.floating.y = Math.round(p.y - a.dy);
         requestRender();
       } else if (a.type === "marquee") {
-        const b = { x: Math.round(p.x), y: Math.round(p.y) };
-        state.sel = clip({ x: Math.min(a.a.x, b.x), y: Math.min(a.a.y, b.y), w: Math.abs(b.x - a.a.x), h: Math.abs(b.y - a.a.y) });
-        selectionChanged();
+        const b = { x: Math.round(p.x), y: Math.round(p.y) }, box5 = clip({ x: Math.min(a.a.x, b.x), y: Math.min(a.a.y, b.y), w: Math.abs(b.x - a.a.x), h: Math.abs(b.y - a.a.y) });
+        if (a.op === "new") {
+          state.sel = box5;
+          selectionChanged();
+        } else {
+          a.box = box5;
+          lassoPreview(box5 ? [{ x: box5.x, y: box5.y }, { x: box5.x + box5.w, y: box5.y }, { x: box5.x + box5.w, y: box5.y + box5.h }, { x: box5.x, y: box5.y + box5.h }, { x: box5.x, y: box5.y }] : []);
+        }
+      } else if (a.type === "lasso") {
+        const last2 = a.pts[a.pts.length - 1];
+        if (Math.hypot(p.x - last2.x, p.y - last2.y) * state.view.s >= 2) a.pts.push(p);
+        lassoPreview(a.pts);
+      } else if (a.type === "magnetic") {
+        const anchor = a.anchors[a.anchors.length - 1];
+        a.live = cheapestPath(cost, doc.width, doc.height, anchor, p, magnetMargin());
+        if (Math.hypot(p.x - anchor.x, p.y - anchor.y) * state.view.s > 40 && a.live.length > 4) {
+          const keep = a.live.slice(0, Math.floor(a.live.length * 0.75));
+          a.path.push(...keep);
+          a.anchors.push(keep[keep.length - 1]);
+          a.live = cheapestPath(cost, doc.width, doc.height, keep[keep.length - 1], p, magnetMargin());
+        }
+        lassoPreview(a.path, a.live);
       }
     },
     up() {
+      const a = state.action;
       state.action = null;
+      state.preview = null;
+      if (a?.type === "marquee" && a.op !== "new") {
+        if (a.box) setSelectionMask(fullMask(a.box, null, doc.width, doc.height), a.op);
+      } else if (a?.type === "lasso" && a.pts.length > 2) {
+        setSelectionMask(polygonMask(a.pts), a.op);
+      } else if (a?.type === "magnetic") {
+        const pts = [...a.path, ...a.live];
+        if (pts.length > 2) setSelectionMask(polygonMask([...pts, ...cheapestPath(cost, doc.width, doc.height, pts[pts.length - 1], pts[0], magnetMargin())]), a.op);
+        cost = null;
+      }
       selectionChanged();
     }
   };
   function copySource() {
     if (state.floating) return state.floating.canvas;
     const b = state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
-    const c = makeCanvas(b.w, b.h);
-    c.getContext("2d").drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+    const c = makeCanvas(b.w, b.h), x = c.getContext("2d");
+    x.drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+    const mask2 = state.sel?.mask;
+    if (mask2) {
+      x.globalCompositeOperation = "destination-in";
+      x.drawImage(maskCanvas(b, mask2), 0, 0);
+    }
     return c;
   }
   var internalClip = null;
@@ -5830,7 +6292,12 @@
     }
     const b = state.sel;
     if (!b) return;
-    dctx.clearRect(b.x, b.y, b.w, b.h);
+    if (b.mask) {
+      dctx.save();
+      dctx.globalCompositeOperation = "destination-out";
+      dctx.drawImage(maskCanvas(b, b.mask), b.x, b.y);
+      dctx.restore();
+    } else dctx.clearRect(b.x, b.y, b.w, b.h);
     commit();
   }
   function crop() {
@@ -5935,8 +6402,8 @@
       return out2;
     }
     if (type === "bspline") {
-      const P2 = closed ? pts : [pts[0], pts[0], ...pts, pts[n5 - 1], pts[n5 - 1]];
-      const m = P2.length, at = (i2) => P2[(i2 + m) % m];
+      const P3 = closed ? pts : [pts[0], pts[0], ...pts, pts[n5 - 1], pts[n5 - 1]];
+      const m = P3.length, at = (i2) => P3[(i2 + m) % m];
       const out2 = [];
       for (let i2 = 0; i2 < (closed ? m : m - 3); i2++) {
         const p0 = at(i2), p1 = at(i2 + 1), p2 = at(i2 + 2), p3 = at(i2 + 3);
@@ -5949,11 +6416,11 @@
       }
       return out2;
     }
-    const step = type === "bezier3" ? 3 : 2, P = closed ? [...pts, pts[0]] : pts, out = [];
+    const step = type === "bezier3" ? 3 : 2, P2 = closed ? [...pts, pts[0]] : pts, out = [];
     let i = 0;
-    while (i < P.length - 1) {
-      const k = Math.min(step, P.length - 1 - i), p = P[i], q = P[i + k];
-      out.push(k === 3 ? { a: p, b: P[i + 1], c: P[i + 2], d: q } : k === 2 ? quad(p, P[i + 1], q) : straight(p, q));
+    while (i < P2.length - 1) {
+      const k = Math.min(step, P2.length - 1 - i), p = P2[i], q = P2[i + k];
+      out.push(k === 3 ? { a: p, b: P2[i + 1], c: P2[i + 2], d: q } : k === 2 ? quad(p, P2[i + 1], q) : straight(p, q));
       i += k;
     }
     return out;
@@ -6132,930 +6599,8 @@
     return out;
   }
 
-  // src/raster/paint.ts
-  function constrain(a, b) {
-    const ang = Math.atan2(b.y - a.y, b.x - a.x), step = Math.PI / 12, q = Math.round(ang / step) * step;
-    const L = Math.hypot(b.x - a.x, b.y - a.y) * Math.cos(ang - q);
-    return { x: a.x + L * Math.cos(q), y: a.y + L * Math.sin(q) };
-  }
-  function applyLayer(layer, erase, alpha) {
-    dctx.save();
-    dctx.globalAlpha = alpha;
-    dctx.globalCompositeOperation = erase ? "destination-out" : "source-over";
-    dctx.drawImage(layer, 0, 0);
-    dctx.restore();
-  }
-  function smoothLine(ctx2, a, b, width, color) {
-    ctx2.strokeStyle = color;
-    ctx2.fillStyle = color;
-    ctx2.lineWidth = width;
-    ctx2.lineCap = "round";
-    ctx2.lineJoin = "round";
-    if (a.x === b.x && a.y === b.y) {
-      ctx2.beginPath();
-      ctx2.arc(a.x, a.y, width / 2, 0, Math.PI * 2);
-      ctx2.fill();
-      return;
-    }
-    ctx2.beginPath();
-    ctx2.moveTo(a.x, a.y);
-    ctx2.lineTo(b.x, b.y);
-    ctx2.stroke();
-  }
-  var tips = /* @__PURE__ */ new Map();
-  function tip(size, color) {
-    const n5 = Math.max(1, Math.round(size)), key = n5 + color;
-    let c = tips.get(key);
-    if (!c) {
-      if (tips.size > 40) tips.clear();
-      c = makeCanvas(n5, n5);
-      const x = c.getContext("2d"), im = x.createImageData(n5, n5), m = discMask(n5), rgba2 = rgba(color);
-      for (let i = 0; i < n5 * n5; i++) if (m[i]) im.data.set(rgba2, i * 4);
-      x.putImageData(im, 0, 0);
-      tips.set(key, c);
-    }
-    return c;
-  }
-  function hardLine(ctx2, a, b, size, color) {
-    const t2 = tip(size, color), o = Math.floor((t2.width - 1) / 2);
-    linePixels(a.x, a.y, b.x, b.y, (x, y) => ctx2.drawImage(t2, x - o, y - o));
-  }
-  var paintColor = () => state.fill || "#000000";
-  var TIPS = ["round", "soft", "spray", "calligraphy", "chalk"];
-  function nibLine(ctx2, a, b, sa, sb, color) {
-    const pts = [...nibCorners(a, sa, state.nibAngle), ...nibCorners(b, sb, state.nibAngle)].sort((p, q) => p.x - q.x || p.y - q.y);
-    const cross2 = (o, p, q) => (p.x - o.x) * (q.y - o.y) - (p.y - o.y) * (q.x - o.x);
-    const half = (list) => {
-      const h = [];
-      for (const p of list) {
-        while (h.length >= 2 && cross2(h[h.length - 2], h[h.length - 1], p) <= 0) h.pop();
-        h.push(p);
-      }
-      h.pop();
-      return h;
-    };
-    ctx2.fillStyle = color;
-    tracePath(ctx2, [...half(pts), ...half(pts.reverse())]);
-    ctx2.fill();
-  }
-  function grain(x, y) {
-    let h = Math.imul(x, 374761393) + Math.imul(y, 668265263);
-    h = Math.imul(h ^ h >>> 13, 1274126177);
-    return ((h ^ h >>> 16) >>> 0) / 4294967296;
-  }
-  function newStamps(color) {
-    return { im: new ImageData(doc.width, doc.height), rgb: [...rgba(color)].slice(0, 3), dirty: null, carry: 0 };
-  }
-  function stamp(st, tip2, c, size) {
-    const { width: W, height: H, data } = st.im, r = Math.max(0.5, size / 2);
-    const x0 = Math.max(0, Math.floor(c.x - r)), x1 = Math.min(W - 1, Math.ceil(c.x + r));
-    const y0 = Math.max(0, Math.floor(c.y - r)), y1 = Math.min(H - 1, Math.ceil(c.y + r));
-    if (x0 > x1 || y0 > y1) return;
-    const put = (x, y, a) => {
-      const i = (y * W + x) * 4;
-      if (a <= data[i + 3]) return;
-      data[i] = st.rgb[0];
-      data[i + 1] = st.rgb[1];
-      data[i + 2] = st.rgb[2];
-      data[i + 3] = a;
-    };
-    if (tip2 === "spray") {
-      const dot = Math.max(1, Math.round(size / 40)), n5 = Math.max(2, Math.round(size * size * 0.03 / (dot * dot)));
-      for (let k = 0; k < n5; k++) {
-        const d = r * Math.random() ** 0.75, ang = Math.random() * Math.PI * 2;
-        const px = Math.floor(c.x + d * Math.cos(ang)), py = Math.floor(c.y + d * Math.sin(ang));
-        for (let j = 0; j < dot; j++) for (let i = 0; i < dot; i++) {
-          const x = px + i, y = py + j;
-          if (x >= 0 && y >= 0 && x < W && y < H) put(x, y, 255);
-        }
-      }
-    } else {
-      for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
-        const d = Math.hypot(x + 0.5 - c.x, y + 0.5 - c.y) / r;
-        if (d >= 1) continue;
-        if (tip2 === "soft") {
-          const f = 1 - d;
-          put(x, y, Math.round(255 * f * f * (3 - 2 * f)));
-        } else if (grain(x, y) < 0.8 * (1 - d ** 6)) put(x, y, 255);
-      }
-    }
-    const b = st.dirty;
-    st.dirty = b ? { x0: Math.min(b.x0, x0), y0: Math.min(b.y0, y0), x1: Math.max(b.x1, x1), y1: Math.max(b.y1, y1) } : { x0, y0, x1, y1 };
-  }
-  function stampLine(st, tip2, a, b, sa, sb) {
-    const len = Math.hypot(b.x - a.x, b.y - a.y), step = Math.max(1, Math.min(sa, sb) * (tip2 === "spray" ? 0.25 : 0.1));
-    if (len === 0) {
-      stamp(st, tip2, a, sa);
-      return;
-    }
-    let d = st.carry;
-    for (; d <= len; d += step) {
-      const k = d / len;
-      stamp(st, tip2, { x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k }, sa + (sb - sa) * k);
-    }
-    st.carry = d - len;
-  }
-  function flushStamps(st, ctx2) {
-    const b = st.dirty;
-    if (b) ctx2.putImageData(st.im, 0, 0, b.x0, b.y0, b.x1 - b.x0 + 1, b.y1 - b.y0 + 1);
-    st.dirty = null;
-  }
-  var sizeAt = (e) => pressureSize(state.size, e, state.pressure);
-  function beginStroke(kind, p, size) {
-    const base = makeCanvas(doc.width, doc.height);
-    base.getContext("2d").drawImage(doc, 0, 0);
-    const layer = makeCanvas(doc.width, doc.height);
-    const copying = kind === "clone" || kind === "heal";
-    const erase = kind === "eraser" || !copying && !state.fill;
-    const alpha = kind === "pencil" ? 1 : state.opacity;
-    const tip2 = kind === "pencil" ? "pencil" : TIPS.includes(state.tip) ? state.tip : "round";
-    const stamps = ["soft", "spray", "chalk"].includes(tip2) ? newStamps(erase ? "#000" : paintColor()) : null;
-    const c = state.clone, offset = copying && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : void 0;
-    return { kind, tip: tip2, offset, base, layer, lctx: layer.getContext("2d"), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
-  }
-  function strokeSegment(s, a, b, size = state.size, sizeA = size) {
-    const m = Math.max(size, sizeA) / 2 + 2, bx = s.box;
-    s.box = { x0: Math.min(bx ? bx.x0 : Infinity, a.x - m, b.x - m), y0: Math.min(bx ? bx.y0 : Infinity, a.y - m, b.y - m), x1: Math.max(bx ? bx.x1 : -Infinity, a.x + m, b.x + m), y1: Math.max(bx ? bx.y1 : -Infinity, a.y + m, b.y + m) };
-    const color = s.erase ? "#000" : paintColor();
-    if (s.tip === "pencil") hardLine(s.lctx, a, b, size, paintColor());
-    else if (s.tip === "calligraphy") nibLine(s.lctx, a, b, sizeA, size, color);
-    else if (s.stamps) {
-      stampLine(s.stamps, s.tip, a, b, sizeA, size);
-      flushStamps(s.stamps, s.lctx);
-    } else smoothLine(s.lctx, a, b, size, color);
-  }
-  function compose(s) {
-    dctx.save();
-    dctx.globalCompositeOperation = "copy";
-    dctx.drawImage(s.base, 0, 0);
-    dctx.restore();
-    if ((s.kind === "clone" || s.kind === "heal") && s.offset) {
-      const c = s.copy || (s.copy = makeCanvas(doc.width, doc.height)), x = c.getContext("2d");
-      x.globalCompositeOperation = "copy";
-      x.drawImage(s.base, -s.offset.x, -s.offset.y);
-      x.globalCompositeOperation = "destination-in";
-      x.drawImage(s.layer, 0, 0);
-      applyLayer(c, false, s.alpha);
-      state.clone.live = { x: s.last.x + s.offset.x, y: s.last.y + s.offset.y };
-    } else applyLayer(s.layer, s.erase, s.alpha);
-    requestRender();
-  }
-  var SPRAY_MS = 40;
-  function sprayInPlace(s) {
-    const a = state.action;
-    if (!a || a.s !== s) {
-      clearInterval(s.timer);
-      return;
-    }
-    if (s.shift || !s.stamps) return;
-    stamp(s.stamps, "spray", s.last, s.lastSize);
-    flushStamps(s.stamps, s.lctx);
-    compose(s);
-  }
-  function freehand(kind) {
-    return {
-      down(e, p) {
-        const size = sizeAt(e), s = beginStroke(kind, p, size);
-        state.action = { type: "stroke", s };
-        strokeSegment(s, p, p, size);
-        compose(s);
-        if (s.tip === "spray") s.timer = window.setInterval(() => sprayInPlace(s), SPRAY_MS);
-      },
-      move(e, p) {
-        const a = state.action;
-        if (!a || a.type !== "stroke") return;
-        const s = a.s;
-        s.shift = e.shiftKey;
-        if (e.shiftKey) {
-          s.lctx.clearRect(0, 0, s.layer.width, s.layer.height);
-          if (s.stamps) {
-            s.stamps.im.data.fill(0);
-            s.stamps.carry = 0;
-          }
-          strokeSegment(s, s.start, constrain(s.start, p));
-        } else {
-          const events = e.getCoalescedEvents?.() || [];
-          for (const ev of events.length ? events : [e]) {
-            const q = events.length ? toDoc(ev.clientX, ev.clientY) : p, size = sizeAt(ev);
-            if (s.tip === "calligraphy" || s.stamps) strokeSegment(s, s.last, q, size, s.lastSize);
-            else strokeSegment(s, s.last, q, (s.lastSize + size) / 2);
-            s.last = q;
-            s.lastSize = size;
-          }
-        }
-        compose(s);
-      },
-      up() {
-        const a = state.action;
-        state.action = null;
-        if (a && a.type === "stroke") {
-          clearInterval(a.s.timer);
-          commit();
-        }
-      }
-    };
-  }
-  var lastSource = { src: null, anchor: null, at: -1e9 };
-  function setCloneSource(p) {
-    const c = state.clone;
-    lastSource = { src: c.src, anchor: c.anchor, at: performance.now() };
-    c.src = { x: Math.round(p.x), y: Math.round(p.y) };
-    c.anchor = null;
-    c.picking = false;
-    updateCloneUI();
-    requestRender();
-  }
-  function undoFreshCloneSource() {
-    if (performance.now() - lastSource.at > 600) return;
-    Object.assign(state.clone, { src: lastSource.src, anchor: lastSource.anchor });
-    lastSource.at = -1e9;
-    updateCloneUI();
-  }
-  function pickCloneSource(on2 = !state.clone.picking) {
-    state.clone.picking = on2;
-    updateCloneUI();
-    if (on2) toast(t("Tap or click where to copy from."));
-  }
-  function updateCloneUI() {
-    const c = state.clone, b = document.getElementById("btn-clone-source"), note = document.getElementById("clone-status");
-    b?.classList.toggle("active", c.picking);
-    b?.setAttribute("aria-pressed", String(c.picking));
-    if (note) note.textContent = c.picking ? t("Tap the image where to copy from") : c.src ? t("Copying from {x}, {y}", c.src) : t("No source yet: the first tap sets it");
-  }
-  var onSourceDisc = (p) => !!state.clone.src && Math.hypot(p.x - state.clone.src.x, p.y - state.clone.src.y) < Math.max(26 / state.view.s, state.size / 2);
-  function healStroke(s) {
-    if (!s.box || !s.offset) return;
-    const r = Math.max(4, Math.round(s.lastSize * 0.75)), b = s.box;
-    const x0 = Math.max(0, Math.floor(b.x0) - 2 * r), y0 = Math.max(0, Math.floor(b.y0) - 2 * r);
-    const x1 = Math.min(doc.width, Math.ceil(b.x1) + 2 * r), y1 = Math.min(doc.height, Math.ceil(b.y1) + 2 * r), w = x1 - x0, h = y1 - y0;
-    if (w <= 0 || h <= 0) return;
-    const dst = s.base.getContext("2d").getImageData(x0, y0, w, h);
-    const pc = makeCanvas(w, h), px = pc.getContext("2d");
-    px.drawImage(s.base, -(x0 + s.offset.x), -(y0 + s.offset.y));
-    const src = px.getImageData(0, 0, w, h), lay = s.lctx.getImageData(x0, y0, w, h), mask2 = new Uint8ClampedArray(w * h);
-    for (let i = 0; i < mask2.length; i++) mask2[i] = lay.data[i * 4 + 3];
-    const out = heal(dst.data, src.data, mask2, w, h, r);
-    if (s.alpha < 1) for (let i = 0; i < out.length; i++) out[i] = dst.data[i] + (out[i] - dst.data[i]) * s.alpha;
-    dctx.putImageData(new ImageData(out, w, h), x0, y0);
-    requestRender();
-  }
-  function copyTool(kind) {
-    const cloneBrush = freehand(kind);
-    return {
-      down(e, p) {
-        const c = state.clone;
-        if (e.altKey || c.picking || !c.src) {
-          const first = !c.src;
-          setCloneSource(p);
-          if (first || !e.altKey) toast(t("Source set – now paint where the copy goes."));
-          return;
-        }
-        if (onSourceDisc(p)) {
-          state.action = { type: "clone-source", dx: c.src.x - p.x, dy: c.src.y - p.y };
-          return;
-        }
-        if (!state.cloneAligned || !c.anchor) c.anchor = { x: Math.round(p.x), y: Math.round(p.y) };
-        cloneBrush.down(e, p);
-      },
-      move(e, p) {
-        const a = state.action;
-        if (a && a.type === "clone-source") {
-          state.clone.src = { x: Math.round(p.x + a.dx), y: Math.round(p.y + a.dy) };
-          updateCloneUI();
-          requestRender();
-          return;
-        }
-        cloneBrush.move(e, p);
-      },
-      up(e, p) {
-        const a = state.action, c = state.clone;
-        if (a && a.type === "clone-source") {
-          state.action = null;
-          return;
-        }
-        if (a && a.type === "stroke" && state.cloneAligned && a.s.offset) {
-          c.anchor = { x: Math.round(a.s.last.x), y: Math.round(a.s.last.y) };
-          c.src = { x: c.anchor.x + a.s.offset.x, y: c.anchor.y + a.s.offset.y };
-        }
-        c.live = null;
-        if (kind === "heal" && a && a.type === "stroke") healStroke(a.s);
-        cloneBrush.up(e, p);
-        updateCloneUI();
-        requestRender();
-      }
-    };
-  }
-  function drawShapeLine(ctx2, a, b, color) {
-    if (state.smooth) smoothLine(ctx2, a, b, state.size, color);
-    else hardLine(ctx2, a, b, state.size, color);
-  }
-  var lineTool = {
-    down(e, p) {
-      state.action = { type: "line", a: p, b: p };
-    },
-    move(e, p) {
-      const a = state.action;
-      if (!a || a.type !== "line") return;
-      a.b = e.shiftKey ? constrain(a.a, p) : p;
-      const color = state.fill || "rgba(0,0,0,.4)";
-      state.preview = (ctx2) => {
-        ctx2.globalAlpha = state.fill ? state.opacity : 1;
-        drawShapeLine(ctx2, a.a, a.b, color);
-      };
-      requestRender();
-    },
-    up() {
-      const a = state.action;
-      state.action = null;
-      state.preview = null;
-      if (!a || a.type !== "line" || Math.hypot(a.b.x - a.a.x, a.b.y - a.a.y) < 0.5) {
-        requestRender();
-        return;
-      }
-      const layer = makeCanvas(doc.width, doc.height);
-      drawShapeLine(layer.getContext("2d"), a.a, a.b, state.fill ? paintColor() : "#000");
-      applyLayer(layer, !state.fill, state.opacity);
-      commit();
-    }
-  };
-  function ngonPoints(a) {
-    let rot = Math.atan2(a.b.y - a.a.y, a.b.x - a.a.x);
-    if (a.shift) rot = Math.round(rot / (Math.PI / 12)) * (Math.PI / 12);
-    return regularPolygon(state.sides, a.a.x, a.a.y, Math.hypot(a.b.x - a.a.x, a.b.y - a.a.y), rot);
-  }
-  function tracePath(ctx2, pts) {
-    ctx2.beginPath();
-    pts.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
-    ctx2.closePath();
-  }
-  function drawPolygon(pts) {
-    if (state.ngonFill) {
-      const layer = makeCanvas(doc.width, doc.height), ctx2 = layer.getContext("2d");
-      const color = state.fill || "#000";
-      if (state.smooth) {
-        tracePath(ctx2, pts);
-        ctx2.fillStyle = color;
-        ctx2.fill();
-      } else {
-        const im = ctx2.getImageData(0, 0, ctx2.canvas.width, ctx2.canvas.height);
-        if (fillPolygon(im, pts, rgba(color))) ctx2.putImageData(im, 0, 0);
-      }
-      applyLayer(layer, !state.fill, state.opacity);
-    }
-    if (state.ngonOutline) {
-      const layer = makeCanvas(doc.width, doc.height), ctx2 = layer.getContext("2d");
-      const color = state.stroke || "#000";
-      for (let i = 0; i < pts.length; i++) drawShapeLine(ctx2, pts[i], pts[(i + 1) % pts.length], color);
-      applyLayer(layer, !state.stroke, state.opacity);
-    }
-  }
-  var ngonTool = {
-    down(e, p) {
-      state.action = { type: "ngon", a: p, b: p };
-    },
-    move(e, p) {
-      const a = state.action;
-      if (!a || a.type !== "ngon") return;
-      a.b = p;
-      a.shift = e.shiftKey;
-      const pts = ngonPoints(a);
-      state.preview = (ctx2, px) => {
-        ctx2.globalAlpha = state.opacity;
-        if (state.ngonFill && state.fill) {
-          tracePath(ctx2, pts);
-          ctx2.fillStyle = state.fill;
-          ctx2.fill();
-        }
-        if (state.ngonOutline && state.stroke) for (let i = 0; i < pts.length; i++) smoothLine(ctx2, pts[i], pts[(i + 1) % pts.length], state.size, state.stroke);
-        ctx2.globalAlpha = 1;
-        tracePath(ctx2, pts);
-        ctx2.lineWidth = px;
-        ctx2.setLineDash([4 * px, 3 * px]);
-        ctx2.strokeStyle = "#2b8cff";
-        ctx2.stroke();
-      };
-      requestRender();
-    },
-    up() {
-      const a = state.action;
-      state.action = null;
-      state.preview = null;
-      requestRender();
-      if (!a || a.type !== "ngon" || Math.hypot(a.b.x - a.a.x, a.b.y - a.a.y) < 1) return;
-      if (!state.ngonFill && !state.ngonOutline) {
-        toast(t("Turn on “Fill” or “Outline” for polygons."));
-        return;
-      }
-      drawPolygon(ngonPoints(a));
-      commit();
-    }
-  };
-  var CURVE_TOL = 1 / 3;
-  function previewOutline(ctx2, px, pts, closed, fill) {
-    const path = () => {
-      ctx2.beginPath();
-      pts.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
-      if (closed) ctx2.closePath();
-    };
-    ctx2.globalAlpha = state.opacity;
-    if (fill && state.fill) {
-      path();
-      ctx2.fillStyle = state.fill;
-      ctx2.fill();
-    }
-    const line = closed ? state.ngonOutline && state.stroke : state.fill;
-    if (line) {
-      path();
-      ctx2.lineWidth = state.size;
-      ctx2.lineCap = ctx2.lineJoin = "round";
-      ctx2.strokeStyle = line;
-      ctx2.stroke();
-    }
-    ctx2.globalAlpha = 1;
-    path();
-    ctx2.lineWidth = px;
-    ctx2.setLineDash([4 * px, 3 * px]);
-    ctx2.strokeStyle = "#2b8cff";
-    ctx2.stroke();
-    ctx2.setLineDash([]);
-  }
-  function ellipsePts(a) {
-    const e = ellipseFromDrag(a.a, a.b, state.ellipseMode === "center", a.shift);
-    return e.rx < 0.5 || e.ry < 0.5 ? [] : ellipsePoints(e.cx, e.cy, e.rx, e.ry, 0, CURVE_TOL);
-  }
-  var ellipseTool = {
-    down(e, p) {
-      state.action = { type: "ellipse", a: p, b: p, shift: e.shiftKey };
-    },
-    move(e, p) {
-      const a = state.action;
-      if (!a || a.type !== "ellipse") return;
-      a.b = p;
-      a.shift = e.shiftKey;
-      const pts = ellipsePts(a);
-      state.preview = pts.length ? (ctx2, px) => previewOutline(ctx2, px, pts, true, state.ngonFill) : null;
-      requestRender();
-    },
-    up() {
-      const a = state.action;
-      state.action = null;
-      state.preview = null;
-      requestRender();
-      if (!a || a.type !== "ellipse") return;
-      const pts = ellipsePts(a);
-      if (!pts.length) return;
-      if (!state.ngonFill && !state.ngonOutline) {
-        toast(t("Turn on “Fill” or “Outline” for shapes."));
-        return;
-      }
-      drawPolygon(pts);
-      commit();
-    }
-  };
-  var curve = { pts: null, hover: null };
-  var curvePoints = (pts, closed) => sampleCubics(toCubics(state.curveType, pts, closed), closed, CURVE_TOL);
-  function curvePreview() {
-    const pts = curve.pts;
-    if (!pts) {
-      state.preview = null;
-      requestRender();
-      return;
-    }
-    const all = curve.hover ? [...pts, curve.hover] : pts, line = curvePoints(all, false);
-    state.preview = (ctx2, px) => {
-      if (line.length > 1) previewOutline(ctx2, px, line, false, false);
-      if (state.curveType !== "catmull" && all.length > 1) {
-        ctx2.beginPath();
-        all.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
-        ctx2.lineWidth = px;
-        ctx2.setLineDash([3 * px, 3 * px]);
-        ctx2.strokeStyle = "rgba(43,140,255,.7)";
-        ctx2.stroke();
-        ctx2.setLineDash([]);
-      }
-      const r = 3.5 * px;
-      all.forEach((q, i) => {
-        ctx2.beginPath();
-        if (onCurve(state.curveType, all.length, false, i)) ctx2.rect(q.x - r, q.y - r, 2 * r, 2 * r);
-        else ctx2.arc(q.x, q.y, r, 0, Math.PI * 2);
-        ctx2.fillStyle = "#fff";
-        ctx2.fill();
-        ctx2.lineWidth = 1.2 * px;
-        ctx2.strokeStyle = "#2b8cff";
-        ctx2.stroke();
-      });
-    };
-    requestRender();
-  }
-  function finishCurve(closed = false) {
-    const pts = curve.pts;
-    curve.pts = null;
-    curve.hover = null;
-    curvePreview();
-    if (!pts || pts.length < 2 || closed && pts.length < 3) return;
-    const line = curvePoints(pts, closed);
-    if (closed) {
-      if (!state.ngonFill && !state.ngonOutline) {
-        toast(t("Turn on “Fill” or “Outline” for shapes."));
-        return;
-      }
-      drawPolygon(line);
-    } else {
-      const layer = makeCanvas(doc.width, doc.height), ctx2 = layer.getContext("2d");
-      if (state.smooth) {
-        ctx2.beginPath();
-        line.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
-        ctx2.lineWidth = state.size;
-        ctx2.lineCap = ctx2.lineJoin = "round";
-        ctx2.strokeStyle = state.fill || "#000";
-        ctx2.stroke();
-      } else for (let i = 1; i < line.length; i++) hardLine(ctx2, line[i - 1], line[i], state.size, state.fill || "#000");
-      applyLayer(layer, !state.fill, state.opacity);
-    }
-    commit();
-  }
-  function curveBack() {
-    if (!curve.pts) return;
-    curve.pts.pop();
-    if (!curve.pts.length) curve.pts = null;
-    curvePreview();
-  }
-  function cancelCurve() {
-    curve.pts = null;
-    curve.hover = null;
-    curvePreview();
-  }
-  var curveTool = {
-    down(e, p) {
-      const pts = curve.pts || [], px = 1 / state.view.s;
-      if (pts.length >= 3 && dist(p, pts[0]) < 8 * px) {
-        finishCurve(true);
-        return;
-      }
-      if (pts.length && dist(p, pts[pts.length - 1]) < 2 * px) return;
-      pts.push(p);
-      curve.pts = pts;
-      state.action = { type: "curve-press" };
-      curvePreview();
-    },
-    move(e, p) {
-      if (!curve.pts) return;
-      curve.hover = p;
-      curvePreview();
-    },
-    up() {
-      if (state.action?.type === "curve-press") state.action = null;
-    }
-  };
-  function bucketAt(p) {
-    const x = Math.floor(p.x), y = Math.floor(p.y);
-    if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return false;
-    const im = getImage();
-    const box5 = floodFill(im, x, y, rgba(state.fill), state.tolerance, state.contiguous);
-    if (!box5) return false;
-    dctx.putImageData(im, 0, 0, box5.x, box5.y, box5.w, box5.h);
-    commit();
-    return true;
-  }
-  function pickAt(p) {
-    const x = Math.floor(p.x), y = Math.floor(p.y);
-    if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
-    const c = colorAt(getImage(x, y, 1, 1), 0, 0);
-    setFill(c, false);
-    toast(!c ? t("Picked “transparent”.") : state.palette.includes(c) ? t("Picked {c}.", { c }) : t("Picked {c} (not in the palette – add it with “From image”).", { c }));
-  }
-  var bucketTool = {
-    down(e, p) {
-      if (e.altKey) pickAt(p);
-      else bucketAt(p);
-    },
-    move() {
-    },
-    up() {
-    }
-  };
-  var pickerTool = { down(e, p) {
-    pickAt(p);
-  }, move() {
-  }, up() {
-  } };
-  var paintTools = {
-    brush: freehand("brush"),
-    pencil: freehand("pencil"),
-    eraser: freehand("eraser"),
-    clone: copyTool("clone"),
-    heal: copyTool("heal"),
-    line: lineTool,
-    ngon: ngonTool,
-    ellipse: ellipseTool,
-    curve: curveTool,
-    bucket: bucketTool,
-    picker: pickerTool
-  };
-
-  // src/raster/tools.ts
-  var tools = {
-    ...paintTools,
-    select: selectTool,
-    pan: { down() {
-    }, move() {
-    }, up() {
-    } }
-  };
-  var HINTS = {
-    select: t("Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste"),
-    brush: t("Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color"),
-    pencil: t("Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color"),
-    eraser: t("Drag to erase to transparent · Shift: straight line · [ ] size"),
-    line: t("Drag a line · Shift: 15° steps"),
-    ngon: t("Drag from the center · Shift: 15° rotation · keys 3–9: sides"),
-    ellipse: t("Drag from corner to corner (or from the center) · Shift: a circle"),
-    curve: t("Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels"),
-    bucket: t("Click to fill the area of similar color · Alt+click: pick a color"),
-    picker: t("Click to take a color from the image"),
-    pan: t("Drag to pan · mouse wheel zooms")
-  };
-  function setTool(tool) {
-    if (!tools[tool]) tool = "brush";
-    if (tool !== "select" && state.floating) place();
-    state.action = null;
-    cancelCurve();
-    state.tool = tool;
-    stage.dataset.tool = tool;
-    for (const b of $$("#tools button")) b.classList.toggle("active", b.dataset.tool === tool);
-    for (const s of $$(".tool-opts")) s.hidden = !s.dataset.for.split(" ").includes(tool);
-    $("#st-hint").textContent = HINTS[tool];
-    savePrefs();
-    requestRender();
-  }
-  function setMode(m) {
-    state.mode = m === "expert" ? "expert" : "simple";
-    document.body.dataset.mode = state.mode;
-    for (const b of $$("#mode-switch button")) b.classList.toggle("active", b.dataset.mode === state.mode);
-    if (state.mode === "simple") state.opacity = 1;
-    savePrefs();
-    emit("mode");
-  }
-
-  // src/raster/files.ts
-  var MAX_SIDE = 8e3;
-  var IMAGE_TYPES = [{ description: t("Images"), accept: { "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"] } }];
-  var PNG_TYPES = [{ description: t("PNG image"), accept: { "image/png": [".png"] } }];
-  var baseName = (n5) => n5.replace(/\.[a-z0-9]+$/i, "");
-  async function confirmDiscard() {
-    return !rt.dirty || askYes(t("Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)"));
-  }
-  function loadCanvas(c, name) {
-    setSize(c.width, c.height);
-    dctx.clearRect(0, 0, c.width, c.height);
-    dctx.drawImage(c, 0, 0);
-    state.sel = null;
-    state.floating = null;
-    rt.fileName = baseName(name) + ".png";
-    rt.fileHandle = null;
-    resetHistory();
-    rt.dirty = false;
-    afterChange();
-    selectionChanged();
-    fitView();
-  }
-  async function fileToCanvas(f) {
-    try {
-      if (/svg/.test(f.type)) {
-        const text = await f.text(), { w, h } = svgSize(text);
-        return await svgToCanvas(text, Math.min(MAX_SIDE, Math.max(512, Math.round(Math.max(w, h)))));
-      }
-      const url2 = URL.createObjectURL(f);
-      try {
-        const img = await loadImg(url2);
-        const k = Math.min(1, MAX_SIDE / Math.max(img.naturalWidth, img.naturalHeight));
-        const c = makeCanvas(Math.round(img.naturalWidth * k), Math.round(img.naturalHeight * k));
-        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
-        return c;
-      } finally {
-        URL.revokeObjectURL(url2);
-      }
-    } catch {
-      return null;
-    }
-  }
-  var BIG = 2e3;
-  var FIT = 1600;
-  var MANY_COLORS = 256;
-  function scaled(c, k) {
-    const out = makeCanvas(Math.max(1, Math.round(c.width * k)), Math.max(1, Math.round(c.height * k))), x = out.getContext("2d");
-    x.imageSmoothingQuality = "high";
-    x.drawImage(c, 0, 0, out.width, out.height);
-    return out;
-  }
-  async function openImageFile(f) {
-    let c = await fileToCanvas(f);
-    if (!c) {
-      toast(t("Could not read {name} as an image.", { name: f.name }));
-      return false;
-    }
-    const side = Math.max(c.width, c.height);
-    if (side > BIG) {
-      const k = FIT / side, v = { name: f.name, w: c.width, h: c.height, W: Math.round(c.width * k), H: Math.round(c.height * k) };
-      if (await askYes(t("{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?", v))) c = scaled(c, k);
-    }
-    const img = c.getContext("2d").getImageData(0, 0, c.width, c.height);
-    const many = countColors(img, MANY_COLORS + 1) > MANY_COLORS;
-    await openCanvas(c, f.name, many ? t("It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.") : "");
-    return true;
-  }
-  async function openCanvas(c, name, note = "") {
-    saveVersion(t("Before opening {name}", { name }));
-    loadCanvas(c, name);
-    scheduleAutosave();
-    toast(t("Opened {name} ({w} × {h} px).", { name, w: c.width, h: c.height }) + (note ? " " + note : ""));
-  }
-  async function openFile() {
-    if (!await confirmDiscard()) return;
-    const w = window;
-    if (w.showOpenFilePicker) {
-      try {
-        const [h] = await w.showOpenFilePicker({ types: IMAGE_TYPES });
-        const f = await h.getFile();
-        if (await openImageFile(f) && /\.png$/i.test(f.name)) {
-          rt.fileHandle = h;
-          updateTitle();
-        }
-        return;
-      } catch (err) {
-        if (err.name === "AbortError") return;
-      }
-    }
-    $("#file-input").click();
-  }
-  function parseSize(s) {
-    const m = /^\s*(\d+)\s*[x×*, ]\s*(\d+)\s*$/i.exec(s || "");
-    if (!m) return null;
-    const w = +m[1], h = +m[2];
-    return w >= 1 && h >= 1 && w <= MAX_SIDE && h <= MAX_SIDE ? { w, h } : null;
-  }
-  async function newImage() {
-    if (!await confirmDiscard()) return;
-    const ans = await ask(t("Size of the new image in pixels (width × height):"), `${doc.width} × ${doc.height}`);
-    if (ans == null) return;
-    const s = parseSize(ans);
-    if (!s) {
-      toast(t("Enter a size like 800 × 600 (at most {max} px a side).", { max: MAX_SIDE }));
-      return;
-    }
-    const c = makeCanvas(s.w, s.h), x = c.getContext("2d");
-    x.fillStyle = "#ffffff";
-    x.fillRect(0, 0, s.w, s.h);
-    saveVersion(t("Before starting a new image")).then(() => {
-      loadCanvas(c, "mosaic.png");
-      scheduleAutosave();
-    });
-  }
-  var listVersions = () => Store.listVersions("raster");
-  async function restoreVersion(v) {
-    const c = v.png && await fileToCanvas(new Blob([v.png], { type: "image/png" }));
-    if (!c) {
-      toast(t("That version could not be read."));
-      return;
-    }
-    await saveVersion(t("Before restoring an older version"));
-    loadCanvas(c, v.name || "mosaic.png");
-    rt.dirty = true;
-    updateTitle();
-    scheduleAutosave();
-    toast(t("Restored the version from {time}", { time: new Date(v.time).toLocaleString(lang) }));
-  }
-  async function save() {
-    const png = await canvasToPng(doc), w = window;
-    if (w.showSaveFilePicker) {
-      try {
-        if (!rt.fileHandle) rt.fileHandle = await w.showSaveFilePicker({ suggestedName: rt.fileName, types: PNG_TYPES });
-        const wr = await rt.fileHandle.createWritable();
-        await wr.write(png);
-        await wr.close();
-        rt.fileName = rt.fileHandle.name;
-        rt.dirty = false;
-        updateTitle();
-        toast(t("Saved {name}", { name: rt.fileName }));
-        return;
-      } catch (err) {
-        if (err.name === "AbortError") return;
-        rt.fileHandle = null;
-      }
-    }
-    download(png, rt.fileName);
-    rt.dirty = false;
-    updateTitle();
-  }
-  function exportAs(type, quality) {
-    let c = doc;
-    if (type === "image/jpeg") {
-      c = makeCanvas(doc.width, doc.height);
-      const x = c.getContext("2d");
-      x.fillStyle = "#ffffff";
-      x.fillRect(0, 0, c.width, c.height);
-      x.drawImage(doc, 0, 0);
-    }
-    const ext = { "image/jpeg": ".jpg", "image/webp": ".webp", "image/png": ".png" }[type] || ".png";
-    c.toBlob((b) => b ? download(b, baseName(rt.fileName) + ext) : toast(t("Export failed.")), type, quality);
-  }
-  function resizeImage(w, h) {
-    if (w === doc.width && h === doc.height) return;
-    const old = makeCanvas(doc.width, doc.height);
-    old.getContext("2d").drawImage(doc, 0, 0);
-    const shrink = w < old.width || h < old.height;
-    setSize(w, h);
-    dctx.save();
-    dctx.imageSmoothingEnabled = shrink;
-    dctx.imageSmoothingQuality = "high";
-    dctx.drawImage(old, 0, 0, w, h);
-    dctx.restore();
-    state.sel = null;
-    commit();
-    selectionChanged();
-    fitView();
-  }
-  function canvasSize(w, h) {
-    if (w === doc.width && h === doc.height) return;
-    const old = makeCanvas(doc.width, doc.height);
-    old.getContext("2d").drawImage(doc, 0, 0);
-    setSize(w, h);
-    dctx.clearRect(0, 0, w, h);
-    dctx.drawImage(old, Math.round((w - old.width) / 2), Math.round((h - old.height) / 2));
-    state.sel = null;
-    commit();
-    selectionChanged();
-    fitView();
-  }
-
-  // src/raster/transform.ts
-  function replaceWith(c) {
-    setSize(c.width, c.height);
-    dctx.clearRect(0, 0, c.width, c.height);
-    dctx.drawImage(c, 0, 0);
-    state.sel = null;
-    commit();
-    selectionChanged();
-    fitView();
-  }
-  function current() {
-    if (state.floating) place();
-    const c = makeCanvas(doc.width, doc.height);
-    c.getContext("2d").drawImage(doc, 0, 0);
-    return c;
-  }
-  function rotate(deg) {
-    const a = (deg % 360 + 360) % 360;
-    if (!a) return;
-    const old = current(), rad = a * Math.PI / 180, quarter = a % 90 === 0;
-    const cos = Math.abs(Math.cos(rad)), sin = Math.abs(Math.sin(rad));
-    const W = quarter ? a % 180 ? old.height : old.width : Math.ceil(old.width * cos + old.height * sin - 1e-6);
-    const H = quarter ? a % 180 ? old.width : old.height : Math.ceil(old.width * sin + old.height * cos - 1e-6);
-    if (W > MAX_SIDE || H > MAX_SIDE) {
-      toast(t("Enter a size from 1 to {max} px.", { max: MAX_SIDE }));
-      return;
-    }
-    const c = makeCanvas(W, H), x = c.getContext("2d");
-    x.imageSmoothingEnabled = !quarter;
-    x.imageSmoothingQuality = "high";
-    x.translate(W / 2, H / 2);
-    x.rotate(rad);
-    x.drawImage(old, -old.width / 2, -old.height / 2);
-    replaceWith(c);
-  }
-  function flip(horizontal) {
-    const old = current(), c = makeCanvas(old.width, old.height), x = c.getContext("2d");
-    x.translate(horizontal ? old.width : 0, horizontal ? 0 : old.height);
-    x.scale(horizontal ? -1 : 1, horizontal ? 1 : -1);
-    x.drawImage(old, 0, 0);
-    replaceWith(c);
-  }
-  function cropToSelection() {
-    if (!state.sel && !state.floating) {
-      toast(t("Select the part to keep with the Select tool (V), then crop."));
-      return;
-    }
-    crop();
-  }
-  function trim() {
-    if (state.floating) place();
-    const b = trimBox(getImage());
-    if (!b) {
-      toast(t("The image is all one color – nothing to trim."));
-      return;
-    }
-    if (b.w === doc.width && b.h === doc.height) {
-      toast(t("There is no border to trim."));
-      return;
-    }
-    const c = makeCanvas(b.w, b.h);
-    c.getContext("2d").drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
-    replaceWith(c);
-    toast(t("Trimmed to {w} × {h} px.", { w: b.w, h: b.h }));
-  }
-
   // worker-source:worker-source
-  var worker_source_default = '(()=>{var q=null,et=new Map;function he(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let r=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,r=q.fillStyle),et.set(t,r),r}function nt(e){if(Array.isArray(e))return e;if(/^#[0-9a-f]{6}$/i.test(e))return[1,3,5].map(r=>parseInt(e.slice(r,r+2),16));let t=he(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(r=>parseInt(t.slice(r,r+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let r=p=>(p/=255,p<=.04045?p/12.92:Math.pow((p+.055)/1.055,2.4)),s=r(e),i=r(t),l=r(n),u=(s*.4124+i*.3576+l*.1805)/.95047,a=s*.2126+i*.7152+l*.0722,o=(s*.0193+i*.1192+l*.9505)/1.08883,c=p=>p>216/24389?Math.cbrt(p):(24389/27*p+16)/116,m=c(u),f=c(a),b=c(o);return[116*f-16,500*(m-f),200*(f-b)]}function dt([e,t,n]){let r=(e+16)/116,s=r+t/500,i=r-n/200,l=f=>f**3>216/24389?f**3:(116*f-16)/(24389/27),u=.95047*l(s),a=l(r),o=1.08883*l(i),c=f=>f<=.0031308?12.92*f:1.055*Math.pow(f,1/2.4)-.055;return"#"+[3.2406*u-1.5372*a-.4986*o,-.9689*u+1.8758*a+.0415*o,.0557*u-.204*a+1.057*o].map(f=>Math.round(Math.max(0,Math.min(1,c(f)))*255)).map(f=>f.toString(16).padStart(2,"0")).join("")}function xt(e,t,n){n=n||t.map(l=>G(nt(l)));let r=G(e),s=null,i=1/0;return t.forEach((l,u)=>{let a=n[u],o=(r[0]-a[0])**2+(r[1]-a[1])**2+(r[2]-a[2])**2;o<i&&(i=o,s=l)}),s}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(r=>G(wt(r))),n=new Map;return(r,s,i)=>{let l=r<<16|s<<8|i,u=n.get(l);return u||(u=xt([r,s,i],e,t),n.set(l,u)),u}}function At(e,t){let{width:n,height:r}=e,s=e.data,i=Mt(n,r),l=i.data,u=Math.max(2,Math.round(t.tile)),a=Math.min(u-1,Math.max(0,Math.round(t.grout))),o=t.palette&&t.palette.length?Pt(t.palette):null,c=Y(t.groutColor),m=new Map,f=0;for(let b=0,p=0;b<r;b+=u,p++){let d=t.bricks&&p%2?-Math.floor(u/2):0;for(let P=d;P<n;P+=u){let A=Math.max(0,P),v=Math.min(n,P+u),w=Math.min(r,b+u),R=0,I=0,y=0,S=0,h=0;for(let x=b;x<w-(w===b+u?a:0);x++)for(let k=A;k<Math.min(v,P+u-a);k++){let U=(x*n+k)*4;h++,!(s[U+3]<128)&&(R+=s[U],I+=s[U+1],y+=s[U+2],S++)}let g=S>0&&S>=h/2,M=[0,0,0,0];if(g){R=Math.round(R/S),I=Math.round(I/S),y=Math.round(y/S);let x=o?o(R,I,y):st(R,I,y);M=Y(x),m.set(x,(m.get(x)||0)+1),f++}for(let x=b;x<w;x++)for(let k=A;k<v;k++){let U=k>=P+u-a||x>=b+u-a;ot(l,(x*n+k)*4,U?g?c:[0,0,0,0]:M)}}}return{img:i,counts:m,tiles:f}}function vt(e){let{width:t,height:n,data:r}=e,s=t*n,i=new Int32Array(s).fill(-1),l=[],u=[],a=c=>r[c*4+3]<128?-1:r[c*4]<<16|r[c*4+1]<<8|r[c*4+2],o=[];for(let c=0;c<s;c++){if(i[c]>=0)continue;let m=a(c);if(m<0)continue;let f=l.length,b=0;for(i[c]=f,o.push(c);o.length;){let p=o.pop(),d=p%t;b++;for(let P of[d>0?p-1:-1,d<t-1?p+1:-1,p-t,p+t])P<0||P>=s||i[P]>=0||a(P)!==m||(i[P]=f,o.push(P))}l.push(st(m>>16,m>>8&255,m&255)),u.push(b)}return{labels:i,colors:l,sizes:u}}function kt(e,t,n,r,s){let i=[],l=e.data;for(let a=0;a<5;a++)for(let o=0;o<5;o++){let c=Math.floor(t+r*(a+.5)/5),m=Math.floor(n+s*(o+.5)/5);if(c<0||m<0||c>=e.width||m>=e.height)continue;let f=(m*e.width+c)*4;l[f+3]>=128&&i.push(G([l[f],l[f+1],l[f+2]]))}if(i.length<2)return 0;let u=[0,1,2].map(a=>i.reduce((o,c)=>o+c[a],0)/i.length);return i.reduce((a,o)=>a+Math.hypot(o[0]-u[0],o[1]-u[1],o[2]-u[2]),0)/i.length}function be(e,t,n,r){let s=n.length,i=n.map(a=>a.y),l=Math.max(0,Math.floor(Math.min(...i))),u=Math.min(t-1,Math.ceil(Math.max(...i)));for(let a=l;a<=u;a++){let o=a+.5,c=[];for(let m=0;m<s;m++){let f=n[m],b=n[(m+1)%s];f.y<=o!=b.y<=o&&c.push(f.x+(o-f.y)*(b.x-f.x)/(b.y-f.y))}c.sort((m,f)=>m-f);for(let m=0;m+1<c.length;m+=2){let f=Math.max(0,Math.ceil(c[m]-.5)),b=Math.min(e-1,Math.floor(c[m+1]-.5));for(let p=f;p<=b;p++)r(a*e+p)}}}function St(e,t,n){let{width:r,height:s}=e,i=e.data,l=Mt(r,s),u=l.data,a=n.palette&&n.palette.length?Pt(n.palette):null,o=new Map,c=[],m=0;for(let b of t){let p=0,d=0,P=0,A=0,v=0,w=[];if(be(r,s,b,y=>{w.push(y),v++;let S=y*4;i[S+3]<128||(p+=i[S],d+=i[S+1],P+=i[S+2],A++)}),!A||A<v/2)continue;p=Math.round(p/A),d=Math.round(d/A),P=Math.round(P/A);let R=a?a(p,d,P):st(p,d,P),I=Y(R);for(let y of w)ot(u,y*4,I);o.set(R,(o.get(R)||0)+1),m++,c.push(b)}let f=Math.max(0,n.grout)/2;if(f>0){let b=Y(n.groutColor);for(let p of c)for(let d=0;d<p.length;d++){let P=p[d],A=p[(d+1)%p.length],v=A.x-P.x,w=A.y-P.y,R=v*v+w*w||1,I=Math.max(0,Math.floor(Math.min(P.x,A.x)-f)),y=Math.min(r-1,Math.ceil(Math.max(P.x,A.x)+f)),S=Math.max(0,Math.floor(Math.min(P.y,A.y)-f)),h=Math.min(s-1,Math.ceil(Math.max(P.y,A.y)+f));for(let g=S;g<=h;g++)for(let M=I;M<=y;M++){let x=M+.5,k=g+.5,U=Math.max(0,Math.min(1,((x-P.x)*v+(k-P.y)*w)/R)),B=P.x+U*v-x,$=P.y+U*w-k;B*B+$*$<=f*f&&ot(u,(g*r+M)*4,b)}}}return{img:l,counts:o,tiles:m}}function Rt(e){let t=new Map;return e.colors.forEach((n,r)=>{let s=t.get(n)||{n:0,color:n,pieces:0,pixels:0};s.pieces++,s.pixels+=e.sizes[r],t.set(n,s)}),[...t.values()].sort((n,r)=>r.pixels-n.pixels).map((n,r)=>({...n,n:r+1}))}var pe=.01;function Ut(e){pe=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,r)=>e*r-t*n;function ge(e,t,n){let r=n.x-t.x,s=n.y-t.y,i=r*r+s*s,l=i?((e.x-t.x)*r+(e.y-t.y)*s)/i:0;return l=Math.max(0,Math.min(1,l)),{x:t.x+r*l,y:t.y+s*l,t:l}}function de(e,t,n,r){let s=t.x-e.x,i=t.y-e.y,l=r.x-n.x,u=r.y-n.y,a=it(s,i,l,u);if(Math.abs(a)<1e-12)return null;let o=n.x-e.x,c=n.y-e.y,m=it(o,c,l,u)/a,f=it(o,c,s,i)/a;return m<0||m>1||f<0||f>1?null:{x:e.x+s*m,y:e.y+i*m,t:m,u:f}}function Bt(e,t){let n=!1;for(let r=0,s=t.length-1;r<t.length;s=r++){let i=t[r],l=t[s];i.y>e.y!=l.y>e.y&&e.x<(l.x-i.x)*(e.y-i.y)/(l.y-i.y)+i.x&&(n=!n)}return n}function $t(e,t,n,r,s){let i=[];for(let l=0;l<e;l++){let u=s+l*2*Math.PI/e;i.push({x:t+r*Math.cos(u),y:n+r*Math.sin(u)})}return i}function at(e,t,n,r){let s=[0,1];for(let o of n)for(let c=0,m=o.length;c<m;c++){let f=de(e,t,o[c],o[(c+1)%m]);f&&s.push(f.t)}s.sort((o,c)=>o-c);let i=o=>({x:e.x+(t.x-e.x)*o,y:e.y+(t.y-e.y)*o}),l=[],u=null,a=0;for(let o=0;o+1<s.length;o++){let c=s[o],m=s[o+1];m-c<1e-9||(r(i((c+m)/2))?(u===null&&(u=c),a=m):u!==null&&(l.push({a:i(u),b:i(a)}),u=null))}return u!==null&&l.push({a:i(u),b:i(a)}),l}function lt(e,t){let n=1/0;for(let r of t)for(let s=0,i=r.length;s<i;s++)n=Math.min(n,H(e,ge(e,r[s],r[(s+1)%i])));return n}var Z=(e,t,n,r)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+r},{x:e,y:t+r}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let r=[];if(e==="square"){let[s,i]=z(n.x0,n.x1,t),[l,u]=z(n.y0,n.y1,t);for(let a=s;a<=i;a++)for(let o=l;o<=u;o++)r.push(Z(a*t,o*t,t,t))}else if(e==="brick"){let s=2*t,[i,l]=z(n.y0,n.y1,t);for(let u=i;u<=l;u++){let a=ct(u)?t:0,[o,c]=z(n.x0-a,n.x1-a,s);for(let m=o;m<=c;m++)r.push(Z(a+m*s,u*t,s,t))}}else if(e==="hex"){let s=Math.sqrt(3)*t,i=1.5*t,[l,u]=z(n.y0,n.y1,i);for(let a=l;a<=u;a++){let o=ct(a)?s/2:0,[c,m]=z(n.x0-o,n.x1-o,s);for(let f=c;f<=m;f++)r.push($t(6,o+f*s,a*i,t,-Math.PI/2))}}else if(e==="triangle"){let s=t*Math.sqrt(3)/2,[i,l]=z(n.y0,n.y1,s);for(let u=i;u<=l;u++){let a=u*s,o=ct(u)?t/2:0,[c,m]=z(n.x0-o,n.x1-o,t);for(let f=c;f<=m;f++){let b=o+f*t;r.push([{x:b,y:a+s},{x:b+t/2,y:a},{x:b+t,y:a+s}]),r.push([{x:b+t/2,y:a},{x:b+1.5*t,y:a},{x:b+t,y:a+s}])}}}else if(e==="herringbone"){let s=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([m,f])=>[m/t,f/t]),i=s.map(([m,f])=>(m+f)/4),l=s.map(([m,f])=>(m-f)/2),u=Math.floor(Math.min(...i))-2,a=Math.ceil(Math.max(...i))+2,o=Math.floor(Math.min(...l))-2,c=Math.ceil(Math.max(...l))+2;for(let m=u;m<=a;m++)for(let f=o;f<=c;f++)r.push(Z((2*m+f)*t,(2*m-f)*t,t,2*t)),r.push(Z((2*m+1+f)*t,(2*m+1-f)*t,2*t,t))}return r}function Ft(e,t){let n=new Map;for(let s of e){let i=s.b.x-s.a.x,l=s.b.y-s.a.y,u=Math.hypot(i,l);if(u<t)continue;i/=u,l/=u,(i<-1e-9||Math.abs(i)<=1e-9&&l<0)&&(i=-i,l=-l);let a=-l*s.a.x+i*s.a.y,o=Math.round(Math.atan2(l,i)*1e6)+"|"+Math.round(a/(t*10)),c=i*s.a.x+l*s.a.y,m=i*s.b.x+l*s.b.y;(n.get(o)||n.set(o,{dx:i,dy:l,off:a,list:[]}).get(o)).list.push([Math.min(c,m),Math.max(c,m)])}let r=[];for(let s of n.values()){s.list.sort((a,o)=>a[0]-o[0]);let i=a=>({x:s.dx*a-s.dy*s.off,y:s.dy*a+s.dx*s.off}),[l,u]=s.list[0];for(let a=1;a<=s.list.length;a++){let o=s.list[a];if(o&&o[0]<=u+t){u=Math.max(u,o[1]);continue}r.push({a:i(l),b:i(u)}),o&&([l,u]=o)}}return r}function jt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,r)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+r},{x:e,y:t+r}];function ye(e,t,n,r){let s=n?t*2:t,i=n?t/2:t,l=[],u=(a,o,c)=>{if(!(a>=e.x+e.w-1e-9||o>=e.y+e.h-1e-9))if(c>i*1.0001&&r(a,o,c,c)){let m=c/2;u(a,o,m),u(a+m,o,m),u(a,o+m,m),u(a+m,o+m,m)}else l.push({x:a,y:o,s:c})};for(let a=0;a*s<e.h;a++)for(let o=0;o*s<e.w;o++)u(e.x+o*s,e.y+a*s,s);return l}function Me(e,t){let n=[];for(let r=0,s=e.length;r<s;r++){let i=e[r],l=e[(r+1)%s],u=t(i),a=t(l);if(u<=0&&n.push(i),u<0&&a>0||u>0&&a<0){let o=u/(u-a);n.push({x:i.x+(l.x-i.x)*o,y:i.y+(l.y-i.y)*o})}}return n}function we(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,r=new Map,s=(l,u)=>l+","+u;e.forEach((l,u)=>{let a=s(Math.floor(l.x/n),Math.floor(l.y/n));(r.get(a)||r.set(a,[]).get(a)).push(u)});let i=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((l,u)=>{let a=Math.floor(l.x/n),o=Math.floor(l.y/n),c=N(t.x,t.y,t.w,t.h),m=()=>Math.max(...c.map(f=>H(f,l)));for(let f=0;f<=i&&c.length>=3&&!((f-1)*n>2*m());f++){let b=[];for(let p=a-f;p<=a+f;p++)for(let d=o-f;d<=o+f;d++)if(Math.max(Math.abs(p-a),Math.abs(d-o))===f)for(let P of r.get(s(p,d))||[])P!==u&&b.push(P);b.sort((p,d)=>H(e[p],l)-H(e[d],l));for(let p of b){let d=e[p],P=d.x-l.x,A=d.y-l.y,v=(l.x+d.x)/2,w=(l.y+d.y)/2;if(c=Me(c,R=>(R.x-v)*P+(R.y-w)*A),c.length<3)break}}return c}).filter(l=>l.length>=3)}function V({style:e,box:t,size:n,detail:r=0,busy:s=()=>!1,seed:i=1}){let l=r>0;if(e==="hex"){let a=n/Math.sqrt(3);return Lt("hex",a,{x0:-a,y0:-a,x1:t.w+a,y1:t.h+a}).map(o=>o.map(c=>({x:c.x+t.x,y:c.y+t.y})))}if(e==="brick"){let a=[];for(let o=0;o*n<t.h;o++){let c=o%2?-n:0;for(let m=t.x+c;m<t.x+t.w;m+=2*n){let f=t.y+o*n;l&&s(m,f,2*n,n)?a.push(N(m,f,n,n),N(m+n,f,n,n)):a.push(N(m,f,2*n,n))}}return a}let u=ye(t,n,l,s);if(e==="irregular"){let a=jt(i),o=u.map(c=>({x:c.x+c.s*(.5+(a()-.5)*.7),y:c.y+c.s*(.5+(a()-.5)*.7)})).filter(c=>c.x>=t.x&&c.y>=t.y&&c.x<=t.x+t.w&&c.y<=t.y+t.h);return we(o,t)}return u.map(a=>N(a.x,a.y,a.s,a.s))}function Ct(e,t,n,r){let s=r*10,i=o=>Math.round(o.x/s)+","+Math.round(o.y/s),l=new Set,u=[],a=o=>n(o)&&lt(o,t)>r*20;for(let o of e)for(let c=0;c<o.length;c++){let m=o[c],f=o[(c+1)%o.length],b=i(m),p=i(f),d=b<p?b+"|"+p:p+"|"+b;b===p||l.has(d)||(l.add(d),u.push(...at(m,f,t,a)))}return Ft(u,r)}function Tt(e,t,n=1,r=16){if(!e.length)return[];t=Math.min(t,e.length);let s=jt(n),i=(a,o)=>(a[0]-o[0])**2+(a[1]-o[1])**2+(a[2]-o[2])**2,l=[e[Math.floor(s()*e.length)]];for(;l.length<t;){let a=e.map(m=>Math.min(...l.map(f=>i(m,f)))),o=s()*a.reduce((m,f)=>m+f,0),c=0;for(;c<e.length-1&&(o-=a[c])>0;)c++;l.push(e[c])}let u=[];for(let a=0;a<r;a++){let o=l.map(()=>[0,0,0]);u=l.map(()=>0);for(let c of e){let m=0,f=1/0;l.forEach((b,p)=>{let d=i(c,b);d<f&&(f=d,m=p)}),o[m][0]+=c[0],o[m][1]+=c[1],o[m][2]+=c[2],u[m]++}l.forEach((c,m)=>{u[m]&&(l[m]=o[m].map(f=>f/u[m]))})}return l.map((a,o)=>({c:a,n:u[o]})).sort((a,o)=>o.n-a.n).map(a=>a.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function Pe(e,t,n){let r=new Uint8Array(t*n),s=[];for(let i=0;i<n;i++)for(let l=0;l<t;l++){let u=i*t+l,a=e[u];if(a<0||r[u])continue;let o=1;for(;l+o<t&&e[u+o]===a&&!r[u+o];)o++;let c=1;t:for(;i+c<n;){let m=(i+c)*t+l;for(let f=0;f<o;f++)if(e[m+f]!==a||r[m+f])break t;c++}for(let m=i;m<i+c;m++)r.fill(1,m*t+l,m*t+l+o);s.push({x:l,y:i,w:o,h:c,level:a})}return s}function Ae(e,t){let n=new Int16Array(e.length);for(let r=0;r<e.length;r++)n[r]=e[r]===-2?0:e[r]<0?t.baseLayers:_(e[r],t);return n}function Gt(e,t){let n=e.length,r=Ae(e,t),s=new Int16Array(n);for(let i=0;i<n;i++)s[i]=Math.max(0,e[i]);return{bottom:new Int16Array(n),top:r,level:s}}function mt(e,t,n,r,s){let i=(h,g)=>h>=0&&g>=0&&h<t&&g<n,l=(h,g)=>i(h,g)?e.bottom[g*t+h]:0,u=(h,g)=>{if(!i(h,g))return 0;let M=g*t+h;return e.top[M]>e.bottom[M]?e.top[M]:e.bottom[M]},a=(h,g)=>u(h,g)>l(h,g),o=(h,g)=>i(h,g)?e.level[g*t+h]:0,c=[],m=h=>n-h,f=new Int16Array(t*n),b=h=>{let g=new Map,M=[];for(let x=0;x<n;x++)for(let k=0;k<t;k++){let U=x*t+k;if(!a(k,x)){f[U]=-1;continue}let B=h(k,x)*4096+o(k,x),$=g.get(B);$==null&&($=M.length,g.set(B,$),M.push(B)),f[U]=$}return{rs:Pe(f,t,n),vals:M}};{let{rs:h,vals:g}=b(u);for(let M of h){let x=g[M.level];c.push({o:[M.x,m(M.y+M.h),Math.floor(x/4096)],u:[M.w,0,0],v:[0,M.h,0],level:x%4096})}}{let{rs:h,vals:g}=b(l);for(let M of h){let x=g[M.level];c.push({o:[M.x,m(M.y+M.h),Math.floor(x/4096)],u:[0,M.h,0],v:[M.w,0,0],level:x%4096})}}let p=(h,g,M,x)=>{if(g<=h)return[];if(x<=M||x<=h||M>=g)return[[h,g]];let k=[];return M>h&&k.push([h,M]),x<g&&k.push([x,g]),k},d=(h,g)=>a(h,g)?[l(h,g),u(h,g)]:[0,0];for(let h=0;h<=n;h++)for(let g=0;g<t;){let[M,x]=d(g,h-1),[k,U]=d(g,h);if(M===k&&x===U){g++;continue}let B=g+1;for(;B<t;B++){let[F,L]=d(B,h-1),[C,T]=d(B,h);if(F!==M||L!==x||C!==k||T!==U)break}let $=m(h);for(let[F,L]of p(M,x,k,U))c.push({o:[g,$,F],u:[B-g,0,0],v:[0,0,L-F],level:o(g,h-1)});for(let[F,L]of p(k,U,M,x))c.push({o:[g,$,F],u:[0,0,L-F],v:[B-g,0,0],level:o(g,h)});g=B}for(let h=0;h<=t;h++)for(let g=n-1;g>=0;){let[M,x]=d(h-1,g),[k,U]=d(h,g);if(M===k&&x===U){g--;continue}let B=g-1;for(;B>=0;B--){let[L,C]=d(h-1,B),[T,O]=d(h,B);if(L!==M||C!==x||T!==k||O!==U)break}let $=m(g+1),F=g-B;for(let[L,C]of p(k,U,M,x))c.push({o:[h,$,L],u:[0,0,C-L],v:[0,F,0],level:o(h,g)});for(let[L,C]of p(M,x,k,U))c.push({o:[h,$,L],u:[0,F,0],v:[0,0,C-L],level:o(h-1,g)});g=B}let P=[new Map,new Map,new Map],A=(h,g,M)=>h.o.map((x,k)=>x+g*h.u[k]+M*h.v[k]),v=(h,g)=>g===0?h[1]*1e5+h[2]:g===1?h[0]*1e5+h[2]:h[0]*1e5+h[1];for(let h of c)for(let[g,M]of[[0,0],[1,0],[1,1],[0,1]]){let x=A(h,g,M);for(let k=0;k<3;k++){let U=v(x,k),B=P[k].get(U);B||P[k].set(U,B=[]),B.push(x[k])}}for(let h of P)for(let[g,M]of h)h.set(g,[...new Set(M)].sort((x,k)=>x-k));let w=[],R=[],I=[],y=new Map,S=h=>{let g=(h[0]*2e5+h[1]*2)*2e5+h[2]*2,M=y.get(g);return M==null&&(M=w.length/3,y.set(g,M),w.push(h[0]*r,h[1]*r,h[2]*s)),M};for(let h of c){let g=[A(h,0,0),A(h,1,0),A(h,1,1),A(h,0,1)],M=[];for(let k=0;k<4;k++){let U=g[k],B=g[(k+1)%4],$=U.findIndex((T,O)=>T!==B[O]);M.push(U);let F=Math.min(U[$],B[$]),L=Math.max(U[$],B[$]),C=(P[$].get(v(U,$))||[]).filter(T=>T>F&&T<L);U[$]>B[$]&&C.reverse();for(let T of C){let O=[...U];O[$]=T,M.push(O)}}let x=M.map(S);if(x.length===4)R.push(x[0],x[1],x[2],x[0],x[2],x[3]),I.push(h.level,h.level);else{let k=S(A(h,.5,.5));for(let U=0;U<x.length;U++)R.push(k,x[U],x[(U+1)%x.length]),I.push(h.level)}}return{vertices:w,triangles:R,levels:I}}function zt(e,t,n,r,s,i){let l=Int16Array.from(e),u=t*n,a=new Int32Array(u),o=new Float32Array(u),c=i.heightOf||(f=>f===-2?0:(f<0?s.baseLayers:_(f,s))*s.layerHeight),m=0;for(let f=0;f<12;f++){a.fill(-1);let b=[],p=[];for(let y=0;y<u;y++){if(a[y]>=0)continue;let S=b.length,h=l[y];for(b.push(h),a[y]=S,p.push(y);p.length;){let g=p.pop(),M=g%t;for(let x of[M>0?g-1:-1,M<t-1?g+1:-1,g-t,g+t])x<0||x>=u||a[x]>=0||l[x]!==h||(a[x]=S,p.push(x))}}let d=Math.SQRT2;for(let y=0;y<u;y++){let S=y%t,h=y/t|0,g=a[y],M=S===0||h===0||S===t-1||h===n-1||a[y-1]!==g||a[y+1]!==g||a[y-t]!==g||a[y+t]!==g;o[y]=M?1:1e9}for(let y=0;y<n;y++)for(let S=0;S<t;S++){let h=y*t+S;o[h]<=1||(o[h]=Math.min(o[h],o[h-1]+1,o[h-t]+1,o[h-t-1]+d,o[h-t+1]+d))}for(let y=n-1;y>=0;y--)for(let S=t-1;S>=0;S--){let h=y*t+S;o[h]<=1||(o[h]=Math.min(o[h],o[h+1]+1,o[h+t]+1,o[h+t+1]+d,o[h+t-1]+d))}let P=new Float32Array(b.length);for(let y=0;y<u;y++)o[y]>P[a[y]]&&(P[a[y]]=o[y]);let A=b.map(()=>new Map),v=new Float64Array(b.length).fill(1/0),w=(y,S)=>{let h=a[y],g=a[S];if(h===g)return;let M=l[y],x=l[S];v[h]=Math.min(v[h],c(x)),v[g]=Math.min(v[g],c(M)),x<M&&A[h].set(x,(A[h].get(x)||0)+1),M<x&&A[g].set(M,(A[g].get(M)||0)+1)};for(let y=0;y<n;y++)for(let S=0;S<t;S++){let h=y*t+S;S<t-1&&w(h,h+1),y<n-1&&w(h,h+t)}let R=new Int16Array(b.length).fill(-32768),I=0;if(b.forEach((y,S)=>{let h=c(y)-v[S];if(!(h>1e-9)||!A[S].size)return;let g=Math.max(1,2*P[S]-1)*r;if(g>=i.minWidth&&h<=i.maxRatio*g)return;let M=-2,x=-1;for(let[k,U]of A[S])(U>x||U===x&&k>M)&&(M=k,x=U);R[S]=M,I++}),!I)break;for(let y=0;y<u;y++){let S=R[a[y]];S!==-32768&&(l[y]=S)}m+=I}return{grid:l,lowered:m}}function ft(e,t="Mosaic Paint"){let n=e.vertices,r=e.triangles,s=r.length/3,i=new ArrayBuffer(84+s*50),l=new DataView(i),u=`${t} – multi-color by layer`.slice(0,80);for(let o=0;o<u.length;o++)l.setUint8(o,u.charCodeAt(o)&127);l.setUint32(80,s,!0);let a=84;for(let o=0;o<s;o++){let c=[0,1,2].map(I=>r[o*3+I]*3),m=n[c[1]]-n[c[0]],f=n[c[1]+1]-n[c[0]+1],b=n[c[1]+2]-n[c[0]+2],p=n[c[2]]-n[c[0]],d=n[c[2]+1]-n[c[0]+1],P=n[c[2]+2]-n[c[0]+2],A=f*P-b*d,v=b*p-m*P,w=m*d-f*p,R=Math.hypot(A,v,w)||1;A/=R,v/=R,w/=R;for(let I of[A,v,w])l.setFloat32(a,I,!0),a+=4;for(let I of c)for(let y=0;y<3;y++)l.setFloat32(a,n[I+y],!0),a+=4;l.setUint16(a,0,!0),a+=2}return i}function Dt(e,t){return e.map((n,r)=>{let s=r===0?1:_(r-1,t)+1,i=_(r,t);return{color:n,fromLayer:s,toLayer:i,changeAtLayer:r===0?null:s,z:r===0?null:+(s*t.layerHeight).toFixed(3)}})}var D=-3,ve=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,r,s){let i=Math.max(0,Math.round(r.frame)),l=t+2*i,u=n+2*i,a=new Int16Array(l*u).fill(D);for(let f=0;f<n;f++)for(let b=0;b<t;b++)a[(f+i)*l+b+i]=e[f*t+b];let o=Math.min(r.corner,l/2,u/2),c=r.hole/2,m=ve(r,s);for(let f=0;f<u;f++)for(let b=0;b<l;b++){let p=b+.5,d=f+.5;if(o>0){let P=p<o?o:p>l-o?l-o:p,A=d<o?o:d>u-o?u-o:d;if((p-P)**2+(d-A)**2>o*o){a[f*l+b]=-2;continue}}c>0&&(p-l/2)**2+(d-m)**2<=c*c&&(a[f*l+b]=-2)}return{grid:a,w:l,h:u}}function _t(e,t,n,r){let s=new Uint8Array(e*t),i=n/2;if(i<=0)return s;let l=[r,e-r],u=[r,t-r];for(let a of l)for(let o of u)for(let c=Math.max(0,Math.floor(o-i));c<Math.min(t,Math.ceil(o+i));c++)for(let m=Math.max(0,Math.floor(a-i));m<Math.min(e,Math.ceil(a+i));m++)(m+.5-a)**2+(c+.5-o)**2<=i*i&&(s[c*e+m]=1);return s}function qt(e,t,n,r=2){let s=n;for(let i=0;i<t.length;i++){if(!t[i])continue;let l=0;for(let u of e)u.top[i]>u.bottom[i]&&(l=Math.max(l,u.top[i]));l>0&&(s=Math.min(s,l-r))}if(s=Math.max(0,s),!s)return 0;for(let i=0;i<t.length;i++)if(t[i])for(let l of e)l.top[i]>l.bottom[i]&&l.bottom[i]<s&&(l.bottom[i]=s,l.top[i]<s&&(l.top[i]=s));return s}function Ht(e,t,n,r){let s=e.length,i={bottom:new Int16Array(s).fill(t),top:new Int16Array(s),level:new Int16Array(s).fill(r)};for(let l=0;l<s;l++)e[l]===D&&(i.top[l]=n);return i}var j=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function ke(e,t,n){let r=e.vertices,s=e.triangles,i=[];i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${j(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let l of t)i.push(`<base name="${j(l)}" displaycolor="${l.toUpperCase()}FF"/>`);i.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${j(n)}">`,"<mesh>","<vertices>");for(let l=0;l<r.length;l+=3)i.push(`<vertex x="${E(r[l])}" y="${E(r[l+1])}" z="${E(r[l+2])}"/>`);i.push("</vertices>","<triangles>");for(let l=0;l<s.length;l+=3)i.push(`<triangle v1="${s[l]}" v2="${s[l+1]}" v3="${s[l+2]}" pid="1" p1="${Math.max(0,e.levels[l/3])}"/>`);return i.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),i.join(`\n`)}function Se(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:ke(e,t.map(r=>r.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:Se(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,r=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return s=>s===-2?0:s<0?t.baseLayers*t.layerHeight:e[s]?r:n}function Yt(e,t,n,r,s,i){let l=t*n,u=[];if(i.baseLayers>0){let a=new Int16Array(l);for(let o=0;o<l;o++)e[o]!==-2&&(a[o]=i.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(l),top:a,level:new Int16Array(l)}})}for(let a=0;a<r;a++){let o=new Int16Array(l).fill(i.baseLayers),c=new Int16Array(l),m=new Int16Array(l).fill(a),f=i.baseLayers+(s[a]?Math.max(1,i.tileLayers-i.groutRecess):i.tileLayers),b=!1;for(let p=0;p<l;p++)e[p]===a&&(c[p]=f,b=!0);b&&u.push({part:a,solid:{bottom:o,top:c,level:m}})}return u}function Zt(e,t,n="prusa"){return n==="bambu"?Re(e,t):Ie(e,t)}function Re(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',r=(o,c)=>`${o.toString(16).padStart(8,"0")}-0000-4000-8000-${c.toString(16).padStart(12,"0")}`,s=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((o,c)=>{let m=o.mesh.vertices,f=o.mesh.triangles;s.push(`<object id="${c+1}" p:UUID="${r(1,c)}" type="model">`,"<mesh>","<vertices>");for(let b=0;b<m.length;b+=3)s.push(`<vertex x="${E(m[b])}" y="${E(m[b+1])}" z="${E(m[b+2])}"/>`);s.push("</vertices>","<triangles>");for(let b=0;b<f.length;b+=3)s.push(`<triangle v1="${f[b]}" v2="${f[b+1]}" v3="${f[b+2]}"/>`);s.push("</triangles>","</mesh>","</object>")}),s.push("</resources>","<build/>","</model>");let i=e.length+1,l="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${j(t)}</metadata>`,"<resources>",`<object id="${i}" p:UUID="${r(2,0)}" type="model">`,"<components>"];e.forEach((o,c)=>u.push(`<component p:path="${l}" objectid="${c+1}" p:UUID="${r(3,c)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${r(4,0)}">`,`<item objectid="${i}" p:UUID="${r(5,0)}" printable="1"/>`,"</build>","</model>");let a=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${i}">`,`<metadata key="name" value="${j(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((o,c)=>a.push(`<part id="${c+1}" subtype="normal_part">`,`<metadata key="name" value="${j(o.name)}"/>`,`<metadata key="extruder" value="${o.filament||c+1}"/>`,"</part>")),a.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",l)},{name:"3D/Objects/object_1.model",data:s.join(`\n`)},{name:"Metadata/model_settings.config",data:a.join(`\n`)}]}function Ie(e,t){let n=[],r=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${j(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let l of e)n.push(`<base name="${j(l.name)}" displaycolor="${l.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${j(t)}">`,"<mesh>","<vertices>");for(let l of e){let u=l.mesh.vertices;for(let a=0;a<u.length;a+=3)n.push(`<vertex x="${E(u[a])}" y="${E(u[a+1])}" z="${E(u[a+2])}"/>`)}n.push("</vertices>","<triangles>"),r.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${j(t)}"/>`);let s=0,i=0;return e.forEach((l,u)=>{let a=l.mesh.triangles,o=a.length/3;for(let c=0;c<a.length;c+=3)n.push(`<triangle v1="${a[c]+s}" v2="${a[c+1]+s}" v3="${a[c+2]+s}" pid="2" p1="${u}"/>`);r.push(`<volume firstid="${i}" lastid="${i+o-1}">`,`<metadata type="volume" key="name" value="${j(l.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${l.filament||u+1}"/>`,"</volume>"),s+=l.mesh.vertices.length/3,i+=o}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),r.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:r.join(`\n`)}]}function Vt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let r=t.vertices.length/3;for(let s of n.vertices)t.vertices.push(s);for(let s of n.triangles)t.triangles.push(s+r);for(let s of n.levels)t.levels.push(s)}return t}var K=null;function Be(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let r=n;for(let s=0;s<8;s++)r=r&1?3988292384^r>>>1:r>>>1;K[n]=r>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function $e(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,r=[],s=[],i=0;for(let m of e){let f=n.encode(m.name),b=typeof m.data=="string"?n.encode(m.data):m.data,p=Be(b),d=t?await $e(b):null,P=!!d&&d.length<b.length,A=P?d:b,v=new Uint8Array(30+f.length),w=new DataView(v.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,P?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,p,!0),w.setUint32(18,A.length,!0),w.setUint32(22,b.length,!0),w.setUint16(26,f.length,!0),v.set(f,30);let R=new Uint8Array(46+f.length),I=new DataView(R.buffer);I.setUint32(0,33639248,!0),I.setUint16(4,20,!0),I.setUint16(6,20,!0),I.setUint16(8,2048,!0),I.setUint16(10,P?8:0,!0),I.setUint16(12,0,!0),I.setUint16(14,33,!0),I.setUint32(16,p,!0),I.setUint32(20,A.length,!0),I.setUint32(24,b.length,!0),I.setUint16(28,f.length,!0),I.setUint32(42,i,!0),R.set(f,46),r.push(v,A),s.push(R),i+=v.length+A.length}let l=s.reduce((m,f)=>m+f.length,0),u=new Uint8Array(22),a=new DataView(u.buffer);a.setUint32(0,101010256,!0),a.setUint16(8,e.length,!0),a.setUint16(10,e.length,!0),a.setUint32(12,l,!0),a.setUint32(16,i,!0);let o=new Uint8Array(i+l+22),c=0;for(let m of[...r,...s,u])o.set(m,c),c+=m.length;return o}var Xt=2,Le=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),Fe=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,r,s,i,l,u,a){let o=s.filter(b=>i[b]>0),c={list:o,grid:new Int16Array(0),counts:[],lowered:0},m=Int16Array.from(e),f=0;for(let b=0;b<4;b++){a?.(b/4);let p=new Int16Array(l.length).fill(-1);o.forEach((w,R)=>{p[w]=R});let d=m.map(w=>w<0?-1:p[w]),P=u.mode==="flat"?Jt(o.map(w=>l[w]),Qt(u)):void 0,A=zt(d,t,n,r,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:P});f+=A.lowered;let v=o.map(()=>0);for(let w=0;w<A.grid.length;w++){let R=A.grid[w];R>=0&&v[R]++,m[w]=R<0?-1:o[R]}if(c={list:o,grid:A.grid,counts:v,lowered:f},v.every(w=>w>0))break;o=o.filter((w,R)=>v[R]>0)}return c}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,r,s){let i=Ot(e,t,n,{frame:s.frame/r,corner:s.corner/r,hole:s.hole/r},Xt/r),l=(s.magnet/2+Xt+s.corner*.3)/r;return{...i,mask:s.magnet>0?_t(i.w,i.h,s.magnet/r,l):null}}function ee(e,t,n){let r=t.length,s;if(n.mode==="flat")s=Yt(e.grid,e.w,e.h,r,t,Qt(n)),n.frame>0&&s.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(r,n),0)});else{let i=Gt(e.grid,W(n)),l=Kt(r,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(i.top[u]=l,i.level[u]=r-1);s=[{part:0,solid:i}]}return e.mask&&qt(s.map(i=>i.solid),e.mask,Fe(n.magnetDepth,n),Le),s}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Vt(ee(n,e.grout,t).map(r=>mt(r.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o:r}=e,s=te(n.grid,n.w,n.h,n.cell,r);t?.(.05);let i=ee(s,n.grout,r);t?.(.15);let l=i.map((o,c)=>{let m=mt(o.solid,s.w,s.h,n.cell,r.layerHeight);return t?.(.15+.7*(c+1)/i.length),m}),u=l.reduce((o,c)=>o+c.triangles.length/3,0),a=(o,c,m)=>({fileName:o,type:c,data:m,triangles:u,parts:l.length});if(r.mode==="flat"){let o=i.map((m,f)=>{let b=Math.max(0,m.part),p=e.colors[b];return{name:m.part===D?e.labels.frame:m.part<0?e.labels.base:`${m.part+1} ${p}`,color:p,mesh:l[f],filament:b+1}});if(e.kind==="3mf")return a(e.name+".3mf","model/3mf",await Q(Zt(o,e.name,e.slicer)));let c=i.map((m,f)=>({name:`${e.name}-${m.part===D?"frame":m.part<0?"base":`${m.part+1}-${e.colors[m.part].slice(1)}`}.stl`,data:new Uint8Array(ft(o[f].mesh,o[f].name))}));return a(e.name+"-stl.zip","application/zip",await Q(c))}return e.kind==="3mf"?a(e.name+".3mf","model/3mf",await Q(Nt(l[0],Dt(e.colors,W(r)),e.name))):a(e.name+".stl","model/stl",new Uint8Array(ft(l[0],e.name)))}function se(e,t,n,r,s){let i=(m,f)=>m<0||f<0||m>=t||f>=n?-1:e[f*t+m],l=t+1,u=(m,f)=>f*l+m,a=Array.from({length:r},()=>new Map),o=(m,f,b,p,d)=>{let P=a[m],A=u(f,b),v=P.get(A);v?v.push(u(p,d)):P.set(A,[u(p,d)])};for(let m=0;m<n;m++)for(let f=0;f<t;f++){s&&f===0&&m%64===0&&s(.5*m/n);let b=e[m*t+f];b<0||(i(f,m-1)!==b&&o(b,f+1,m,f,m),i(f-1,m)!==b&&o(b,f,m,f,m+1),i(f,m+1)!==b&&o(b,f,m+1,f+1,m+1),i(f+1,m)!==b&&o(b,f+1,m+1,f+1,m))}let c=[];for(let m=0;m<r;m++){s&&m%256===0&&s(.5+.5*m/r);let f=a[m],b=[];for(let[p]of f)for(;f.get(p)&&f.get(p).length;){let d=[p],P=p,A=oe(f,p,-1,l);for(;A!==p;){d.push(A);let v=oe(f,A,P,l);P=A,A=v}b.push(Ce(d,l))}c.push(b)}return c}function oe(e,t,n,r){let s=e.get(t),i=0;if(s.length>1&&n>=0){let u=t%r-n%r,a=Math.floor(t/r)-Math.floor(n/r),o=c=>{let m=c%r-t%r,f=Math.floor(c/r)-Math.floor(t/r);return m===a&&f===-u?0:m===u&&f===a?1:2};for(let c=1;c<s.length;c++)o(s[c])<o(s[i])&&(i=c)}let l=s[i];return s.splice(i,1),s.length||e.delete(t),l}function Ce(e,t){let n=e.map(i=>({x:i%t,y:Math.floor(i/t)})),r=n.length,s=[];for(let i=0;i<r;i++){let l=n[(i+r-1)%r],u=n[i],a=n[(i+1)%r];(u.x-l.x)*(a.y-u.y)-(u.y-l.y)*(a.x-u.x)!==0&&s.push(u)}return s}function bt(e){let t=0;for(let n=0,r=e.length;n<r;n++){let s=e[n],i=e[(n+1)%r];t+=s.x*i.y-i.x*s.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,r,s){let i=e.width,l=e.height,u=n/i,a=vt(e);s?.(.15);let o=new Int32Array(a.colors.length).fill(-1),c=[];a.colors.forEach((w,R)=>{w!==t&&(o[R]=c.length,c.push(w))});let m=a.labels.map(w=>w<0?-1:o[w]),f=se(m,i,l,c.length,s&&(w=>s(.15+.8*w))),b=[],p=w=>w.map(R=>`${tt(R.x*u)},${tt(R.y*u)}`).join(" ");f.forEach((w,R)=>{if(w.length===1)b.push(`<polygon points="${p(w[0])}" fill="${c[R]}" stroke="none"/>`);else{let y=[...w].sort((S,h)=>Math.abs(bt(h))-Math.abs(bt(S))).map(S=>"M"+p(S).replace(/ /g,"L")+"Z").join("");b.push(`<path d="${y}" fill="${c[R]}" fill-rule="evenodd" stroke="none"/>`)}});let d=tt(n),P=tt(l*u),A=[...new Set(Rt(a).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${d} ${P}" width="${d}mm" height="${P}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:A,paletteName:r,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${d}" height="${P}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${b.join(`\n`)}\n</g>\n</svg>`,tiles:c.length}}function Te({data:e,W:t,H:n,box:r}){return s=>{let i=Math.floor((s.x-r.x)/r.w*t),l=Math.floor((s.y-r.y)/r.h*n);if(i<0||l<0||i>=t||l>=n)return null;let u=(l*t+i)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Ee(e,t,n,r,s){let i=[];for(let u=0;u<5;u++)for(let a=0;a<5;a++){let o=e({x:t+r*(u+.5)/5,y:n+s*(a+.5)/5});o&&i.push(G(o))}if(i.length<2)return 0;let l=[0,1,2].map(u=>i.reduce((a,o)=>a+o[u],0)/i.length);return i.reduce((u,a)=>u+Math.hypot(a[0]-l[0],a[1]-l[1],a[2]-l[2]),0)/i.length}function Ge(e,t,n){let r=[];for(let s=0;s<70;s++)for(let i=0;i<70;i++){let l=e({x:t.x+t.w*(s+.5)/70,y:t.y+t.h*(i+.5)/70});l&&r.push(G(l))}return[...new Set(Tt(r,n,7).map(dt))]}function ae(e,t){Ut(e.eps);let n=Te(e.photo),r=e.page,s=[{x:r.x,y:r.y},{x:r.x+r.w,y:r.y},{x:r.x+r.w,y:r.y+r.h},{x:r.x,y:r.y+r.h}],i=4+(1-e.detail/100)*26,l=(o,c,m,f)=>Ee(n,o,c,m,f)>i,u=V({style:e.style,box:r,size:e.size,detail:e.detail/100,busy:l,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let a=Ct(u,[s],o=>Bt(o,s),e.eps);return t?.(.85),{tiles:u.length,lines:a,palette:e.suggest?Ge(n,e.photo.box,e.suggest):[]}}var ze=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=ze[t].exec(e);return n?+n[1]:null},De=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,Oe=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,r=0,s=!1,i=0,l=!1,u=!1,a=new Set,o=new Map,c=[],m=null;for(let f=0,b=0;f<e.length;b++){let p=e.indexOf(`\n`,f);p<0&&(p=e.length);let d=e.slice(f,p);f=p+1,t&&b%5e4===0&&t(f/e.length);let P=d.indexOf(";");if(P>=0){let v=De.exec(d.slice(P));v&&(u=Oe.test(v[1])),d=d.slice(0,P)}if(d=d.trim(),!d)continue;let A=d.split(/\\s/,1)[0].toUpperCase();if(A==="G0"||A==="G1"){let v=J(d,"Z"),w=J(d,"E");if(v!=null&&(n=v),w!=null){let R=s?w>0:w>r;if(s||(r=w),R&&!u&&(J(d,"X")!=null||J(d,"Y")!=null)){let I=Math.round(n*1e3)/1e3;a.add(I);let y=o.get(i);y?(y.from=Math.min(y.from,I),y.to=Math.max(y.to,I)):o.set(i,{from:I,to:I}),m&&(c.push({...m,z:I}),m=null),l=!0}}}else if(A==="G92"){let v=J(d,"E");v!=null&&(r=v)}else if(A==="M82")s=!1;else if(A==="M83")s=!0;else if(A==="M600")m={kind:"M600"};else if(/^T\\d+$/.test(A)){let v=+A.slice(1);l&&v!==i&&(m={kind:"tool",tool:v}),i=v}}return{layers:a.size,top:a.size?Math.max(...a):0,changes:c,tools:[...o].map(([f,b])=>({tool:f,...b})).sort((f,b)=>f.tool-b.tool)}}function _e(e){let t=new Uint8ClampedArray(256),n=Math.min(e.black,e.white-1),r=Math.max(e.white,n+1),s=e.contrast/100,i=s>=0?1/Math.max(.01,1-s):1+s,l=e.brightness/100*255;for(let u=0;u<256;u++){let a=Math.min(1,Math.max(0,(u-n)/(r-n)));a=Math.pow(a,1/e.gamma)*255,a=(a-128)*i+128+l,t[u]=Math.round(a)}return t}function ue(e,t,n,r){let s=Float32Array.from(e),i=new Float32Array(s.length);r=Math.max(1,Math.round(r));for(let l=0;l<3;l++){for(let u=0;u<n;u++){let a=u*t,o=0;for(let c=-r;c<=r;c++)o+=s[a+Math.min(t-1,Math.max(0,c))];for(let c=0;c<t;c++)i[a+c]=o/(2*r+1),o+=s[a+Math.min(t-1,c+r+1)]-s[a+Math.max(0,c-r)]}for(let u=0;u<t;u++){let a=0;for(let o=-r;o<=r;o++)a+=i[Math.min(n-1,Math.max(0,o))*t+u];for(let o=0;o<n;o++)s[o*t+u]=a/(2*r+1),a+=i[Math.min(n-1,o+r+1)*t+u]-i[Math.max(0,o-r)*t+u]}}return s}function ce(e,t){let n=[new Float32Array(t),new Float32Array(t),new Float32Array(t)];for(let r=0;r<t;r++)n[0][r]=e[r*4],n[1][r]=e[r*4+1],n[2][r]=e[r*4+2];return n}function qe(e,t,n,r){let s=t*n,i=ce(e,s),l=1+Math.round(r/40),u=6+r*.4,a=i.map(o=>ue(o,t,n,l));for(let o=0;o<s;o++){let c=Math.hypot(i[0][o]-a[0][o],i[1][o]-a[1][o],i[2][o]-a[2][o]),m=r/100*Math.exp(-(c*c)/(2*u*u));for(let f=0;f<3;f++)e[o*4+f]=i[f][o]+(a[f][o]-i[f][o])*m}}function He(e,t,n,r){let s=t*n,i=ce(e,s),l=r/100*1.5,u=i.map(a=>ue(a,t,n,1));for(let a=0;a<s;a++)for(let o=0;o<3;o++)e[a*4+o]=i[o][a]+(i[o][a]-u[o][a])*l}function me(e,t,n,r){let s=new Uint8ClampedArray(e);r.denoise>0&&qe(s,t,n,r.denoise);let i=_e(r),l=1+r.saturation/100;for(let u=0;u<s.length;u+=4){let a=i[s[u]],o=i[s[u+1]],c=i[s[u+2]];if(l!==1){let m=.299*a+.587*o+.114*c;a=m+(a-m)*l,o=m+(o-m)*l,c=m+(c-m)*l}s[u]=a,s[u+1]=o,s[u+2]=c}return r.sharpen>0&&He(s,t,n,r.sharpen),s}function Ne(e,t){let n=e.img,r=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!r)return At(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let s=4+(1-e.detail/100)*26,i=(a,o,c,m)=>kt(n,a,o,c,m)>s,l=e.shape==="brick"?e.tile/2:e.tile,u=V({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:l,detail:e.detail/100,busy:i,seed:7});return t(.5),St(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var fe={mosaic:(e,t)=>Ne(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t),adjust:e=>({width:e.img.width,height:e.img.height,data:me(e.img.data,e.img.width,e.img.height,e.adjust)})};function pt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let r of Object.values(e))pt(r,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:r}=e.data,s=0,i=l=>{let u=Date.now();u-s>100&&(s=u,gt({id:t,progress:l}))};try{let l=await fe[n](r,i);gt({id:t,result:l},pt(l))}catch(l){gt({id:t,error:String(l?.message||l)})}};})();\n';
+  var worker_source_default = '(()=>{var q=null,et=new Map;function be(e){if(e==null)return null;let t=String(e).trim();if(!t||t==="none")return null;if(et.has(t))return et.get(t);let n=t;/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(n)&&(n="#"+n);let o=null;return CSS.supports("color",n)&&!/^(inherit|initial|unset|revert|currentcolor)$/i.test(n)&&(q=q||document.createElement("canvas").getContext("2d"),q.fillStyle="#000",q.fillStyle=n,o=q.fillStyle),et.set(t,o),o}function nt(e){if(Array.isArray(e))return e;if(/^#[0-9a-f]{6}$/i.test(e))return[1,3,5].map(o=>parseInt(e.slice(o,o+2),16));let t=be(e);if(!t)return null;if(t[0]==="#")return[1,3,5].map(o=>parseInt(t.slice(o,o+2),16));let n=t.match(/[\\d.]+/g);return n?n.slice(0,3).map(Number):null}function G([e,t,n]){let o=g=>(g/=255,g<=.04045?g/12.92:Math.pow((g+.055)/1.055,2.4)),r=o(e),i=o(t),s=o(n),u=(r*.4124+i*.3576+s*.1805)/.95047,l=r*.2126+i*.7152+s*.0722,a=(r*.0193+i*.1192+s*.9505)/1.08883,m=g=>g>216/24389?Math.cbrt(g):(24389/27*g+16)/116,f=m(u),c=m(l),h=m(a);return[116*c-16,500*(f-c),200*(c-h)]}function xt([e,t,n]){let o=(e+16)/116,r=o+t/500,i=o-n/200,s=c=>c**3>216/24389?c**3:(116*c-16)/(24389/27),u=.95047*s(r),l=s(o),a=1.08883*s(i),m=c=>c<=.0031308?12.92*c:1.055*Math.pow(c,1/2.4)-.055;return"#"+[3.2406*u-1.5372*l-.4986*a,-.9689*u+1.8758*l+.0415*a,.0557*u-.204*l+1.057*a].map(c=>Math.round(Math.max(0,Math.min(1,m(c)))*255)).map(c=>c.toString(16).padStart(2,"0")).join("")}function dt(e,t,n){n=n||t.map(s=>G(nt(s)));let o=G(e),r=null,i=1/0;return t.forEach((s,u)=>{let l=n[u],a=(o[0]-l[0])**2+(o[1]-l[1])**2+(o[2]-l[2])**2;a<i&&(i=a,r=s)}),r}var Mt=(e,t)=>({width:e,height:t,data:new Uint8ClampedArray(e*t*4)});function wt(e){let t=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(e);return t?[parseInt(t[1],16),parseInt(t[2],16),parseInt(t[3],16)]:nt(e)}function Y(e,t=255){let n=e?wt(e):null;return n?[n[0],n[1],n[2],t]:[0,0,0,0]}var rt=e=>e.toString(16).padStart(2,"0"),st=(e,t,n)=>"#"+rt(e)+rt(t)+rt(n);function ot(e,t,n){e[t]=n[0],e[t+1]=n[1],e[t+2]=n[2],e[t+3]=n[3]}function Pt(e){let t=e.map(o=>G(wt(o))),n=new Map;return(o,r,i)=>{let s=o<<16|r<<8|i,u=n.get(s);return u||(u=dt([o,r,i],e,t),n.set(s,u)),u}}function At(e,t){let{width:n,height:o}=e,r=e.data,i=Mt(n,o),s=i.data,u=Math.max(2,Math.round(t.tile)),l=Math.min(u-1,Math.max(0,Math.round(t.grout))),a=t.palette&&t.palette.length?Pt(t.palette):null,m=Y(t.groutColor),f=new Map,c=0;for(let h=0,g=0;h<o;h+=u,g++){let d=t.bricks&&g%2?-Math.floor(u/2):0;for(let k=d;k<n;k+=u){let p=Math.max(0,k),y=Math.min(n,k+u),w=Math.min(o,h+u),v=0,R=0,P=0,S=0,b=0;for(let M=h;M<w-(w===h+u?l:0);M++)for(let I=p;I<Math.min(y,k+u-l);I++){let U=(M*n+I)*4;b++,!(r[U+3]<128)&&(v+=r[U],R+=r[U+1],P+=r[U+2],S++)}let x=S>0&&S>=b/2,A=[0,0,0,0];if(x){v=Math.round(v/S),R=Math.round(R/S),P=Math.round(P/S);let M=a?a(v,R,P):st(v,R,P);A=Y(M),f.set(M,(f.get(M)||0)+1),c++}for(let M=h;M<w;M++)for(let I=p;I<y;I++){let U=I>=k+u-l||M>=h+u-l;ot(s,(M*n+I)*4,U?x?m:[0,0,0,0]:A)}}}return{img:i,counts:f,tiles:c}}function vt(e){let{width:t,height:n,data:o}=e,r=t*n,i=new Int32Array(r).fill(-1),s=[],u=[],l=m=>o[m*4+3]<128?-1:o[m*4]<<16|o[m*4+1]<<8|o[m*4+2],a=[];for(let m=0;m<r;m++){if(i[m]>=0)continue;let f=l(m);if(f<0)continue;let c=s.length,h=0;for(i[m]=c,a.push(m);a.length;){let g=a.pop(),d=g%t;h++;for(let k of[d>0?g-1:-1,d<t-1?g+1:-1,g-t,g+t])k<0||k>=r||i[k]>=0||l(k)!==f||(i[k]=c,a.push(k))}s.push(st(f>>16,f>>8&255,f&255)),u.push(h)}return{labels:i,colors:s,sizes:u}}function kt(e,t,n,o,r){let i=[],s=e.data;for(let l=0;l<5;l++)for(let a=0;a<5;a++){let m=Math.floor(t+o*(l+.5)/5),f=Math.floor(n+r*(a+.5)/5);if(m<0||f<0||m>=e.width||f>=e.height)continue;let c=(f*e.width+m)*4;s[c+3]>=128&&i.push(G([s[c],s[c+1],s[c+2]]))}if(i.length<2)return 0;let u=[0,1,2].map(l=>i.reduce((a,m)=>a+m[l],0)/i.length);return i.reduce((l,a)=>l+Math.hypot(a[0]-u[0],a[1]-u[1],a[2]-u[2]),0)/i.length}function pe(e,t,n,o){let r=n.length,i=n.map(l=>l.y),s=Math.max(0,Math.floor(Math.min(...i))),u=Math.min(t-1,Math.ceil(Math.max(...i)));for(let l=s;l<=u;l++){let a=l+.5,m=[];for(let f=0;f<r;f++){let c=n[f],h=n[(f+1)%r];c.y<=a!=h.y<=a&&m.push(c.x+(a-c.y)*(h.x-c.x)/(h.y-c.y))}m.sort((f,c)=>f-c);for(let f=0;f+1<m.length;f+=2){let c=Math.max(0,Math.ceil(m[f]-.5)),h=Math.min(e-1,Math.floor(m[f+1]-.5));for(let g=c;g<=h;g++)o(l*e+g)}}}function St(e,t,n){let{width:o,height:r}=e,i=e.data,s=Mt(o,r),u=s.data,l=n.palette&&n.palette.length?Pt(n.palette):null,a=new Map,m=[],f=0;for(let h of t){let g=0,d=0,k=0,p=0,y=0,w=[];if(pe(o,r,h,P=>{w.push(P),y++;let S=P*4;i[S+3]<128||(g+=i[S],d+=i[S+1],k+=i[S+2],p++)}),!p||p<y/2)continue;g=Math.round(g/p),d=Math.round(d/p),k=Math.round(k/p);let v=l?l(g,d,k):st(g,d,k),R=Y(v);for(let P of w)ot(u,P*4,R);a.set(v,(a.get(v)||0)+1),f++,m.push(h)}let c=Math.max(0,n.grout)/2;if(c>0){let h=Y(n.groutColor);for(let g of m)for(let d=0;d<g.length;d++){let k=g[d],p=g[(d+1)%g.length],y=p.x-k.x,w=p.y-k.y,v=y*y+w*w||1,R=Math.max(0,Math.floor(Math.min(k.x,p.x)-c)),P=Math.min(o-1,Math.ceil(Math.max(k.x,p.x)+c)),S=Math.max(0,Math.floor(Math.min(k.y,p.y)-c)),b=Math.min(r-1,Math.ceil(Math.max(k.y,p.y)+c));for(let x=S;x<=b;x++)for(let A=R;A<=P;A++){let M=A+.5,I=x+.5,U=Math.max(0,Math.min(1,((M-k.x)*y+(I-k.y)*w)/v)),B=k.x+U*y-M,$=k.y+U*w-I;B*B+$*$<=c*c&&ot(u,(x*o+A)*4,h)}}}return{img:s,counts:a,tiles:f}}function It(e){let t=new Map;return e.colors.forEach((n,o)=>{let r=t.get(n)||{n:0,color:n,pieces:0,pixels:0};r.pieces++,r.pixels+=e.sizes[o],t.set(n,r)}),[...t.values()].sort((n,o)=>o.pixels-n.pixels).map((n,o)=>({...n,n:o+1}))}var ge=.01;function Ut(e){ge=e}var H=(e,t)=>Math.hypot(e.x-t.x,e.y-t.y),it=(e,t,n,o)=>e*o-t*n;function xe(e,t,n){let o=n.x-t.x,r=n.y-t.y,i=o*o+r*r,s=i?((e.x-t.x)*o+(e.y-t.y)*r)/i:0;return s=Math.max(0,Math.min(1,s)),{x:t.x+o*s,y:t.y+r*s,t:s}}function de(e,t,n,o){let r=t.x-e.x,i=t.y-e.y,s=o.x-n.x,u=o.y-n.y,l=it(r,i,s,u);if(Math.abs(l)<1e-12)return null;let a=n.x-e.x,m=n.y-e.y,f=it(a,m,s,u)/l,c=it(a,m,r,i)/l;return f<0||f>1||c<0||c>1?null:{x:e.x+r*f,y:e.y+i*f,t:f,u:c}}function Bt(e,t){let n=!1;for(let o=0,r=t.length-1;o<t.length;r=o++){let i=t[o],s=t[r];i.y>e.y!=s.y>e.y&&e.x<(s.x-i.x)*(e.y-i.y)/(s.y-i.y)+i.x&&(n=!n)}return n}function $t(e,t,n,o,r){let i=[];for(let s=0;s<e;s++){let u=r+s*2*Math.PI/e;i.push({x:t+o*Math.cos(u),y:n+o*Math.sin(u)})}return i}function at(e,t,n,o){let r=[0,1];for(let a of n)for(let m=0,f=a.length;m<f;m++){let c=de(e,t,a[m],a[(m+1)%f]);c&&r.push(c.t)}r.sort((a,m)=>a-m);let i=a=>({x:e.x+(t.x-e.x)*a,y:e.y+(t.y-e.y)*a}),s=[],u=null,l=0;for(let a=0;a+1<r.length;a++){let m=r[a],f=r[a+1];f-m<1e-9||(o(i((m+f)/2))?(u===null&&(u=m),l=f):u!==null&&(s.push({a:i(u),b:i(l)}),u=null))}return u!==null&&s.push({a:i(u),b:i(l)}),s}function lt(e,t){let n=1/0;for(let o of t)for(let r=0,i=o.length;r<i;r++)n=Math.min(n,H(e,xe(e,o[r],o[(r+1)%i])));return n}var V=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}],ct=e=>(e%2+2)%2===1,z=(e,t,n)=>[Math.floor(e/n)-1,Math.ceil(t/n)+1];function Lt(e,t,n){let o=[];if(e==="square"){let[r,i]=z(n.x0,n.x1,t),[s,u]=z(n.y0,n.y1,t);for(let l=r;l<=i;l++)for(let a=s;a<=u;a++)o.push(V(l*t,a*t,t,t))}else if(e==="brick"){let r=2*t,[i,s]=z(n.y0,n.y1,t);for(let u=i;u<=s;u++){let l=ct(u)?t:0,[a,m]=z(n.x0-l,n.x1-l,r);for(let f=a;f<=m;f++)o.push(V(l+f*r,u*t,r,t))}}else if(e==="hex"){let r=Math.sqrt(3)*t,i=1.5*t,[s,u]=z(n.y0,n.y1,i);for(let l=s;l<=u;l++){let a=ct(l)?r/2:0,[m,f]=z(n.x0-a,n.x1-a,r);for(let c=m;c<=f;c++)o.push($t(6,a+c*r,l*i,t,-Math.PI/2))}}else if(e==="triangle"){let r=t*Math.sqrt(3)/2,[i,s]=z(n.y0,n.y1,r);for(let u=i;u<=s;u++){let l=u*r,a=ct(u)?t/2:0,[m,f]=z(n.x0-a,n.x1-a,t);for(let c=m;c<=f;c++){let h=a+c*t;o.push([{x:h,y:l+r},{x:h+t/2,y:l},{x:h+t,y:l+r}]),o.push([{x:h+t/2,y:l},{x:h+1.5*t,y:l},{x:h+t,y:l+r}])}}}else if(e==="herringbone"){let r=[[n.x0,n.y0],[n.x1,n.y0],[n.x0,n.y1],[n.x1,n.y1]].map(([f,c])=>[f/t,c/t]),i=r.map(([f,c])=>(f+c)/4),s=r.map(([f,c])=>(f-c)/2),u=Math.floor(Math.min(...i))-2,l=Math.ceil(Math.max(...i))+2,a=Math.floor(Math.min(...s))-2,m=Math.ceil(Math.max(...s))+2;for(let f=u;f<=l;f++)for(let c=a;c<=m;c++)o.push(V((2*f+c)*t,(2*f-c)*t,t,2*t)),o.push(V((2*f+1+c)*t,(2*f+1-c)*t,2*t,t))}return o}function Ft(e,t){let n=new Map;for(let r of e){let i=r.b.x-r.a.x,s=r.b.y-r.a.y,u=Math.hypot(i,s);if(u<t)continue;i/=u,s/=u,(i<-1e-9||Math.abs(i)<=1e-9&&s<0)&&(i=-i,s=-s);let l=-s*r.a.x+i*r.a.y,a=Math.round(Math.atan2(s,i)*1e6)+"|"+Math.round(l/(t*10)),m=i*r.a.x+s*r.a.y,f=i*r.b.x+s*r.b.y;(n.get(a)||n.set(a,{dx:i,dy:s,off:l,list:[]}).get(a)).list.push([Math.min(m,f),Math.max(m,f)])}let o=[];for(let r of n.values()){r.list.sort((l,a)=>l[0]-a[0]);let i=l=>({x:r.dx*l-r.dy*r.off,y:r.dy*l+r.dx*r.off}),[s,u]=r.list[0];for(let l=1;l<=r.list.length;l++){let a=r.list[l];if(a&&a[0]<=u+t){u=Math.max(u,a[1]);continue}o.push({a:i(s),b:i(u)}),a&&([s,u]=a)}}return o}function jt(e){let t=e>>>0||1;return()=>{t=t+1831565813|0;let n=Math.imul(t^t>>>15,1|t);return n=n+Math.imul(n^n>>>7,61|n)^n,((n^n>>>14)>>>0)/4294967296}}var N=(e,t,n,o)=>[{x:e,y:t},{x:e+n,y:t},{x:e+n,y:t+o},{x:e,y:t+o}];function Me(e,t,n,o){let r=n?t*2:t,i=n?t/2:t,s=[],u=(l,a,m)=>{if(!(l>=e.x+e.w-1e-9||a>=e.y+e.h-1e-9))if(m>i*1.0001&&o(l,a,m,m)){let f=m/2;u(l,a,f),u(l+f,a,f),u(l,a+f,f),u(l+f,a+f,f)}else s.push({x:l,y:a,s:m})};for(let l=0;l*r<e.h;l++)for(let a=0;a*r<e.w;a++)u(e.x+a*r,e.y+l*r,r);return s}function we(e,t){let n=[];for(let o=0,r=e.length;o<r;o++){let i=e[o],s=e[(o+1)%r],u=t(i),l=t(s);if(u<=0&&n.push(i),u<0&&l>0||u>0&&l<0){let a=u/(u-l);n.push({x:i.x+(s.x-i.x)*a,y:i.y+(s.y-i.y)*a})}}return n}function Pe(e,t){let n=Math.sqrt(t.w*t.h/Math.max(1,e.length))||1,o=new Map,r=(s,u)=>s+","+u;e.forEach((s,u)=>{let l=r(Math.floor(s.x/n),Math.floor(s.y/n));(o.get(l)||o.set(l,[]).get(l)).push(u)});let i=Math.ceil(Math.max(t.w,t.h)/n)+1;return e.map((s,u)=>{let l=Math.floor(s.x/n),a=Math.floor(s.y/n),m=N(t.x,t.y,t.w,t.h),f=()=>Math.max(...m.map(c=>H(c,s)));for(let c=0;c<=i&&m.length>=3&&!((c-1)*n>2*f());c++){let h=[];for(let g=l-c;g<=l+c;g++)for(let d=a-c;d<=a+c;d++)if(Math.max(Math.abs(g-l),Math.abs(d-a))===c)for(let k of o.get(r(g,d))||[])k!==u&&h.push(k);h.sort((g,d)=>H(e[g],s)-H(e[d],s));for(let g of h){let d=e[g],k=d.x-s.x,p=d.y-s.y,y=(s.x+d.x)/2,w=(s.y+d.y)/2;if(m=we(m,v=>(v.x-y)*k+(v.y-w)*p),m.length<3)break}}return m}).filter(s=>s.length>=3)}function Z({style:e,box:t,size:n,detail:o=0,busy:r=()=>!1,seed:i=1}){let s=o>0;if(e==="hex"){let l=n/Math.sqrt(3);return Lt("hex",l,{x0:-l,y0:-l,x1:t.w+l,y1:t.h+l}).map(a=>a.map(m=>({x:m.x+t.x,y:m.y+t.y})))}if(e==="brick"){let l=[];for(let a=0;a*n<t.h;a++){let m=a%2?-n:0;for(let f=t.x+m;f<t.x+t.w;f+=2*n){let c=t.y+a*n;s&&r(f,c,2*n,n)?l.push(N(f,c,n,n),N(f+n,c,n,n)):l.push(N(f,c,2*n,n))}}return l}let u=Me(t,n,s,r);if(e==="irregular"){let l=jt(i),a=u.map(m=>({x:m.x+m.s*(.5+(l()-.5)*.7),y:m.y+m.s*(.5+(l()-.5)*.7)})).filter(m=>m.x>=t.x&&m.y>=t.y&&m.x<=t.x+t.w&&m.y<=t.y+t.h);return Pe(a,t)}return u.map(l=>N(l.x,l.y,l.s,l.s))}function Ct(e,t,n,o){let r=o*10,i=a=>Math.round(a.x/r)+","+Math.round(a.y/r),s=new Set,u=[],l=a=>n(a)&&lt(a,t)>o*20;for(let a of e)for(let m=0;m<a.length;m++){let f=a[m],c=a[(m+1)%a.length],h=i(f),g=i(c),d=h<g?h+"|"+g:g+"|"+h;h===g||s.has(d)||(s.add(d),u.push(...at(f,c,t,l)))}return Ft(u,o)}function Tt(e,t,n=1,o=16){if(!e.length)return[];t=Math.min(t,e.length);let r=jt(n),i=(l,a)=>(l[0]-a[0])**2+(l[1]-a[1])**2+(l[2]-a[2])**2,s=[e[Math.floor(r()*e.length)]];for(;s.length<t;){let l=e.map(f=>Math.min(...s.map(c=>i(f,c)))),a=r()*l.reduce((f,c)=>f+c,0),m=0;for(;m<e.length-1&&(a-=l[m])>0;)m++;s.push(e[m])}let u=[];for(let l=0;l<o;l++){let a=s.map(()=>[0,0,0]);u=s.map(()=>0);for(let m of e){let f=0,c=1/0;s.forEach((h,g)=>{let d=i(m,h);d<c&&(c=d,f=g)}),a[f][0]+=m[0],a[f][1]+=m[1],a[f][2]+=m[2],u[f]++}s.forEach((m,f)=>{u[f]&&(s[f]=a[f].map(c=>c/u[f]))})}return s.map((l,a)=>({c:l,n:u[a]})).sort((l,a)=>a.n-l.n).map(l=>l.c)}var _=(e,t)=>t.baseLayers+(e+1)*t.layersPerColor;function Ae(e,t,n){let o=new Uint8Array(t*n),r=[];for(let i=0;i<n;i++)for(let s=0;s<t;s++){let u=i*t+s,l=e[u];if(l<0||o[u])continue;let a=1;for(;s+a<t&&e[u+a]===l&&!o[u+a];)a++;let m=1;t:for(;i+m<n;){let f=(i+m)*t+s;for(let c=0;c<a;c++)if(e[f+c]!==l||o[f+c])break t;m++}for(let f=i;f<i+m;f++)o.fill(1,f*t+s,f*t+s+a);r.push({x:s,y:i,w:a,h:m,level:l})}return r}function ve(e,t){let n=new Int16Array(e.length);for(let o=0;o<e.length;o++)n[o]=e[o]===-2?0:e[o]<0?t.baseLayers:_(e[o],t);return n}function Gt(e,t){let n=e.length,o=ve(e,t),r=new Int16Array(n);for(let i=0;i<n;i++)r[i]=Math.max(0,e[i]);return{bottom:new Int16Array(n),top:o,level:r}}function mt(e,t,n,o,r){let i=(b,x)=>b>=0&&x>=0&&b<t&&x<n,s=(b,x)=>i(b,x)?e.bottom[x*t+b]:0,u=(b,x)=>{if(!i(b,x))return 0;let A=x*t+b;return e.top[A]>e.bottom[A]?e.top[A]:e.bottom[A]},l=(b,x)=>u(b,x)>s(b,x),a=(b,x)=>i(b,x)?e.level[x*t+b]:0,m=[],f=b=>n-b,c=new Int16Array(t*n),h=b=>{let x=new Map,A=[];for(let M=0;M<n;M++)for(let I=0;I<t;I++){let U=M*t+I;if(!l(I,M)){c[U]=-1;continue}let B=b(I,M)*4096+a(I,M),$=x.get(B);$==null&&($=A.length,x.set(B,$),A.push(B)),c[U]=$}return{rs:Ae(c,t,n),vals:A}};{let{rs:b,vals:x}=h(u);for(let A of b){let M=x[A.level];m.push({o:[A.x,f(A.y+A.h),Math.floor(M/4096)],u:[A.w,0,0],v:[0,A.h,0],level:M%4096})}}{let{rs:b,vals:x}=h(s);for(let A of b){let M=x[A.level];m.push({o:[A.x,f(A.y+A.h),Math.floor(M/4096)],u:[0,A.h,0],v:[A.w,0,0],level:M%4096})}}let g=(b,x,A,M)=>{if(x<=b)return[];if(M<=A||M<=b||A>=x)return[[b,x]];let I=[];return A>b&&I.push([b,A]),M<x&&I.push([M,x]),I},d=(b,x)=>l(b,x)?[s(b,x),u(b,x)]:[0,0];for(let b=0;b<=n;b++)for(let x=0;x<t;){let[A,M]=d(x,b-1),[I,U]=d(x,b);if(A===I&&M===U){x++;continue}let B=x+1;for(;B<t;B++){let[L,F]=d(B,b-1),[j,T]=d(B,b);if(L!==A||F!==M||j!==I||T!==U)break}let $=f(b);for(let[L,F]of g(A,M,I,U))m.push({o:[x,$,L],u:[B-x,0,0],v:[0,0,F-L],level:a(x,b-1)});for(let[L,F]of g(I,U,A,M))m.push({o:[x,$,L],u:[0,0,F-L],v:[B-x,0,0],level:a(x,b)});x=B}for(let b=0;b<=t;b++)for(let x=n-1;x>=0;){let[A,M]=d(b-1,x),[I,U]=d(b,x);if(A===I&&M===U){x--;continue}let B=x-1;for(;B>=0;B--){let[F,j]=d(b-1,B),[T,O]=d(b,B);if(F!==A||j!==M||T!==I||O!==U)break}let $=f(x+1),L=x-B;for(let[F,j]of g(I,U,A,M))m.push({o:[b,$,F],u:[0,0,j-F],v:[0,L,0],level:a(b,x)});for(let[F,j]of g(A,M,I,U))m.push({o:[b,$,F],u:[0,L,0],v:[0,0,j-F],level:a(b-1,x)});x=B}let k=[new Map,new Map,new Map],p=(b,x,A)=>b.o.map((M,I)=>M+x*b.u[I]+A*b.v[I]),y=(b,x)=>x===0?b[1]*1e5+b[2]:x===1?b[0]*1e5+b[2]:b[0]*1e5+b[1];for(let b of m)for(let[x,A]of[[0,0],[1,0],[1,1],[0,1]]){let M=p(b,x,A);for(let I=0;I<3;I++){let U=y(M,I),B=k[I].get(U);B||k[I].set(U,B=[]),B.push(M[I])}}for(let b of k)for(let[x,A]of b)b.set(x,[...new Set(A)].sort((M,I)=>M-I));let w=[],v=[],R=[],P=new Map,S=b=>{let x=(b[0]*2e5+b[1]*2)*2e5+b[2]*2,A=P.get(x);return A==null&&(A=w.length/3,P.set(x,A),w.push(b[0]*o,b[1]*o,b[2]*r)),A};for(let b of m){let x=[p(b,0,0),p(b,1,0),p(b,1,1),p(b,0,1)],A=[];for(let I=0;I<4;I++){let U=x[I],B=x[(I+1)%4],$=U.findIndex((T,O)=>T!==B[O]);A.push(U);let L=Math.min(U[$],B[$]),F=Math.max(U[$],B[$]),j=(k[$].get(y(U,$))||[]).filter(T=>T>L&&T<F);U[$]>B[$]&&j.reverse();for(let T of j){let O=[...U];O[$]=T,A.push(O)}}let M=A.map(S);if(M.length===4)v.push(M[0],M[1],M[2],M[0],M[2],M[3]),R.push(b.level,b.level);else{let I=S(p(b,.5,.5));for(let U=0;U<M.length;U++)v.push(I,M[U],M[(U+1)%M.length]),R.push(b.level)}}return{vertices:w,triangles:v,levels:R}}function zt(e,t,n,o,r,i){let s=Int16Array.from(e),u=t*n,l=new Int32Array(u),a=new Float32Array(u),m=i.heightOf||(c=>c===-2?0:(c<0?r.baseLayers:_(c,r))*r.layerHeight),f=0;for(let c=0;c<12;c++){l.fill(-1);let h=[],g=[];for(let P=0;P<u;P++){if(l[P]>=0)continue;let S=h.length,b=s[P];for(h.push(b),l[P]=S,g.push(P);g.length;){let x=g.pop(),A=x%t;for(let M of[A>0?x-1:-1,A<t-1?x+1:-1,x-t,x+t])M<0||M>=u||l[M]>=0||s[M]!==b||(l[M]=S,g.push(M))}}let d=Math.SQRT2;for(let P=0;P<u;P++){let S=P%t,b=P/t|0,x=l[P],A=S===0||b===0||S===t-1||b===n-1||l[P-1]!==x||l[P+1]!==x||l[P-t]!==x||l[P+t]!==x;a[P]=A?1:1e9}for(let P=0;P<n;P++)for(let S=0;S<t;S++){let b=P*t+S;a[b]<=1||(a[b]=Math.min(a[b],a[b-1]+1,a[b-t]+1,a[b-t-1]+d,a[b-t+1]+d))}for(let P=n-1;P>=0;P--)for(let S=t-1;S>=0;S--){let b=P*t+S;a[b]<=1||(a[b]=Math.min(a[b],a[b+1]+1,a[b+t]+1,a[b+t+1]+d,a[b+t-1]+d))}let k=new Float32Array(h.length);for(let P=0;P<u;P++)a[P]>k[l[P]]&&(k[l[P]]=a[P]);let p=h.map(()=>new Map),y=new Float64Array(h.length).fill(1/0),w=(P,S)=>{let b=l[P],x=l[S];if(b===x)return;let A=s[P],M=s[S];y[b]=Math.min(y[b],m(M)),y[x]=Math.min(y[x],m(A)),M<A&&p[b].set(M,(p[b].get(M)||0)+1),A<M&&p[x].set(A,(p[x].get(A)||0)+1)};for(let P=0;P<n;P++)for(let S=0;S<t;S++){let b=P*t+S;S<t-1&&w(b,b+1),P<n-1&&w(b,b+t)}let v=new Int16Array(h.length).fill(-32768),R=0;if(h.forEach((P,S)=>{let b=m(P)-y[S];if(!(b>1e-9)||!p[S].size)return;let x=Math.max(1,2*k[S]-1)*o;if(x>=i.minWidth&&b<=i.maxRatio*x)return;let A=-2,M=-1;for(let[I,U]of p[S])(U>M||U===M&&I>A)&&(A=I,M=U);v[S]=A,R++}),!R)break;for(let P=0;P<u;P++){let S=v[l[P]];S!==-32768&&(s[P]=S)}f+=R}return{grid:s,lowered:f}}function ft(e,t="Mosaic Paint"){let n=e.vertices,o=e.triangles,r=o.length/3,i=new ArrayBuffer(84+r*50),s=new DataView(i),u=`${t} – multi-color by layer`.slice(0,80);for(let a=0;a<u.length;a++)s.setUint8(a,u.charCodeAt(a)&127);s.setUint32(80,r,!0);let l=84;for(let a=0;a<r;a++){let m=[0,1,2].map(R=>o[a*3+R]*3),f=n[m[1]]-n[m[0]],c=n[m[1]+1]-n[m[0]+1],h=n[m[1]+2]-n[m[0]+2],g=n[m[2]]-n[m[0]],d=n[m[2]+1]-n[m[0]+1],k=n[m[2]+2]-n[m[0]+2],p=c*k-h*d,y=h*g-f*k,w=f*d-c*g,v=Math.hypot(p,y,w)||1;p/=v,y/=v,w/=v;for(let R of[p,y,w])s.setFloat32(l,R,!0),l+=4;for(let R of m)for(let P=0;P<3;P++)s.setFloat32(l,n[R+P],!0),l+=4;s.setUint16(l,0,!0),l+=2}return i}function Dt(e,t){return e.map((n,o)=>{let r=o===0?1:_(o-1,t)+1,i=_(o,t);return{color:n,fromLayer:r,toLayer:i,changeAtLayer:o===0?null:r,z:o===0?null:+(r*t.layerHeight).toFixed(3)}})}var D=-3,ke=(e,t)=>Math.max(e.hole/2+t,e.frame/2);function Ot(e,t,n,o,r){let i=Math.max(0,Math.round(o.frame)),s=t+2*i,u=n+2*i,l=new Int16Array(s*u).fill(D);for(let c=0;c<n;c++)for(let h=0;h<t;h++)l[(c+i)*s+h+i]=e[c*t+h];let a=Math.min(o.corner,s/2,u/2),m=o.hole/2,f=ke(o,r);for(let c=0;c<u;c++)for(let h=0;h<s;h++){let g=h+.5,d=c+.5;if(a>0){let k=g<a?a:g>s-a?s-a:g,p=d<a?a:d>u-a?u-a:d;if((g-k)**2+(d-p)**2>a*a){l[c*s+h]=-2;continue}}m>0&&(g-s/2)**2+(d-f)**2<=m*m&&(l[c*s+h]=-2)}return{grid:l,w:s,h:u}}function _t(e,t,n,o){let r=new Uint8Array(e*t),i=n/2;if(i<=0)return r;let s=[o,e-o],u=[o,t-o];for(let l of s)for(let a of u)for(let m=Math.max(0,Math.floor(a-i));m<Math.min(t,Math.ceil(a+i));m++)for(let f=Math.max(0,Math.floor(l-i));f<Math.min(e,Math.ceil(l+i));f++)(f+.5-l)**2+(m+.5-a)**2<=i*i&&(r[m*e+f]=1);return r}function qt(e,t,n,o=2){let r=n;for(let i=0;i<t.length;i++){if(!t[i])continue;let s=0;for(let u of e)u.top[i]>u.bottom[i]&&(s=Math.max(s,u.top[i]));s>0&&(r=Math.min(r,s-o))}if(r=Math.max(0,r),!r)return 0;for(let i=0;i<t.length;i++)if(t[i])for(let s of e)s.top[i]>s.bottom[i]&&s.bottom[i]<r&&(s.bottom[i]=r,s.top[i]<r&&(s.top[i]=r));return r}function Ht(e,t,n,o){let r=e.length,i={bottom:new Int16Array(r).fill(t),top:new Int16Array(r),level:new Int16Array(r).fill(o)};for(let s=0;s<r;s++)e[s]===D&&(i.top[s]=n);return i}var C=e=>e.replace(/[&<>"]/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",\'"\':"&quot;"})[t]),E=e=>String(+e.toFixed(4)),ht=`<?xml version="1.0" encoding="UTF-8"?>\n<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="model" ContentType="application/vnd.ms-package.3dmanufacturing-3dmodel+xml"/><Default Extension="xml" ContentType="application/xml"/></Types>`,X=`<?xml version="1.0" encoding="UTF-8"?>\n<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Target="/3D/3dmodel.model" Id="rel0" Type="http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel"/></Relationships>`;function Se(e,t,n){let o=e.vertices,r=e.triangles,i=[];i.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${C(n)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="1">\');for(let s of t)i.push(`<base name="${C(s)}" displaycolor="${s.toUpperCase()}FF"/>`);i.push("</basematerials>",`<object id="2" type="model" pid="1" pindex="0" name="${C(n)}">`,"<mesh>","<vertices>");for(let s=0;s<o.length;s+=3)i.push(`<vertex x="${E(o[s])}" y="${E(o[s+1])}" z="${E(o[s+2])}"/>`);i.push("</vertices>","<triangles>");for(let s=0;s<r.length;s+=3)i.push(`<triangle v1="${r[s]}" v2="${r[s+1]}" v3="${r[s+2]}" pid="1" p1="${Math.max(0,e.levels[s/3])}"/>`);return i.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="2"/>\',"</build>","</model>"),i.join(`\n`)}function Ie(e){return[\'<?xml version="1.0" encoding="utf-8"?>\',"<custom_gcodes_per_print_z>",...e.filter(t=>t.z!=null).map(t=>`<code print_z="${t.z}" type="0" extruder="1" color="${t.color}" extra="" gcode="M600"/>`),\'<mode value="SingleExtruder"/>\',"</custom_gcodes_per_print_z>"].join(`\n`)}function Nt(e,t,n){return[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:Se(e,t.map(o=>o.color),n)},{name:"Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml",data:Ie(t)}]}function Jt(e,t){let n=(t.baseLayers+t.tileLayers)*t.layerHeight,o=(t.baseLayers+Math.max(1,t.tileLayers-t.groutRecess))*t.layerHeight;return r=>r===-2?0:r<0?t.baseLayers*t.layerHeight:e[r]?o:n}function Yt(e,t,n,o,r,i){let s=t*n,u=[];if(i.baseLayers>0){let l=new Int16Array(s);for(let a=0;a<s;a++)e[a]!==-2&&(l[a]=i.baseLayers);u.push({part:-1,solid:{bottom:new Int16Array(s),top:l,level:new Int16Array(s)}})}for(let l=0;l<o;l++){let a=new Int16Array(s).fill(i.baseLayers),m=new Int16Array(s),f=new Int16Array(s).fill(l),c=i.baseLayers+(r[l]?Math.max(1,i.tileLayers-i.groutRecess):i.tileLayers),h=!1;for(let g=0;g<s;g++)e[g]===l&&(m[g]=c,h=!0);h&&u.push({part:l,solid:{bottom:a,top:m,level:f}})}return u}function Vt(e,t,n="prusa"){return n==="bambu"?Re(e,t):Ue(e,t)}function Re(e,t){let n=\'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" xmlns:BambuStudio="http://schemas.bambulab.com/package/2021" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" requiredextensions="p"\',o=(a,m)=>`${a.toString(16).padStart(8,"0")}-0000-4000-8000-${m.toString(16).padStart(12,"0")}`,r=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',"<resources>"];e.forEach((a,m)=>{let f=a.mesh.vertices,c=a.mesh.triangles;r.push(`<object id="${m+1}" p:UUID="${o(1,m)}" type="model">`,"<mesh>","<vertices>");for(let h=0;h<f.length;h+=3)r.push(`<vertex x="${E(f[h])}" y="${E(f[h+1])}" z="${E(f[h+2])}"/>`);r.push("</vertices>","<triangles>");for(let h=0;h<c.length;h+=3)r.push(`<triangle v1="${c[h]}" v2="${c[h+1]}" v3="${c[h+2]}"/>`);r.push("</triangles>","</mesh>","</object>")}),r.push("</resources>","<build/>","</model>");let i=e.length+1,s="/3D/Objects/object_1.model",u=[\'<?xml version="1.0" encoding="UTF-8"?>\',`<model unit="millimeter" xml:lang="en-US" ${n}>`,\'<metadata name="Application">Mosaic Paint</metadata>\',\'<metadata name="BambuStudio:3mfVersion">1</metadata>\',`<metadata name="Title">${C(t)}</metadata>`,"<resources>",`<object id="${i}" p:UUID="${o(2,0)}" type="model">`,"<components>"];e.forEach((a,m)=>u.push(`<component p:path="${s}" objectid="${m+1}" p:UUID="${o(3,m)}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>`)),u.push("</components>","</object>","</resources>",`<build p:UUID="${o(4,0)}">`,`<item objectid="${i}" p:UUID="${o(5,0)}" printable="1"/>`,"</build>","</model>");let l=[\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",`<object id="${i}">`,`<metadata key="name" value="${C(t)}"/>`,\'<metadata key="extruder" value="1"/>\'];return e.forEach((a,m)=>l.push(`<part id="${m+1}" subtype="normal_part">`,`<metadata key="name" value="${C(a.name)}"/>`,`<metadata key="extruder" value="${a.filament||m+1}"/>`,"</part>")),l.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:u.join(`\n`)},{name:"3D/_rels/3dmodel.model.rels",data:X.replace("/3D/3dmodel.model",s)},{name:"3D/Objects/object_1.model",data:r.join(`\n`)},{name:"Metadata/model_settings.config",data:l.join(`\n`)}]}function Ue(e,t){let n=[],o=[];n.push(\'<?xml version="1.0" encoding="UTF-8"?>\',\'<model unit="millimeter" xml:lang="en-US" xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02">\',`<metadata name="Title">${C(t)}</metadata>`,\'<metadata name="Application">Mosaic Paint</metadata>\',"<resources>",\'<basematerials id="2">\');for(let s of e)n.push(`<base name="${C(s.name)}" displaycolor="${s.color.toUpperCase()}FF"/>`);n.push("</basematerials>",`<object id="1" type="model" pid="2" pindex="0" name="${C(t)}">`,"<mesh>","<vertices>");for(let s of e){let u=s.mesh.vertices;for(let l=0;l<u.length;l+=3)n.push(`<vertex x="${E(u[l])}" y="${E(u[l+1])}" z="${E(u[l+2])}"/>`)}n.push("</vertices>","<triangles>"),o.push(\'<?xml version="1.0" encoding="UTF-8"?>\',"<config>",\'<object id="1" instances_count="1">\',`<metadata type="object" key="name" value="${C(t)}"/>`);let r=0,i=0;return e.forEach((s,u)=>{let l=s.mesh.triangles,a=l.length/3;for(let m=0;m<l.length;m+=3)n.push(`<triangle v1="${l[m]+r}" v2="${l[m+1]+r}" v3="${l[m+2]+r}" pid="2" p1="${u}"/>`);o.push(`<volume firstid="${i}" lastid="${i+a-1}">`,`<metadata type="volume" key="name" value="${C(s.name)}"/>`,\'<metadata type="volume" key="volume_type" value="ModelPart"/>\',`<metadata type="volume" key="extruder" value="${s.filament||u+1}"/>`,"</volume>"),r+=s.mesh.vertices.length/3,i+=a}),n.push("</triangles>","</mesh>","</object>","</resources>","<build>",\'<item objectid="1"/>\',"</build>","</model>"),o.push("</object>","</config>"),[{name:"[Content_Types].xml",data:ht},{name:"_rels/.rels",data:X},{name:"3D/3dmodel.model",data:n.join(`\n`)},{name:"Metadata/Slic3r_PE_model.config",data:o.join(`\n`)}]}function Zt(e){let t={vertices:[],triangles:[],levels:[]};for(let n of e){let o=t.vertices.length/3;for(let r of n.vertices)t.vertices.push(r);for(let r of n.triangles)t.triangles.push(r+o);for(let r of n.levels)t.levels.push(r)}return t}var K=null;function $e(e){if(!K){K=new Uint32Array(256);for(let n=0;n<256;n++){let o=n;for(let r=0;r<8;r++)o=o&1?3988292384^o>>>1:o>>>1;K[n]=o>>>0}}let t=4294967295;for(let n=0;n<e.length;n++)t=K[(t^e[n])&255]^t>>>8;return(t^4294967295)>>>0}async function Le(e){if(typeof CompressionStream>"u")return null;try{let t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw"));return new Uint8Array(await new Response(t).arrayBuffer())}catch{return null}}async function Q(e,{compress:t=!0}={}){let n=new TextEncoder,o=[],r=[],i=0;for(let f of e){let c=n.encode(f.name),h=typeof f.data=="string"?n.encode(f.data):f.data,g=$e(h),d=t?await Le(h):null,k=!!d&&d.length<h.length,p=k?d:h,y=new Uint8Array(30+c.length),w=new DataView(y.buffer);w.setUint32(0,67324752,!0),w.setUint16(4,20,!0),w.setUint16(6,2048,!0),w.setUint16(8,k?8:0,!0),w.setUint16(10,0,!0),w.setUint16(12,33,!0),w.setUint32(14,g,!0),w.setUint32(18,p.length,!0),w.setUint32(22,h.length,!0),w.setUint16(26,c.length,!0),y.set(c,30);let v=new Uint8Array(46+c.length),R=new DataView(v.buffer);R.setUint32(0,33639248,!0),R.setUint16(4,20,!0),R.setUint16(6,20,!0),R.setUint16(8,2048,!0),R.setUint16(10,k?8:0,!0),R.setUint16(12,0,!0),R.setUint16(14,33,!0),R.setUint32(16,g,!0),R.setUint32(20,p.length,!0),R.setUint32(24,h.length,!0),R.setUint16(28,c.length,!0),R.setUint32(42,i,!0),v.set(c,46),o.push(y,p),r.push(v),i+=y.length+p.length}let s=r.reduce((f,c)=>f+c.length,0),u=new Uint8Array(22),l=new DataView(u.buffer);l.setUint32(0,101010256,!0),l.setUint16(8,e.length,!0),l.setUint16(10,e.length,!0),l.setUint32(12,s,!0),l.setUint32(16,i,!0);let a=new Uint8Array(i+s+22),m=0;for(let f of[...o,...r,u])a.set(f,m),m+=f.length;return a}var Xt=2,Fe=2,W=e=>({layerHeight:e.layerHeight,layersPerColor:e.layersPerColor,baseLayers:e.baseLayers}),Qt=e=>({layerHeight:e.layerHeight,baseLayers:e.baseLayers,tileLayers:e.tileLayers,groutRecess:Math.min(e.groutRecess,e.tileLayers-1)}),je=(e,t)=>Math.max(1,Math.round(e/t.layerHeight));function Wt(e,t,n,o,r,i,s,u,l){let a=r.filter(h=>i[h]>0),m={list:a,grid:new Int16Array(0),counts:[],lowered:0},f=Int16Array.from(e),c=0;for(let h=0;h<4;h++){l?.(h/4);let g=new Int16Array(s.length).fill(-1);a.forEach((w,v)=>{g[w]=v});let d=f.map(w=>w<0?-1:g[w]),k=u.mode==="flat"?Jt(a.map(w=>s[w]),Qt(u)):void 0,p=zt(d,t,n,o,W(u),{minWidth:u.minWidth,maxRatio:u.maxRatio,heightOf:k});c+=p.lowered;let y=a.map(()=>0);for(let w=0;w<p.grid.length;w++){let v=p.grid[w];v>=0&&y[v]++,f[w]=v<0?-1:a[v]}if(m={list:a,grid:p.grid,counts:y,lowered:c},y.every(w=>w>0))break;a=a.filter((w,v)=>y[v]>0)}return m}var Kt=(e,t)=>(t.mode==="flat"?t.baseLayers+t.tileLayers:_(Math.max(0,e-1),W(t)))+t.frameRaise;function te(e,t,n,o,r){let i=Ot(e,t,n,{frame:r.frame/o,corner:r.corner/o,hole:r.hole/o},Xt/o),s=(r.magnet/2+Xt+r.corner*.3)/o;return{...i,mask:r.magnet>0?_t(i.w,i.h,r.magnet/o,s):null}}function ee(e,t,n){let o=t.length,r;if(n.mode==="flat")r=Yt(e.grid,e.w,e.h,o,t,Qt(n)),n.frame>0&&r.splice(n.baseLayers?1:0,0,{part:D,solid:Ht(e.grid,n.baseLayers,Kt(o,n),0)});else{let i=Gt(e.grid,W(n)),s=Kt(o,n);for(let u=0;u<e.grid.length;u++)e.grid[u]===D&&(i.top[u]=s,i.level[u]=o-1);r=[{part:0,solid:i}]}return e.mask&&qt(r.map(i=>i.solid),e.mask,je(n.magnetDepth,n),Fe),r}function ne(e,t){let n=te(e.grid,e.w,e.h,e.cell,t);return Zt(ee(n,e.grout,t).map(o=>mt(o.solid,n.w,n.h,e.cell,t.layerHeight)))}async function re(e,t){let{shape:n,o}=e,r=te(n.grid,n.w,n.h,n.cell,o);t?.(.05);let i=ee(r,n.grout,o);t?.(.15);let s=i.map((a,m)=>{let f=mt(a.solid,r.w,r.h,n.cell,o.layerHeight);return t?.(.15+.7*(m+1)/i.length),f}),u=s.reduce((a,m)=>a+m.triangles.length/3,0),l=(a,m,f)=>({fileName:a,type:m,data:f,triangles:u,parts:s.length});if(o.mode==="flat"){let a=i.map((f,c)=>{let h=Math.max(0,f.part),g=e.colors[h];return{name:f.part===D?e.labels.frame:f.part<0?e.labels.base:`${f.part+1} ${g}`,color:g,mesh:s[c],filament:h+1}});if(e.kind==="3mf")return l(e.name+".3mf","model/3mf",await Q(Vt(a,e.name,e.slicer)));let m=i.map((f,c)=>({name:`${e.name}-${f.part===D?"frame":f.part<0?"base":`${f.part+1}-${e.colors[f.part].slice(1)}`}.stl`,data:new Uint8Array(ft(a[c].mesh,a[c].name))}));return l(e.name+"-stl.zip","application/zip",await Q(m))}return e.kind==="3mf"?l(e.name+".3mf","model/3mf",await Q(Nt(s[0],Dt(e.colors,W(o)),e.name))):l(e.name+".stl","model/stl",new Uint8Array(ft(s[0],e.name)))}function se(e,t,n,o,r){let i=(f,c)=>f<0||c<0||f>=t||c>=n?-1:e[c*t+f],s=t+1,u=(f,c)=>c*s+f,l=Array.from({length:o},()=>new Map),a=(f,c,h,g,d)=>{let k=l[f],p=u(c,h),y=k.get(p);y?y.push(u(g,d)):k.set(p,[u(g,d)])};for(let f=0;f<n;f++)for(let c=0;c<t;c++){r&&c===0&&f%64===0&&r(.5*f/n);let h=e[f*t+c];h<0||(i(c,f-1)!==h&&a(h,c+1,f,c,f),i(c-1,f)!==h&&a(h,c,f,c,f+1),i(c,f+1)!==h&&a(h,c,f+1,c+1,f+1),i(c+1,f)!==h&&a(h,c+1,f+1,c+1,f))}let m=[];for(let f=0;f<o;f++){r&&f%256===0&&r(.5+.5*f/o);let c=l[f],h=[];for(let[g]of c)for(;c.get(g)&&c.get(g).length;){let d=[g],k=g,p=oe(c,g,-1,s);for(;p!==g;){d.push(p);let y=oe(c,p,k,s);k=p,p=y}h.push(Te(d,s))}m.push(h)}return m}function oe(e,t,n,o){let r=e.get(t),i=0;if(r.length>1&&n>=0){let u=t%o-n%o,l=Math.floor(t/o)-Math.floor(n/o),a=m=>{let f=m%o-t%o,c=Math.floor(m/o)-Math.floor(t/o);return f===l&&c===-u?0:f===u&&c===l?1:2};for(let m=1;m<r.length;m++)a(r[m])<a(r[i])&&(i=m)}let s=r[i];return r.splice(i,1),r.length||e.delete(t),s}function Te(e,t){let n=e.map(i=>({x:i%t,y:Math.floor(i/t)})),o=n.length,r=[];for(let i=0;i<o;i++){let s=n[(i+o-1)%o],u=n[i],l=n[(i+1)%o];(u.x-s.x)*(l.y-u.y)-(u.y-s.y)*(l.x-u.x)!==0&&r.push(u)}return r}function bt(e){let t=0;for(let n=0,o=e.length;n<o;n++){let r=e[n],i=e[(n+1)%o];t+=r.x*i.y-i.x*r.y}return t/2}var tt=e=>String(Math.round(e*1e3)/1e3);function ie(e,t,n,o,r){let i=e.width,s=e.height,u=n/i,l=vt(e);r?.(.15);let a=new Int32Array(l.colors.length).fill(-1),m=[];l.colors.forEach((w,v)=>{w!==t&&(a[v]=m.length,m.push(w))});let f=l.labels.map(w=>w<0?-1:a[w]),c=se(f,i,s,m.length,r&&(w=>r(.15+.8*w))),h=[],g=w=>w.map(v=>`${tt(v.x*u)},${tt(v.y*u)}`).join(" ");c.forEach((w,v)=>{if(w.length===1)h.push(`<polygon points="${g(w[0])}" fill="${m[v]}" stroke="none"/>`);else{let P=[...w].sort((S,b)=>Math.abs(bt(b))-Math.abs(bt(S))).map(S=>"M"+g(S).replace(/ /g,"L")+"Z").join("");h.push(`<path d="${P}" fill="${m[v]}" fill-rule="evenodd" stroke="none"/>`)}});let d=tt(n),k=tt(s*u),p=[...new Set(It(l).map(w=>w.color))];return{svg:`<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${d} ${k}" width="${d}mm" height="${k}mm">\n<metadata id="mosaic-palette">${JSON.stringify({palette:p,paletteName:o,unit:"mm"})}</metadata>\n${t?`<rect id="mosaic-bg" x="0" y="0" width="${d}" height="${k}" fill="${t}"/>`:""}\n<g id="mosaic-fills"></g>\n<g id="mosaic-shapes">\n${h.join(`\n`)}\n</g>\n</svg>`,tiles:m.length}}function Ee({data:e,W:t,H:n,box:o}){return r=>{let i=Math.floor((r.x-o.x)/o.w*t),s=Math.floor((r.y-o.y)/o.h*n);if(i<0||s<0||i>=t||s>=n)return null;let u=(s*t+i)*4;return e[u+3]<20?null:[e[u],e[u+1],e[u+2]]}}function Ge(e,t,n,o,r){let i=[];for(let u=0;u<5;u++)for(let l=0;l<5;l++){let a=e({x:t+o*(u+.5)/5,y:n+r*(l+.5)/5});a&&i.push(G(a))}if(i.length<2)return 0;let s=[0,1,2].map(u=>i.reduce((l,a)=>l+a[u],0)/i.length);return i.reduce((u,l)=>u+Math.hypot(l[0]-s[0],l[1]-s[1],l[2]-s[2]),0)/i.length}function ze(e,t,n){let o=[];for(let r=0;r<70;r++)for(let i=0;i<70;i++){let s=e({x:t.x+t.w*(r+.5)/70,y:t.y+t.h*(i+.5)/70});s&&o.push(G(s))}return[...new Set(Tt(o,n,7).map(xt))]}function ae(e,t){Ut(e.eps);let n=Ee(e.photo),o=e.page,r=[{x:o.x,y:o.y},{x:o.x+o.w,y:o.y},{x:o.x+o.w,y:o.y+o.h},{x:o.x,y:o.y+o.h}],i=4+(1-e.detail/100)*26,s=(a,m,f,c)=>Ge(n,a,m,f,c)>i,u=Z({style:e.style,box:o,size:e.size,detail:e.detail/100,busy:s,seed:e.seed});if(t?.(.5),u.length>e.maxTiles)return{tiles:u.length,lines:[],palette:[]};let l=Ct(u,[r],a=>Bt(a,r),e.eps);return t?.(.85),{tiles:u.length,lines:l,palette:e.suggest?ze(n,e.photo.box,e.suggest):[]}}var De=Object.fromEntries(["X","Y","Z","E"].map(e=>[e,new RegExp(`(?:^|\\\\s)${e}(-?[\\\\d.]+)`,"i")])),J=(e,t)=>{let n=De[t].exec(e);return n?+n[1]:null},Oe=/^;\\s*(?:TYPE|FEATURE)\\s*:\\s*(.*)$/i,_e=/wipe|prime|tower|skirt|brim|purge/i;function le(e,t){let n=0,o=0,r=!1,i=0,s=!1,u=!1,l=new Set,a=new Map,m=[],f=null;for(let c=0,h=0;c<e.length;h++){let g=e.indexOf(`\n`,c);g<0&&(g=e.length);let d=e.slice(c,g);c=g+1,t&&h%5e4===0&&t(c/e.length);let k=d.indexOf(";");if(k>=0){let y=Oe.exec(d.slice(k));y&&(u=_e.test(y[1])),d=d.slice(0,k)}if(d=d.trim(),!d)continue;let p=d.split(/\\s/,1)[0].toUpperCase();if(p==="G0"||p==="G1"){let y=J(d,"Z"),w=J(d,"E");if(y!=null&&(n=y),w!=null){let v=r?w>0:w>o;if(r||(o=w),v&&!u&&(J(d,"X")!=null||J(d,"Y")!=null)){let R=Math.round(n*1e3)/1e3;l.add(R);let P=a.get(i);P?(P.from=Math.min(P.from,R),P.to=Math.max(P.to,R)):a.set(i,{from:R,to:R}),f&&(m.push({...f,z:R}),f=null),s=!0}}}else if(p==="G92"){let y=J(d,"E");y!=null&&(o=y)}else if(p==="M82")r=!1;else if(p==="M83")r=!0;else if(p==="M600")f={kind:"M600"};else if(/^T\\d+$/.test(p)){let y=+p.slice(1);s&&y!==i&&(f={kind:"tool",tool:y}),i=y}}return{layers:l.size,top:l.size?Math.max(...l):0,changes:m,tools:[...a].map(([c,h])=>({tool:c,...h})).sort((c,h)=>c.tool-h.tool)}}function qe(e){let t=new Uint8ClampedArray(256),n=Math.min(e.black,e.white-1),o=Math.max(e.white,n+1),r=e.contrast/100,i=r>=0?1/Math.max(.01,1-r):1+r,s=e.brightness/100*255;for(let u=0;u<256;u++){let l=Math.min(1,Math.max(0,(u-n)/(o-n)));l=Math.pow(l,1/e.gamma)*255,l=(l-128)*i+128+s,t[u]=Math.round(l)}return t}function ue(e,t,n,o){let r=Float32Array.from(e),i=new Float32Array(r.length);o=Math.max(1,Math.round(o));for(let s=0;s<3;s++){for(let u=0;u<n;u++){let l=u*t,a=0;for(let m=-o;m<=o;m++)a+=r[l+Math.min(t-1,Math.max(0,m))];for(let m=0;m<t;m++)i[l+m]=a/(2*o+1),a+=r[l+Math.min(t-1,m+o+1)]-r[l+Math.max(0,m-o)]}for(let u=0;u<t;u++){let l=0;for(let a=-o;a<=o;a++)l+=i[Math.min(n-1,Math.max(0,a))*t+u];for(let a=0;a<n;a++)r[a*t+u]=l/(2*o+1),l+=i[Math.min(n-1,a+o+1)*t+u]-i[Math.max(0,a-o)*t+u]}}return r}function ce(e,t){let n=[new Float32Array(t),new Float32Array(t),new Float32Array(t)];for(let o=0;o<t;o++)n[0][o]=e[o*4],n[1][o]=e[o*4+1],n[2][o]=e[o*4+2];return n}function He(e,t,n,o){let r=t*n,i=ce(e,r),s=1+Math.round(o/40),u=6+o*.4,l=i.map(a=>ue(a,t,n,s));for(let a=0;a<r;a++){let m=Math.hypot(i[0][a]-l[0][a],i[1][a]-l[1][a],i[2][a]-l[2][a]),f=o/100*Math.exp(-(m*m)/(2*u*u));for(let c=0;c<3;c++)e[a*4+c]=i[c][a]+(l[c][a]-i[c][a])*f}}function Ne(e,t,n,o){let r=t*n,i=ce(e,r),s=o/100*1.5,u=i.map(l=>ue(l,t,n,1));for(let l=0;l<r;l++)for(let a=0;a<3;a++)e[l*4+a]=i[a][l]+(i[a][l]-u[a][l])*s}function me(e,t,n,o){let r=new Uint8ClampedArray(e);o.denoise>0&&He(r,t,n,o.denoise);let i=qe(o),s=1+o.saturation/100;for(let u=0;u<r.length;u+=4){let l=i[r[u]],a=i[r[u+1]],m=i[r[u+2]];if(s!==1){let f=.299*l+.587*a+.114*m;l=f+(l-f)*s,a=f+(a-f)*s,m=f+(m-f)*s}r[u]=l,r[u+1]=a,r[u+2]=m}return o.sharpen>0&&Ne(r,t,n,o.sharpen),r}function Je(e){let t=Math.max(1,Math.floor(e.w/2)),n=Math.max(1,Math.floor(e.h/2)),o=new Float32Array(t*n*3),r=new Uint8Array(t*n);for(let i=0;i<n;i++)for(let s=0;s<t;s++){let u=0,l=0,a=0,m=0,f=0;for(let h=0;h<2;h++)for(let g=0;g<2;g++){let d=Math.min(e.w-1,2*s+g),k=Math.min(e.h-1,2*i+h),p=k*e.w+d;if(e.hole[p]){f++;continue}l+=e.px[p*3],a+=e.px[p*3+1],m+=e.px[p*3+2],u++}let c=i*t+s;f&&(r[c]=1),u&&(o[c*3]=l/u,o[c*3+1]=a/u,o[c*3+2]=m/u)}return{w:t,h:n,px:o,hole:r}}function Ye(e){let{w:t,h:n,px:o}=e,r=new Uint8Array(t*n);for(let s=0;s<t*n;s++)r[s]=e.hole[s]?0:1;let i=t*n-r.reduce((s,u)=>s+u,0);for(;i>0;){let s=[];for(let u=0;u<t*n;u++){if(r[u])continue;let l=u%t,a=(u-l)/t,m=0,f=0,c=0,h=0;for(let g=-1;g<=1;g++)for(let d=-1;d<=1;d++){let k=l+d,p=a+g;if(k<0||p<0||k>=t||p>=n)continue;let y=p*t+k;r[y]&&(f+=o[y*3],c+=o[y*3+1],h+=o[y*3+2],m++)}m&&(o[u*3]=f/m,o[u*3+1]=c/m,o[u*3+2]=h/m,s.push(u))}if(!s.length)break;for(let u of s)r[u]=1;i-=s.length}}function Ve(e){let t=e>>>0||1;return()=>(t=t*1664525+1013904223>>>0)/4294967296}function Ze(e,t,n,o){let{w:r,h:i,px:s,hole:u}=e,l=[],a=new Uint8Array(r*i),m=new Int32Array((r+1)*(i+1));for(let p=0;p<i;p++)for(let y=0;y<r;y++)m[(p+1)*(r+1)+y+1]=u[p*r+y]+m[p*(r+1)+y+1]+m[(p+1)*(r+1)+y]-m[p*(r+1)+y];let f=(p,y,w,v)=>m[(v+1)*(r+1)+w+1]-m[y*(r+1)+w+1]-m[(v+1)*(r+1)+p]+m[y*(r+1)+p];for(let p=3;p<i-3;p++)for(let y=3;y<r-3;y++)f(y-3,p-3,y+3,p+3)||(a[p*r+y]=1,l.push(p*r+y));let c=[];for(let p=0;p<i;p++)for(let y=0;y<r;y++)f(Math.max(0,y-3),Math.max(0,p-3),Math.min(r-1,y+3),Math.min(i-1,p+3))&&c.push(p*r+y);let h=t||new Int32Array(r*i).fill(-1);if(!l.length)return h;let g=new Float32Array(r*i).fill(1/0),d=(p,y,w)=>{let v=p%r,R=(p-v)/r,P=y%r,S=(y-P)/r,b=0,x=0;for(let A=-3;A<=3;A++){let M=R+A;if(!(M<0||M>=i)){for(let I=-3;I<=3;I++){let U=v+I;if(U<0||U>=r)continue;let B=(M*r+U)*3,$=((S+A)*r+P+I)*3,L=s[B]-s[$],F=s[B+1]-s[$+1],j=s[B+2]-s[$+2];b+=L*L+F*F+j*j,x++}if(b>w*x)return 1/0}}return x?b/x:1/0},k=(p,y)=>{if(y<0||!a[y])return;let w=d(p,y,g[p]);w<g[p]&&(g[p]=w,h[p]=y)};for(let p of c)(h[p]<0||!a[h[p]])&&(h[p]=l[Math.floor(o()*l.length)]),g[p]=d(p,h[p],1/0);for(let p=0;p<n;p++){let y=p%2?-1:1;for(let v=0;v<c.length;v++){let R=c[y>0?v:c.length-1-v],P=R%r,S=y;if(P-S>=0&&P-S<r){let M=h[R-S];M>=0&&k(R,M+S)}if(R-S*r>=0&&R-S*r<r*i){let M=h[R-S*r];M>=0&&k(R,M+S*r)}let b=Math.max(r,i),x=h[R]%r,A=(h[R]-x)/r;for(;b>=1;){let M=Math.round(x+(o()*2-1)*b),I=Math.round(A+(o()*2-1)*b);M>=0&&I>=0&&M<r&&I<i&&k(R,I*r+M),b/=2}}let w=new Float32Array(r*i*4);for(let v of c){let R=h[v];if(R<0)continue;let P=v%r,S=(v-P)/r,b=R%r,x=(R-b)/r,A=Math.exp(-g[v]/2e3);for(let M=-3;M<=3;M++)for(let I=-3;I<=3;I++){let U=P+I,B=S+M;if(U<0||B<0||U>=r||B>=i||!u[B*r+U])continue;let $=(B*r+U)*4,L=((x+M)*r+b+I)*3;w[$]+=s[L]*A,w[$+1]+=s[L+1]*A,w[$+2]+=s[L+2]*A,w[$+3]+=A}}for(let v=0;v<r*i;v++)!u[v]||!w[v*4+3]||(s[v*3]=w[v*4]/w[v*4+3],s[v*3+1]=w[v*4+1]/w[v*4+3],s[v*3+2]=w[v*4+2]/w[v*4+3]);for(let v of c)g[v]=d(v,h[v],1/0)}return h}function fe(e,t,n=()=>{}){let{width:o,height:r,data:i}=e,s=new Float32Array(o*r*3),u=new Uint8Array(o*r);for(let c=0;c<o*r;c++)u[c]=t[c]>127?1:0,s[c*3]=i[c*4],s[c*3+1]=i[c*4+1],s[c*3+2]=i[c*4+2];let l=[{w:o,h:r,px:s,hole:u}];for(;l[l.length-1].w>48&&l[l.length-1].h>48;)l.push(Je(l[l.length-1]));let a=Ve(12345),m=null;for(let c=l.length-1;c>=0;c--){let h=l[c];if(c===l.length-1)Ye(h);else{let d=l[c+1],k=new Int32Array(h.w*h.h).fill(-1);for(let p=0;p<h.h;p++)for(let y=0;y<h.w;y++){let w=p*h.w+y,v=Math.min(d.w-1,y>>1),R=Math.min(d.h-1,p>>1),P=R*d.w+v;h.hole[w]&&(h.px[w*3]=d.px[P*3],h.px[w*3+1]=d.px[P*3+1],h.px[w*3+2]=d.px[P*3+2]);let S=m?m[P]:-1;if(S>=0){let b=S%d.w,x=(S-b)/d.w;k[w]=Math.min(h.h-1,2*x+(p&1))*h.w+Math.min(h.w-1,2*b+(y&1))}}m=k}m=Ze(h,m,c===0?3:c===1?4:6,a),n(1-c/l.length)}let f=new Uint8ClampedArray(i);for(let c=0;c<o*r;c++)u[c]&&(f[c*4]=s[c*3],f[c*4+1]=s[c*3+1],f[c*4+2]=s[c*3+2],f[c*4+3]=255);return f}function Xe(e,t){let n=e.img,o=e.detail>0&&["square","brick","irregular"].includes(e.shape);if(e.shape==="offset"||e.shape==="square"&&!o)return At(n,{tile:e.tile,grout:e.grout,groutColor:e.groutColor,palette:e.palette,bricks:e.shape==="offset"});let r=4+(1-e.detail/100)*26,i=(l,a,m,f)=>kt(n,l,a,m,f)>r,s=e.shape==="brick"?e.tile/2:e.tile,u=Z({style:e.shape,box:{x:0,y:0,w:n.width,h:n.height},size:s,detail:e.detail/100,busy:i,seed:7});return t(.5),St(n,u,{grout:e.grout,groutColor:e.groutColor,palette:e.palette})}var he={mosaic:(e,t)=>Xe(e,t),vectorize:(e,t)=>ie(e.img,e.grout,e.widthMm,e.name,t),towers:(e,t)=>Wt(e.colorGrid,e.w,e.h,e.cell,e.order,e.counts,e.isLine,e.o,t),photoMosaic:(e,t)=>ae(e,t),gcode:(e,t)=>le(e.text,t),view3d:e=>ne(e.shape,e.o),export3d:(e,t)=>re(e,t),inpaint:(e,t)=>({width:e.img.width,height:e.img.height,data:fe(e.img,e.mask,t)}),adjust:e=>({width:e.img.width,height:e.img.height,data:me(e.img.data,e.img.width,e.img.height,e.adjust)})};function pt(e,t=0,n=new Set){if(ArrayBuffer.isView(e))e.buffer instanceof ArrayBuffer&&n.add(e.buffer);else if(e&&typeof e=="object"&&t<2)for(let o of Object.values(e))pt(o,t+1,n);return[...n]}var gt=(e,t=[])=>self.postMessage(e,t);self.onmessage=async e=>{let{id:t,job:n,args:o}=e.data,r=0,i=s=>{let u=Date.now();u-r>100&&(r=u,gt({id:t,progress:s}))};try{let s=await he[n](o,i);gt({id:t,result:s},pt(s))}catch(s){gt({id:t,error:String(s?.message||s)})}};})();\n';
 
   // src/lib/model3d.ts
   var topLayer = (i, s) => s.baseLayers + (i + 1) * s.layersPerColor;
@@ -8007,6 +7552,213 @@ ${shapes.join("\n")}
     });
   }
 
+  // src/lib/inpaint.ts
+  var P = 3;
+  function downscale(l) {
+    const w = Math.max(1, Math.floor(l.w / 2)), h = Math.max(1, Math.floor(l.h / 2));
+    const px = new Float32Array(w * h * 3), hole = new Uint8Array(w * h);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      let n5 = 0, s0 = 0, s1 = 0, s2 = 0, holes = 0;
+      for (let dy = 0; dy < 2; dy++) for (let dx = 0; dx < 2; dx++) {
+        const sx = Math.min(l.w - 1, 2 * x + dx), sy = Math.min(l.h - 1, 2 * y + dy), i = sy * l.w + sx;
+        if (l.hole[i]) {
+          holes++;
+          continue;
+        }
+        s0 += l.px[i * 3];
+        s1 += l.px[i * 3 + 1];
+        s2 += l.px[i * 3 + 2];
+        n5++;
+      }
+      const j = y * w + x;
+      if (holes) hole[j] = 1;
+      if (n5) {
+        px[j * 3] = s0 / n5;
+        px[j * 3 + 1] = s1 / n5;
+        px[j * 3 + 2] = s2 / n5;
+      }
+    }
+    return { w, h, px, hole };
+  }
+  function onionFill(l) {
+    const { w, h, px } = l, known = new Uint8Array(w * h);
+    for (let i = 0; i < w * h; i++) known[i] = l.hole[i] ? 0 : 1;
+    let left = w * h - known.reduce((a, b) => a + b, 0);
+    while (left > 0) {
+      const next = [];
+      for (let i = 0; i < w * h; i++) {
+        if (known[i]) continue;
+        const x = i % w, y = (i - x) / w;
+        let n5 = 0, s0 = 0, s1 = 0, s2 = 0;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          const nx = x + dx, ny = y + dy;
+          if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+          const j = ny * w + nx;
+          if (!known[j]) continue;
+          s0 += px[j * 3];
+          s1 += px[j * 3 + 1];
+          s2 += px[j * 3 + 2];
+          n5++;
+        }
+        if (n5) {
+          px[i * 3] = s0 / n5;
+          px[i * 3 + 1] = s1 / n5;
+          px[i * 3 + 2] = s2 / n5;
+          next.push(i);
+        }
+      }
+      if (!next.length) break;
+      for (const i of next) known[i] = 1;
+      left -= next.length;
+    }
+  }
+  function rng2(seed) {
+    let s = seed >>> 0 || 1;
+    return () => (s = s * 1664525 + 1013904223 >>> 0) / 4294967296;
+  }
+  function solve(l, nnf, iterations, rand) {
+    const { w, h, px, hole } = l;
+    const valid = [], isValid = new Uint8Array(w * h);
+    const sat = new Int32Array((w + 1) * (h + 1));
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) sat[(y + 1) * (w + 1) + x + 1] = hole[y * w + x] + sat[y * (w + 1) + x + 1] + sat[(y + 1) * (w + 1) + x] - sat[y * (w + 1) + x];
+    const holesIn = (x0, y0, x1, y1) => sat[(y1 + 1) * (w + 1) + x1 + 1] - sat[y0 * (w + 1) + x1 + 1] - sat[(y1 + 1) * (w + 1) + x0] + sat[y0 * (w + 1) + x0];
+    for (let y = P; y < h - P; y++) for (let x = P; x < w - P; x++) {
+      if (!holesIn(x - P, y - P, x + P, y + P)) {
+        isValid[y * w + x] = 1;
+        valid.push(y * w + x);
+      }
+    }
+    const targets = [];
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      if (holesIn(Math.max(0, x - P), Math.max(0, y - P), Math.min(w - 1, x + P), Math.min(h - 1, y + P))) targets.push(y * w + x);
+    }
+    const map = nnf || new Int32Array(w * h).fill(-1);
+    if (!valid.length) return map;
+    const dist2 = new Float32Array(w * h).fill(Infinity);
+    const D = (t2, s, best) => {
+      const tx = t2 % w, ty = (t2 - tx) / w, sx = s % w, sy = (s - sx) / w;
+      let d = 0, n5 = 0;
+      for (let dy = -P; dy <= P; dy++) {
+        const y = ty + dy;
+        if (y < 0 || y >= h) continue;
+        for (let dx = -P; dx <= P; dx++) {
+          const x = tx + dx;
+          if (x < 0 || x >= w) continue;
+          const a = (y * w + x) * 3, b = ((sy + dy) * w + sx + dx) * 3;
+          const e0 = px[a] - px[b], e1 = px[a + 1] - px[b + 1], e2 = px[a + 2] - px[b + 2];
+          d += e0 * e0 + e1 * e1 + e2 * e2;
+          n5++;
+        }
+        if (d > best * n5) return Infinity;
+      }
+      return n5 ? d / n5 : Infinity;
+    };
+    const tryMatch = (t2, s) => {
+      if (s < 0 || !isValid[s]) return;
+      const d = D(t2, s, dist2[t2]);
+      if (d < dist2[t2]) {
+        dist2[t2] = d;
+        map[t2] = s;
+      }
+    };
+    for (const t2 of targets) {
+      if (map[t2] < 0 || !isValid[map[t2]]) map[t2] = valid[Math.floor(rand() * valid.length)];
+      dist2[t2] = D(t2, map[t2], Infinity);
+    }
+    for (let it = 0; it < iterations; it++) {
+      const order = it % 2 ? -1 : 1;
+      for (let k = 0; k < targets.length; k++) {
+        const t2 = targets[order > 0 ? k : targets.length - 1 - k], x = t2 % w;
+        const s = order;
+        if (x - s >= 0 && x - s < w) {
+          const m = map[t2 - s];
+          if (m >= 0) tryMatch(t2, m + s);
+        }
+        if (t2 - s * w >= 0 && t2 - s * w < w * h) {
+          const m = map[t2 - s * w];
+          if (m >= 0) tryMatch(t2, m + s * w);
+        }
+        let rad = Math.max(w, h);
+        const cx = map[t2] % w, cy = (map[t2] - cx) / w;
+        while (rad >= 1) {
+          const rx = Math.round(cx + (rand() * 2 - 1) * rad), ry = Math.round(cy + (rand() * 2 - 1) * rad);
+          if (rx >= 0 && ry >= 0 && rx < w && ry < h) tryMatch(t2, ry * w + rx);
+          rad /= 2;
+        }
+      }
+      const acc = new Float32Array(w * h * 4);
+      for (const t2 of targets) {
+        const s = map[t2];
+        if (s < 0) continue;
+        const tx = t2 % w, ty = (t2 - tx) / w, sx = s % w, sy = (s - sx) / w, wt = Math.exp(-dist2[t2] / 2e3);
+        for (let dy = -P; dy <= P; dy++) for (let dx = -P; dx <= P; dx++) {
+          const x = tx + dx, y = ty + dy;
+          if (x < 0 || y < 0 || x >= w || y >= h || !hole[y * w + x]) continue;
+          const a = (y * w + x) * 4, b = ((sy + dy) * w + sx + dx) * 3;
+          acc[a] += px[b] * wt;
+          acc[a + 1] += px[b + 1] * wt;
+          acc[a + 2] += px[b + 2] * wt;
+          acc[a + 3] += wt;
+        }
+      }
+      for (let i = 0; i < w * h; i++) {
+        if (!hole[i] || !acc[i * 4 + 3]) continue;
+        px[i * 3] = acc[i * 4] / acc[i * 4 + 3];
+        px[i * 3 + 1] = acc[i * 4 + 1] / acc[i * 4 + 3];
+        px[i * 3 + 2] = acc[i * 4 + 2] / acc[i * 4 + 3];
+      }
+      for (const t2 of targets) dist2[t2] = D(t2, map[t2], Infinity);
+    }
+    return map;
+  }
+  function inpaint(img, mask2, progress = () => {
+  }) {
+    const { width: w, height: h, data } = img, px = new Float32Array(w * h * 3), hole = new Uint8Array(w * h);
+    for (let i = 0; i < w * h; i++) {
+      hole[i] = mask2[i] > 127 ? 1 : 0;
+      px[i * 3] = data[i * 4];
+      px[i * 3 + 1] = data[i * 4 + 1];
+      px[i * 3 + 2] = data[i * 4 + 2];
+    }
+    const levels = [{ w, h, px, hole }];
+    while (levels[levels.length - 1].w > 48 && levels[levels.length - 1].h > 48) levels.push(downscale(levels[levels.length - 1]));
+    const rand = rng2(12345);
+    let nnf = null;
+    for (let k = levels.length - 1; k >= 0; k--) {
+      const l = levels[k];
+      if (k === levels.length - 1) onionFill(l);
+      else {
+        const lo = levels[k + 1], up = new Int32Array(l.w * l.h).fill(-1);
+        for (let y = 0; y < l.h; y++) for (let x = 0; x < l.w; x++) {
+          const i = y * l.w + x, lx = Math.min(lo.w - 1, x >> 1), ly = Math.min(lo.h - 1, y >> 1), j = ly * lo.w + lx;
+          if (l.hole[i]) {
+            l.px[i * 3] = lo.px[j * 3];
+            l.px[i * 3 + 1] = lo.px[j * 3 + 1];
+            l.px[i * 3 + 2] = lo.px[j * 3 + 2];
+          }
+          const m = nnf ? nnf[j] : -1;
+          if (m >= 0) {
+            const mx = m % lo.w, my = (m - mx) / lo.w;
+            up[i] = Math.min(l.h - 1, 2 * my + (y & 1)) * l.w + Math.min(l.w - 1, 2 * mx + (x & 1));
+          }
+        }
+        nnf = up;
+      }
+      const its = k === 0 ? 3 : k === 1 ? 4 : 6;
+      nnf = solve(l, nnf, its, rand);
+      progress(1 - k / levels.length);
+    }
+    const out = new Uint8ClampedArray(data);
+    for (let i = 0; i < w * h; i++) {
+      if (!hole[i]) continue;
+      out[i * 4] = px[i * 3];
+      out[i * 4 + 1] = px[i * 3 + 1];
+      out[i * 4 + 2] = px[i * 3 + 2];
+      out[i * 4 + 3] = 255;
+    }
+    return out;
+  }
+
   // src/worker/jobs.ts
   function mosaic2(m, progress) {
     const img = m.img, adaptive = m.detail > 0 && ["square", "brick", "irregular"].includes(m.shape);
@@ -8028,6 +7780,7 @@ ${shapes.join("\n")}
     gcode: (a, p) => readGcode(a.text, p),
     view3d: (a) => viewMesh(a.shape, a.o),
     export3d: (a, p) => exportModel(a, p),
+    inpaint: (a, p) => ({ width: a.img.width, height: a.img.height, data: inpaint(a.img, a.mask, p) }),
     adjust: (a) => ({ width: a.img.width, height: a.img.height, data: applyAdjust(a.img.data, a.img.width, a.img.height, a.adjust) })
   };
 
@@ -8092,6 +7845,1019 @@ ${shapes.join("\n")}
       };
       worker.postMessage({ id: lane.id, job, args });
     });
+  }
+
+  // src/raster/remove.ts
+  var fillers = { ai: null };
+  var working2 = false;
+  async function fillHole(mask2) {
+    if (working2) return false;
+    const box5 = maskBox(mask2, doc.width, doc.height);
+    if (!box5) return false;
+    const m = Math.min(240, Math.max(32, Math.round(Math.max(box5.w, box5.h))));
+    const x0 = Math.max(0, box5.x - m), y0 = Math.max(0, box5.y - m), x1 = Math.min(doc.width, box5.x + box5.w + m), y1 = Math.min(doc.height, box5.y + box5.h + m);
+    const w = x1 - x0, h = y1 - y0, region2 = { x: x0, y: y0, w, h };
+    const img = dctx.getImageData(x0, y0, w, h), hole = cropMask(mask2, doc.width, region2);
+    working2 = true;
+    toast(t("Filling from the surroundings…"));
+    try {
+      const out = state.removeMethod === "ai" && fillers.ai ? await fillers.ai(img, hole) : (await run2("inpaint", { img: { width: w, height: h, data: img.data }, mask: hole }, { lane: "inpaint" })).data;
+      const d = img.data;
+      for (let i = 0; i < hole.length; i++) {
+        const k = hole[i] / 255;
+        if (!k) continue;
+        for (let c = 0; c < 4; c++) d[i * 4 + c] = d[i * 4 + c] + (out[i * 4 + c] - d[i * 4 + c]) * k;
+      }
+      dctx.putImageData(img, x0, y0);
+      commit();
+      toast(t("Removed."));
+      return true;
+    } catch (e) {
+      toast(t("Could not fill it: {why}", { why: String(e?.message || e) }));
+      return false;
+    } finally {
+      working2 = false;
+      requestRender();
+    }
+  }
+  async function fillSelection() {
+    if (state.floating) place();
+    const m = selectionFullMask();
+    if (!m) {
+      toast(t("Select what to remove first."));
+      return;
+    }
+    if (await fillHole(m)) {
+      state.sel = null;
+      selectionChanged();
+    }
+  }
+  var marks = null;
+  var last = null;
+  function mark(a, b) {
+    const x = marks.getContext("2d");
+    x.strokeStyle = x.fillStyle = "#ff3b30";
+    x.lineWidth = state.size;
+    x.lineCap = x.lineJoin = "round";
+    x.beginPath();
+    x.moveTo(a.x, a.y);
+    x.lineTo(b.x + 0.01, b.y);
+    x.stroke();
+    requestRender();
+  }
+  var removeTool = {
+    down(e, p) {
+      if (working2) return;
+      marks = makeCanvas(doc.width, doc.height);
+      last = p;
+      state.action = { type: "remove" };
+      state.preview = (ctx2) => {
+        if (marks) {
+          ctx2.globalAlpha = 0.5;
+          ctx2.drawImage(marks, 0, 0);
+          ctx2.globalAlpha = 1;
+        }
+      };
+      mark(p, p);
+    },
+    move(e, p) {
+      if (state.action?.type !== "remove" || !marks) return;
+      mark(last, p);
+      last = p;
+    },
+    async up() {
+      if (state.action?.type !== "remove" || !marks) return;
+      state.action = null;
+      const d = marks.getContext("2d").getImageData(0, 0, doc.width, doc.height).data, m = new Uint8Array(doc.width * doc.height);
+      for (let i = 0; i < m.length; i++) m[i] = d[i * 4 + 3];
+      await fillHole(m);
+      marks = null;
+      state.preview = null;
+      requestRender();
+    }
+  };
+
+  // src/raster/paint.ts
+  function constrain(a, b) {
+    const ang = Math.atan2(b.y - a.y, b.x - a.x), step = Math.PI / 12, q = Math.round(ang / step) * step;
+    const L = Math.hypot(b.x - a.x, b.y - a.y) * Math.cos(ang - q);
+    return { x: a.x + L * Math.cos(q), y: a.y + L * Math.sin(q) };
+  }
+  function applyLayer(layer, erase, alpha) {
+    dctx.save();
+    dctx.globalAlpha = alpha;
+    dctx.globalCompositeOperation = erase ? "destination-out" : "source-over";
+    dctx.drawImage(layer, 0, 0);
+    dctx.restore();
+  }
+  function smoothLine(ctx2, a, b, width, color) {
+    ctx2.strokeStyle = color;
+    ctx2.fillStyle = color;
+    ctx2.lineWidth = width;
+    ctx2.lineCap = "round";
+    ctx2.lineJoin = "round";
+    if (a.x === b.x && a.y === b.y) {
+      ctx2.beginPath();
+      ctx2.arc(a.x, a.y, width / 2, 0, Math.PI * 2);
+      ctx2.fill();
+      return;
+    }
+    ctx2.beginPath();
+    ctx2.moveTo(a.x, a.y);
+    ctx2.lineTo(b.x, b.y);
+    ctx2.stroke();
+  }
+  var tips = /* @__PURE__ */ new Map();
+  function tip(size, color) {
+    const n5 = Math.max(1, Math.round(size)), key = n5 + color;
+    let c = tips.get(key);
+    if (!c) {
+      if (tips.size > 40) tips.clear();
+      c = makeCanvas(n5, n5);
+      const x = c.getContext("2d"), im = x.createImageData(n5, n5), m = discMask(n5), rgba2 = rgba(color);
+      for (let i = 0; i < n5 * n5; i++) if (m[i]) im.data.set(rgba2, i * 4);
+      x.putImageData(im, 0, 0);
+      tips.set(key, c);
+    }
+    return c;
+  }
+  function hardLine(ctx2, a, b, size, color) {
+    const t2 = tip(size, color), o = Math.floor((t2.width - 1) / 2);
+    linePixels(a.x, a.y, b.x, b.y, (x, y) => ctx2.drawImage(t2, x - o, y - o));
+  }
+  var paintColor = () => state.fill || "#000000";
+  var TIPS = ["round", "soft", "spray", "calligraphy", "chalk"];
+  function nibLine(ctx2, a, b, sa, sb, color) {
+    const pts = [...nibCorners(a, sa, state.nibAngle), ...nibCorners(b, sb, state.nibAngle)].sort((p, q) => p.x - q.x || p.y - q.y);
+    const cross2 = (o, p, q) => (p.x - o.x) * (q.y - o.y) - (p.y - o.y) * (q.x - o.x);
+    const half = (list) => {
+      const h = [];
+      for (const p of list) {
+        while (h.length >= 2 && cross2(h[h.length - 2], h[h.length - 1], p) <= 0) h.pop();
+        h.push(p);
+      }
+      h.pop();
+      return h;
+    };
+    ctx2.fillStyle = color;
+    tracePath(ctx2, [...half(pts), ...half(pts.reverse())]);
+    ctx2.fill();
+  }
+  function grain(x, y) {
+    let h = Math.imul(x, 374761393) + Math.imul(y, 668265263);
+    h = Math.imul(h ^ h >>> 13, 1274126177);
+    return ((h ^ h >>> 16) >>> 0) / 4294967296;
+  }
+  function newStamps(color) {
+    return { im: new ImageData(doc.width, doc.height), rgb: [...rgba(color)].slice(0, 3), dirty: null, carry: 0 };
+  }
+  function stamp(st, tip2, c, size) {
+    const { width: W, height: H, data } = st.im, r = Math.max(0.5, size / 2);
+    const x0 = Math.max(0, Math.floor(c.x - r)), x1 = Math.min(W - 1, Math.ceil(c.x + r));
+    const y0 = Math.max(0, Math.floor(c.y - r)), y1 = Math.min(H - 1, Math.ceil(c.y + r));
+    if (x0 > x1 || y0 > y1) return;
+    const put = (x, y, a) => {
+      const i = (y * W + x) * 4;
+      if (a <= data[i + 3]) return;
+      data[i] = st.rgb[0];
+      data[i + 1] = st.rgb[1];
+      data[i + 2] = st.rgb[2];
+      data[i + 3] = a;
+    };
+    if (tip2 === "spray") {
+      const dot = Math.max(1, Math.round(size / 40)), n5 = Math.max(2, Math.round(size * size * 0.03 / (dot * dot)));
+      for (let k = 0; k < n5; k++) {
+        const d = r * Math.random() ** 0.75, ang = Math.random() * Math.PI * 2;
+        const px = Math.floor(c.x + d * Math.cos(ang)), py = Math.floor(c.y + d * Math.sin(ang));
+        for (let j = 0; j < dot; j++) for (let i = 0; i < dot; i++) {
+          const x = px + i, y = py + j;
+          if (x >= 0 && y >= 0 && x < W && y < H) put(x, y, 255);
+        }
+      }
+    } else {
+      for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+        const d = Math.hypot(x + 0.5 - c.x, y + 0.5 - c.y) / r;
+        if (d >= 1) continue;
+        if (tip2 === "soft") {
+          const f = 1 - d;
+          put(x, y, Math.round(255 * f * f * (3 - 2 * f)));
+        } else if (grain(x, y) < 0.8 * (1 - d ** 6)) put(x, y, 255);
+      }
+    }
+    const b = st.dirty;
+    st.dirty = b ? { x0: Math.min(b.x0, x0), y0: Math.min(b.y0, y0), x1: Math.max(b.x1, x1), y1: Math.max(b.y1, y1) } : { x0, y0, x1, y1 };
+  }
+  function stampLine(st, tip2, a, b, sa, sb) {
+    const len = Math.hypot(b.x - a.x, b.y - a.y), step = Math.max(1, Math.min(sa, sb) * (tip2 === "spray" ? 0.25 : 0.1));
+    if (len === 0) {
+      stamp(st, tip2, a, sa);
+      return;
+    }
+    let d = st.carry;
+    for (; d <= len; d += step) {
+      const k = d / len;
+      stamp(st, tip2, { x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k }, sa + (sb - sa) * k);
+    }
+    st.carry = d - len;
+  }
+  function flushStamps(st, ctx2) {
+    const b = st.dirty;
+    if (b) ctx2.putImageData(st.im, 0, 0, b.x0, b.y0, b.x1 - b.x0 + 1, b.y1 - b.y0 + 1);
+    st.dirty = null;
+  }
+  var sizeAt = (e) => pressureSize(state.size, e, state.pressure);
+  function beginStroke(kind, p, size) {
+    const base = makeCanvas(doc.width, doc.height);
+    base.getContext("2d").drawImage(doc, 0, 0);
+    const layer = makeCanvas(doc.width, doc.height);
+    const copying = kind === "clone" || kind === "heal";
+    const erase = kind === "eraser" || !copying && !state.fill;
+    const alpha = kind === "pencil" ? 1 : state.opacity;
+    const tip2 = kind === "pencil" ? "pencil" : TIPS.includes(state.tip) ? state.tip : "round";
+    const stamps = ["soft", "spray", "chalk"].includes(tip2) ? newStamps(erase ? "#000" : paintColor()) : null;
+    const c = state.clone, offset = copying && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : void 0;
+    return { kind, tip: tip2, offset, base, layer, lctx: layer.getContext("2d"), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
+  }
+  function strokeSegment(s, a, b, size = state.size, sizeA = size) {
+    const m = Math.max(size, sizeA) / 2 + 2, bx = s.box;
+    s.box = { x0: Math.min(bx ? bx.x0 : Infinity, a.x - m, b.x - m), y0: Math.min(bx ? bx.y0 : Infinity, a.y - m, b.y - m), x1: Math.max(bx ? bx.x1 : -Infinity, a.x + m, b.x + m), y1: Math.max(bx ? bx.y1 : -Infinity, a.y + m, b.y + m) };
+    const color = s.erase ? "#000" : paintColor();
+    if (s.tip === "pencil") hardLine(s.lctx, a, b, size, paintColor());
+    else if (s.tip === "calligraphy") nibLine(s.lctx, a, b, sizeA, size, color);
+    else if (s.stamps) {
+      stampLine(s.stamps, s.tip, a, b, sizeA, size);
+      flushStamps(s.stamps, s.lctx);
+    } else smoothLine(s.lctx, a, b, size, color);
+  }
+  function compose(s) {
+    dctx.save();
+    dctx.globalCompositeOperation = "copy";
+    dctx.drawImage(s.base, 0, 0);
+    dctx.restore();
+    if ((s.kind === "clone" || s.kind === "heal") && s.offset) {
+      const c = s.copy || (s.copy = makeCanvas(doc.width, doc.height)), x = c.getContext("2d");
+      x.globalCompositeOperation = "copy";
+      x.drawImage(s.base, -s.offset.x, -s.offset.y);
+      x.globalCompositeOperation = "destination-in";
+      x.drawImage(s.layer, 0, 0);
+      applyLayer(c, false, s.alpha);
+      state.clone.live = { x: s.last.x + s.offset.x, y: s.last.y + s.offset.y };
+    } else applyLayer(s.layer, s.erase, s.alpha);
+    requestRender();
+  }
+  var SPRAY_MS = 40;
+  function sprayInPlace(s) {
+    const a = state.action;
+    if (!a || a.s !== s) {
+      clearInterval(s.timer);
+      return;
+    }
+    if (s.shift || !s.stamps) return;
+    stamp(s.stamps, "spray", s.last, s.lastSize);
+    flushStamps(s.stamps, s.lctx);
+    compose(s);
+  }
+  function freehand(kind) {
+    return {
+      down(e, p) {
+        const size = sizeAt(e), s = beginStroke(kind, p, size);
+        state.action = { type: "stroke", s };
+        strokeSegment(s, p, p, size);
+        compose(s);
+        if (s.tip === "spray") s.timer = window.setInterval(() => sprayInPlace(s), SPRAY_MS);
+      },
+      move(e, p) {
+        const a = state.action;
+        if (!a || a.type !== "stroke") return;
+        const s = a.s;
+        s.shift = e.shiftKey;
+        if (e.shiftKey) {
+          s.lctx.clearRect(0, 0, s.layer.width, s.layer.height);
+          if (s.stamps) {
+            s.stamps.im.data.fill(0);
+            s.stamps.carry = 0;
+          }
+          strokeSegment(s, s.start, constrain(s.start, p));
+        } else {
+          const events = e.getCoalescedEvents?.() || [];
+          for (const ev of events.length ? events : [e]) {
+            const q = events.length ? toDoc(ev.clientX, ev.clientY) : p, size = sizeAt(ev);
+            if (s.tip === "calligraphy" || s.stamps) strokeSegment(s, s.last, q, size, s.lastSize);
+            else strokeSegment(s, s.last, q, (s.lastSize + size) / 2);
+            s.last = q;
+            s.lastSize = size;
+          }
+        }
+        compose(s);
+      },
+      up() {
+        const a = state.action;
+        state.action = null;
+        if (a && a.type === "stroke") {
+          clearInterval(a.s.timer);
+          commit();
+        }
+      }
+    };
+  }
+  var lastSource = { src: null, anchor: null, at: -1e9 };
+  function setCloneSource(p) {
+    const c = state.clone;
+    lastSource = { src: c.src, anchor: c.anchor, at: performance.now() };
+    c.src = { x: Math.round(p.x), y: Math.round(p.y) };
+    c.anchor = null;
+    c.picking = false;
+    updateCloneUI();
+    requestRender();
+  }
+  function undoFreshCloneSource() {
+    if (performance.now() - lastSource.at > 600) return;
+    Object.assign(state.clone, { src: lastSource.src, anchor: lastSource.anchor });
+    lastSource.at = -1e9;
+    updateCloneUI();
+  }
+  function pickCloneSource(on2 = !state.clone.picking) {
+    state.clone.picking = on2;
+    updateCloneUI();
+    if (on2) toast(t("Tap or click where to copy from."));
+  }
+  function updateCloneUI() {
+    const c = state.clone, b = document.getElementById("btn-clone-source"), note = document.getElementById("clone-status");
+    b?.classList.toggle("active", c.picking);
+    b?.setAttribute("aria-pressed", String(c.picking));
+    if (note) note.textContent = c.picking ? t("Tap the image where to copy from") : c.src ? t("Copying from {x}, {y}", c.src) : t("No source yet: the first tap sets it");
+  }
+  var onSourceDisc = (p) => !!state.clone.src && Math.hypot(p.x - state.clone.src.x, p.y - state.clone.src.y) < Math.max(26 / state.view.s, state.size / 2);
+  function healStroke(s) {
+    if (!s.box || !s.offset) return;
+    const r = Math.max(4, Math.round(s.lastSize * 0.75)), b = s.box;
+    const x0 = Math.max(0, Math.floor(b.x0) - 2 * r), y0 = Math.max(0, Math.floor(b.y0) - 2 * r);
+    const x1 = Math.min(doc.width, Math.ceil(b.x1) + 2 * r), y1 = Math.min(doc.height, Math.ceil(b.y1) + 2 * r), w = x1 - x0, h = y1 - y0;
+    if (w <= 0 || h <= 0) return;
+    const dst = s.base.getContext("2d").getImageData(x0, y0, w, h);
+    const pc = makeCanvas(w, h), px = pc.getContext("2d");
+    px.drawImage(s.base, -(x0 + s.offset.x), -(y0 + s.offset.y));
+    const src = px.getImageData(0, 0, w, h), lay = s.lctx.getImageData(x0, y0, w, h), mask2 = new Uint8ClampedArray(w * h);
+    for (let i = 0; i < mask2.length; i++) mask2[i] = lay.data[i * 4 + 3];
+    const out = heal(dst.data, src.data, mask2, w, h, r);
+    if (s.alpha < 1) for (let i = 0; i < out.length; i++) out[i] = dst.data[i] + (out[i] - dst.data[i]) * s.alpha;
+    dctx.putImageData(new ImageData(out, w, h), x0, y0);
+    requestRender();
+  }
+  function copyTool(kind) {
+    const cloneBrush = freehand(kind);
+    return {
+      down(e, p) {
+        const c = state.clone;
+        if (e.altKey || c.picking || !c.src) {
+          const first = !c.src;
+          setCloneSource(p);
+          if (first || !e.altKey) toast(t("Source set – now paint where the copy goes."));
+          return;
+        }
+        if (onSourceDisc(p)) {
+          state.action = { type: "clone-source", dx: c.src.x - p.x, dy: c.src.y - p.y };
+          return;
+        }
+        if (!state.cloneAligned || !c.anchor) c.anchor = { x: Math.round(p.x), y: Math.round(p.y) };
+        cloneBrush.down(e, p);
+      },
+      move(e, p) {
+        const a = state.action;
+        if (a && a.type === "clone-source") {
+          state.clone.src = { x: Math.round(p.x + a.dx), y: Math.round(p.y + a.dy) };
+          updateCloneUI();
+          requestRender();
+          return;
+        }
+        cloneBrush.move(e, p);
+      },
+      up(e, p) {
+        const a = state.action, c = state.clone;
+        if (a && a.type === "clone-source") {
+          state.action = null;
+          return;
+        }
+        if (a && a.type === "stroke" && state.cloneAligned && a.s.offset) {
+          c.anchor = { x: Math.round(a.s.last.x), y: Math.round(a.s.last.y) };
+          c.src = { x: c.anchor.x + a.s.offset.x, y: c.anchor.y + a.s.offset.y };
+        }
+        c.live = null;
+        if (kind === "heal" && a && a.type === "stroke") healStroke(a.s);
+        cloneBrush.up(e, p);
+        updateCloneUI();
+        requestRender();
+      }
+    };
+  }
+  function drawShapeLine(ctx2, a, b, color) {
+    if (state.smooth) smoothLine(ctx2, a, b, state.size, color);
+    else hardLine(ctx2, a, b, state.size, color);
+  }
+  var lineTool = {
+    down(e, p) {
+      state.action = { type: "line", a: p, b: p };
+    },
+    move(e, p) {
+      const a = state.action;
+      if (!a || a.type !== "line") return;
+      a.b = e.shiftKey ? constrain(a.a, p) : p;
+      const color = state.fill || "rgba(0,0,0,.4)";
+      state.preview = (ctx2) => {
+        ctx2.globalAlpha = state.fill ? state.opacity : 1;
+        drawShapeLine(ctx2, a.a, a.b, color);
+      };
+      requestRender();
+    },
+    up() {
+      const a = state.action;
+      state.action = null;
+      state.preview = null;
+      if (!a || a.type !== "line" || Math.hypot(a.b.x - a.a.x, a.b.y - a.a.y) < 0.5) {
+        requestRender();
+        return;
+      }
+      const layer = makeCanvas(doc.width, doc.height);
+      drawShapeLine(layer.getContext("2d"), a.a, a.b, state.fill ? paintColor() : "#000");
+      applyLayer(layer, !state.fill, state.opacity);
+      commit();
+    }
+  };
+  function ngonPoints(a) {
+    let rot = Math.atan2(a.b.y - a.a.y, a.b.x - a.a.x);
+    if (a.shift) rot = Math.round(rot / (Math.PI / 12)) * (Math.PI / 12);
+    return regularPolygon(state.sides, a.a.x, a.a.y, Math.hypot(a.b.x - a.a.x, a.b.y - a.a.y), rot);
+  }
+  function tracePath(ctx2, pts) {
+    ctx2.beginPath();
+    pts.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+    ctx2.closePath();
+  }
+  function drawPolygon(pts) {
+    if (state.ngonFill) {
+      const layer = makeCanvas(doc.width, doc.height), ctx2 = layer.getContext("2d");
+      const color = state.fill || "#000";
+      if (state.smooth) {
+        tracePath(ctx2, pts);
+        ctx2.fillStyle = color;
+        ctx2.fill();
+      } else {
+        const im = ctx2.getImageData(0, 0, ctx2.canvas.width, ctx2.canvas.height);
+        if (fillPolygon(im, pts, rgba(color))) ctx2.putImageData(im, 0, 0);
+      }
+      applyLayer(layer, !state.fill, state.opacity);
+    }
+    if (state.ngonOutline) {
+      const layer = makeCanvas(doc.width, doc.height), ctx2 = layer.getContext("2d");
+      const color = state.stroke || "#000";
+      for (let i = 0; i < pts.length; i++) drawShapeLine(ctx2, pts[i], pts[(i + 1) % pts.length], color);
+      applyLayer(layer, !state.stroke, state.opacity);
+    }
+  }
+  var ngonTool = {
+    down(e, p) {
+      state.action = { type: "ngon", a: p, b: p };
+    },
+    move(e, p) {
+      const a = state.action;
+      if (!a || a.type !== "ngon") return;
+      a.b = p;
+      a.shift = e.shiftKey;
+      const pts = ngonPoints(a);
+      state.preview = (ctx2, px) => {
+        ctx2.globalAlpha = state.opacity;
+        if (state.ngonFill && state.fill) {
+          tracePath(ctx2, pts);
+          ctx2.fillStyle = state.fill;
+          ctx2.fill();
+        }
+        if (state.ngonOutline && state.stroke) for (let i = 0; i < pts.length; i++) smoothLine(ctx2, pts[i], pts[(i + 1) % pts.length], state.size, state.stroke);
+        ctx2.globalAlpha = 1;
+        tracePath(ctx2, pts);
+        ctx2.lineWidth = px;
+        ctx2.setLineDash([4 * px, 3 * px]);
+        ctx2.strokeStyle = "#2b8cff";
+        ctx2.stroke();
+      };
+      requestRender();
+    },
+    up() {
+      const a = state.action;
+      state.action = null;
+      state.preview = null;
+      requestRender();
+      if (!a || a.type !== "ngon" || Math.hypot(a.b.x - a.a.x, a.b.y - a.a.y) < 1) return;
+      if (!state.ngonFill && !state.ngonOutline) {
+        toast(t("Turn on “Fill” or “Outline” for polygons."));
+        return;
+      }
+      drawPolygon(ngonPoints(a));
+      commit();
+    }
+  };
+  var CURVE_TOL = 1 / 3;
+  function previewOutline(ctx2, px, pts, closed, fill) {
+    const path = () => {
+      ctx2.beginPath();
+      pts.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+      if (closed) ctx2.closePath();
+    };
+    ctx2.globalAlpha = state.opacity;
+    if (fill && state.fill) {
+      path();
+      ctx2.fillStyle = state.fill;
+      ctx2.fill();
+    }
+    const line = closed ? state.ngonOutline && state.stroke : state.fill;
+    if (line) {
+      path();
+      ctx2.lineWidth = state.size;
+      ctx2.lineCap = ctx2.lineJoin = "round";
+      ctx2.strokeStyle = line;
+      ctx2.stroke();
+    }
+    ctx2.globalAlpha = 1;
+    path();
+    ctx2.lineWidth = px;
+    ctx2.setLineDash([4 * px, 3 * px]);
+    ctx2.strokeStyle = "#2b8cff";
+    ctx2.stroke();
+    ctx2.setLineDash([]);
+  }
+  function ellipsePts(a) {
+    const e = ellipseFromDrag(a.a, a.b, state.ellipseMode === "center", a.shift);
+    return e.rx < 0.5 || e.ry < 0.5 ? [] : ellipsePoints(e.cx, e.cy, e.rx, e.ry, 0, CURVE_TOL);
+  }
+  var ellipseTool = {
+    down(e, p) {
+      state.action = { type: "ellipse", a: p, b: p, shift: e.shiftKey };
+    },
+    move(e, p) {
+      const a = state.action;
+      if (!a || a.type !== "ellipse") return;
+      a.b = p;
+      a.shift = e.shiftKey;
+      const pts = ellipsePts(a);
+      state.preview = pts.length ? (ctx2, px) => previewOutline(ctx2, px, pts, true, state.ngonFill) : null;
+      requestRender();
+    },
+    up() {
+      const a = state.action;
+      state.action = null;
+      state.preview = null;
+      requestRender();
+      if (!a || a.type !== "ellipse") return;
+      const pts = ellipsePts(a);
+      if (!pts.length) return;
+      if (!state.ngonFill && !state.ngonOutline) {
+        toast(t("Turn on “Fill” or “Outline” for shapes."));
+        return;
+      }
+      drawPolygon(pts);
+      commit();
+    }
+  };
+  var curve = { pts: null, hover: null };
+  var curvePoints = (pts, closed) => sampleCubics(toCubics(state.curveType, pts, closed), closed, CURVE_TOL);
+  function curvePreview() {
+    const pts = curve.pts;
+    if (!pts) {
+      state.preview = null;
+      requestRender();
+      return;
+    }
+    const all = curve.hover ? [...pts, curve.hover] : pts, line = curvePoints(all, false);
+    state.preview = (ctx2, px) => {
+      if (line.length > 1) previewOutline(ctx2, px, line, false, false);
+      if (state.curveType !== "catmull" && all.length > 1) {
+        ctx2.beginPath();
+        all.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+        ctx2.lineWidth = px;
+        ctx2.setLineDash([3 * px, 3 * px]);
+        ctx2.strokeStyle = "rgba(43,140,255,.7)";
+        ctx2.stroke();
+        ctx2.setLineDash([]);
+      }
+      const r = 3.5 * px;
+      all.forEach((q, i) => {
+        ctx2.beginPath();
+        if (onCurve(state.curveType, all.length, false, i)) ctx2.rect(q.x - r, q.y - r, 2 * r, 2 * r);
+        else ctx2.arc(q.x, q.y, r, 0, Math.PI * 2);
+        ctx2.fillStyle = "#fff";
+        ctx2.fill();
+        ctx2.lineWidth = 1.2 * px;
+        ctx2.strokeStyle = "#2b8cff";
+        ctx2.stroke();
+      });
+    };
+    requestRender();
+  }
+  function finishCurve(closed = false) {
+    const pts = curve.pts;
+    curve.pts = null;
+    curve.hover = null;
+    curvePreview();
+    if (!pts || pts.length < 2 || closed && pts.length < 3) return;
+    const line = curvePoints(pts, closed);
+    if (closed) {
+      if (!state.ngonFill && !state.ngonOutline) {
+        toast(t("Turn on “Fill” or “Outline” for shapes."));
+        return;
+      }
+      drawPolygon(line);
+    } else {
+      const layer = makeCanvas(doc.width, doc.height), ctx2 = layer.getContext("2d");
+      if (state.smooth) {
+        ctx2.beginPath();
+        line.forEach((q, i) => i ? ctx2.lineTo(q.x, q.y) : ctx2.moveTo(q.x, q.y));
+        ctx2.lineWidth = state.size;
+        ctx2.lineCap = ctx2.lineJoin = "round";
+        ctx2.strokeStyle = state.fill || "#000";
+        ctx2.stroke();
+      } else for (let i = 1; i < line.length; i++) hardLine(ctx2, line[i - 1], line[i], state.size, state.fill || "#000");
+      applyLayer(layer, !state.fill, state.opacity);
+    }
+    commit();
+  }
+  function curveBack() {
+    if (!curve.pts) return;
+    curve.pts.pop();
+    if (!curve.pts.length) curve.pts = null;
+    curvePreview();
+  }
+  function cancelCurve() {
+    curve.pts = null;
+    curve.hover = null;
+    curvePreview();
+  }
+  var curveTool = {
+    down(e, p) {
+      const pts = curve.pts || [], px = 1 / state.view.s;
+      if (pts.length >= 3 && dist(p, pts[0]) < 8 * px) {
+        finishCurve(true);
+        return;
+      }
+      if (pts.length && dist(p, pts[pts.length - 1]) < 2 * px) return;
+      pts.push(p);
+      curve.pts = pts;
+      state.action = { type: "curve-press" };
+      curvePreview();
+    },
+    move(e, p) {
+      if (!curve.pts) return;
+      curve.hover = p;
+      curvePreview();
+    },
+    up() {
+      if (state.action?.type === "curve-press") state.action = null;
+    }
+  };
+  function bucketAt(p) {
+    const x = Math.floor(p.x), y = Math.floor(p.y);
+    if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return false;
+    const im = getImage();
+    const box5 = floodFill(im, x, y, rgba(state.fill), state.tolerance, state.contiguous);
+    if (!box5) return false;
+    dctx.putImageData(im, 0, 0, box5.x, box5.y, box5.w, box5.h);
+    commit();
+    return true;
+  }
+  function pickAt(p) {
+    const x = Math.floor(p.x), y = Math.floor(p.y);
+    if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
+    const c = colorAt(getImage(x, y, 1, 1), 0, 0);
+    setFill(c, false);
+    toast(!c ? t("Picked “transparent”.") : state.palette.includes(c) ? t("Picked {c}.", { c }) : t("Picked {c} (not in the palette – add it with “From image”).", { c }));
+  }
+  var bucketTool = {
+    down(e, p) {
+      if (e.altKey) pickAt(p);
+      else bucketAt(p);
+    },
+    move() {
+    },
+    up() {
+    }
+  };
+  var pickerTool = { down(e, p) {
+    pickAt(p);
+  }, move() {
+  }, up() {
+  } };
+  var paintTools = {
+    brush: freehand("brush"),
+    pencil: freehand("pencil"),
+    eraser: freehand("eraser"),
+    clone: copyTool("clone"),
+    heal: copyTool("heal"),
+    remove: removeTool,
+    line: lineTool,
+    ngon: ngonTool,
+    ellipse: ellipseTool,
+    curve: curveTool,
+    bucket: bucketTool,
+    picker: pickerTool
+  };
+
+  // src/raster/tools.ts
+  var tools = {
+    ...paintTools,
+    select: selectTool,
+    pan: { down() {
+    }, move() {
+    }, up() {
+    } }
+  };
+  var HINTS = {
+    select: t("Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste"),
+    brush: t("Drag to paint · Shift: straight line · [ ] size · Shift+B: tip · Alt+click: pick a color"),
+    pencil: t("Hard pixels in exact colors · Shift: straight line · [ ] size · Alt+click: pick a color"),
+    eraser: t("Drag to erase to transparent · Shift: straight line · [ ] size"),
+    line: t("Drag a line · Shift: 15° steps"),
+    ngon: t("Drag from the center · Shift: 15° rotation · keys 3–9: sides"),
+    ellipse: t("Drag from corner to corner (or from the center) · Shift: a circle"),
+    curve: t("Click the curve’s points · click the first point to close it · double-click or Enter ends it open · Backspace removes the last point · Esc cancels"),
+    bucket: t("Click to fill the area of similar color · Alt+click: pick a color"),
+    picker: t("Click to take a color from the image"),
+    pan: t("Drag to pan · mouse wheel zooms")
+  };
+  function setTool(tool) {
+    if (!tools[tool]) tool = "brush";
+    if (tool !== "select" && state.floating) place();
+    state.action = null;
+    cancelCurve();
+    state.tool = tool;
+    stage.dataset.tool = tool;
+    for (const b of $$("#tools button")) b.classList.toggle("active", b.dataset.tool === tool);
+    for (const s of $$(".tool-opts")) s.hidden = !s.dataset.for.split(" ").includes(tool);
+    $("#st-hint").textContent = HINTS[tool];
+    savePrefs();
+    requestRender();
+  }
+  function setMode(m) {
+    state.mode = m === "expert" ? "expert" : "simple";
+    document.body.dataset.mode = state.mode;
+    for (const b of $$("#mode-switch button")) b.classList.toggle("active", b.dataset.mode === state.mode);
+    if (state.mode === "simple") state.opacity = 1;
+    savePrefs();
+    emit("mode");
+  }
+
+  // src/raster/files.ts
+  var MAX_SIDE = 8e3;
+  var IMAGE_TYPES = [{ description: t("Images"), accept: { "image/*": [".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"] } }];
+  var PNG_TYPES = [{ description: t("PNG image"), accept: { "image/png": [".png"] } }];
+  var baseName = (n5) => n5.replace(/\.[a-z0-9]+$/i, "");
+  async function confirmDiscard() {
+    return !rt.dirty || askYes(t("Discard unsaved changes to the current image?\n(Save it first if you want to keep it.)"));
+  }
+  function loadCanvas(c, name) {
+    setSize(c.width, c.height);
+    dctx.clearRect(0, 0, c.width, c.height);
+    dctx.drawImage(c, 0, 0);
+    state.sel = null;
+    state.floating = null;
+    rt.fileName = baseName(name) + ".png";
+    rt.fileHandle = null;
+    resetHistory();
+    rt.dirty = false;
+    afterChange();
+    selectionChanged();
+    fitView();
+  }
+  async function fileToCanvas(f) {
+    try {
+      if (/svg/.test(f.type)) {
+        const text = await f.text(), { w, h } = svgSize(text);
+        return await svgToCanvas(text, Math.min(MAX_SIDE, Math.max(512, Math.round(Math.max(w, h)))));
+      }
+      const url2 = URL.createObjectURL(f);
+      try {
+        const img = await loadImg(url2);
+        const k = Math.min(1, MAX_SIDE / Math.max(img.naturalWidth, img.naturalHeight));
+        const c = makeCanvas(Math.round(img.naturalWidth * k), Math.round(img.naturalHeight * k));
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        return c;
+      } finally {
+        URL.revokeObjectURL(url2);
+      }
+    } catch {
+      return null;
+    }
+  }
+  var BIG = 2e3;
+  var FIT = 1600;
+  var MANY_COLORS = 256;
+  function scaled(c, k) {
+    const out = makeCanvas(Math.max(1, Math.round(c.width * k)), Math.max(1, Math.round(c.height * k))), x = out.getContext("2d");
+    x.imageSmoothingQuality = "high";
+    x.drawImage(c, 0, 0, out.width, out.height);
+    return out;
+  }
+  async function openImageFile(f) {
+    let c = await fileToCanvas(f);
+    if (!c) {
+      toast(t("Could not read {name} as an image.", { name: f.name }));
+      return false;
+    }
+    const side = Math.max(c.width, c.height);
+    if (side > BIG) {
+      const k = FIT / side, v = { name: f.name, w: c.width, h: c.height, W: Math.round(c.width * k), H: Math.round(c.height * k) };
+      if (await askYes(t("{name} is {w} × {h} px – painting on it and making mosaics will be slow. Scale it down to {W} × {H} px?", v))) c = scaled(c, k);
+    }
+    const img = c.getContext("2d").getImageData(0, 0, c.width, c.height);
+    const many = countColors(img, MANY_COLORS + 1) > MANY_COLORS;
+    await openCanvas(c, f.name, many ? t("It has many colors: “Reduce to palette” or “Make a mosaic…” turn them into a few you can buy tiles in.") : "");
+    return true;
+  }
+  async function openCanvas(c, name, note = "") {
+    saveVersion(t("Before opening {name}", { name }));
+    loadCanvas(c, name);
+    scheduleAutosave();
+    toast(t("Opened {name} ({w} × {h} px).", { name, w: c.width, h: c.height }) + (note ? " " + note : ""));
+  }
+  async function openFile() {
+    if (!await confirmDiscard()) return;
+    const w = window;
+    if (w.showOpenFilePicker) {
+      try {
+        const [h] = await w.showOpenFilePicker({ types: IMAGE_TYPES });
+        const f = await h.getFile();
+        if (await openImageFile(f) && /\.png$/i.test(f.name)) {
+          rt.fileHandle = h;
+          updateTitle();
+        }
+        return;
+      } catch (err) {
+        if (err.name === "AbortError") return;
+      }
+    }
+    $("#file-input").click();
+  }
+  function parseSize(s) {
+    const m = /^\s*(\d+)\s*[x×*, ]\s*(\d+)\s*$/i.exec(s || "");
+    if (!m) return null;
+    const w = +m[1], h = +m[2];
+    return w >= 1 && h >= 1 && w <= MAX_SIDE && h <= MAX_SIDE ? { w, h } : null;
+  }
+  async function newImage() {
+    if (!await confirmDiscard()) return;
+    const ans = await ask(t("Size of the new image in pixels (width × height):"), `${doc.width} × ${doc.height}`);
+    if (ans == null) return;
+    const s = parseSize(ans);
+    if (!s) {
+      toast(t("Enter a size like 800 × 600 (at most {max} px a side).", { max: MAX_SIDE }));
+      return;
+    }
+    const c = makeCanvas(s.w, s.h), x = c.getContext("2d");
+    x.fillStyle = "#ffffff";
+    x.fillRect(0, 0, s.w, s.h);
+    saveVersion(t("Before starting a new image")).then(() => {
+      loadCanvas(c, "mosaic.png");
+      scheduleAutosave();
+    });
+  }
+  var listVersions = () => Store.listVersions("raster");
+  async function restoreVersion(v) {
+    const c = v.png && await fileToCanvas(new Blob([v.png], { type: "image/png" }));
+    if (!c) {
+      toast(t("That version could not be read."));
+      return;
+    }
+    await saveVersion(t("Before restoring an older version"));
+    loadCanvas(c, v.name || "mosaic.png");
+    rt.dirty = true;
+    updateTitle();
+    scheduleAutosave();
+    toast(t("Restored the version from {time}", { time: new Date(v.time).toLocaleString(lang) }));
+  }
+  async function save() {
+    const png = await canvasToPng(doc), w = window;
+    if (w.showSaveFilePicker) {
+      try {
+        if (!rt.fileHandle) rt.fileHandle = await w.showSaveFilePicker({ suggestedName: rt.fileName, types: PNG_TYPES });
+        const wr = await rt.fileHandle.createWritable();
+        await wr.write(png);
+        await wr.close();
+        rt.fileName = rt.fileHandle.name;
+        rt.dirty = false;
+        updateTitle();
+        toast(t("Saved {name}", { name: rt.fileName }));
+        return;
+      } catch (err) {
+        if (err.name === "AbortError") return;
+        rt.fileHandle = null;
+      }
+    }
+    download(png, rt.fileName);
+    rt.dirty = false;
+    updateTitle();
+  }
+  function exportAs(type, quality) {
+    let c = doc;
+    if (type === "image/jpeg") {
+      c = makeCanvas(doc.width, doc.height);
+      const x = c.getContext("2d");
+      x.fillStyle = "#ffffff";
+      x.fillRect(0, 0, c.width, c.height);
+      x.drawImage(doc, 0, 0);
+    }
+    const ext = { "image/jpeg": ".jpg", "image/webp": ".webp", "image/png": ".png" }[type] || ".png";
+    c.toBlob((b) => b ? download(b, baseName(rt.fileName) + ext) : toast(t("Export failed.")), type, quality);
+  }
+  function resizeImage(w, h) {
+    if (w === doc.width && h === doc.height) return;
+    const old = makeCanvas(doc.width, doc.height);
+    old.getContext("2d").drawImage(doc, 0, 0);
+    const shrink = w < old.width || h < old.height;
+    setSize(w, h);
+    dctx.save();
+    dctx.imageSmoothingEnabled = shrink;
+    dctx.imageSmoothingQuality = "high";
+    dctx.drawImage(old, 0, 0, w, h);
+    dctx.restore();
+    state.sel = null;
+    commit();
+    selectionChanged();
+    fitView();
+  }
+  function canvasSize(w, h) {
+    if (w === doc.width && h === doc.height) return;
+    const old = makeCanvas(doc.width, doc.height);
+    old.getContext("2d").drawImage(doc, 0, 0);
+    setSize(w, h);
+    dctx.clearRect(0, 0, w, h);
+    dctx.drawImage(old, Math.round((w - old.width) / 2), Math.round((h - old.height) / 2));
+    state.sel = null;
+    commit();
+    selectionChanged();
+    fitView();
+  }
+
+  // src/raster/transform.ts
+  function replaceWith(c) {
+    setSize(c.width, c.height);
+    dctx.clearRect(0, 0, c.width, c.height);
+    dctx.drawImage(c, 0, 0);
+    state.sel = null;
+    commit();
+    selectionChanged();
+    fitView();
+  }
+  function current() {
+    if (state.floating) place();
+    const c = makeCanvas(doc.width, doc.height);
+    c.getContext("2d").drawImage(doc, 0, 0);
+    return c;
+  }
+  function rotate(deg) {
+    const a = (deg % 360 + 360) % 360;
+    if (!a) return;
+    const old = current(), rad = a * Math.PI / 180, quarter = a % 90 === 0;
+    const cos = Math.abs(Math.cos(rad)), sin = Math.abs(Math.sin(rad));
+    const W = quarter ? a % 180 ? old.height : old.width : Math.ceil(old.width * cos + old.height * sin - 1e-6);
+    const H = quarter ? a % 180 ? old.width : old.height : Math.ceil(old.width * sin + old.height * cos - 1e-6);
+    if (W > MAX_SIDE || H > MAX_SIDE) {
+      toast(t("Enter a size from 1 to {max} px.", { max: MAX_SIDE }));
+      return;
+    }
+    const c = makeCanvas(W, H), x = c.getContext("2d");
+    x.imageSmoothingEnabled = !quarter;
+    x.imageSmoothingQuality = "high";
+    x.translate(W / 2, H / 2);
+    x.rotate(rad);
+    x.drawImage(old, -old.width / 2, -old.height / 2);
+    replaceWith(c);
+  }
+  function flip(horizontal) {
+    const old = current(), c = makeCanvas(old.width, old.height), x = c.getContext("2d");
+    x.translate(horizontal ? old.width : 0, horizontal ? 0 : old.height);
+    x.scale(horizontal ? -1 : 1, horizontal ? 1 : -1);
+    x.drawImage(old, 0, 0);
+    replaceWith(c);
+  }
+  function cropToSelection() {
+    if (!state.sel && !state.floating) {
+      toast(t("Select the part to keep with the Select tool (V), then crop."));
+      return;
+    }
+    crop();
+  }
+  function trim() {
+    if (state.floating) place();
+    const b = trimBox(getImage());
+    if (!b) {
+      toast(t("The image is all one color – nothing to trim."));
+      return;
+    }
+    if (b.w === doc.width && b.h === doc.height) {
+      toast(t("There is no border to trim."));
+      return;
+    }
+    const c = makeCanvas(b.w, b.h);
+    c.getContext("2d").drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+    replaceWith(c);
+    toast(t("Trimmed to {w} × {h} px.", { w: b.w, h: b.h }));
   }
 
   // src/raster/mosaic.ts
@@ -8496,6 +9262,43 @@ ${shapes.join("\n")}
     bindCheck("#opt-clone-aligned", "cloneAligned");
     $("#btn-clone-source").onclick = () => pickCloneSource();
     $("#btn-adjust").onclick = () => openAdjust();
+    $("#btn-sel-fill").onclick = () => fillSelection();
+    const segs = (id, attr, key, after = () => {
+    }) => {
+      const show3 = () => {
+        for (const b of $$(`${id} button`)) {
+          const on2 = b.dataset[attr] === state[key];
+          b.classList.toggle("active", on2);
+          b.setAttribute("aria-checked", String(on2));
+          b.setAttribute("role", "radio");
+        }
+        after();
+      };
+      for (const b of $$(`${id} button`)) b.onclick = () => {
+        state[key] = b.dataset[attr];
+        if (key === "selShape") savePrefs();
+        show3();
+      };
+      show3();
+    };
+    segs("#sel-shape", "shape", "selShape", () => {
+      $("#sel-wand-row").hidden = state.selShape !== "wand";
+    });
+    segs("#sel-op", "op", "selOp");
+    const selTol = $("#opt-sel-tolerance");
+    selTol.value = state.tolerance;
+    selTol.oninput = () => {
+      state.tolerance = +selTol.value;
+      $("#opt-tolerance").value = selTol.value;
+      $("#opt-tolerance").oninput?.(new Event("input"));
+      savePrefs();
+    };
+    const rm = $("#opt-remove-method");
+    rm.value = state.removeMethod;
+    rm.onchange = () => {
+      state.removeMethod = rm.value;
+      savePrefs();
+    };
     updateCloneUI();
     const sides = $("#opt-sides");
     sides.onchange = () => setSides(+sides.value);
@@ -8762,7 +9565,7 @@ ${shapes.join("\n")}
   function initQuickMenu(h) {
     host = h;
     let cur2 = null;
-    let last = null;
+    let last2 = null;
     let swallow = null;
     const stop = (e) => {
       e.stopImmediatePropagation();
@@ -8772,19 +9575,19 @@ ${shapes.join("\n")}
     s.addEventListener("pointerdown", (ev) => {
       const e = ev;
       if (e.pointerType !== "touch" || !e.isPrimary) {
-        cur2 = last = null;
+        cur2 = last2 = null;
         return;
       }
       hintOnce();
-      if (last && e.timeStamp - last.t < GAP_MS && Math.hypot(e.clientX - last.x, e.clientY - last.y) < PAIR_PX) {
-        if (h.steps() === last.steps + 1) h.dropLastStep();
+      if (last2 && e.timeStamp - last2.t < GAP_MS && Math.hypot(e.clientX - last2.x, e.clientY - last2.y) < PAIR_PX) {
+        if (h.steps() === last2.steps + 1) h.dropLastStep();
         h.cancelPending();
-        last = null;
+        last2 = null;
         swallow = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false };
         stop(e);
         return;
       }
-      last = null;
+      last2 = null;
       cur2 = { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, steps: h.steps(), busy: h.busy(), moved: false };
     }, true);
     s.addEventListener("pointermove", (ev) => {
@@ -8806,7 +9609,7 @@ ${shapes.join("\n")}
         return;
       }
       if (cur2 && e.pointerId === cur2.id && !cur2.moved && !cur2.busy && e.timeStamp - cur2.t < TAP_MS) {
-        last = { x: e.clientX, y: e.clientY, t: e.timeStamp, steps: cur2.steps };
+        last2 = { x: e.clientX, y: e.clientY, t: e.timeStamp, steps: cur2.steps };
       }
       cur2 = null;
     }, true);
@@ -8816,7 +9619,7 @@ ${shapes.join("\n")}
         swallow = null;
         stop(e);
       }
-      cur2 = last = null;
+      cur2 = last2 = null;
     }, true);
     s.addEventListener("dblclick", (e) => {
       if (quickMenuOpen()) stop(e);
@@ -9013,6 +9816,9 @@ ${shapes.join("\n")}
         break;
       case "j":
         setTool("heal");
+        break;
+      case "r":
+        setTool("remove");
         break;
       case "l":
         setTool("line");
@@ -10018,9 +10824,9 @@ void main() {
       const shade = [];
       if (multi && s.col < L.cols - 1 && s.w >= L.aw) shade.push([vb[0] + vb[2] - OVERLAP / k, vb[1], OVERLAP / k, vb[3]]);
       if (multi && s.row < L.rows - 1 && s.h >= L.ah) shade.push([vb[0], vb[1] + vb[3] - OVERLAP / k, vb[2], OVERLAP / k]);
-      const marks = shade.map((r) => `<rect x="${n2(r[0])}" y="${n2(r[1])}" width="${n2(r[2])}" height="${n2(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n2(2 / k)} ${n2(2 / k)}" stroke-width="${n2(0.3 / k)}"/>`).join("");
+      const marks2 = shade.map((r) => `<rect x="${n2(r[0])}" y="${n2(r[1])}" width="${n2(r[2])}" height="${n2(r[3])}" fill="rgba(0,120,255,0.12)" stroke="rgba(0,120,255,0.6)" stroke-dasharray="${n2(2 / k)} ${n2(2 / k)}" stroke-width="${n2(0.3 / k)}"/>`).join("");
       const label2 = multi ? prefix + t("Sheet {sheet} – row {row}, column {col} of {cols} · blue strips are covered by the next sheet", { sheet: s.label, row: s.label.replace(/\d+$/, ""), col: s.col + 1, cols: L.cols }) : prefix + title2;
-      return `<section class="sheet"><div class="label">${esc(label2)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n2).join(" ")}" style="width:${n2(s.w * L.scale)}mm;height:${n2(s.h * L.scale)}mm"><use href="#art"/>${marks}</svg></section>`;
+      return `<section class="sheet"><div class="label">${esc(label2)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.map(n2).join(" ")}" style="width:${n2(s.w * L.scale)}mm;height:${n2(s.h * L.scale)}mm"><use href="#art"/>${marks2}</svg></section>`;
     });
   }
   function layoutInfo(L, mode2) {
@@ -10032,8 +10838,8 @@ void main() {
   function overviewSection(box5, k, A, rects, heading, extra = "") {
     const s = Math.min(A.aw / (box5.w * k), (A.ah - 20) / (box5.h * k));
     const stroke = 0.6 / k / s;
-    const marks = rects.map((r) => `<rect x="${n2(r.x)}" y="${n2(r.y)}" width="${n2(r.w)}" height="${n2(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n2(stroke)}"/><text x="${n2(r.x + r.w / 2)}" y="${n2(r.y + r.h / 2)}" font-size="${n2(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
-    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box5.x, box5.y, box5.w, box5.h].map(n2).join(" ")}" style="width:${n2(box5.w * k * s)}mm;height:${n2(box5.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks}</svg>${extra}</section>`;
+    const marks2 = rects.map((r) => `<rect x="${n2(r.x)}" y="${n2(r.y)}" width="${n2(r.w)}" height="${n2(r.h)}" fill="none" stroke="#0070f0" stroke-width="${n2(stroke)}"/><text x="${n2(r.x + r.w / 2)}" y="${n2(r.y + r.h / 2)}" font-size="${n2(Math.min(r.w, r.h) / 4)}" text-anchor="middle" dominant-baseline="central" fill="#0070f0" font-family="Arial" font-weight="bold">${esc(r.label)}</text>`).join("");
+    return `<section class="sheet"><div class="label">${esc(heading)}</div><svg xmlns="http://www.w3.org/2000/svg" viewBox="${[box5.x, box5.y, box5.w, box5.h].map(n2).join(" ")}" style="width:${n2(box5.w * k * s)}mm;height:${n2(box5.h * k * s)}mm"><use href="#art" opacity="0.45"/>${marks2}</svg>${extra}</section>`;
   }
   function page({ art, sections, paper = "a4", orientation = "portrait", title: title2 = "Mosaic" }) {
     const p = PAPERS[paper] || PAPERS.a4;
@@ -10414,7 +11220,7 @@ ${sections.join("\n")}
 <div class="row dlg-foot"><span class="note guide-count"></span><button class="guide-back">${t("Back")}</button><button class="guide-next primary"></button></div>`;
     document.body.append(card);
     let at = 0, marked = null;
-    const mark = (el) => {
+    const mark2 = (el) => {
       marked?.classList.remove("guide-target");
       marked = el;
       marked?.classList.add("guide-target");
@@ -10427,11 +11233,11 @@ ${sections.join("\n")}
       card.querySelector(".guide-back").disabled = at === 0;
       card.querySelector(".guide-next").textContent = at === steps2.length - 1 ? t("Done") : t("Next");
       const el = s.target ? document.querySelector(s.target) : null;
-      mark(el && el.offsetParent ? el : null);
+      mark2(el && el.offsetParent ? el : null);
       marked?.scrollIntoView({ block: "nearest", inline: "nearest" });
     }
     function close2() {
-      mark(null);
+      mark2(null);
       card.close();
       lsSet(key, "1");
     }
@@ -10504,8 +11310,16 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.7.0" : "dev";
+  var VERSION = true ? "1.8.0" : "dev";
   var RELEASES = [
+    {
+      version: "1.8.0",
+      date: "2026-10-13",
+      items: [
+        "Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.",
+        "Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device."
+      ]
+    },
     {
       version: "1.7.0",
       date: "2026-10-13",

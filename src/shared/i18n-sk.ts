@@ -1832,4 +1832,70 @@ export const SK: Record<string, string> = {
     'Úpravy fotiek v rastrovej aplikácii: Upraviť farby… – jas, kontrast, sýtosť, úrovne s tlačidlom Automaticky, doostrenie a vyhladenie šumu, so živým náhľadom (podržaním Predtým porovnáte).',
   'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.':
     'Retušovací štetec (J): premaľuje škvrny, bodky a škrabance textúrou odinakiaľ, vo farbe a svetle daného miesta.',
+  'Filling from the surroundings…':
+    'Vypĺňa sa z okolia…',
+  'Removed.':
+    'Odstránené.',
+  'Could not fill it: {why}':
+    'Nepodarilo sa vyplniť: {why}',
+  'Select what to remove first.':
+    'Najprv vyberte, čo odstrániť.',
+  'Select':
+    'Výber',
+  'Rectangle':
+    'Obdĺžnik',
+  'Lasso':
+    'Laso',
+  'Magnetic':
+    'Magnetické',
+  'Wand':
+    'Palička',
+  'Add':
+    'Pridať',
+  'Subtract':
+    'Ubrať',
+  'Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.':
+    'Ťahaním vnútri výberu ho presuniete. Kopírovať, Vymazať, Vyplniť z okolia a Upraviť farby rešpektujú jeho tvar.',
+  'Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.':
+    'Premaľujte, čo má zmiznúť; po zdvihnutí sa to vyplní z okolitého obrázka. Najlepšie funguje na pozadí – tráva, obloha, steny, pokožka.',
+  'Fill with':
+    'Vyplniť pomocou',
+  'Surroundings (built in)':
+    'Okolie (vstavané)',
+  'AI (add-on)':
+    'AI (doplnok)',
+  'Fill from surroundings':
+    'Vyplniť z okolia',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun',
+  'Shift / Alt + select':
+    'Shift / Alt + výber',
+  'Add to / take away from the selection':
+    'Pridať k výberu / ubrať z výberu',
+  'Remove – paint over something to make it disappear: it is filled from the picture around it (R)':
+    'Odstrániť – premaľujte niečo, aby to zmizlo: vyplní sa to z okolitého obrázka (R)',
+  'Shape':
+    'Tvar',
+  'A rectangle: drag across':
+    'Obdĺžnik: ťahajte cez',
+  'Freehand: draw around it':
+    'Voľnou rukou: obkreslite to',
+  'Draw roughly along an edge – the line snaps to it':
+    'Kreslite zhruba pozdĺž hrany – čiara sa k nej prichytí',
+  'Tap a color: everything similar next to it (or anywhere)':
+    'Ťuknite na farbu: všetko podobné vedľa nej (alebo kdekoľvek)',
+  'New selection':
+    'Nový výber',
+  'Replace the selection':
+    'Nahradiť výber',
+  'Add to the selection (or hold Shift)':
+    'Pridať k výberu (alebo držte Shift)',
+  'Take away from the selection (or hold Alt)':
+    'Ubrať z výberu (alebo držte Alt)',
+  'The selected part disappears: filled from the picture around it':
+    'Vybraná časť zmizne: vyplní sa z okolitého obrázka',
+  'Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.':
+    'Výbery ľubovoľného tvaru: Laso, Magnetické (prichytí sa k hranám) a Palička (podľa farby), s Nový / Pridať / Ubrať (alebo Shift / Alt) – kopírovanie, mazanie, presun aj Upraviť farby rešpektujú tvar.',
+  'Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.':
+    'Odstraňovanie: štetec Odstrániť (R) a Vyplniť z okolia pre výber vyplnia miesto okolitým obrázkom – s ohľadom na obsah, priamo v zariadení.',
 };

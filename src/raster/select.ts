@@ -1,4 +1,5 @@
-/* Rectangle selection: selecting, moving pixels (they float until placed), copy / cut / paste with the
+/* Selections – rectangles, freehand (lasso), along edges (magnetic lasso) and by color (magic wand), added
+   or taken away – moving pixels (they float until placed), copy / cut / paste with the
    system clipboard (images from the vector app, screenshots, other programs), clearing and cropping. */
 import type { Pt } from '../lib/geometry.ts';
 import type { Box } from '../lib/raster.ts';
@@ -10,8 +11,15 @@ import { commit, restoreCurrent, afterChange } from './history.ts';
 import type { Tool } from './paint.ts';
 import { t } from '../shared/i18n.ts';
 import { askYes } from '../shared/dialogs.ts';
+import * as S from '../lib/selection.ts';
 
 const inside = (b: Box, p: Pt) => p.x >= b.x && p.y >= b.y && p.x < b.x + b.w && p.y < b.y + b.h;
+/** Inside the selection's shape (not just its box). */
+function inSelection(p: Pt): boolean {
+  const b = state.sel;
+  if (!b || !inside(b, p)) return false;
+  return !b.mask || b.mask[Math.floor(p.y - b.y) * b.w + Math.floor(p.x - b.x)] >= 128;
+}
 const floatBox = (): Box | null => {
   const f = state.floating;
   return f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : null;
@@ -22,7 +30,28 @@ function clip(b: Box): Box | null {
   return x1 > x0 && y1 > y0 ? { x: x0, y: y0, w: x1 - x0, h: y1 - y0 } : null;
 }
 /** How much of each pixel of the selection's box is selected (null: all of it – a rectangle). */
-export const selectionMask = (): Uint8Array | null => (state.sel && state.selMask && state.selMask.length === state.sel.w * state.sel.h ? state.selMask : null);
+export const selectionMask = (): Uint8Array | null => state.sel?.mask || null;
+/** The selection as a whole-image mask (null: nothing selected). */
+export function selectionFullMask(): Uint8Array | null {
+  const b = state.sel;
+  return b ? S.fullMask(b, b.mask || null, doc.width, doc.height) : null;
+}
+/** Makes a whole-image mask the selection – replacing, adding to or taking from the one there is. */
+export function setSelectionMask(m: Uint8Array, op: S.SelMode = 'new'): void {
+  if (state.floating) place();
+  const full = S.combine(selectionFullMask(), m, op), box = S.maskBox(full, doc.width, doc.height);
+  if (!box) { state.sel = null; selectionChanged(); return; }
+  const mask = S.cropMask(full, doc.width, box);
+  state.sel = S.isFull(mask) ? box : { ...box, mask, edges: S.outline(mask, box.w, box.h) };
+  selectionChanged();
+}
+/** A canvas the size of the selection's box, white where it is selected (to cut pixels to its shape). */
+function maskCanvas(b: Box, mask: Uint8Array): HTMLCanvasElement {
+  const c = makeCanvas(b.w, b.h), x = c.getContext('2d'), im = x.createImageData(b.w, b.h);
+  for (let i = 0; i < mask.length; i++) { im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = 255; im.data[i * 4 + 3] = mask[i]; }
+  x.putImageData(im, 0, 0);
+  return c;
+}
 export function selectionChanged(): void {
   const b = floatBox() || state.sel;
   $('#sel-section').hidden = !b;
@@ -33,13 +62,23 @@ export function selectionChanged(): void {
 }
 
 // ---- floating pixels ----------------------------------------------------------------------------------
-/** Lifts the selected pixels so they can be moved. copy: leave the original in place. */
+/** Lifts the selected pixels (cut to the selection's shape) so they can be moved. copy: leave the original. */
 function lift(copy: boolean): void {
   const b = state.sel;
-  const c = makeCanvas(b.w, b.h);
-  c.getContext('2d').drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
-  if (!copy) dctx.clearRect(b.x, b.y, b.w, b.h);
-  state.floating = { canvas: c, x: b.x, y: b.y };
+  const c = makeCanvas(b.w, b.h), x = c.getContext('2d');
+  x.drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+  if (b.mask) {
+    const mc = maskCanvas(b, b.mask);
+    x.globalCompositeOperation = 'destination-in';
+    x.drawImage(mc, 0, 0);
+    if (!copy) {
+      dctx.save();
+      dctx.globalCompositeOperation = 'destination-out';
+      dctx.drawImage(mc, b.x, b.y);
+      dctx.restore();
+    }
+  } else if (!copy) dctx.clearRect(b.x, b.y, b.w, b.h);
+  state.floating = { canvas: c, x: b.x, y: b.y, mask: b.mask };
   state.sel = null;
 }
 /** Puts floating pixels down onto the image (one undo step). */
@@ -47,7 +86,9 @@ export function place(): boolean {
   const f = state.floating;
   if (!f) return false;
   dctx.drawImage(f.canvas, f.x, f.y);
-  state.sel = clip({ x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height });
+  const box = clip({ x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height });
+  // the shape stays selected where it is still whole on the image
+  state.sel = box && f.mask && box.w === f.canvas.width && box.h === f.canvas.height ? { ...box, mask: f.mask, edges: S.outline(f.mask, box.w, box.h) } : box;
   state.floating = null;
   commit();
   selectionChanged();
@@ -70,6 +111,42 @@ export function selectAll(): void {
   selectionChanged();
 }
 
+// ---- the Select tool: rectangle, lasso, magnetic lasso, magic wand ------------------------------------------------
+/** What a new selection does: Shift adds, Alt takes away; otherwise the chosen New / Add / Subtract. */
+const opFor = (e: PointerEvent): S.SelMode => (e.shiftKey ? 'add' : e.altKey ? 'subtract' : state.selOp);
+/** A closed outline (image pixels) as a whole-image mask, with smooth edges. */
+function polygonMask(pts: Pt[]): Uint8Array {
+  const c = makeCanvas(doc.width, doc.height), x = c.getContext('2d');
+  x.beginPath();
+  pts.forEach((p, i) => (i ? x.lineTo(p.x, p.y) : x.moveTo(p.x, p.y)));
+  x.closePath();
+  x.fillStyle = '#fff';
+  x.fill();
+  const d = x.getImageData(0, 0, doc.width, doc.height).data, m = new Uint8Array(doc.width * doc.height);
+  for (let i = 0; i < m.length; i++) m[i] = d[i * 4 + 3];
+  return m;
+}
+/** The magnetic lasso's edge-cost map, worked out when it starts. */
+let cost: Float32Array | null = null;
+/** The outline being drawn (lasso, magnetic, a rectangle being added or taken away): a dashed line. */
+function lassoPreview(pts: Pt[], live: Pt[] = []): void {
+  state.preview = (ctx, px) => {
+    const all = [...pts, ...live];
+    if (all.length < 2) return;
+    ctx.beginPath();
+    all.forEach((q, i) => (i ? ctx.lineTo(q.x, q.y) : ctx.moveTo(q.x, q.y)));
+    ctx.lineWidth = 2 * px;
+    ctx.strokeStyle = 'rgba(0,0,0,.7)';
+    ctx.stroke();
+    ctx.setLineDash([4 * px, 4 * px]);
+    ctx.lineWidth = px;
+    ctx.strokeStyle = '#fff';
+    ctx.stroke();
+    ctx.setLineDash([]);
+  };
+  requestRender();
+}
+const magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
 export const selectTool: Tool = {
   down(e, p) {
     const fb = floatBox();
@@ -77,16 +154,30 @@ export const selectTool: Tool = {
       state.action = { type: 'move', dx: p.x - fb.x, dy: p.y - fb.y };
       return;
     }
-    if (!fb && state.sel && inside(state.sel, p)) {
+    const op = opFor(e);
+    // drag inside the selection: move it (Alt: a copy) – unless adding to it or taking from it
+    if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === 'new') {
       lift(e.altKey);
       state.action = { type: 'move', dx: p.x - state.floating.x, dy: p.y - state.floating.y };
       selectionChanged();
       return;
     }
     if (fb) place();
-    state.action = { type: 'marquee', a: { x: Math.round(p.x), y: Math.round(p.y) } };
-    state.sel = null;
-    selectionChanged();
+    const q = { x: Math.round(p.x), y: Math.round(p.y) };
+    if (state.selShape === 'wand') {
+      const x = Math.floor(p.x), y = Math.floor(p.y);
+      if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
+      setSelectionMask(S.wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
+      return;
+    }
+    if (state.selShape === 'lasso') { state.action = { type: 'lasso', op, pts: [p] }; return; }
+    if (state.selShape === 'magnetic') {
+      cost = S.edgeCost(dctx.getImageData(0, 0, doc.width, doc.height));
+      state.action = { type: 'magnetic', op, anchors: [q], path: [q], live: [] as Pt[] };
+      return;
+    }
+    state.action = { type: 'marquee', op, a: q };
+    if (op === 'new') { state.sel = null; selectionChanged(); }
   },
   move(e, p) {
     const a = state.action;
@@ -96,24 +187,55 @@ export const selectTool: Tool = {
       state.floating.y = Math.round(p.y - a.dy);
       requestRender();
     } else if (a.type === 'marquee') {
-      const b = { x: Math.round(p.x), y: Math.round(p.y) };
-      state.sel = clip({ x: Math.min(a.a.x, b.x), y: Math.min(a.a.y, b.y), w: Math.abs(b.x - a.a.x), h: Math.abs(b.y - a.a.y) });
-      selectionChanged();
+      const b = { x: Math.round(p.x), y: Math.round(p.y) }, box = clip({ x: Math.min(a.a.x, b.x), y: Math.min(a.a.y, b.y), w: Math.abs(b.x - a.a.x), h: Math.abs(b.y - a.a.y) });
+      if (a.op === 'new') { state.sel = box; selectionChanged(); } else {
+        a.box = box;
+        lassoPreview(box ? [{ x: box.x, y: box.y }, { x: box.x + box.w, y: box.y }, { x: box.x + box.w, y: box.y + box.h }, { x: box.x, y: box.y + box.h }, { x: box.x, y: box.y }] : []);
+      }
+    } else if (a.type === 'lasso') {
+      const last = a.pts[a.pts.length - 1];
+      if (Math.hypot(p.x - last.x, p.y - last.y) * state.view.s >= 2) a.pts.push(p);
+      lassoPreview(a.pts);
+    } else if (a.type === 'magnetic') {
+      // the path from the last anchor hugs the edges; far enough along, most of it is fixed and a new anchor set
+      const anchor = a.anchors[a.anchors.length - 1];
+      a.live = S.cheapestPath(cost, doc.width, doc.height, anchor, p, magnetMargin());
+      if (Math.hypot(p.x - anchor.x, p.y - anchor.y) * state.view.s > 40 && a.live.length > 4) {
+        const keep = a.live.slice(0, Math.floor(a.live.length * 0.75));
+        a.path.push(...keep);
+        a.anchors.push(keep[keep.length - 1]);
+        a.live = S.cheapestPath(cost, doc.width, doc.height, keep[keep.length - 1], p, magnetMargin());
+      }
+      lassoPreview(a.path, a.live);
     }
   },
   up() {
+    const a = state.action;
     state.action = null;
+    state.preview = null;
+    if (a?.type === 'marquee' && a.op !== 'new') {
+      if (a.box) setSelectionMask(S.fullMask(a.box, null, doc.width, doc.height), a.op);
+    } else if (a?.type === 'lasso' && a.pts.length > 2) {
+      setSelectionMask(polygonMask(a.pts), a.op);
+    } else if (a?.type === 'magnetic') {
+      // closed back to the start along the edges too
+      const pts = [...a.path, ...a.live];
+      if (pts.length > 2) setSelectionMask(polygonMask([...pts, ...S.cheapestPath(cost, doc.width, doc.height, pts[pts.length - 1], pts[0], magnetMargin())]), a.op);
+      cost = null;
+    }
     selectionChanged();
   },
 };
 
 // ---- selection commands -------------------------------------------------------------------------------
-/** The pixels to copy: the floating ones, the selection, or the whole image. */
+/** The pixels to copy: the floating ones, the selection (cut to its shape), or the whole image. */
 function copySource(): HTMLCanvasElement {
   if (state.floating) return state.floating.canvas;
   const b = state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
-  const c = makeCanvas(b.w, b.h);
-  c.getContext('2d').drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+  const c = makeCanvas(b.w, b.h), x = c.getContext('2d');
+  x.drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, b.w, b.h);
+  const mask = state.sel?.mask;
+  if (mask) { x.globalCompositeOperation = 'destination-in'; x.drawImage(maskCanvas(b, mask), 0, 0); }
   return c;
 }
 /** Kept for pasting here when the browser can't put images on the system clipboard. */
@@ -136,7 +258,12 @@ export function clearSelection(): void {
   if (state.floating) { state.floating = null; commit(); selectionChanged(); return; }
   const b = state.sel;
   if (!b) return;
-  dctx.clearRect(b.x, b.y, b.w, b.h);
+  if (b.mask) {
+    dctx.save();
+    dctx.globalCompositeOperation = 'destination-out';
+    dctx.drawImage(maskCanvas(b, b.mask), b.x, b.y);
+    dctx.restore();
+  } else dctx.clearRect(b.x, b.y, b.w, b.h);
   commit();
 }
 export function crop(): void {

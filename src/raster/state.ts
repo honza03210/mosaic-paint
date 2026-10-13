@@ -7,7 +7,11 @@ import { DEFAULT_PALETTE, loadSharedPalettes, saveSharedPalettes } from '../shar
 import { t } from '../shared/i18n.ts';
 
 /** Pixels lifted off the image (moved selection) or pasted, not yet placed. */
-export interface Floating { canvas: HTMLCanvasElement; x: number; y: number }
+/** Pixels being moved or pasted; mask: the shape they were lifted with (kept as the selection when placed). */
+export interface Floating { canvas: HTMLCanvasElement; x: number; y: number; mask?: Uint8Array }
+/** The selection: its box, and for shapes other than a rectangle how much of each of its pixels is selected
+    (0…255, w × h) – with its outline, worked out once for drawing. */
+export type Selection = Box & { mask?: Uint8Array; edges?: number[] };
 
 export const state = {
   mode: 'simple',
@@ -36,9 +40,13 @@ export const state = {
   mosaic: { tile: 16, grout: 2, groutColor: '#b8b2a7', colors: 'palette', count: 12, shape: 'square', detail: 0 },
   view: { x: 0, y: 0, s: 1 },
   /** the rectangle selection (whole pixels), or null */
-  sel: null as Box | null,
-  /** a selection that is not a rectangle: how much of each pixel of sel is selected (0…255), sel.w × sel.h */
-  selMask: null as Uint8Array | null,
+  sel: null as Selection | null,
+  /** how the Select tool selects: a rectangle, freehand (lasso), along edges (magnetic) or by color (wand) */
+  selShape: 'rect',
+  /** what a new selection does to the one there is: replaces it, adds to it or takes away from it */
+  selOp: 'new' as 'new' | 'add' | 'subtract',
+  /** how Remove fills: content-aware (built in) or with the AI add-on */
+  removeMethod: 'builtin',
   floating: null as Floating | null,
   /** the gesture in progress */
   action: null as any,
@@ -60,7 +68,7 @@ export const rt = {
 
 // ---- remembered settings ---------------------------------------------------------------------------
 const KEY = 'mz-raster-prefs';
-const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'cloneAligned', 'sides', 'ellipseMode', 'curveType', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'grid', 'mosaic', 'realWidth'];
+const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'cloneAligned', 'sides', 'ellipseMode', 'curveType', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'selShape', 'removeMethod', 'grid', 'mosaic', 'realWidth'];
 export function savePrefs(): void {
   const o: Record<string, unknown> = {};
   for (const k of PREF_KEYS) o[k] = state[k];

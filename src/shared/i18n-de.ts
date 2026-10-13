@@ -1832,4 +1832,70 @@ export const DE: Record<string, string> = {
     'Fotokorrekturen in der Raster-App: Farben anpassen… – Helligkeit, Kontrast, Sättigung, Tonwerte mit Automatisch, Schärfen und Rauschglättung, mit Live-Vorschau (Vorher gedrückt halten zum Vergleichen).',
   'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.':
     'Reparatur-Pinsel (J): übermalt Makel, Flecken und Kratzer mit Struktur von anderswo, in Farbe und Licht der Stelle.',
+  'Filling from the surroundings…':
+    'Wird aus der Umgebung gefüllt…',
+  'Removed.':
+    'Entfernt.',
+  'Could not fill it: {why}':
+    'Füllen nicht möglich: {why}',
+  'Select what to remove first.':
+    'Wähle zuerst aus, was entfernt werden soll.',
+  'Select':
+    'Auswahl',
+  'Rectangle':
+    'Rechteck',
+  'Lasso':
+    'Lasso',
+  'Magnetic':
+    'Magnetisch',
+  'Wand':
+    'Zauberstab',
+  'Add':
+    'Hinzufügen',
+  'Subtract':
+    'Abziehen',
+  'Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.':
+    'Innerhalb der Auswahl ziehen, um sie zu verschieben. Kopieren, Löschen, Aus der Umgebung füllen und Farben anpassen folgen ihrer Form.',
+  'Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.':
+    'Übermale, was verschwinden soll; beim Loslassen wird es aus dem umgebenden Bild gefüllt. Am besten auf Hintergründen – Gras, Himmel, Wände, Haut.',
+  'Fill with':
+    'Füllen mit',
+  'Surroundings (built in)':
+    'Umgebung (eingebaut)',
+  'AI (add-on)':
+    'KI (Add-on)',
+  'Fill from surroundings':
+    'Aus der Umgebung füllen',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben',
+  'Shift / Alt + select':
+    'Umschalt / Alt + Auswahl',
+  'Add to / take away from the selection':
+    'Zur Auswahl hinzufügen / von ihr abziehen',
+  'Remove – paint over something to make it disappear: it is filled from the picture around it (R)':
+    'Entfernen – übermale etwas, damit es verschwindet: es wird aus dem umgebenden Bild gefüllt (R)',
+  'Shape':
+    'Form',
+  'A rectangle: drag across':
+    'Ein Rechteck: darüber ziehen',
+  'Freehand: draw around it':
+    'Freihand: drumherum zeichnen',
+  'Draw roughly along an edge – the line snaps to it':
+    'Grob an einer Kante entlang zeichnen – die Linie rastet daran ein',
+  'Tap a color: everything similar next to it (or anywhere)':
+    'Auf eine Farbe tippen: alles Ähnliche daneben (oder überall)',
+  'New selection':
+    'Neue Auswahl',
+  'Replace the selection':
+    'Die Auswahl ersetzen',
+  'Add to the selection (or hold Shift)':
+    'Zur Auswahl hinzufügen (oder Umschalt halten)',
+  'Take away from the selection (or hold Alt)':
+    'Von der Auswahl abziehen (oder Alt halten)',
+  'The selected part disappears: filled from the picture around it':
+    'Der ausgewählte Teil verschwindet: aus dem umgebenden Bild gefüllt',
+  'Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.':
+    'Auswahlen jeder Form: Lasso, Magnetisch (rastet an Kanten ein) und Zauberstab (nach Farbe), mit Neu / Hinzufügen / Abziehen (oder Umschalt / Alt) – Kopieren, Löschen, Verschieben und Farben anpassen folgen der Form.',
+  'Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.':
+    'Dinge entfernen: der Entfernen-Pinsel (R) und Aus der Umgebung füllen für eine Auswahl füllen die Stelle mit dem umgebenden Bild – inhaltsbasiert, auf dem Gerät.',
 };

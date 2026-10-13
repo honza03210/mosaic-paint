@@ -183,8 +183,24 @@ export function render(): void {
     vctx.strokeStyle = 'rgba(128,128,128,.35)';
     vctx.stroke();
   }
-  const box = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : state.sel;
-  if (box) dashedRect(Math.round(ox + box.x * k), Math.round(oy + box.y * k), Math.round(box.w * k), Math.round(box.h * k));
+  const sel = state.sel, box = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : sel;
+  if (!f && sel?.edges) {
+    // a shaped selection: its outline, black under white dashes
+    vctx.beginPath();
+    const e = sel.edges;
+    for (let i = 0; i < e.length; i += 4) {
+      vctx.moveTo(Math.round(ox + (sel.x + e[i]) * k) + 0.5, Math.round(oy + (sel.y + e[i + 1]) * k) + 0.5);
+      vctx.lineTo(Math.round(ox + (sel.x + e[i + 2]) * k) + 0.5, Math.round(oy + (sel.y + e[i + 3]) * k) + 0.5);
+    }
+    vctx.lineWidth = 1;
+    vctx.setLineDash([]);
+    vctx.strokeStyle = '#000';
+    vctx.stroke();
+    vctx.setLineDash([4, 4]);
+    vctx.strokeStyle = '#fff';
+    vctx.stroke();
+    vctx.setLineDash([]);
+  } else if (box) dashedRect(Math.round(ox + box.x * k), Math.round(oy + box.y * k), Math.round(box.w * k), Math.round(box.h * k));
 }
 // the first fit waits until the page is laid out (a hidden tab has no size yet)
 new ResizeObserver(() => { if (!fitted) fitView(); requestRender(); }).observe(stage);

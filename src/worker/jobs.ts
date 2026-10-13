@@ -7,6 +7,7 @@ import { piecesSvg } from '../lib/vectorize.ts';
 import { photoMosaic, type PhotoMosaicJob } from '../lib/photo.ts';
 import { readGcode } from '../lib/gcode.ts';
 import { applyAdjust, type Adjust } from '../lib/adjust.ts';
+import { inpaint } from '../lib/inpaint.ts';
 
 export type Progress = (f: number) => void;
 
@@ -51,6 +52,7 @@ export const jobs = {
   gcode: (a: { text: string }, p: Progress) => readGcode(a.text, p),
   view3d: (a: { shape: B.Shape; o: B.Build3DOptions }) => B.viewMesh(a.shape, a.o),
   export3d: (a: B.ExportRequest, p: Progress) => B.exportModel(a, p),
+  inpaint: (a: { img: R.Img; mask: Uint8Array }, p: Progress) => ({ width: a.img.width, height: a.img.height, data: inpaint(a.img, a.mask, p) }) as R.Img,
   adjust: (a: { img: R.Img; adjust: Adjust }) => ({ width: a.img.width, height: a.img.height, data: applyAdjust(a.img.data, a.img.width, a.img.height, a.adjust) }) as R.Img,
 };
 export type Jobs = typeof jobs;

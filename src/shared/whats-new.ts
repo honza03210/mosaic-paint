@@ -11,6 +11,12 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '1.8.0', date: '2026-10-13', items: [
+      'Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.',
+      'Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.',
+    ],
+  },
+  {
     version: '1.7.0', date: '2026-10-13', items: [
       'Photo fixes in the raster app: Adjust colors… – brightness, contrast, saturation, levels with Auto, sharpening and noise smoothing, previewed live (hold Before to compare).',
       'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.',

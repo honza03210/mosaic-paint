@@ -1832,4 +1832,70 @@ export const PL: Record<string, string> = {
     'Poprawki zdjęć w aplikacji rastrowej: Dopasuj kolory… – jasność, kontrast, nasycenie, poziomy z przyciskiem Auto, wyostrzanie i wygładzanie szumu, z podglądem na żywo (przytrzymaj Przedtem, aby porównać).',
   'Heal brush (J): paints over blemishes, spots and scratches with texture from elsewhere, in the color and light of the spot.':
     'Pędzel korygujący (J): zamalowuje skazy, plamki i rysy fakturą z innego miejsca, w kolorze i świetle poprawianego miejsca.',
+  'Filling from the surroundings…':
+    'Wypełnianie z otoczenia…',
+  'Removed.':
+    'Usunięto.',
+  'Could not fill it: {why}':
+    'Nie udało się wypełnić: {why}',
+  'Select what to remove first.':
+    'Najpierw zaznacz, co usunąć.',
+  'Select':
+    'Zaznaczanie',
+  'Rectangle':
+    'Prostokąt',
+  'Lasso':
+    'Lasso',
+  'Magnetic':
+    'Magnetyczne',
+  'Wand':
+    'Różdżka',
+  'Add':
+    'Dodaj',
+  'Subtract':
+    'Odejmij',
+  'Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.':
+    'Przeciągnij wewnątrz zaznaczenia, aby je przesunąć. Kopiuj, Wyczyść, Wypełnij z otoczenia i Dopasuj kolory trzymają się jego kształtu.',
+  'Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.':
+    'Zamaluj to, co ma zniknąć; po uniesieniu zostanie wypełnione obrazem z otoczenia. Najlepiej działa na tłach – trawa, niebo, ściany, skóra.',
+  'Fill with':
+    'Wypełnij przez',
+  'Surroundings (built in)':
+    'Otoczenie (wbudowane)',
+  'AI (add-on)':
+    'AI (dodatek)',
+  'Fill from surroundings':
+    'Wypełnij z otoczenia',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń',
+  'Shift / Alt + select':
+    'Shift / Alt + zaznaczanie',
+  'Add to / take away from the selection':
+    'Dodaj do zaznaczenia / odejmij od niego',
+  'Remove – paint over something to make it disappear: it is filled from the picture around it (R)':
+    'Usuń – zamaluj coś, aby zniknęło: zostanie wypełnione obrazem z otoczenia (R)',
+  'Shape':
+    'Kształt',
+  'A rectangle: drag across':
+    'Prostokąt: przeciągnij',
+  'Freehand: draw around it':
+    'Odręcznie: obrysuj to',
+  'Draw roughly along an edge – the line snaps to it':
+    'Rysuj mniej więcej wzdłuż krawędzi – linia się do niej przyciąga',
+  'Tap a color: everything similar next to it (or anywhere)':
+    'Stuknij kolor: wszystko podobne obok (lub wszędzie)',
+  'New selection':
+    'Nowe zaznaczenie',
+  'Replace the selection':
+    'Zastąp zaznaczenie',
+  'Add to the selection (or hold Shift)':
+    'Dodaj do zaznaczenia (lub przytrzymaj Shift)',
+  'Take away from the selection (or hold Alt)':
+    'Odejmij od zaznaczenia (lub przytrzymaj Alt)',
+  'The selected part disappears: filled from the picture around it':
+    'Zaznaczona część znika: wypełniona obrazem z otoczenia',
+  'Shaped selections: Lasso, Magnetic (snaps to edges) and Wand (by color), with New / Add / Subtract (or Shift / Alt) – copy, clear, move and Adjust colors follow the shape.':
+    'Zaznaczenia dowolnego kształtu: Lasso, Magnetyczne (przyciąga się do krawędzi) i Różdżka (według koloru), z Nowe / Dodaj / Odejmij (lub Shift / Alt) – kopiowanie, czyszczenie, przesuwanie i Dopasuj kolory trzymają się kształtu.',
+  'Removing things: the Remove brush (R) and Fill from surroundings for a selection fill the spot with the picture around it – content-aware, on the device.':
+    'Usuwanie: pędzel Usuń (R) i Wypełnij z otoczenia dla zaznaczenia wypełniają miejsce obrazem z otoczenia – z uwzględnieniem treści, na urządzeniu.',
 };

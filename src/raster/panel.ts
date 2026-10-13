@@ -12,6 +12,7 @@ import { rotate, flip, cropToSelection, trim } from './transform.ts';
 import { bindMosaic } from './mosaic.ts';
 import { TIPS, cancelCurve, pickCloneSource, updateCloneUI } from './paint.ts';
 import { openAdjust } from './adjust-ui.ts';
+import { fillSelection } from './remove.ts';
 import * as Curves from '../lib/curves.ts';
 import { curveNote } from '../shared/curve-notes.ts';
 import { t } from '../shared/i18n.ts';
@@ -107,6 +108,21 @@ export function bindPanel(): void {
   bindCheck('#opt-clone-aligned', 'cloneAligned');
   $('#btn-clone-source').onclick = () => pickCloneSource();
   $('#btn-adjust').onclick = () => openAdjust();
+  $('#btn-sel-fill').onclick = () => fillSelection();
+  // the Select tool: its shape and what a new selection does
+  const segs = (id: string, attr: string, key: 'selShape' | 'selOp', after = () => {}) => {
+    const show = () => { for (const b of $$(`${id} button`)) { const on = b.dataset[attr] === state[key]; b.classList.toggle('active', on); b.setAttribute('aria-checked', String(on)); b.setAttribute('role', 'radio'); } after(); };
+    for (const b of $$(`${id} button`)) b.onclick = () => { (state as any)[key] = b.dataset[attr]; if (key === 'selShape') savePrefs(); show(); };
+    show();
+  };
+  segs('#sel-shape', 'shape', 'selShape', () => { $('#sel-wand-row').hidden = state.selShape !== 'wand'; });
+  segs('#sel-op', 'op', 'selOp');
+  const selTol = $('#opt-sel-tolerance');
+  selTol.value = state.tolerance;
+  selTol.oninput = () => { state.tolerance = +selTol.value; $('#opt-tolerance').value = selTol.value; $('#opt-tolerance').oninput?.(new Event('input')); savePrefs(); };
+  const rm = $('#opt-remove-method');
+  rm.value = state.removeMethod;
+  rm.onchange = () => { state.removeMethod = rm.value; savePrefs(); };
   updateCloneUI();
 
   // polygon

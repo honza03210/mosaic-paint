@@ -70,6 +70,9 @@
     <button data-tool="heal" title="Heal – like Clone, but the copy takes the color and light of the place you paint: for blemishes, spots and scratches (J)">
       <svg viewBox="0 0 20 20"><rect x="2.5" y="7" width="15" height="6" rx="3" class="st" transform="rotate(-40 10 10)"/><path d="M9 9.2h2v2H9z"/><path d="M7.3 10.3h1.4v1.4H7.3zM11.3 8.3h1.4v1.4h-1.4z"/></svg>
     </button>
+    <button data-tool="remove" title="Remove – paint over something to make it disappear: it is filled from the picture around it (R)">
+      <svg viewBox="0 0 20 20"><path d="M3 15.5L12.5 6l3 3L6 18.5H3z" class="st"/><path d="M14 4.5l1.5-1.5 3 3L17 7.5" class="st"/><path d="M11 17.5h7" class="st" stroke-dasharray="1.5 1.5"/></svg>
+    </button>
     <button data-tool="line" title="Line (L)">
       <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg>
     </button>
@@ -138,6 +141,24 @@
       <p class="note">Click a swatch = paint color · right-click = outline color · double-click = edit (also recolors the image). The ∅ swatch paints transparent. Palettes are shared with the vector app.</p>
     </section>
 
+    <section class="tool-opts" data-for="select">
+      <h3>Select</h3>
+      <div class="row"><div class="seg-btns" id="sel-shape" role="radiogroup" aria-label="Shape">
+        <button data-shape="rect" title="A rectangle: drag across">Rectangle</button><button data-shape="lasso" title="Freehand: draw around it">Lasso</button><button data-shape="magnetic" title="Draw roughly along an edge – the line snaps to it">Magnetic</button><button data-shape="wand" title="Tap a color: everything similar next to it (or anywhere)">Wand</button>
+      </div></div>
+      <div class="row"><div class="seg-btns" id="sel-op" role="radiogroup" aria-label="New selection">
+        <button data-op="new" title="Replace the selection">New</button><button data-op="add" title="Add to the selection (or hold Shift)">Add</button><button data-op="subtract" title="Take away from the selection (or hold Alt)">Subtract</button>
+      </div></div>
+      <div class="row" id="sel-wand-row"><label class="grow">Tolerance <input id="opt-sel-tolerance" type="range" min="0" max="128"></label></div>
+      <p class="note">Drag inside the selection to move it. Copy, Clear, Fill from surroundings and Adjust colors follow its shape.</p>
+    </section>
+
+    <section class="tool-opts" data-for="remove">
+      <h3>Remove</h3>
+      <p class="note">Paint over what should disappear; when you lift, it is filled from the picture around it. Works best on backgrounds – grass, sky, walls, skin.</p>
+      <label id="remove-method-row" hidden>Fill with <select id="opt-remove-method"><option value="builtin">Surroundings (built in)</option><option value="ai">AI (add-on)</option></select></label>
+    </section>
+
     <section class="tool-opts" data-for="clone heal">
       <h3><span class="tool-opts" data-for="clone">Clone</span><span class="tool-opts" data-for="heal">Heal</span></h3>
       <div class="row"><button id="btn-clone-source" title="The next tap or click sets where to copy from (or Alt+click)">Set source</button><span id="clone-status" class="note"></span></div>
@@ -145,7 +166,7 @@
       <p class="note">Set where to copy from, then paint where the copy should go. Drag the source disc to move it. Size, tip and opacity are the brush's.</p>
     </section>
 
-    <section class="tool-opts" data-for="brush pencil eraser clone heal line">
+    <section class="tool-opts" data-for="brush pencil eraser clone heal remove line">
       <h3>Brush</h3>
       <div class="row">
         <label class="grow">Size <input id="opt-size-range" type="range" min="1" max="100"></label>
@@ -218,6 +239,7 @@
         <button id="btn-sel-del" title="Delete">Clear</button>
         <button id="btn-sel-crop">Crop</button>
       </div>
+      <div class="row btns"><button id="btn-sel-fill" title="The selected part disappears: filled from the picture around it">Fill from surroundings</button></div>
       <p class="note">Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.</p>
     </section>
 
@@ -265,7 +287,8 @@
       <details>
         <summary>Keyboard &amp; mouse</summary>
         <table class="keys">
-          <tr><td>V B P E S J L G O C F I H</td><td>Select, Brush, Pencil, Eraser, Clone, Heal, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan</td></tr>
+          <tr><td>V B P E S J R L G O C F I H</td><td>Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan</td></tr>
+          <tr><td>Shift / Alt + select</td><td>Add to / take away from the selection</td></tr>
           <tr><td>[ ]</td><td>Smaller / bigger brush</td></tr>
           <tr><td>Shift+B</td><td>Next brush tip</td></tr>
           <tr><td>3 – 9</td><td>Polygon sides</td></tr>
