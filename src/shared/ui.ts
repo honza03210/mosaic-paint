@@ -11,7 +11,8 @@ export function toast(msg: string): void {
   const t = $('#st-msg');
   t.textContent = msg;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.textContent = ''; }, 5000);
+  // long enough to read: longer messages stay longer
+  toastTimer = setTimeout(() => { t.textContent = ''; }, Math.min(15000, 4000 + msg.length * 60));
 }
 /** Work in progress, in the status bar: the label, then its share done (0…1); done() clears it. */
 export function working(label: string): { set(f: number): void; done(): void } {

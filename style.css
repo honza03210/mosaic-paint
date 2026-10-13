@@ -513,3 +513,9 @@ button.icon { padding: 4px 7px; display: inline-grid; place-items: center; min-w
 button.icon-text { display: inline-flex; align-items: center; gap: 5px; }
 button.icon-text svg.ic { width: 16px; height: 16px; }
 .qm-extra { display: contents; }
+/* a long message wraps instead of running off the screen; on a phone it takes the tool hint's place */
+#st-msg { white-space: normal; text-align: right; min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  #status:has(#st-msg:not(:empty)) #st-hint, #status:has(#st-msg:not(:empty)) #st-pos { display: none; }
+  #st-msg { margin-left: 0; text-align: left; }
+}

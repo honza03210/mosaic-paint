@@ -4589,7 +4589,7 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       t2.textContent = "";
-    }, 5e3);
+    }, Math.min(15e3, 4e3 + msg.length * 60));
   }
   function lsGet(k) {
     try {

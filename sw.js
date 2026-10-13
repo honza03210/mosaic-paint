@@ -1,6 +1,6 @@
 /* Mosaic Paint – service worker: keeps a copy of the app so it also runs offline.
    Network first, so updates arrive as soon as you're online; the cache is the fallback. */
-const CACHE = 'mosaic-paint-2.3.0-d124bc8159';
+const CACHE = 'mosaic-paint-2.3.0-0d4ae2b9e9';
 const FILES = [
   './', 'index.html', 'raster.html', 'style.css', 'manifest.webmanifest',
   'dist/mosaic.js', 'dist/raster.js',
