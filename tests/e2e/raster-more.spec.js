@@ -384,8 +384,10 @@ test('ellipse and curve tools paint pixels: filled and outlined shapes, open cur
   await page.evaluate(() => { RZ.blank(200, 200); Object.assign(RZ.state, { ngonFill: false, ngonOutline: true }); });
   await drag([50, 50], [150, 120], { shiftKey: true });
   expect(await at(100, 100)).toBe('#ffffff');
-  expect(await at(100, 51)).toBe('#ff0000'); // top of the 100 × 100 circle
-  expect(await at(100, 149)).toBe('#ff0000');
+  // top and bottom of the 100 × 100 circle (red, give or take the edge smoothing – WebKit blends a little)
+  const red = (c) => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16)).every((v, i) => Math.abs(v - [255, 0, 0][i]) <= 8);
+  expect(red(await at(100, 51))).toBe(true);
+  expect(red(await at(100, 149))).toBe(true);
 
   // a closed curve through four points, filled
   await page.evaluate(() => { RZ.blank(200, 200); Object.assign(RZ.state, { ngonFill: true, ngonOutline: false }); });
