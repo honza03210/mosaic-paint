@@ -17,9 +17,12 @@ export const fillers: { ai: ((img: ImageData, mask: Uint8Array) => Promise<Uint8
 
 let working = false;
 /** Fills the masked part of the picture (a whole-image mask) from what is around it. One undo step. */
-export async function fillHole(mask: Uint8Array): Promise<boolean> {
+export async function fillHole(mask: Uint8Array, grow = 0): Promise<boolean> {
   if (working) return false;
-  const box = S.maskBox(mask, doc.width, doc.height);
+  let box = S.maskBox(mask, doc.width, doc.height);
+  if (!box) return false;
+  // a tight selection (an object, a color) leaves the object's rim around the hole: take that too
+  if (grow) { mask = S.dilate(mask, doc.width, doc.height, grow); box = S.maskBox(mask, doc.width, doc.height); }
   if (!box) return false;
   // the picture around the hole, as far again as the hole is big (at least a little, at most a lot)
   const m = Math.min(240, Math.max(32, Math.round(Math.max(box.w, box.h))));
@@ -57,7 +60,8 @@ export async function fillSelection(): Promise<void> {
   if (state.floating) place();
   const m = selectionFullMask();
   if (!m) { toast(t('Select what to remove first.')); return; }
-  if (await fillHole(m)) { state.sel = null; selectionChanged(); }
+  const b = state.sel, grow = Math.max(3, Math.round(Math.min(b.w, b.h) * 0.05));
+  if (await fillHole(m, grow)) { state.sel = null; selectionChanged(); }
 }
 
 // ---- the Remove brush ---------------------------------------------------------------------------------------

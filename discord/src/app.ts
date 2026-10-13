@@ -27,7 +27,20 @@ export interface Env {
 export interface DurableObjectNamespaceLike { idFromName(name: string): unknown; get(id: unknown): { fetch(req: Request | string, init?: RequestInit): Promise<Response> } }
 export interface StorageLike { get<T>(key: string): Promise<T | undefined>; put(key: string, value: unknown): Promise<void>; delete(key: string): Promise<boolean> }
 
+import { FILES } from '../../src/shared/addon-files.ts';
+
 const API = 'https://discord.com/api/v10';
+/** The add-ons' files, which the Activity may only load through here (Discord allows nothing else). */
+const ADDON_FILES = new Set<string>(Object.values(FILES).map(f => f.url));
+
+/** An add-on file, fetched for the Activity (only the listed ones) and kept in Cloudflare's cache. */
+async function addonFile(url: URL): Promise<Response> {
+  const src = url.searchParams.get('u') || '';
+  if (!ADDON_FILES.has(src)) return new Response('not an add-on file', { status: 403 });
+  const r = await fetch(src, { cf: { cacheEverything: true, cacheTtl: 30 * 86400 } } as RequestInit);
+  if (!r.ok) return new Response('could not fetch it', { status: 502 });
+  return new Response(r.body, { headers: { 'content-type': 'application/octet-stream', 'cache-control': 'public, max-age=2592000, immutable' } });
+}
 /** how long Discord lets an app answer a command – and so how long an edit can be posted */
 export const PENDING_MS = 15 * 60 * 1000;
 /** the largest picture posted back (Discord takes 10 MB without boosts) */
@@ -173,6 +186,7 @@ export default {
       if (url.pathname === '/api/token' && req.method === 'POST') return await token(req, env);
       if (url.pathname === '/api/pending' && req.method === 'GET') return await pending(req, env, url);
       if (url.pathname === '/api/post' && req.method === 'POST') return await post(req, env, url);
+      if (url.pathname === '/api/fetch' && req.method === 'GET') return await addonFile(url);
     } catch (e) {
       return json({ error: String((e as Error)?.message || e) }, 500);
     }

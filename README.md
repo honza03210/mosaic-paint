@@ -140,6 +140,20 @@ The raster app paints pixels. It has the same layout, palettes (shared with the 
 - **Print… (Expert):** the image at real size over several sheets (or fitted on one), in color, with color numbers on the pieces, or as outlines to paint by number, with a color legend. The numbers match the report.
 - **Share:** the image travels inside the link; whoever opens it sees it read-only and can make their own copy.
 
+## Add-ons (downloads on demand)
+
+Some features need a one-time download. Nothing is downloaded until you agree to a dialog that says how much; the files are kept in the browser (so they work offline afterwards) and the **Add-ons** list in the side panel removes them again. Everything runs on your device – pictures are never uploaded.
+
+| Add-on | What it does | Download |
+| --- | --- | --- |
+| Select object (AI) | Select › **Object (AI)**: tap an object to select it (SlimSAM) | 14 MB |
+| Object removal (AI) | **Remove** › Fill with **AI**: a trained model fills the spot (MI-GAN) | 28 MB |
+| Background removal – people / any subject | **Remove background…**: transparent background, or select the subject (MODNet / U²-Netp) | 7 / 5 MB |
+| Read text (OCR) | **Read text…**: the text in the image or selection, to copy (Tesseract) | 7 MB + 2–3 MB per language |
+| Depth for 3D relief (AI) | **3D relief…** from AI depth (Depth Anything V2 small) | 27 MB |
+
+The AI add-ons share one engine (ONNX Runtime Web, downloaded once: 27 MB with WebGPU, 14 MB without). **3D relief…** also works without any download, from the picture's brightness (light or dark high – a lithophane).
+
 ## Files
 
 The apps are written in TypeScript and bundled into one script each: `dist/mosaic.js` (vector) and `dist/raster.js` (raster). The bundles are committed, so GitHub Pages and opening the pages straight from disk need no build step. Heavy work – the mosaic effect, tracing raster tiles, and building the 3D model – runs in a worker, so the page stays responsive and shows progress: the worker (`src/worker/`) is bundled first and goes into each app as a string, which the app starts from a blob URL (so it works from disk too); without workers the same jobs run on the page.

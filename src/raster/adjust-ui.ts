@@ -68,18 +68,17 @@ function build(): HTMLDialogElement {
   cmp.onpointerup = cmp.onpointercancel = () => before(false);
   cmp.onkeydown = (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); if (!e.repeat) before(true); } };
   cmp.onkeyup = (e) => { if (e.key === ' ' || e.key === 'Enter') before(false); };
-  d.querySelector<HTMLElement>('.adj-cancel').onclick = () => d.close('cancel');
+  d.querySelector<HTMLElement>('.adj-cancel').onclick = () => { finish(false); d.close('cancel'); };
   d.querySelector<HTMLElement>('.adj-apply').onclick = async () => {
     // a preview still waiting to start would cancel this last, full update
     clearTimeout(timer);
     await busy.catch(() => {});
     await update();
+    finish(true);
     d.close('apply');
   };
-  d.addEventListener('close', () => {
-    clearTimeout(timer);
-    if (d.returnValue === 'apply' && !isNoAdjust(cur)) { commit(); toast(t('Colors adjusted.')); } else restoreCurrent();
-  });
+  // closed some other way (Esc): as Cancel
+  d.addEventListener('close', () => finish(false));
   return d;
 }
 function show(): void {
@@ -121,6 +120,16 @@ async function update(): Promise<void> {
   }
 }
 
+/** Keeps the result (one undo step) or goes back to the picture as it was – once, right away (before the
+    dialog's close event, which comes a moment later). */
+let finished = true;
+function finish(apply: boolean): void {
+  if (finished) return;
+  finished = true;
+  clearTimeout(timer);
+  if (apply && !isNoAdjust(cur)) { commit(); toast(t('Colors adjusted.')); } else restoreCurrent();
+}
+
 /** Opens the photo fixes for the selection (or the whole image). */
 export function openAdjust(): void {
   if (state.floating) place();
@@ -131,6 +140,7 @@ export function openAdjust(): void {
   original = dctx.getImageData(box.x, box.y, box.w, box.h);
   cur = { ...NO_ADJUST };
   comparing = false;
+  finished = false;
   show();
   dlg.querySelector('.adj-busy').textContent = '';
   dlg.returnValue = '';

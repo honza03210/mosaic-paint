@@ -32,6 +32,24 @@ export function wandMask(img: Img, x: number, y: number, tolerance: number, cont
   return out;
 }
 
+/** The mask grown by r pixels (a square neighbourhood, done across then down): every pixel becomes the
+    largest value near it. For removing things: the rim right around an object goes too. */
+export function dilate(mask: Uint8Array, w: number, h: number, r: number): Uint8Array {
+  if (r < 1) return mask;
+  const a = new Uint8Array(mask.length), out = new Uint8Array(mask.length);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let m = 0;
+    for (let k = Math.max(0, x - r); k <= Math.min(w - 1, x + r); k++) if (mask[y * w + k] > m) m = mask[y * w + k];
+    a[y * w + x] = m;
+  }
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let m = 0;
+    for (let k = Math.max(0, y - r); k <= Math.min(h - 1, y + r); k++) if (a[k * w + x] > m) m = a[k * w + x];
+    out[y * w + x] = m;
+  }
+  return out;
+}
+
 /** A new selection (whole-image mask) combined with the old one. */
 export function combine(old: Uint8Array | null, add: Uint8Array, mode: SelMode): Uint8Array {
   if (mode === 'new' || !old) return mode === 'subtract' ? new Uint8Array(add.length) : add;

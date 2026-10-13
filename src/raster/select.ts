@@ -146,6 +146,8 @@ function lassoPreview(pts: Pt[], live: Pt[] = []): void {
   };
   requestRender();
 }
+/** Selecting an object by tapping it (the AI add-on puts its own here). */
+export const selectHooks: { object: ((p: Pt, op: S.SelMode) => void) | null } = { object: null };
 const magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
 export const selectTool: Tool = {
   down(e, p) {
@@ -170,6 +172,7 @@ export const selectTool: Tool = {
       setSelectionMask(S.wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
       return;
     }
+    if (state.selShape === 'object') { selectHooks.object?.(p, op); return; }
     if (state.selShape === 'lasso') { state.action = { type: 'lasso', op, pts: [p] }; return; }
     if (state.selShape === 'magnetic') {
       cost = S.edgeCost(dctx.getImageData(0, 0, doc.width, doc.height));

@@ -1,6 +1,9 @@
 // Bundles the two apps into one classic script each, so they also run from file://:
 // src/main.ts → dist/mosaic.js (vector, index.html) and src/raster/main.ts → dist/raster.js (raster.html);
 // src/discord/activity.ts → dist/activity.js, which the raster app loads only when it runs inside Discord.
+// The add-ons' code loads only when one is used: src/ai/worker.ts → dist/ai-worker.js (a module worker with
+// ONNX Runtime Web; the engine and the models themselves are downloaded, see src/shared/addons.ts) and
+// src/ocr/ocr.ts → dist/ocr.js (Tesseract's page side).
 // The worker (src/worker/worker.ts) is bundled first and goes into each app as a string (import
 // 'worker-source'): the apps start it from a blob URL, which works from file:// too.
 // The version in package.json goes into the apps (__VERSION__), and the offline cache in sw.js is named
@@ -48,10 +51,15 @@ const options = {
   define: { __VERSION__: JSON.stringify(version) },
   plugins: [workerSource, stamp],
 };
+/** The add-ons' code: the AI worker as an ES module (ONNX Runtime needs one), the OCR side as a script. */
+const addons = [
+  { ...common, entryPoints: { 'ai-worker': 'src/ai/worker.ts' }, outdir: 'dist', format: 'esm', minify: true, logLevel: 'info' },
+  { ...common, entryPoints: { ocr: 'src/ocr/ocr.ts' }, outdir: 'dist', format: 'iife', minify: true, logLevel: 'info' },
+];
 if (process.argv.includes('--watch')) {
-  const ctx = await esbuild.context(options);
-  await ctx.watch();
+  for (const o of [options, ...addons]) await (await esbuild.context(o)).watch();
 } else {
   await esbuild.build(options);
+  for (const o of addons) await esbuild.build(o);
   await esbuild.stop();
 }

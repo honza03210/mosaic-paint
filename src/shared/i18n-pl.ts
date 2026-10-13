@@ -1946,4 +1946,150 @@ export const PL: Record<string, string> = {
     'Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
     'Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować.',
+  'The AI could not start in this browser.':
+    'Nie udało się uruchomić AI w tej przeglądarce.',
+  'Starting the AI…':
+    'Uruchamianie AI…',
+  'The AI could not do it: {why}':
+    'AI nie dała rady: {why}',
+  'Looking at the picture…':
+    'Analiza obrazu…',
+  'Nothing found there – tap the middle of the object.':
+    'Nic tam nie znaleziono – stuknij środek obiektu.',
+  'the AI add-on is not downloaded':
+    'dodatek AI nie jest pobrany',
+  'Remove background':
+    'Usuń tło',
+  'What is in the picture?':
+    'Co jest na obrazie?',
+  'People (portraits)':
+    'Ludzie (portrety)',
+  'Any subject (objects, animals, products)':
+    'Dowolny obiekt (przedmioty, zwierzęta, produkty)',
+  'Each needs a one-time download – the size is shown before anything is downloaded. Everything runs on this device.':
+    'Każdy wymaga jednorazowego pobrania – rozmiar zobaczysz, zanim cokolwiek zostanie pobrane. Wszystko działa na tym urządzeniu.',
+  'Select the subject':
+    'Zaznacz obiekt',
+  'Finding the subject…':
+    'Szukanie obiektu…',
+  'The subject is selected.':
+    'Obiekt jest zaznaczony.',
+  'Background removed.':
+    'Tło usunięte.',
+  'Could not load the text recognition.':
+    'Nie udało się wczytać rozpoznawania tekstu.',
+  'Reading the text…':
+    'Odczytywanie tekstu…',
+  'Text in the picture':
+    'Tekst na obrazie',
+  'You can correct it here before copying.':
+    'Możesz go tu poprawić przed skopiowaniem.',
+  'Copied.':
+    'Skopiowano.',
+  'Select the text and copy it (Ctrl+C).':
+    'Zaznacz tekst i skopiuj go (Ctrl+C).',
+  'No text found.':
+    'Nie znaleziono tekstu.',
+  '3D relief':
+    'Relief 3D',
+  'A 3D-printable relief of the picture (STL): from its brightness, or from the depth an AI sees in a photo.':
+    'Relief obrazu do druku 3D (STL): z jasności albo z głębi, którą AI widzi na zdjęciu.',
+  'Brightness – light is high':
+    'Jasność – jasne jest wysoko',
+  'Brightness – dark is high (a lithophane: hold it against light)':
+    'Jasność – ciemne jest wysoko (litofan: oglądaj pod światło)',
+  'Depth (AI add-on) – near is high':
+    'Głębia (dodatek AI) – bliskie jest wysoko',
+  'Relief':
+    'Relief',
+  'Low':
+    'Niski',
+  'Medium':
+    'Średni',
+  'High':
+    'Wysoki',
+  'Smoothing':
+    'Wygładzanie',
+  'Height map: white is high':
+    'Mapa wysokości: białe jest wysoko',
+  'Save STL':
+    'Zapisz STL',
+  'Working out the depth…':
+    'Obliczanie głębi…',
+  '{w} × {h} mm, {z} mm high':
+    '{w} × {h} mm, wysokość {z} mm',
+  'Saved relief.stl.':
+    'Zapisano relief.stl.',
+  'Select object (AI)':
+    'Zaznaczanie obiektu (AI)',
+  'Tap an object to select it.':
+    'Stuknij obiekt, aby go zaznaczyć.',
+  'Object removal (AI)':
+    'Usuwanie obiektów (AI)',
+  'Remove fills the spot with a trained model – better on objects and structure than the built-in fill.':
+    'Usuń wypełnia miejsce wytrenowanym modelem – lepiej niż wbudowane wypełnienie przy obiektach i strukturach.',
+  'Background removal – people':
+    'Usuwanie tła – ludzie',
+  'Removes the background behind people (portraits).':
+    'Usuwa tło za ludźmi (portrety).',
+  'Background removal – any subject':
+    'Usuwanie tła – dowolny obiekt',
+  'Removes the background behind the main subject: objects, animals, products.':
+    'Usuwa tło za głównym obiektem: przedmioty, zwierzęta, produkty.',
+  'Read text (OCR)':
+    'Odczyt tekstu (OCR)',
+  'Recognizes text in the image, to copy it.':
+    'Rozpoznaje tekst na obrazie, aby go skopiować.',
+  'Depth for 3D relief (AI)':
+    'Głębia do reliefu 3D (AI)',
+  'Estimates the depth of a photo for a 3D-printable relief.':
+    'Szacuje głębię zdjęcia do reliefu do druku 3D.',
+  'Download failed ({status}).':
+    'Pobieranie nie powiodło się ({status}).',
+  'This needs a one-time download of {size}.':
+    'Wymaga to jednorazowego pobrania {size}.',
+  'That includes the AI engine ({size}), shared by all AI add-ons.':
+    'Obejmuje to silnik AI ({size}), wspólny dla wszystkich dodatków AI.',
+  'It is kept in this browser and works offline afterwards; the Add-ons list in the side panel removes it again. Everything runs on this device – your pictures are not uploaded.':
+    'Zostaje w tej przeglądarce i potem działa także offline; lista Dodatki w panelu bocznym znów go usuwa. Wszystko działa na tym urządzeniu – Twoje obrazy nie są nigdzie wysyłane.',
+  'Download {size}':
+    'Pobierz {size}',
+  'Downloading…':
+    'Pobieranie…',
+  '{name} is ready.':
+    '{name} – gotowe.',
+  'Could not download it: {why}':
+    'Nie udało się pobrać: {why}',
+  'installed':
+    'zainstalowano',
+  'Download':
+    'Pobierz',
+  'Used by add-ons: {size}. Sizes include the shared AI engine where it is not downloaded yet.':
+    'Zajęte przez dodatki: {size}. Rozmiary obejmują wspólny silnik AI, jeśli nie jest jeszcze pobrany.',
+  'Removed the add-on.':
+    'Usunięto dodatek.',
+  'Object (AI)':
+    'Obiekt (AI)',
+  'Remove background…':
+    'Usuń tło…',
+  'Read text…':
+    'Odczytaj tekst…',
+  '3D relief…':
+    'Relief 3D…',
+  'Add-ons':
+    'Dodatki',
+  'Features that need a one-time download. Nothing is downloaded until you agree; everything runs on this device.':
+    'Funkcje wymagające jednorazowego pobrania. Nic nie jest pobierane bez Twojej zgody; wszystko działa na tym urządzeniu.',
+  'Tap an object: the AI selects it (an add-on – asks before downloading)':
+    'Stuknij obiekt: AI go zaznaczy (dodatek – pyta przed pobraniem)',
+  'Make the background transparent, or select the subject (an AI add-on – asks before downloading)':
+    'Ustaw przezroczyste tło albo zaznacz obiekt (dodatek AI – pyta przed pobraniem)',
+  'Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)':
+    'Rozpoznaj tekst na obrazie lub w zaznaczeniu, aby go skopiować (dodatek – pyta przed pobraniem)',
+  'A 3D-printable relief (STL) from the picture\'s brightness, or from AI depth':
+    'Relief do druku 3D (STL) z jasności obrazu albo z głębi AI',
+  'Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.':
+    'Dodatki działające na Twoim urządzeniu, pobierane dopiero po akceptacji rozmiaru: zaznaczanie obiektu (stuknięciem), usuwanie obiektów przez AI, usuwanie tła, odczyt tekstu (OCR) i głębia do reliefów 3D. Panel boczny je wyświetla i znów usuwa.',
+  '3D relief…: a printable relief (STL) from the picture\'s brightness – or a lithophane – or from AI depth.':
+    'Relief 3D…: relief do druku (STL) z jasności obrazu – albo litofan – albo z głębi AI.',
 };

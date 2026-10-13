@@ -147,7 +147,7 @@
     <section class="tool-opts" data-for="select">
       <h3>Select</h3>
       <div class="row"><div class="seg-btns" id="sel-shape" role="radiogroup" aria-label="Shape">
-        <button data-shape="rect" title="A rectangle: drag across">Rectangle</button><button data-shape="lasso" title="Freehand: draw around it">Lasso</button><button data-shape="magnetic" title="Draw roughly along an edge – the line snaps to it">Magnetic</button><button data-shape="wand" title="Tap a color: everything similar next to it (or anywhere)">Wand</button>
+        <button data-shape="rect" title="A rectangle: drag across">Rectangle</button><button data-shape="lasso" title="Freehand: draw around it">Lasso</button><button data-shape="magnetic" title="Draw roughly along an edge – the line snaps to it">Magnetic</button><button data-shape="wand" title="Tap a color: everything similar next to it (or anywhere)">Wand</button><button data-shape="object" title="Tap an object: the AI selects it (an add-on – asks before downloading)">Object (AI)</button>
       </div></div>
       <div class="row"><div class="seg-btns" id="sel-op" role="radiogroup" aria-label="New selection">
         <button data-op="new" title="Replace the selection">New</button><button data-op="add" title="Add to the selection (or hold Shift)">Add</button><button data-op="subtract" title="Take away from the selection (or hold Alt)">Subtract</button>
@@ -280,10 +280,23 @@
         <button id="btn-adjust" title="Brightness, contrast, saturation, levels, sharpening and noise smoothing – for the selection or the whole image">Adjust colors…</button>
       </div>
       <div class="row small">
+        <button id="btn-bg" title="Make the background transparent, or select the subject (an AI add-on – asks before downloading)">Remove background…</button>
+        <button id="btn-ocr" title="Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)">Read text…</button>
+        <button id="btn-relief" title="A 3D-printable relief (STL) from the picture's brightness, or from AI depth">3D relief…</button>
+      </div>
+      <div class="row small">
         <button id="btn-img-crop" title="Keep only the selection (select it with the Select tool first)">Crop to selection</button>
         <button id="btn-trim" title="Cut off the empty or one-color border around the picture">Trim edges</button>
       </div>
       <label class="chk expert"><input type="checkbox" id="opt-grid"> Pixel grid when zoomed in</label>
+    </section>
+
+    <section>
+      <details>
+        <summary>Add-ons</summary>
+        <p class="note">Features that need a one-time download. Nothing is downloaded until you agree; everything runs on this device.</p>
+        <div id="addons"></div>
+      </details>
     </section>
 
     <section>

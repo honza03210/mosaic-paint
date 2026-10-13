@@ -1,7 +1,7 @@
 // Shaped selections (magic wand, combining, outlines, the magnetic lasso's path) and content-aware fill.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { wandMask, combine, maskBox, cropMask, fullMask, outline, edgeCost, cheapestPath, isFull } from '../../src/lib/selection.ts';
+import { dilate, wandMask, combine, maskBox, cropMask, fullMask, outline, edgeCost, cheapestPath, isFull } from '../../src/lib/selection.ts';
 import { inpaint } from '../../src/lib/inpaint.ts';
 
 const img = (w, h, f) => {
@@ -75,4 +75,12 @@ test('content-aware fill continues the stripes around a hole', () => {
   assert.ok(ms < 5000, `${ms} ms`);
   // outside the hole nothing changed
   assert.deepEqual([...out.slice(0, 8)], [...im.data.slice(0, 8)]);
+});
+
+test('growing a mask by r pixels', () => {
+  const m = new Uint8Array(25);
+  m[12] = 255; // the middle of 5 × 5
+  const g = dilate(m, 5, 5, 1);
+  assert.equal(g.filter(v => v === 255).length, 9);
+  assert.equal(dilate(m, 5, 5, 2).filter(v => v === 255).length, 25);
 });

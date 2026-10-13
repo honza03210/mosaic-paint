@@ -7,7 +7,9 @@ import { state, rt, emit } from './state.ts';
 import { doc, dctx, setSize, requestRender } from './canvas.ts';
 import { t } from '../shared/i18n.ts';
 
-let history: ImageData[] = [], index = -1, made = 0;
+let history: ImageData[] = [], index = -1, made = 0, changes = 0;
+/** Changes with every new step, undo and redo (to know when the picture is not the same any more). */
+export const imageVersion = (): number => changes;
 /** Snapshots take width × height × 4 bytes: big images get fewer undo steps. */
 const MAX_BYTES = 400e6, MAX_STEPS = 100;
 const snapshot = (): ImageData => dctx.getImageData(0, 0, doc.width, doc.height);
@@ -16,6 +18,7 @@ export function resetHistory(): void { history = [snapshot()]; index = 0; update
 /** Records the current image as an undo step. */
 export function commit(): void {
   made++;
+  changes++;
   history.splice(index + 1);
   history.push(snapshot());
   let bytes = history.reduce((t, s) => t + s.data.length, 0);
@@ -25,6 +28,7 @@ export function commit(): void {
   afterChange();
 }
 function restore(s: ImageData): void {
+  changes++;
   if (s.width !== doc.width || s.height !== doc.height) setSize(s.width, s.height);
   dctx.putImageData(s, 0, 0);
   state.floating = null;

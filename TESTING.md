@@ -13,6 +13,11 @@
 
   They cover drawing, snapping, painting, painted areas following edits, palettes, files, autosave, migration, history, the examples and the guide, accessibility (axe-core finds no WCAG 2.1 A / AA problems in both apps and their main dialogs; the palette works from the keyboard), heavy work in a worker (and on the page without workers, and from a file), the 3D print dialog in both modes, printing (rendered to a real PDF and checked for paper size and page count), the photo tools, the phone layout, offline start, installability (Chrome), and the speed of a 2,500-tile mosaic.
 
+**The AI add-ons for real** (not on every push – they download about 90 MB):
+- `REAL_AI=1 npx playwright test tests/e2e/ai-real.spec.js --project=desktop` downloads the engine and the models and runs every add-on in Chrome, once with WebGPU and once on the CPU.
+- `tests/ai/real-models.mjs` checks the pre- and post-processing (`src/ai/prep.ts`) against the models in Node (see the file for the setup).
+The normal end-to-end tests cover the add-ons' dialogs, downloads, the cache and the features with stand-ins (`tests/e2e/addons.spec.js`).
+
 `npm run bench` prints timings for big mosaics; `node tests/perf/print-preview.js <folder>` writes a sample template PDF.
 
 ## By hand, on real devices

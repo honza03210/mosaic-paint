@@ -973,7 +973,80 @@
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Klepnutím přidáte text · přetáhněte ho na místo · klepnutím ho upravíte · Enter ho umístí",
     "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – klepněte a pište; písma, obrys, stín a zakřivený text (T)",
-    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrové aplikaci (T): libovolné písmo (i nainstalovaná, kde je prohlížeč umí zobrazit), velikost, tučné, kurzíva, zarovnání, obrys, stín a zakřivený text. Do umístění plave nad obrázkem – přetáhněte ho, klepnutím upravíte."
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrové aplikaci (T): libovolné písmo (i nainstalovaná, kde je prohlížeč umí zobrazit), velikost, tučné, kurzíva, zarovnání, obrys, stín a zakřivený text. Do umístění plave nad obrázkem – přetáhněte ho, klepnutím upravíte.",
+    "The AI could not start in this browser.": "AI se v tomto prohlížeči nepodařilo spustit.",
+    "Starting the AI…": "Spouští se AI…",
+    "The AI could not do it: {why}": "AI to nezvládla: {why}",
+    "Looking at the picture…": "Prohlíží se obrázek…",
+    "Nothing found there – tap the middle of the object.": "Nic se tam nenašlo – klepněte doprostřed objektu.",
+    "the AI add-on is not downloaded": "doplněk AI není stažený",
+    "Remove background": "Odstranit pozadí",
+    "What is in the picture?": "Co je na obrázku?",
+    "People (portraits)": "Lidé (portréty)",
+    "Any subject (objects, animals, products)": "Cokoli (předměty, zvířata, výrobky)",
+    "Each needs a one-time download – the size is shown before anything is downloaded. Everything runs on this device.": "Každé potřebuje jednorázové stažení – velikost uvidíte dřív, než se cokoli stáhne. Vše běží v tomto zařízení.",
+    "Select the subject": "Vybrat hlavní objekt",
+    "Finding the subject…": "Hledá se hlavní objekt…",
+    "The subject is selected.": "Hlavní objekt je vybraný.",
+    "Background removed.": "Pozadí odstraněno.",
+    "Could not load the text recognition.": "Rozpoznávání textu se nepodařilo načíst.",
+    "Reading the text…": "Čte se text…",
+    "Text in the picture": "Text na obrázku",
+    "You can correct it here before copying.": "Před zkopírováním ho tu můžete opravit.",
+    "Copied.": "Zkopírováno.",
+    "Select the text and copy it (Ctrl+C).": "Označte text a zkopírujte ho (Ctrl+C).",
+    "No text found.": "Žádný text se nenašel.",
+    "3D relief": "3D reliéf",
+    "A 3D-printable relief of the picture (STL): from its brightness, or from the depth an AI sees in a photo.": "Reliéf obrázku pro 3D tisk (STL): podle jasu, nebo podle hloubky, kterou ve fotce vidí AI.",
+    "Brightness – light is high": "Jas – světlé je vysoko",
+    "Brightness – dark is high (a lithophane: hold it against light)": "Jas – tmavé je vysoko (litofanie: podržte ji proti světlu)",
+    "Depth (AI add-on) – near is high": "Hloubka (doplněk AI) – blízké je vysoko",
+    "Relief": "Reliéf",
+    "Low": "Nízké",
+    "Medium": "Střední",
+    "High": "Vysoké",
+    "Smoothing": "Vyhlazení",
+    "Height map: white is high": "Výšková mapa: bílá je vysoko",
+    "Save STL": "Uložit STL",
+    "Working out the depth…": "Zjišťuje se hloubka…",
+    "{w} × {h} mm, {z} mm high": "{w} × {h} mm, výška {z} mm",
+    "Saved relief.stl.": "Uloženo relief.stl.",
+    "Select object (AI)": "Výběr objektu (AI)",
+    "Tap an object to select it.": "Klepnutím na objekt ho vyberete.",
+    "Object removal (AI)": "Odstraňování objektů (AI)",
+    "Remove fills the spot with a trained model – better on objects and structure than the built-in fill.": "Odstranit vyplní místo natrénovaným modelem – lépe než vestavěné vyplnění u objektů a struktur.",
+    "Background removal – people": "Odstranění pozadí – lidé",
+    "Removes the background behind people (portraits).": "Odstraní pozadí za lidmi (portréty).",
+    "Background removal – any subject": "Odstranění pozadí – cokoli",
+    "Removes the background behind the main subject: objects, animals, products.": "Odstraní pozadí za hlavním objektem: předměty, zvířata, výrobky.",
+    "Read text (OCR)": "Čtení textu (OCR)",
+    "Recognizes text in the image, to copy it.": "Rozpozná text v obrázku, abyste ho mohli zkopírovat.",
+    "Depth for 3D relief (AI)": "Hloubka pro 3D reliéf (AI)",
+    "Estimates the depth of a photo for a 3D-printable relief.": "Odhadne hloubku fotky pro reliéf k 3D tisku.",
+    "Download failed ({status}).": "Stahování selhalo ({status}).",
+    "This needs a one-time download of {size}.": "Potřebuje to jednorázově stáhnout {size}.",
+    "That includes the AI engine ({size}), shared by all AI add-ons.": "To zahrnuje jádro AI ({size}), společné pro všechny doplňky AI.",
+    "It is kept in this browser and works offline afterwards; the Add-ons list in the side panel removes it again. Everything runs on this device – your pictures are not uploaded.": "Zůstane v tomto prohlížeči a pak funguje i offline; v seznamu Doplňky v postranním panelu ho zase odstraníte. Vše běží v tomto zařízení – vaše obrázky se nikam nenahrávají.",
+    "Download {size}": "Stáhnout {size}",
+    "Downloading…": "Stahuje se…",
+    "{name} is ready.": "{name} je připraveno.",
+    "Could not download it: {why}": "Nepodařilo se stáhnout: {why}",
+    "installed": "staženo",
+    "Download": "Stáhnout",
+    "Used by add-ons: {size}. Sizes include the shared AI engine where it is not downloaded yet.": "Doplňky zabírají: {size}. Velikosti zahrnují společné jádro AI, pokud ještě není stažené.",
+    "Removed the add-on.": "Doplněk odstraněn.",
+    "Object (AI)": "Objekt (AI)",
+    "Remove background…": "Odstranit pozadí…",
+    "Read text…": "Přečíst text…",
+    "3D relief…": "3D reliéf…",
+    "Add-ons": "Doplňky",
+    "Features that need a one-time download. Nothing is downloaded until you agree; everything runs on this device.": "Funkce, které potřebují jednorázové stažení. Nic se nestáhne, dokud nesouhlasíte; vše běží v tomto zařízení.",
+    "Tap an object: the AI selects it (an add-on – asks before downloading)": "Klepněte na objekt: AI ho vybere (doplněk – před stažením se zeptá)",
+    "Make the background transparent, or select the subject (an AI add-on – asks before downloading)": "Zprůhlednit pozadí, nebo vybrat hlavní objekt (doplněk AI – před stažením se zeptá)",
+    "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Rozpoznat text v obrázku nebo výběru a zkopírovat ho (doplněk – před stažením se zeptá)",
+    "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Reliéf pro 3D tisk (STL) podle jasu obrázku, nebo podle hloubky z AI",
+    "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Doplňky, které běží ve vašem zařízení a stáhnou se až po odsouhlasení velikosti: Výběr objektu (klepnutím), odstraňování objektů AI, odstranění pozadí, Čtení textu (OCR) a hloubka pro 3D reliéfy. Postranní panel je vypisuje a umí je zase odstranit.",
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D reliéf…: reliéf k tisku (STL) podle jasu obrázku – nebo litofanie – nebo podle hloubky z AI."
   };
 
   // src/shared/i18n-de.ts
@@ -1950,7 +2023,80 @@
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn",
     "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)",
-    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Text-Werkzeug in der Raster-App (T): jede Schrift (auch die installierten, wo der Browser sie auflistet), Größe, fett, kursiv, Ausrichtung, Umriss, Schatten und gebogener Text. Er schwebt, bis er gesetzt wird – ziehen, antippen zum Bearbeiten."
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Text-Werkzeug in der Raster-App (T): jede Schrift (auch die installierten, wo der Browser sie auflistet), Größe, fett, kursiv, Ausrichtung, Umriss, Schatten und gebogener Text. Er schwebt, bis er gesetzt wird – ziehen, antippen zum Bearbeiten.",
+    "The AI could not start in this browser.": "Die KI konnte in diesem Browser nicht starten.",
+    "Starting the AI…": "KI wird gestartet…",
+    "The AI could not do it: {why}": "Die KI konnte es nicht: {why}",
+    "Looking at the picture…": "Das Bild wird angesehen…",
+    "Nothing found there – tap the middle of the object.": "Dort wurde nichts gefunden – tippe in die Mitte des Objekts.",
+    "the AI add-on is not downloaded": "das KI-Add-on ist nicht heruntergeladen",
+    "Remove background": "Hintergrund entfernen",
+    "What is in the picture?": "Was ist auf dem Bild?",
+    "People (portraits)": "Menschen (Porträts)",
+    "Any subject (objects, animals, products)": "Beliebiges Motiv (Gegenstände, Tiere, Produkte)",
+    "Each needs a one-time download – the size is shown before anything is downloaded. Everything runs on this device.": "Jedes braucht einen einmaligen Download – die Größe wird angezeigt, bevor etwas heruntergeladen wird. Alles läuft auf diesem Gerät.",
+    "Select the subject": "Das Motiv auswählen",
+    "Finding the subject…": "Das Motiv wird gesucht…",
+    "The subject is selected.": "Das Motiv ist ausgewählt.",
+    "Background removed.": "Hintergrund entfernt.",
+    "Could not load the text recognition.": "Die Texterkennung konnte nicht geladen werden.",
+    "Reading the text…": "Der Text wird gelesen…",
+    "Text in the picture": "Text im Bild",
+    "You can correct it here before copying.": "Du kannst ihn hier vor dem Kopieren korrigieren.",
+    "Copied.": "Kopiert.",
+    "Select the text and copy it (Ctrl+C).": "Markiere den Text und kopiere ihn (Strg+C).",
+    "No text found.": "Kein Text gefunden.",
+    "3D relief": "3D-Relief",
+    "A 3D-printable relief of the picture (STL): from its brightness, or from the depth an AI sees in a photo.": "Ein 3D-druckbares Relief des Bildes (STL): aus seiner Helligkeit oder aus der Tiefe, die eine KI in einem Foto sieht.",
+    "Brightness – light is high": "Helligkeit – hell ist hoch",
+    "Brightness – dark is high (a lithophane: hold it against light)": "Helligkeit – dunkel ist hoch (eine Lithophanie: gegen das Licht halten)",
+    "Depth (AI add-on) – near is high": "Tiefe (KI-Add-on) – nah ist hoch",
+    "Relief": "Relief",
+    "Low": "Niedrig",
+    "Medium": "Mittel",
+    "High": "Hoch",
+    "Smoothing": "Glättung",
+    "Height map: white is high": "Höhenkarte: weiß ist hoch",
+    "Save STL": "STL speichern",
+    "Working out the depth…": "Die Tiefe wird ermittelt…",
+    "{w} × {h} mm, {z} mm high": "{w} × {h} mm, {z} mm hoch",
+    "Saved relief.stl.": "relief.stl gespeichert.",
+    "Select object (AI)": "Objekt auswählen (KI)",
+    "Tap an object to select it.": "Ein Objekt antippen, um es auszuwählen.",
+    "Object removal (AI)": "Objekte entfernen (KI)",
+    "Remove fills the spot with a trained model – better on objects and structure than the built-in fill.": "Entfernen füllt die Stelle mit einem trainierten Modell – besser bei Objekten und Strukturen als die eingebaute Füllung.",
+    "Background removal – people": "Hintergrund entfernen – Menschen",
+    "Removes the background behind people (portraits).": "Entfernt den Hintergrund hinter Menschen (Porträts).",
+    "Background removal – any subject": "Hintergrund entfernen – beliebiges Motiv",
+    "Removes the background behind the main subject: objects, animals, products.": "Entfernt den Hintergrund hinter dem Hauptmotiv: Gegenstände, Tiere, Produkte.",
+    "Read text (OCR)": "Text lesen (OCR)",
+    "Recognizes text in the image, to copy it.": "Erkennt Text im Bild, um ihn zu kopieren.",
+    "Depth for 3D relief (AI)": "Tiefe für 3D-Relief (KI)",
+    "Estimates the depth of a photo for a 3D-printable relief.": "Schätzt die Tiefe eines Fotos für ein 3D-druckbares Relief.",
+    "Download failed ({status}).": "Download fehlgeschlagen ({status}).",
+    "This needs a one-time download of {size}.": "Dafür ist ein einmaliger Download von {size} nötig.",
+    "That includes the AI engine ({size}), shared by all AI add-ons.": "Das enthält die KI-Engine ({size}), die alle KI-Add-ons teilen.",
+    "It is kept in this browser and works offline afterwards; the Add-ons list in the side panel removes it again. Everything runs on this device – your pictures are not uploaded.": "Es bleibt in diesem Browser und funktioniert danach auch offline; die Add-on-Liste in der Seitenleiste entfernt es wieder. Alles läuft auf diesem Gerät – deine Bilder werden nicht hochgeladen.",
+    "Download {size}": "{size} herunterladen",
+    "Downloading…": "Wird heruntergeladen…",
+    "{name} is ready.": "{name} ist bereit.",
+    "Could not download it: {why}": "Download nicht möglich: {why}",
+    "installed": "installiert",
+    "Download": "Herunterladen",
+    "Used by add-ons: {size}. Sizes include the shared AI engine where it is not downloaded yet.": "Von Add-ons belegt: {size}. Die Größen enthalten die gemeinsame KI-Engine, solange sie nicht heruntergeladen ist.",
+    "Removed the add-on.": "Add-on entfernt.",
+    "Object (AI)": "Objekt (KI)",
+    "Remove background…": "Hintergrund entfernen…",
+    "Read text…": "Text lesen…",
+    "3D relief…": "3D-Relief…",
+    "Add-ons": "Add-ons",
+    "Features that need a one-time download. Nothing is downloaded until you agree; everything runs on this device.": "Funktionen, die einen einmaligen Download brauchen. Nichts wird heruntergeladen, bevor du zustimmst; alles läuft auf diesem Gerät.",
+    "Tap an object: the AI selects it (an add-on – asks before downloading)": "Ein Objekt antippen: die KI wählt es aus (ein Add-on – fragt vor dem Download)",
+    "Make the background transparent, or select the subject (an AI add-on – asks before downloading)": "Den Hintergrund transparent machen oder das Motiv auswählen (ein KI-Add-on – fragt vor dem Download)",
+    "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Den Text im Bild oder in der Auswahl erkennen, um ihn zu kopieren (ein Add-on – fragt vor dem Download)",
+    "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Ein 3D-druckbares Relief (STL) aus der Helligkeit des Bildes oder aus KI-Tiefe",
+    "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Add-ons, die auf deinem Gerät laufen und erst nach Zustimmung zu ihrer Größe heruntergeladen werden: Objekt auswählen (antippen), KI-Objektentfernung, Hintergrund entfernen, Text lesen (OCR) und Tiefe für 3D-Reliefs. Die Seitenleiste listet sie auf und entfernt sie wieder.",
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D-Relief…: ein druckbares Relief (STL) aus der Helligkeit des Bildes – oder eine Lithophanie – oder aus KI-Tiefe."
   };
 
   // src/shared/i18n-sk.ts
@@ -2927,7 +3073,80 @@
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Ťuknutím pridáte text · presuňte ho na miesto · ťuknutím ho upravíte · Enter ho umiestni",
     "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – ťuknite a píšte; písma, obrys, tieň a zakrivený text (T)",
-    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte."
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte.",
+    "The AI could not start in this browser.": "AI sa v tomto prehliadači nepodarilo spustiť.",
+    "Starting the AI…": "Spúšťa sa AI…",
+    "The AI could not do it: {why}": "AI to nezvládla: {why}",
+    "Looking at the picture…": "Prezerá sa obrázok…",
+    "Nothing found there – tap the middle of the object.": "Nič sa tam nenašlo – ťuknite do stredu objektu.",
+    "the AI add-on is not downloaded": "doplnok AI nie je stiahnutý",
+    "Remove background": "Odstrániť pozadie",
+    "What is in the picture?": "Čo je na obrázku?",
+    "People (portraits)": "Ľudia (portréty)",
+    "Any subject (objects, animals, products)": "Čokoľvek (predmety, zvieratá, výrobky)",
+    "Each needs a one-time download – the size is shown before anything is downloaded. Everything runs on this device.": "Každé potrebuje jednorazové stiahnutie – veľkosť uvidíte skôr, než sa čokoľvek stiahne. Všetko beží v tomto zariadení.",
+    "Select the subject": "Vybrať hlavný objekt",
+    "Finding the subject…": "Hľadá sa hlavný objekt…",
+    "The subject is selected.": "Hlavný objekt je vybraný.",
+    "Background removed.": "Pozadie odstránené.",
+    "Could not load the text recognition.": "Rozpoznávanie textu sa nepodarilo načítať.",
+    "Reading the text…": "Číta sa text…",
+    "Text in the picture": "Text na obrázku",
+    "You can correct it here before copying.": "Pred skopírovaním ho tu môžete opraviť.",
+    "Copied.": "Skopírované.",
+    "Select the text and copy it (Ctrl+C).": "Označte text a skopírujte ho (Ctrl+C).",
+    "No text found.": "Nenašiel sa žiadny text.",
+    "3D relief": "3D reliéf",
+    "A 3D-printable relief of the picture (STL): from its brightness, or from the depth an AI sees in a photo.": "Reliéf obrázka na 3D tlač (STL): podľa jasu, alebo podľa hĺbky, ktorú vo fotke vidí AI.",
+    "Brightness – light is high": "Jas – svetlé je vysoko",
+    "Brightness – dark is high (a lithophane: hold it against light)": "Jas – tmavé je vysoko (litofánia: podržte ju proti svetlu)",
+    "Depth (AI add-on) – near is high": "Hĺbka (doplnok AI) – blízke je vysoko",
+    "Relief": "Reliéf",
+    "Low": "Nízke",
+    "Medium": "Stredné",
+    "High": "Vysoké",
+    "Smoothing": "Vyhladenie",
+    "Height map: white is high": "Výšková mapa: biela je vysoko",
+    "Save STL": "Uložiť STL",
+    "Working out the depth…": "Zisťuje sa hĺbka…",
+    "{w} × {h} mm, {z} mm high": "{w} × {h} mm, výška {z} mm",
+    "Saved relief.stl.": "Uložené relief.stl.",
+    "Select object (AI)": "Výber objektu (AI)",
+    "Tap an object to select it.": "Ťuknutím na objekt ho vyberiete.",
+    "Object removal (AI)": "Odstraňovanie objektov (AI)",
+    "Remove fills the spot with a trained model – better on objects and structure than the built-in fill.": "Odstrániť vyplní miesto natrénovaným modelom – lepšie ako vstavané vyplnenie pri objektoch a štruktúrach.",
+    "Background removal – people": "Odstránenie pozadia – ľudia",
+    "Removes the background behind people (portraits).": "Odstráni pozadie za ľuďmi (portréty).",
+    "Background removal – any subject": "Odstránenie pozadia – čokoľvek",
+    "Removes the background behind the main subject: objects, animals, products.": "Odstráni pozadie za hlavným objektom: predmety, zvieratá, výrobky.",
+    "Read text (OCR)": "Čítanie textu (OCR)",
+    "Recognizes text in the image, to copy it.": "Rozpozná text v obrázku, aby ste ho mohli skopírovať.",
+    "Depth for 3D relief (AI)": "Hĺbka pre 3D reliéf (AI)",
+    "Estimates the depth of a photo for a 3D-printable relief.": "Odhadne hĺbku fotky pre reliéf na 3D tlač.",
+    "Download failed ({status}).": "Sťahovanie zlyhalo ({status}).",
+    "This needs a one-time download of {size}.": "Potrebuje to jednorazovo stiahnuť {size}.",
+    "That includes the AI engine ({size}), shared by all AI add-ons.": "To zahŕňa jadro AI ({size}), spoločné pre všetky doplnky AI.",
+    "It is kept in this browser and works offline afterwards; the Add-ons list in the side panel removes it again. Everything runs on this device – your pictures are not uploaded.": "Zostane v tomto prehliadači a potom funguje aj offline; v zozname Doplnky v bočnom paneli ho zase odstránite. Všetko beží v tomto zariadení – vaše obrázky sa nikam nenahrávajú.",
+    "Download {size}": "Stiahnuť {size}",
+    "Downloading…": "Sťahuje sa…",
+    "{name} is ready.": "{name} je pripravené.",
+    "Could not download it: {why}": "Nepodarilo sa stiahnuť: {why}",
+    "installed": "stiahnuté",
+    "Download": "Stiahnuť",
+    "Used by add-ons: {size}. Sizes include the shared AI engine where it is not downloaded yet.": "Doplnky zaberajú: {size}. Veľkosti zahŕňajú spoločné jadro AI, ak ešte nie je stiahnuté.",
+    "Removed the add-on.": "Doplnok odstránený.",
+    "Object (AI)": "Objekt (AI)",
+    "Remove background…": "Odstrániť pozadie…",
+    "Read text…": "Prečítať text…",
+    "3D relief…": "3D reliéf…",
+    "Add-ons": "Doplnky",
+    "Features that need a one-time download. Nothing is downloaded until you agree; everything runs on this device.": "Funkcie, ktoré potrebujú jednorazové stiahnutie. Nič sa nestiahne, kým nesúhlasíte; všetko beží v tomto zariadení.",
+    "Tap an object: the AI selects it (an add-on – asks before downloading)": "Ťuknite na objekt: AI ho vyberie (doplnok – pred stiahnutím sa opýta)",
+    "Make the background transparent, or select the subject (an AI add-on – asks before downloading)": "Spriehľadniť pozadie, alebo vybrať hlavný objekt (doplnok AI – pred stiahnutím sa opýta)",
+    "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Rozpoznať text v obrázku alebo výbere a skopírovať ho (doplnok – pred stiahnutím sa opýta)",
+    "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Reliéf na 3D tlač (STL) podľa jasu obrázka, alebo podľa hĺbky z AI",
+    "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Doplnky, ktoré bežia vo vašom zariadení a stiahnu sa až po odsúhlasení veľkosti: Výber objektu (ťuknutím), odstraňovanie objektov AI, odstránenie pozadia, Čítanie textu (OCR) a hĺbka pre 3D reliéfy. Bočný panel ich vypisuje a vie ich zase odstrániť.",
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "3D reliéf…: reliéf na tlač (STL) podľa jasu obrázka – alebo litofánia – alebo podľa hĺbky z AI."
   };
 
   // src/shared/i18n-pl.ts
@@ -3904,7 +4123,80 @@
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza",
     "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)",
-    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować."
+    "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować.",
+    "The AI could not start in this browser.": "Nie udało się uruchomić AI w tej przeglądarce.",
+    "Starting the AI…": "Uruchamianie AI…",
+    "The AI could not do it: {why}": "AI nie dała rady: {why}",
+    "Looking at the picture…": "Analiza obrazu…",
+    "Nothing found there – tap the middle of the object.": "Nic tam nie znaleziono – stuknij środek obiektu.",
+    "the AI add-on is not downloaded": "dodatek AI nie jest pobrany",
+    "Remove background": "Usuń tło",
+    "What is in the picture?": "Co jest na obrazie?",
+    "People (portraits)": "Ludzie (portrety)",
+    "Any subject (objects, animals, products)": "Dowolny obiekt (przedmioty, zwierzęta, produkty)",
+    "Each needs a one-time download – the size is shown before anything is downloaded. Everything runs on this device.": "Każdy wymaga jednorazowego pobrania – rozmiar zobaczysz, zanim cokolwiek zostanie pobrane. Wszystko działa na tym urządzeniu.",
+    "Select the subject": "Zaznacz obiekt",
+    "Finding the subject…": "Szukanie obiektu…",
+    "The subject is selected.": "Obiekt jest zaznaczony.",
+    "Background removed.": "Tło usunięte.",
+    "Could not load the text recognition.": "Nie udało się wczytać rozpoznawania tekstu.",
+    "Reading the text…": "Odczytywanie tekstu…",
+    "Text in the picture": "Tekst na obrazie",
+    "You can correct it here before copying.": "Możesz go tu poprawić przed skopiowaniem.",
+    "Copied.": "Skopiowano.",
+    "Select the text and copy it (Ctrl+C).": "Zaznacz tekst i skopiuj go (Ctrl+C).",
+    "No text found.": "Nie znaleziono tekstu.",
+    "3D relief": "Relief 3D",
+    "A 3D-printable relief of the picture (STL): from its brightness, or from the depth an AI sees in a photo.": "Relief obrazu do druku 3D (STL): z jasności albo z głębi, którą AI widzi na zdjęciu.",
+    "Brightness – light is high": "Jasność – jasne jest wysoko",
+    "Brightness – dark is high (a lithophane: hold it against light)": "Jasność – ciemne jest wysoko (litofan: oglądaj pod światło)",
+    "Depth (AI add-on) – near is high": "Głębia (dodatek AI) – bliskie jest wysoko",
+    "Relief": "Relief",
+    "Low": "Niski",
+    "Medium": "Średni",
+    "High": "Wysoki",
+    "Smoothing": "Wygładzanie",
+    "Height map: white is high": "Mapa wysokości: białe jest wysoko",
+    "Save STL": "Zapisz STL",
+    "Working out the depth…": "Obliczanie głębi…",
+    "{w} × {h} mm, {z} mm high": "{w} × {h} mm, wysokość {z} mm",
+    "Saved relief.stl.": "Zapisano relief.stl.",
+    "Select object (AI)": "Zaznaczanie obiektu (AI)",
+    "Tap an object to select it.": "Stuknij obiekt, aby go zaznaczyć.",
+    "Object removal (AI)": "Usuwanie obiektów (AI)",
+    "Remove fills the spot with a trained model – better on objects and structure than the built-in fill.": "Usuń wypełnia miejsce wytrenowanym modelem – lepiej niż wbudowane wypełnienie przy obiektach i strukturach.",
+    "Background removal – people": "Usuwanie tła – ludzie",
+    "Removes the background behind people (portraits).": "Usuwa tło za ludźmi (portrety).",
+    "Background removal – any subject": "Usuwanie tła – dowolny obiekt",
+    "Removes the background behind the main subject: objects, animals, products.": "Usuwa tło za głównym obiektem: przedmioty, zwierzęta, produkty.",
+    "Read text (OCR)": "Odczyt tekstu (OCR)",
+    "Recognizes text in the image, to copy it.": "Rozpoznaje tekst na obrazie, aby go skopiować.",
+    "Depth for 3D relief (AI)": "Głębia do reliefu 3D (AI)",
+    "Estimates the depth of a photo for a 3D-printable relief.": "Szacuje głębię zdjęcia do reliefu do druku 3D.",
+    "Download failed ({status}).": "Pobieranie nie powiodło się ({status}).",
+    "This needs a one-time download of {size}.": "Wymaga to jednorazowego pobrania {size}.",
+    "That includes the AI engine ({size}), shared by all AI add-ons.": "Obejmuje to silnik AI ({size}), wspólny dla wszystkich dodatków AI.",
+    "It is kept in this browser and works offline afterwards; the Add-ons list in the side panel removes it again. Everything runs on this device – your pictures are not uploaded.": "Zostaje w tej przeglądarce i potem działa także offline; lista Dodatki w panelu bocznym znów go usuwa. Wszystko działa na tym urządzeniu – Twoje obrazy nie są nigdzie wysyłane.",
+    "Download {size}": "Pobierz {size}",
+    "Downloading…": "Pobieranie…",
+    "{name} is ready.": "{name} – gotowe.",
+    "Could not download it: {why}": "Nie udało się pobrać: {why}",
+    "installed": "zainstalowano",
+    "Download": "Pobierz",
+    "Used by add-ons: {size}. Sizes include the shared AI engine where it is not downloaded yet.": "Zajęte przez dodatki: {size}. Rozmiary obejmują wspólny silnik AI, jeśli nie jest jeszcze pobrany.",
+    "Removed the add-on.": "Usunięto dodatek.",
+    "Object (AI)": "Obiekt (AI)",
+    "Remove background…": "Usuń tło…",
+    "Read text…": "Odczytaj tekst…",
+    "3D relief…": "Relief 3D…",
+    "Add-ons": "Dodatki",
+    "Features that need a one-time download. Nothing is downloaded until you agree; everything runs on this device.": "Funkcje wymagające jednorazowego pobrania. Nic nie jest pobierane bez Twojej zgody; wszystko działa na tym urządzeniu.",
+    "Tap an object: the AI selects it (an add-on – asks before downloading)": "Stuknij obiekt: AI go zaznaczy (dodatek – pyta przed pobraniem)",
+    "Make the background transparent, or select the subject (an AI add-on – asks before downloading)": "Ustaw przezroczyste tło albo zaznacz obiekt (dodatek AI – pyta przed pobraniem)",
+    "Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)": "Rozpoznaj tekst na obrazie lub w zaznaczeniu, aby go skopiować (dodatek – pyta przed pobraniem)",
+    "A 3D-printable relief (STL) from the picture's brightness, or from AI depth": "Relief do druku 3D (STL) z jasności obrazu albo z głębi AI",
+    "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.": "Dodatki działające na Twoim urządzeniu, pobierane dopiero po akceptacji rozmiaru: zaznaczanie obiektu (stuknięciem), usuwanie obiektów przez AI, usuwanie tła, odczyt tekstu (OCR) i głębia do reliefów 3D. Panel boczny je wyświetla i znów usuwa.",
+    "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth.": "Relief 3D…: relief do druku (STL) z jasności obrazu – albo litofan – albo z głębi AI."
   };
 
   // src/shared/i18n.ts
@@ -3980,8 +4272,8 @@
     root.querySelectorAll?.("button[title]").forEach(label);
   }
   labelAll(document.body);
-  new MutationObserver((changes) => {
-    for (const c of changes) {
+  new MutationObserver((changes2) => {
+    for (const c of changes2) {
       if (c.type === "attributes") label(c.target);
       else c.addedNodes.forEach((n5) => {
         if (n5 instanceof Element) labelAll(n5);
@@ -4267,13 +4559,13 @@
   }
   function nearestCache(palette) {
     const labs = palette.map((c) => toLab(rgbOf(c)));
-    const cache2 = /* @__PURE__ */ new Map();
+    const cache3 = /* @__PURE__ */ new Map();
     return (r, g, b) => {
       const k = r << 16 | g << 8 | b;
-      let c = cache2.get(k);
+      let c = cache3.get(k);
       if (!c) {
         c = nearest([r, g, b], palette, labs);
-        cache2.set(k, c);
+        cache3.set(k, c);
       }
       return c;
     };
@@ -5517,6 +5809,8 @@
   var history2 = [];
   var index = -1;
   var made = 0;
+  var changes = 0;
+  var imageVersion = () => changes;
   var MAX_BYTES = 4e8;
   var MAX_STEPS = 100;
   var snapshot = () => dctx.getImageData(0, 0, doc.width, doc.height);
@@ -5527,6 +5821,7 @@
   }
   function commit() {
     made++;
+    changes++;
     history2.splice(index + 1);
     history2.push(snapshot());
     let bytes = history2.reduce((t2, s) => t2 + s.data.length, 0);
@@ -5536,6 +5831,7 @@
     afterChange();
   }
   function restore(s) {
+    changes++;
     if (s.width !== doc.width || s.height !== doc.height) setSize(s.width, s.height);
     dctx.putImageData(s, 0, 0);
     state.floating = null;
@@ -5786,11 +6082,11 @@
     };
   }
   var rect2 = (x, y, w, h) => [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
-  function quadLeaves(box5, size, adaptive, busy2) {
+  function quadLeaves(box5, size, adaptive, busy3) {
     const top = adaptive ? size * 2 : size, min = adaptive ? size / 2 : size, out = [];
     const visit = (x, y, s) => {
       if (x >= box5.x + box5.w - 1e-9 || y >= box5.y + box5.h - 1e-9) return;
-      if (s > min * 1.0001 && busy2(x, y, s, s)) {
+      if (s > min * 1.0001 && busy3(x, y, s, s)) {
         const h = s / 2;
         visit(x, y, h);
         visit(x + h, y, h);
@@ -5842,7 +6138,7 @@
       return poly;
     }).filter((p) => p.length >= 3);
   }
-  function cells2({ style, box: box5, size, detail = 0, busy: busy2 = () => false, seed = 1 }) {
+  function cells2({ style, box: box5, size, detail = 0, busy: busy3 = () => false, seed = 1 }) {
     const adaptive = detail > 0;
     if (style === "hex") {
       const s = size / Math.sqrt(3);
@@ -5854,13 +6150,13 @@
         const off = j % 2 ? -size : 0;
         for (let x = box5.x + off; x < box5.x + box5.w; x += 2 * size) {
           const y = box5.y + j * size;
-          if (adaptive && busy2(x, y, 2 * size, size)) out.push(rect2(x, y, size, size), rect2(x + size, y, size, size));
+          if (adaptive && busy3(x, y, 2 * size, size)) out.push(rect2(x, y, size, size), rect2(x + size, y, size, size));
           else out.push(rect2(x, y, 2 * size, size));
         }
       }
       return out;
     }
-    const leaves = quadLeaves(box5, size, adaptive, busy2);
+    const leaves = quadLeaves(box5, size, adaptive, busy3);
     if (style === "irregular") {
       const rnd = rng(seed);
       const seeds = leaves.map((l) => ({ x: l.x + l.s * (0.5 + (rnd() - 0.5) * 0.7), y: l.y + l.s * (0.5 + (rnd() - 0.5) * 0.7) })).filter((p) => p.x >= box5.x && p.y >= box5.y && p.x <= box5.x + box5.w && p.y <= box5.y + box5.h);
@@ -5992,6 +6288,21 @@
       if (px < W - 1) visit(i + 1);
       if (py > 0) visit(i - W);
       if (py < H - 1) visit(i + W);
+    }
+    return out;
+  }
+  function dilate(mask2, w, h, r) {
+    if (r < 1) return mask2;
+    const a = new Uint8Array(mask2.length), out = new Uint8Array(mask2.length);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      let m = 0;
+      for (let k = Math.max(0, x - r); k <= Math.min(w - 1, x + r); k++) if (mask2[y * w + k] > m) m = mask2[y * w + k];
+      a[y * w + x] = m;
+    }
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      let m = 0;
+      for (let k = Math.max(0, y - r); k <= Math.min(h - 1, y + r); k++) if (a[k * w + x] > m) m = a[k * w + x];
+      out[y * w + x] = m;
     }
     return out;
   }
@@ -6272,6 +6583,7 @@
     };
     requestRender();
   }
+  var selectHooks = { object: null };
   var magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
   var selectTool = {
     down(e, p) {
@@ -6293,6 +6605,10 @@
         const x = Math.floor(p.x), y = Math.floor(p.y);
         if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
         setSelectionMask(wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
+        return;
+      }
+      if (state.selShape === "object") {
+        selectHooks.object?.(p, op);
         return;
       }
       if (state.selShape === "lasso") {
@@ -7551,8 +7867,8 @@ ${shapes.join("\n")}
     const at2 = sampler(j.photo), d = j.page;
     const page2 = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
     const bar = 4 + (1 - j.detail / 100) * 26;
-    const busy2 = (x, y, w, h) => detailAt2(at2, x, y, w, h) > bar;
-    const cells3 = cells2({ style: j.style, box: d, size: j.size, detail: j.detail / 100, busy: busy2, seed: j.seed });
+    const busy3 = (x, y, w, h) => detailAt2(at2, x, y, w, h) > bar;
+    const cells3 = cells2({ style: j.style, box: d, size: j.size, detail: j.detail / 100, busy: busy3, seed: j.seed });
     progress?.(0.5);
     if (cells3.length > j.maxTiles) return { tiles: cells3.length, lines: [], palette: [] };
     const lines2 = lines(cells3, [page2], (p) => pointInPolygon(p, page2), j.eps);
@@ -7570,7 +7886,7 @@ ${shapes.join("\n")}
   var NOT_MODEL = /wipe|prime|tower|skirt|brim|purge/i;
   function readGcode(text, progress) {
     let z = 0, e = 0, relative = false, tool = 0, printed = false, notModel = false;
-    const zs = /* @__PURE__ */ new Set(), tools2 = /* @__PURE__ */ new Map(), changes = [];
+    const zs = /* @__PURE__ */ new Set(), tools2 = /* @__PURE__ */ new Map(), changes2 = [];
     let pending = null;
     for (let at2 = 0, n5 = 0; at2 < text.length; n5++) {
       let end = text.indexOf("\n", at2);
@@ -7602,7 +7918,7 @@ ${shapes.join("\n")}
               r.to = Math.max(r.to, key);
             } else tools2.set(tool, { from: key, to: key });
             if (pending) {
-              changes.push({ ...pending, z: key });
+              changes2.push({ ...pending, z: key });
               pending = null;
             }
             printed = true;
@@ -7623,7 +7939,7 @@ ${shapes.join("\n")}
     return {
       layers: zs.size,
       top: zs.size ? Math.max(...zs) : 0,
-      changes,
+      changes: changes2,
       tools: [...tools2].map(([t2, r]) => ({ tool: t2, ...r })).sort((a, b) => a.tool - b.tool)
     };
   }
@@ -7862,9 +8178,9 @@ ${shapes.join("\n")}
       return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette: m.palette, bricks: m.shape === "offset" });
     }
     const bar = 4 + (1 - m.detail / 100) * 26;
-    const busy2 = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
+    const busy3 = (x, y, w, h) => detailAt(img, x, y, w, h) > bar;
     const size = m.shape === "brick" ? m.tile / 2 : m.tile;
-    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy: busy2, seed: 7 });
+    const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy: busy3, seed: 7 });
     progress(0.5);
     return mosaicCells(img, cells3, { grout: m.grout, groutColor: m.groutColor, palette: m.palette });
   }
@@ -7913,42 +8229,47 @@ ${shapes.join("\n")}
       old.reject(new Cancelled());
       lanes.delete(name);
     }
-    const worker = spawn();
-    if (!worker) return runHere(job, args, o.progress);
+    const worker2 = spawn();
+    if (!worker2) return runHere(job, args, o.progress);
     return new Promise((resolve, reject) => {
-      const lane = { worker, id: ++seq, resolve, reject, progress: o.progress, job, args };
+      const lane = { worker: worker2, id: ++seq, resolve, reject, progress: o.progress, job, args };
       lanes.set(name, lane);
-      const finish = () => {
-        worker.terminate();
+      const finish2 = () => {
+        worker2.terminate();
         if (lanes.get(name) === lane) lanes.delete(name);
       };
-      worker.onmessage = (e) => {
+      worker2.onmessage = (e) => {
         const m = e.data;
         if (m.id !== lane.id) return;
         if (m.progress != null) {
           lane.progress?.(m.progress);
           return;
         }
-        finish();
+        finish2();
         if (m.error != null) reject(new Error(m.error));
         else resolve(m.result);
       };
-      worker.onerror = (e) => {
+      worker2.onerror = (e) => {
         e.preventDefault?.();
-        finish();
+        finish2();
         noWorkers = true;
         runHere(job, args, o.progress).then(resolve, reject);
       };
-      worker.postMessage({ id: lane.id, job, args });
+      worker2.postMessage({ id: lane.id, job, args });
     });
   }
 
   // src/raster/remove.ts
   var fillers = { ai: null };
   var working2 = false;
-  async function fillHole(mask2) {
+  async function fillHole(mask2, grow2 = 0) {
     if (working2) return false;
-    const box5 = maskBox(mask2, doc.width, doc.height);
+    let box5 = maskBox(mask2, doc.width, doc.height);
+    if (!box5) return false;
+    if (grow2) {
+      mask2 = dilate(mask2, doc.width, doc.height, grow2);
+      box5 = maskBox(mask2, doc.width, doc.height);
+    }
     if (!box5) return false;
     const m = Math.min(240, Math.max(32, Math.round(Math.max(box5.w, box5.h))));
     const x0 = Math.max(0, box5.x - m), y0 = Math.max(0, box5.y - m), x1 = Math.min(doc.width, box5.x + box5.w + m), y1 = Math.min(doc.height, box5.y + box5.h + m);
@@ -7983,7 +8304,8 @@ ${shapes.join("\n")}
       toast(t("Select what to remove first."));
       return;
     }
-    if (await fillHole(m)) {
+    const b = state.sel, grow2 = Math.max(3, Math.round(Math.min(b.w, b.h) * 0.05));
+    if (await fillHole(m, grow2)) {
       state.sel = null;
       selectionChanged();
     }
@@ -9130,10 +9452,10 @@ ${shapes.join("\n")}
     if (w === doc.width && h === doc.height) return;
     const old = makeCanvas(doc.width, doc.height);
     old.getContext("2d").drawImage(doc, 0, 0);
-    const shrink = w < old.width || h < old.height;
+    const shrink2 = w < old.width || h < old.height;
     setSize(w, h);
     dctx.save();
-    dctx.imageSmoothingEnabled = shrink;
+    dctx.imageSmoothingEnabled = shrink2;
     dctx.imageSmoothingQuality = "high";
     dctx.drawImage(old, 0, 0, w, h);
     dctx.restore();
@@ -9425,21 +9747,19 @@ ${shapes.join("\n")}
     cmp.onkeyup = (e) => {
       if (e.key === " " || e.key === "Enter") before2(false);
     };
-    d.querySelector(".adj-cancel").onclick = () => d.close("cancel");
+    d.querySelector(".adj-cancel").onclick = () => {
+      finish(false);
+      d.close("cancel");
+    };
     d.querySelector(".adj-apply").onclick = async () => {
       clearTimeout(timer2);
       await busy.catch(() => {
       });
       await update();
+      finish(true);
       d.close("apply");
     };
-    d.addEventListener("close", () => {
-      clearTimeout(timer2);
-      if (d.returnValue === "apply" && !isNoAdjust(cur)) {
-        commit();
-        toast(t("Colors adjusted."));
-      } else restoreCurrent();
-    });
+    d.addEventListener("close", () => finish(false));
     return d;
   }
   function show3() {
@@ -9488,6 +9808,16 @@ ${shapes.join("\n")}
       }
     }
   }
+  var finished = true;
+  function finish(apply) {
+    if (finished) return;
+    finished = true;
+    clearTimeout(timer2);
+    if (apply && !isNoAdjust(cur)) {
+      commit();
+      toast(t("Colors adjusted."));
+    } else restoreCurrent();
+  }
   function openAdjust() {
     if (state.floating) place();
     dlg4 = dlg4 || build2();
@@ -9497,6 +9827,7 @@ ${shapes.join("\n")}
     original = dctx.getImageData(box3.x, box3.y, box3.w, box3.h);
     cur = { ...NO_ADJUST };
     comparing = false;
+    finished = false;
     show3();
     dlg4.querySelector(".adj-busy").textContent = "";
     dlg4.returnValue = "";
@@ -9742,6 +10073,599 @@ ${shapes.join("\n")}
     $("#btn-trim").onclick = trim;
     bindMosaic();
     bindPalette();
+  }
+
+  // src/lib/relief.ts
+  function brightness(rgba2, n5) {
+    const out = new Float32Array(n5);
+    for (let i = 0; i < n5; i++) {
+      const a = rgba2[i * 4 + 3] / 255;
+      out[i] = ((0.299 * rgba2[i * 4] + 0.587 * rgba2[i * 4 + 1] + 0.114 * rgba2[i * 4 + 2]) * a + 255 * (1 - a)) / 255;
+    }
+    return out;
+  }
+  function shrink(h, w, ht, max, smooth = 0) {
+    const k = Math.max(1, Math.max(w, ht) / max), W = Math.max(2, Math.round(w / k)), H = Math.max(2, Math.round(ht / k));
+    let out = new Float32Array(W * H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const x0 = Math.floor(x * w / W), x1 = Math.max(x0 + 1, Math.floor((x + 1) * w / W)), y0 = Math.floor(y * ht / H), y1 = Math.max(y0 + 1, Math.floor((y + 1) * ht / H));
+      let s = 0;
+      for (let yy = y0; yy < y1; yy++) for (let xx = x0; xx < x1; xx++) s += h[yy * w + xx];
+      out[y * W + x] = s / ((x1 - x0) * (y1 - y0));
+    }
+    for (let p = 0; p < smooth; p++) {
+      const next = new Float32Array(W * H);
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        let s = 0, n5 = 0;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          const X = x + dx, Y = y + dy;
+          if (X >= 0 && Y >= 0 && X < W && Y < H) {
+            s += out[Y * W + X];
+            n5++;
+          }
+        }
+        next[y * W + x] = s / n5;
+      }
+      out = next;
+    }
+    return { h: out, w: W, ht: H };
+  }
+  function reliefMesh(h, w, ht, o) {
+    const cell = o.sizeMm / (Math.max(w, ht) - 1), vertices = [], triangles = [];
+    for (let pass = 0; pass < 2; pass++) {
+      for (let y = 0; y < ht; y++) for (let x = 0; x < w; x++) {
+        vertices.push(x * cell, (ht - 1 - y) * cell, pass ? 0 : o.baseMm + h[y * w + x] * o.heightMm);
+      }
+    }
+    const top = (x, y) => y * w + x, bot = (x, y) => w * ht + y * w + x;
+    for (let y = 0; y < ht - 1; y++) for (let x = 0; x < w - 1; x++) {
+      triangles.push(top(x, y), top(x, y + 1), top(x + 1, y), top(x + 1, y), top(x, y + 1), top(x + 1, y + 1));
+      triangles.push(bot(x, y), bot(x + 1, y), bot(x, y + 1), bot(x + 1, y), bot(x + 1, y + 1), bot(x, y + 1));
+    }
+    for (let x = 0; x < w - 1; x++) {
+      triangles.push(top(x, 0), top(x + 1, 0), bot(x, 0), top(x + 1, 0), bot(x + 1, 0), bot(x, 0));
+      const y = ht - 1;
+      triangles.push(top(x, y), bot(x, y), top(x + 1, y), top(x + 1, y), bot(x, y), bot(x + 1, y));
+    }
+    for (let y = 0; y < ht - 1; y++) {
+      triangles.push(top(0, y), bot(0, y), top(0, y + 1), top(0, y + 1), bot(0, y), bot(0, y + 1));
+      const x = w - 1;
+      triangles.push(top(x, y), top(x, y + 1), bot(x, y), top(x, y + 1), bot(x, y + 1), bot(x, y));
+    }
+    return { vertices, triangles, levels: new Array(triangles.length / 3).fill(0) };
+  }
+
+  // src/lib/html.ts
+  var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+
+  // src/shared/addon-files.ts
+  var HF = (repo, rev, path) => `https://huggingface.co/${repo}/resolve/${rev}/${path}`;
+  var ORT = (f) => `https://cdn.jsdelivr.net/npm/onnxruntime-web@1.30.0/dist/${f}`;
+  var TESS = (f) => `https://cdn.jsdelivr.net/npm/${f}`;
+  var FILES = {
+    // the AI engine: with WebGPU (faster, needs the bigger build) or without
+    ortGpu: { url: ORT("ort-wasm-simd-threaded.asyncify.wasm"), bytes: 26781914 },
+    ortCpu: { url: ORT("ort-wasm-simd-threaded.wasm"), bytes: 14239897 },
+    samEncoder: { url: HF("Xenova/slimsam-77-uniform", "5850ab45f587c112167512ffef949107115e26a0", "onnx/vision_encoder_quantized.onnx"), bytes: 8882165 },
+    samDecoder: { url: HF("Xenova/slimsam-77-uniform", "5850ab45f587c112167512ffef949107115e26a0", "onnx/prompt_encoder_mask_decoder_quantized.onnx"), bytes: 4903810 },
+    migan: { url: HF("andraniksargsyan/migan", "406830d0fa60666da0071c342ad2fbc8f30c5c64", "migan_pipeline_v2.onnx"), bytes: 28079181 },
+    modnet: { url: HF("Xenova/modnet", "fa2fa546052fba4c08921230a26cc69a333fca12", "onnx/model_quantized.onnx"), bytes: 6632188 },
+    u2netp: { url: HF("BritishWerewolf/U-2-Netp", "7112208dbac3a3642496c8d54e2f0f9bb3dc1dc8", "onnx/model.onnx"), bytes: 4574861 },
+    depth: { url: HF("onnx-community/depth-anything-v2-small", "4472b7362082ad9968fee890ca0f1e5aca36b93d", "onnx/model_quantized.onnx"), bytes: 27258801 },
+    tessWorker: { url: TESS("tesseract.js@7.0.0/dist/worker.min.js"), bytes: 111307 },
+    tessCore: { url: TESS("tesseract.js-core@7.0.0/tesseract-core-simd-lstm.wasm.js"), bytes: 3899472 },
+    tessEng: { url: TESS("@tesseract.js-data/eng/4.0.0_best_int/eng.traineddata.gz"), bytes: 2952873 },
+    tessCes: { url: TESS("@tesseract.js-data/ces/4.0.0_best_int/ces.traineddata.gz"), bytes: 2225029 },
+    tessDeu: { url: TESS("@tesseract.js-data/deu/4.0.0_best_int/deu.traineddata.gz"), bytes: 1333102 },
+    tessSlk: { url: TESS("@tesseract.js-data/slk/4.0.0_best_int/slk.traineddata.gz"), bytes: 2377899 },
+    tessPol: { url: TESS("@tesseract.js-data/pol/4.0.0_best_int/pol.traineddata.gz"), bytes: 2642356 }
+  };
+
+  // src/shared/addons.ts
+  var hasGpu = () => typeof navigator !== "undefined" && "gpu" in navigator && !globalThis.__noWebGPU;
+  var engineFile = () => hasGpu() ? "ortGpu" : "ortCpu";
+  function ocrLangs() {
+    const all = { en: { code: "eng", file: "tessEng" }, cs: { code: "ces", file: "tessCes" }, de: { code: "deu", file: "tessDeu" }, sk: { code: "slk", file: "tessSlk" }, pl: { code: "pol", file: "tessPol" } };
+    const lang2 = (document.documentElement.lang || "en").slice(0, 2);
+    return lang2 !== "en" && all[lang2] ? [all.en, all[lang2]] : [all.en];
+  }
+  var ADDONS = [
+    { id: "select", get name() {
+      return t("Select object (AI)");
+    }, get what() {
+      return t("Tap an object to select it.");
+    }, files: ["samEncoder", "samDecoder"], engine: true, license: "SlimSAM – Apache-2.0" },
+    { id: "inpaint", get name() {
+      return t("Object removal (AI)");
+    }, get what() {
+      return t("Remove fills the spot with a trained model – better on objects and structure than the built-in fill.");
+    }, files: ["migan"], engine: true, license: "MI-GAN (Picsart) – MIT" },
+    { id: "bg-people", get name() {
+      return t("Background removal – people");
+    }, get what() {
+      return t("Removes the background behind people (portraits).");
+    }, files: ["modnet"], engine: true, license: "MODNet – Apache-2.0" },
+    { id: "bg-any", get name() {
+      return t("Background removal – any subject");
+    }, get what() {
+      return t("Removes the background behind the main subject: objects, animals, products.");
+    }, files: ["u2netp"], engine: true, license: "U²-Netp – Apache-2.0" },
+    { id: "ocr", get name() {
+      return t("Read text (OCR)");
+    }, get what() {
+      return t("Recognizes text in the image, to copy it.");
+    }, files: [], engine: false, license: "Tesseract – Apache-2.0" },
+    { id: "depth", get name() {
+      return t("Depth for 3D relief (AI)");
+    }, get what() {
+      return t("Estimates the depth of a photo for a 3D-printable relief.");
+    }, files: ["depth"], engine: true, license: "Depth Anything V2 small – Apache-2.0" }
+  ];
+  function filesOf(a) {
+    const f = [...a.files];
+    if (a.engine) f.unshift(engineFile());
+    if (a.id === "ocr") f.push("tessWorker", "tessCore", ...ocrLangs().map((l) => l.file));
+    return f;
+  }
+  var addon = (id) => ADDONS.find((a) => a.id === id);
+  var CACHE = "mosaic-paint-addons-1";
+  var inDiscord = () => location.hostname.endsWith("discordsays.com") || !!window.__discordSdk;
+  var source = (url2) => inDiscord() ? `/.proxy/api/fetch?u=${encodeURIComponent(url2)}` : url2;
+  async function cache2() {
+    try {
+      return await caches.open(CACHE);
+    } catch {
+      return null;
+    }
+  }
+  async function hasFile(id) {
+    const c = await cache2();
+    return !!c && !!await c.match(FILES[id].url);
+  }
+  async function isInstalled(a) {
+    for (const f of filesOf(a)) if (!await hasFile(f)) return false;
+    return true;
+  }
+  async function getFile(id, progress) {
+    const f = FILES[id], c = await cache2();
+    const hit = c && await c.match(f.url);
+    if (hit) return hit.arrayBuffer();
+    const r = await fetch(source(f.url));
+    if (!r.ok || !r.body) throw new Error(t("Download failed ({status}).", { status: r.status }));
+    const reader = r.body.getReader(), parts = [];
+    let got = 0;
+    for (; ; ) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      parts.push(value);
+      got += value.length;
+      progress?.(got);
+    }
+    const buf = new Uint8Array(got);
+    let o = 0;
+    for (const p of parts) {
+      buf.set(p, o);
+      o += p.length;
+    }
+    if (c) {
+      try {
+        await c.put(f.url, new Response(buf, { headers: { "content-type": "application/octet-stream" } }));
+      } catch {
+      }
+    }
+    return buf.buffer;
+  }
+  async function removeAddon(a) {
+    const c = await cache2();
+    if (!c) return;
+    const keep = /* @__PURE__ */ new Set();
+    for (const b of ADDONS) if (b !== a && await isInstalled(b)) for (const f of filesOf(b)) keep.add(f);
+    for (const f of filesOf(a)) if (!keep.has(f)) await c.delete(FILES[f].url);
+  }
+  var mb = (bytes) => bytes >= 1e6 ? `${(bytes / 1e6).toFixed(bytes >= 1e7 ? 0 : 1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} kB`;
+  async function missing(a) {
+    const out = [];
+    for (const f of filesOf(a)) if (!await hasFile(f)) out.push(f);
+    return out;
+  }
+  var dlg5 = null;
+  function dialog() {
+    if (dlg5) return dlg5;
+    dlg5 = document.createElement("dialog");
+    dlg5.id = "dlg-addon";
+    document.body.append(dlg5);
+    return dlg5;
+  }
+  var inFlight = /* @__PURE__ */ new Map();
+  function ensureAddon(id) {
+    let p = inFlight.get(id);
+    if (!p) {
+      p = ensure(id).finally(() => inFlight.delete(id));
+      inFlight.set(id, p);
+    }
+    return p;
+  }
+  async function ensure(id) {
+    const a = addon(id), why = a.unavailable?.();
+    if (why) {
+      toast(why);
+      return false;
+    }
+    const need = await missing(a);
+    if (!need.length) return true;
+    const total2 = need.reduce((s, f) => s + FILES[f].bytes, 0), engine = need.find((f) => f === "ortGpu" || f === "ortCpu");
+    const d = dialog();
+    d.innerHTML = `<form method="dialog">
+<div class="dlg-head"><h2>${esc(a.name)}</h2></div>
+<p>${esc(a.what)}</p>
+<p class="addon-size"><b>${esc(t("This needs a one-time download of {size}.", { size: mb(total2) }))}</b>${engine ? ` ${esc(t("That includes the AI engine ({size}), shared by all AI add-ons.", { size: mb(FILES[engine].bytes) }))}` : ""}</p>
+<p class="note">${esc(t("It is kept in this browser and works offline afterwards; the Add-ons list in the side panel removes it again. Everything runs on this device – your pictures are not uploaded."))} ${esc(a.license)}.</p>
+<div class="addon-progress" hidden><progress max="1" value="0"></progress> <span></span></div>
+<div class="row dlg-foot"><button value="cancel" formnovalidate>${esc(t("Cancel"))}</button><button value="ok" class="primary">${esc(t("Download {size}", { size: mb(total2) }))}</button></div>
+</form>`;
+    d.returnValue = "";
+    const ok = await new Promise((resolve) => {
+      d.addEventListener("close", () => resolve(d.returnValue === "ok"), { once: true });
+      d.showModal();
+    });
+    if (!ok) return false;
+    d.innerHTML = `<div class="dlg-head"><h2>${esc(a.name)}</h2></div><p>${esc(t("Downloading…"))}</p><div class="addon-progress"><progress max="1" value="0"></progress> <span></span></div>`;
+    d.showModal();
+    const bar = d.querySelector("progress"), label2 = d.querySelector(".addon-progress span");
+    let done = 0;
+    try {
+      for (const f of need) {
+        await getFile(f, (got) => {
+          bar.value = Math.min(1, (done + got) / total2);
+          label2.textContent = `${mb(done + got)} / ${mb(total2)}`;
+        });
+        done += FILES[f].bytes;
+      }
+      try {
+        await navigator.storage?.persist?.();
+      } catch {
+      }
+      d.close();
+      toast(t("{name} is ready.", { name: a.name }));
+      renderAddons();
+      return true;
+    } catch (e) {
+      d.close();
+      toast(t("Could not download it: {why}", { why: String(e?.message || e) }));
+      return false;
+    }
+  }
+  async function renderAddons() {
+    const box5 = document.getElementById("addons");
+    if (!box5) return;
+    const rows2 = [];
+    let used = 0;
+    for (const a of ADDONS) {
+      const files = filesOf(a), size = files.reduce((s, f) => s + FILES[f].bytes, 0), inst = await isInstalled(a), why = a.unavailable?.();
+      if (inst) used += a.files.reduce((s, f) => s + FILES[f].bytes, 0);
+      rows2.push(`<div class="addon-row" data-id="${a.id}"><div><b>${esc(a.name)}</b> <span class="note">${inst ? esc(t("installed")) : esc(mb(size))}</span><div class="note">${esc(a.what)}</div></div>` + (why && !inst ? `<span class="note">${esc(why)}</span>` : `<button class="${inst ? "addon-remove" : "addon-get"}">${esc(inst ? t("Remove") : t("Download"))}</button>`) + "</div>");
+    }
+    if (await hasFile(engineFile())) used += FILES[engineFile()].bytes;
+    box5.innerHTML = rows2.join("") + `<p class="note">${esc(t("Used by add-ons: {size}. Sizes include the shared AI engine where it is not downloaded yet.", { size: mb(used) }))}</p>`;
+    for (const b of box5.querySelectorAll(".addon-get")) b.onclick = () => ensureAddon(b.closest(".addon-row").dataset.id);
+    for (const b of box5.querySelectorAll(".addon-remove")) {
+      b.onclick = async () => {
+        await removeAddon(addon(b.closest(".addon-row").dataset.id));
+        toast(t("Removed the add-on."));
+        renderAddons();
+      };
+    }
+  }
+  var bindAddons = () => {
+    if ($("#addons")) renderAddons();
+  };
+
+  // src/raster/ai-features.ts
+  var worker = null;
+  var seq2 = 0;
+  var waiting = /* @__PURE__ */ new Map();
+  function call(op, args, transfer = []) {
+    const stub = window.__aiStub;
+    if (stub) return Promise.resolve(stub(op, args));
+    if (!worker) {
+      worker = new Worker("dist/ai-worker.js", { type: "module" });
+      worker.onmessage = (e) => {
+        const w = waiting.get(e.data.id);
+        if (!w) return;
+        waiting.delete(e.data.id);
+        if (e.data.error != null) w.reject(new Error(e.data.error));
+        else w.resolve(e.data.result);
+      };
+      worker.onerror = (e) => {
+        e.preventDefault();
+        for (const w of waiting.values()) w.reject(new Error(t("The AI could not start in this browser.")));
+        waiting.clear();
+        worker = null;
+      };
+    }
+    const id = ++seq2;
+    return new Promise((resolve, reject) => {
+      waiting.set(id, { resolve, reject });
+      worker.postMessage({ id, op, args }, transfer);
+    });
+  }
+  async function prepare(addonId, models) {
+    if (!await ensureAddon(addonId)) return false;
+    const engine = engineFile();
+    await call("init", { gpu: engine === "ortGpu", wasm: await getFile(engine) });
+    for (const m of models) {
+      if (await call("has", { name: m })) continue;
+      toast(t("Starting the AI…"));
+      const bytes = await getFile(m);
+      await call("load", { name: m, model: bytes }, [bytes]);
+    }
+    return true;
+  }
+  function picture(max, box5 = { x: 0, y: 0, w: doc.width, h: doc.height }) {
+    const k = Math.min(1, max / Math.max(box5.w, box5.h)), w = Math.max(1, Math.round(box5.w * k)), h = Math.max(1, Math.round(box5.h * k));
+    const c = makeCanvas(w, h), x = c.getContext("2d");
+    x.imageSmoothingQuality = "high";
+    x.drawImage(doc, box5.x, box5.y, box5.w, box5.h, 0, 0, w, h);
+    return x.getImageData(0, 0, w, h);
+  }
+  function fullSize(mask2, w, h) {
+    const small = makeCanvas(w, h), sx = small.getContext("2d"), im = sx.createImageData(w, h);
+    for (let i = 0; i < mask2.length; i++) {
+      im.data[i * 4 + 3] = mask2[i];
+    }
+    sx.putImageData(im, 0, 0);
+    const big = makeCanvas(doc.width, doc.height), bx = big.getContext("2d");
+    bx.imageSmoothingQuality = "high";
+    bx.drawImage(small, 0, 0, doc.width, doc.height);
+    const d = bx.getImageData(0, 0, doc.width, doc.height).data, out = new Uint8Array(doc.width * doc.height);
+    for (let i = 0; i < out.length; i++) out[i] = d[i * 4 + 3];
+    return out;
+  }
+  var busy2 = (msg) => toast(msg);
+  var failed = (e) => toast(t("The AI could not do it: {why}", { why: String(e?.message || e) }));
+  var SAM = 1024;
+  var samKey = "";
+  var samSize = { w: 0, h: 0 };
+  async function selectObjectAt(p, op) {
+    try {
+      if (!await prepare("select", ["samEncoder", "samDecoder"])) return;
+      const key = `${imageVersion()}:${doc.width}x${doc.height}`;
+      if (key !== samKey) {
+        busy2(t("Looking at the picture…"));
+        const img = picture(SAM);
+        await call("samEncode", { key, img: { width: img.width, height: img.height, data: img.data } });
+        samKey = key;
+        samSize = { w: img.width, h: img.height };
+      }
+      const k = samSize.w / doc.width;
+      const m = await call("samMask", { points: [{ x: p.x * k, y: p.y * k, label: 1 }] });
+      setSelectionMask(fullSize(m, samSize.w, samSize.h), op);
+      if (!state.sel) toast(t("Nothing found there – tap the middle of the object."));
+    } catch (e) {
+      failed(e);
+    }
+  }
+  async function aiFill(img, hole) {
+    if (!await prepare("inpaint", ["migan"])) throw new Error(t("the AI add-on is not downloaded"));
+    return call("inpaint", { img: { width: img.width, height: img.height, data: img.data }, mask: hole });
+  }
+  var bgDlg = null;
+  function bgDialog() {
+    if (bgDlg) return bgDlg;
+    const d = document.createElement("dialog");
+    d.id = "dlg-bg";
+    d.innerHTML = `<form method="dialog">
+<div class="dlg-head"><h2>${t("Remove background")}</h2><button value="cancel" title="${t("Close")}">✕</button></div>
+<p>${t("What is in the picture?")}</p>
+<div class="row wrap">
+  <label class="chk"><input type="radio" name="bg-model" value="modnet" checked> ${t("People (portraits)")} <span class="note">${mb(FILES.modnet.bytes)}</span></label>
+  <label class="chk"><input type="radio" name="bg-model" value="u2netp"> ${t("Any subject (objects, animals, products)")} <span class="note">${mb(FILES.u2netp.bytes)}</span></label>
+</div>
+<p class="note">${t("Each needs a one-time download – the size is shown before anything is downloaded. Everything runs on this device.")}</p>
+<div class="row dlg-foot"><button value="select">${t("Select the subject")}</button><button value="remove" class="primary">${t("Remove background")}</button></div>
+</form>`;
+    document.body.append(d);
+    bgDlg = d;
+    return d;
+  }
+  async function removeBackground() {
+    if (state.floating) place();
+    const d = bgDialog();
+    d.returnValue = "";
+    const how = await new Promise((resolve) => {
+      d.addEventListener("close", () => resolve(d.returnValue), { once: true });
+      d.showModal();
+    });
+    if (how !== "select" && how !== "remove") return;
+    const model = d.querySelector("input[name=bg-model]:checked").value;
+    try {
+      if (!await prepare(model === "modnet" ? "bg-people" : "bg-any", [model])) return;
+      busy2(t("Finding the subject…"));
+      const img = picture(1024);
+      const m = fullSize(await call("matte", { model, img: { width: img.width, height: img.height, data: img.data } }), img.width, img.height);
+      if (how === "select") {
+        setSelectionMask(m, "new");
+        state.selShape = "rect";
+        toast(t("The subject is selected."));
+        return;
+      }
+      const im = dctx.getImageData(0, 0, doc.width, doc.height), px = im.data;
+      for (let i = 0; i < m.length; i++) px[i * 4 + 3] = px[i * 4 + 3] * m[i] / 255;
+      dctx.putImageData(im, 0, 0);
+      state.sel = null;
+      selectionChanged();
+      commit();
+      toast(t("Background removed."));
+    } catch (e) {
+      failed(e);
+    }
+  }
+  function loadOcr() {
+    if (window.MZOCR) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "dist/ocr.js";
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error(t("Could not load the text recognition.")));
+      document.head.append(s);
+    });
+  }
+  async function readText() {
+    if (state.floating) place();
+    try {
+      if (!await ensureAddon("ocr")) return;
+      busy2(t("Reading the text…"));
+      const ocr = window.__ocrStub || (await loadOcr(), window.MZOCR);
+      const b = state.sel || { x: 0, y: 0, w: doc.width, h: doc.height };
+      const k = Math.max(1, Math.min(3, 1200 / Math.max(b.w, b.h))), c = makeCanvas(Math.round(b.w * k), Math.round(b.h * k)), x = c.getContext("2d");
+      x.fillStyle = "#fff";
+      x.fillRect(0, 0, c.width, c.height);
+      x.imageSmoothingQuality = "high";
+      x.drawImage(doc, b.x, b.y, b.w, b.h, 0, 0, c.width, c.height);
+      const langs = await Promise.all(ocrLangs().map(async (l) => ({ code: l.code, data: await getFile(l.file) })));
+      const text = await ocr.recognize(c, { worker: await getFile("tessWorker"), core: await getFile("tessCore"), langs });
+      showText(text);
+    } catch (e) {
+      failed(e);
+    }
+  }
+  function showText(text) {
+    let d = $("#dlg-ocr");
+    if (!d) {
+      d = document.createElement("dialog");
+      d.id = "dlg-ocr";
+      d.innerHTML = `<div class="dlg-head"><h2>${t("Text in the picture")}</h2><form method="dialog"><button title="${t("Close")}">✕</button></form></div>
+<textarea class="ocr-text" rows="8" aria-label="${t("Text in the picture")}"></textarea>
+<div class="row dlg-foot"><span class="note grow">${t("You can correct it here before copying.")}</span><button class="ocr-copy primary">${t("Copy")}</button></div>`;
+      document.body.append(d);
+      d.querySelector(".ocr-copy").onclick = async () => {
+        const v = d.querySelector(".ocr-text").value;
+        try {
+          await navigator.clipboard.writeText(v);
+          toast(t("Copied."));
+        } catch {
+          d.querySelector(".ocr-text").select();
+          toast(t("Select the text and copy it (Ctrl+C)."));
+        }
+      };
+    }
+    d.querySelector(".ocr-text").value = text || "";
+    d.showModal();
+    if (!text) toast(t("No text found."));
+  }
+  var reliefDlg = null;
+  var depthFor = null;
+  var depthRun = null;
+  function reliefDialog() {
+    if (reliefDlg) return reliefDlg;
+    const d = document.createElement("dialog");
+    d.id = "dlg-relief";
+    d.innerHTML = `<div class="dlg-head"><h2>${t("3D relief")}</h2><form method="dialog"><button title="${t("Close")}">✕</button></form></div>
+<p class="note">${t("A 3D-printable relief of the picture (STL): from its brightness, or from the depth an AI sees in a photo.")}</p>
+<div class="row wrap">
+  <label class="chk"><input type="radio" name="rl-src" value="light" checked> ${t("Brightness – light is high")}</label>
+  <label class="chk"><input type="radio" name="rl-src" value="dark"> ${t("Brightness – dark is high (a lithophane: hold it against light)")}</label>
+  <label class="chk"><input type="radio" name="rl-src" value="depth"> ${t("Depth (AI add-on) – near is high")}</label>
+</div>
+<div class="row wrap">
+  <label>${t("Size")} <input class="rl-size" type="number" min="10" max="500" step="5" value="100"> mm</label>
+  <label>${t("Base")} <input class="rl-base" type="number" min="0" max="20" step="0.2" value="0.8"> mm</label>
+  <label>${t("Relief")} <input class="rl-height" type="number" min="0.2" max="50" step="0.2" value="3"> mm</label>
+  <label>${t("Detail")} <select class="rl-detail"><option value="120">${t("Low")}</option><option value="240" selected>${t("Medium")}</option><option value="400">${t("High")}</option></select></label>
+  <label>${t("Smoothing")} <input class="rl-smooth" type="number" min="0" max="10" step="1" value="1"></label>
+</div>
+<canvas class="rl-preview" width="1" height="1" aria-label="${t("Height map: white is high")}"></canvas>
+<div class="row dlg-foot"><span class="note grow rl-info"></span><button class="rl-go primary">${t("Save STL")}</button></div>`;
+    document.body.append(d);
+    const update2 = () => showRelief().catch(failed);
+    for (const el of d.querySelectorAll("input, select")) el.addEventListener("change", update2);
+    d.querySelector(".rl-go").onclick = () => saveRelief().catch(failed);
+    reliefDlg = d;
+    return d;
+  }
+  async function heights(max) {
+    const d = reliefDlg, src = d.querySelector("input[name=rl-src]:checked").value, smooth = +d.querySelector(".rl-smooth").value || 0;
+    if (src === "depth") {
+      const key = `${imageVersion()}:${doc.width}x${doc.height}`;
+      if (depthFor?.key !== key) {
+        if (depthRun?.key !== key) {
+          depthRun = { key, p: (async () => {
+            if (!await prepare("depth", ["depth"])) return false;
+            busy2(t("Working out the depth…"));
+            const img2 = picture(1024);
+            depthFor = { key, d: await call("depth", { img: { width: img2.width, height: img2.height, data: img2.data } }), w: img2.width, h: img2.height };
+            return true;
+          })() };
+        }
+        const ok = await depthRun.p.finally(() => {
+          if (depthRun?.key === key) depthRun = null;
+        });
+        if (!ok) {
+          d.querySelector("input[value=light]").checked = true;
+          return heights(max);
+        }
+      }
+      return shrink(depthFor.d, depthFor.w, depthFor.h, max, smooth);
+    }
+    const img = picture(Math.max(max * 2, 256)), b = brightness(img.data, img.width * img.height);
+    if (src === "dark") for (let i = 0; i < b.length; i++) b[i] = 1 - b[i];
+    return shrink(b, img.width, img.height, max, smooth);
+  }
+  async function showRelief() {
+    const d = reliefDlg, hm = await heights(+d.querySelector(".rl-detail").value);
+    if (!hm) return;
+    const c = d.querySelector(".rl-preview"), x = c.getContext("2d");
+    c.width = hm.w;
+    c.height = hm.ht;
+    const im = x.createImageData(hm.w, hm.ht);
+    for (let i = 0; i < hm.h.length; i++) {
+      const v = hm.h[i] * 255;
+      im.data.set([v, v, v, 255], i * 4);
+    }
+    x.putImageData(im, 0, 0);
+    const size = +d.querySelector(".rl-size").value || 100, k = size / Math.max(hm.w, hm.ht);
+    d.querySelector(".rl-info").textContent = t("{w} × {h} mm, {z} mm high", { w: Math.round(hm.w * k), h: Math.round(hm.ht * k), z: (+d.querySelector(".rl-base").value + +d.querySelector(".rl-height").value).toFixed(1) });
+  }
+  async function saveRelief() {
+    const d = reliefDlg, hm = await heights(+d.querySelector(".rl-detail").value);
+    if (!hm) return;
+    const mesh = reliefMesh(hm.h, hm.w, hm.ht, {
+      sizeMm: +d.querySelector(".rl-size").value || 100,
+      baseMm: +d.querySelector(".rl-base").value || 0,
+      heightMm: +d.querySelector(".rl-height").value || 3
+    });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([stl(mesh, "Mosaic Paint relief")], { type: "model/stl" }));
+    a.download = "relief.stl";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4e3);
+    toast(t("Saved relief.stl."));
+  }
+  async function openRelief() {
+    if (state.floating) place();
+    const d = reliefDialog();
+    d.showModal();
+    await showRelief().catch(failed);
+  }
+  function bindAiFeatures() {
+    selectHooks.object = (p, op) => {
+      selectObjectAt(p, op);
+    };
+    fillers.ai = aiFill;
+    $("#remove-method-row").hidden = false;
+    const rm = $("#opt-remove-method");
+    rm.addEventListener("change", async () => {
+      if (rm.value === "ai" && !await ensureAddon("inpaint")) {
+        rm.value = "builtin";
+        state.removeMethod = "builtin";
+        savePrefs();
+      }
+    });
+    $("#btn-bg").onclick = () => removeBackground();
+    $("#btn-ocr").onclick = () => readText();
+    $("#btn-relief").onclick = () => openRelief();
+    bindAddons();
+    requestRender();
   }
 
   // src/shared/quick-menu.ts
@@ -10336,9 +11260,6 @@ ${shapes.join("\n")}
     });
   }
 
-  // src/lib/html.ts
-  var esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-
   // src/shared/view3d.ts
   var VS = `
 attribute vec3 aPos; attribute vec3 aNormal; attribute vec3 aColor;
@@ -10609,12 +11530,12 @@ void main() {
 </div>`;
   var SMALL = 2e4;
   function initExport3D(host2, button) {
-    const dlg5 = document.createElement("dialog");
-    dlg5.id = "dlg-3d";
-    dlg5.innerHTML = DIALOG;
-    document.body.append(dlg5);
-    dlg5.addEventListener("click", (e) => {
-      if (e.target === dlg5) dlg5.close();
+    const dlg6 = document.createElement("dialog");
+    dlg6.id = "dlg-3d";
+    dlg6.innerHTML = DIALOG;
+    document.body.append(dlg6);
+    dlg6.addEventListener("click", (e) => {
+      if (e.target === dlg6) dlg6.close();
     });
     let colors = [], counts2 = [], grid = null, gw = 0, gh = 0, cell = opts.detail;
     let order = [], note = "", lines2 = /* @__PURE__ */ new Set(), version = 0;
@@ -10631,7 +11552,7 @@ void main() {
     const normalize = () => {
       order = [...order.filter(isLine), ...order.filter((ci) => !isLine(ci))];
     };
-    const busy2 = (text) => {
+    const busy3 = (text) => {
       $("#m3-busy").textContent = text;
     };
     let cached = null, cachedKey = "", wanted = "";
@@ -10647,17 +11568,17 @@ void main() {
       }
       if (wanted !== key) {
         wanted = key;
-        busy2(t("Working out the model…"));
-        run2("towers", job, { progress: (f) => busy2(t("Working out the model… {p} %", { p: Math.round(f * 100) })) }).then((m) => {
+        busy3(t("Working out the model…"));
+        run2("towers", job, { progress: (f) => busy3(t("Working out the model… {p} %", { p: Math.round(f * 100) })) }).then((m) => {
           if (wanted !== key) return;
           cached = m;
           cachedKey = key;
-          busy2("");
+          busy3("");
           render3();
         }, (e) => {
           if (isCancelled(e) || wanted !== key) return;
           wanted = "";
-          busy2("");
+          busy3("");
           toast(t("Could not build the 3D model."));
         });
       }
@@ -10712,7 +11633,7 @@ void main() {
     }
     function render3() {
       const { w, h } = size(), fl = isFlat();
-      for (const el of dlg5.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
+      for (const el of dlg6.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
       $("#m3-mode-flat").classList.toggle("active", fl);
       $("#m3-go").title = fl ? t("The model, one part per color with its filament") : t("The model, with the filament changes for PrusaSlicer");
@@ -10764,7 +11685,7 @@ void main() {
       const lowered = m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "";
       let summary = !list.length ? t("Nothing is painted yet.") : (fl ? t("{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})", { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers }) : t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 })) + atBase + lowered;
       if (list.length && opts.frame > 0) {
-        const f = finished(m);
+        const f = finished2(m);
         summary += " · " + t("with the frame {w} × {h} mm, {z} mm high", { w: num(+f2(f.w * cell)), h: num(+f2(f.h * cell)), z: num(+f2(frameTop(list.length, buildOpts()) * opts.layerHeight)) });
       }
       $("#m3-summary").textContent = summary;
@@ -10772,7 +11693,7 @@ void main() {
       if (view2) schedule3d();
     }
     let laid = null, laidKey = "";
-    function finished(m) {
+    function finished2(m) {
       const key = [cachedKey, opts.frame, opts.corner, opts.hole, opts.magnet].join("|");
       if (!laid || key !== laidKey) {
         laid = layout(m.grid, gw, gh, cell, buildOpts());
@@ -10780,7 +11701,7 @@ void main() {
       }
       return laid;
     }
-    const pocketDepth2 = (m) => pocketDepth(finished(m), m.list.map(isLine), buildOpts());
+    const pocketDepth2 = (m) => pocketDepth(finished2(m), m.list.map(isLine), buildOpts());
     function pocketNote(m) {
       if (!opts.magnet || !m.list.length) return "";
       const d = pocketDepth2(m);
@@ -10823,7 +11744,7 @@ void main() {
     function drawPreview(m) {
       const cv = $("#m3-preview");
       if (!m.list.length) return;
-      const f = finished(m), k = Math.min(1, 300 / Math.max(f.w, f.h));
+      const f = finished2(m), k = Math.min(1, 300 / Math.max(f.w, f.h));
       cv.width = Math.max(1, Math.round(f.w * k));
       cv.height = Math.max(1, Math.round(f.h * k));
       const small = document.createElement("canvas");
@@ -10927,7 +11848,7 @@ void main() {
       if (!m || !m.list.length) return;
       const btn = $(kind === "3mf" ? "#m3-go" : "#m3-stl");
       btn.disabled = true;
-      busy2(t("Building the 3D model…"));
+      busy3(t("Building the 3D model…"));
       try {
         const r = await run2("export3d", {
           kind,
@@ -10937,7 +11858,7 @@ void main() {
           name: base(),
           slicer: opts.slicer,
           labels: { base: t("Base"), frame: t("Frame") }
-        }, { progress: (f) => busy2(t("Building the 3D model… {p} %", { p: Math.round(f * 100) })) });
+        }, { progress: (f) => busy3(t("Building the 3D model… {p} %", { p: Math.round(f * 100) })) });
         download(new Blob([r.data], { type: r.type }), r.fileName);
         const v = { name: base(), n: r.triangles, c: m.list.length - 1 };
         if (isFlat()) {
@@ -10948,7 +11869,7 @@ void main() {
       } catch (e) {
         if (!isCancelled(e)) toast(t("Could not build the 3D model."));
       } finally {
-        busy2("");
+        busy3("");
         btn.disabled = false;
       }
     }
@@ -11031,14 +11952,14 @@ void main() {
       input.value = "";
       const m = model();
       if (!file || !m || !m.list.length) return;
-      busy2(t("Reading the G-code…"));
+      busy3(t("Reading the G-code…"));
       try {
-        const g = await run2("gcode", { text: await file.text() }, { progress: (f) => busy2(t("Reading the G-code… {p} %", { p: Math.round(f * 100) })) });
+        const g = await run2("gcode", { text: await file.text() }, { progress: (f) => busy3(t("Reading the G-code… {p} %", { p: Math.round(f * 100) })) });
         showCheck(file.name, g, m);
       } catch (e) {
         if (!isCancelled(e)) toast(t("Could not read {name}.", { name: file.name }));
       } finally {
-        busy2("");
+        busy3("");
       }
     };
     $("#m3-plan").onclick = () => {
@@ -11049,7 +11970,7 @@ void main() {
       const real = host2.realSize();
       if (real) opts.width = +real.w.toFixed(2);
       $("#m3-summary").textContent = t("Reading the picture…");
-      dlg5.showModal();
+      dlg6.showModal();
       await analyse().catch(() => toast(t("Could not read the picture.")));
     };
   }
@@ -11544,16 +12465,16 @@ ${sections.join("\n")}
 
   // src/shared/examples-ui.ts
   function initExamples(button, examples) {
-    const dlg5 = document.createElement("dialog");
-    dlg5.id = "dlg-examples";
-    dlg5.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg6 = document.createElement("dialog");
+    dlg6.id = "dlg-examples";
+    dlg6.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
 <div class="ex-list"></div>`;
-    document.body.append(dlg5);
-    dlg5.addEventListener("click", (e) => {
-      if (e.target === dlg5) dlg5.close();
+    document.body.append(dlg6);
+    dlg6.addEventListener("click", (e) => {
+      if (e.target === dlg6) dlg6.close();
     });
-    const list = dlg5.querySelector(".ex-list");
+    const list = dlg6.querySelector(".ex-list");
     for (const ex of examples) {
       const card = document.createElement("button");
       card.className = "ex-card";
@@ -11562,7 +12483,7 @@ ${sections.join("\n")}
       card.querySelector("b").textContent = ex.title;
       card.querySelector(".note").textContent = ex.text;
       card.onclick = async () => {
-        dlg5.close();
+        dlg6.close();
         await ex.open();
       };
       list.append(card);
@@ -11571,7 +12492,7 @@ ${sections.join("\n")}
       list.querySelectorAll("img").forEach((img, k) => {
         if (!img.src) img.src = examples[k].preview();
       });
-      dlg5.showModal();
+      dlg6.showModal();
     };
   }
 
@@ -11674,8 +12595,16 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "1.9.0" : "dev";
+  var VERSION = true ? "2.0.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.0.0",
+      date: "2026-10-13",
+      items: [
+        "Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.",
+        "3D relief…: a printable relief (STL) from the picture's brightness – or a lithophane – or from AI depth."
+      ]
+    },
     {
       version: "1.9.0",
       date: "2026-10-13",
@@ -11771,12 +12700,12 @@ ${sections.join("\n")}
   ];
   var KEY3 = "mz-version";
   function initWhatsNew() {
-    const dlg5 = document.createElement("dialog");
-    dlg5.id = "dlg-whats-new";
-    dlg5.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
-    document.body.append(dlg5);
-    dlg5.addEventListener("click", (e) => {
-      if (e.target === dlg5) dlg5.close();
+    const dlg6 = document.createElement("dialog");
+    dlg6.id = "dlg-whats-new";
+    dlg6.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
+    document.body.append(dlg6);
+    dlg6.addEventListener("click", (e) => {
+      if (e.target === dlg6) dlg6.close();
     });
     const button = document.createElement("button");
     button.id = "st-version";
@@ -11791,23 +12720,23 @@ ${sections.join("\n")}
     button.onclick = () => {
       button.classList.remove("new");
       lsSet(KEY3, VERSION);
-      dlg5.showModal();
+      dlg6.showModal();
     };
   }
 
   // src/shared/history-ui.ts
   function initHistoryUI(host2, button) {
-    const dlg5 = document.createElement("dialog");
-    dlg5.id = "dlg-history";
-    dlg5.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg6 = document.createElement("dialog");
+    dlg6.id = "dlg-history";
+    dlg6.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${esc(host2.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
-    document.body.append(dlg5);
-    dlg5.addEventListener("click", (e) => {
-      if (e.target === dlg5) dlg5.close();
+    document.body.append(dlg6);
+    dlg6.addEventListener("click", (e) => {
+      if (e.target === dlg6) dlg6.close();
     });
-    const list = dlg5.querySelector("#hist-list");
+    const list = dlg6.querySelector("#hist-list");
     let thumbs = [];
     async function render3() {
       thumbs.forEach((u) => URL.revokeObjectURL(u));
@@ -11853,7 +12782,7 @@ ${sections.join("\n")}
         };
         restore2.textContent = t("Restore");
         restore2.onclick = async () => {
-          dlg5.close();
+          dlg6.close();
           await host2.restore(v);
         };
         row.append(pin, rename, restore2);
@@ -11870,9 +12799,9 @@ ${sections.join("\n")}
     }
     button.onclick = () => {
       render3();
-      dlg5.showModal();
+      dlg6.showModal();
     };
-    dlg5.querySelector("#hist-save").onclick = async () => {
+    dlg6.querySelector("#hist-save").onclick = async () => {
       toast(await host2.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
@@ -11882,6 +12811,7 @@ ${sections.join("\n")}
   loadPrefs();
   bindPanel();
   bindInput();
+  bindAiFeatures();
   bindExport3D();
   bindReport();
   bindPrint();

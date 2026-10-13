@@ -11,6 +11,12 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '2.0.0', date: '2026-10-13', items: [
+      'Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.',
+      '3D relief…: a printable relief (STL) from the picture\'s brightness – or a lithophane – or from AI depth.',
+    ],
+  },
+  {
     version: '1.9.0', date: '2026-10-13', items: [
       'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.',
     ],

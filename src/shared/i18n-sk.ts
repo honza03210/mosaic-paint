@@ -1946,4 +1946,150 @@ export const SK: Record<string, string> = {
     'Text – ťuknite a píšte; písma, obrys, tieň a zakrivený text (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
     'Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte.',
+  'The AI could not start in this browser.':
+    'AI sa v tomto prehliadači nepodarilo spustiť.',
+  'Starting the AI…':
+    'Spúšťa sa AI…',
+  'The AI could not do it: {why}':
+    'AI to nezvládla: {why}',
+  'Looking at the picture…':
+    'Prezerá sa obrázok…',
+  'Nothing found there – tap the middle of the object.':
+    'Nič sa tam nenašlo – ťuknite do stredu objektu.',
+  'the AI add-on is not downloaded':
+    'doplnok AI nie je stiahnutý',
+  'Remove background':
+    'Odstrániť pozadie',
+  'What is in the picture?':
+    'Čo je na obrázku?',
+  'People (portraits)':
+    'Ľudia (portréty)',
+  'Any subject (objects, animals, products)':
+    'Čokoľvek (predmety, zvieratá, výrobky)',
+  'Each needs a one-time download – the size is shown before anything is downloaded. Everything runs on this device.':
+    'Každé potrebuje jednorazové stiahnutie – veľkosť uvidíte skôr, než sa čokoľvek stiahne. Všetko beží v tomto zariadení.',
+  'Select the subject':
+    'Vybrať hlavný objekt',
+  'Finding the subject…':
+    'Hľadá sa hlavný objekt…',
+  'The subject is selected.':
+    'Hlavný objekt je vybraný.',
+  'Background removed.':
+    'Pozadie odstránené.',
+  'Could not load the text recognition.':
+    'Rozpoznávanie textu sa nepodarilo načítať.',
+  'Reading the text…':
+    'Číta sa text…',
+  'Text in the picture':
+    'Text na obrázku',
+  'You can correct it here before copying.':
+    'Pred skopírovaním ho tu môžete opraviť.',
+  'Copied.':
+    'Skopírované.',
+  'Select the text and copy it (Ctrl+C).':
+    'Označte text a skopírujte ho (Ctrl+C).',
+  'No text found.':
+    'Nenašiel sa žiadny text.',
+  '3D relief':
+    '3D reliéf',
+  'A 3D-printable relief of the picture (STL): from its brightness, or from the depth an AI sees in a photo.':
+    'Reliéf obrázka na 3D tlač (STL): podľa jasu, alebo podľa hĺbky, ktorú vo fotke vidí AI.',
+  'Brightness – light is high':
+    'Jas – svetlé je vysoko',
+  'Brightness – dark is high (a lithophane: hold it against light)':
+    'Jas – tmavé je vysoko (litofánia: podržte ju proti svetlu)',
+  'Depth (AI add-on) – near is high':
+    'Hĺbka (doplnok AI) – blízke je vysoko',
+  'Relief':
+    'Reliéf',
+  'Low':
+    'Nízke',
+  'Medium':
+    'Stredné',
+  'High':
+    'Vysoké',
+  'Smoothing':
+    'Vyhladenie',
+  'Height map: white is high':
+    'Výšková mapa: biela je vysoko',
+  'Save STL':
+    'Uložiť STL',
+  'Working out the depth…':
+    'Zisťuje sa hĺbka…',
+  '{w} × {h} mm, {z} mm high':
+    '{w} × {h} mm, výška {z} mm',
+  'Saved relief.stl.':
+    'Uložené relief.stl.',
+  'Select object (AI)':
+    'Výber objektu (AI)',
+  'Tap an object to select it.':
+    'Ťuknutím na objekt ho vyberiete.',
+  'Object removal (AI)':
+    'Odstraňovanie objektov (AI)',
+  'Remove fills the spot with a trained model – better on objects and structure than the built-in fill.':
+    'Odstrániť vyplní miesto natrénovaným modelom – lepšie ako vstavané vyplnenie pri objektoch a štruktúrach.',
+  'Background removal – people':
+    'Odstránenie pozadia – ľudia',
+  'Removes the background behind people (portraits).':
+    'Odstráni pozadie za ľuďmi (portréty).',
+  'Background removal – any subject':
+    'Odstránenie pozadia – čokoľvek',
+  'Removes the background behind the main subject: objects, animals, products.':
+    'Odstráni pozadie za hlavným objektom: predmety, zvieratá, výrobky.',
+  'Read text (OCR)':
+    'Čítanie textu (OCR)',
+  'Recognizes text in the image, to copy it.':
+    'Rozpozná text v obrázku, aby ste ho mohli skopírovať.',
+  'Depth for 3D relief (AI)':
+    'Hĺbka pre 3D reliéf (AI)',
+  'Estimates the depth of a photo for a 3D-printable relief.':
+    'Odhadne hĺbku fotky pre reliéf na 3D tlač.',
+  'Download failed ({status}).':
+    'Sťahovanie zlyhalo ({status}).',
+  'This needs a one-time download of {size}.':
+    'Potrebuje to jednorazovo stiahnuť {size}.',
+  'That includes the AI engine ({size}), shared by all AI add-ons.':
+    'To zahŕňa jadro AI ({size}), spoločné pre všetky doplnky AI.',
+  'It is kept in this browser and works offline afterwards; the Add-ons list in the side panel removes it again. Everything runs on this device – your pictures are not uploaded.':
+    'Zostane v tomto prehliadači a potom funguje aj offline; v zozname Doplnky v bočnom paneli ho zase odstránite. Všetko beží v tomto zariadení – vaše obrázky sa nikam nenahrávajú.',
+  'Download {size}':
+    'Stiahnuť {size}',
+  'Downloading…':
+    'Sťahuje sa…',
+  '{name} is ready.':
+    '{name} je pripravené.',
+  'Could not download it: {why}':
+    'Nepodarilo sa stiahnuť: {why}',
+  'installed':
+    'stiahnuté',
+  'Download':
+    'Stiahnuť',
+  'Used by add-ons: {size}. Sizes include the shared AI engine where it is not downloaded yet.':
+    'Doplnky zaberajú: {size}. Veľkosti zahŕňajú spoločné jadro AI, ak ešte nie je stiahnuté.',
+  'Removed the add-on.':
+    'Doplnok odstránený.',
+  'Object (AI)':
+    'Objekt (AI)',
+  'Remove background…':
+    'Odstrániť pozadie…',
+  'Read text…':
+    'Prečítať text…',
+  '3D relief…':
+    '3D reliéf…',
+  'Add-ons':
+    'Doplnky',
+  'Features that need a one-time download. Nothing is downloaded until you agree; everything runs on this device.':
+    'Funkcie, ktoré potrebujú jednorazové stiahnutie. Nič sa nestiahne, kým nesúhlasíte; všetko beží v tomto zariadení.',
+  'Tap an object: the AI selects it (an add-on – asks before downloading)':
+    'Ťuknite na objekt: AI ho vyberie (doplnok – pred stiahnutím sa opýta)',
+  'Make the background transparent, or select the subject (an AI add-on – asks before downloading)':
+    'Spriehľadniť pozadie, alebo vybrať hlavný objekt (doplnok AI – pred stiahnutím sa opýta)',
+  'Recognize the text in the image or the selection, to copy it (an add-on – asks before downloading)':
+    'Rozpoznať text v obrázku alebo výbere a skopírovať ho (doplnok – pred stiahnutím sa opýta)',
+  'A 3D-printable relief (STL) from the picture\'s brightness, or from AI depth':
+    'Reliéf na 3D tlač (STL) podľa jasu obrázka, alebo podľa hĺbky z AI',
+  'Add-ons that run on your device, each downloaded only after you agree to its size: Select object (tap it), AI object removal, background removal, Read text (OCR) and depth for 3D reliefs. The side panel lists them and removes them again.':
+    'Doplnky, ktoré bežia vo vašom zariadení a stiahnu sa až po odsúhlasení veľkosti: Výber objektu (ťuknutím), odstraňovanie objektov AI, odstránenie pozadia, Čítanie textu (OCR) a hĺbka pre 3D reliéfy. Bočný panel ich vypisuje a vie ich zase odstrániť.',
+  '3D relief…: a printable relief (STL) from the picture\'s brightness – or a lithophane – or from AI depth.':
+    '3D reliéf…: reliéf na tlač (STL) podľa jasu obrázka – alebo litofánia – alebo podľa hĺbky z AI.',
 };

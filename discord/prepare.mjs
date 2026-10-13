@@ -18,5 +18,5 @@ for (const f of ['index.html', 'vector.html']) {
     .replace('href="index.html" data-app="vector"', 'href="vector.html" data-app="vector"')
     .replace('href="raster.html" data-app="raster"', 'href="index.html" data-app="raster"'));
 }
-for (const f of ['style.css', 'dist/raster.js', 'dist/mosaic.js', 'dist/activity.js', 'icons/icon.svg', 'icons/icon-192.png']) copy(f);
+for (const f of ['style.css', 'dist/raster.js', 'dist/mosaic.js', 'dist/activity.js', 'dist/ai-worker.js', 'dist/ocr.js', 'icons/icon.svg', 'icons/icon-192.png']) copy(f);
 console.log('Copied the editor to', out);
