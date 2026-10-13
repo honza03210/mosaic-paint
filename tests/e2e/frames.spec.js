@@ -70,8 +70,8 @@ async function discord(page) {
   await page.addInitScript(() => {
     window.__discordSdk = { channelId: 'chan1', ready: async () => {}, commands: { authorize: async () => ({ code: 'c' }), authenticate: async () => ({}) }, close: () => {} };
   });
-  await page.route('**/api/config', r => r.fulfill({ json: { clientId: 'app1' } }));
-  await page.route('**/api/token', r => r.fulfill({ json: { access_token: 'tok' } }));
+  await page.route('**/api/config**', r => r.fulfill({ json: { clientId: 'app1' } }));
+  await page.route('**/api/token**', r => r.fulfill({ json: { access_token: 'tok' } }));
   await page.route('**/api/pending**', r => r.fulfill({ body: gif('moving.gif'), headers: { 'content-type': 'image/gif', 'x-filename': 'dance.gif' } }));
 }
 

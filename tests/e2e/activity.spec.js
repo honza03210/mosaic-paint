@@ -21,8 +21,8 @@ const fakeSdk = () => {
 
 async function api(page, { pending = true, postStatus = 200 } = {}) {
   const posted = [];
-  await page.route('**/api/config', r => r.fulfill({ json: { clientId: 'app1' } }));
-  await page.route('**/api/token', r => r.fulfill({ json: { access_token: 'tok-ann' } }));
+  await page.route('**/api/config**', r => r.fulfill({ json: { clientId: 'app1' } }));
+  await page.route('**/api/token**', r => r.fulfill({ json: { access_token: 'tok-ann' } }));
   await page.route('**/api/pending**', r => {
     expect(r.request().headers().authorization).toBe('Bearer tok-ann');
     expect(new URL(r.request().url()).searchParams.get('channel')).toBe('chan1');
@@ -116,8 +116,8 @@ test('switching apps – even before signing in has finished – keeps the conne
   await page.addInitScript(fakeSdk);
   await api(page);
   // sign-in takes a while, so the app switch is clicked before it is done
-  await page.unroute('**/api/config');
-  await page.route('**/api/config', async r => { await new Promise(res => setTimeout(res, 1500)); await r.fulfill({ json: { clientId: 'app1' } }); });
+  await page.unroute('**/api/config**');
+  await page.route('**/api/config**', async r => { await new Promise(res => setTimeout(res, 1500)); await r.fulfill({ json: { clientId: 'app1' } }); });
   // the pages as the Worker serves them (discord/prepare.mjs): the raster app as index.html, the vector app as vector.html
   const served = (file) => fs.readFileSync(file, 'utf8')
     .replace('href="index.html" data-app="vector"', 'href="vector.html" data-app="vector"')

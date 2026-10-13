@@ -55,7 +55,8 @@ export interface Pending {
   alt?: string | null;
 }
 
-const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });
+// never stored: a 410 may be cached on the way (it's allowed to be), and then answers every later request
+const json = (data: unknown, status = 200) => new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
 const hex = (s: string) => new Uint8Array((s.match(/../g) || []).map(b => parseInt(b, 16)));
 
 /** Discord signs every interaction; anything else is refused. */

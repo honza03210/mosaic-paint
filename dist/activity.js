@@ -9615,7 +9615,8 @@
   // src/discord/activity.ts
   var API = (location.hostname.endsWith("discordsays.com") ? "/.proxy" : "") + "/api";
   async function call(path, init = {}) {
-    return fetch(API + path, init);
+    const fresh = path + (path.includes("?") ? "&" : "?") + "_=" + Date.now().toString(36);
+    return fetch(API + fresh, { cache: "no-store", ...init });
   }
   function appSwitch() {
     for (const a of document.querySelectorAll(".app-switch a[data-app]")) {

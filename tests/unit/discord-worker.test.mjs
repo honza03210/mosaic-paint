@@ -151,4 +151,6 @@ test('when no address works, Discord’s answer comes back with the 410', async 
   const r = await worker.fetch(new Request('https://w/api/pending?channel=chan1', { headers: { authorization: 'Bearer tok-ann' } }), env);
   assert.equal(r.status, 410);
   assert.equal((await r.json()).status, 404);
+  // never stored on the way: a cached 410 answered every later request
+  assert.equal(r.headers.get('cache-control'), 'no-store');
 });

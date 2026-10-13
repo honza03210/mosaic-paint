@@ -21,7 +21,9 @@ type Sdk = Pick<DiscordSDK, 'ready' | 'commands' | 'channelId' | 'close'>;
 const API = (location.hostname.endsWith('discordsays.com') ? '/.proxy' : '') + '/api';
 
 async function call(path: string, init: RequestInit = {}): Promise<Response> {
-  return fetch(API + path, init);
+  // a fresh address and no cache: an old answer stored on the way (Discord's proxy, the phone) must not come back
+  const fresh = path + (path.includes('?') ? '&' : '?') + '_=' + Date.now().toString(36);
+  return fetch(API + fresh, { cache: 'no-store', ...init });
 }
 
 /**
