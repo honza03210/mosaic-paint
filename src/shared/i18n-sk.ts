@@ -1130,8 +1130,8 @@ export const SK: Record<string, string> = {
     'Vystrihnúť',
   'Crop':
     'Orezať',
-  'Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.':
-    'Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu). Enter ho umiestni, Esc zruší.',
+  'Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.':
+    'Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu); dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.',
   'Mosaic':
     'Mozaika',
   'Make a mosaic…':
@@ -2220,4 +2220,10 @@ export const SK: Record<string, string> = {
     'Vložiť obrázok zo súboru do tohto obrázka – presuňte ho na miesto a stlačte Enter (alebo ťuknite mimo neho)',
   'Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.':
     'Vložiť… pridá obrázok zo súboru do aktuálneho obrázka (aj v rýchlej ponuke): príde ako plávajúci, zmenšený, aby sa zmestil – presuňte ho na miesto.',
+  'Two fingers on a selection':
+    'Dva prsty na výbere',
+  'Scale, turn and move it (spread, pinch, twist)':
+    'Zväčšiť, zmenšiť, otočiť a posunúť (roztiahnutie, stiahnutie, otočenie prstov)',
+  'Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.':
+    'Dva prsty na výbere (alebo na vloženom či importovanom obrázku a texte) ho zväčšia, zmenšia a otočia: roztiahnite alebo stiahnite prsty, otočte nimi – a posuňte ho. Prichytí sa k zvislej polohe a k pôvodnej veľkosti a vždy vzniká z pôvodných pixelov, takže sa nerozmazáva. Inde dva prsty približujú zobrazenie ako predtým.',
 };

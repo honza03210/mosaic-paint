@@ -91,7 +91,7 @@ export async function openCanvas(c: HTMLCanvasElement, name: string, note = ''):
 }
 /**
  * Import: a picture from a file goes into the image (not instead of it) – floating, to be dragged into place, on
- * the active layer; bigger than the image, it is scaled down to fit (floating pixels can't be resized). A GIF or
+ * the active layer; bigger than the image, it is scaled down to fit (two fingers make it bigger again). A GIF or
  * a video: the chosen frame.
  */
 export async function importImageFile(f: File): Promise<boolean> {

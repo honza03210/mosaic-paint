@@ -8,7 +8,14 @@ import { t } from '../shared/i18n.ts';
 
 /** Pixels lifted off the image (moved selection) or pasted, not yet placed. */
 /** Pixels being moved or pasted; mask: the shape they were lifted with (kept as the selection when placed). */
-export interface Floating { canvas: HTMLCanvasElement; x: number; y: number; mask?: Uint8Array; /** text that can still be edited (text.ts) */ text?: unknown }
+export interface Floating {
+  canvas: HTMLCanvasElement; x: number; y: number; mask?: Uint8Array; /** text that can still be edited (text.ts) */ text?: unknown;
+  /** scaled or turned (two fingers): the pixels as lifted, how big and how turned they are now, and where their
+   *  centre is in canvas – each new size is made from the original, so it doesn't blur more with every gesture */
+  xf?: { src: HTMLCanvasElement; mask?: Uint8Array; s: number; r: number; ox: number; oy: number };
+  /** during the gesture: drawn straight from xf.src (centre cx, cy in image px) */
+  live?: { s: number; r: number; cx: number; cy: number };
+}
 /** The selection: its box, and for shapes other than a rectangle how much of each of its pixels is selected
     (0…255, w × h) – with its outline, worked out once for drawing. */
 export type Selection = Box & { mask?: Uint8Array; edges?: number[] };

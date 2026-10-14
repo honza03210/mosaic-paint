@@ -1130,8 +1130,8 @@ export const DE: Record<string, string> = {
     'Ausschneiden',
   'Crop':
     'Zuschneiden',
-  'Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.':
-    'In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie). Enter platziert sie, Esc bricht ab.',
+  'Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.':
+    'In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie); zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.',
   'Mosaic':
     'Mosaik',
   'Make a mosaic…':
@@ -2220,4 +2220,10 @@ export const DE: Record<string, string> = {
     'Ein Bild aus einer Datei in dieses Bild setzen – an seinen Platz ziehen, dann Enter drücken (oder daneben tippen)',
   'Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.':
     'Importieren… setzt ein Bild aus einer Datei ins aktuelle Bild (auch im Schnellmenü): es kommt schwebend, passend verkleinert – an seinen Platz ziehen.',
+  'Two fingers on a selection':
+    'Zwei Finger auf einer Auswahl',
+  'Scale, turn and move it (spread, pinch, twist)':
+    'Skalieren, drehen und verschieben (spreizen, zusammenziehen, drehen)',
+  'Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.':
+    'Zwei Finger auf einer Auswahl (oder einem eingefügten, importierten Bild oder Text) skalieren und drehen sie: spreizen oder zusammenziehen, drehen – und verschieben. Sie rastet aufrecht und bei der Originalgröße ein und entsteht immer aus den ursprünglichen Pixeln, wird also nicht unscharf. Anderswo zoomen zwei Finger die Ansicht wie bisher.',
 };

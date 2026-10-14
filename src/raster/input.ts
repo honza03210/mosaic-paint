@@ -6,7 +6,7 @@ import { state, on, savePrefs } from './state.ts';
 import { stage, view, toDoc, updateView, fitView, zoomAt, zoomCenter, actualSize, requestRender } from './canvas.ts';
 import { undo, redo, restoreCurrent, commit, steps, dropLastStep } from './history.ts';
 import { pickAt, curve, finishCurve, curveBack, cancelCurve, undoFreshCloneSource } from './paint.ts';
-import { place, cancelFloating, deselect, selectAll, invertSelection, copy, clearSelection, pasteImage, pasteInternal } from './select.ts';
+import { place, cancelFloating, deselect, selectAll, invertSelection, copy, clearSelection, pasteImage, pasteInternal, grabForTransform, transformLive, transformDone, scaleLimits, selectionChanged, type Placement } from './select.ts';
 import { pasteColors, renderPalette, setFill, setStroke } from './palette.ts';
 import { tools, setTool } from './tools.ts';
 import { save, openFile, openImageFile, confirmDiscard } from './files.ts';
@@ -18,20 +18,43 @@ import { openAdjust } from './adjust-ui.ts';
 
 // ---- pointer & pinch ------------------------------------------------------------------------------------
 const pointers = new Map<number, Pt>();
-let pinch: { d0: number; m0: Pt; view: { s: number; x: number; y: number } } | null = null, pinchDone = false;
+/** Two fingers: zoom and pan the view – or, on the selection (Select, Text), scale, turn and move it (xf: where
+ *  it stood when they came down; a0: the fingers' angle then). */
+let pinch: { d0: number; a0: number; m0: Pt; view: { s: number; x: number; y: number }; xf?: Placement } | null = null, pinchDone = false;
+const SNAP = 3 * Math.PI / 180;
 function startPinch(): void {
   // a second finger turns the gesture into pan / zoom: undo what the first finger began
   const a = state.action;
   if (a && (a.type === 'stroke')) restoreCurrent();
   if (a && a.type === 'curve-press') curveBack();
+  // a new rectangle begun by the first finger: the selection it replaced comes back
+  if (a && a.type === 'marquee' && a.op === 'new' && a.prev) { state.sel = a.prev; selectionChanged(); }
   state.action = null;
   state.preview = null;
   const [p1, p2] = [...pointers.values()];
-  pinch = { d0: Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1, m0: { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 }, view: { ...state.view } };
+  const m0 = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+  pinch = { d0: Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1, a0: Math.atan2(p2.y - p1.y, p2.x - p1.x), m0, view: { ...state.view } };
+  pinch.xf = grabForTransform([p1, p2, m0].map(p => toDoc(p.x, p.y)), 24 / state.view.s) || undefined;
   pinchDone = true;
+  requestRender();
+}
+/** The selection under two fingers: the point between them stays between them as they spread and turn. */
+function moveTransform(p1: Pt, p2: Pt): void {
+  const x0 = pinch.xf, [lo, hi] = scaleLimits();
+  let s = clamp(x0.s * (Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1) / pinch.d0, lo, hi);
+  // close to its own size or upright (a quarter turn): it stays there
+  if (Math.abs(s - 1) < 0.03) s = 1;
+  let r = x0.r + Math.atan2(p2.y - p1.y, p2.x - p1.x) - pinch.a0;
+  const q = Math.round(r / (Math.PI / 2)) * (Math.PI / 2);
+  if (Math.abs(r - q) < SNAP) r = q;
+  const k = s / x0.s, dr = r - x0.r, c = Math.cos(dr), sn = Math.sin(dr);
+  const m0 = toDoc(pinch.m0.x, pinch.m0.y), m = toDoc((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+  const vx = (x0.cx - m0.x) * k, vy = (x0.cy - m0.y) * k;
+  transformLive({ s, r, cx: m.x + vx * c - vy * sn, cy: m.y + vx * sn + vy * c });
 }
 function movePinch(): void {
   const [p1, p2] = [...pointers.values()];
+  if (pinch.xf) { moveTransform(p1, p2); return; }
   const d = Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1, m = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
   const r = view.getBoundingClientRect(), v0 = pinch.view;
   const s = clamp(v0.s * d / pinch.d0, 0.02, 64);
@@ -43,7 +66,7 @@ function capturePointer(e: PointerEvent): void { try { view.setPointerCapture(e.
 function pointerEnd(e: PointerEvent): boolean {
   pointers.delete(e.pointerId);
   if (pinch || pinchDone) {
-    if (pointers.size < 2) pinch = null;
+    if (pointers.size < 2) { if (pinch?.xf) transformDone(); pinch = null; }
     if (!pointers.size) pinchDone = false;
     return true;
   }

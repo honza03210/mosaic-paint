@@ -1130,8 +1130,8 @@ export const PL: Record<string, string> = {
     'Wytnij',
   'Crop':
     'Przytnij',
-  'Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.':
-    'Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię). Enter je umieszcza, Esc anuluje.',
+  'Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.':
+    'Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię); dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.',
   'Mosaic':
     'Mozaika',
   'Make a mosaic…':
@@ -2220,4 +2220,10 @@ export const PL: Record<string, string> = {
     'Wstaw obraz z pliku do tego obrazu – przeciągnij go na miejsce, potem naciśnij Enter (lub stuknij obok)',
   'Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.':
     'Importuj… wstawia obraz z pliku do bieżącego obrazu (także w szybkim menu): pojawia się jako pływający, dopasowany rozmiarem – przeciągnij go na miejsce.',
+  'Two fingers on a selection':
+    'Dwa palce na zaznaczeniu',
+  'Scale, turn and move it (spread, pinch, twist)':
+    'Skalowanie, obrót i przesunięcie (rozsuń, ściśnij, obróć palce)',
+  'Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.':
+    'Dwa palce na zaznaczeniu (lub wklejonym, zaimportowanym obrazie albo tekście) skalują i obracają je: rozsuń lub ściśnij palce, obróć nimi – i przesuń. Przyciąga się do pionu i oryginalnego rozmiaru, a zawsze powstaje z oryginalnych pikseli, więc się nie rozmywa. Gdzie indziej dwa palce przybliżają widok jak dotąd.',
 };

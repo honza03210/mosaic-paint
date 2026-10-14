@@ -566,7 +566,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Vyplní plochu podobné barvy pod kliknutím. Alt+klik vybere barvu.",
     "Cut": "Vyjmout",
     "Crop": "Oříznout",
-    "Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.": "Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii). Enter ho umístí, Esc zruší.",
+    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii); dvěma prsty na něm ho zvětšíte, zmenšíte a otočíte. Enter ho umístí, Esc zruší.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Vytvořit mozaiku…",
     "Reduce to palette": "Převést na paletu",
@@ -1110,7 +1110,10 @@
     "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výběr objektu (AI) už na telefonech nepadá: teď používá MobileSAM, který potřebuje čtvrtinu paměti (a je rychlejší). Stahování je větší (45 MB); starý model se odstraní.",
     "Import a picture": "Vložit obrázek ze souboru",
     "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Vložit obrázek ze souboru do tohoto obrázku – přetáhněte ho na místo a stiskněte Enter (nebo klepněte mimo něj)",
-    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Vložit… přidá obrázek ze souboru do aktuálního obrázku (i v rychlé nabídce): přijde jako plovoucí, zmenšený, aby se vešel – přetáhněte ho na místo."
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Vložit… přidá obrázek ze souboru do aktuálního obrázku (i v rychlé nabídce): přijde jako plovoucí, zmenšený, aby se vešel – přetáhněte ho na místo.",
+    "Two fingers on a selection": "Dva prsty na výběru",
+    "Scale, turn and move it (spread, pinch, twist)": "Zvětšit, zmenšit, otočit a posunout (roztažení, sevření, otočení prstů)",
+    "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Dva prsty na výběru (nebo na vloženém či importovaném obrázku a textu) ho zvětší, zmenší a otočí: roztáhněte nebo sevřete prsty, otočte jimi – a posuňte ho. Přichytí se ke svislé poloze a k původní velikosti a vždy vzniká z původních pixelů, takže se nerozmazává. Jinde dva prsty přibližují zobrazení jako dřív."
   };
 
   // src/shared/i18n-de.ts
@@ -1680,7 +1683,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Füllt die Fläche ähnlicher Farbe unter dem Klick. Alt+Klick nimmt eine Farbe auf.",
     "Cut": "Ausschneiden",
     "Crop": "Zuschneiden",
-    "Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.": "In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie). Enter platziert sie, Esc bricht ab.",
+    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie); zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.",
     "Mosaic": "Mosaik",
     "Make a mosaic…": "Mosaik erstellen…",
     "Reduce to palette": "Auf Palette reduzieren",
@@ -2224,7 +2227,10 @@
     "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Objekt auswählen (KI) stürzt auf Handys nicht mehr ab: es nutzt jetzt MobileSAM, das ein Viertel des Speichers braucht (und schneller ist). Der Download ist größer (45 MB); das alte Modell wird entfernt.",
     "Import a picture": "Ein Bild importieren",
     "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Ein Bild aus einer Datei in dieses Bild setzen – an seinen Platz ziehen, dann Enter drücken (oder daneben tippen)",
-    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Importieren… setzt ein Bild aus einer Datei ins aktuelle Bild (auch im Schnellmenü): es kommt schwebend, passend verkleinert – an seinen Platz ziehen."
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Importieren… setzt ein Bild aus einer Datei ins aktuelle Bild (auch im Schnellmenü): es kommt schwebend, passend verkleinert – an seinen Platz ziehen.",
+    "Two fingers on a selection": "Zwei Finger auf einer Auswahl",
+    "Scale, turn and move it (spread, pinch, twist)": "Skalieren, drehen und verschieben (spreizen, zusammenziehen, drehen)",
+    "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Zwei Finger auf einer Auswahl (oder einem eingefügten, importierten Bild oder Text) skalieren und drehen sie: spreizen oder zusammenziehen, drehen – und verschieben. Sie rastet aufrecht und bei der Originalgröße ein und entsteht immer aus den ursprünglichen Pixeln, wird also nicht unscharf. Anderswo zoomen zwei Finger die Ansicht wie bisher."
   };
 
   // src/shared/i18n-sk.ts
@@ -2794,7 +2800,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Vyplní plochu podobnej farby pod kliknutím. Alt+klik vyberie farbu.",
     "Cut": "Vystrihnúť",
     "Crop": "Orezať",
-    "Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.": "Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu). Enter ho umiestni, Esc zruší.",
+    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu); dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Vytvoriť mozaiku…",
     "Reduce to palette": "Previesť na paletu",
@@ -3338,7 +3344,10 @@
     "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výber objektu (AI) už na telefónoch nepadá: teraz používa MobileSAM, ktorý potrebuje štvrtinu pamäte (a je rýchlejší). Sťahovanie je väčšie (45 MB); starý model sa odstráni.",
     "Import a picture": "Vložiť obrázok zo súboru",
     "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Vložiť obrázok zo súboru do tohto obrázka – presuňte ho na miesto a stlačte Enter (alebo ťuknite mimo neho)",
-    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Vložiť… pridá obrázok zo súboru do aktuálneho obrázka (aj v rýchlej ponuke): príde ako plávajúci, zmenšený, aby sa zmestil – presuňte ho na miesto."
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Vložiť… pridá obrázok zo súboru do aktuálneho obrázka (aj v rýchlej ponuke): príde ako plávajúci, zmenšený, aby sa zmestil – presuňte ho na miesto.",
+    "Two fingers on a selection": "Dva prsty na výbere",
+    "Scale, turn and move it (spread, pinch, twist)": "Zväčšiť, zmenšiť, otočiť a posunúť (roztiahnutie, stiahnutie, otočenie prstov)",
+    "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Dva prsty na výbere (alebo na vloženom či importovanom obrázku a texte) ho zväčšia, zmenšia a otočia: roztiahnite alebo stiahnite prsty, otočte nimi – a posuňte ho. Prichytí sa k zvislej polohe a k pôvodnej veľkosti a vždy vzniká z pôvodných pixelov, takže sa nerozmazáva. Inde dva prsty približujú zobrazenie ako predtým."
   };
 
   // src/shared/i18n-pl.ts
@@ -3908,7 +3917,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Wypełnia obszar podobnego koloru pod kliknięciem. Alt+klik pobiera kolor.",
     "Cut": "Wytnij",
     "Crop": "Przytnij",
-    "Drag inside the selection to move it (Alt+drag moves a copy). Enter places it, Esc cancels.": "Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię). Enter je umieszcza, Esc anuluje.",
+    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię); dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Utwórz mozaikę…",
     "Reduce to palette": "Zredukuj do palety",
@@ -4452,7 +4461,10 @@
     "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Zaznaczanie obiektu (AI) nie wywala się już na telefonach: używa teraz MobileSAM, który potrzebuje jednej czwartej pamięci (i jest szybszy). Pobieranie jest większe (45 MB); stary model zostaje usunięty.",
     "Import a picture": "Importuj obraz",
     "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Wstaw obraz z pliku do tego obrazu – przeciągnij go na miejsce, potem naciśnij Enter (lub stuknij obok)",
-    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Importuj… wstawia obraz z pliku do bieżącego obrazu (także w szybkim menu): pojawia się jako pływający, dopasowany rozmiarem – przeciągnij go na miejsce."
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Importuj… wstawia obraz z pliku do bieżącego obrazu (także w szybkim menu): pojawia się jako pływający, dopasowany rozmiarem – przeciągnij go na miejsce.",
+    "Two fingers on a selection": "Dwa palce na zaznaczeniu",
+    "Scale, turn and move it (spread, pinch, twist)": "Skalowanie, obrót i przesunięcie (rozsuń, ściśnij, obróć palce)",
+    "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Dwa palce na zaznaczeniu (lub wklejonym, zaimportowanym obrazie albo tekście) skalują i obracają je: rozsuń lub ściśnij palce, obróć nimi – i przesuń. Przyciąga się do pionu i oryginalnego rozmiaru, a zawsze powstaje z oryginalnych pikseli, więc się nie rozmywa. Gdzie indziej dwa palce przybliżają widok jak dotąd."
   };
 
   // src/shared/i18n.ts
@@ -5961,7 +5973,16 @@
       }
       if (i === active && f) {
         vctx.globalAlpha = L.visible ? L.opacity : 1;
-        vctx.drawImage(f.canvas, f.x, f.y);
+        if (f.live) {
+          const p = f.live, src = f.xf.src;
+          vctx.save();
+          vctx.imageSmoothingEnabled = true;
+          vctx.translate(p.cx, p.cy);
+          vctx.rotate(p.r);
+          vctx.scale(p.s, p.s);
+          vctx.drawImage(src, -src.width / 2, -src.height / 2);
+          vctx.restore();
+        } else vctx.drawImage(f.canvas, f.x, f.y);
       }
       vctx.globalAlpha = 1;
     });
@@ -6034,7 +6055,20 @@
       vctx.stroke();
     }
     const sel = state.sel, box5 = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : sel;
-    if (!f && sel?.edges) {
+    if (f?.live) {
+      const p = f.live, hw = f.xf.src.width / 2 * p.s, hh = f.xf.src.height / 2 * p.s, co = Math.cos(p.r), si = Math.sin(p.r);
+      vctx.beginPath();
+      for (const [x, y] of [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]]) vctx.lineTo(ox + (p.cx + x * co - y * si) * k, oy + (p.cy + x * si + y * co) * k);
+      vctx.closePath();
+      vctx.lineWidth = 1;
+      vctx.setLineDash([]);
+      vctx.strokeStyle = "#000";
+      vctx.stroke();
+      vctx.setLineDash([4, 4]);
+      vctx.strokeStyle = "#fff";
+      vctx.stroke();
+      vctx.setLineDash([]);
+    } else if (!f && sel?.edges) {
       vctx.beginPath();
       const e = sel.edges;
       for (let i = 0; i < e.length; i += 4) {
@@ -6892,6 +6926,67 @@
     state.sel = { x: 0, y: 0, w: doc.width, h: doc.height };
     selectionChanged();
   }
+  function grabForTransform(pts, pad) {
+    if (state.tool !== "select" && state.tool !== "text") return null;
+    const b = floatBox() || state.sel;
+    if (!b || !pts.some((p) => inside({ x: b.x - pad, y: b.y - pad, w: b.w + 2 * pad, h: b.h + 2 * pad }, p))) return null;
+    if (!state.floating) {
+      lift(false);
+      selectionChanged();
+    }
+    const f = state.floating;
+    if (!f.xf) f.xf = { src: f.canvas, mask: f.mask, s: 1, r: 0, ox: f.canvas.width / 2, oy: f.canvas.height / 2 };
+    return { cx: f.x + f.xf.ox, cy: f.y + f.xf.oy, s: f.xf.s, r: f.xf.r };
+  }
+  function scaleLimits() {
+    const s = state.floating?.xf?.src;
+    if (!s) return [1, 1];
+    return [Math.min(1, 4 / Math.min(s.width, s.height)), Math.max(1, Math.min(8192 / Math.hypot(s.width, s.height), Math.sqrt(24e6 / (s.width * s.height))))];
+  }
+  function transformLive(p) {
+    const f = state.floating;
+    if (!f?.xf) return;
+    f.live = p;
+    requestRender();
+  }
+  function transformDone() {
+    const f = state.floating, xf = f?.xf, p = f?.live;
+    if (!p) return;
+    f.live = void 0;
+    if (p.s === xf.s && p.r === xf.r && p.cx === f.x + xf.ox && p.cy === f.y + xf.oy) return;
+    const sw = xf.src.width, sh = xf.src.height, cos = Math.abs(Math.cos(p.r)), sin = Math.abs(Math.sin(p.r));
+    const bw = (sw * cos + sh * sin) * p.s, bh = (sw * sin + sh * cos) * p.s;
+    const x0 = Math.floor(p.cx - bw / 2), y0 = Math.floor(p.cy - bh / 2);
+    const w = Math.max(1, Math.ceil(p.cx + bw / 2) - x0), h = Math.max(1, Math.ceil(p.cy + bh / 2) - y0);
+    const draw2 = (src) => {
+      const c = makeCanvas(w, h), x = c.getContext("2d");
+      x.imageSmoothingQuality = "high";
+      x.translate(p.cx - x0, p.cy - y0);
+      x.rotate(p.r);
+      x.scale(p.s, p.s);
+      x.drawImage(src, -sw / 2, -sh / 2);
+      return c;
+    };
+    f.canvas = draw2(xf.src);
+    const square = Math.abs(Math.sin(2 * p.r)) < 1e-9;
+    if (xf.mask || !square) {
+      const full = makeCanvas(sw, sh), fx = full.getContext("2d");
+      fx.fillStyle = "#fff";
+      fx.fillRect(0, 0, sw, sh);
+      const d = draw2(xf.mask ? maskCanvas({ x: 0, y: 0, w: sw, h: sh }, xf.mask) : full).getContext("2d").getImageData(0, 0, w, h).data;
+      const m = new Uint8Array(w * h);
+      for (let i = 0; i < m.length; i++) m[i] = d[i * 4 + 3];
+      f.mask = m;
+    } else f.mask = void 0;
+    f.x = x0;
+    f.y = y0;
+    xf.s = p.s;
+    xf.r = p.r;
+    xf.ox = p.cx - x0;
+    xf.oy = p.cy - y0;
+    f.text = void 0;
+    selectionChanged();
+  }
   var opFor = (e) => e.shiftKey ? "add" : e.altKey ? "subtract" : state.selOp;
   function polygonMask(pts) {
     const c = makeCanvas(doc.width, doc.height), x = c.getContext("2d");
@@ -6969,7 +7064,7 @@
         state.action = { type: "magnetic", op, anchors: [q], path: [q], live: [] };
         return;
       }
-      state.action = { type: "marquee", op, a: q };
+      state.action = { type: "marquee", op, a: q, prev: state.sel };
       if (op === "new") {
         state.sel = null;
         selectionChanged();
@@ -12026,18 +12121,42 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
   var pointers = /* @__PURE__ */ new Map();
   var pinch = null;
   var pinchDone = false;
+  var SNAP = 3 * Math.PI / 180;
   function startPinch() {
     const a = state.action;
     if (a && a.type === "stroke") restoreCurrent();
     if (a && a.type === "curve-press") curveBack();
+    if (a && a.type === "marquee" && a.op === "new" && a.prev) {
+      state.sel = a.prev;
+      selectionChanged();
+    }
     state.action = null;
     state.preview = null;
     const [p1, p2] = [...pointers.values()];
-    pinch = { d0: Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1, m0: { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 }, view: { ...state.view } };
+    const m0 = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+    pinch = { d0: Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1, a0: Math.atan2(p2.y - p1.y, p2.x - p1.x), m0, view: { ...state.view } };
+    pinch.xf = grabForTransform([p1, p2, m0].map((p) => toDoc(p.x, p.y)), 24 / state.view.s) || void 0;
     pinchDone = true;
+    requestRender();
+  }
+  function moveTransform(p1, p2) {
+    const x0 = pinch.xf, [lo, hi] = scaleLimits();
+    let s = clamp(x0.s * (Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1) / pinch.d0, lo, hi);
+    if (Math.abs(s - 1) < 0.03) s = 1;
+    let r = x0.r + Math.atan2(p2.y - p1.y, p2.x - p1.x) - pinch.a0;
+    const q = Math.round(r / (Math.PI / 2)) * (Math.PI / 2);
+    if (Math.abs(r - q) < SNAP) r = q;
+    const k = s / x0.s, dr = r - x0.r, c = Math.cos(dr), sn = Math.sin(dr);
+    const m0 = toDoc(pinch.m0.x, pinch.m0.y), m = toDoc((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+    const vx = (x0.cx - m0.x) * k, vy = (x0.cy - m0.y) * k;
+    transformLive({ s, r, cx: m.x + vx * c - vy * sn, cy: m.y + vx * sn + vy * c });
   }
   function movePinch() {
     const [p1, p2] = [...pointers.values()];
+    if (pinch.xf) {
+      moveTransform(p1, p2);
+      return;
+    }
     const d = Math.hypot(p1.x - p2.x, p1.y - p2.y) || 1, m = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
     const r = view.getBoundingClientRect(), v0 = pinch.view;
     const s = clamp(v0.s * d / pinch.d0, 0.02, 64);
@@ -12054,7 +12173,10 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
   function pointerEnd(e) {
     pointers.delete(e.pointerId);
     if (pinch || pinchDone) {
-      if (pointers.size < 2) pinch = null;
+      if (pointers.size < 2) {
+        if (pinch?.xf) transformDone();
+        pinch = null;
+      }
       if (!pointers.size) pinchDone = false;
       return true;
     }
@@ -13699,8 +13821,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.4.0" : "dev";
+  var VERSION = true ? "2.5.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.5.0",
+      date: "2026-10-14",
+      items: [
+        "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before."
+      ]
+    },
     {
       version: "2.4.0",
       date: "2026-10-14",

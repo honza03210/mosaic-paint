@@ -119,6 +119,78 @@ export function selectAll(): void {
   selectionChanged();
 }
 
+// ---- scaling and turning the floating pixels (two fingers) ----------------------------------------------------
+/** Where the floating pixels stand: centre (image px), size and turn. */
+export interface Placement { cx: number; cy: number; s: number; r: number }
+/**
+ * A two-finger gesture at these points (image px, pad: how near counts) takes hold of the selection or the
+ * floating pixels – lifting the selection if it isn't yet – and gets where they stand; null: it isn't on them
+ * (the gesture zooms the view).
+ */
+export function grabForTransform(pts: Pt[], pad: number): Placement | null {
+  if (state.tool !== 'select' && state.tool !== 'text') return null;
+  const b = floatBox() || state.sel;
+  if (!b || !pts.some(p => inside({ x: b.x - pad, y: b.y - pad, w: b.w + 2 * pad, h: b.h + 2 * pad }, p))) return null;
+  if (!state.floating) { lift(false); selectionChanged(); }
+  const f = state.floating;
+  if (!f.xf) f.xf = { src: f.canvas, mask: f.mask, s: 1, r: 0, ox: f.canvas.width / 2, oy: f.canvas.height / 2 };
+  return { cx: f.x + f.xf.ox, cy: f.y + f.xf.oy, s: f.xf.s, r: f.xf.r };
+}
+/** The biggest and smallest the floating pixels may get (a few px; no more than a big canvas). */
+export function scaleLimits(): [number, number] {
+  const s = state.floating?.xf?.src;
+  if (!s) return [1, 1];
+  return [Math.min(1, 4 / Math.min(s.width, s.height)), Math.max(1, Math.min(8192 / Math.hypot(s.width, s.height), Math.sqrt(24e6 / (s.width * s.height))))];
+}
+/** Shows the floating pixels at this size and turn while the fingers move (drawn, not yet made). */
+export function transformLive(p: Placement): void {
+  const f = state.floating;
+  if (!f?.xf) return;
+  f.live = p;
+  requestRender();
+}
+/** The fingers are lifted: the floating pixels are made at the new size and turn (with their shape). */
+export function transformDone(): void {
+  const f = state.floating, xf = f?.xf, p = f?.live;
+  if (!p) return;
+  f.live = undefined;
+  if (p.s === xf.s && p.r === xf.r && p.cx === f.x + xf.ox && p.cy === f.y + xf.oy) return;
+  const sw = xf.src.width, sh = xf.src.height, cos = Math.abs(Math.cos(p.r)), sin = Math.abs(Math.sin(p.r));
+  const bw = (sw * cos + sh * sin) * p.s, bh = (sw * sin + sh * cos) * p.s;
+  const x0 = Math.floor(p.cx - bw / 2), y0 = Math.floor(p.cy - bh / 2);
+  const w = Math.max(1, Math.ceil(p.cx + bw / 2) - x0), h = Math.max(1, Math.ceil(p.cy + bh / 2) - y0);
+  const draw = (src: HTMLCanvasElement) => {
+    const c = makeCanvas(w, h), x = c.getContext('2d');
+    x.imageSmoothingQuality = 'high';
+    x.translate(p.cx - x0, p.cy - y0);
+    x.rotate(p.r);
+    x.scale(p.s, p.s);
+    x.drawImage(src, -sw / 2, -sh / 2);
+    return c;
+  };
+  f.canvas = draw(xf.src);
+  // the shape: turned by other than a right angle, even a rectangle has one
+  const square = Math.abs(Math.sin(2 * p.r)) < 1e-9;
+  if (xf.mask || !square) {
+    const full = makeCanvas(sw, sh), fx = full.getContext('2d');
+    fx.fillStyle = '#fff';
+    fx.fillRect(0, 0, sw, sh);
+    const d = draw(xf.mask ? maskCanvas({ x: 0, y: 0, w: sw, h: sh }, xf.mask) : full).getContext('2d').getImageData(0, 0, w, h).data;
+    const m = new Uint8Array(w * h);
+    for (let i = 0; i < m.length; i++) m[i] = d[i * 4 + 3];
+    f.mask = m;
+  } else f.mask = undefined;
+  f.x = x0;
+  f.y = y0;
+  xf.s = p.s;
+  xf.r = p.r;
+  xf.ox = p.cx - x0;
+  xf.oy = p.cy - y0;
+  // scaled or turned text is pixels now (editing it would start again from the plain text)
+  f.text = undefined;
+  selectionChanged();
+}
+
 // ---- the Select tool: rectangle, lasso, magnetic lasso, magic wand ------------------------------------------------
 /** What a new selection does: Shift adds, Alt takes away; otherwise the chosen New / Add / Subtract. */
 const opFor = (e: PointerEvent): S.SelMode => (e.shiftKey ? 'add' : e.altKey ? 'subtract' : state.selOp);
@@ -197,7 +269,7 @@ export const selectTool: Tool = {
       state.action = { type: 'magnetic', op, anchors: [q], path: [q], live: [] as Pt[] };
       return;
     }
-    state.action = { type: 'marquee', op, a: q };
+    state.action = { type: 'marquee', op, a: q, prev: state.sel };
     if (op === 'new') { state.sel = null; selectionChanged(); }
   },
   move(e, p) {

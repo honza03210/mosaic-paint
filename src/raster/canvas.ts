@@ -175,7 +175,20 @@ export function render(): void {
       vctx.globalAlpha = L.opacity;
       vctx.drawImage(L.canvas, 0, 0);
     }
-    if (i === active && f) { vctx.globalAlpha = L.visible ? L.opacity : 1; vctx.drawImage(f.canvas, f.x, f.y); }
+    if (i === active && f) {
+      vctx.globalAlpha = L.visible ? L.opacity : 1;
+      if (f.live) {
+        // being scaled / turned with two fingers: drawn from the original pixels
+        const p = f.live, src = f.xf.src;
+        vctx.save();
+        vctx.imageSmoothingEnabled = true;
+        vctx.translate(p.cx, p.cy);
+        vctx.rotate(p.r);
+        vctx.scale(p.s, p.s);
+        vctx.drawImage(src, -src.width / 2, -src.height / 2);
+        vctx.restore();
+      } else vctx.drawImage(f.canvas, f.x, f.y);
+    }
     vctx.globalAlpha = 1;
   });
   if (state.preview) {
@@ -242,7 +255,21 @@ export function render(): void {
     vctx.stroke();
   }
   const sel = state.sel, box = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : sel;
-  if (!f && sel?.edges) {
+  if (f?.live) {
+    // being scaled / turned: the turned frame
+    const p = f.live, hw = f.xf.src.width / 2 * p.s, hh = f.xf.src.height / 2 * p.s, co = Math.cos(p.r), si = Math.sin(p.r);
+    vctx.beginPath();
+    for (const [x, y] of [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]]) vctx.lineTo(ox + (p.cx + x * co - y * si) * k, oy + (p.cy + x * si + y * co) * k);
+    vctx.closePath();
+    vctx.lineWidth = 1;
+    vctx.setLineDash([]);
+    vctx.strokeStyle = '#000';
+    vctx.stroke();
+    vctx.setLineDash([4, 4]);
+    vctx.strokeStyle = '#fff';
+    vctx.stroke();
+    vctx.setLineDash([]);
+  } else if (!f && sel?.edges) {
     // a shaped selection: its outline, black under white dashes
     vctx.beginPath();
     const e = sel.edges;
