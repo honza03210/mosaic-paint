@@ -6,7 +6,7 @@ import { state, rt } from './state.ts';
 import { doc, dctx, makeCanvas, fitView, flat, mapLayers, makeLayer, setLayers, layers } from './canvas.ts';
 import { Store, type Version } from '../lib/store.ts';
 import { commit, resetHistory, afterChange, updateTitle, saveVersion, scheduleAutosave } from './history.ts';
-import { selectionChanged } from './select.ts';
+import { selectionChanged, pasteImage } from './select.ts';
 import { t, lang } from '../shared/i18n.ts';
 import { ask, askYes } from '../shared/dialogs.ts';
 import { exportOra, openOra } from './layers.ts';
@@ -88,6 +88,18 @@ export async function openCanvas(c: HTMLCanvasElement, name: string, note = ''):
   loadCanvas(c, name);
   scheduleAutosave();
   toast(t('Opened {name} ({w} × {h} px).', { name, w: c.width, h: c.height }) + (note ? ' ' + note : ''));
+}
+/**
+ * Import: a picture from a file goes into the image (not instead of it) – floating, to be dragged into place, on
+ * the active layer; bigger than the image, it is scaled down to fit (floating pixels can't be resized). A GIF or
+ * a video: the chosen frame.
+ */
+export async function importImageFile(f: File): Promise<boolean> {
+  const c = isMotion(f, f.name) ? await chooseFrame(f, f.name) : await fileToCanvas(f);
+  if (!c) { if (!isMotion(f, f.name)) toast(t('Could not read {name} as an image.', { name: f.name })); return false; }
+  const k = Math.min(1, doc.width / c.width, doc.height / c.height);
+  await pasteImage(k < 1 ? scaled(c, k) : c);
+  return true;
 }
 export async function openFile(): Promise<void> {
   if (!await confirmDiscard()) return;

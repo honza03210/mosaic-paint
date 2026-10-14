@@ -36,23 +36,16 @@ test('a GIF with one frame opens at once; Cancel opens nothing', async ({ page }
 });
 
 test('a video: the slider picks the time; the frame there opens', async ({ page, browserName }) => {
-  test.skip(browserName !== 'chromium', 'the test video is recorded with MediaRecorder (WebM)');
+  test.skip(browserName !== 'chromium', 'the test video is WebM (VP8), which WebKit does not play');
   await page.goto('raster.html');
   await page.waitForFunction(() => window.RZ && window.RZ.ready);
-  // a 1.2 s video: red, then blue from 0.6 s
-  const bytes = await page.evaluate(async () => {
-    const c = document.createElement('canvas'); c.width = 64; c.height = 48;
-    const x = c.getContext('2d'), rec = new MediaRecorder(c.captureStream(30), { mimeType: 'video/webm' }), parts = [];
-    rec.ondataavailable = (e) => parts.push(e.data);
-    const t0 = performance.now();
-    rec.start();
-    await new Promise((resolve) => { const draw = () => { const t = performance.now() - t0; x.fillStyle = t < 600 ? '#ff0000' : '#0000ff'; x.fillRect(0, 0, 64, 48); if (t < 1200) requestAnimationFrame(draw); else resolve(); }; draw(); });
-    await new Promise((resolve) => { rec.onstop = resolve; rec.stop(); });
-    return [...new Uint8Array(await new Blob(parts).arrayBuffer())];
-  });
-  await page.setInputFiles('#file-input', { name: 'clip.webm', mimeType: 'video/webm', buffer: Buffer.from(bytes) });
+  // a 1.2 s video: red, then blue from 0.6 s (recorded once in Chrome – recording it during the tests was unreliable
+  // when they run side by side: a background page draws too seldom)
+  const bytes = fs.readFileSync(path.join(__dirname, '..', 'fixtures', 'video', 'red-then-blue.webm'));
+  await page.setInputFiles('#file-input', { name: 'clip.webm', mimeType: 'video/webm', buffer: bytes });
   const d = page.locator('#dlg-frame');
-  await expect(d).toBeVisible();
+  // (a recorded video doesn't say how long it is: finding out can take a few seconds)
+  await expect(d).toBeVisible({ timeout: 15000 });
   await expect(d.locator('.fr-video')).toBeVisible();
   await expect(d.locator('.fr-label')).toContainText(' s');
   // near the end: blue

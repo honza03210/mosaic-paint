@@ -11,5 +11,6 @@ export const ICONS = {
   help: svg('<circle cx="10" cy="10" r="7.5"/><path d="M7.7 7.8a2.4 2.4 0 1 1 3.3 2.2c-.6.3-1 .8-1 1.5v.5"/><circle cx="10" cy="14.4" r=".5" class="dot"/>'),
   panel: svg('<path d="M3 5.5h14M3 10h14M3 14.5h14"/>'),
   adjust: svg('<path d="M4 4v12M10 4v12M16 4v12"/><circle cx="4" cy="12" r="1.8" class="knob"/><circle cx="10" cy="7" r="1.8" class="knob"/><circle cx="16" cy="13" r="1.8" class="knob"/>'),
+  importImage: svg('<rect x="3" y="4" width="14" height="12" rx="1.5"/><path d="M3 13l4-4 3 3 2-2 5 5"/><path d="M14 1v6M11 4h6"/>'),
   close: svg('<path d="M5 5l10 10M15 5L5 15"/>'),
 };

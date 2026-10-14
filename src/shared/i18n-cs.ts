@@ -2214,4 +2214,10 @@ export const CS: Record<string, string> = {
     'Hezčí ikony pro zpět / znovu, přiblížení, přizpůsobení a nápovědu; Úpravy jsou na liště i v rychlé nabídce s novými posuvníky – stíny, světla, teplota, odstín, živost, vybledlost a vinětace. Obrácení výběru (Ctrl+I) v obou aplikacích.',
   'Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.':
     'Výběr objektu (AI) už na telefonech nepadá: teď používá MobileSAM, který potřebuje čtvrtinu paměti (a je rychlejší). Stahování je větší (45 MB); starý model se odstraní.',
+  'Import a picture':
+    'Vložit obrázek ze souboru',
+  'Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)':
+    'Vložit obrázek ze souboru do tohoto obrázku – přetáhněte ho na místo a stiskněte Enter (nebo klepněte mimo něj)',
+  'Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.':
+    'Vložit… přidá obrázek ze souboru do aktuálního obrázku (i v rychlé nabídce): přijde jako plovoucí, zmenšený, aby se vešel – přetáhněte ho na místo.',
 };

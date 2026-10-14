@@ -7,7 +7,7 @@ import { undo, redo } from './history.ts';
 import { place, cancelFloating, copy, clearSelection, crop, pasteImage, pasteInternal } from './select.ts';
 import { bindPalette, pasteColors } from './palette.ts';
 import { setTool, setMode } from './tools.ts';
-import { newImage, openFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
+import { newImage, openFile, importImageFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
 import { rotate, flip, cropToSelection, trim } from './transform.ts';
 import { bindMosaic } from './mosaic.ts';
 import { TIPS, cancelCurve, pickCloneSource, updateCloneUI } from './paint.ts';
@@ -68,6 +68,8 @@ export function bindPanel(): void {
   for (const b of $$('#mode-switch button')) b.onclick = () => setMode(b.dataset.mode);
   $('#btn-new').onclick = newImage;
   $('#btn-open').onclick = openFile;
+  $('#btn-import').onclick = () => $('#import-input').click();
+  $('#import-input').onchange = async (e: any) => { const f = e.target.files[0]; e.target.value = ''; if (f) { if (state.tool !== 'select' && state.tool !== 'text') setTool('select'); await importImageFile(f); } };
   // read the file before resetting the input (resetting first can make the file unreadable)
   $('#file-input').onchange = async (e: any) => { const f = e.target.files[0]; if (f) await openImageFile(f); e.target.value = ''; };
   $('#btn-save').onclick = save;

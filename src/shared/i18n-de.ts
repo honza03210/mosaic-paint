@@ -2214,4 +2214,10 @@ export const DE: Record<string, string> = {
     'Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps.',
   'Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.':
     'Objekt auswählen (KI) stürzt auf Handys nicht mehr ab: es nutzt jetzt MobileSAM, das ein Viertel des Speichers braucht (und schneller ist). Der Download ist größer (45 MB); das alte Modell wird entfernt.',
+  'Import a picture':
+    'Ein Bild importieren',
+  'Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)':
+    'Ein Bild aus einer Datei in dieses Bild setzen – an seinen Platz ziehen, dann Enter drücken (oder daneben tippen)',
+  'Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.':
+    'Importieren… setzt ein Bild aus einer Datei ins aktuelle Bild (auch im Schnellmenü): es kommt schwebend, passend verkleinert – an seinen Platz ziehen.',
 };

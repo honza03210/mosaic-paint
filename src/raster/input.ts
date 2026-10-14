@@ -191,7 +191,7 @@ export function bindInput(): void {
   initQuickMenu({
     surface: view,
     tools: ['brush', 'pencil', 'eraser', 'clone', 'bucket', 'picker', 'line', 'select'],
-    extra: [{ icon: ICONS.adjust, label: t('Adjust colors'), run: openAdjust }],
+    extra: [{ icon: ICONS.adjust, label: t('Adjust colors'), run: openAdjust }, { icon: ICONS.importImage, label: t('Import a picture'), run: () => $('#btn-import').click() }],
     state, setFill, setStroke,
     names: { fill: t('Paint'), stroke: t('Outline') },
     size: { input: '#opt-size', min: 1, max: 200, label: t('Size'), unit: () => 'px' },

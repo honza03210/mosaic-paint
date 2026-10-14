@@ -2214,4 +2214,10 @@ export const PL: Record<string, string> = {
     'Ładniejsze ikony cofania / ponawiania, powiększania, dopasowania i pomocy; Dopasuj na pasku i w szybkim menu, z nowymi suwakami – cienie, światła, ciepło, zabarwienie, jaskrawość, wyblaknięcie i winieta. Odwracanie zaznaczenia (Ctrl+I) w obu aplikacjach.',
   'Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.':
     'Zaznaczanie obiektu (AI) nie wywala się już na telefonach: używa teraz MobileSAM, który potrzebuje jednej czwartej pamięci (i jest szybszy). Pobieranie jest większe (45 MB); stary model zostaje usunięty.',
+  'Import a picture':
+    'Importuj obraz',
+  'Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)':
+    'Wstaw obraz z pliku do tego obrazu – przeciągnij go na miejsce, potem naciśnij Enter (lub stuknij obok)',
+  'Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.':
+    'Importuj… wstawia obraz z pliku do bieżącego obrazu (także w szybkim menu): pojawia się jako pływający, dopasowany rozmiarem – przeciągnij go na miejsce.',
 };

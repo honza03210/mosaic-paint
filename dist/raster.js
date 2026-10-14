@@ -1107,7 +1107,10 @@
     "Highlights": "Světla",
     "Midtones": "Střední tóny",
     "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Hezčí ikony pro zpět / znovu, přiblížení, přizpůsobení a nápovědu; Úpravy jsou na liště i v rychlé nabídce s novými posuvníky – stíny, světla, teplota, odstín, živost, vybledlost a vinětace. Obrácení výběru (Ctrl+I) v obou aplikacích.",
-    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výběr objektu (AI) už na telefonech nepadá: teď používá MobileSAM, který potřebuje čtvrtinu paměti (a je rychlejší). Stahování je větší (45 MB); starý model se odstraní."
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výběr objektu (AI) už na telefonech nepadá: teď používá MobileSAM, který potřebuje čtvrtinu paměti (a je rychlejší). Stahování je větší (45 MB); starý model se odstraní.",
+    "Import a picture": "Vložit obrázek ze souboru",
+    "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Vložit obrázek ze souboru do tohoto obrázku – přetáhněte ho na místo a stiskněte Enter (nebo klepněte mimo něj)",
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Vložit… přidá obrázek ze souboru do aktuálního obrázku (i v rychlé nabídce): přijde jako plovoucí, zmenšený, aby se vešel – přetáhněte ho na místo."
   };
 
   // src/shared/i18n-de.ts
@@ -2218,7 +2221,10 @@
     "Highlights": "Lichter",
     "Midtones": "Mitteltöne",
     "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Schönere Symbole für Rückgängig / Wiederholen, Zoom, Einpassen und Hilfe; Anpassen in der Leiste und im Schnellmenü, mit neuen Reglern – Tiefen, Lichter, Wärme, Farbton, Dynamik, Verblassen und Vignette. Auswahl umkehren (Strg+I) in beiden Apps.",
-    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Objekt auswählen (KI) stürzt auf Handys nicht mehr ab: es nutzt jetzt MobileSAM, das ein Viertel des Speichers braucht (und schneller ist). Der Download ist größer (45 MB); das alte Modell wird entfernt."
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Objekt auswählen (KI) stürzt auf Handys nicht mehr ab: es nutzt jetzt MobileSAM, das ein Viertel des Speichers braucht (und schneller ist). Der Download ist größer (45 MB); das alte Modell wird entfernt.",
+    "Import a picture": "Ein Bild importieren",
+    "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Ein Bild aus einer Datei in dieses Bild setzen – an seinen Platz ziehen, dann Enter drücken (oder daneben tippen)",
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Importieren… setzt ein Bild aus einer Datei ins aktuelle Bild (auch im Schnellmenü): es kommt schwebend, passend verkleinert – an seinen Platz ziehen."
   };
 
   // src/shared/i18n-sk.ts
@@ -3329,7 +3335,10 @@
     "Highlights": "Svetlá",
     "Midtones": "Stredné tóny",
     "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Krajšie ikony pre späť / znova, priblíženie, prispôsobenie a pomocníka; Úpravy sú na lište aj v rýchlej ponuke s novými posúvačmi – tiene, svetlá, teplota, odtieň, živosť, vyblednutie a vinetácia. Obrátenie výberu (Ctrl+I) v oboch aplikáciách.",
-    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výber objektu (AI) už na telefónoch nepadá: teraz používa MobileSAM, ktorý potrebuje štvrtinu pamäte (a je rýchlejší). Sťahovanie je väčšie (45 MB); starý model sa odstráni."
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Výber objektu (AI) už na telefónoch nepadá: teraz používa MobileSAM, ktorý potrebuje štvrtinu pamäte (a je rýchlejší). Sťahovanie je väčšie (45 MB); starý model sa odstráni.",
+    "Import a picture": "Vložiť obrázok zo súboru",
+    "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Vložiť obrázok zo súboru do tohto obrázka – presuňte ho na miesto a stlačte Enter (alebo ťuknite mimo neho)",
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Vložiť… pridá obrázok zo súboru do aktuálneho obrázka (aj v rýchlej ponuke): príde ako plávajúci, zmenšený, aby sa zmestil – presuňte ho na miesto."
   };
 
   // src/shared/i18n-pl.ts
@@ -4440,7 +4449,10 @@
     "Highlights": "Światła",
     "Midtones": "Półtony",
     "Nicer icons for undo / redo, zoom, fit and help; Adjust is in the toolbar and the quick menu, with new sliders – shadows, highlights, warmth, tint, vibrance, fade and vignette. Invert selection (Ctrl+I) in both apps.": "Ładniejsze ikony cofania / ponawiania, powiększania, dopasowania i pomocy; Dopasuj na pasku i w szybkim menu, z nowymi suwakami – cienie, światła, ciepło, zabarwienie, jaskrawość, wyblaknięcie i winieta. Odwracanie zaznaczenia (Ctrl+I) w obu aplikacjach.",
-    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Zaznaczanie obiektu (AI) nie wywala się już na telefonach: używa teraz MobileSAM, który potrzebuje jednej czwartej pamięci (i jest szybszy). Pobieranie jest większe (45 MB); stary model zostaje usunięty."
+    "Select object (AI) no longer crashes on phones: it now uses MobileSAM, which needs a quarter of the memory (and is faster). Its download is larger (45 MB); the old model is removed.": "Zaznaczanie obiektu (AI) nie wywala się już na telefonach: używa teraz MobileSAM, który potrzebuje jednej czwartej pamięci (i jest szybszy). Pobieranie jest większe (45 MB); stary model zostaje usunięty.",
+    "Import a picture": "Importuj obraz",
+    "Put a picture from a file into this image – drag it into place, then press Enter (or tap outside it)": "Wstaw obraz z pliku do tego obrazu – przeciągnij go na miejsce, potem naciśnij Enter (lub stuknij obok)",
+    "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place.": "Importuj… wstawia obraz z pliku do bieżącego obrazu (także w szybkim menu): pojawia się jako pływający, dopasowany rozmiarem – przeciągnij go na miejsce."
   };
 
   // src/shared/i18n.ts
@@ -10350,6 +10362,16 @@ ${stack.join("\n")}
     scheduleAutosave();
     toast(t("Opened {name} ({w} × {h} px).", { name, w: c.width, h: c.height }) + (note ? " " + note : ""));
   }
+  async function importImageFile(f) {
+    const c = isMotion(f, f.name) ? await chooseFrame(f, f.name) : await fileToCanvas(f);
+    if (!c) {
+      if (!isMotion(f, f.name)) toast(t("Could not read {name} as an image.", { name: f.name }));
+      return false;
+    }
+    const k = Math.min(1, doc.width / c.width, doc.height / c.height);
+    await pasteImage(k < 1 ? scaled(c, k) : c);
+    return true;
+  }
   async function openFile() {
     if (!await confirmDiscard()) return;
     const w = window;
@@ -10895,6 +10917,15 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     for (const b of $$("#mode-switch button")) b.onclick = () => setMode(b.dataset.mode);
     $("#btn-new").onclick = newImage;
     $("#btn-open").onclick = openFile;
+    $("#btn-import").onclick = () => $("#import-input").click();
+    $("#import-input").onchange = async (e) => {
+      const f = e.target.files[0];
+      e.target.value = "";
+      if (f) {
+        if (state.tool !== "select" && state.tool !== "text") setTool("select");
+        await importImageFile(f);
+      }
+    };
     $("#file-input").onchange = async (e) => {
       const f = e.target.files[0];
       if (f) await openImageFile(f);
@@ -11719,6 +11750,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     help: svg('<circle cx="10" cy="10" r="7.5"/><path d="M7.7 7.8a2.4 2.4 0 1 1 3.3 2.2c-.6.3-1 .8-1 1.5v.5"/><circle cx="10" cy="14.4" r=".5" class="dot"/>'),
     panel: svg('<path d="M3 5.5h14M3 10h14M3 14.5h14"/>'),
     adjust: svg('<path d="M4 4v12M10 4v12M16 4v12"/><circle cx="4" cy="12" r="1.8" class="knob"/><circle cx="10" cy="7" r="1.8" class="knob"/><circle cx="16" cy="13" r="1.8" class="knob"/>'),
+    importImage: svg('<rect x="3" y="4" width="14" height="12" rx="1.5"/><path d="M3 13l4-4 3 3 2-2 5 5"/><path d="M14 1v6M11 4h6"/>'),
     close: svg('<path d="M5 5l10 10M15 5L5 15"/>')
   };
 
@@ -12259,7 +12291,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     initQuickMenu({
       surface: view,
       tools: ["brush", "pencil", "eraser", "clone", "bucket", "picker", "line", "select"],
-      extra: [{ icon: ICONS.adjust, label: t("Adjust colors"), run: openAdjust }],
+      extra: [{ icon: ICONS.adjust, label: t("Adjust colors"), run: openAdjust }, { icon: ICONS.importImage, label: t("Import a picture"), run: () => $("#btn-import").click() }],
       state,
       setFill,
       setStroke,
@@ -13667,8 +13699,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.3.1" : "dev";
+  var VERSION = true ? "2.4.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.4.0",
+      date: "2026-10-14",
+      items: [
+        "Import… puts a picture from a file into the current image (also in the quick menu): it comes in floating, scaled to fit – drag it into place."
+      ]
+    },
     {
       version: "2.3.1",
       date: "2026-10-13",
