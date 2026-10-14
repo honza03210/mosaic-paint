@@ -172,16 +172,19 @@ async function pendingOf(env: Env, user: string): Promise<Pending | null> {
   return r.status === 200 ? await r.json() as Pending : null;
 }
 
-/** Users by access token, looked up when signing in (the picture is asked for right after: no second trip to
-    Discord when the same Worker instance answers, which it usually does). */
-const users = new Map<string, { id: Promise<string | null>; until: number }>();
-function lookUp(auth: string): Promise<string | null> {
+/** Users by access token, once known (the next request from the same Activity needn't ask Discord again when
+    the same Worker instance answers). Only finished answers are kept: a Worker may not wait on a request another
+    request started – it is cancelled when that one has answered, and the waiting one would hang. */
+const users = new Map<string, { id: string; until: number }>();
+async function lookUp(auth: string): Promise<string | null> {
   const hit = users.get(auth);
   if (hit && hit.until > Date.now()) return hit.id;
-  const id = fetch(`${API}/users/@me`, { headers: { authorization: auth } }).then(async r => (r.ok ? (await r.json() as { id: string }).id : null)).catch(() => null);
-  if (users.size > 500) users.clear();
-  users.set(auth, { id, until: Date.now() + 10 * 60 * 1000 });
-  id.then(v => { if (!v) users.delete(auth); });
+  const r = await fetch(`${API}/users/@me`, { headers: { authorization: auth } }).catch(() => null);
+  const id = r?.ok ? (await r.json() as { id: string }).id : null;
+  if (id) {
+    if (users.size > 500) users.clear();
+    users.set(auth, { id, until: Date.now() + 10 * 60 * 1000 });
+  }
   return id;
 }
 /** The user an Activity's access token belongs to. */
@@ -209,8 +212,6 @@ async function token(req: Request, env: Env): Promise<Response> {
     return json({ error: 'could not sign in', reason }, 401);
   }
   const { access_token } = await r.json() as { access_token: string };
-  // who it is, already now (the picture is asked for next)
-  lookUp(`Bearer ${access_token}`);
   return json({ access_token });
 }
 
