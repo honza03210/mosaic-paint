@@ -6911,6 +6911,20 @@
     requestRender();
   }
   var selectHooks = { object: null };
+  function startMove(p, copy2) {
+    lift(copy2);
+    state.action = { type: "move", dx: p.x - state.floating.x, dy: p.y - state.floating.y };
+    selectionChanged();
+  }
+  function pickAt(p, op) {
+    if (state.selShape === "object") {
+      selectHooks.object?.(p, op);
+      return;
+    }
+    const x = Math.floor(p.x), y = Math.floor(p.y);
+    if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
+    setSelectionMask(wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
+  }
   var magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
   var selectTool = {
     down(e, p) {
@@ -6920,22 +6934,18 @@
         return;
       }
       const op = opFor(e);
-      if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === "new" && state.selShape !== "wand" && state.selShape !== "object") {
-        lift(e.altKey);
-        state.action = { type: "move", dx: p.x - state.floating.x, dy: p.y - state.floating.y };
-        selectionChanged();
+      if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === "new") {
+        if (state.selShape === "wand" || state.selShape === "object") {
+          state.action = { type: "press", p, sx: e.clientX, sy: e.clientY, alt: e.altKey, op };
+          return;
+        }
+        startMove(p, e.altKey);
         return;
       }
       if (fb) place();
       const q = { x: Math.round(p.x), y: Math.round(p.y) };
-      if (state.selShape === "wand") {
-        const x = Math.floor(p.x), y = Math.floor(p.y);
-        if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
-        setSelectionMask(wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
-        return;
-      }
-      if (state.selShape === "object") {
-        selectHooks.object?.(p, op);
+      if (state.selShape === "wand" || state.selShape === "object") {
+        pickAt(p, op);
         return;
       }
       if (state.selShape === "lasso") {
@@ -6954,8 +6964,13 @@
       }
     },
     move(e, p) {
-      const a = state.action;
+      let a = state.action;
       if (!a) return;
+      if (a.type === "press") {
+        if (Math.hypot(e.clientX - a.sx, e.clientY - a.sy) < 8) return;
+        startMove(a.p, a.alt);
+        a = state.action;
+      }
       if (a.type === "move") {
         state.floating.x = Math.round(p.x - a.dx);
         state.floating.y = Math.round(p.y - a.dy);
@@ -6989,6 +7004,10 @@
       const a = state.action;
       state.action = null;
       state.preview = null;
+      if (a?.type === "press") {
+        pickAt(a.p, a.op);
+        return;
+      }
       if (a?.type === "marquee" && a.op !== "new") {
         if (a.box) setSelectionMask(fullMask(a.box, null, doc.width, doc.height), a.op);
       } else if (a?.type === "lasso" && a.pts.length > 2) {
@@ -9346,7 +9365,7 @@ ${shapes.join("\n")}
     commit();
     return true;
   }
-  function pickAt(p) {
+  function pickAt2(p) {
     const x = Math.floor(p.x), y = Math.floor(p.y);
     if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
     const c = colorAt(getImage(x, y, 1, 1), 0, 0);
@@ -9355,7 +9374,7 @@ ${shapes.join("\n")}
   }
   var bucketTool = {
     down(e, p) {
-      if (e.altKey) pickAt(p);
+      if (e.altKey) pickAt2(p);
       else bucketAt(p);
     },
     move() {
@@ -9364,7 +9383,7 @@ ${shapes.join("\n")}
     }
   };
   var pickerTool = { down(e, p) {
-    pickAt(p);
+    pickAt2(p);
   }, move() {
   }, up() {
   } };
@@ -12038,7 +12057,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
       }
       if (e.button !== 0) return;
       if (e.altKey && PAINT.has(state.tool)) {
-        pickAt(p);
+        pickAt2(p);
         return;
       }
       if (state.tool !== "select" && state.tool !== "text" && state.floating) place();

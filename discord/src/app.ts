@@ -129,8 +129,9 @@ export function pickMedia(msg: any): Media | null {
     return { url: a.url, filename: a.filename || 'image.png', contentType: a.content_type, alt: a.proxy_url || null };
   }
   for (const e of msg?.embeds || []) {
-    const v = e.type === 'gifv' ? e.video : null, still = e.image || e.thumbnail, url = v ? (v.proxy_url || v.url) : still ? (still.proxy_url || still.url) : null;
-    const other = v ? (v.proxy_url ? v.url : null) : still && still.proxy_url ? still.url : null;
+    // a picture: its own address first (Discord's image proxy refuses the Worker); a Tenor / Giphy video: the proxy's
+    const v = e.type === 'gifv' ? e.video : null, still = e.image || e.thumbnail, url = v ? (v.proxy_url || v.url) : still ? (still.url || still.proxy_url) : null;
+    const other = v ? (v.proxy_url ? v.url : null) : still?.url && still.proxy_url ? still.proxy_url : null;
     if (url) return { url, filename: nameOf(url, v ? 'animation.mp4' : 'image.png'), contentType: v ? 'video/mp4' : typeOf(url), alt: other };
   }
   return null;

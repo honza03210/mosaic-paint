@@ -156,6 +156,19 @@ function lassoPreview(pts: Pt[], live: Pt[] = []): void {
 }
 /** Selecting an object by tapping it (the AI add-on puts its own here). */
 export const selectHooks: { object: ((p: Pt, op: S.SelMode) => void) | null } = { object: null };
+/** Lifts the selection to move it with the pointer (copy: leave the original). */
+function startMove(p: Pt, copy: boolean): void {
+  lift(copy);
+  state.action = { type: 'move', dx: p.x - state.floating.x, dy: p.y - state.floating.y };
+  selectionChanged();
+}
+/** The wand or Object (AI) at p. */
+function pickAt(p: Pt, op: S.SelMode): void {
+  if (state.selShape === 'object') { selectHooks.object?.(p, op); return; }
+  const x = Math.floor(p.x), y = Math.floor(p.y);
+  if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
+  setSelectionMask(S.wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
+}
 const magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
 export const selectTool: Tool = {
   down(e, p) {
@@ -165,23 +178,19 @@ export const selectTool: Tool = {
       return;
     }
     const op = opFor(e);
-    // drag inside the selection: move it (Alt: a copy) – unless adding to it or taking from it, or tapping with
-    // the wand or Object (a tap there always selects anew, as a magic wand does)
-    if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === 'new' && state.selShape !== 'wand' && state.selShape !== 'object') {
-      lift(e.altKey);
-      state.action = { type: 'move', dx: p.x - state.floating.x, dy: p.y - state.floating.y };
-      selectionChanged();
+    // drag inside the selection: move it (Alt: a copy) – unless adding to it or taking from it. With the wand or
+    // Object it is a drag only once it moves: a tap there selects anew (as a magic wand does)
+    if (!fb && state.sel && inSelection(p) && !e.shiftKey && state.selOp === 'new') {
+      if (state.selShape === 'wand' || state.selShape === 'object') {
+        state.action = { type: 'press', p, sx: e.clientX, sy: e.clientY, alt: e.altKey, op };
+        return;
+      }
+      startMove(p, e.altKey);
       return;
     }
     if (fb) place();
     const q = { x: Math.round(p.x), y: Math.round(p.y) };
-    if (state.selShape === 'wand') {
-      const x = Math.floor(p.x), y = Math.floor(p.y);
-      if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return;
-      setSelectionMask(S.wandMask(dctx.getImageData(0, 0, doc.width, doc.height), x, y, state.tolerance, state.contiguous), op);
-      return;
-    }
-    if (state.selShape === 'object') { selectHooks.object?.(p, op); return; }
+    if (state.selShape === 'wand' || state.selShape === 'object') { pickAt(p, op); return; }
     if (state.selShape === 'lasso') { state.action = { type: 'lasso', op, pts: [p] }; return; }
     if (state.selShape === 'magnetic') {
       cost = S.edgeCost(dctx.getImageData(0, 0, doc.width, doc.height));
@@ -192,8 +201,14 @@ export const selectTool: Tool = {
     if (op === 'new') { state.sel = null; selectionChanged(); }
   },
   move(e, p) {
-    const a = state.action;
+    let a = state.action;
     if (!a) return;
+    // a press inside the selection (wand, Object) that moves: it is a drag
+    if (a.type === 'press') {
+      if (Math.hypot(e.clientX - a.sx, e.clientY - a.sy) < 8) return;
+      startMove(a.p, a.alt);
+      a = state.action;
+    }
     if (a.type === 'move') {
       state.floating.x = Math.round(p.x - a.dx);
       state.floating.y = Math.round(p.y - a.dy);
@@ -225,6 +240,8 @@ export const selectTool: Tool = {
     const a = state.action;
     state.action = null;
     state.preview = null;
+    // a press that didn't move: a tap – the wand or Object there
+    if (a?.type === 'press') { pickAt(a.p, a.op); return; }
     if (a?.type === 'marquee' && a.op !== 'new') {
       if (a.box) setSelectionMask(S.fullMask(a.box, null, doc.width, doc.height), a.op);
     } else if (a?.type === 'lasso' && a.pts.length > 2) {
