@@ -1130,8 +1130,8 @@ export const DE: Record<string, string> = {
     'Ausschneiden',
   'Crop':
     'Zuschneiden',
-  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.':
-    'In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie), an einer Ecke, um sie zu skalieren; zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.',
+  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.':
+    'In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie), an einer Ecke, um sie zu skalieren, am Griff darüber, um sie zu drehen; zwei Finger darauf skalieren und drehen sie. Die Leiste darunter dreht, spiegelt, dupliziert und löscht. Enter platziert sie, Esc bricht ab.',
   'Mosaic':
     'Mosaik',
   'Make a mosaic…':
@@ -2308,4 +2308,22 @@ export const DE: Record<string, string> = {
     'Wähle ein Video von deinem Gerät.',
   'Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.':
     'Discord: ein Video für Discords Größengrenze verkleinern und posten – Rechtsklick auf eine Nachricht mit Video › Apps › Compress video, oder /compress-video für ein Video von deinem Gerät. Es wird auf deinem Gerät verkleinert (20 MB oder 10 MB), gezeigt und dann gepostet.',
+  'Turn left 90°':
+    '90° nach links drehen',
+  'Turn right 90°':
+    '90° nach rechts drehen',
+  'Flip horizontally':
+    'Horizontal spiegeln',
+  'Flip vertically':
+    'Vertikal spiegeln',
+  'Duplicate – leave a copy here and move this one on':
+    'Duplizieren – eine Kopie bleibt hier, diese wandert weiter',
+  'Delete the selected pixels (Del)':
+    'Die ausgewählten Pixel löschen (Entf)',
+  'Drag the knob above a selection':
+    'Den Griff über einer Auswahl ziehen',
+  'Turn it (Shift: 15° steps)':
+    'Drehen (Shift: 15°-Schritte)',
+  'A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.':
+    'Eine Auswahl hat jetzt einen Griff darüber zum Drehen (rastet aufrecht ein; Shift: 15°-Schritte) und eine Leiste darunter: links / rechts drehen, horizontal / vertikal spiegeln, duplizieren, löschen, abbrechen, platzieren – mit der Maus oder dem Finger.',
 };

@@ -6,7 +6,7 @@ import type { Box } from '../lib/raster.ts';
 import { $, toast, loadImg } from '../shared/ui.ts';
 import { canCopyImages, copyImage, canvasToPng, svgToCanvas, svgSize } from '../shared/clipboard.ts';
 import { state, emit } from './state.ts';
-import { doc, dctx, view, makeCanvas, toDoc, requestRender, fitView, flat, mapLayers, layers, pieceCorners, handlesShown } from './canvas.ts';
+import { doc, dctx, view, makeCanvas, toDoc, requestRender, fitView, flat, mapLayers, layers, pieceCorners, handlesShown, knobShown, knobAt, afterRender } from './canvas.ts';
 import { commit, restoreCurrent, afterChange } from './history.ts';
 import type { Tool } from './paint.ts';
 import { t } from '../shared/i18n.ts';
@@ -56,7 +56,6 @@ export function selectionChanged(): void {
   const b = floatBox() || state.sel;
   $('#sel-section').hidden = !b;
   if (b) $('#sel-info').textContent = state.floating ? t('({w} × {h} px, not placed yet)', { w: b.w, h: b.h }) : `(${b.w} × ${b.h} px)`;
-  $('#stage-actions').hidden = !state.floating;
   requestRender();
   emit('selection');
 }
@@ -121,12 +120,16 @@ export function selectAll(): void {
 
 // ---- scaling and turning the floating pixels (two fingers) ----------------------------------------------------
 /** The corner handle (0–3, clockwise from the top left) under p, or -1 – within a few screen px. */
-function handleAt(p: Pt): number {
+function handleAt(p: Pt, touch = false): number {
+  // the rotate knob: 4 (bigger for a finger)
+  const k = knobShown() && knobAt();
+  if (k && Math.hypot(k.x - p.x, k.y - p.y) <= (touch ? 20 : 9) / state.view.s) return 4;
   const cs = handlesShown() && pieceCorners(), r = 7 / state.view.s;
   return cs ? cs.findIndex(c => Math.abs(c.x - p.x) <= r && Math.abs(c.y - p.y) <= r) : -1;
 }
 /** The resize cursor for each corner (as the piece stands, roughly turned with it). */
 function handleCursor(i: number): string {
+  if (i === 4) return 'grab';
   const cs = pieceCorners(), c = cs[i], o = cs[(i + 2) % 4];
   const a = ((Math.atan2(c.y - o.y, c.x - o.x) * 180 / Math.PI) + 360) % 180;
   return a < 22.5 || a >= 157.5 ? 'ew-resize' : a < 67.5 ? 'nwse-resize' : a < 112.5 ? 'ns-resize' : 'nesw-resize';
@@ -142,6 +145,11 @@ export function grabForTransform(pts: Pt[], pad: number): Placement | null {
   if (state.tool !== 'select' && state.tool !== 'text') return null;
   const b = floatBox() || state.sel;
   if (!b || !pts.some(p => inside({ x: b.x - pad, y: b.y - pad, w: b.w + 2 * pad, h: b.h + 2 * pad }, p))) return null;
+  return holdPiece();
+}
+/** The selection lifted (if it isn't yet), ready to be transformed: where it stands; null: nothing selected. */
+function holdPiece(): Placement | null {
+  if (!state.floating && !state.sel) return null;
   if (!state.floating) { lift(false); selectionChanged(); }
   const f = state.floating;
   if (!f.xf) f.xf = { src: f.canvas, mask: f.mask, s: 1, r: 0, ox: f.canvas.width / 2, oy: f.canvas.height / 2 };
@@ -161,11 +169,11 @@ export function transformLive(p: Placement): void {
   requestRender();
 }
 /** The fingers are lifted: the floating pixels are made at the new size and turn (with their shape). */
-export function transformDone(): void {
+export function transformDone(force = false): void {
   const f = state.floating, xf = f?.xf, p = f?.live;
   if (!p) return;
   f.live = undefined;
-  if (p.s === xf.s && p.r === xf.r && p.cx === f.x + xf.ox && p.cy === f.y + xf.oy) return;
+  if (!force && p.s === xf.s && p.r === xf.r && p.cx === f.x + xf.ox && p.cy === f.y + xf.oy) { requestRender(); return; }
   const sw = xf.src.width, sh = xf.src.height, cos = Math.abs(Math.cos(p.r)), sin = Math.abs(Math.sin(p.r));
   const bw = (sw * cos + sh * sin) * p.s, bh = (sw * sin + sh * cos) * p.s;
   const x0 = Math.floor(p.cx - bw / 2), y0 = Math.floor(p.cy - bh / 2);
@@ -201,6 +209,79 @@ export function transformDone(): void {
   f.text = undefined;
   selectionChanged();
 }
+
+/** An angle in −π…π. */
+const norm = (r: number) => Math.atan2(Math.sin(r), Math.cos(r));
+/** Close to upright (a quarter turn, within 3°): upright. Shift: 15° steps. */
+function snapAngle(r: number, steps: boolean): number {
+  const st = steps ? Math.PI / 12 : Math.PI / 2, q = Math.round(r / st) * st;
+  return steps || Math.abs(r - q) < 3 * Math.PI / 180 ? q : r;
+}
+/** Turns the selection by a (radians, clockwise on screen) about its centre. */
+export function rotateSelection(a: number): void {
+  const at = holdPiece();
+  if (!at) return;
+  state.floating.live = { ...at, r: snapAngle(norm(at.r + a), false) };
+  transformDone(true);
+}
+/** Mirrors the selection left to right (h) or top to bottom (v), on screen – also when it is turned. */
+export function flipSelection(axis: 'h' | 'v'): void {
+  const at = holdPiece();
+  if (!at) return;
+  const xf = state.floating.xf, w = xf.src.width, h = xf.src.height;
+  const c = makeCanvas(w, h), x = c.getContext('2d');
+  x.setTransform(axis === 'h' ? -1 : 1, 0, 0, axis === 'v' ? -1 : 1, axis === 'h' ? w : 0, axis === 'v' ? h : 0);
+  x.drawImage(xf.src, 0, 0);
+  xf.src = c;
+  if (xf.mask) {
+    const m = new Uint8Array(xf.mask.length);
+    for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) m[yy * w + xx] = xf.mask[(axis === 'v' ? h - 1 - yy : yy) * w + (axis === 'h' ? w - 1 - xx : xx)];
+    xf.mask = m;
+  }
+  // a mirror turns the other way round: mirrored and turned by r = turned by −r and mirrored
+  state.floating.live = { ...at, r: norm(-at.r) };
+  transformDone(true);
+}
+/** Leaves a copy where the selection is; the selection moves a little aside, to be dragged on. */
+export function duplicateSelection(): void {
+  if (!state.floating) { if (!state.sel) return; lift(true); }
+  else dctx.drawImage(state.floating.canvas, state.floating.x, state.floating.y);
+  const d = Math.max(1, Math.round(16 / state.view.s));
+  state.floating.x += d;
+  state.floating.y += d;
+  selectionChanged();
+}
+/** The toolbar by the selection: below it (or above, by the knob, when there's no room); Place / Cancel only for floating pixels. */
+function placeBar(): void {
+  const bar = document.getElementById('stage-actions');
+  if (!bar) return;
+  const cs = state.tool === 'select' && !state.action && !state.floating?.live ? pieceCorners() : null;
+  const floating = !!state.floating && (state.tool === 'select' || state.tool === 'text');
+  // the text tool's floating text: only Place / Cancel (as before), at the bottom
+  if (!cs) {
+    bar.hidden = !floating;
+    bar.classList.remove('follow');
+    bar.style.left = bar.style.top = '';
+    for (const b of bar.querySelectorAll<HTMLElement>('.sa-tf')) b.hidden = true;
+    for (const id of ['#sa-finish', '#sa-cancel']) $(id).hidden = false;
+    return;
+  }
+  bar.hidden = false;
+  for (const b of bar.querySelectorAll<HTMLElement>('.sa-tf')) b.hidden = false;
+  for (const id of ['#sa-finish', '#sa-cancel']) $(id).hidden = !state.floating;
+  bar.classList.add('follow');
+  const v = state.view, W = view.clientWidth, H = view.clientHeight, gap = 12;
+  const xs = cs.map(p => (p.x - v.x) * v.s + view.offsetLeft), ys = cs.map(p => (p.y - v.y) * v.s + view.offsetTop);
+  const bw = bar.offsetWidth, bh = bar.offsetHeight;
+  const left = Math.max(8, Math.min(W - bw - 8, (Math.min(...xs) + Math.max(...xs)) / 2 - bw / 2));
+  let top = Math.max(...ys) + gap;
+  // no room below: above the knob; no room there either: at the bottom of the view
+  if (top + bh > H - 8) top = Math.min(...ys) - 26 - 8 - gap - bh;
+  if (top < 8) top = H - bh - 14;
+  bar.style.left = Math.round(left) + 'px';
+  bar.style.top = Math.round(top) + 'px';
+}
+afterRender.push(placeBar);
 
 // ---- the Select tool: rectangle, lasso, magnetic lasso, magic wand ------------------------------------------------
 /** What a new selection does: Shift adds, Alt takes away; otherwise the chosen New / Add / Subtract. */
@@ -256,8 +337,13 @@ const magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
 export const selectTool: Tool = {
   down(e, p) {
     // a corner handle: scale it, the opposite corner staying put (the selection is lifted first)
-    const h = handleAt(p);
-    if (h >= 0) {
+    const h = handleAt(p, e.pointerType === 'touch');
+    if (h === 4) {
+      // the rotate knob: turn it about its centre
+      const at = holdPiece();
+      if (at) { state.action = { type: 'rotate', at, a0: Math.atan2(p.y - at.cy, p.x - at.cx) }; view.style.cursor = 'grabbing'; return; }
+    }
+    if (h >= 0 && h < 4) {
       const anchor = pieceCorners()[(h + 2) % 4], corner = pieceCorners()[h];
       const at = grabForTransform([corner], 1);
       if (at) { state.action = { type: 'scale', anchor, corner, at }; return; }
@@ -296,6 +382,11 @@ export const selectTool: Tool = {
       // hovering a corner handle: the resize cursor
       const h = e.pointerType === 'touch' ? -1 : handleAt(p);
       view.style.cursor = h >= 0 ? handleCursor(h) : '';
+      return;
+    }
+    if (a.type === 'rotate') {
+      const r = snapAngle(norm(a.at.r + Math.atan2(p.y - a.at.cy, p.x - a.at.cx) - a.a0), e.shiftKey);
+      transformLive({ ...a.at, r });
       return;
     }
     if (a.type === 'scale') {
@@ -346,7 +437,7 @@ export const selectTool: Tool = {
     const a = state.action;
     state.action = null;
     state.preview = null;
-    if (a?.type === 'scale') { transformDone(); requestRender(); return; }
+    if (a?.type === 'scale' || a?.type === 'rotate') { if (a.type === 'rotate') view.style.cursor = 'grab'; transformDone(); requestRender(); return; }
     // a press that didn't move: a tap – the wand or Object there
     if (a?.type === 'press') { pickAt(a.p, a.op); return; }
     if (a?.type === 'marquee' && a.op !== 'new') {

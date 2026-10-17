@@ -1130,8 +1130,8 @@ export const SK: Record<string, string> = {
     'Vystrihnúť',
   'Crop':
     'Orezať',
-  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.':
-    'Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu), ťahaním za roh ho zväčšíte či zmenšíte; dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.',
+  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.':
+    'Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu), ťahaním za roh ho zväčšíte či zmenšíte, úchytom nad ním ho otočíte; dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Lišta pod ním otáča, prevracia, duplikuje a maže. Enter ho umiestni, Esc zruší.',
   'Mosaic':
     'Mozaika',
   'Make a mosaic…':
@@ -2308,4 +2308,22 @@ export const SK: Record<string, string> = {
     'Vyberte video zo svojho zariadenia.',
   'Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.':
     'Discord: zmenšite video, aby sa zmestilo do limitu Discordu, a zverejnite ho – pravým tlačidlom na správu s videom › Aplikácie › Compress video, alebo /compress-video pre video zo zariadenia. Zmenší sa vo vašom zariadení (20 MB alebo 10 MB), ukáže sa a potom zverejní.',
+  'Turn left 90°':
+    'Otočiť doľava o 90°',
+  'Turn right 90°':
+    'Otočiť doprava o 90°',
+  'Flip horizontally':
+    'Prevrátiť vodorovne',
+  'Flip vertically':
+    'Prevrátiť zvisle',
+  'Duplicate – leave a copy here and move this one on':
+    'Duplikovať – kópia zostane tu a tento sa posunie ďalej',
+  'Delete the selected pixels (Del)':
+    'Zmazať vybrané pixely (Del)',
+  'Drag the knob above a selection':
+    'Ťahanie úchytu nad výberom',
+  'Turn it (Shift: 15° steps)':
+    'Otočiť (Shift: po 15°)',
+  'A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.':
+    'Výber má teraz nad sebou úchyt na otáčanie (prichytí sa zvisle; Shift: po 15°) a pod sebou lištu: otočiť doľava / doprava, prevrátiť vodorovne / zvisle, duplikovať, zmazať, zrušiť, umiestniť – myšou aj prstom.',
 };

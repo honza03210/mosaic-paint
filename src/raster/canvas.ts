@@ -157,9 +157,25 @@ export function pieceCorners(): Pt[] | null {
 }
 /** Whether the corner handles show: the Select tool, with a mouse or pen, while not drawing a new selection. */
 export function handlesShown(): boolean {
-  const a = state.action;
-  return state.tool === 'select' && finePointer() && (!a || a.type === 'scale' || a.type === 'move');
+  return knobShown() && finePointer();
 }
+/** Whether the rotate knob shows (fingers too): the Select tool, while not drawing a new selection. */
+export function knobShown(): boolean {
+  const a = state.action;
+  return state.tool === 'select' && (!a || a.type === 'scale' || a.type === 'move' || a.type === 'rotate');
+}
+/** How far above the selection's top edge the rotate knob is (screen px). */
+export const KNOB_GAP = 26;
+/** The rotate knob (image px): above the middle of the top edge, as the piece is turned; null: no selection. */
+export function knobAt(): Pt | null {
+  const cs = pieceCorners();
+  if (!cs) return null;
+  const tx = (cs[0].x + cs[1].x) / 2, ty = (cs[0].y + cs[1].y) / 2, bx = (cs[2].x + cs[3].x) / 2, by = (cs[2].y + cs[3].y) / 2;
+  const l = Math.hypot(tx - bx, ty - by) || 1, g = KNOB_GAP / state.view.s;
+  return { x: tx + (tx - bx) / l * g, y: ty + (ty - by) / l * g };
+}
+/** Called after every render (the selection's toolbar follows it). */
+export const afterRender: (() => void)[] = [];
 function dashedRect(x: number, y: number, w: number, h: number): void {
   vctx.lineWidth = 1;
   vctx.setLineDash([]);
@@ -306,6 +322,28 @@ export function render(): void {
     vctx.stroke();
     vctx.setLineDash([]);
   } else if (box) dashedRect(Math.round(ox + box.x * k), Math.round(oy + box.y * k), Math.round(box.w * k), Math.round(box.h * k));
+  // the rotate knob (drag it to turn), on a stalk from the top edge
+  const kn = knobShown() && knobAt();
+  if (kn) {
+    const cs = pieceCorners(), tx = ox + (cs[0].x + cs[1].x) / 2 * k, ty = oy + (cs[0].y + cs[1].y) / 2 * k;
+    const x = ox + kn.x * k, y = oy + kn.y * k, rr = 6 * dpr;
+    vctx.beginPath();
+    vctx.moveTo(tx, ty);
+    vctx.lineTo(x, y);
+    vctx.lineWidth = Math.max(1, Math.round(dpr));
+    vctx.strokeStyle = 'rgba(0,0,0,.6)';
+    vctx.stroke();
+    vctx.beginPath();
+    vctx.arc(x, y, rr, 0, Math.PI * 2);
+    vctx.fillStyle = '#fff';
+    vctx.fill();
+    vctx.strokeStyle = '#000';
+    vctx.stroke();
+    // a little turning arrow inside
+    vctx.beginPath();
+    vctx.arc(x, y, rr * 0.5, -Math.PI * 0.9, Math.PI * 0.4);
+    vctx.stroke();
+  }
   // the corner handles (drag one to scale)
   const cs4 = handlesShown() && pieceCorners();
   if (cs4) {
@@ -319,6 +357,7 @@ export function render(): void {
       vctx.strokeRect(x - hs + 0.5, y - hs + 0.5, 2 * hs - 1, 2 * hs - 1);
     }
   }
+  for (const f of afterRender) f();
 }
 // the first fit waits until the page is laid out (a hidden tab has no size yet)
 new ResizeObserver(() => { if (!fitted) fitView(); requestRender(); }).observe(stage);

@@ -1,6 +1,6 @@
 {
   "name": "mosaic-paint",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "private": true,
   "description": "Vector editor for designing and coloring mosaics",
   "scripts": {

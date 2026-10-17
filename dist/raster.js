@@ -566,7 +566,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Vyplní plochu podobné barvy pod kliknutím. Alt+klik vybere barvu.",
     "Cut": "Vyjmout",
     "Crop": "Oříznout",
-    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii), tažením za roh ho zvětšíte či zmenšíte; dvěma prsty na něm ho zvětšíte, zmenšíte a otočíte. Enter ho umístí, Esc zruší.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.": "Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii), tažením za roh ho zvětšíte či zmenšíte, úchytem nad ním ho otočíte; dvěma prsty na něm ho zvětšíte, zmenšíte a otočíte. Lišta pod ním otáčí, překlápí, duplikuje a maže. Enter ho umístí, Esc zruší.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Vytvořit mozaiku…",
     "Reduce to palette": "Převést na paletu",
@@ -1154,7 +1154,16 @@
     "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Uplynulo víc než 15 minut a Discord už aplikaci nedovolí nic zveřejnit. Spusťte /compress-video znovu.",
     "Discord did not take the video.": "Discord video nepřijal.",
     "Choose a video from your device.": "Vyberte video ze svého zařízení.",
-    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmenšete video, aby se vešlo do limitu Discordu, a zveřejněte ho – pravým tlačítkem na zprávu s videem › Aplikace › Compress video, nebo /compress-video pro video ze zařízení. Zmenší se ve vašem zařízení (20 MB nebo 10 MB), ukáže se a pak zveřejní."
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmenšete video, aby se vešlo do limitu Discordu, a zveřejněte ho – pravým tlačítkem na zprávu s videem › Aplikace › Compress video, nebo /compress-video pro video ze zařízení. Zmenší se ve vašem zařízení (20 MB nebo 10 MB), ukáže se a pak zveřejní.",
+    "Turn left 90°": "Otočit doleva o 90°",
+    "Turn right 90°": "Otočit doprava o 90°",
+    "Flip horizontally": "Překlopit vodorovně",
+    "Flip vertically": "Překlopit svisle",
+    "Duplicate – leave a copy here and move this one on": "Duplikovat – kopie zůstane tady a tento se posune dál",
+    "Delete the selected pixels (Del)": "Smazat vybrané pixely (Del)",
+    "Drag the knob above a selection": "Tažení úchytu nad výběrem",
+    "Turn it (Shift: 15° steps)": "Otočit (Shift: po 15°)",
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Výběr má teď nad sebou úchyt k otáčení (přichytí se svisle; Shift: po 15°) a pod sebou lištu: otočit doleva / doprava, překlopit vodorovně / svisle, duplikovat, smazat, zrušit, umístit – myší i prstem."
   };
 
   // src/shared/i18n-de.ts
@@ -1724,7 +1733,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Füllt die Fläche ähnlicher Farbe unter dem Klick. Alt+Klick nimmt eine Farbe auf.",
     "Cut": "Ausschneiden",
     "Crop": "Zuschneiden",
-    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie), an einer Ecke, um sie zu skalieren; zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.": "In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie), an einer Ecke, um sie zu skalieren, am Griff darüber, um sie zu drehen; zwei Finger darauf skalieren und drehen sie. Die Leiste darunter dreht, spiegelt, dupliziert und löscht. Enter platziert sie, Esc bricht ab.",
     "Mosaic": "Mosaik",
     "Make a mosaic…": "Mosaik erstellen…",
     "Reduce to palette": "Auf Palette reduzieren",
@@ -2312,7 +2321,16 @@
     "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Mehr als 15 Minuten sind vergangen, und Discord lässt die App nicht mehr posten. Starte /compress-video erneut.",
     "Discord did not take the video.": "Discord hat das Video nicht angenommen.",
     "Choose a video from your device.": "Wähle ein Video von deinem Gerät.",
-    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: ein Video für Discords Größengrenze verkleinern und posten – Rechtsklick auf eine Nachricht mit Video › Apps › Compress video, oder /compress-video für ein Video von deinem Gerät. Es wird auf deinem Gerät verkleinert (20 MB oder 10 MB), gezeigt und dann gepostet."
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: ein Video für Discords Größengrenze verkleinern und posten – Rechtsklick auf eine Nachricht mit Video › Apps › Compress video, oder /compress-video für ein Video von deinem Gerät. Es wird auf deinem Gerät verkleinert (20 MB oder 10 MB), gezeigt und dann gepostet.",
+    "Turn left 90°": "90° nach links drehen",
+    "Turn right 90°": "90° nach rechts drehen",
+    "Flip horizontally": "Horizontal spiegeln",
+    "Flip vertically": "Vertikal spiegeln",
+    "Duplicate – leave a copy here and move this one on": "Duplizieren – eine Kopie bleibt hier, diese wandert weiter",
+    "Delete the selected pixels (Del)": "Die ausgewählten Pixel löschen (Entf)",
+    "Drag the knob above a selection": "Den Griff über einer Auswahl ziehen",
+    "Turn it (Shift: 15° steps)": "Drehen (Shift: 15°-Schritte)",
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Eine Auswahl hat jetzt einen Griff darüber zum Drehen (rastet aufrecht ein; Shift: 15°-Schritte) und eine Leiste darunter: links / rechts drehen, horizontal / vertikal spiegeln, duplizieren, löschen, abbrechen, platzieren – mit der Maus oder dem Finger."
   };
 
   // src/shared/i18n-sk.ts
@@ -2882,7 +2900,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Vyplní plochu podobnej farby pod kliknutím. Alt+klik vyberie farbu.",
     "Cut": "Vystrihnúť",
     "Crop": "Orezať",
-    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu), ťahaním za roh ho zväčšíte či zmenšíte; dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.": "Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu), ťahaním za roh ho zväčšíte či zmenšíte, úchytom nad ním ho otočíte; dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Lišta pod ním otáča, prevracia, duplikuje a maže. Enter ho umiestni, Esc zruší.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Vytvoriť mozaiku…",
     "Reduce to palette": "Previesť na paletu",
@@ -3470,7 +3488,16 @@
     "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Uplynulo viac ako 15 minút a Discord už aplikácii nedovolí nič zverejniť. Spustite /compress-video znova.",
     "Discord did not take the video.": "Discord video neprijal.",
     "Choose a video from your device.": "Vyberte video zo svojho zariadenia.",
-    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmenšite video, aby sa zmestilo do limitu Discordu, a zverejnite ho – pravým tlačidlom na správu s videom › Aplikácie › Compress video, alebo /compress-video pre video zo zariadenia. Zmenší sa vo vašom zariadení (20 MB alebo 10 MB), ukáže sa a potom zverejní."
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmenšite video, aby sa zmestilo do limitu Discordu, a zverejnite ho – pravým tlačidlom na správu s videom › Aplikácie › Compress video, alebo /compress-video pre video zo zariadenia. Zmenší sa vo vašom zariadení (20 MB alebo 10 MB), ukáže sa a potom zverejní.",
+    "Turn left 90°": "Otočiť doľava o 90°",
+    "Turn right 90°": "Otočiť doprava o 90°",
+    "Flip horizontally": "Prevrátiť vodorovne",
+    "Flip vertically": "Prevrátiť zvisle",
+    "Duplicate – leave a copy here and move this one on": "Duplikovať – kópia zostane tu a tento sa posunie ďalej",
+    "Delete the selected pixels (Del)": "Zmazať vybrané pixely (Del)",
+    "Drag the knob above a selection": "Ťahanie úchytu nad výberom",
+    "Turn it (Shift: 15° steps)": "Otočiť (Shift: po 15°)",
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Výber má teraz nad sebou úchyt na otáčanie (prichytí sa zvisle; Shift: po 15°) a pod sebou lištu: otočiť doľava / doprava, prevrátiť vodorovne / zvisle, duplikovať, zmazať, zrušiť, umiestniť – myšou aj prstom."
   };
 
   // src/shared/i18n-pl.ts
@@ -4040,7 +4067,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Wypełnia obszar podobnego koloru pod kliknięciem. Alt+klik pobiera kolor.",
     "Cut": "Wytnij",
     "Crop": "Przytnij",
-    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię), za róg, aby je skalować; dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.": "Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię), za róg, aby je skalować, za uchwyt nad nim, aby je obrócić; dwa palce na nim skalują i obracają je. Pasek pod nim obraca, odbija, duplikuje i usuwa. Enter je umieszcza, Esc anuluje.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Utwórz mozaikę…",
     "Reduce to palette": "Zredukuj do palety",
@@ -4628,7 +4655,16 @@
     "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Minęło ponad 15 minut i Discord nie pozwala już aplikacji publikować. Uruchom /compress-video ponownie.",
     "Discord did not take the video.": "Discord nie przyjął wideo.",
     "Choose a video from your device.": "Wybierz wideo ze swojego urządzenia.",
-    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmniejsz wideo do limitu Discorda i opublikuj je – prawy przycisk na wiadomości z wideo › Aplikacje › Compress video, albo /compress-video dla wideo z urządzenia. Zmniejsza się na twoim urządzeniu (20 MB lub 10 MB), pokazuje, a potem publikuje."
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmniejsz wideo do limitu Discorda i opublikuj je – prawy przycisk na wiadomości z wideo › Aplikacje › Compress video, albo /compress-video dla wideo z urządzenia. Zmniejsza się na twoim urządzeniu (20 MB lub 10 MB), pokazuje, a potem publikuje.",
+    "Turn left 90°": "Obróć w lewo o 90°",
+    "Turn right 90°": "Obróć w prawo o 90°",
+    "Flip horizontally": "Odbij w poziomie",
+    "Flip vertically": "Odbij w pionie",
+    "Duplicate – leave a copy here and move this one on": "Duplikuj – kopia zostaje tutaj, a ten przesuwa się dalej",
+    "Delete the selected pixels (Del)": "Usuń zaznaczone piksele (Del)",
+    "Drag the knob above a selection": "Przeciągnij uchwyt nad zaznaczeniem",
+    "Turn it (Shift: 15° steps)": "Obrót (Shift: co 15°)",
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Zaznaczenie ma teraz nad sobą uchwyt do obracania (przyciąga do pionu; Shift: co 15°) i pasek pod sobą: obrót w lewo / prawo, odbicie w poziomie / pionie, duplikuj, usuń, anuluj, umieść – myszą lub palcem."
   };
 
   // src/shared/i18n.ts
@@ -6115,9 +6151,21 @@
     return b ? [{ x: b.x, y: b.y }, { x: b.x + b.w, y: b.y }, { x: b.x + b.w, y: b.y + b.h }, { x: b.x, y: b.y + b.h }] : null;
   }
   function handlesShown() {
-    const a = state.action;
-    return state.tool === "select" && finePointer() && (!a || a.type === "scale" || a.type === "move");
+    return knobShown() && finePointer();
   }
+  function knobShown() {
+    const a = state.action;
+    return state.tool === "select" && (!a || a.type === "scale" || a.type === "move" || a.type === "rotate");
+  }
+  var KNOB_GAP = 26;
+  function knobAt() {
+    const cs = pieceCorners();
+    if (!cs) return null;
+    const tx = (cs[0].x + cs[1].x) / 2, ty = (cs[0].y + cs[1].y) / 2, bx = (cs[2].x + cs[3].x) / 2, by = (cs[2].y + cs[3].y) / 2;
+    const l = Math.hypot(tx - bx, ty - by) || 1, g = KNOB_GAP / state.view.s;
+    return { x: tx + (tx - bx) / l * g, y: ty + (ty - by) / l * g };
+  }
+  var afterRender = [];
   function dashedRect(x, y, w, h) {
     vctx.lineWidth = 1;
     vctx.setLineDash([]);
@@ -6266,6 +6314,26 @@
       vctx.stroke();
       vctx.setLineDash([]);
     } else if (box5) dashedRect(Math.round(ox + box5.x * k), Math.round(oy + box5.y * k), Math.round(box5.w * k), Math.round(box5.h * k));
+    const kn = knobShown() && knobAt();
+    if (kn) {
+      const cs2 = pieceCorners(), tx = ox + (cs2[0].x + cs2[1].x) / 2 * k, ty = oy + (cs2[0].y + cs2[1].y) / 2 * k;
+      const x = ox + kn.x * k, y = oy + kn.y * k, rr = 6 * dpr;
+      vctx.beginPath();
+      vctx.moveTo(tx, ty);
+      vctx.lineTo(x, y);
+      vctx.lineWidth = Math.max(1, Math.round(dpr));
+      vctx.strokeStyle = "rgba(0,0,0,.6)";
+      vctx.stroke();
+      vctx.beginPath();
+      vctx.arc(x, y, rr, 0, Math.PI * 2);
+      vctx.fillStyle = "#fff";
+      vctx.fill();
+      vctx.strokeStyle = "#000";
+      vctx.stroke();
+      vctx.beginPath();
+      vctx.arc(x, y, rr * 0.5, -Math.PI * 0.9, Math.PI * 0.4);
+      vctx.stroke();
+    }
     const cs4 = handlesShown() && pieceCorners();
     if (cs4) {
       const hs = Math.round(4 * dpr);
@@ -6278,6 +6346,7 @@
         vctx.strokeRect(x - hs + 0.5, y - hs + 0.5, 2 * hs - 1, 2 * hs - 1);
       }
     }
+    for (const f3 of afterRender) f3();
   }
   new ResizeObserver(() => {
     if (!fitted) fitView();
@@ -7065,7 +7134,6 @@
     const b = floatBox() || state.sel;
     $("#sel-section").hidden = !b;
     if (b) $("#sel-info").textContent = state.floating ? t("({w} × {h} px, not placed yet)", { w: b.w, h: b.h }) : `(${b.w} × ${b.h} px)`;
-    $("#stage-actions").hidden = !state.floating;
     requestRender();
     emit("selection");
   }
@@ -7120,11 +7188,14 @@
     state.sel = { x: 0, y: 0, w: doc.width, h: doc.height };
     selectionChanged();
   }
-  function handleAt(p) {
+  function handleAt(p, touch = false) {
+    const k = knobShown() && knobAt();
+    if (k && Math.hypot(k.x - p.x, k.y - p.y) <= (touch ? 20 : 9) / state.view.s) return 4;
     const cs = handlesShown() && pieceCorners(), r = 7 / state.view.s;
     return cs ? cs.findIndex((c) => Math.abs(c.x - p.x) <= r && Math.abs(c.y - p.y) <= r) : -1;
   }
   function handleCursor(i) {
+    if (i === 4) return "grab";
     const cs = pieceCorners(), c = cs[i], o = cs[(i + 2) % 4];
     const a = (Math.atan2(c.y - o.y, c.x - o.x) * 180 / Math.PI + 360) % 180;
     return a < 22.5 || a >= 157.5 ? "ew-resize" : a < 67.5 ? "nwse-resize" : a < 112.5 ? "ns-resize" : "nesw-resize";
@@ -7133,6 +7204,10 @@
     if (state.tool !== "select" && state.tool !== "text") return null;
     const b = floatBox() || state.sel;
     if (!b || !pts.some((p) => inside({ x: b.x - pad, y: b.y - pad, w: b.w + 2 * pad, h: b.h + 2 * pad }, p))) return null;
+    return holdPiece();
+  }
+  function holdPiece() {
+    if (!state.floating && !state.sel) return null;
     if (!state.floating) {
       lift(false);
       selectionChanged();
@@ -7152,11 +7227,14 @@
     f.live = p;
     requestRender();
   }
-  function transformDone() {
+  function transformDone(force = false) {
     const f = state.floating, xf = f?.xf, p = f?.live;
     if (!p) return;
     f.live = void 0;
-    if (p.s === xf.s && p.r === xf.r && p.cx === f.x + xf.ox && p.cy === f.y + xf.oy) return;
+    if (!force && p.s === xf.s && p.r === xf.r && p.cx === f.x + xf.ox && p.cy === f.y + xf.oy) {
+      requestRender();
+      return;
+    }
     const sw = xf.src.width, sh = xf.src.height, cos = Math.abs(Math.cos(p.r)), sin = Math.abs(Math.sin(p.r));
     const bw = (sw * cos + sh * sin) * p.s, bh = (sw * sin + sh * cos) * p.s;
     const x0 = Math.floor(p.cx - bw / 2), y0 = Math.floor(p.cy - bh / 2);
@@ -7190,6 +7268,71 @@
     f.text = void 0;
     selectionChanged();
   }
+  var norm2 = (r) => Math.atan2(Math.sin(r), Math.cos(r));
+  function snapAngle(r, steps2) {
+    const st = steps2 ? Math.PI / 12 : Math.PI / 2, q = Math.round(r / st) * st;
+    return steps2 || Math.abs(r - q) < 3 * Math.PI / 180 ? q : r;
+  }
+  function rotateSelection(a) {
+    const at2 = holdPiece();
+    if (!at2) return;
+    state.floating.live = { ...at2, r: snapAngle(norm2(at2.r + a), false) };
+    transformDone(true);
+  }
+  function flipSelection(axis) {
+    const at2 = holdPiece();
+    if (!at2) return;
+    const xf = state.floating.xf, w = xf.src.width, h = xf.src.height;
+    const c = makeCanvas(w, h), x = c.getContext("2d");
+    x.setTransform(axis === "h" ? -1 : 1, 0, 0, axis === "v" ? -1 : 1, axis === "h" ? w : 0, axis === "v" ? h : 0);
+    x.drawImage(xf.src, 0, 0);
+    xf.src = c;
+    if (xf.mask) {
+      const m = new Uint8Array(xf.mask.length);
+      for (let yy = 0; yy < h; yy++) for (let xx = 0; xx < w; xx++) m[yy * w + xx] = xf.mask[(axis === "v" ? h - 1 - yy : yy) * w + (axis === "h" ? w - 1 - xx : xx)];
+      xf.mask = m;
+    }
+    state.floating.live = { ...at2, r: norm2(-at2.r) };
+    transformDone(true);
+  }
+  function duplicateSelection() {
+    if (!state.floating) {
+      if (!state.sel) return;
+      lift(true);
+    } else dctx.drawImage(state.floating.canvas, state.floating.x, state.floating.y);
+    const d = Math.max(1, Math.round(16 / state.view.s));
+    state.floating.x += d;
+    state.floating.y += d;
+    selectionChanged();
+  }
+  function placeBar() {
+    const bar = document.getElementById("stage-actions");
+    if (!bar) return;
+    const cs = state.tool === "select" && !state.action && !state.floating?.live ? pieceCorners() : null;
+    const floating = !!state.floating && (state.tool === "select" || state.tool === "text");
+    if (!cs) {
+      bar.hidden = !floating;
+      bar.classList.remove("follow");
+      bar.style.left = bar.style.top = "";
+      for (const b of bar.querySelectorAll(".sa-tf")) b.hidden = true;
+      for (const id of ["#sa-finish", "#sa-cancel"]) $(id).hidden = false;
+      return;
+    }
+    bar.hidden = false;
+    for (const b of bar.querySelectorAll(".sa-tf")) b.hidden = false;
+    for (const id of ["#sa-finish", "#sa-cancel"]) $(id).hidden = !state.floating;
+    bar.classList.add("follow");
+    const v = state.view, W = view.clientWidth, H = view.clientHeight, gap = 12;
+    const xs = cs.map((p) => (p.x - v.x) * v.s + view.offsetLeft), ys = cs.map((p) => (p.y - v.y) * v.s + view.offsetTop);
+    const bw = bar.offsetWidth, bh = bar.offsetHeight;
+    const left = Math.max(8, Math.min(W - bw - 8, (Math.min(...xs) + Math.max(...xs)) / 2 - bw / 2));
+    let top = Math.max(...ys) + gap;
+    if (top + bh > H - 8) top = Math.min(...ys) - 26 - 8 - gap - bh;
+    if (top < 8) top = H - bh - 14;
+    bar.style.left = Math.round(left) + "px";
+    bar.style.top = Math.round(top) + "px";
+  }
+  afterRender.push(placeBar);
   var opFor = (e) => e.shiftKey ? "add" : e.altKey ? "subtract" : state.selOp;
   function polygonMask(pts) {
     const c = makeCanvas(doc.width, doc.height), x = c.getContext("2d");
@@ -7238,8 +7381,16 @@
   var magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
   var selectTool = {
     down(e, p) {
-      const h = handleAt(p);
-      if (h >= 0) {
+      const h = handleAt(p, e.pointerType === "touch");
+      if (h === 4) {
+        const at2 = holdPiece();
+        if (at2) {
+          state.action = { type: "rotate", at: at2, a0: Math.atan2(p.y - at2.cy, p.x - at2.cx) };
+          view.style.cursor = "grabbing";
+          return;
+        }
+      }
+      if (h >= 0 && h < 4) {
         const anchor = pieceCorners()[(h + 2) % 4], corner = pieceCorners()[h];
         const at2 = grabForTransform([corner], 1);
         if (at2) {
@@ -7287,6 +7438,11 @@
       if (!a) {
         const h = e.pointerType === "touch" ? -1 : handleAt(p);
         view.style.cursor = h >= 0 ? handleCursor(h) : "";
+        return;
+      }
+      if (a.type === "rotate") {
+        const r = snapAngle(norm2(a.at.r + Math.atan2(p.y - a.at.cy, p.x - a.at.cx) - a.a0), e.shiftKey);
+        transformLive({ ...a.at, r });
         return;
       }
       if (a.type === "scale") {
@@ -7339,7 +7495,8 @@
       const a = state.action;
       state.action = null;
       state.preview = null;
-      if (a?.type === "scale") {
+      if (a?.type === "scale" || a?.type === "rotate") {
+        if (a.type === "rotate") view.style.cursor = "grab";
         transformDone();
         requestRender();
         return;
@@ -11374,6 +11531,12 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     $("#btn-zoomout").onclick = () => zoomCenter(0.8);
     $("#sa-finish").onclick = place;
     $("#sa-cancel").onclick = cancelFloating;
+    $("#sa-rotl").onclick = () => rotateSelection(-Math.PI / 2);
+    $("#sa-rotr").onclick = () => rotateSelection(Math.PI / 2);
+    $("#sa-fliph").onclick = () => flipSelection("h");
+    $("#sa-flipv").onclick = () => flipSelection("v");
+    $("#sa-dup").onclick = duplicateSelection;
+    $("#sa-del").onclick = clearSelection;
     $("#opt-size").onchange = () => setBrushSize(+$("#opt-size").value);
     $("#opt-size-range").oninput = () => setBrushSize(+$("#opt-size-range").value);
     setBrushSize(state.size);
@@ -14170,8 +14333,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.8.0" : "dev";
+  var VERSION = true ? "2.9.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.9.0",
+      date: "2026-10-17",
+      items: [
+        "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger."
+      ]
+    },
     {
       version: "2.8.0",
       date: "2026-10-17",

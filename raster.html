@@ -116,8 +116,14 @@
       <button id="viewer-close">Back to my image</button>
     </div>
     <div id="stage-actions" hidden>
-      <button id="sa-finish" class="primary">Place</button>
+      <button id="sa-rotl" class="icon sa-tf" title="Turn left 90°" aria-label="Turn left 90°"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 9a6 6 0 1 1 1.8 4.3"/><path d="M4.5 4.5V9H9"/></svg></button>
+      <button id="sa-rotr" class="icon sa-tf" title="Turn right 90°" aria-label="Turn right 90°"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 9a6 6 0 1 0-1.8 4.3"/><path d="M15.5 4.5V9H11"/></svg></button>
+      <button id="sa-fliph" class="icon sa-tf" title="Flip horizontally" aria-label="Flip horizontally"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5v15" stroke-dasharray="2 2"/><path d="M7.5 5.5L3 14.5h4.5zM12.5 5.5l4.5 9h-4.5z"/></svg></button>
+      <button id="sa-flipv" class="icon sa-tf" title="Flip vertically" aria-label="Flip vertically"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 10h15" stroke-dasharray="2 2"/><path d="M5.5 7.5L14.5 3v4.5zM5.5 12.5l9 4.5v-4.5z"/></svg></button>
+      <button id="sa-dup" class="icon sa-tf" title="Duplicate – leave a copy here and move this one on" aria-label="Duplicate"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="10" height="10" rx="1.5"/><rect x="7" y="7" width="10" height="10" rx="1.5"/></svg></button>
+      <button id="sa-del" class="icon sa-tf" title="Delete the selected pixels (Del)" aria-label="Delete"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12M8 6V4h4v2M5.5 6l1 11h7l1-11"/></svg></button>
       <button id="sa-cancel">Cancel</button>
+      <button id="sa-finish" class="primary">Place</button>
     </div>
   </div>
 
@@ -262,7 +268,7 @@
         <button id="btn-sel-invert" title="Select what isn't selected (Ctrl+I)">Invert</button>
       </div>
       <div class="row btns"><button id="btn-sel-fill" title="The selected part disappears: filled from the picture around it">Fill from surroundings</button></div>
-      <p class="note">Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.</p>
+      <p class="note">Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.</p>
     </section>
 
     <section id="layers-section">
@@ -354,6 +360,7 @@
           <tr><td>Ctrl+I</td><td>Invert the selection</td></tr>
           <tr><td>Enter / Esc</td><td>Place / cancel a moved or pasted image</td></tr>
           <tr><td>Ctrl+Z / Ctrl+Y</td><td>Undo / redo</td></tr>
+          <tr><td>Drag the knob above a selection</td><td>Turn it (Shift: 15° steps)</td></tr>
           <tr><td>Drag a corner of the selection</td><td>Scale it (the opposite corner stays)</td></tr>
           <tr><td>Two fingers on a selection</td><td>Scale, turn and move it (spread, pinch, twist)</td></tr>
           <tr><td>Wheel, Space+drag</td><td>Zoom, pan (two fingers on touch screens)</td></tr>

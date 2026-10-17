@@ -206,9 +206,13 @@ button.active { border-color: var(--accent); }
 }
 #stage-actions {
   position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 3;
-  display: flex; gap: 6px; padding: 6px; border-radius: 10px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 6px; border-radius: 10px; max-width: calc(100% - 16px); box-sizing: border-box;
   background: rgba(39,40,44,.92); border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,.4);
 }
+#stage-actions[hidden], #stage-actions [hidden] { display: none; }
+/* by the selection (select.ts places it) */
+#stage-actions.follow { bottom: auto; transform: none; padding: 4px; gap: 4px; }
+#stage-actions .icon { min-width: 36px; min-height: 34px; padding: 4px; }
 
 /* ---- panels ---- */
 table.layers { border-collapse: collapse; width: 100%; }

@@ -4,7 +4,7 @@ import { readClipboard } from '../shared/clipboard.ts';
 import { state, savePrefs, on } from './state.ts';
 import { doc, fitView, zoomCenter, actualSize, requestRender } from './canvas.ts';
 import { undo, redo } from './history.ts';
-import { place, cancelFloating, copy, clearSelection, crop, pasteImage, pasteInternal } from './select.ts';
+import { place, cancelFloating, copy, clearSelection, crop, pasteImage, pasteInternal, rotateSelection, flipSelection, duplicateSelection } from './select.ts';
 import { bindPalette, pasteColors } from './palette.ts';
 import { setTool, setMode } from './tools.ts';
 import { newImage, openFile, importImageFile, openImageFile, save, exportAs, resizeImage, canvasSize, MAX_SIDE } from './files.ts';
@@ -86,6 +86,12 @@ export function bindPanel(): void {
   $('#btn-zoomout').onclick = () => zoomCenter(0.8);
   $('#sa-finish').onclick = place;
   $('#sa-cancel').onclick = cancelFloating;
+  $('#sa-rotl').onclick = () => rotateSelection(-Math.PI / 2);
+  $('#sa-rotr').onclick = () => rotateSelection(Math.PI / 2);
+  $('#sa-fliph').onclick = () => flipSelection('h');
+  $('#sa-flipv').onclick = () => flipSelection('v');
+  $('#sa-dup').onclick = duplicateSelection;
+  $('#sa-del').onclick = clearSelection;
 
   // brush
   $('#opt-size').onchange = () => setBrushSize(+$('#opt-size').value);

@@ -1130,8 +1130,8 @@ export const PL: Record<string, string> = {
     'Wytnij',
   'Crop':
     'Przytnij',
-  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.':
-    'Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię), za róg, aby je skalować; dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.',
+  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it, the knob above it to turn it; two fingers on it scale and turn it. The bar below it turns, flips, duplicates and deletes. Enter places it, Esc cancels.':
+    'Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię), za róg, aby je skalować, za uchwyt nad nim, aby je obrócić; dwa palce na nim skalują i obracają je. Pasek pod nim obraca, odbija, duplikuje i usuwa. Enter je umieszcza, Esc anuluje.',
   'Mosaic':
     'Mozaika',
   'Make a mosaic…':
@@ -2308,4 +2308,22 @@ export const PL: Record<string, string> = {
     'Wybierz wideo ze swojego urządzenia.',
   'Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.':
     'Discord: zmniejsz wideo do limitu Discorda i opublikuj je – prawy przycisk na wiadomości z wideo › Aplikacje › Compress video, albo /compress-video dla wideo z urządzenia. Zmniejsza się na twoim urządzeniu (20 MB lub 10 MB), pokazuje, a potem publikuje.',
+  'Turn left 90°':
+    'Obróć w lewo o 90°',
+  'Turn right 90°':
+    'Obróć w prawo o 90°',
+  'Flip horizontally':
+    'Odbij w poziomie',
+  'Flip vertically':
+    'Odbij w pionie',
+  'Duplicate – leave a copy here and move this one on':
+    'Duplikuj – kopia zostaje tutaj, a ten przesuwa się dalej',
+  'Delete the selected pixels (Del)':
+    'Usuń zaznaczone piksele (Del)',
+  'Drag the knob above a selection':
+    'Przeciągnij uchwyt nad zaznaczeniem',
+  'Turn it (Shift: 15° steps)':
+    'Obrót (Shift: co 15°)',
+  'A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.':
+    'Zaznaczenie ma teraz nad sobą uchwyt do obracania (przyciąga do pionu; Shift: co 15°) i pasek pod sobą: obrót w lewo / prawo, odbicie w poziomie / pionie, duplikuj, usuń, anuluj, umieść – myszą lub palcem.',
 };
