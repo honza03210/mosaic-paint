@@ -1,7 +1,7 @@
 /* The tool switcher and the Simple / Expert mode. */
 import { $, $$ } from '../shared/ui.ts';
 import { state, savePrefs, emit } from './state.ts';
-import { stage, requestRender } from './canvas.ts';
+import { stage, view, requestRender } from './canvas.ts';
 import { paintTools, cancelCurve, type Tool } from './paint.ts';
 import { selectTool, place } from './select.ts';
 import { textTool } from './text.ts';
@@ -32,6 +32,7 @@ export function setTool(tool: string): void {
   // moving on from the selection tool places what was being moved or pasted
   if (tool !== 'select' && tool !== 'text' && state.floating) place();
   state.action = null;
+  view.style.cursor = '';
   cancelCurve();
   state.tool = tool;
   stage.dataset.tool = tool;

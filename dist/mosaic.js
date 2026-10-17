@@ -572,7 +572,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Vyplní plochu podobné barvy pod kliknutím. Alt+klik vybere barvu.",
     "Cut": "Vyjmout",
     "Crop": "Oříznout",
-    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii); dvěma prsty na něm ho zvětšíte, zmenšíte a otočíte. Enter ho umístí, Esc zruší.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii), tažením za roh ho zvětšíte či zmenšíte; dvěma prsty na něm ho zvětšíte, zmenšíte a otočíte. Enter ho umístí, Esc zruší.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Vytvořit mozaiku…",
     "Reduce to palette": "Převést na paletu",
@@ -1120,7 +1120,10 @@
     "Two fingers on a selection": "Dva prsty na výběru",
     "Scale, turn and move it (spread, pinch, twist)": "Zvětšit, zmenšit, otočit a posunout (roztažení, sevření, otočení prstů)",
     "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Dva prsty na výběru (nebo na vloženém či importovaném obrázku a textu) ho zvětší, zmenší a otočí: roztáhněte nebo sevřete prsty, otočte jimi – a posuňte ho. Přichytí se ke svislé poloze a k původní velikosti a vždy vzniká z původních pixelů, takže se nerozmazává. Jinde dva prsty přibližují zobrazení jako dřív.",
-    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefonech se tvary výběru (i jiné řady voleb) zalomí na druhý řádek, místo aby se poslední uřízla – Výběr objektu (AI) jde zase stisknout."
+    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefonech se tvary výběru (i jiné řady voleb) zalomí na druhý řádek, místo aby se poslední uřízla – Výběr objektu (AI) jde zase stisknout.",
+    "Drag a corner of the selection": "Tažení za roh výběru",
+    "Scale it (the opposite corner stays)": "Zvětšit či zmenšit (protější roh zůstane na místě)",
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Změna velikosti výběru myší: táhněte za jeden z úchytů v jeho rozích – protější roh zůstane na místě a poměr stran se zachová. Stejně jako u dvou prstů vzniká vždy z původních pixelů."
   };
 
   // src/shared/i18n-de.ts
@@ -1690,7 +1693,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Füllt die Fläche ähnlicher Farbe unter dem Klick. Alt+Klick nimmt eine Farbe auf.",
     "Cut": "Ausschneiden",
     "Crop": "Zuschneiden",
-    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie); zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie), an einer Ecke, um sie zu skalieren; zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.",
     "Mosaic": "Mosaik",
     "Make a mosaic…": "Mosaik erstellen…",
     "Reduce to palette": "Auf Palette reduzieren",
@@ -2238,7 +2241,10 @@
     "Two fingers on a selection": "Zwei Finger auf einer Auswahl",
     "Scale, turn and move it (spread, pinch, twist)": "Skalieren, drehen und verschieben (spreizen, zusammenziehen, drehen)",
     "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Zwei Finger auf einer Auswahl (oder einem eingefügten, importierten Bild oder Text) skalieren und drehen sie: spreizen oder zusammenziehen, drehen – und verschieben. Sie rastet aufrecht und bei der Originalgröße ein und entsteht immer aus den ursprünglichen Pixeln, wird also nicht unscharf. Anderswo zoomen zwei Finger die Ansicht wie bisher.",
-    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Auf Handys brechen die Auswahlformen (und andere Auswahlreihen) in eine zweite Zeile um, statt die letzte abzuschneiden – Objekt (KI) lässt sich wieder antippen."
+    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Auf Handys brechen die Auswahlformen (und andere Auswahlreihen) in eine zweite Zeile um, statt die letzte abzuschneiden – Objekt (KI) lässt sich wieder antippen.",
+    "Drag a corner of the selection": "Eine Ecke der Auswahl ziehen",
+    "Scale it (the opposite corner stays)": "Skalieren (die gegenüberliegende Ecke bleibt)",
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Eine Auswahl mit der Maus skalieren: an einem der Griffe in ihren Ecken ziehen – die gegenüberliegende Ecke bleibt, die Proportionen bleiben erhalten. Wie mit zwei Fingern entsteht sie immer aus den ursprünglichen Pixeln."
   };
 
   // src/shared/i18n-sk.ts
@@ -2808,7 +2814,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Vyplní plochu podobnej farby pod kliknutím. Alt+klik vyberie farbu.",
     "Cut": "Vystrihnúť",
     "Crop": "Orezať",
-    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu); dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu), ťahaním za roh ho zväčšíte či zmenšíte; dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Vytvoriť mozaiku…",
     "Reduce to palette": "Previesť na paletu",
@@ -3356,7 +3362,10 @@
     "Two fingers on a selection": "Dva prsty na výbere",
     "Scale, turn and move it (spread, pinch, twist)": "Zväčšiť, zmenšiť, otočiť a posunúť (roztiahnutie, stiahnutie, otočenie prstov)",
     "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Dva prsty na výbere (alebo na vloženom či importovanom obrázku a texte) ho zväčšia, zmenšia a otočia: roztiahnite alebo stiahnite prsty, otočte nimi – a posuňte ho. Prichytí sa k zvislej polohe a k pôvodnej veľkosti a vždy vzniká z pôvodných pixelov, takže sa nerozmazáva. Inde dva prsty približujú zobrazenie ako predtým.",
-    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefónoch sa tvary výberu (aj iné rady volieb) zalomia na druhý riadok namiesto toho, aby sa posledná odrezala – Výber objektu (AI) sa dá zase stlačiť."
+    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefónoch sa tvary výberu (aj iné rady volieb) zalomia na druhý riadok namiesto toho, aby sa posledná odrezala – Výber objektu (AI) sa dá zase stlačiť.",
+    "Drag a corner of the selection": "Ťahanie za roh výberu",
+    "Scale it (the opposite corner stays)": "Zväčšiť či zmenšiť (protiľahlý roh zostane na mieste)",
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Zmena veľkosti výberu myšou: ťahajte za jeden z úchytov v jeho rohoch – protiľahlý roh zostane na mieste a pomer strán sa zachová. Rovnako ako pri dvoch prstoch vzniká vždy z pôvodných pixelov."
   };
 
   // src/shared/i18n-pl.ts
@@ -3926,7 +3935,7 @@
     "Fills the area of similar color under the click. Alt+click picks a color.": "Wypełnia obszar podobnego koloru pod kliknięciem. Alt+klik pobiera kolor.",
     "Cut": "Wytnij",
     "Crop": "Przytnij",
-    "Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.": "Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię); dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.",
+    "Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.": "Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię), za róg, aby je skalować; dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.",
     "Mosaic": "Mozaika",
     "Make a mosaic…": "Utwórz mozaikę…",
     "Reduce to palette": "Zredukuj do palety",
@@ -4474,7 +4483,10 @@
     "Two fingers on a selection": "Dwa palce na zaznaczeniu",
     "Scale, turn and move it (spread, pinch, twist)": "Skalowanie, obrót i przesunięcie (rozsuń, ściśnij, obróć palce)",
     "Two fingers on a selection (or a pasted, imported picture or text) scale and turn it: spread or pinch, twist – and move it. It snaps upright and to its own size, and is always made from the original pixels, so it doesn’t blur. Elsewhere two fingers zoom the view as before.": "Dwa palce na zaznaczeniu (lub wklejonym, zaimportowanym obrazie albo tekście) skalują i obracają je: rozsuń lub ściśnij palce, obróć nimi – i przesuń. Przyciąga się do pionu i oryginalnego rozmiaru, a zawsze powstaje z oryginalnych pikseli, więc się nie rozmywa. Gdzie indziej dwa palce przybliżają widok jak dotąd.",
-    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefonach kształty zaznaczenia (i inne rzędy opcji) przechodzą do drugiej linii zamiast ucinać ostatnią – Obiekt (AI) znów można nacisnąć."
+    "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefonach kształty zaznaczenia (i inne rzędy opcji) przechodzą do drugiej linii zamiast ucinać ostatnią – Obiekt (AI) znów można nacisnąć.",
+    "Drag a corner of the selection": "Przeciągnij róg zaznaczenia",
+    "Scale it (the opposite corner stays)": "Skalowanie (przeciwny róg zostaje na miejscu)",
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Skalowanie zaznaczenia myszą: przeciągnij jeden z uchwytów w jego rogach – przeciwny róg zostaje na miejscu, a proporcje są zachowane. Tak jak przy dwóch palcach, zawsze powstaje z oryginalnych pikseli."
   };
 
   // src/shared/i18n.ts
@@ -14160,8 +14172,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.5.1" : "dev";
+  var VERSION = true ? "2.6.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.6.0",
+      date: "2026-10-17",
+      items: [
+        "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels."
+      ]
+    },
     {
       version: "2.5.1",
       date: "2026-10-17",

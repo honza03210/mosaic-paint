@@ -1130,8 +1130,8 @@ export const SK: Record<string, string> = {
     'Vystrihnúť',
   'Crop':
     'Orezať',
-  'Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.':
-    'Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu); dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.',
+  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.':
+    'Ťahaním vo výbere ho posuniete (Alt+ťahanie posunie kópiu), ťahaním za roh ho zväčšíte či zmenšíte; dvoma prstami na ňom ho zväčšíte, zmenšíte a otočíte. Enter ho umiestni, Esc zruší.',
   'Mosaic':
     'Mozaika',
   'Make a mosaic…':
@@ -2228,4 +2228,10 @@ export const SK: Record<string, string> = {
     'Dva prsty na výbere (alebo na vloženom či importovanom obrázku a texte) ho zväčšia, zmenšia a otočia: roztiahnite alebo stiahnite prsty, otočte nimi – a posuňte ho. Prichytí sa k zvislej polohe a k pôvodnej veľkosti a vždy vzniká z pôvodných pixelov, takže sa nerozmazáva. Inde dva prsty približujú zobrazenie ako predtým.',
   'On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.':
     'Na telefónoch sa tvary výberu (aj iné rady volieb) zalomia na druhý riadok namiesto toho, aby sa posledná odrezala – Výber objektu (AI) sa dá zase stlačiť.',
+  'Drag a corner of the selection':
+    'Ťahanie za roh výberu',
+  'Scale it (the opposite corner stays)':
+    'Zväčšiť či zmenšiť (protiľahlý roh zostane na mieste)',
+  'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.':
+    'Zmena veľkosti výberu myšou: ťahajte za jeden z úchytov v jeho rohoch – protiľahlý roh zostane na mieste a pomer strán sa zachová. Rovnako ako pri dvoch prstoch vzniká vždy z pôvodných pixelov.',
 };

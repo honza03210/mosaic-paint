@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '2.6.0', date: '2026-10-17', items: [
+      'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.',
+    ],
+  },
+  {
     version: '2.5.1', date: '2026-10-17', items: [
       'On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.',
     ],

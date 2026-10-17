@@ -1130,8 +1130,8 @@ export const CS: Record<string, string> = {
     'Vyjmout',
   'Crop':
     'Oříznout',
-  'Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.':
-    'Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii); dvěma prsty na něm ho zvětšíte, zmenšíte a otočíte. Enter ho umístí, Esc zruší.',
+  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.':
+    'Tažením uvnitř výběru ho posunete (Alt+tažení posune kopii), tažením za roh ho zvětšíte či zmenšíte; dvěma prsty na něm ho zvětšíte, zmenšíte a otočíte. Enter ho umístí, Esc zruší.',
   'Mosaic':
     'Mozaika',
   'Make a mosaic…':
@@ -2228,4 +2228,10 @@ export const CS: Record<string, string> = {
     'Dva prsty na výběru (nebo na vloženém či importovaném obrázku a textu) ho zvětší, zmenší a otočí: roztáhněte nebo sevřete prsty, otočte jimi – a posuňte ho. Přichytí se ke svislé poloze a k původní velikosti a vždy vzniká z původních pixelů, takže se nerozmazává. Jinde dva prsty přibližují zobrazení jako dřív.',
   'On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.':
     'Na telefonech se tvary výběru (i jiné řady voleb) zalomí na druhý řádek, místo aby se poslední uřízla – Výběr objektu (AI) jde zase stisknout.',
+  'Drag a corner of the selection':
+    'Tažení za roh výběru',
+  'Scale it (the opposite corner stays)':
+    'Zvětšit či zmenšit (protější roh zůstane na místě)',
+  'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.':
+    'Změna velikosti výběru myší: táhněte za jeden z úchytů v jeho rozích – protější roh zůstane na místě a poměr stran se zachová. Stejně jako u dvou prstů vzniká vždy z původních pixelů.',
 };

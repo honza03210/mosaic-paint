@@ -1130,8 +1130,8 @@ export const DE: Record<string, string> = {
     'Ausschneiden',
   'Crop':
     'Zuschneiden',
-  'Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.':
-    'In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie); zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.',
+  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.':
+    'In der Auswahl ziehen, um sie zu verschieben (Alt+Ziehen verschiebt eine Kopie), an einer Ecke, um sie zu skalieren; zwei Finger darauf skalieren und drehen sie. Enter platziert sie, Esc bricht ab.',
   'Mosaic':
     'Mosaik',
   'Make a mosaic…':
@@ -2228,4 +2228,10 @@ export const DE: Record<string, string> = {
     'Zwei Finger auf einer Auswahl (oder einem eingefügten, importierten Bild oder Text) skalieren und drehen sie: spreizen oder zusammenziehen, drehen – und verschieben. Sie rastet aufrecht und bei der Originalgröße ein und entsteht immer aus den ursprünglichen Pixeln, wird also nicht unscharf. Anderswo zoomen zwei Finger die Ansicht wie bisher.',
   'On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.':
     'Auf Handys brechen die Auswahlformen (und andere Auswahlreihen) in eine zweite Zeile um, statt die letzte abzuschneiden – Objekt (KI) lässt sich wieder antippen.',
+  'Drag a corner of the selection':
+    'Eine Ecke der Auswahl ziehen',
+  'Scale it (the opposite corner stays)':
+    'Skalieren (die gegenüberliegende Ecke bleibt)',
+  'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.':
+    'Eine Auswahl mit der Maus skalieren: an einem der Griffe in ihren Ecken ziehen – die gegenüberliegende Ecke bleibt, die Proportionen bleiben erhalten. Wie mit zwei Fingern entsteht sie immer aus den ursprünglichen Pixeln.',
 };

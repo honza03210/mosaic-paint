@@ -6,7 +6,7 @@ import type { Box } from '../lib/raster.ts';
 import { $, toast, loadImg } from '../shared/ui.ts';
 import { canCopyImages, copyImage, canvasToPng, svgToCanvas, svgSize } from '../shared/clipboard.ts';
 import { state, emit } from './state.ts';
-import { doc, dctx, view, makeCanvas, toDoc, requestRender, fitView, flat, mapLayers, layers } from './canvas.ts';
+import { doc, dctx, view, makeCanvas, toDoc, requestRender, fitView, flat, mapLayers, layers, pieceCorners, handlesShown } from './canvas.ts';
 import { commit, restoreCurrent, afterChange } from './history.ts';
 import type { Tool } from './paint.ts';
 import { t } from '../shared/i18n.ts';
@@ -120,6 +120,17 @@ export function selectAll(): void {
 }
 
 // ---- scaling and turning the floating pixels (two fingers) ----------------------------------------------------
+/** The corner handle (0–3, clockwise from the top left) under p, or -1 – within a few screen px. */
+function handleAt(p: Pt): number {
+  const cs = handlesShown() && pieceCorners(), r = 7 / state.view.s;
+  return cs ? cs.findIndex(c => Math.abs(c.x - p.x) <= r && Math.abs(c.y - p.y) <= r) : -1;
+}
+/** The resize cursor for each corner (as the piece stands, roughly turned with it). */
+function handleCursor(i: number): string {
+  const cs = pieceCorners(), c = cs[i], o = cs[(i + 2) % 4];
+  const a = ((Math.atan2(c.y - o.y, c.x - o.x) * 180 / Math.PI) + 360) % 180;
+  return a < 22.5 || a >= 157.5 ? 'ew-resize' : a < 67.5 ? 'nwse-resize' : a < 112.5 ? 'ns-resize' : 'nesw-resize';
+}
 /** Where the floating pixels stand: centre (image px), size and turn. */
 export interface Placement { cx: number; cy: number; s: number; r: number }
 /**
@@ -244,6 +255,13 @@ function pickAt(p: Pt, op: S.SelMode): void {
 const magnetMargin = () => Math.max(8, Math.round(24 / state.view.s));
 export const selectTool: Tool = {
   down(e, p) {
+    // a corner handle: scale it, the opposite corner staying put (the selection is lifted first)
+    const h = handleAt(p);
+    if (h >= 0) {
+      const anchor = pieceCorners()[(h + 2) % 4], corner = pieceCorners()[h];
+      const at = grabForTransform([corner], 1);
+      if (at) { state.action = { type: 'scale', anchor, corner, at }; return; }
+    }
     const fb = floatBox();
     if (fb && inside(fb, p)) {
       state.action = { type: 'move', dx: p.x - fb.x, dy: p.y - fb.y };
@@ -274,7 +292,23 @@ export const selectTool: Tool = {
   },
   move(e, p) {
     let a = state.action;
-    if (!a) return;
+    if (!a) {
+      // hovering a corner handle: the resize cursor
+      const h = e.pointerType === 'touch' ? -1 : handleAt(p);
+      view.style.cursor = h >= 0 ? handleCursor(h) : '';
+      return;
+    }
+    if (a.type === 'scale') {
+      // along the diagonal: how far the pointer is from the fixed corner, against how far the corner was
+      const dx = a.corner.x - a.anchor.x, dy = a.corner.y - a.anchor.y, d2 = dx * dx + dy * dy || 1;
+      const [lo, hi] = scaleLimits();
+      let s = Math.min(hi, Math.max(lo, a.at.s * ((p.x - a.anchor.x) * dx + (p.y - a.anchor.y) * dy) / d2));
+      // upright: whole pixels wide (no half-transparent edge)
+      if (Math.abs(Math.sin(2 * a.at.r)) < 1e-9) { const src = state.floating.xf.src, m = Math.max(src.width, src.height); s = Math.max(1, Math.round(m * s)) / m; }
+      const k = s / a.at.s;
+      transformLive({ s, r: a.at.r, cx: a.anchor.x + (a.at.cx - a.anchor.x) * k, cy: a.anchor.y + (a.at.cy - a.anchor.y) * k });
+      return;
+    }
     // a press inside the selection (wand, Object) that moves: it is a drag
     if (a.type === 'press') {
       if (Math.hypot(e.clientX - a.sx, e.clientY - a.sy) < 8) return;
@@ -312,6 +346,7 @@ export const selectTool: Tool = {
     const a = state.action;
     state.action = null;
     state.preview = null;
+    if (a?.type === 'scale') { transformDone(); requestRender(); return; }
     // a press that didn't move: a tap – the wand or Object there
     if (a?.type === 'press') { pickAt(a.p, a.op); return; }
     if (a?.type === 'marquee' && a.op !== 'new') {

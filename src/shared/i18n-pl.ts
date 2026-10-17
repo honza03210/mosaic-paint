@@ -1130,8 +1130,8 @@ export const PL: Record<string, string> = {
     'Wytnij',
   'Crop':
     'Przytnij',
-  'Drag inside the selection to move it (Alt+drag moves a copy); two fingers on it scale and turn it. Enter places it, Esc cancels.':
-    'Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię); dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.',
+  'Drag inside the selection to move it (Alt+drag moves a copy), a corner to scale it; two fingers on it scale and turn it. Enter places it, Esc cancels.':
+    'Przeciągnij wewnątrz zaznaczenia, aby je przesunąć (Alt+przeciąganie przesuwa kopię), za róg, aby je skalować; dwa palce na nim skalują i obracają je. Enter je umieszcza, Esc anuluje.',
   'Mosaic':
     'Mozaika',
   'Make a mosaic…':
@@ -2228,4 +2228,10 @@ export const PL: Record<string, string> = {
     'Dwa palce na zaznaczeniu (lub wklejonym, zaimportowanym obrazie albo tekście) skalują i obracają je: rozsuń lub ściśnij palce, obróć nimi – i przesuń. Przyciąga się do pionu i oryginalnego rozmiaru, a zawsze powstaje z oryginalnych pikseli, więc się nie rozmywa. Gdzie indziej dwa palce przybliżają widok jak dotąd.',
   'On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.':
     'Na telefonach kształty zaznaczenia (i inne rzędy opcji) przechodzą do drugiej linii zamiast ucinać ostatnią – Obiekt (AI) znów można nacisnąć.',
+  'Drag a corner of the selection':
+    'Przeciągnij róg zaznaczenia',
+  'Scale it (the opposite corner stays)':
+    'Skalowanie (przeciwny róg zostaje na miejscu)',
+  'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.':
+    'Skalowanie zaznaczenia myszą: przeciągnij jeden z uchwytów w jego rogach – przeciwny róg zostaje na miejscu, a proporcje są zachowane. Tak jak przy dwóch palcach, zawsze powstaje z oryginalnych pikseli.',
 };

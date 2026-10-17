@@ -139,6 +139,27 @@ export function requestRender(): void {
   queued = true;
   requestAnimationFrame(() => { queued = false; render(); });
 }
+/** Mouse or pen (not only a finger): the selection has corner handles to scale it by. */
+export const finePointer = () => matchMedia('(any-pointer: fine)').matches;
+/**
+ * The corners of the selection or floating pixels (image px, clockwise from the top left) – turned with them
+ * when they were turned. Null: nothing selected.
+ */
+export function pieceCorners(): Pt[] | null {
+  const f = state.floating;
+  const p = f?.live || (f?.xf && { s: f.xf.s, r: f.xf.r, cx: f.x + f.xf.ox, cy: f.y + f.xf.oy });
+  if (p) {
+    const hw = f.xf.src.width / 2 * p.s, hh = f.xf.src.height / 2 * p.s, co = Math.cos(p.r), si = Math.sin(p.r);
+    return [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]].map(([x, y]) => ({ x: p.cx + x * co - y * si, y: p.cy + x * si + y * co }));
+  }
+  const b = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : state.sel;
+  return b ? [{ x: b.x, y: b.y }, { x: b.x + b.w, y: b.y }, { x: b.x + b.w, y: b.y + b.h }, { x: b.x, y: b.y + b.h }] : null;
+}
+/** Whether the corner handles show: the Select tool, with a mouse or pen, while not drawing a new selection. */
+export function handlesShown(): boolean {
+  const a = state.action;
+  return state.tool === 'select' && finePointer() && (!a || a.type === 'scale' || a.type === 'move');
+}
 function dashedRect(x: number, y: number, w: number, h: number): void {
   vctx.lineWidth = 1;
   vctx.setLineDash([]);
@@ -255,11 +276,10 @@ export function render(): void {
     vctx.stroke();
   }
   const sel = state.sel, box = f ? { x: f.x, y: f.y, w: f.canvas.width, h: f.canvas.height } : sel;
-  if (f?.live) {
-    // being scaled / turned: the turned frame
-    const p = f.live, hw = f.xf.src.width / 2 * p.s, hh = f.xf.src.height / 2 * p.s, co = Math.cos(p.r), si = Math.sin(p.r);
+  if (f?.live || f?.xf?.r) {
+    // being scaled / turned, or turned: the turned frame
     vctx.beginPath();
-    for (const [x, y] of [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]]) vctx.lineTo(ox + (p.cx + x * co - y * si) * k, oy + (p.cy + x * si + y * co) * k);
+    for (const c of pieceCorners()) vctx.lineTo(ox + c.x * k, oy + c.y * k);
     vctx.closePath();
     vctx.lineWidth = 1;
     vctx.setLineDash([]);
@@ -286,6 +306,19 @@ export function render(): void {
     vctx.stroke();
     vctx.setLineDash([]);
   } else if (box) dashedRect(Math.round(ox + box.x * k), Math.round(oy + box.y * k), Math.round(box.w * k), Math.round(box.h * k));
+  // the corner handles (drag one to scale)
+  const cs4 = handlesShown() && pieceCorners();
+  if (cs4) {
+    const hs = Math.round(4 * dpr);
+    vctx.lineWidth = Math.max(1, Math.round(dpr));
+    for (const c of cs4) {
+      const x = Math.round(ox + c.x * k), y = Math.round(oy + c.y * k);
+      vctx.fillStyle = '#fff';
+      vctx.fillRect(x - hs, y - hs, 2 * hs, 2 * hs);
+      vctx.strokeStyle = '#000';
+      vctx.strokeRect(x - hs + 0.5, y - hs + 0.5, 2 * hs - 1, 2 * hs - 1);
+    }
+  }
 }
 // the first fit waits until the page is laid out (a hidden tab has no size yet)
 new ResizeObserver(() => { if (!fitted) fitView(); requestRender(); }).observe(stage);
