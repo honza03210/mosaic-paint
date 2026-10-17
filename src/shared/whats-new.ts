@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '2.7.1', date: '2026-10-17', items: [
+      'In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).',
+    ],
+  },
+  {
     version: '2.7.0', date: '2026-10-17', items: [
       'Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.',
     ],

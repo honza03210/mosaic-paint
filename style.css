@@ -49,6 +49,8 @@ kbd { font: 11px ui-monospace, monospace; padding: 0 4px; border: 1px solid var(
 #topbar {
   display: flex; align-items: center; gap: 6px;
   padding: 6px 10px; background: var(--panel); border-bottom: 1px solid var(--border);
+  /* too many buttons for the window: the bar scrolls, not the page */
+  overflow-x: auto; scrollbar-width: thin;
 }
 #topbar .brand { font-weight: 600; margin-right: 10px; letter-spacing: .02em; }
 #topbar > * { flex: none; }

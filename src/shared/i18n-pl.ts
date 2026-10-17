@@ -2262,4 +2262,6 @@ export const PL: Record<string, string> = {
     'Wyłączone: to samo ziarno w czerwonym, zielonym i niebieskim (jak film). Włączone: każdy kolor własne',
   'Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.':
     'Pędzle Rozmycie (U) i Szum (N) do wtapiania zdjęć: rozmyj krawędź wklejonego zdjęcia, aby ją zmiękczyć (krawędź wycinka zanika), a potem dodaj trochę ziarna, aby pasowało do obrazu wokół.',
+  'In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).':
+    'W węższym oknie górny pasek przewija się sam, zamiast przesuwać całą stronę w bok (płótno mogło zniknąć z widoku).',
 };

@@ -2262,4 +2262,6 @@ export const SK: Record<string, string> = {
     'Vypnuté: rovnaké zrno v červenej, zelenej aj modrej (ako film). Zapnuté: každá farba svoje',
   'Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.':
     'Štetce Rozmazanie (U) a Šum (N) na napájanie fotiek: rozmažte okraj vloženej fotky, aby zmäkol (okraj výrezu sa vytratí), a pridajte trochu zrna, aby ladila s obrázkom okolo.',
+  'In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).':
+    'V užšom okne sa horná lišta posúva sama namiesto toho, aby odsunula celú stránku do strany (plátno mohlo zmiznúť z dohľadu).',
 };

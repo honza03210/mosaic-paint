@@ -2262,4 +2262,6 @@ export const DE: Record<string, string> = {
     'Aus: dieselbe Körnung in Rot, Grün und Blau (wie Film). An: jede Farbe ihre eigene',
   'Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.':
     'Pinsel Weichzeichnen (U) und Rauschen (N), um Fotos ineinander übergehen zu lassen: den Rand eines eingefügten Fotos weichzeichnen (der Rand eines Ausschnitts blendet aus), dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt.',
+  'In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).':
+    'In einem schmaleren Fenster scrollt die obere Leiste für sich, statt die ganze Seite zur Seite zu schieben (die Leinwand konnte aus dem Blick rutschen).',
 };

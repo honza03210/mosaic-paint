@@ -1131,7 +1131,8 @@
     "How soft: about this many pixels": "Jak měkce: zhruba o tolik pixelů",
     "How much grain": "Kolik zrna",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Vypnuto: stejné zrno v červené, zelené i modré (jako film). Zapnuto: každá barva své",
-    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štětce Rozmazání (U) a Šum (N) pro napojování fotek: rozmažte okraj vložené fotky, aby změkl (okraj výřezu se vytratí), a přidejte trochu zrna, aby ladila s obrázkem kolem."
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štětce Rozmazání (U) a Šum (N) pro napojování fotek: rozmažte okraj vložené fotky, aby změkl (okraj výřezu se vytratí), a přidejte trochu zrna, aby ladila s obrázkem kolem.",
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "V užším okně se horní lišta posouvá sama, místo aby odsunula celou stránku do strany (plátno mohlo zmizet z dohledu)."
   };
 
   // src/shared/i18n-de.ts
@@ -2266,7 +2267,8 @@
     "How soft: about this many pixels": "Wie weich: etwa so viele Pixel",
     "How much grain": "Wie viel Körnung",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Aus: dieselbe Körnung in Rot, Grün und Blau (wie Film). An: jede Farbe ihre eigene",
-    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pinsel Weichzeichnen (U) und Rauschen (N), um Fotos ineinander übergehen zu lassen: den Rand eines eingefügten Fotos weichzeichnen (der Rand eines Ausschnitts blendet aus), dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt."
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pinsel Weichzeichnen (U) und Rauschen (N), um Fotos ineinander übergehen zu lassen: den Rand eines eingefügten Fotos weichzeichnen (der Rand eines Ausschnitts blendet aus), dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt.",
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "In einem schmaleren Fenster scrollt die obere Leiste für sich, statt die ganze Seite zur Seite zu schieben (die Leinwand konnte aus dem Blick rutschen)."
   };
 
   // src/shared/i18n-sk.ts
@@ -3401,7 +3403,8 @@
     "How soft: about this many pixels": "Ako jemne: zhruba o toľko pixelov",
     "How much grain": "Koľko zrna",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Vypnuté: rovnaké zrno v červenej, zelenej aj modrej (ako film). Zapnuté: každá farba svoje",
-    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štetce Rozmazanie (U) a Šum (N) na napájanie fotiek: rozmažte okraj vloženej fotky, aby zmäkol (okraj výrezu sa vytratí), a pridajte trochu zrna, aby ladila s obrázkom okolo."
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štetce Rozmazanie (U) a Šum (N) na napájanie fotiek: rozmažte okraj vloženej fotky, aby zmäkol (okraj výrezu sa vytratí), a pridajte trochu zrna, aby ladila s obrázkom okolo.",
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "V užšom okne sa horná lišta posúva sama namiesto toho, aby odsunula celú stránku do strany (plátno mohlo zmiznúť z dohľadu)."
   };
 
   // src/shared/i18n-pl.ts
@@ -4536,7 +4539,8 @@
     "How soft: about this many pixels": "Jak miękko: mniej więcej o tyle pikseli",
     "How much grain": "Ile ziarna",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Wyłączone: to samo ziarno w czerwonym, zielonym i niebieskim (jak film). Włączone: każdy kolor własne",
-    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pędzle Rozmycie (U) i Szum (N) do wtapiania zdjęć: rozmyj krawędź wklejonego zdjęcia, aby ją zmiękczyć (krawędź wycinka zanika), a potem dodaj trochę ziarna, aby pasowało do obrazu wokół."
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pędzle Rozmycie (U) i Szum (N) do wtapiania zdjęć: rozmyj krawędź wklejonego zdjęcia, aby ją zmiękczyć (krawędź wycinka zanika), a potem dodaj trochę ziarna, aby pasowało do obrazu wokół.",
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "W węższym oknie górny pasek przewija się sam, zamiast przesuwać całą stronę w bok (płótno mogło zniknąć z widoku)."
   };
 
   // src/shared/i18n.ts
@@ -14078,8 +14082,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.7.0" : "dev";
+  var VERSION = true ? "2.7.1" : "dev";
   var RELEASES = [
+    {
+      version: "2.7.1",
+      date: "2026-10-17",
+      items: [
+        "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view)."
+      ]
+    },
     {
       version: "2.7.0",
       date: "2026-10-17",
