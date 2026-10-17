@@ -168,8 +168,8 @@ details summary { cursor: pointer; color: var(--muted); }
 /* ---- modes ---- */
 [hidden] { display: none !important; }
 body[data-mode=simple] .expert { display: none !important; }
-.seg-btns { display: inline-flex; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
-.seg-btns button { border: 0; border-radius: 0; padding: 4px 11px; background: transparent; color: var(--muted); }
+.seg-btns { display: inline-flex; flex-wrap: wrap; max-width: 100%; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; }
+.seg-btns button { flex: 1 0 auto; border: 0; border-radius: 0; padding: 4px 11px; background: transparent; color: var(--muted); }
 .seg-btns button.active { background: var(--accent-fill); color: #fff; }
 .seg-btns a { padding: 4px 11px; color: var(--muted); text-decoration: none; }
 .seg-btns a:hover { color: var(--text); }
