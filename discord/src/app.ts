@@ -6,6 +6,10 @@
    Worker as static files) signs the user in (/api/token), loads the image (/api/pending) and, when the user
    is done, sends the PNG back (/api/post).
 
+   "Compress video" (right-click a message with a video › Apps) and /compress-video (a video from the user's
+   device, or attached to the command) open the Activity's compressor instead: the video is made smaller on
+   the user's device, to fit Discord's size limit, and posted back the same way.
+
    The picture is posted the way Wordle posts its results: as a follow-up to the user's command, with the
    command's token. So the app needs no bot in the server, and it works in DMs and group DMs too. Discord
    keeps such a token for 15 minutes: later the editor says so (Copy and paste works instead).
@@ -45,6 +49,10 @@ async function addonFile(url: URL): Promise<Response> {
 export const PENDING_MS = 15 * 60 * 1000;
 /** the largest picture posted back (Discord takes 10 MB without boosts) */
 export const MAX_POST = 10 * 1024 * 1024;
+/** the largest compressed video taken (the Activity aims below Discord's limit; Discord has the last word) */
+export const MAX_VIDEO_POST = 25 * 1024 * 1024;
+/** the commands' names (register.mjs) */
+export const COMPRESS_MESSAGE = 'Compress video', COMPRESS_SLASH = 'compress-video';
 
 /** A pending edit: where the command was used, the picked image (if any), and the command's token. */
 export interface Pending {
@@ -53,6 +61,10 @@ export interface Pending {
   messageId: string | null; url: string | null; filename: string; contentType: string;
   /** another address of the same file (Discord's media proxy), tried when the first doesn't work */
   alt?: string | null;
+  /** what the Activity opens: the editor (default), or the video compressor */
+  mode?: 'edit' | 'compress';
+  /** the file's size in bytes, when Discord says */
+  size?: number | null;
 }
 
 // never stored: a 410 may be cached on the way (it's allowed to be), and then answers every later request
@@ -75,8 +87,9 @@ export async function verifySignature(publicKey: string, signature: string | nul
 
 // ---- interactions (the commands) -----------------------------------------------------------------------
 const reply = (content: string) => json({ type: 4, data: { content, flags: 64 } }); // 64: only the user sees it
-/** command types: 3 a message command ("Edit image"), 4 the Activity's own launch command */
-const MESSAGE = 3, ENTRY_POINT = 4;
+/** command types: 1 a slash command (/compress-video), 3 a message command ("Edit image", "Compress video"),
+    4 the Activity's own launch command; option type 11: an attachment */
+const SLASH = 1, MESSAGE = 3, ENTRY_POINT = 4, ATTACHMENT = 11;
 
 async function interaction(req: Request, env: Env): Promise<Response> {
   const body = await req.text();
@@ -85,13 +98,29 @@ async function interaction(req: Request, env: Env): Promise<Response> {
   }
   const i = JSON.parse(body);
   if (i.type === 1) return json({ type: 1 }); // PING
-  if (i.type !== 2 || ![MESSAGE, ENTRY_POINT].includes(i.data?.type)) return reply('Unknown command.');
+  if (i.type !== 2 || ![SLASH, MESSAGE, ENTRY_POINT].includes(i.data?.type)) return reply('Unknown command.');
+  const compress = i.data.name === COMPRESS_MESSAGE || i.data.name === COMPRESS_SLASH;
+  if (i.data.type === SLASH && !compress) return reply('Unknown command.');
   const pending: Pending = {
     channelId: i.channel_id || i.channel?.id, guildId: i.guild_id || null, time: Date.now(),
     appId: i.application_id, token: i.token,
     messageId: null, url: null, filename: 'image.png', contentType: 'image/png',
+    ...(compress ? { mode: 'compress' as const, filename: 'video.mp4', contentType: 'video/mp4' } : {}),
   };
-  if (i.data.type === MESSAGE) {
+  if (compress && i.data.type === MESSAGE) {
+    const msg = i.data.resolved?.messages?.[i.data.target_id];
+    const video = pickVideo(msg);
+    if (!video) return reply('That message has no video to compress.');
+    Object.assign(pending, { messageId: msg.id, ...video });
+  } else if (compress) {
+    // /compress-video: a video attached to the command, or none (the Activity lets the user choose one)
+    const opt = (i.data.options || []).find((o: { type: number }) => o.type === ATTACHMENT);
+    const a = opt && i.data.resolved?.attachments?.[opt.value];
+    if (a) {
+      if (!/^video\//.test(a.content_type || '')) return reply('That file is not a video.');
+      Object.assign(pending, { url: a.url, alt: a.proxy_url || null, filename: a.filename || 'video.mp4', contentType: a.content_type, size: a.size ?? null });
+    }
+  } else if (i.data.type === MESSAGE) {
     // the clicked message comes with the command
     const msg = i.data.resolved?.messages?.[i.data.target_id];
     const image = pickMedia(msg);
@@ -137,6 +166,19 @@ export function pickMedia(msg: any): Media | null {
   return null;
 }
 
+/** The video to compress from a message: an attached one, else an embed's (a Tenor / Giphy GIF, a linked video). */
+export function pickVideo(msg: any): Media & { size?: number | null } | null {
+  const a = (msg?.attachments || []).find((x: { content_type?: string }) => /^video\//.test(x.content_type || ''));
+  if (a) return { url: a.url, filename: a.filename || 'video.mp4', contentType: a.content_type, alt: a.proxy_url || null, size: a.size ?? null };
+  for (const e of msg?.embeds || []) {
+    // a file Discord serves, its media proxy first (a YouTube video itself can't be fetched)
+    const served = (u?: string) => { try { return !!u && MEDIA_HOSTS.test(new URL(u).hostname); } catch { return false; } };
+    const url = [e.video?.proxy_url, e.video?.url].find(served);
+    if (url) return { url, filename: nameOf(url, 'video.mp4'), contentType: typeOf(url), alt: null, size: null };
+  }
+  return null;
+}
+
 /** A file from Discord's CDN (it wants to know who asks). */
 const getFile = (url: string, init: RequestInit = {}) => fetch(url, { ...init, headers: { 'user-agent': 'MosaicPaintActivity (https://github.com/honza03210/mosaic-paint, 2)', ...(init.headers as Record<string, string> || {}) } });
 
@@ -160,7 +202,7 @@ async function media(req: Request, env: Env, url: URL): Promise<Response> {
   try { host = new URL(u).hostname; } catch { /* not a URL */ }
   if (!MEDIA_HOSTS.test(host) || !(+exp > Date.now()) || sig !== await hmac(env.DISCORD_CLIENT_SECRET, u + '|' + exp)) return new Response('not allowed', { status: 403 });
   const range = req.headers.get('range');
-  const r = await getFile(u, { headers: range ? { range } : {} });
+  const r = await getFile(u, { method: req.method === 'HEAD' ? 'HEAD' : 'GET', headers: range ? { range } : {} });
   const h = new Headers({ 'content-type': r.headers.get('content-type') || 'video/mp4', 'accept-ranges': 'bytes', 'cache-control': 'private, max-age=600' });
   for (const k of ['content-length', 'content-range']) { const v = r.headers.get(k); if (v) h.set(k, v); }
   return new Response(r.body, { status: r.status, headers: h });
@@ -221,7 +263,12 @@ async function pending(req: Request, env: Env, url: URL): Promise<Response> {
   const user = await userOf(req);
   if (!user) return json({ error: 'not signed in' }, 401);
   const p = await pendingOf(env, user);
-  if (!p?.url || p.channelId !== url.searchParams.get('channel') || Date.now() - p.time > PENDING_MS) return new Response(null, { status: 204 });
+  if (!p || p.channelId !== url.searchParams.get('channel') || Date.now() - p.time > PENDING_MS) return new Response(null, { status: 204 });
+  // the compressor reads the video itself, in pieces, through /api/media (it may be big): only where it is
+  if (p.mode === 'compress') {
+    return json({ mode: 'compress', filename: p.filename, size: p.size ?? null, media: p.url ? await mediaAddress(env, p.url) : null });
+  }
+  if (!p.url) return new Response(null, { status: 204 });
   // Discord's file; its media proxy when that doesn't answer (what went wrong goes to the log: npx wrangler tail)
   let img = await getFile(p.url);
   if (!img.ok && p.alt) { console.error('file fetch failed', img.status, p.url.slice(0, 80), '– trying the media proxy'); img = await getFile(p.alt); }
@@ -247,19 +294,29 @@ async function post(req: Request, env: Env, url: URL): Promise<Response> {
   const p = await pendingOf(env, user), channel = url.searchParams.get('channel');
   if (!p || p.channelId !== channel) return json({ error: 'no command of yours in this channel' }, 403);
   if (Date.now() - p.time > PENDING_MS) return json({ error: 'too late' }, 409);
-  const png = await req.arrayBuffer();
-  if (!png.byteLength || png.byteLength > MAX_POST) return json({ error: 'too big' }, 413);
+  // the edited picture, or a compressed video (MP4 or WebM)
+  const type = (req.headers.get('content-type') || 'image/png').split(';')[0];
+  const video = type === 'video/mp4' || type === 'video/webm';
+  const file = await req.arrayBuffer();
+  if (!file.byteLength || file.byteLength > (video ? MAX_VIDEO_POST : MAX_POST)) return json({ error: 'too big' }, 413);
+  const name = video ? (type === 'video/mp4' ? 'compressed.mp4' : 'compressed.webm') : 'edited.png';
   // a link back to the picked message
   const original = p.messageId ? ` · [original](https://discord.com/channels/${p.guildId || '@me'}/${p.channelId}/${p.messageId})` : '';
   const form = new FormData();
   form.append('payload_json', JSON.stringify({
-    content: `Edited by <@${user}>${original}`,
+    content: `${video ? 'Compressed' : 'Edited'} by <@${user}>${original}`,
     allowed_mentions: { parse: [] },
-    attachments: [{ id: 0, filename: 'edited.png' }],
+    attachments: [{ id: 0, filename: name }],
   }));
-  form.append('files[0]', new Blob([png], { type: 'image/png' }), 'edited.png');
+  form.append('files[0]', new Blob([file], { type: video ? type : 'image/png' }), name);
   const sent = await fetch(`${API}/webhooks/${p.appId}/${p.token}`, { method: 'POST', body: form });
-  if (!sent.ok) return json({ error: 'Discord refused the message', status: sent.status }, sent.status === 401 || sent.status === 404 ? 409 : 502);
+  if (!sent.ok) {
+    const detail = await sent.text().catch(() => '');
+    console.error('posting failed', sent.status, detail.slice(0, 200));
+    // too big for Discord (HTTP 413, or its code 40005)
+    if (sent.status === 413 || detail.includes('40005')) return json({ error: 'too big for Discord', status: sent.status }, 413);
+    return json({ error: 'Discord refused the message', status: sent.status }, sent.status === 401 || sent.status === 404 ? 409 : 502);
+  }
   const m = await sent.json() as { id: string };
   return json({ ok: true, messageId: m.id });
 }
@@ -274,7 +331,7 @@ export default {
       if (url.pathname === '/api/pending' && req.method === 'GET') return await pending(req, env, url);
       if (url.pathname === '/api/post' && req.method === 'POST') return await post(req, env, url);
       if (url.pathname === '/api/fetch' && req.method === 'GET') return await addonFile(url);
-      if (url.pathname === '/api/media' && req.method === 'GET') return await media(req, env, url);
+      if (url.pathname === '/api/media' && (req.method === 'GET' || req.method === 'HEAD')) return await media(req, env, url);
     } catch (e) {
       return json({ error: String((e as Error)?.message || e) }, 500);
     }

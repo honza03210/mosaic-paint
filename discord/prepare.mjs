@@ -26,5 +26,5 @@ for (const f of ['index.html', 'vector.html']) {
     .replace('</head>', head));
 }
 if (!clientId) console.warn('No DISCORD_CLIENT_ID (environment or .env): the Activity will ask the Worker for it.');
-for (const f of ['style.css', 'dist/raster.js', 'dist/mosaic.js', 'dist/activity.js', 'dist/ai-worker.js', 'dist/ocr.js', 'icons/icon.svg', 'icons/icon-192.png']) copy(f);
+for (const f of ['style.css', 'dist/raster.js', 'dist/mosaic.js', 'dist/activity.js', 'dist/ai-worker.js', 'dist/ocr.js', 'dist/compress.js', 'icons/icon.svg', 'icons/icon-192.png']) copy(f);
 console.log('Copied the editor to', out);

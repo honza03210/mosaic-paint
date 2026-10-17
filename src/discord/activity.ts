@@ -1,9 +1,11 @@
 /* The editor as a Discord Activity (dist/activity.js – loaded by the raster or vector app only inside Discord).
    It signs the user in, opens the image they picked in the chat ("Edit image"), and posts the edited
-   picture back to the chat, as an answer to the user's command. The backend is the Worker in discord/
+   picture back to the chat, as an answer to the user's command. "Compress video" and /compress-video open the
+   video compressor instead (compress-ui.ts): a video made small enough for Discord, posted the same way. The backend is the Worker in discord/
    (its API under /api). The app is reached through window.RZ (raster) or window.MZ
    (vector), so this bundle stays small (no second copy of the editor or its texts). */
 import { DiscordSDK, RPCCloseCodes } from '@discord/embedded-app-sdk';
+import { openCompress, type CompressContext } from './compress-ui.ts';
 
 /** What the app offers the Activity (raster/main.ts, features/discord-host.ts). */
 interface Editor {
@@ -82,10 +84,27 @@ async function start(app: Editor, ready: Promise<void>): Promise<void> {
   post.textContent = t('Post to the channel');
   post.title = t('Post the picture in this channel, as a reply to the message it came from');
   document.querySelector('#btn-new').before(post);
+  // the video compressor, for a video from the device (posting needs /compress-video or "Compress video" here)
+  const channel = encodeURIComponent(sdk.channelId || '');
+  const compress: CompressContext = {
+    t, toast: (m) => app.toast(m),
+    post: (video) => call(`/post?channel=${channel}`, { method: 'POST', headers: { ...auth, 'content-type': video.type || 'video/mp4' }, body: video }),
+    done: () => setTimeout(() => sdk.close(RPCCloseCodes.CLOSE_NORMAL, 'posted'), 1200),
+  };
+  const squeeze = document.createElement('button');
+  squeeze.id = 'btn-compress-discord';
+  squeeze.textContent = t('Compress video…');
+  squeeze.title = t('Make a video small enough for Discord – on your device – and post it here');
+  squeeze.onclick = () => openCompress(compress, null);
+  post.after(squeeze);
 
-  // the image picked in the chat, if any
+  // the image picked in the chat, if any – or the video to compress
   const r = await pending;
-  if (r.status === 200) {
+  if (r.status === 200 && r.headers.get('content-type')?.startsWith('application/json')) {
+    const v = await r.json() as { mode?: string; filename?: string; size?: number | null; media?: string | null };
+    if (v.mode === 'compress') openCompress(compress, v.media ? { url: API.replace(/\/api$/, '') + v.media, name: v.filename || 'video.mp4', size: v.size ?? null } : null);
+  }
+  else if (r.status === 200) {
     const media = r.headers.get('x-media');
     await app.openImage(await r.blob(), decodeURIComponent(r.headers.get('x-filename') || 'image.png'), media ? { src: API.replace(/\/api$/, '') + media } : {});
   }

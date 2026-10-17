@@ -1,4 +1,5 @@
-// Registers the app's commands with Discord: "Edit image" (right-click a message › Apps › Edit image) and the
+// Registers the app's commands with Discord: "Edit image" (right-click a message › Apps › Edit image),
+// "Compress video" (the same, for a video) and /compress-video (a video from your device), and the
 // Activity's own launch command, both usable in servers, DMs and group DMs, by servers or people that
 // installed the app. The launch command is handled by the Worker (so a picture edited after opening the
 // editor from the App Launcher can be posted too).
@@ -34,6 +35,12 @@ const commands = [
   { ...(entry ? { id: entry.id, name: entry.name, description: entry.description } : { name: 'launch', description: 'Open the editor' }), type: 4, handler: 1, ...everywhere },
   // type 3: a message command
   { name: 'Edit image', type: 3, ...everywhere },
+  { name: 'Compress video', type: 3, ...everywhere },
+  // type 1: a slash command; option type 11: an attachment (optional: else the video is chosen in the Activity)
+  {
+    name: 'compress-video', type: 1, description: 'Make a video small enough for Discord (on your device) and post it here', ...everywhere,
+    options: [{ type: 11, name: 'video', description: 'The video (or choose one from your device after it opens)', required: false }],
+  },
 ];
 const r = await fetch(url, { method: 'PUT', headers, body: JSON.stringify(commands) });
 const out = await r.json();

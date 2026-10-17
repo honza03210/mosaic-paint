@@ -8,6 +8,12 @@ Discord (an *Activity*) with that image loaded. Draw on it with any of the tools
 channel**: the app posts the picture in the chat as an answer to your "Edit image" ("Edited by @you ·
 original", with a link to the message the image came from) – the way Wordle posts its results.
 
+**Compress a video:** right-click a message with a video › **Apps › Compress video**, or type
+**/compress-video** (attach a video, or choose one from your device once it opens). The video is made
+smaller on your device – to 20 MB, or 10 MB – shown, and posted with **Post to the channel** ("Compressed
+by @you"). Nothing is uploaded until then: the Worker only passes a chat video through, in pieces, from
+Discord's CDN (`/api/media`, signed). A video longer than the size can carry well is refused with a note.
+
 Opened with the app's launch button (App Launcher) instead, the editor starts empty: open or paste an image
 there; it can be posted the same way.
 
@@ -95,7 +101,7 @@ DISCORD_CLIENT_ID=your application id
 DISCORD_CLIENT_SECRET=your client secret
 ```
 
-then `npm run register`. It registers "Edit image" and makes the app's launch button go through the Worker,
+then `npm run register`. It registers "Edit image", "Compress video" and /compress-video and makes the app's launch button go through the Worker,
 both usable in servers, DMs and group DMs.
 
 ### 5. Install it
@@ -121,5 +127,8 @@ values in `.dev.vars`); inside Discord it can only be tried once it is deployed 
 ## Limits and notes
 
 - Pictures up to 10 MB can be posted (Discord's upload limit); bigger ones: Image › Resize image first.
+- Compressed videos: the Worker takes up to 25 MB; Discord has the last word (if it refuses 20 MB, the
+  dialog says to try 10 MB). Compressing needs WebCodecs (Discord's desktop app, Chrome, Edge, Safari 16.4+;
+  sound needs an audio encoder too – without one the video goes without sound, and the dialog says so).
 - 15 minutes from "Edit image" to posting (see above).
 - The free plan allows 100 000 requests a day; one edit takes about five.

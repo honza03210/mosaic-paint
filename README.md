@@ -13,7 +13,7 @@ To run it from a download instead, open `index.html` (or `raster.html`) in Chrom
 
 ## Discord
 
-The raster editor can also run inside Discord as an Activity: right-click a message with an image, a GIF or a video (also Tenor / Giphy GIFs) › Apps › **Edit image** (for a GIF or a video, choose the frame first), draw on it, and **Post to the channel** – in servers, DMs and group DMs, with no bot needed (the picture is posted as an answer to the command, like Wordle's results). The app switch works there too: in the vector app the picture becomes the photo layer to draw shapes on. The backend is a small Cloudflare Worker (free plan) in [`discord/`](discord/README.md), with step-by-step setup.
+The raster editor can also run inside Discord as an Activity: right-click a message with an image, a GIF or a video (also Tenor / Giphy GIFs) › Apps › **Edit image** (for a GIF or a video, choose the frame first), draw on it, and **Post to the channel** – in servers, DMs and group DMs, with no bot needed (the picture is posted as an answer to the command, like Wordle's results). The app switch works there too: in the vector app the picture becomes the photo layer to draw shapes on. **Compress video** (right-click a message with a video › Apps) and **/compress-video** (a video from your device) make a video small enough for Discord – 20 MB or 10 MB, worked out on your device with the browser’s own encoders (H.264 in MP4, else VP9 in WebM) – and post it. The backend is a small Cloudflare Worker (free plan) in [`discord/`](discord/README.md), with step-by-step setup.
 
 ## Getting started
 
@@ -167,7 +167,7 @@ The apps are written in TypeScript and bundled into one script each: `dist/mosai
 - `index.html`, `raster.html`, `style.css`: UI of the two apps (one stylesheet)
 - `src/main.ts`: vector entry point; loads the editor core, then the features
 - `src/shared/`: shared by both apps – page helpers, the palette panel (`palette-ui.ts`), images on the clipboard (`clipboard.ts`), the phone layout / install / offline shell (`shell.ts`), the 3D print dialog (`export3d.ts`), the version history (`history-ui.ts`), the examples dialog (`examples-ui.ts`) and the guide (`guide.ts`), print pages, color legends and CSV files (`printing.ts`), the 3D view (`view3d.ts`, plain WebGL), languages (`i18n.ts`: `t()`, word forms, translating the page; `i18n-cs.ts`, `i18n-de.ts`, `i18n-sk.ts`, `i18n-pl.ts`: the texts of each language, keyed by the English text), running jobs in the worker (`work.ts`)
-- `src/discord/activity.ts`: the editor as a Discord Activity (`dist/activity.js`, loaded only inside Discord); its backend, a Cloudflare Worker, is in `discord/`
+- `src/discord/activity.ts`: the editor as a Discord Activity (`dist/activity.js`, loaded only inside Discord); `compress-ui.ts` and `compress.ts` (`dist/compress.js`, loaded when a video is compressed – Mediabunny and WebCodecs; `src/lib/video-plan.ts` picks the bitrate and size); its backend, a Cloudflare Worker, is in `discord/`
 - `src/worker/`: the worker – its jobs (`jobs.ts`: plain data in and out) and its entry point (`worker.ts`)
 - `src/lib/`: pure logic with no page or editor access (unit-tested in Node)
   - `geometry.ts`: geometry math, including finding closed areas for the bucket

@@ -2264,4 +2264,48 @@ export const PL: Record<string, string> = {
     'Pędzle Rozmycie (U) i Szum (N) do wtapiania zdjęć: rozmyj krawędź wklejonego zdjęcia, aby ją zmiękczyć (krawędź wycinka zanika), a potem dodaj trochę ziarna, aby pasowało do obrazu wokół.',
   'In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).':
     'W węższym oknie górny pasek przewija się sam, zamiast przesuwać całą stronę w bok (płótno mogło zniknąć z widoku).',
+  'Compress video…':
+    'Zmniejsz wideo…',
+  'Make a video small enough for Discord – on your device – and post it here':
+    'Zmniejsz wideo tak, by zmieściło się w Discordzie – na twoim urządzeniu – i opublikuj je tutaj',
+  'Compress a video':
+    'Zmniejsz wideo',
+  'The video is made smaller on your device, then posted to the channel.':
+    'Wideo zostanie zmniejszone na twoim urządzeniu, a potem opublikowane na kanale.',
+  'Choose a video…':
+    'Wybierz wideo…',
+  'Small enough already – it is posted as it is.':
+    'Już jest dość małe – zostanie opublikowane bez zmian.',
+  'Use as it is':
+    'Użyj bez zmian',
+  'Compress':
+    'Zmniejsz',
+  'Too long for {size} MB – the picture would be very poor. Choose the larger size or a shorter video.':
+    'Za długie na {size} MB – obraz byłby bardzo słaby. Wybierz większy rozmiar lub krótsze wideo.',
+  '→ about {w} × {h}, {rate} Mbit/s':
+    '→ około {w} × {h}, {rate} Mbit/s',
+  'Opening {name}…':
+    'Otwieranie {name}…',
+  'This video can’t be read here – try another one (MP4, MOV or WebM).':
+    'Tego wideo nie da się tu odczytać – spróbuj innego (MP4, MOV lub WebM).',
+  'Could not compress the video.':
+    'Nie udało się zmniejszyć wideo.',
+  '{size} (was {before})':
+    '{size} (było {before})',
+  'without sound (this browser can’t make it)':
+    'bez dźwięku (ta przeglądarka nie potrafi go utworzyć)',
+  'still too big – choose the larger size or a shorter video':
+    'wciąż za duże – wybierz większy rozmiar lub krótsze wideo',
+  'Discord did not take a video this big – try 10 MB.':
+    'Discord nie przyjął tak dużego wideo – spróbuj 10 MB.',
+  'Use “Compress video” on a message or /compress-video in this chat to post here.':
+    'Aby opublikować tutaj, użyj „Compress video” na wiadomości lub /compress-video na tym czacie.',
+  'More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.':
+    'Minęło ponad 15 minut i Discord nie pozwala już aplikacji publikować. Uruchom /compress-video ponownie.',
+  'Discord did not take the video.':
+    'Discord nie przyjął wideo.',
+  'Choose a video from your device.':
+    'Wybierz wideo ze swojego urządzenia.',
+  'Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.':
+    'Discord: zmniejsz wideo do limitu Discorda i opublikuj je – prawy przycisk na wiadomości z wideo › Aplikacje › Compress video, albo /compress-video dla wideo z urządzenia. Zmniejsza się na twoim urządzeniu (20 MB lub 10 MB), pokazuje, a potem publikuje.',
 };

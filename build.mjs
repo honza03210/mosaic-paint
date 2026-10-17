@@ -3,7 +3,8 @@
 // src/discord/activity.ts → dist/activity.js, which the raster app loads only when it runs inside Discord.
 // The add-ons' code loads only when one is used: src/ai/worker.ts → dist/ai-worker.js (a module worker with
 // ONNX Runtime Web; the engine and the models themselves are downloaded, see src/shared/addons.ts) and
-// src/ocr/ocr.ts → dist/ocr.js (Tesseract's page side).
+// src/ocr/ocr.ts → dist/ocr.js (Tesseract's page side). In Discord, src/discord/compress.ts → dist/compress.js
+// (the video compressor).
 // The worker (src/worker/worker.ts) is bundled first and goes into each app as a string (import
 // 'worker-source'): the apps start it from a blob URL, which works from file:// too.
 // The version in package.json goes into the apps (__VERSION__), and the offline cache in sw.js is named
@@ -55,6 +56,8 @@ const options = {
 const addons = [
   { ...common, entryPoints: { 'ai-worker': 'src/ai/worker.ts' }, outdir: 'dist', format: 'esm', minify: true, logLevel: 'info' },
   { ...common, entryPoints: { ocr: 'src/ocr/ocr.ts' }, outdir: 'dist', format: 'iife', minify: true, logLevel: 'info' },
+  // Discord: the video compressor (Mediabunny), loaded only when a video is compressed
+  { ...common, entryPoints: { compress: 'src/discord/compress.ts' }, outdir: 'dist', format: 'iife', minify: true, logLevel: 'info' },
 ];
 if (process.argv.includes('--watch')) {
   for (const o of [options, ...addons]) await (await esbuild.context(o)).watch();

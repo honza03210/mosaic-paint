@@ -154,3 +154,91 @@ test('when no address works, Discord’s answer comes back with the 410', async 
   // never stored on the way: a cached 410 answered every later request
   assert.equal(r.headers.get('cache-control'), 'no-store');
 });
+
+// ---- compressing a video --------------------------------------------------------------------------------
+const MP4 = new Uint8Array([0, 0, 0, 24, 102, 116, 121, 112, 1, 2, 3]);
+const compressMsg = (attachments, embeds = []) => ({
+  type: 2, application_id: 'app1', token: 'cmd-token', channel_id: 'chan1', guild_id: 'g1', member: { user: { id: 'ann' } },
+  data: { type: 3, name: 'Compress video', target_id: 'm2', resolved: { messages: { m2: { id: 'm2', attachments, embeds } } } },
+});
+const clip = [{ url: 'https://cdn.discordapp.com/a/clip.mp4', proxy_url: 'https://media.discordapp.net/a/clip.mp4', filename: 'clip.mp4', content_type: 'video/mp4', size: 80e6 }];
+
+test('"Compress video": the video is kept for the compressor, which reads it itself (signed, in pieces)', async () => {
+  assert.deepEqual(await (await worker.fetch(await signed(compressMsg(clip)), env)).json(), { type: 12 });
+  assert.deepEqual([edit().mode, edit().url, edit().size, edit().messageId], ['compress', 'https://cdn.discordapp.com/a/clip.mp4', 80e6, 'm2']);
+  const r = await call('/api/pending?channel=chan1', { headers: auth });
+  assert.equal(r.headers.get('content-type'), 'application/json');
+  const v = await r.json();
+  assert.deepEqual([v.mode, v.filename, v.size], ['compress', 'clip.mp4', 80e6]);
+  assert.match(v.media, /^\/api\/media\?u=https%3A%2F%2Fcdn\.discordapp\.com%2Fa%2Fclip\.mp4&exp=\d+&sig=[0-9a-f]{64}$/);
+  // the file itself was not fetched for that
+  assert.equal(calls.filter(c => c.url.includes('clip.mp4')).length, 0);
+  // a message without a video – an image is not one
+  const none = await (await worker.fetch(await signed(compressMsg(cat)), env)).json();
+  assert.equal(none.type, 4);
+  assert.match(none.data.content, /no video/);
+});
+
+test('"Compress video" on a Tenor GIF takes its video from Discord’s media proxy; a YouTube link is refused', async () => {
+  await worker.fetch(await signed(compressMsg([], [{ type: 'gifv', video: { url: 'https://media.tenor.com/x.mp4', proxy_url: 'https://images-ext-1.discordapp.net/external/x.mp4' } }])), env);
+  assert.equal(edit().url, 'https://images-ext-1.discordapp.net/external/x.mp4');
+  const yt = await (await worker.fetch(await signed(compressMsg([], [{ type: 'video', video: { url: 'https://www.youtube.com/embed/abc' } }])), env)).json();
+  assert.equal(yt.type, 4);
+});
+
+test('/compress-video: with an attached video, or none (chosen in the Activity); not another file', async () => {
+  const slash = (options, attachments) => ({
+    type: 2, application_id: 'app1', token: 'cmd-token', channel_id: 'chan1', user: { id: 'ann' },
+    data: { type: 1, name: 'compress-video', options, resolved: { attachments } },
+  });
+  assert.deepEqual(await (await worker.fetch(await signed(slash([], {})), env)).json(), { type: 12 });
+  assert.deepEqual([edit().mode, edit().url], ['compress', null]);
+  assert.deepEqual(await (await call('/api/pending?channel=chan1', { headers: auth })).json(), { mode: 'compress', filename: 'video.mp4', size: null, media: null });
+  await worker.fetch(await signed(slash([{ type: 11, name: 'video', value: 'a1' }], { a1: { url: 'https://cdn.discordapp.com/e/v.mov', filename: 'v.mov', content_type: 'video/quicktime', size: 5e7 } })), env);
+  assert.deepEqual([edit().url, edit().filename, edit().size], ['https://cdn.discordapp.com/e/v.mov', 'v.mov', 5e7]);
+  const txt = await (await worker.fetch(await signed(slash([{ type: 11, name: 'video', value: 'a1' }], { a1: { url: 'https://cdn.discordapp.com/e/a.txt', content_type: 'text/plain' } })), env)).json();
+  assert.match(txt.data.content, /not a video/);
+  // another slash command: unknown
+  assert.match((await (await worker.fetch(await signed({ ...slash([], {}), data: { type: 1, name: 'other' } }), env)).json()).data.content, /Unknown/);
+});
+
+test('posting the compressed video: MP4 (or WebM) up to 25 MB, "Compressed by"; Discord saying too big comes back as 413', async () => {
+  await worker.fetch(await signed(compressMsg(clip)), env);
+  const r = await call('/api/post?channel=chan1', { method: 'POST', headers: { ...auth, 'content-type': 'video/mp4' }, body: MP4 });
+  assert.deepEqual(await r.json(), { ok: true, messageId: 'posted1' });
+  const sent = calls.find(c => c.url.includes('/webhooks/'));
+  const payload = JSON.parse(sent.init.body.get('payload_json'));
+  assert.equal(payload.content, 'Compressed by <@ann> · [original](https://discord.com/channels/g1/chan1/m2)');
+  assert.deepEqual(payload.attachments, [{ id: 0, filename: 'compressed.mp4' }]);
+  const file = sent.init.body.get('files[0]');
+  assert.deepEqual([file.name, file.type], ['compressed.mp4', 'video/mp4']);
+  // larger than the Worker takes
+  const big = new Uint8Array(25 * 1024 * 1024 + 1);
+  assert.equal((await call('/api/post?channel=chan1', { method: 'POST', headers: { ...auth, 'content-type': 'video/webm' }, body: big })).status, 413);
+  // a picture keeps its 10 MB limit
+  assert.equal((await call('/api/post?channel=chan1', { method: 'POST', headers: auth, body: new Uint8Array(11 * 1024 * 1024) })).status, 413);
+  // Discord: too large
+  const real = globalThis.fetch;
+  globalThis.fetch = async (url, init) => (String(url).includes('/webhooks/') ? Response.json({ code: 40005, message: 'Request entity too large' }, { status: 413 }) : real(url, init));
+  assert.equal((await call('/api/post?channel=chan1', { method: 'POST', headers: { ...auth, 'content-type': 'video/mp4' }, body: MP4 })).status, 413);
+});
+
+test('the compressor reads the video in pieces: byte ranges pass through, HEAD too; only with a valid signature', async () => {
+  const seen = [];
+  const real = globalThis.fetch;
+  globalThis.fetch = async (url, init = {}) => {
+    if (String(url).includes('clip.mp4')) {
+      seen.push([init.method || 'GET', new Headers(init.headers).get('range')]);
+      return new Response(init.method === 'HEAD' ? null : MP4.slice(0, 4), { status: 206, headers: { 'content-type': 'video/mp4', 'content-range': 'bytes 0-3/11', 'content-length': '4' } });
+    }
+    return real(url, init);
+  };
+  await worker.fetch(await signed(compressMsg(clip)), env);
+  const { media } = await (await call('/api/pending?channel=chan1', { headers: auth })).json();
+  const part = await call(media, { headers: { range: 'bytes=0-3' } });
+  assert.equal(part.status, 206);
+  assert.equal(part.headers.get('content-range'), 'bytes 0-3/11');
+  assert.equal((await call(media, { method: 'HEAD' })).status, 206);
+  assert.deepEqual(seen, [['GET', 'bytes=0-3'], ['HEAD', null]]);
+  assert.equal((await call(media.replace(/sig=[0-9a-f]+/, 'sig=00'))).status, 403);
+});

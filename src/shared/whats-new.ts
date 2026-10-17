@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '2.8.0', date: '2026-10-17', items: [
+      'Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.',
+    ],
+  },
+  {
     version: '2.7.1', date: '2026-10-17', items: [
       'In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).',
     ],

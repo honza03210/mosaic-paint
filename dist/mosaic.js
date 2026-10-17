@@ -1138,7 +1138,29 @@
     "How much grain": "Kolik zrna",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Vypnuto: stejné zrno v červené, zelené i modré (jako film). Zapnuto: každá barva své",
     "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štětce Rozmazání (U) a Šum (N) pro napojování fotek: rozmažte okraj vložené fotky, aby změkl (okraj výřezu se vytratí), a přidejte trochu zrna, aby ladila s obrázkem kolem.",
-    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "V užším okně se horní lišta posouvá sama, místo aby odsunula celou stránku do strany (plátno mohlo zmizet z dohledu)."
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "V užším okně se horní lišta posouvá sama, místo aby odsunula celou stránku do strany (plátno mohlo zmizet z dohledu).",
+    "Compress video…": "Zmenšit video…",
+    "Make a video small enough for Discord – on your device – and post it here": "Zmenšit video tak, aby se vešlo do Discordu – ve vašem zařízení – a zveřejnit ho tady",
+    "Compress a video": "Zmenšit video",
+    "The video is made smaller on your device, then posted to the channel.": "Video se zmenší ve vašem zařízení a pak se zveřejní v kanálu.",
+    "Choose a video…": "Vybrat video…",
+    "Small enough already – it is posted as it is.": "Už je dost malé – zveřejní se tak, jak je.",
+    "Use as it is": "Použít, jak je",
+    "Compress": "Zmenšit",
+    "Too long for {size} MB – the picture would be very poor. Choose the larger size or a shorter video.": "Na {size} MB je moc dlouhé – obraz by byl velmi špatný. Zvolte větší velikost nebo kratší video.",
+    "→ about {w} × {h}, {rate} Mbit/s": "→ asi {w} × {h}, {rate} Mbit/s",
+    "Opening {name}…": "Otevírám {name}…",
+    "This video can’t be read here – try another one (MP4, MOV or WebM).": "Toto video tu nejde přečíst – zkuste jiné (MP4, MOV nebo WebM).",
+    "Could not compress the video.": "Video se nepodařilo zmenšit.",
+    "{size} (was {before})": "{size} (bylo {before})",
+    "without sound (this browser can’t make it)": "bez zvuku (tento prohlížeč ho neumí vytvořit)",
+    "still too big – choose the larger size or a shorter video": "pořád moc velké – zvolte větší velikost nebo kratší video",
+    "Discord did not take a video this big – try 10 MB.": "Discord tak velké video nepřijal – zkuste 10 MB.",
+    "Use “Compress video” on a message or /compress-video in this chat to post here.": "Pro zveřejnění tady použijte „Compress video“ na zprávě nebo /compress-video v tomto chatu.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Uplynulo víc než 15 minut a Discord už aplikaci nedovolí nic zveřejnit. Spusťte /compress-video znovu.",
+    "Discord did not take the video.": "Discord video nepřijal.",
+    "Choose a video from your device.": "Vyberte video ze svého zařízení.",
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmenšete video, aby se vešlo do limitu Discordu, a zveřejněte ho – pravým tlačítkem na zprávu s videem › Aplikace › Compress video, nebo /compress-video pro video ze zařízení. Zmenší se ve vašem zařízení (20 MB nebo 10 MB), ukáže se a pak zveřejní."
   };
 
   // src/shared/i18n-de.ts
@@ -2274,7 +2296,29 @@
     "How much grain": "Wie viel Körnung",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Aus: dieselbe Körnung in Rot, Grün und Blau (wie Film). An: jede Farbe ihre eigene",
     "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pinsel Weichzeichnen (U) und Rauschen (N), um Fotos ineinander übergehen zu lassen: den Rand eines eingefügten Fotos weichzeichnen (der Rand eines Ausschnitts blendet aus), dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt.",
-    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "In einem schmaleren Fenster scrollt die obere Leiste für sich, statt die ganze Seite zur Seite zu schieben (die Leinwand konnte aus dem Blick rutschen)."
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "In einem schmaleren Fenster scrollt die obere Leiste für sich, statt die ganze Seite zur Seite zu schieben (die Leinwand konnte aus dem Blick rutschen).",
+    "Compress video…": "Video verkleinern…",
+    "Make a video small enough for Discord – on your device – and post it here": "Ein Video klein genug für Discord machen – auf deinem Gerät – und hier posten",
+    "Compress a video": "Ein Video verkleinern",
+    "The video is made smaller on your device, then posted to the channel.": "Das Video wird auf deinem Gerät verkleinert und dann im Kanal gepostet.",
+    "Choose a video…": "Video auswählen…",
+    "Small enough already – it is posted as it is.": "Schon klein genug – es wird so gepostet, wie es ist.",
+    "Use as it is": "So verwenden",
+    "Compress": "Verkleinern",
+    "Too long for {size} MB – the picture would be very poor. Choose the larger size or a shorter video.": "Zu lang für {size} MB – das Bild wäre sehr schlecht. Wähle die größere Größe oder ein kürzeres Video.",
+    "→ about {w} × {h}, {rate} Mbit/s": "→ etwa {w} × {h}, {rate} Mbit/s",
+    "Opening {name}…": "{name} wird geöffnet…",
+    "This video can’t be read here – try another one (MP4, MOV or WebM).": "Dieses Video lässt sich hier nicht lesen – versuche ein anderes (MP4, MOV oder WebM).",
+    "Could not compress the video.": "Das Video konnte nicht verkleinert werden.",
+    "{size} (was {before})": "{size} (vorher {before})",
+    "without sound (this browser can’t make it)": "ohne Ton (dieser Browser kann ihn nicht erzeugen)",
+    "still too big – choose the larger size or a shorter video": "immer noch zu groß – wähle die größere Größe oder ein kürzeres Video",
+    "Discord did not take a video this big – try 10 MB.": "Discord hat ein so großes Video nicht angenommen – versuche 10 MB.",
+    "Use “Compress video” on a message or /compress-video in this chat to post here.": "Nutze „Compress video“ an einer Nachricht oder /compress-video in diesem Chat, um hier zu posten.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Mehr als 15 Minuten sind vergangen, und Discord lässt die App nicht mehr posten. Starte /compress-video erneut.",
+    "Discord did not take the video.": "Discord hat das Video nicht angenommen.",
+    "Choose a video from your device.": "Wähle ein Video von deinem Gerät.",
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: ein Video für Discords Größengrenze verkleinern und posten – Rechtsklick auf eine Nachricht mit Video › Apps › Compress video, oder /compress-video für ein Video von deinem Gerät. Es wird auf deinem Gerät verkleinert (20 MB oder 10 MB), gezeigt und dann gepostet."
   };
 
   // src/shared/i18n-sk.ts
@@ -3410,7 +3454,29 @@
     "How much grain": "Koľko zrna",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Vypnuté: rovnaké zrno v červenej, zelenej aj modrej (ako film). Zapnuté: každá farba svoje",
     "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štetce Rozmazanie (U) a Šum (N) na napájanie fotiek: rozmažte okraj vloženej fotky, aby zmäkol (okraj výrezu sa vytratí), a pridajte trochu zrna, aby ladila s obrázkom okolo.",
-    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "V užšom okne sa horná lišta posúva sama namiesto toho, aby odsunula celú stránku do strany (plátno mohlo zmiznúť z dohľadu)."
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "V užšom okne sa horná lišta posúva sama namiesto toho, aby odsunula celú stránku do strany (plátno mohlo zmiznúť z dohľadu).",
+    "Compress video…": "Zmenšiť video…",
+    "Make a video small enough for Discord – on your device – and post it here": "Zmenšiť video tak, aby sa zmestilo do Discordu – vo vašom zariadení – a zverejniť ho tu",
+    "Compress a video": "Zmenšiť video",
+    "The video is made smaller on your device, then posted to the channel.": "Video sa zmenší vo vašom zariadení a potom sa zverejní v kanáli.",
+    "Choose a video…": "Vybrať video…",
+    "Small enough already – it is posted as it is.": "Už je dosť malé – zverejní sa tak, ako je.",
+    "Use as it is": "Použiť, ako je",
+    "Compress": "Zmenšiť",
+    "Too long for {size} MB – the picture would be very poor. Choose the larger size or a shorter video.": "Na {size} MB je príliš dlhé – obraz by bol veľmi zlý. Zvoľte väčšiu veľkosť alebo kratšie video.",
+    "→ about {w} × {h}, {rate} Mbit/s": "→ asi {w} × {h}, {rate} Mbit/s",
+    "Opening {name}…": "Otváram {name}…",
+    "This video can’t be read here – try another one (MP4, MOV or WebM).": "Toto video sa tu nedá prečítať – skúste iné (MP4, MOV alebo WebM).",
+    "Could not compress the video.": "Video sa nepodarilo zmenšiť.",
+    "{size} (was {before})": "{size} (bolo {before})",
+    "without sound (this browser can’t make it)": "bez zvuku (tento prehliadač ho nevie vytvoriť)",
+    "still too big – choose the larger size or a shorter video": "stále príliš veľké – zvoľte väčšiu veľkosť alebo kratšie video",
+    "Discord did not take a video this big – try 10 MB.": "Discord také veľké video neprijal – skúste 10 MB.",
+    "Use “Compress video” on a message or /compress-video in this chat to post here.": "Na zverejnenie tu použite „Compress video“ na správe alebo /compress-video v tomto chate.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Uplynulo viac ako 15 minút a Discord už aplikácii nedovolí nič zverejniť. Spustite /compress-video znova.",
+    "Discord did not take the video.": "Discord video neprijal.",
+    "Choose a video from your device.": "Vyberte video zo svojho zariadenia.",
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmenšite video, aby sa zmestilo do limitu Discordu, a zverejnite ho – pravým tlačidlom na správu s videom › Aplikácie › Compress video, alebo /compress-video pre video zo zariadenia. Zmenší sa vo vašom zariadení (20 MB alebo 10 MB), ukáže sa a potom zverejní."
   };
 
   // src/shared/i18n-pl.ts
@@ -4546,7 +4612,29 @@
     "How much grain": "Ile ziarna",
     "Off: the same grain in red, green and blue (like film). On: each its own": "Wyłączone: to samo ziarno w czerwonym, zielonym i niebieskim (jak film). Włączone: każdy kolor własne",
     "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pędzle Rozmycie (U) i Szum (N) do wtapiania zdjęć: rozmyj krawędź wklejonego zdjęcia, aby ją zmiękczyć (krawędź wycinka zanika), a potem dodaj trochę ziarna, aby pasowało do obrazu wokół.",
-    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "W węższym oknie górny pasek przewija się sam, zamiast przesuwać całą stronę w bok (płótno mogło zniknąć z widoku)."
+    "In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).": "W węższym oknie górny pasek przewija się sam, zamiast przesuwać całą stronę w bok (płótno mogło zniknąć z widoku).",
+    "Compress video…": "Zmniejsz wideo…",
+    "Make a video small enough for Discord – on your device – and post it here": "Zmniejsz wideo tak, by zmieściło się w Discordzie – na twoim urządzeniu – i opublikuj je tutaj",
+    "Compress a video": "Zmniejsz wideo",
+    "The video is made smaller on your device, then posted to the channel.": "Wideo zostanie zmniejszone na twoim urządzeniu, a potem opublikowane na kanale.",
+    "Choose a video…": "Wybierz wideo…",
+    "Small enough already – it is posted as it is.": "Już jest dość małe – zostanie opublikowane bez zmian.",
+    "Use as it is": "Użyj bez zmian",
+    "Compress": "Zmniejsz",
+    "Too long for {size} MB – the picture would be very poor. Choose the larger size or a shorter video.": "Za długie na {size} MB – obraz byłby bardzo słaby. Wybierz większy rozmiar lub krótsze wideo.",
+    "→ about {w} × {h}, {rate} Mbit/s": "→ około {w} × {h}, {rate} Mbit/s",
+    "Opening {name}…": "Otwieranie {name}…",
+    "This video can’t be read here – try another one (MP4, MOV or WebM).": "Tego wideo nie da się tu odczytać – spróbuj innego (MP4, MOV lub WebM).",
+    "Could not compress the video.": "Nie udało się zmniejszyć wideo.",
+    "{size} (was {before})": "{size} (było {before})",
+    "without sound (this browser can’t make it)": "bez dźwięku (ta przeglądarka nie potrafi go utworzyć)",
+    "still too big – choose the larger size or a shorter video": "wciąż za duże – wybierz większy rozmiar lub krótsze wideo",
+    "Discord did not take a video this big – try 10 MB.": "Discord nie przyjął tak dużego wideo – spróbuj 10 MB.",
+    "Use “Compress video” on a message or /compress-video in this chat to post here.": "Aby opublikować tutaj, użyj „Compress video” na wiadomości lub /compress-video na tym czacie.",
+    "More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.": "Minęło ponad 15 minut i Discord nie pozwala już aplikacji publikować. Uruchom /compress-video ponownie.",
+    "Discord did not take the video.": "Discord nie przyjął wideo.",
+    "Choose a video from your device.": "Wybierz wideo ze swojego urządzenia.",
+    "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.": "Discord: zmniejsz wideo do limitu Discorda i opublikuj je – prawy przycisk na wiadomości z wideo › Aplikacje › Compress video, albo /compress-video dla wideo z urządzenia. Zmniejsza się na twoim urządzeniu (20 MB lub 10 MB), pokazuje, a potem publikuje."
   };
 
   // src/shared/i18n.ts
@@ -14232,8 +14320,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.7.1" : "dev";
+  var VERSION = true ? "2.8.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.8.0",
+      date: "2026-10-17",
+      items: [
+        "Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted."
+      ]
+    },
     {
       version: "2.7.1",
       date: "2026-10-17",

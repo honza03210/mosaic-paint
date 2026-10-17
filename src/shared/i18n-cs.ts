@@ -2264,4 +2264,48 @@ export const CS: Record<string, string> = {
     'Štětce Rozmazání (U) a Šum (N) pro napojování fotek: rozmažte okraj vložené fotky, aby změkl (okraj výřezu se vytratí), a přidejte trochu zrna, aby ladila s obrázkem kolem.',
   'In a narrower window the top bar scrolls on its own instead of pushing the whole page sideways (the canvas could slide out of view).':
     'V užším okně se horní lišta posouvá sama, místo aby odsunula celou stránku do strany (plátno mohlo zmizet z dohledu).',
+  'Compress video…':
+    'Zmenšit video…',
+  'Make a video small enough for Discord – on your device – and post it here':
+    'Zmenšit video tak, aby se vešlo do Discordu – ve vašem zařízení – a zveřejnit ho tady',
+  'Compress a video':
+    'Zmenšit video',
+  'The video is made smaller on your device, then posted to the channel.':
+    'Video se zmenší ve vašem zařízení a pak se zveřejní v kanálu.',
+  'Choose a video…':
+    'Vybrat video…',
+  'Small enough already – it is posted as it is.':
+    'Už je dost malé – zveřejní se tak, jak je.',
+  'Use as it is':
+    'Použít, jak je',
+  'Compress':
+    'Zmenšit',
+  'Too long for {size} MB – the picture would be very poor. Choose the larger size or a shorter video.':
+    'Na {size} MB je moc dlouhé – obraz by byl velmi špatný. Zvolte větší velikost nebo kratší video.',
+  '→ about {w} × {h}, {rate} Mbit/s':
+    '→ asi {w} × {h}, {rate} Mbit/s',
+  'Opening {name}…':
+    'Otevírám {name}…',
+  'This video can’t be read here – try another one (MP4, MOV or WebM).':
+    'Toto video tu nejde přečíst – zkuste jiné (MP4, MOV nebo WebM).',
+  'Could not compress the video.':
+    'Video se nepodařilo zmenšit.',
+  '{size} (was {before})':
+    '{size} (bylo {before})',
+  'without sound (this browser can’t make it)':
+    'bez zvuku (tento prohlížeč ho neumí vytvořit)',
+  'still too big – choose the larger size or a shorter video':
+    'pořád moc velké – zvolte větší velikost nebo kratší video',
+  'Discord did not take a video this big – try 10 MB.':
+    'Discord tak velké video nepřijal – zkuste 10 MB.',
+  'Use “Compress video” on a message or /compress-video in this chat to post here.':
+    'Pro zveřejnění tady použijte „Compress video“ na zprávě nebo /compress-video v tomto chatu.',
+  'More than 15 minutes have passed, and Discord no longer lets the app post. Run /compress-video again.':
+    'Uplynulo víc než 15 minut a Discord už aplikaci nedovolí nic zveřejnit. Spusťte /compress-video znovu.',
+  'Discord did not take the video.':
+    'Discord video nepřijal.',
+  'Choose a video from your device.':
+    'Vyberte video ze svého zařízení.',
+  'Discord: compress a video to fit Discord’s limit and post it – right-click a message with a video › Apps › Compress video, or /compress-video for a video from your device. It is made smaller on your device (20 MB or 10 MB), shown, then posted.':
+    'Discord: zmenšete video, aby se vešlo do limitu Discordu, a zveřejněte ho – pravým tlačítkem na zprávu s videem › Aplikace › Compress video, nebo /compress-video pro video ze zařízení. Zmenší se ve vašem zařízení (20 MB nebo 10 MB), ukáže se a pak zveřejní.',
 };
