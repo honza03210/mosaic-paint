@@ -244,7 +244,7 @@ export function render(): void {
     vctx.strokeStyle = '#2b8cff';
     vctx.stroke();
   }
-  if (c && ['brush', 'pencil', 'eraser', 'clone', 'heal'].includes(state.tool) && !state.space) {
+  if (c && ['brush', 'pencil', 'eraser', 'clone', 'heal', 'blur', 'noise'].includes(state.tool) && !state.space) {
     const r = state.size / 2;
     vctx.beginPath();
     if (state.tool === 'pencil') {

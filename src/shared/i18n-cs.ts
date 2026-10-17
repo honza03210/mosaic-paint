@@ -1940,8 +1940,8 @@ export const CS: Record<string, string> = {
     'Přemalujte, co má zmizet – po zvednutí se vyplní z okolí',
   'Tap to add text · drag it into place · tap it to edit · Enter places it':
     'Klepnutím přidáte text · přetáhněte ho na místo · klepnutím ho upravíte · Enter ho umístí',
-  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
-    'Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Rozmazání, Šum, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun',
   'Text – tap to type; fonts, outline, shadow and curved text (T)':
     'Text – klepněte a pište; písma, obrys, stín a zakřivený text (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
@@ -2234,4 +2234,32 @@ export const CS: Record<string, string> = {
     'Zvětšit či zmenšit (protější roh zůstane na místě)',
   'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.':
     'Změna velikosti výběru myší: táhněte za jeden z úchytů v jeho rozích – protější roh zůstane na místě a poměr stran se zachová. Stejně jako u dvou prstů vzniká vždy z původních pixelů.',
+  'Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best':
+    'Malováním změkčíte – okraje vložených fotek splynou · [ ] velikost · nejlépe splývá měkký hrot',
+  'Paint to add grain – a smooth patch matches the photo around it · [ ] size':
+    'Malováním přidáte zrno – hladká plocha ladí s fotkou kolem · [ ] velikost',
+  'Blur':
+    'Rozmazání',
+  'Noise':
+    'Šum',
+  'Strength':
+    'Síla',
+  'Amount':
+    'Množství',
+  'Colored grain':
+    'Barevné zrno',
+  'To blend a photo in: blur along its edge, then add a little grain so it matches the picture around it. Each stroke adds more; the tip and opacity are the brush\'s.':
+    'Jak fotku napojit: rozmažte její okraj a pak přidejte trochu zrna, aby ladila s obrázkem kolem. Každý tah přidá víc; hrot a krytí jsou jako u štětce.',
+  'Blur – paint to soften: blends the edges of a pasted photo into the picture (U)':
+    'Rozmazání – malováním změkčíte: okraje vložené fotky splynou s obrázkem (U)',
+  'Noise – paint to add grain: makes a smooth or pasted part match a photo\'s texture (N)':
+    'Šum – malováním přidáte zrno: hladká nebo vložená část dostane texturu fotky (N)',
+  'How soft: about this many pixels':
+    'Jak měkce: zhruba o tolik pixelů',
+  'How much grain':
+    'Kolik zrna',
+  'Off: the same grain in red, green and blue (like film). On: each its own':
+    'Vypnuto: stejné zrno v červené, zelené i modré (jako film). Zapnuto: každá barva své',
+  'Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.':
+    'Štětce Rozmazání (U) a Šum (N) pro napojování fotek: rozmažte okraj vložené fotky, aby změkl (okraj výřezu se vytratí), a přidejte trochu zrna, aby ladila s obrázkem kolem.',
 };

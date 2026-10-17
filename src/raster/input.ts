@@ -179,6 +179,8 @@ function onKey(e: KeyboardEvent): void {
     case 's': setTool('clone'); break;
     case 'j': setTool('heal'); break;
     case 'r': setTool('remove'); break;
+    case 'u': setTool('blur'); break;
+    case 'n': setTool('noise'); break;
     case 't': setTool('text'); break;
     case 'l': setTool('line'); break;
     case 'g': setTool('ngon'); break;

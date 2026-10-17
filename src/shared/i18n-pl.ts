@@ -1940,8 +1940,8 @@ export const PL: Record<string, string> = {
     'Zamaluj to, co ma zniknąć – po uniesieniu wypełni się z otoczenia',
   'Tap to add text · drag it into place · tap it to edit · Enter places it':
     'Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza',
-  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
-    'Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Rozmycie, Szum, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń',
   'Text – tap to type; fonts, outline, shadow and curved text (T)':
     'Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
@@ -2234,4 +2234,32 @@ export const PL: Record<string, string> = {
     'Skalowanie (przeciwny róg zostaje na miejscu)',
   'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.':
     'Skalowanie zaznaczenia myszą: przeciągnij jeden z uchwytów w jego rogach – przeciwny róg zostaje na miejscu, a proporcje są zachowane. Tak jak przy dwóch palcach, zawsze powstaje z oryginalnych pikseli.',
+  'Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best':
+    'Maluj, aby zmiękczyć – krawędzie wklejonych zdjęć się wtapiają · [ ] rozmiar · najlepiej wtapia miękka końcówka',
+  'Paint to add grain – a smooth patch matches the photo around it · [ ] size':
+    'Maluj, aby dodać ziarno – gładki fragment pasuje do zdjęcia wokół · [ ] rozmiar',
+  'Blur':
+    'Rozmycie',
+  'Noise':
+    'Szum',
+  'Strength':
+    'Siła',
+  'Amount':
+    'Ilość',
+  'Colored grain':
+    'Kolorowe ziarno',
+  'To blend a photo in: blur along its edge, then add a little grain so it matches the picture around it. Each stroke adds more; the tip and opacity are the brush\'s.':
+    'Jak wtopić zdjęcie: rozmyj jego krawędź, a potem dodaj trochę ziarna, aby pasowało do obrazu wokół. Każde pociągnięcie dodaje więcej; końcówka i krycie są jak w pędzlu.',
+  'Blur – paint to soften: blends the edges of a pasted photo into the picture (U)':
+    'Rozmycie – maluj, aby zmiękczyć: krawędzie wklejonego zdjęcia wtapiają się w obraz (U)',
+  'Noise – paint to add grain: makes a smooth or pasted part match a photo\'s texture (N)':
+    'Szum – maluj, aby dodać ziarno: gładki lub wklejony fragment dostaje fakturę zdjęcia (N)',
+  'How soft: about this many pixels':
+    'Jak miękko: mniej więcej o tyle pikseli',
+  'How much grain':
+    'Ile ziarna',
+  'Off: the same grain in red, green and blue (like film). On: each its own':
+    'Wyłączone: to samo ziarno w czerwonym, zielonym i niebieskim (jak film). Włączone: każdy kolor własne',
+  'Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.':
+    'Pędzle Rozmycie (U) i Szum (N) do wtapiania zdjęć: rozmyj krawędź wklejonego zdjęcia, aby ją zmiękczyć (krawędź wycinka zanika), a potem dodaj trochę ziarna, aby pasowało do obrazu wokół.',
 };

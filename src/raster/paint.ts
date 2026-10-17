@@ -9,6 +9,7 @@ import type { Pt } from '../lib/geometry.ts';
 import * as R from '../lib/raster.ts';
 import * as Curves from '../lib/curves.ts';
 import { heal } from '../lib/heal.ts';
+import { blurRGBA, noiseRGBA } from '../lib/blend.ts';
 import { removeTool } from './remove.ts';
 import { toast } from '../shared/ui.ts';
 import { state } from './state.ts';
@@ -158,12 +159,12 @@ function flushStamps(st: Stamps, ctx: CanvasRenderingContext2D): void {
 // ---- brush, pencil, eraser: freehand strokes ----------------------------------------------------------------
 const sizeAt = (e: PointerEvent) => R.pressureSize(state.size, e, state.pressure);
 
-interface Stroke { kind: string; tip: string; offset?: Pt; copy?: HTMLCanvasElement; box?: { x0: number; y0: number; x1: number; y1: number }; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; stamps: Stamps | null; timer: number; shift: boolean; start: Pt; last: Pt; lastSize: number; erase: boolean; alpha: number }
+interface Stroke { kind: string; tip: string; offset?: Pt; copy?: HTMLCanvasElement; effect?: Effect; box?: { x0: number; y0: number; x1: number; y1: number }; base: HTMLCanvasElement; layer: HTMLCanvasElement; lctx: CanvasRenderingContext2D; stamps: Stamps | null; timer: number; shift: boolean; start: Pt; last: Pt; lastSize: number; erase: boolean; alpha: number }
 function beginStroke(kind: string, p: Pt, size: number): Stroke {
   const base = makeCanvas(doc.width, doc.height);
   base.getContext('2d').drawImage(doc, 0, 0);
   const layer = makeCanvas(doc.width, doc.height);
-  const copying = kind === 'clone' || kind === 'heal';
+  const copying = kind === 'clone' || kind === 'heal' || kind === 'blur' || kind === 'noise';
   const erase = kind === 'eraser' || (!copying && !state.fill);
   // the pencil paints exact colors: always fully opaque
   const alpha = kind === 'pencil' ? 1 : state.opacity;
@@ -171,17 +172,48 @@ function beginStroke(kind: string, p: Pt, size: number): Stroke {
   const stamps = ['soft', 'spray', 'chalk'].includes(tip) ? newStamps(erase ? '#000' : paintColor()) : null;
   // clone: copies from the source, as far from the brush as the source is from its anchor
   const c = state.clone, offset = copying && c.src && c.anchor ? { x: c.src.x - c.anchor.x, y: c.src.y - c.anchor.y } : undefined;
-  return { kind, tip, offset, base, layer, lctx: layer.getContext('2d'), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
+  return { kind, tip, offset, effect: kind === 'blur' || kind === 'noise' ? newEffect(kind) : undefined, base, layer, lctx: layer.getContext('2d'), stamps, timer: 0, shift: false, start: p, last: p, lastSize: size, erase, alpha };
 }
 function strokeSegment(s: Stroke, a: Pt, b: Pt, size = state.size, sizeA = size): void {
   // where the stroke has been (for healing)
   const m = Math.max(size, sizeA) / 2 + 2, bx = s.box;
   s.box = { x0: Math.min(bx ? bx.x0 : Infinity, a.x - m, b.x - m), y0: Math.min(bx ? bx.y0 : Infinity, a.y - m, b.y - m), x1: Math.max(bx ? bx.x1 : -Infinity, a.x + m, b.x + m), y1: Math.max(bx ? bx.y1 : -Infinity, a.y + m, b.y + m) };
+  if (s.effect) effectAt(s, Math.min(a.x, b.x) - m * 1.2, Math.min(a.y, b.y) - m * 1.2, Math.max(a.x, b.x) + m * 1.2, Math.max(a.y, b.y) + m * 1.2);
   const color = s.erase ? '#000' : paintColor();
   if (s.tip === 'pencil') hardLine(s.lctx, a, b, size, paintColor());
   else if (s.tip === 'calligraphy') nibLine(s.lctx, a, b, sizeA, size, color);
   else if (s.stamps) { stampLine(s.stamps, s.tip, a, b, sizeA, size); flushStamps(s.stamps, s.lctx); }
   else smoothLine(s.lctx, a, b, size, color);
+}
+/**
+ * Blur, Noise: the image blurred or with grain – the brush shows it where it paints. Worked out in tiles as the
+ * brush reaches them (a big photo would take long, and much memory, all at once).
+ */
+interface Effect { kind: string; canvas: HTMLCanvasElement; done: Set<number>; r: number; amount: number; colored: boolean; seed: number }
+const TILE = 256;
+function newEffect(kind: string): Effect {
+  return { kind, canvas: makeCanvas(doc.width, doc.height), done: new Set(), r: state.blurRadius, amount: state.noiseAmount, colored: state.noiseColor, seed: (Math.random() * 2 ** 31) | 0 };
+}
+/** The tiles under x0…x1, y0…y1 (image px) that aren't worked out yet. */
+function effectAt(s: Stroke, x0: number, y0: number, x1: number, y1: number): void {
+  const e = s.effect, W = doc.width, H = doc.height, cols = Math.ceil(W / TILE);
+  // the blur reaches this far: three passes of r
+  const pad = e.kind === 'blur' ? 3 * Math.max(1, Math.round(e.r)) + 1 : 0;
+  const bctx = s.base.getContext('2d'), ectx = e.canvas.getContext('2d');
+  for (let ty = Math.max(0, Math.floor(y0 / TILE)); ty <= Math.min(Math.ceil(H / TILE) - 1, Math.floor(y1 / TILE)); ty++) {
+    for (let tx = Math.max(0, Math.floor(x0 / TILE)); tx <= Math.min(cols - 1, Math.floor(x1 / TILE)); tx++) {
+      const id = ty * cols + tx;
+      if (e.done.has(id)) continue;
+      e.done.add(id);
+      const ax = Math.max(0, tx * TILE - pad), ay = Math.max(0, ty * TILE - pad);
+      const bx = Math.min(W, (tx + 1) * TILE + pad), by = Math.min(H, (ty + 1) * TILE + pad), w = bx - ax, h = by - ay;
+      const im = bctx.getImageData(ax, ay, w, h);
+      const d = e.kind === 'blur' ? blurRGBA(im.data, w, h, e.r) : noiseRGBA(im.data, w, h, e.amount, e.colored, e.seed + id);
+      // only the tile itself (the margin was only for the blur to reach across)
+      const cx = tx * TILE - ax, cy = ty * TILE - ay;
+      ectx.putImageData(new ImageData(d as any, w, h), ax, ay, cx, cy, Math.min(TILE, W - tx * TILE), Math.min(TILE, H - ty * TILE));
+    }
+  }
 }
 /** The image = what it was before the stroke + the stroke layer. */
 function compose(s: Stroke): void {
@@ -189,6 +221,24 @@ function compose(s: Stroke): void {
   dctx.globalCompositeOperation = 'copy';
   dctx.drawImage(s.base, 0, 0);
   dctx.restore();
+  if (s.effect) {
+    // blur / noise: where the brush has been, the picture becomes the blurred (grainy) one – its transparency too,
+    // so a cut-out's edge gets soft: before × (1 − brush) + effect × brush
+    const c = s.copy || (s.copy = makeCanvas(doc.width, doc.height)), x = c.getContext('2d');
+    x.globalCompositeOperation = 'copy';
+    x.drawImage(s.effect.canvas, 0, 0);
+    x.globalCompositeOperation = 'destination-in';
+    x.globalAlpha = s.alpha;
+    x.drawImage(s.layer, 0, 0);
+    x.globalAlpha = 1;
+    applyLayer(s.layer, true, s.alpha);
+    dctx.save();
+    dctx.globalCompositeOperation = 'lighter';
+    dctx.drawImage(c, 0, 0);
+    dctx.restore();
+    requestRender();
+    return;
+  }
   if ((s.kind === 'clone' || s.kind === 'heal') && s.offset) {
     // the stroke (its shape and softness) filled with the picture as it was, shifted by the offset
     const c = s.copy || (s.copy = makeCanvas(doc.width, doc.height)), x = c.getContext('2d');
@@ -602,5 +652,6 @@ const pickerTool: Tool = { down(e, p) { pickAt(p); }, move() {}, up() {} };
 
 export const paintTools: Record<string, Tool> = {
   brush: freehand('brush'), pencil: freehand('pencil'), eraser: freehand('eraser'), clone: copyTool('clone'), heal: copyTool('heal'), remove: removeTool,
+  blur: freehand('blur'), noise: freehand('noise'),
   line: lineTool, ngon: ngonTool, ellipse: ellipseTool, curve: curveTool, bucket: bucketTool, picker: pickerTool,
 };

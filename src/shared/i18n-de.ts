@@ -1940,8 +1940,8 @@ export const DE: Record<string, string> = {
     'Übermale, was verschwinden soll – beim Loslassen wird es aus der Umgebung gefüllt',
   'Tap to add text · drag it into place · tap it to edit · Enter places it':
     'Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn',
-  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
-    'Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Weichzeichnen, Rauschen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben',
   'Text – tap to type; fonts, outline, shadow and curved text (T)':
     'Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
@@ -2234,4 +2234,32 @@ export const DE: Record<string, string> = {
     'Skalieren (die gegenüberliegende Ecke bleibt)',
   'Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.':
     'Eine Auswahl mit der Maus skalieren: an einem der Griffe in ihren Ecken ziehen – die gegenüberliegende Ecke bleibt, die Proportionen bleiben erhalten. Wie mit zwei Fingern entsteht sie immer aus den ursprünglichen Pixeln.',
+  'Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best':
+    'Malen zum Weichzeichnen – Ränder eingefügter Fotos verschmelzen · [ ] Größe · eine weiche Spitze verschmilzt am besten',
+  'Paint to add grain – a smooth patch matches the photo around it · [ ] size':
+    'Malen fügt Körnung hinzu – eine glatte Stelle passt zum Foto ringsum · [ ] Größe',
+  'Blur':
+    'Weichzeichnen',
+  'Noise':
+    'Rauschen',
+  'Strength':
+    'Stärke',
+  'Amount':
+    'Menge',
+  'Colored grain':
+    'Farbige Körnung',
+  'To blend a photo in: blur along its edge, then add a little grain so it matches the picture around it. Each stroke adds more; the tip and opacity are the brush\'s.':
+    'Ein Foto einblenden: am Rand weichzeichnen, dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt. Jeder Strich verstärkt es; Spitze und Deckkraft sind die des Pinsels.',
+  'Blur – paint to soften: blends the edges of a pasted photo into the picture (U)':
+    'Weichzeichnen – malen zum Weichzeichnen: lässt die Ränder eines eingefügten Fotos ins Bild übergehen (U)',
+  'Noise – paint to add grain: makes a smooth or pasted part match a photo\'s texture (N)':
+    'Rauschen – malen fügt Körnung hinzu: ein glatter oder eingefügter Teil bekommt die Struktur des Fotos (N)',
+  'How soft: about this many pixels':
+    'Wie weich: etwa so viele Pixel',
+  'How much grain':
+    'Wie viel Körnung',
+  'Off: the same grain in red, green and blue (like film). On: each its own':
+    'Aus: dieselbe Körnung in Rot, Grün und Blau (wie Film). An: jede Farbe ihre eigene',
+  'Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.':
+    'Pinsel Weichzeichnen (U) und Rauschen (N), um Fotos ineinander übergehen zu lassen: den Rand eines eingefügten Fotos weichzeichnen (der Rand eines Ausschnitts blendet aus), dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt.',
 };

@@ -977,7 +977,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Klepněte, odkud kopírovat (nebo Alt+klik), pak přemalujte místo – po zvednutí splyne",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Přemalujte, co má zmizet – po zvednutí se vyplní z okolí",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Klepnutím přidáte text · přetáhněte ho na místo · klepnutím ho upravíte · Enter ho umístí",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Rozmazání, Šum, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – klepněte a pište; písma, obrys, stín a zakřivený text (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrové aplikaci (T): libovolné písmo (i nainstalovaná, kde je prohlížeč umí zobrazit), velikost, tučné, kurzíva, zarovnání, obrys, stín a zakřivený text. Do umístění plave nad obrázkem – přetáhněte ho, klepnutím upravíte.",
     "The AI could not start in this browser.": "AI se v tomto prohlížeči nepodařilo spustit.",
@@ -1123,7 +1123,21 @@
     "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefonech se tvary výběru (i jiné řady voleb) zalomí na druhý řádek, místo aby se poslední uřízla – Výběr objektu (AI) jde zase stisknout.",
     "Drag a corner of the selection": "Tažení za roh výběru",
     "Scale it (the opposite corner stays)": "Zvětšit či zmenšit (protější roh zůstane na místě)",
-    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Změna velikosti výběru myší: táhněte za jeden z úchytů v jeho rozích – protější roh zůstane na místě a poměr stran se zachová. Stejně jako u dvou prstů vzniká vždy z původních pixelů."
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Změna velikosti výběru myší: táhněte za jeden z úchytů v jeho rozích – protější roh zůstane na místě a poměr stran se zachová. Stejně jako u dvou prstů vzniká vždy z původních pixelů.",
+    "Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best": "Malováním změkčíte – okraje vložených fotek splynou · [ ] velikost · nejlépe splývá měkký hrot",
+    "Paint to add grain – a smooth patch matches the photo around it · [ ] size": "Malováním přidáte zrno – hladká plocha ladí s fotkou kolem · [ ] velikost",
+    "Blur": "Rozmazání",
+    "Noise": "Šum",
+    "Strength": "Síla",
+    "Amount": "Množství",
+    "Colored grain": "Barevné zrno",
+    "To blend a photo in: blur along its edge, then add a little grain so it matches the picture around it. Each stroke adds more; the tip and opacity are the brush's.": "Jak fotku napojit: rozmažte její okraj a pak přidejte trochu zrna, aby ladila s obrázkem kolem. Každý tah přidá víc; hrot a krytí jsou jako u štětce.",
+    "Blur – paint to soften: blends the edges of a pasted photo into the picture (U)": "Rozmazání – malováním změkčíte: okraje vložené fotky splynou s obrázkem (U)",
+    "Noise – paint to add grain: makes a smooth or pasted part match a photo's texture (N)": "Šum – malováním přidáte zrno: hladká nebo vložená část dostane texturu fotky (N)",
+    "How soft: about this many pixels": "Jak měkce: zhruba o tolik pixelů",
+    "How much grain": "Kolik zrna",
+    "Off: the same grain in red, green and blue (like film). On: each its own": "Vypnuto: stejné zrno v červené, zelené i modré (jako film). Zapnuto: každá barva své",
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štětce Rozmazání (U) a Šum (N) pro napojování fotek: rozmažte okraj vložené fotky, aby změkl (okraj výřezu se vytratí), a přidejte trochu zrna, aby ladila s obrázkem kolem."
   };
 
   // src/shared/i18n-de.ts
@@ -2098,7 +2112,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Tippe, wovon kopiert wird (oder Alt+Klick), dann übermale die Stelle – beim Loslassen fügt sie sich ein",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Übermale, was verschwinden soll – beim Loslassen wird es aus der Umgebung gefüllt",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Weichzeichnen, Rauschen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Text-Werkzeug in der Raster-App (T): jede Schrift (auch die installierten, wo der Browser sie auflistet), Größe, fett, kursiv, Ausrichtung, Umriss, Schatten und gebogener Text. Er schwebt, bis er gesetzt wird – ziehen, antippen zum Bearbeiten.",
     "The AI could not start in this browser.": "Die KI konnte in diesem Browser nicht starten.",
@@ -2244,7 +2258,21 @@
     "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Auf Handys brechen die Auswahlformen (und andere Auswahlreihen) in eine zweite Zeile um, statt die letzte abzuschneiden – Objekt (KI) lässt sich wieder antippen.",
     "Drag a corner of the selection": "Eine Ecke der Auswahl ziehen",
     "Scale it (the opposite corner stays)": "Skalieren (die gegenüberliegende Ecke bleibt)",
-    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Eine Auswahl mit der Maus skalieren: an einem der Griffe in ihren Ecken ziehen – die gegenüberliegende Ecke bleibt, die Proportionen bleiben erhalten. Wie mit zwei Fingern entsteht sie immer aus den ursprünglichen Pixeln."
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Eine Auswahl mit der Maus skalieren: an einem der Griffe in ihren Ecken ziehen – die gegenüberliegende Ecke bleibt, die Proportionen bleiben erhalten. Wie mit zwei Fingern entsteht sie immer aus den ursprünglichen Pixeln.",
+    "Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best": "Malen zum Weichzeichnen – Ränder eingefügter Fotos verschmelzen · [ ] Größe · eine weiche Spitze verschmilzt am besten",
+    "Paint to add grain – a smooth patch matches the photo around it · [ ] size": "Malen fügt Körnung hinzu – eine glatte Stelle passt zum Foto ringsum · [ ] Größe",
+    "Blur": "Weichzeichnen",
+    "Noise": "Rauschen",
+    "Strength": "Stärke",
+    "Amount": "Menge",
+    "Colored grain": "Farbige Körnung",
+    "To blend a photo in: blur along its edge, then add a little grain so it matches the picture around it. Each stroke adds more; the tip and opacity are the brush's.": "Ein Foto einblenden: am Rand weichzeichnen, dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt. Jeder Strich verstärkt es; Spitze und Deckkraft sind die des Pinsels.",
+    "Blur – paint to soften: blends the edges of a pasted photo into the picture (U)": "Weichzeichnen – malen zum Weichzeichnen: lässt die Ränder eines eingefügten Fotos ins Bild übergehen (U)",
+    "Noise – paint to add grain: makes a smooth or pasted part match a photo's texture (N)": "Rauschen – malen fügt Körnung hinzu: ein glatter oder eingefügter Teil bekommt die Struktur des Fotos (N)",
+    "How soft: about this many pixels": "Wie weich: etwa so viele Pixel",
+    "How much grain": "Wie viel Körnung",
+    "Off: the same grain in red, green and blue (like film). On: each its own": "Aus: dieselbe Körnung in Rot, Grün und Blau (wie Film). An: jede Farbe ihre eigene",
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pinsel Weichzeichnen (U) und Rauschen (N), um Fotos ineinander übergehen zu lassen: den Rand eines eingefügten Fotos weichzeichnen (der Rand eines Ausschnitts blendet aus), dann etwas Körnung hinzufügen, damit es zum Bild ringsum passt."
   };
 
   // src/shared/i18n-sk.ts
@@ -3219,7 +3247,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom premaľujte miesto – po zdvihnutí splynie",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Premaľujte, čo má zmiznúť – po zdvihnutí sa vyplní z okolia",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Ťuknutím pridáte text · presuňte ho na miesto · ťuknutím ho upravíte · Enter ho umiestni",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Rozmazanie, Šum, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – ťuknite a píšte; písma, obrys, tieň a zakrivený text (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte.",
     "The AI could not start in this browser.": "AI sa v tomto prehliadači nepodarilo spustiť.",
@@ -3365,7 +3393,21 @@
     "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefónoch sa tvary výberu (aj iné rady volieb) zalomia na druhý riadok namiesto toho, aby sa posledná odrezala – Výber objektu (AI) sa dá zase stlačiť.",
     "Drag a corner of the selection": "Ťahanie za roh výberu",
     "Scale it (the opposite corner stays)": "Zväčšiť či zmenšiť (protiľahlý roh zostane na mieste)",
-    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Zmena veľkosti výberu myšou: ťahajte za jeden z úchytov v jeho rohoch – protiľahlý roh zostane na mieste a pomer strán sa zachová. Rovnako ako pri dvoch prstoch vzniká vždy z pôvodných pixelov."
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Zmena veľkosti výberu myšou: ťahajte za jeden z úchytov v jeho rohoch – protiľahlý roh zostane na mieste a pomer strán sa zachová. Rovnako ako pri dvoch prstoch vzniká vždy z pôvodných pixelov.",
+    "Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best": "Maľovaním zjemníte – okraje vložených fotiek splynú · [ ] veľkosť · najlepšie splýva mäkký hrot",
+    "Paint to add grain – a smooth patch matches the photo around it · [ ] size": "Maľovaním pridáte zrno – hladká plocha ladí s fotkou okolo · [ ] veľkosť",
+    "Blur": "Rozmazanie",
+    "Noise": "Šum",
+    "Strength": "Sila",
+    "Amount": "Množstvo",
+    "Colored grain": "Farebné zrno",
+    "To blend a photo in: blur along its edge, then add a little grain so it matches the picture around it. Each stroke adds more; the tip and opacity are the brush's.": "Ako fotku napojiť: rozmažte jej okraj a potom pridajte trochu zrna, aby ladila s obrázkom okolo. Každý ťah pridá viac; hrot a krytie sú ako pri štetci.",
+    "Blur – paint to soften: blends the edges of a pasted photo into the picture (U)": "Rozmazanie – maľovaním zjemníte: okraje vloženej fotky splynú s obrázkom (U)",
+    "Noise – paint to add grain: makes a smooth or pasted part match a photo's texture (N)": "Šum – maľovaním pridáte zrno: hladká alebo vložená časť dostane textúru fotky (N)",
+    "How soft: about this many pixels": "Ako jemne: zhruba o toľko pixelov",
+    "How much grain": "Koľko zrna",
+    "Off: the same grain in red, green and blue (like film). On: each its own": "Vypnuté: rovnaké zrno v červenej, zelenej aj modrej (ako film). Zapnuté: každá farba svoje",
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Štetce Rozmazanie (U) a Šum (N) na napájanie fotiek: rozmažte okraj vloženej fotky, aby zmäkol (okraj výrezu sa vytratí), a pridajte trochu zrna, aby ladila s obrázkom okolo."
   };
 
   // src/shared/i18n-pl.ts
@@ -4340,7 +4382,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Stuknij, skąd kopiować (lub Alt+klik), potem zamaluj miejsce – po uniesieniu się wtopi",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Zamaluj to, co ma zniknąć – po uniesieniu wypełni się z otoczenia",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Rozmycie, Szum, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować.",
     "The AI could not start in this browser.": "Nie udało się uruchomić AI w tej przeglądarce.",
@@ -4486,7 +4528,21 @@
     "On phones, the Select shapes (and other rows of choices) wrap onto a second line instead of cutting off the last one – Object (AI) can be tapped again.": "Na telefonach kształty zaznaczenia (i inne rzędy opcji) przechodzą do drugiej linii zamiast ucinać ostatnią – Obiekt (AI) znów można nacisnąć.",
     "Drag a corner of the selection": "Przeciągnij róg zaznaczenia",
     "Scale it (the opposite corner stays)": "Skalowanie (przeciwny róg zostaje na miejscu)",
-    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Skalowanie zaznaczenia myszą: przeciągnij jeden z uchwytów w jego rogach – przeciwny róg zostaje na miejscu, a proporcje są zachowane. Tak jak przy dwóch palcach, zawsze powstaje z oryginalnych pikseli."
+    "Scale a selection with the mouse: drag one of the handles in its corners – the opposite corner stays put and the proportions are kept. As with two fingers, it is always made from the original pixels.": "Skalowanie zaznaczenia myszą: przeciągnij jeden z uchwytów w jego rogach – przeciwny róg zostaje na miejscu, a proporcje są zachowane. Tak jak przy dwóch palcach, zawsze powstaje z oryginalnych pikseli.",
+    "Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best": "Maluj, aby zmiękczyć – krawędzie wklejonych zdjęć się wtapiają · [ ] rozmiar · najlepiej wtapia miękka końcówka",
+    "Paint to add grain – a smooth patch matches the photo around it · [ ] size": "Maluj, aby dodać ziarno – gładki fragment pasuje do zdjęcia wokół · [ ] rozmiar",
+    "Blur": "Rozmycie",
+    "Noise": "Szum",
+    "Strength": "Siła",
+    "Amount": "Ilość",
+    "Colored grain": "Kolorowe ziarno",
+    "To blend a photo in: blur along its edge, then add a little grain so it matches the picture around it. Each stroke adds more; the tip and opacity are the brush's.": "Jak wtopić zdjęcie: rozmyj jego krawędź, a potem dodaj trochę ziarna, aby pasowało do obrazu wokół. Każde pociągnięcie dodaje więcej; końcówka i krycie są jak w pędzlu.",
+    "Blur – paint to soften: blends the edges of a pasted photo into the picture (U)": "Rozmycie – maluj, aby zmiękczyć: krawędzie wklejonego zdjęcia wtapiają się w obraz (U)",
+    "Noise – paint to add grain: makes a smooth or pasted part match a photo's texture (N)": "Szum – maluj, aby dodać ziarno: gładki lub wklejony fragment dostaje fakturę zdjęcia (N)",
+    "How soft: about this many pixels": "Jak miękko: mniej więcej o tyle pikseli",
+    "How much grain": "Ile ziarna",
+    "Off: the same grain in red, green and blue (like film). On: each its own": "Wyłączone: to samo ziarno w czerwonym, zielonym i niebieskim (jak film). Włączone: każdy kolor własne",
+    "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it.": "Pędzle Rozmycie (U) i Szum (N) do wtapiania zdjęć: rozmyj krawędź wklejonego zdjęcia, aby ją zmiękczyć (krawędź wycinka zanika), a potem dodaj trochę ziarna, aby pasowało do obrazu wokół."
   };
 
   // src/shared/i18n.ts
@@ -14172,8 +14228,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.6.0" : "dev";
+  var VERSION = true ? "2.7.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.7.0",
+      date: "2026-10-17",
+      items: [
+        "Blur (U) and Noise (N) brushes, to blend photos into each other: blur along the edge of a pasted photo to soften it (a cut-out’s edge fades out), then add a little grain so it matches the picture around it."
+      ]
+    },
     {
       version: "2.6.0",
       date: "2026-10-17",

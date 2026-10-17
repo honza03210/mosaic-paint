@@ -109,6 +109,15 @@ export function bindPanel(): void {
   bindCheck('#opt-smooth', 'smooth');
   bindCheck('#opt-pressure', 'pressure');
   bindCheck('#opt-clone-aligned', 'cloneAligned');
+  bindCheck('#opt-noise-color', 'noiseColor');
+  for (const [id, key] of [['#opt-blur', 'blurRadius'], ['#opt-noise', 'noiseAmount']] as const) {
+    const r = $(id), label = $(id + '-val');
+    const show = () => { label.textContent = String(state[key]); };
+    r.value = state[key];
+    show();
+    r.oninput = () => { state[key] = +r.value; show(); };
+    r.onchange = savePrefs;
+  }
   $('#btn-clone-source').onclick = () => pickCloneSource();
   $('#btn-adjust').onclick = () => openAdjust();
   $('#btn-adjust-top').onclick = () => openAdjust();

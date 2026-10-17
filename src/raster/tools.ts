@@ -18,6 +18,8 @@ const HINTS: Record<string, string> = {
   clone: t('Tap where to copy from (or Alt+click), then paint the copy · drag the source disc to move it'),
   heal: t('Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift'),
   remove: t('Paint over what should disappear – it is filled from the surroundings when you lift'),
+  blur: t('Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best'),
+  noise: t('Paint to add grain – a smooth patch matches the photo around it · [ ] size'),
   text: t('Tap to add text · drag it into place · tap it to edit · Enter places it'),
   line: t('Drag a line · Shift: 15° steps'),
   ngon: t('Drag from the center · Shift: 15° rotation · keys 3–9: sides'),

@@ -34,6 +34,8 @@ export const state = {
   pressure: true,
   /** clone: the source moves along with the brush from stroke to stroke (otherwise every stroke starts from it) */
   cloneAligned: true,
+  /** the Blur brush: how soft (px); the Noise brush: how much grain (0–100), colored or not */
+  blurRadius: 4, noiseAmount: 20, noiseColor: false,
   /** clone, while the app runs: where the next stroke copies from (src), which brush point that belongs to
       (anchor; none until the first stroke), the next tap sets the source (picking), the point being copied
       during a stroke (live) */
@@ -75,7 +77,7 @@ export const rt = {
 
 // ---- remembered settings ---------------------------------------------------------------------------
 const KEY = 'mz-raster-prefs';
-const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'cloneAligned', 'sides', 'ellipseMode', 'curveType', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'selShape', 'removeMethod', 'grid', 'mosaic', 'realWidth'];
+const PREF_KEYS = ['mode', 'tool', 'fill', 'stroke', 'size', 'tip', 'nibAngle', 'opacity', 'smooth', 'pressure', 'cloneAligned', 'blurRadius', 'noiseAmount', 'noiseColor', 'sides', 'ellipseMode', 'curveType', 'ngonFill', 'ngonOutline', 'tolerance', 'contiguous', 'selShape', 'removeMethod', 'grid', 'mosaic', 'realWidth'];
 export function savePrefs(): void {
   const o: Record<string, unknown> = {};
   for (const k of PREF_KEYS) o[k] = state[k];
