@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '3.0.0', date: '2026-10-21', items: [
+      'The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.',
+    ],
+  },
+  {
     version: '2.10.0', date: '2026-10-21', items: [
       'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.',
     ],

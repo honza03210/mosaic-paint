@@ -578,6 +578,15 @@ const HINTS: Record<string, string> = {
   bucket: t('Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color'),
   pan: t('Drag to pan · mouse wheel zooms'),
 };
+/** Simple mode (children): short hints in plain words. */
+const KID_HINTS: Record<string, string> = {
+  select: t('Click a line or shape to pick it, then drag it – or press Delete'),
+  line: t('Drag to draw a line – it sticks to the lines and corners already there'),
+  ngon: t('Drag from the middle to draw a shape – pick how many corners on the right'),
+  ellipse: t('Drag to draw a circle or an oval'),
+  pattern: t('Click inside an area to fill it with tiles'),
+  bucket: t('Pick a color, then click a tile to paint it – or drag across many tiles'),
+};
 /** Adds a tool that has no button (e.g. placing a motif). */
 export function registerTool(name: string, handlers: Tool, hint: string): void { tools[name] = handlers; HINTS[name] = hint; }
 export function setTool(tool: string): void {
@@ -587,5 +596,5 @@ export function setTool(tool: string): void {
   stage.dataset.tool = tool;
   for (const b of $$('#tools button')) b.classList.toggle('active', b.dataset.tool === tool);
   for (const s of $$('.tool-opts')) s.hidden = s.dataset.for !== tool;
-  $('#st-hint').textContent = HINTS[tool];
+  $('#st-hint').textContent = (state.mode === 'simple' && KID_HINTS[tool]) || HINTS[tool];
 }

@@ -31,8 +31,8 @@ Both apps are in English, Czech (čeština), German (Deutsch), Slovak (slovenči
 
 The switch in the top-left corner chooses how much of the app you see.
 
-- **Simple** has the whole workflow: palettes, drawing, patterns, painting, tracing a photo, the color report, grout preview and history.
-- **Expert** adds the knife, symmetry, layers, rulers, the printable template, and finer settings:
+- **Simple** is made for children (about 10 years old) and quick mosaics: only the basic tools, each with a word under it – **Select, Line, Shapes, Circles, Tiles, Paint** – and big color swatches. Shapes offers only the number of corners, Tiles the kind of tile, **Small / Medium / Big** and **Fill whole page**. The top bar keeps New, Save, PNG, undo / redo and zoom; on phones and tablets the colors are also a row along the bottom of the drawing. The guide has three short steps; the hints in the status bar are in plain words. Nothing else shows – no palette management, photo, motifs, pages, report, sharing or settings.
+- **Expert** has everything: all tools (also free polygon, curve, knife and pan), palettes, the photo to trace, grout preview, motifs, pages, the report, 3D, sharing and history, symmetry, layers, rulers, the printable template, and finer settings:
   - gap tolerance and snapping details
   - numeric polygon editing and line widths
   - a material estimate and CSV export in the report

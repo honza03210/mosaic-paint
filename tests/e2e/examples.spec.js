@@ -34,6 +34,7 @@ test('raster: the pixel heart and the sunset mosaic', async ({ page }) => {
 });
 
 test('the guide opens the first time, points at the parts it explains, and the ? button shows it again', async ({ page }) => {
+  await h.expert(page);
   // as for a person, not a test robot
   await page.addInitScript(() => Object.defineProperty(Navigator.prototype, 'webdriver', { get: () => false }));
   await page.goto('index.html');

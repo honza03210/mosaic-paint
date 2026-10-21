@@ -2336,4 +2336,36 @@ export const PL: Record<string, string> = {
     'Skręcenie – naciśnij, przeciągnij na zewnątrz dla rozmiaru, krąż wokół, a obraz zawiruje (W)',
   'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.':
     'Narzędzie Skręcenie (W): naciśnij tam, gdzie ma być środek wiru, przeciągnij na zewnątrz dla jego rozmiaru, potem krąż wokół – im dalej wokół, tym mocniejsze skręcenie (w obie strony). Przy zaznaczeniu skręcają się tylko zaznaczone piksele.',
+  'Click a line or shape to pick it, then drag it – or press Delete':
+    'Kliknij linię lub kształt, by go wybrać, potem go przeciągnij – albo naciśnij Delete',
+  'Drag to draw a line – it sticks to the lines and corners already there':
+    'Przeciągnij, by narysować linię – przyczepia się do linii i rogów, które już są',
+  'Drag from the middle to draw a shape – pick how many corners on the right':
+    'Przeciągnij od środka, by narysować kształt – po prawej wybierz, ile ma mieć rogów',
+  'Drag to draw a circle or an oval':
+    'Przeciągnij, by narysować koło lub owal',
+  'Click inside an area to fill it with tiles':
+    'Kliknij wewnątrz obszaru, by wypełnić go płytkami',
+  'Pick a color, then click a tile to paint it – or drag across many tiles':
+    'Wybierz kolor, potem kliknij płytkę, by ją pomalować – albo przeciągnij przez wiele płytek',
+  'Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.':
+    'Zrób mozaikę: narysuj linie między płytkami albo wypełnij obszar płytkami, potem pomaluj każdą płytkę.',
+  'Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.':
+    'Wybierz narzędzie po lewej: Linia, Kształty i Koła rysują, Płytki wypełniają obszar płytkami, Maluj koloruje płytkę, którą klikniesz.',
+  'Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.':
+    'Kliknij kolor, potem płytki narzędziem Maluj. Pomyłka? Strzałka u góry to cofnie.',
+  'Shapes':
+    'Kształty',
+  'Circles':
+    'Koła',
+  'Small tiles':
+    'Małe płytki',
+  'Big':
+    'Duże',
+  'Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything':
+    'Prosty: tylko narzędzia do rysowania i kolory – dla dzieci i szybkich mozaik. Ekspert: wszystko',
+  'Tile size':
+    'Rozmiar płytek',
+  'The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.':
+    'Prosty tryb aplikacji wektorowej jest teraz dla dzieci: tylko podstawowe narzędzia (każde z podpisem) – Zaznacz, Linia, Kształty, Koła, Płytki, Maluj – i duże kolory; na telefonach i tabletach kolory są też na dole. Wszystko inne jest w trybie Ekspert.',
 };

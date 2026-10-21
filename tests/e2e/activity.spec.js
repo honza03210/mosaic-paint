@@ -113,6 +113,7 @@ test('vector mode inside Discord: the picture opens as the photo to draw on; the
 });
 
 test('switching apps – even before signing in has finished – keeps the connection and the post button', async ({ page }) => {
+  await h.expert(page);
   await page.addInitScript(fakeSdk);
   await api(page);
   // sign-in takes a while, so the app switch is clicked before it is done

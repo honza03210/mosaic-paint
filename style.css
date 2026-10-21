@@ -67,6 +67,29 @@ kbd { font: 11px ui-monospace, monospace; padding: 0 4px; border: 1px solid var(
 #tools svg { width: 20px; height: 20px; fill: currentColor; }
 #tools svg .st { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
 #tools button.active { background: var(--accent-fill); border-color: var(--accent); color: #fff; }
+/* the vector app's Simple mode (for children): bigger tools with a word under each, bigger color swatches */
+body:not([data-mode=simple]) .simple-only { display: none !important; }
+body.in-discord .app-switch.expert { display: inline-flex !important; }
+#tools .tl { display: none; }
+body.app-vector[data-mode=simple] #tools { width: 74px; }
+body.app-vector[data-mode=simple] #tools button { width: 60px; height: 54px; grid-template-rows: auto auto; gap: 2px; align-content: center; }
+body.app-vector[data-mode=simple] #tools svg { width: 24px; height: 24px; }
+body.app-vector[data-mode=simple] #tools .tl { display: block; font-size: 11px; line-height: 1; }
+body.app-vector[data-mode=simple] #palette { grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 8px; }
+body.app-vector[data-mode=simple] .active-colors .acbox { width: 46px; height: 46px; }
+/* children don't remove colors by accident (the small × on touch screens) */
+body.app-vector[data-mode=simple] .swatch .del { display: none !important; }
+/* phones and tablets: the colors along the bottom of the drawing too (kid-colors.ts) */
+#kid-colors { display: none; }
+@media (max-width: 900px) {
+  body.app-vector[data-mode=simple] #kid-colors {
+    display: flex; gap: 8px; position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 8px; overflow-x: auto;
+    background: rgba(39,40,44,.94); border-top: 1px solid var(--border); scrollbar-width: none;
+  }
+}
+#kid-colors .kc { flex: none; width: 44px; height: 44px; padding: 0; border-radius: 10px; border: 2px solid rgba(255,255,255,.25); }
+#kid-colors .kc.none { background: repeating-linear-gradient(135deg, #f4f4f4 0 9px, #f4f4f4 9px, #e23 9px 11px, #f4f4f4 11px 20px); }
+#kid-colors .kc.active { border-color: #fff; box-shadow: 0 0 0 2px var(--accent); }
 
 #stage { flex: 1; position: relative; overflow: hidden; background: #3b3c41; }
 .canvas-layer { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }

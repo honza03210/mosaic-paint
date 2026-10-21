@@ -11,29 +11,29 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-mode="simple">
+<body data-mode="simple" class="app-vector">
 <header id="topbar">
   <span class="brand">Mosaic Paint</span>
-  <nav class="app-switch seg-btns" aria-label="Switch app" title="Vector: tiles as shapes. Raster: paint with pixels. Palettes are shared; copy and paste images between them.">
+  <nav class="app-switch seg-btns expert" aria-label="Switch app" title="Vector: tiles as shapes. Raster: paint with pixels. Palettes are shared; copy and paste images between them.">
     <a href="index.html" data-app="vector" aria-current="page">Vector</a><a href="raster.html" data-app="raster">Raster</a>
   </nav>
-  <div id="mode-switch" class="seg-btns" title="Simple shows the essentials; Expert adds symmetry, layers, rulers, the knife, printing and fine settings">
+  <div id="mode-switch" class="seg-btns" title="Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything">
     <button data-mode="simple">Simple</button><button data-mode="expert">Expert</button>
   </div>
   <span class="sep"></span>
   <button id="btn-new" title="New drawing">New</button>
-  <button id="btn-open" title="Open SVG (Ctrl+O) – you can also drop a file on the canvas">Open…</button>
-  <button id="btn-examples" title="Example projects to open">Examples…</button>
+  <button id="btn-open" class="expert" title="Open SVG (Ctrl+O) – you can also drop a file on the canvas">Open…</button>
+  <button id="btn-examples" class="expert" title="Example projects to open">Examples…</button>
   <button id="btn-save" title="Save SVG (Ctrl+S)">Save</button>
   <button id="btn-saveas" class="expert" title="Save as (Ctrl+Shift+S)">Save as…</button>
   <button id="btn-png" title="Export a PNG image">PNG</button>
-  <button id="btn-3d" title="Export a 3D model for printing with filament changes – each color at its own height">3D…</button>
-  <button id="btn-copy-img" title="Copy the drawing (or the selected shapes) as an image – paste it into the raster app or any other program (Ctrl+C)">Copy image</button>
+  <button id="btn-3d" class="expert" title="Export a 3D model for printing with filament changes – each color at its own height">3D…</button>
+  <button id="btn-copy-img" class="expert" title="Copy the drawing (or the selected shapes) as an image – paste it into the raster app or any other program (Ctrl+C)">Copy image</button>
   <button id="btn-print" class="expert" title="Print a real-size template with color numbers">Print…</button>
   <button id="btn-layplan" class="expert" title="Split the mosaic into numbered panels and print a laying plan">Plan…</button>
-  <button id="btn-report" title="Colors used, areas and a shopping list">Report</button>
-  <button id="btn-history" title="Earlier versions of your drawing">History</button>
-  <button id="btn-share" title="Share the mosaic as a link">Share</button>
+  <button id="btn-report" class="expert" title="Colors used, areas and a shopping list">Report</button>
+  <button id="btn-history" class="expert" title="Earlier versions of your drawing">History</button>
+  <button id="btn-share" class="expert" title="Share the mosaic as a link">Share</button>
   <span class="sep"></span>
   <button id="btn-undo" class="icon" title="Undo (Ctrl+Z)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5l-4 4 4 4"/><path d="M3.5 8.5h8.25a4.25 4.25 0 0 1 0 8.5H9"/></svg></button>
   <button id="btn-redo" class="icon" title="Redo (Ctrl+Y)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5l4 4-4 4"/><path d="M16.5 8.5H8.25a4.25 4.25 0 0 0 0 8.5H11"/></svg></button>
@@ -43,11 +43,11 @@
   <button id="btn-zoomin" class="icon" title="Zoom in (+)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M12.6 12.6l4.4 4.4M6 8.5h5M8.5 6v5"/></svg></button>
   <button id="btn-fit" class="icon" title="Fit page (0)"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5V3h4.5M12.5 3H17v4.5M17 12.5V17h-4.5M7.5 17H3v-4.5"/></svg></button>
   <span class="sep"></span>
-  <select id="view-filter" title="See the mosaic in black &amp; white or as color-blind people see it (screen only)"></select>
+  <select id="view-filter" class="expert" title="See the mosaic in black &amp; white or as color-blind people see it (screen only)"></select>
   <button id="btn-contrast" class="expert" title="Mark tiles that blend into a neighbouring tile of another color">Contrast</button>
   <button id="btn-guide" class="icon" title="A short guide to the app" aria-label="Guide"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M7.7 7.8a2.4 2.4 0 1 1 3.3 2.2c-.6.3-1 .8-1 1.5v.5"/><circle cx="10" cy="14.4" r=".5" class="dot"/></svg></button>
   <select id="lang-select" title="Language" aria-label="Language"></select>
-  <button id="btn-install" hidden title="Install as an app that also works offline">Install app</button>
+  <button id="btn-install" class="expert" hidden title="Install as an app that also works offline">Install app</button>
   <button id="btn-panel" class="icon" title="Show the side panel"><svg class="ic" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg></button>
   <input type="file" id="file-input" accept=".svg,image/svg+xml" hidden>
 </header>
@@ -55,33 +55,33 @@
 <div id="main">
   <nav id="tools">
     <button data-tool="select" title="Select / edit (V)">
-      <svg viewBox="0 0 20 20"><path d="M4 2l11 8-5 1 3 6-2 1-3-6-4 4z"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M4 2l11 8-5 1 3 6-2 1-3-6-4 4z"/></svg><span class="tl">Select</span>
     </button>
     <button data-tool="line" title="Line (L)">
-      <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M3 17L17 3" class="st"/><rect x="1.5" y="15.5" width="3" height="3"/><rect x="15.5" y="1.5" width="3" height="3"/></svg><span class="tl">Line</span>
     </button>
-    <button data-tool="free" title="Free polygon – click corner by corner (P)">
+    <button data-tool="free" class="expert" title="Free polygon – click corner by corner (P)">
       <svg viewBox="0 0 20 20"><path d="M3 15L6 4l10 3-2 10z" class="st"/></svg>
     </button>
     <button data-tool="ngon" title="Regular polygon (G)">
-      <svg viewBox="0 0 20 20"><path d="M10 2l7 4v8l-7 4-7-4V6z" class="st"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M10 2l7 4v8l-7 4-7-4V6z" class="st"/></svg><span class="tl">Shapes</span>
     </button>
     <button data-tool="ellipse" title="Ellipse – Shift: circle (O)">
-      <svg viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="8" ry="5.5" class="st"/></svg>
+      <svg viewBox="0 0 20 20"><ellipse cx="10" cy="10" rx="8" ry="5.5" class="st"/></svg><span class="tl">Circles</span>
     </button>
-    <button data-tool="curve" title="Curve – click its points (C)">
+    <button data-tool="curve" class="expert" title="Curve – click its points (C)">
       <svg viewBox="0 0 20 20"><path d="M2 16C5 2 10 2 11 9s6 7 7-5" class="st"/><rect x="0.5" y="14.5" width="3" height="3"/><rect x="16.5" y="2.5" width="3" height="3"/></svg>
     </button>
     <button data-tool="knife" class="expert" title="Knife – cut a tile straight across (K)">
       <svg viewBox="0 0 20 20"><path d="M3 17L15 5l2 2L7 17z" class="st"/><path d="M15 5l2-2" class="st"/></svg>
     </button>
     <button data-tool="pattern" title="Pattern – fill an area with tiles (T)">
-      <svg viewBox="0 0 20 20"><path d="M2 2h16v16H2zM2 8h16M2 14h16M7 2v6M13 2v6M5 8v6M11 8v6M17 8v6M8 14v4M14 14v4" class="st"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M2 2h16v16H2zM2 8h16M2 14h16M7 2v6M13 2v6M5 8v6M11 8v6M17 8v6M8 14v4M14 14v4" class="st"/></svg><span class="tl">Tiles</span>
     </button>
     <button data-tool="bucket" title="Paint bucket – click or drag across tiles (B)">
-      <svg viewBox="0 0 20 20"><path d="M3 9l6-6 7 7-6 6z" class="st"/><path d="M16.5 12.5c1.2 1.8 1.8 2.9 1.8 3.6a1.8 1.8 0 01-3.6 0c0-.7.6-1.8 1.8-3.6z"/></svg>
+      <svg viewBox="0 0 20 20"><path d="M3 9l6-6 7 7-6 6z" class="st"/><path d="M16.5 12.5c1.2 1.8 1.8 2.9 1.8 3.6a1.8 1.8 0 01-3.6 0c0-.7.6-1.8 1.8-3.6z"/></svg><span class="tl">Paint</span>
     </button>
-    <button data-tool="pan" title="Pan (H, or hold Space / middle mouse / two fingers)">
+    <button data-tool="pan" class="expert" title="Pan (H, or hold Space / middle mouse / two fingers)">
       <svg viewBox="0 0 20 20"><path d="M10 1l3 3h-2v5h5V7l3 3-3 3v-2h-5v5h2l-3 3-3-3h2v-5H4v2l-3-3 3-3v2h5V4H7z"/></svg>
     </button>
   </nav>
@@ -137,7 +137,7 @@
   <aside id="panel">
     <section>
       <h3>Colors</h3>
-      <div class="row pal-row">
+      <div class="row pal-row expert">
         <select id="pal-select" title="Your saved palettes"></select>
         <button id="btn-pal-new" title="New palette">＋</button>
         <button id="btn-pal-rename" title="Rename this palette">✎</button>
@@ -145,28 +145,28 @@
       </div>
       <div class="active-colors">
         <div class="ac" title="Fill color – used by the paint bucket. Click to choose any color"><span>Fill</span><div id="ac-fill" class="acbox"></div></div>
-        <div class="ac" title="Stroke color – used for new lines and polygons. Click to choose any color"><span>Stroke</span><div id="ac-stroke" class="acbox"></div></div>
-        <button id="btn-swap" title="Swap fill and stroke">⇄</button>
-        <label class="sw-w" title="Line width for new lines and polygons">Width <input id="stroke-width" type="number" min="0" step="0.5"></label>
+        <div class="ac expert" title="Stroke color – used for new lines and polygons. Click to choose any color"><span>Stroke</span><div id="ac-stroke" class="acbox"></div></div>
+        <button id="btn-swap" class="expert" title="Swap fill and stroke">⇄</button>
+        <label class="sw-w expert" title="Line width for new lines and polygons">Width <input id="stroke-width" type="number" min="0" step="0.5"></label>
       </div>
       <div id="palette"></div>
-      <div class="row add-row">
+      <div class="row add-row expert">
         <span id="color-preview" class="mini"></span>
         <input id="color-input" type="text" placeholder="Paste #hex, rgb(), name…" spellcheck="false" autocomplete="off">
         <button id="btn-add-color" class="primary">Add color</button>
         <button id="btn-choose-color" title="Choose any color: a color area, a hue slider and a color code">Choose…</button>
       </div>
-      <div class="row small">
+      <div class="row small expert">
         <button id="btn-pal-import" title="Load colors from a .txt / .gpl / .css file">Import…</button>
         <button id="btn-pal-doc" title="Add every color used in the drawing">From drawing</button>
         <button id="btn-pal-export" title="Download the palette as a list of hex codes">Export</button>
         <button id="btn-pal-clear">Clear</button>
         <input type="file" id="pal-file" accept=".txt,.gpl,.hex,.css,.json,text/plain" hidden>
       </div>
-      <p class="note">Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing) · Shift+click = add to the color mix. Ctrl+V on the canvas adds copied colors.</p>
+      <p class="note expert">Click a swatch = fill · right-click = stroke · double-click = edit (also recolors the drawing) · Shift+click = add to the color mix. Ctrl+V on the canvas adds copied colors.</p>
     </section>
 
-    <section class="tool-opts" data-for="line">
+    <section class="tool-opts expert" data-for="line">
       <h3>Line</h3>
       <label class="chk"><input type="checkbox" id="opt-chain"> Chain lines (next line starts at the last end)</label>
     </section>
@@ -174,32 +174,32 @@
     <section class="tool-opts" data-for="free">
       <h3>Free polygon</h3>
       <p class="note">Click each corner. Click the first corner again, double-click or press Enter to close it.</p>
-      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
+      <label class="chk expert"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
     </section>
 
     <section class="tool-opts" data-for="ngon">
-      <h3>Regular polygon</h3>
+      <h3><span class="expert">Regular polygon</span><span class="simple-only">Shapes</span></h3>
       <div class="row">
-        <label>Sides <input id="opt-sides" type="number" min="3" max="64" step="1"></label>
+        <label class="expert">Sides <input id="opt-sides" type="number" min="3" max="64" step="1"></label>
         <span class="quick" id="quick-sides">
           <button data-sides="3">3</button><button data-sides="4">4</button><button data-sides="5">5</button><button data-sides="6">6</button><button data-sides="8">8</button><button data-sides="12">12</button>
         </span>
       </div>
-      <div class="row seg">
+      <div class="row seg expert">
         <label><input type="radio" name="ngmode" value="center"> From center</label>
         <label><input type="radio" name="ngmode" value="edge"> From edge</label>
       </div>
-      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
+      <label class="chk expert"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
     </section>
 
-    <section class="tool-opts" data-for="ellipse">
+    <section class="tool-opts expert" data-for="ellipse">
       <h3>Ellipse</h3>
       <div class="row seg">
         <label><input type="radio" name="elmode" value="corner"> From corner</label>
         <label><input type="radio" name="elmode" value="center"> From center</label>
       </div>
       <p class="note">Shift: a circle. Select it to drag its axis ends.</p>
-      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
+      <label class="chk expert"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
     </section>
 
     <section class="tool-opts" data-for="curve">
@@ -211,7 +211,7 @@
         <option value="bezier2">Bézier, quadratic</option>
       </select></label>
       <p class="note" id="curve-note"></p>
-      <label class="chk"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
+      <label class="chk expert"><input type="checkbox" class="opt-newfill"> Fill new shapes with the fill color</label>
     </section>
 
     <section class="tool-opts" data-for="knife">
@@ -220,21 +220,22 @@
     </section>
 
     <section class="tool-opts" data-for="pattern">
-      <h3>Pattern</h3>
+      <h3><span class="expert">Pattern</span><span class="simple-only">Tiles</span></h3>
       <div class="row">
         <select id="pat-type"></select>
-        <label>Size <input id="pat-size" type="number" min="0.1" step="1"> <span class="unit-label"></span></label>
+        <label class="expert">Size <input id="pat-size" type="number" min="0.1" step="1"> <span class="unit-label"></span></label>
         <label class="expert" id="pat-angle-row">Angle <input id="pat-angle" type="number" step="5">°</label>
-        <label id="pat-rows-row" title="0 = as many rows as fit">Rows <input id="pat-rows" type="number" min="0" step="1"></label>
+        <label id="pat-rows-row" class="expert" title="0 = as many rows as fit">Rows <input id="pat-rows" type="number" min="0" step="1"></label>
       </div>
+      <div class="row simple-only" id="pat-sizes" role="group" aria-label="Tile size"><button data-tiles="24">Small tiles</button><button data-tiles="12">Medium</button><button data-tiles="6">Big</button></div>
       <div class="row"><button id="btn-pat-page">Fill whole page</button></div>
-      <p class="note">Click inside a closed area to fill it with tiles. Painted areas keep their color in every new tile. “Rows following the outline” lays rows along the area’s edge and around shapes inside it (Rows 0 = fill it).</p>
+      <p class="note expert">Click inside a closed area to fill it with tiles. Painted areas keep their color in every new tile. “Rows following the outline” lays rows along the area’s edge and around shapes inside it (Rows 0 = fill it).</p>
     </section>
 
-    <section class="tool-opts" data-for="bucket">
-      <h3>Paint bucket</h3>
-      <p class="note">Click inside any closed area, or drag across many tiles. Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.</p>
-      <div class="mix-box">
+    <section class="tool-opts expert" data-for="bucket">
+      <h3><span class="expert">Paint bucket</span><span class="simple-only">Paint</span></h3>
+      <p class="note expert">Click inside any closed area, or drag across many tiles. Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.</p>
+      <div class="mix-box expert">
         <label class="chk"><input type="checkbox" id="mix-on"> Mix colors (a random one per tile)</label>
         <div id="mix-colors" class="mix-chips"></div>
         <p class="note" id="mix-hint"></p>
@@ -243,7 +244,7 @@
       <div class="row expert"><label>Close gaps up to <input id="opt-gap" type="number" min="0" step="0.1"> <span class="unit-label"></span></label></div>
     </section>
 
-    <section>
+    <section class="expert">
       <h3>Photo to trace</h3>
       <div class="row">
         <button id="btn-ref-load">Load photo…</button>
@@ -268,7 +269,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="expert">
       <h3>Grout preview</h3>
       <div class="row">
         <label class="chk"><input type="checkbox" id="grout-on"> Preview</label>
@@ -278,7 +279,7 @@
       <div class="row small expert"><button id="btn-grout-bake" title="Give every line this color and width for real">Apply to all lines</button></div>
     </section>
 
-    <section>
+    <section class="expert">
       <h3>Motifs</h3>
       <div id="motif-list" class="motif-grid"></div>
       <div class="row small">
@@ -293,7 +294,7 @@
     <section class="expert">
       <h3>Symmetry</h3>
       <div class="row">
-        <select id="sym-type">
+        <select id="sym-type" aria-label="Symmetry">
           <option value="none">Off</option>
           <option value="mirror-v">Mirror left ↔ right</option>
           <option value="mirror-h">Mirror top ↕ bottom</option>
@@ -322,7 +323,7 @@
       <p class="note">Lock the lines while painting so they can’t be moved by accident.</p>
     </section>
 
-    <section>
+    <section class="expert">
       <h3>Snapping</h3>
       <label class="chk"><input type="checkbox" id="opt-snap"> Snap to points &amp; lines <kbd>S</kbd></label>
       <label class="chk expert"><input type="checkbox" id="opt-link"> Shared corners move together</label>
@@ -342,14 +343,14 @@
       <div class="row btns">
         <button id="btn-del" title="Delete">Delete</button>
         <button id="btn-dup" title="Ctrl+D">Duplicate</button>
-        <button id="btn-front">To front</button>
-        <button id="btn-back">To back</button>
-        <button id="btn-sel-invert" title="Select the other shapes instead (Ctrl+I)">Invert</button>
+        <button id="btn-front" class="expert">To front</button>
+        <button id="btn-back" class="expert">To back</button>
+        <button id="btn-sel-invert" class="expert" title="Select the other shapes instead (Ctrl+I)">Invert</button>
       </div>
-      <div class="row"><button id="btn-mix-sel" title="Give the selected painted areas random colors from the mix">Mix colors</button></div>
+      <div class="row expert"><button id="btn-mix-sel" title="Give the selected painted areas random colors from the mix">Mix colors</button></div>
     </section>
 
-    <section>
+    <section class="expert">
       <h3>Page</h3>
       <div class="row">
         <label>W <input id="doc-w" type="number" min="0.1"></label>
@@ -366,7 +367,7 @@
       <label class="chk expert"><input type="checkbox" id="opt-rulers"> Show rulers</label>
     </section>
 
-    <section>
+    <section class="expert">
       <details>
         <summary>Keyboard &amp; mouse</summary>
         <table class="keys">
@@ -392,7 +393,7 @@
   </aside>
 </div>
 
-<div id="pagebar">
+<div id="pagebar" class="expert">
   <div id="page-tabs"></div>
   <button id="page-add" title="Add a page (front, back, a color variant…)">＋ Page</button>
 </div>

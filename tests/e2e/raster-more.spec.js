@@ -22,6 +22,7 @@ async function open(page) {
 const color = (page, x, y) => page.evaluate(([x, y]) => RZ.colorAt(x, y), [x, y]);
 
 test('history: versions of the image can be restored, and stay apart from the vector app’s', async ({ page }) => {
+  await h.expert(page);
   const { errors } = await open(page);
   await page.click('#btn-history');
   await page.click('#hist-save');

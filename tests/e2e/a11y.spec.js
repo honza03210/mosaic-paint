@@ -16,6 +16,7 @@ for (const [name, url, open] of [
   ['raster mosaic', 'raster.html', '#btn-mosaic'], ['raster vector tiles', 'raster.html', '#btn-vectorize'],
 ]) {
   test(`no accessibility problems: ${name}`, async ({ page }) => {
+  await h.expert(page);
     await page.goto(url);
     await ready(page);
     if (open) { await page.click(open); await page.waitForTimeout(600); }
@@ -31,6 +32,7 @@ test('no accessibility problems in Czech', async ({ page }) => {
 });
 
 test('buttons that show only a symbol are named by their tooltip', async ({ page }) => {
+  await h.expert(page);
   await page.goto('index.html');
   await ready(page);
   await expect(page.locator('#btn-undo')).toHaveAttribute('aria-label', 'Undo (Ctrl+Z)');

@@ -2336,4 +2336,36 @@ export const SK: Record<string, string> = {
     'Skrútenie – stlačte, ťahajte von pre veľkosť, krúžte okolo a obrázok sa zavíri (W)',
   'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.':
     'Nástroj Skrútenie (W): stlačte tam, kde má byť stred víru, ťahajte von pre jeho veľkosť a potom krúžte okolo – čím ďalej okolo, tým silnejšie skrútenie (oboma smermi). S výberom sa skrútia len vybrané pixely.',
+  'Click a line or shape to pick it, then drag it – or press Delete':
+    'Klikni na čiaru alebo tvar, vyber ho a potom ho potiahni – alebo stlač Delete',
+  'Drag to draw a line – it sticks to the lines and corners already there':
+    'Ťahaj a nakresli čiaru – prichytí sa k čiaram a rohom, ktoré už tam sú',
+  'Drag from the middle to draw a shape – pick how many corners on the right':
+    'Ťahaj od stredu a nakresli tvar – vpravo vyber, koľko má mať rohov',
+  'Drag to draw a circle or an oval':
+    'Ťahaj a nakresli kruh alebo ovál',
+  'Click inside an area to fill it with tiles':
+    'Klikni dovnútra plochy a vyplň ju dlaždicami',
+  'Pick a color, then click a tile to paint it – or drag across many tiles':
+    'Vyber farbu a klikni na dlaždicu, aby sa vyfarbila – alebo ťahaj cez viac dlaždíc',
+  'Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.':
+    'Urob si mozaiku: nakresli čiary medzi dlaždicami alebo vyplň plochu dlaždicami, potom každú dlaždicu vyfarbi.',
+  'Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.':
+    'Vľavo vyber nástroj: Čiara, Tvary a Kruhy kreslia, Dlaždice vyplnia plochu dlaždicami, Farba vyfarbí dlaždicu, na ktorú klikneš.',
+  'Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.':
+    'Klikni na farbu a potom na dlaždice s nástrojom Farba. Pomýlil si sa? Šípka hore to vráti.',
+  'Shapes':
+    'Tvary',
+  'Circles':
+    'Kruhy',
+  'Small tiles':
+    'Malé dlaždice',
+  'Big':
+    'Veľké',
+  'Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything':
+    'Jednoduchý: len kresliace nástroje a farby – pre deti a rýchle mozaiky. Expert: všetko',
+  'Tile size':
+    'Veľkosť dlaždíc',
+  'The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.':
+    'Jednoduchý režim vektorovej aplikácie je teraz pre deti: len základné nástroje (každý s popisom) – Výber, Čiara, Tvary, Kruhy, Dlaždice, Farba – a veľké farby; na telefónoch a tabletoch sú farby aj dole. Všetko ostatné je v režime Expert.',
 };

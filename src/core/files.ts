@@ -267,7 +267,8 @@ export function setMode(m: string): void {
   state.mode = m === 'expert' ? 'expert' : 'simple';
   document.body.dataset.mode = state.mode;
   for (const b of $$('#mode-switch button')) b.classList.toggle('active', b.dataset.mode === state.mode);
-  if (EXPERT_TOOLS.has(state.tool) && state.mode !== 'expert') setTool('select');
+  // (also the hint: Simple mode has its own words)
+  setTool(EXPERT_TOOLS.has(state.tool) && state.mode !== 'expert' ? 'select' : state.tool);
   savePrefs();
   applyLayers();
   applyDoc();

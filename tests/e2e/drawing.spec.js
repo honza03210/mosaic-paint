@@ -5,7 +5,7 @@ const { expect } = h;
 const ngon = (attr, want) => attr.split(' ').map(Number).every((v, i) => h.near(v, want[i]));
 
 test('loads cleanly in Simple mode; Expert reveals the extra tools', async ({ page }) => {
-  const { errors } = await h.open(page);
+  const { errors } = await h.open(page, { mode: 'simple' });
   await expect(page.locator('[data-tool=knife]')).toBeHidden();
   await expect(page.locator('#btn-print')).toBeHidden();
   await page.click('#mode-switch [data-mode=expert]');

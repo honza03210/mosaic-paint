@@ -2336,4 +2336,36 @@ export const DE: Record<string, string> = {
     'Verdrehen – drücken, für die Größe nach außen ziehen, herumfahren, und das Bild wirbelt (W)',
   'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.':
     'Werkzeug Verdrehen (W): dort drücken, wo die Mitte des Wirbels sein soll, für seine Größe nach außen ziehen, dann herumfahren – je weiter herum, desto stärker die Verdrehung (in beide Richtungen). Mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.',
+  'Click a line or shape to pick it, then drag it – or press Delete':
+    'Klick auf eine Linie oder Form, um sie auszuwählen, dann zieh sie – oder drück Entf',
+  'Drag to draw a line – it sticks to the lines and corners already there':
+    'Zieh, um eine Linie zu zeichnen – sie haftet an den Linien und Ecken, die schon da sind',
+  'Drag from the middle to draw a shape – pick how many corners on the right':
+    'Zieh von der Mitte aus, um eine Form zu zeichnen – rechts wählst du, wie viele Ecken',
+  'Drag to draw a circle or an oval':
+    'Zieh, um einen Kreis oder ein Oval zu zeichnen',
+  'Click inside an area to fill it with tiles':
+    'Klick in eine Fläche, um sie mit Fliesen zu füllen',
+  'Pick a color, then click a tile to paint it – or drag across many tiles':
+    'Wähl eine Farbe, dann klick auf eine Fliese, um sie anzumalen – oder zieh über viele Fliesen',
+  'Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.':
+    'Mach ein Mosaik: Zeichne die Linien zwischen den Fliesen oder füll eine Fläche mit Fliesen, dann mal jede Fliese an.',
+  'Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.':
+    'Wähl links ein Werkzeug: Linie, Formen und Kreise zeichnen, Fliesen füllt eine Fläche mit Fliesen, Malen färbt die Fliese, die du anklickst.',
+  'Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.':
+    'Klick auf eine Farbe, dann mit Malen auf die Fliesen. Vertan? Der Pfeil oben macht es rückgängig.',
+  'Shapes':
+    'Formen',
+  'Circles':
+    'Kreise',
+  'Small tiles':
+    'Kleine Fliesen',
+  'Big':
+    'Groß',
+  'Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything':
+    'Einfach: nur die Zeichenwerkzeuge und die Farben – für Kinder und schnelle Mosaike. Experte: alles',
+  'Tile size':
+    'Fliesengröße',
+  'The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.':
+    'Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus.',
 };

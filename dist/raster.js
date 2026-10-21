@@ -1168,7 +1168,23 @@
     "Twist": "Zkroucení",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Stiskněte tam, kde má být střed víru, a táhněte ven: kruh ukazuje, kam až sahá. Pak kružte kolem středu – čím dál kolem, tím silnější zkroucení (zpátky ho vrátíte). Zvednutím dokončíte; s výběrem se zkroutí jen vybrané pixely.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Zkroucení – stiskněte, táhněte ven pro velikost, kružte kolem a obrázek se zavíří (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Zkroucení (W): stiskněte tam, kde má být střed víru, táhněte ven pro jeho velikost a pak kružte kolem – čím dál kolem, tím silnější zkroucení (oběma směry). S výběrem se zkroutí jen vybrané pixely."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Zkroucení (W): stiskněte tam, kde má být střed víru, táhněte ven pro jeho velikost a pak kružte kolem – čím dál kolem, tím silnější zkroucení (oběma směry). S výběrem se zkroutí jen vybrané pixely.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Klikni na čáru nebo tvar, vyber ho a pak ho přetáhni – nebo stiskni Delete",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Táhni a nakresli čáru – přichytí se k čarám a rohům, které už tam jsou",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Táhni od středu a nakresli tvar – vpravo vyber, kolik má mít rohů",
+    "Drag to draw a circle or an oval": "Táhni a nakresli kruh nebo ovál",
+    "Click inside an area to fill it with tiles": "Klikni dovnitř plochy a vyplň ji dlaždicemi",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Vyber barvu a klikni na dlaždici, aby se vybarvila – nebo táhni přes víc dlaždic",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Udělej si mozaiku: nakresli čáry mezi dlaždicemi nebo vyplň plochu dlaždicemi, pak každou dlaždici vybarvi.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Vlevo vyber nástroj: Čára, Tvary a Kruhy kreslí, Dlaždice vyplní plochu dlaždicemi, Barva vybarví dlaždici, na kterou klikneš.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Klikni na barvu a pak na dlaždice s nástrojem Barva. Spletl ses? Šipka nahoře to vrátí.",
+    "Shapes": "Tvary",
+    "Circles": "Kruhy",
+    "Small tiles": "Malé dlaždice",
+    "Big": "Velké",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: jen kreslicí nástroje a barvy – pro děti a rychlé mozaiky. Expert: všechno",
+    "Tile size": "Velikost dlaždic",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorové aplikace je teď pro děti: jen základní nástroje (každý s popiskem) – Výběr, Čára, Tvary, Kruhy, Dlaždice, Barva – a velké barvy; na telefonech a tabletech jsou barvy i dole. Všechno ostatní je v režimu Expert."
   };
 
   // src/shared/i18n-de.ts
@@ -2340,7 +2356,23 @@
     "Twist": "Verdrehen",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Dort drücken, wo die Mitte des Wirbels sein soll, und nach außen ziehen: Der Kreis zeigt, wie weit er reicht. Dann um die Mitte herumfahren – je weiter herum, desto stärker die Verdrehung (zurück macht sie rückgängig). Loslassen beendet; mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Verdrehen – drücken, für die Größe nach außen ziehen, herumfahren, und das Bild wirbelt (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Werkzeug Verdrehen (W): dort drücken, wo die Mitte des Wirbels sein soll, für seine Größe nach außen ziehen, dann herumfahren – je weiter herum, desto stärker die Verdrehung (in beide Richtungen). Mit einer Auswahl verdrehen sich nur die ausgewählten Pixel."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Werkzeug Verdrehen (W): dort drücken, wo die Mitte des Wirbels sein soll, für seine Größe nach außen ziehen, dann herumfahren – je weiter herum, desto stärker die Verdrehung (in beide Richtungen). Mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Klick auf eine Linie oder Form, um sie auszuwählen, dann zieh sie – oder drück Entf",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Zieh, um eine Linie zu zeichnen – sie haftet an den Linien und Ecken, die schon da sind",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Zieh von der Mitte aus, um eine Form zu zeichnen – rechts wählst du, wie viele Ecken",
+    "Drag to draw a circle or an oval": "Zieh, um einen Kreis oder ein Oval zu zeichnen",
+    "Click inside an area to fill it with tiles": "Klick in eine Fläche, um sie mit Fliesen zu füllen",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Wähl eine Farbe, dann klick auf eine Fliese, um sie anzumalen – oder zieh über viele Fliesen",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Mach ein Mosaik: Zeichne die Linien zwischen den Fliesen oder füll eine Fläche mit Fliesen, dann mal jede Fliese an.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Wähl links ein Werkzeug: Linie, Formen und Kreise zeichnen, Fliesen füllt eine Fläche mit Fliesen, Malen färbt die Fliese, die du anklickst.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Klick auf eine Farbe, dann mit Malen auf die Fliesen. Vertan? Der Pfeil oben macht es rückgängig.",
+    "Shapes": "Formen",
+    "Circles": "Kreise",
+    "Small tiles": "Kleine Fliesen",
+    "Big": "Groß",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Einfach: nur die Zeichenwerkzeuge und die Farben – für Kinder und schnelle Mosaike. Experte: alles",
+    "Tile size": "Fliesengröße",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus."
   };
 
   // src/shared/i18n-sk.ts
@@ -3512,7 +3544,23 @@
     "Twist": "Skrútenie",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Stlačte tam, kde má byť stred víru, a ťahajte von: kruh ukazuje, kam až siaha. Potom krúžte okolo stredu – čím ďalej okolo, tým silnejšie skrútenie (späť ho vrátite). Zdvihnutím dokončíte; s výberom sa skrútia len vybrané pixely.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Skrútenie – stlačte, ťahajte von pre veľkosť, krúžte okolo a obrázok sa zavíri (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Skrútenie (W): stlačte tam, kde má byť stred víru, ťahajte von pre jeho veľkosť a potom krúžte okolo – čím ďalej okolo, tým silnejšie skrútenie (oboma smermi). S výberom sa skrútia len vybrané pixely."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Skrútenie (W): stlačte tam, kde má byť stred víru, ťahajte von pre jeho veľkosť a potom krúžte okolo – čím ďalej okolo, tým silnejšie skrútenie (oboma smermi). S výberom sa skrútia len vybrané pixely.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Klikni na čiaru alebo tvar, vyber ho a potom ho potiahni – alebo stlač Delete",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Ťahaj a nakresli čiaru – prichytí sa k čiaram a rohom, ktoré už tam sú",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Ťahaj od stredu a nakresli tvar – vpravo vyber, koľko má mať rohov",
+    "Drag to draw a circle or an oval": "Ťahaj a nakresli kruh alebo ovál",
+    "Click inside an area to fill it with tiles": "Klikni dovnútra plochy a vyplň ju dlaždicami",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Vyber farbu a klikni na dlaždicu, aby sa vyfarbila – alebo ťahaj cez viac dlaždíc",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Urob si mozaiku: nakresli čiary medzi dlaždicami alebo vyplň plochu dlaždicami, potom každú dlaždicu vyfarbi.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Vľavo vyber nástroj: Čiara, Tvary a Kruhy kreslia, Dlaždice vyplnia plochu dlaždicami, Farba vyfarbí dlaždicu, na ktorú klikneš.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Klikni na farbu a potom na dlaždice s nástrojom Farba. Pomýlil si sa? Šípka hore to vráti.",
+    "Shapes": "Tvary",
+    "Circles": "Kruhy",
+    "Small tiles": "Malé dlaždice",
+    "Big": "Veľké",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: len kresliace nástroje a farby – pre deti a rýchle mozaiky. Expert: všetko",
+    "Tile size": "Veľkosť dlaždíc",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorovej aplikácie je teraz pre deti: len základné nástroje (každý s popisom) – Výber, Čiara, Tvary, Kruhy, Dlaždice, Farba – a veľké farby; na telefónoch a tabletoch sú farby aj dole. Všetko ostatné je v režime Expert."
   };
 
   // src/shared/i18n-pl.ts
@@ -4684,7 +4732,23 @@
     "Twist": "Skręcenie",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Naciśnij tam, gdzie ma być środek wiru, i przeciągnij na zewnątrz: okrąg pokazuje, jak daleko sięga. Potem krąż wokół środka – im dalej wokół, tym mocniejsze skręcenie (z powrotem je cofa). Puść, by zakończyć; przy zaznaczeniu skręcają się tylko zaznaczone piksele.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Skręcenie – naciśnij, przeciągnij na zewnątrz dla rozmiaru, krąż wokół, a obraz zawiruje (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Narzędzie Skręcenie (W): naciśnij tam, gdzie ma być środek wiru, przeciągnij na zewnątrz dla jego rozmiaru, potem krąż wokół – im dalej wokół, tym mocniejsze skręcenie (w obie strony). Przy zaznaczeniu skręcają się tylko zaznaczone piksele."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Narzędzie Skręcenie (W): naciśnij tam, gdzie ma być środek wiru, przeciągnij na zewnątrz dla jego rozmiaru, potem krąż wokół – im dalej wokół, tym mocniejsze skręcenie (w obie strony). Przy zaznaczeniu skręcają się tylko zaznaczone piksele.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Kliknij linię lub kształt, by go wybrać, potem go przeciągnij – albo naciśnij Delete",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Przeciągnij, by narysować linię – przyczepia się do linii i rogów, które już są",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Przeciągnij od środka, by narysować kształt – po prawej wybierz, ile ma mieć rogów",
+    "Drag to draw a circle or an oval": "Przeciągnij, by narysować koło lub owal",
+    "Click inside an area to fill it with tiles": "Kliknij wewnątrz obszaru, by wypełnić go płytkami",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Wybierz kolor, potem kliknij płytkę, by ją pomalować – albo przeciągnij przez wiele płytek",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Zrób mozaikę: narysuj linie między płytkami albo wypełnij obszar płytkami, potem pomaluj każdą płytkę.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Wybierz narzędzie po lewej: Linia, Kształty i Koła rysują, Płytki wypełniają obszar płytkami, Maluj koloruje płytkę, którą klikniesz.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Kliknij kolor, potem płytki narzędziem Maluj. Pomyłka? Strzałka u góry to cofnie.",
+    "Shapes": "Kształty",
+    "Circles": "Koła",
+    "Small tiles": "Małe płytki",
+    "Big": "Duże",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Prosty: tylko narzędzia do rysowania i kolory – dla dzieci i szybkich mozaik. Ekspert: wszystko",
+    "Tile size": "Rozmiar płytek",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Prosty tryb aplikacji wektorowej jest teraz dla dzieci: tylko podstawowe narzędzia (każde z podpisem) – Zaznacz, Linia, Kształty, Koła, Płytki, Maluj – i duże kolory; na telefonach i tabletach kolory są też na dole. Wszystko inne jest w trybie Ekspert."
   };
 
   // src/shared/i18n.ts
@@ -14385,7 +14449,8 @@ ${sections.join("\n")}
   }
 
   // src/shared/guide.ts
-  function initGuide(button, steps2, key) {
+  function initGuide(button, stepsOf, key) {
+    let steps2 = typeof stepsOf === "function" ? stepsOf() : stepsOf;
     const card = document.createElement("dialog");
     card.id = "guide";
     card.innerHTML = `<div class="dlg-head"><h2></h2><button class="guide-close" title="${t("Close")}">✕</button></div>
@@ -14415,6 +14480,7 @@ ${sections.join("\n")}
       lsSet(key, "1");
     }
     function show5() {
+      if (typeof stepsOf === "function") steps2 = stepsOf();
       at2 = 0;
       draw2();
       if (!card.open) card.show();
@@ -14483,8 +14549,15 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.10.0" : "dev";
+  var VERSION = true ? "3.0.0" : "dev";
   var RELEASES = [
+    {
+      version: "3.0.0",
+      date: "2026-10-21",
+      items: [
+        "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode."
+      ]
+    },
     {
       version: "2.10.0",
       date: "2026-10-21",

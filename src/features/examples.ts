@@ -42,7 +42,12 @@ initExamples(document.querySelector('#btn-examples'), [
   },
 ]);
 
-initGuide(document.querySelector('#btn-guide'), [
+initGuide(document.querySelector('#btn-guide'), () => MZ.state.mode === 'simple' ? [
+  // Simple mode (children): only what they see
+  { title: t('Welcome to Mosaic Paint'), text: t('Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.') },
+  { title: t('Draw'), text: t('Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.'), target: '#tools' },
+  { title: t('Colors'), text: t('Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.'), target: '#palette' },
+] : [
   { title: t('Welcome to Mosaic Paint'), text: t('Design a mosaic: draw lines or lay a tile pattern, then paint the tiles. Everything is measured in real millimetres.') },
   { title: t('Draw'), text: t('The tools are on the left: lines and shapes, the tile pattern, and the paint bucket that fills a tile with one click.'), target: '#tools' },
   { title: t('Colors'), text: t('Pick a color in the palette, then click tiles with the bucket. Palettes are shared with the raster app.'), target: '#palette' },

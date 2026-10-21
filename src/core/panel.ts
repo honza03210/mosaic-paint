@@ -92,6 +92,13 @@ export function bindPanel(): void {
   bindNumber('#pat-size', () => state.pattern.size, (v) => { if (!(v > 0)) return false; state.pattern.size = v; });
   bindNumber('#pat-angle', () => state.pattern.angle, (v) => { state.pattern.angle = v; });
   $('#btn-pat-page').onclick = () => applyPattern(null);
+  // Simple mode: the tile size as small / medium / big – so many tiles across the page's shorter side
+  const sizes = () => {
+    for (const b of $$('#pat-sizes button')) b.classList.toggle('active', Math.abs(state.pattern.size - tileSize(+b.dataset.tiles)) < 1e-6);
+  };
+  const tileSize = (n: number) => +(Math.min(state.doc.w, state.doc.h) / n).toPrecision(3);
+  for (const b of $$('#pat-sizes button')) b.onclick = () => { state.pattern.size = tileSize(+b.dataset.tiles); $('#pat-size').value = state.pattern.size; savePrefs(); sizes(); };
+  sizes();
 
   // snapping & gaps
   bindCheck('#opt-snap', 'snap');

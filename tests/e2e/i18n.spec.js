@@ -1,9 +1,11 @@
 // The other languages: Czech texts, messages with Czech word forms, switching the language; German, Slovak
 // and Polish texts and word forms.
 const { test } = require('@playwright/test');
-const { expect } = require('./helpers');
+const h = require('./helpers');
+const { expect } = h;
 
 test('both apps speak Czech when chosen, and switch back to English', async ({ page }) => {
+  await h.expert(page);
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.addInitScript(() => { if (!sessionStorage.getItem('lang-set')) { localStorage.setItem('mz-lang', 'cs'); sessionStorage.setItem('lang-set', '1'); } });

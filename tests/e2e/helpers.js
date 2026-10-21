@@ -7,7 +7,7 @@ const blank = (w = 1000, h = 1000, unit = '') =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}${unit}" height="${h}${unit}"></svg>`;
 
 /** Opens the app on a fresh page. Collects page errors so tests can assert there were none. */
-async function open(page, { mode = 'simple', doc = blank() } = {}) {
+async function open(page, { mode = 'expert', doc = blank() } = {}) {
   const errors = [];
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
@@ -107,4 +107,11 @@ async function answer(page, value = null, { cancel = false } = {}) {
   return question;
 }
 
-module.exports = { expect, blank, open, scr, drag, click, key, fills, expectFills, near, colorAt, count, setState, png, answer };
+/** The vector app opens in Expert mode (Simple is for children: most of the app is hidden there) – as if chosen before. */
+async function expert(page) {
+  await page.addInitScript(() => {
+    try { const p = JSON.parse(localStorage.getItem('mz-prefs') || '{}'); if (!p.mode) { p.mode = 'expert'; localStorage.setItem('mz-prefs', JSON.stringify(p)); } } catch { /* storage blocked */ }
+  });
+}
+
+module.exports = { expect, blank, open, expert, scr, drag, click, key, fills, expectFills, near, colorAt, count, setState, png, answer };

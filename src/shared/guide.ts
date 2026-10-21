@@ -11,7 +11,9 @@ export interface GuideStep {
   target?: string;
 }
 
-export function initGuide(button: HTMLElement, steps: GuideStep[], key: string): { show(): void } {
+/** steps: fixed, or worked out each time it opens (they can depend on the mode) */
+export function initGuide(button: HTMLElement, stepsOf: GuideStep[] | (() => GuideStep[]), key: string): { show(): void } {
+  let steps = typeof stepsOf === 'function' ? stepsOf() : stepsOf;
   const card = document.createElement('dialog');
   card.id = 'guide';
   card.innerHTML = `<div class="dlg-head"><h2></h2><button class="guide-close" title="${t('Close')}">✕</button></div>
@@ -41,6 +43,7 @@ export function initGuide(button: HTMLElement, steps: GuideStep[], key: string):
     lsSet(key, '1');
   }
   function show(): void {
+    if (typeof stepsOf === 'function') steps = stepsOf();
     at = 0;
     draw();
     if (!card.open) card.show();

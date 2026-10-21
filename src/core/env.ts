@@ -20,7 +20,8 @@ export const pageRect = $('#mz-page'), gridRect = $('#mz-gridrect'), gridPattern
 // ---- constants ----------------------------------------------------------------------------
 export const EDITABLE = new Set(['line', 'polyline', 'polygon']);
 export const SHAPE_SEL = 'line,polyline,polygon,rect,circle,ellipse,path';
-export const EXPERT_TOOLS = new Set(['knife']);
+/** only in Expert mode: Simple (for children) has the basic tools – select, line, shapes, circles, tiles, paint */
+export const EXPERT_TOOLS = new Set(['knife', 'free', 'curve', 'pan']);
 export const VERSION_EVERY_MS = 3 * 60 * 1000, MAX_VERSIONS = 40;
 
 // ---- state --------------------------------------------------------------------------------

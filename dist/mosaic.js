@@ -1174,7 +1174,23 @@
     "Twist": "Zkroucení",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Stiskněte tam, kde má být střed víru, a táhněte ven: kruh ukazuje, kam až sahá. Pak kružte kolem středu – čím dál kolem, tím silnější zkroucení (zpátky ho vrátíte). Zvednutím dokončíte; s výběrem se zkroutí jen vybrané pixely.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Zkroucení – stiskněte, táhněte ven pro velikost, kružte kolem a obrázek se zavíří (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Zkroucení (W): stiskněte tam, kde má být střed víru, táhněte ven pro jeho velikost a pak kružte kolem – čím dál kolem, tím silnější zkroucení (oběma směry). S výběrem se zkroutí jen vybrané pixely."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Zkroucení (W): stiskněte tam, kde má být střed víru, táhněte ven pro jeho velikost a pak kružte kolem – čím dál kolem, tím silnější zkroucení (oběma směry). S výběrem se zkroutí jen vybrané pixely.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Klikni na čáru nebo tvar, vyber ho a pak ho přetáhni – nebo stiskni Delete",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Táhni a nakresli čáru – přichytí se k čarám a rohům, které už tam jsou",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Táhni od středu a nakresli tvar – vpravo vyber, kolik má mít rohů",
+    "Drag to draw a circle or an oval": "Táhni a nakresli kruh nebo ovál",
+    "Click inside an area to fill it with tiles": "Klikni dovnitř plochy a vyplň ji dlaždicemi",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Vyber barvu a klikni na dlaždici, aby se vybarvila – nebo táhni přes víc dlaždic",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Udělej si mozaiku: nakresli čáry mezi dlaždicemi nebo vyplň plochu dlaždicemi, pak každou dlaždici vybarvi.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Vlevo vyber nástroj: Čára, Tvary a Kruhy kreslí, Dlaždice vyplní plochu dlaždicemi, Barva vybarví dlaždici, na kterou klikneš.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Klikni na barvu a pak na dlaždice s nástrojem Barva. Spletl ses? Šipka nahoře to vrátí.",
+    "Shapes": "Tvary",
+    "Circles": "Kruhy",
+    "Small tiles": "Malé dlaždice",
+    "Big": "Velké",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: jen kreslicí nástroje a barvy – pro děti a rychlé mozaiky. Expert: všechno",
+    "Tile size": "Velikost dlaždic",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorové aplikace je teď pro děti: jen základní nástroje (každý s popiskem) – Výběr, Čára, Tvary, Kruhy, Dlaždice, Barva – a velké barvy; na telefonech a tabletech jsou barvy i dole. Všechno ostatní je v režimu Expert."
   };
 
   // src/shared/i18n-de.ts
@@ -2346,7 +2362,23 @@
     "Twist": "Verdrehen",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Dort drücken, wo die Mitte des Wirbels sein soll, und nach außen ziehen: Der Kreis zeigt, wie weit er reicht. Dann um die Mitte herumfahren – je weiter herum, desto stärker die Verdrehung (zurück macht sie rückgängig). Loslassen beendet; mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Verdrehen – drücken, für die Größe nach außen ziehen, herumfahren, und das Bild wirbelt (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Werkzeug Verdrehen (W): dort drücken, wo die Mitte des Wirbels sein soll, für seine Größe nach außen ziehen, dann herumfahren – je weiter herum, desto stärker die Verdrehung (in beide Richtungen). Mit einer Auswahl verdrehen sich nur die ausgewählten Pixel."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Werkzeug Verdrehen (W): dort drücken, wo die Mitte des Wirbels sein soll, für seine Größe nach außen ziehen, dann herumfahren – je weiter herum, desto stärker die Verdrehung (in beide Richtungen). Mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Klick auf eine Linie oder Form, um sie auszuwählen, dann zieh sie – oder drück Entf",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Zieh, um eine Linie zu zeichnen – sie haftet an den Linien und Ecken, die schon da sind",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Zieh von der Mitte aus, um eine Form zu zeichnen – rechts wählst du, wie viele Ecken",
+    "Drag to draw a circle or an oval": "Zieh, um einen Kreis oder ein Oval zu zeichnen",
+    "Click inside an area to fill it with tiles": "Klick in eine Fläche, um sie mit Fliesen zu füllen",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Wähl eine Farbe, dann klick auf eine Fliese, um sie anzumalen – oder zieh über viele Fliesen",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Mach ein Mosaik: Zeichne die Linien zwischen den Fliesen oder füll eine Fläche mit Fliesen, dann mal jede Fliese an.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Wähl links ein Werkzeug: Linie, Formen und Kreise zeichnen, Fliesen füllt eine Fläche mit Fliesen, Malen färbt die Fliese, die du anklickst.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Klick auf eine Farbe, dann mit Malen auf die Fliesen. Vertan? Der Pfeil oben macht es rückgängig.",
+    "Shapes": "Formen",
+    "Circles": "Kreise",
+    "Small tiles": "Kleine Fliesen",
+    "Big": "Groß",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Einfach: nur die Zeichenwerkzeuge und die Farben – für Kinder und schnelle Mosaike. Experte: alles",
+    "Tile size": "Fliesengröße",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus."
   };
 
   // src/shared/i18n-sk.ts
@@ -3518,7 +3550,23 @@
     "Twist": "Skrútenie",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Stlačte tam, kde má byť stred víru, a ťahajte von: kruh ukazuje, kam až siaha. Potom krúžte okolo stredu – čím ďalej okolo, tým silnejšie skrútenie (späť ho vrátite). Zdvihnutím dokončíte; s výberom sa skrútia len vybrané pixely.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Skrútenie – stlačte, ťahajte von pre veľkosť, krúžte okolo a obrázok sa zavíri (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Skrútenie (W): stlačte tam, kde má byť stred víru, ťahajte von pre jeho veľkosť a potom krúžte okolo – čím ďalej okolo, tým silnejšie skrútenie (oboma smermi). S výberom sa skrútia len vybrané pixely."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Skrútenie (W): stlačte tam, kde má byť stred víru, ťahajte von pre jeho veľkosť a potom krúžte okolo – čím ďalej okolo, tým silnejšie skrútenie (oboma smermi). S výberom sa skrútia len vybrané pixely.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Klikni na čiaru alebo tvar, vyber ho a potom ho potiahni – alebo stlač Delete",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Ťahaj a nakresli čiaru – prichytí sa k čiaram a rohom, ktoré už tam sú",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Ťahaj od stredu a nakresli tvar – vpravo vyber, koľko má mať rohov",
+    "Drag to draw a circle or an oval": "Ťahaj a nakresli kruh alebo ovál",
+    "Click inside an area to fill it with tiles": "Klikni dovnútra plochy a vyplň ju dlaždicami",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Vyber farbu a klikni na dlaždicu, aby sa vyfarbila – alebo ťahaj cez viac dlaždíc",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Urob si mozaiku: nakresli čiary medzi dlaždicami alebo vyplň plochu dlaždicami, potom každú dlaždicu vyfarbi.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Vľavo vyber nástroj: Čiara, Tvary a Kruhy kreslia, Dlaždice vyplnia plochu dlaždicami, Farba vyfarbí dlaždicu, na ktorú klikneš.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Klikni na farbu a potom na dlaždice s nástrojom Farba. Pomýlil si sa? Šípka hore to vráti.",
+    "Shapes": "Tvary",
+    "Circles": "Kruhy",
+    "Small tiles": "Malé dlaždice",
+    "Big": "Veľké",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: len kresliace nástroje a farby – pre deti a rýchle mozaiky. Expert: všetko",
+    "Tile size": "Veľkosť dlaždíc",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorovej aplikácie je teraz pre deti: len základné nástroje (každý s popisom) – Výber, Čiara, Tvary, Kruhy, Dlaždice, Farba – a veľké farby; na telefónoch a tabletoch sú farby aj dole. Všetko ostatné je v režime Expert."
   };
 
   // src/shared/i18n-pl.ts
@@ -4690,7 +4738,23 @@
     "Twist": "Skręcenie",
     "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Naciśnij tam, gdzie ma być środek wiru, i przeciągnij na zewnątrz: okrąg pokazuje, jak daleko sięga. Potem krąż wokół środka – im dalej wokół, tym mocniejsze skręcenie (z powrotem je cofa). Puść, by zakończyć; przy zaznaczeniu skręcają się tylko zaznaczone piksele.",
     "Twist – press, drag out for the size, go round to swirl the picture (W)": "Skręcenie – naciśnij, przeciągnij na zewnątrz dla rozmiaru, krąż wokół, a obraz zawiruje (W)",
-    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Narzędzie Skręcenie (W): naciśnij tam, gdzie ma być środek wiru, przeciągnij na zewnątrz dla jego rozmiaru, potem krąż wokół – im dalej wokół, tym mocniejsze skręcenie (w obie strony). Przy zaznaczeniu skręcają się tylko zaznaczone piksele."
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Narzędzie Skręcenie (W): naciśnij tam, gdzie ma być środek wiru, przeciągnij na zewnątrz dla jego rozmiaru, potem krąż wokół – im dalej wokół, tym mocniejsze skręcenie (w obie strony). Przy zaznaczeniu skręcają się tylko zaznaczone piksele.",
+    "Click a line or shape to pick it, then drag it – or press Delete": "Kliknij linię lub kształt, by go wybrać, potem go przeciągnij – albo naciśnij Delete",
+    "Drag to draw a line – it sticks to the lines and corners already there": "Przeciągnij, by narysować linię – przyczepia się do linii i rogów, które już są",
+    "Drag from the middle to draw a shape – pick how many corners on the right": "Przeciągnij od środka, by narysować kształt – po prawej wybierz, ile ma mieć rogów",
+    "Drag to draw a circle or an oval": "Przeciągnij, by narysować koło lub owal",
+    "Click inside an area to fill it with tiles": "Kliknij wewnątrz obszaru, by wypełnić go płytkami",
+    "Pick a color, then click a tile to paint it – or drag across many tiles": "Wybierz kolor, potem kliknij płytkę, by ją pomalować – albo przeciągnij przez wiele płytek",
+    "Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.": "Zrób mozaikę: narysuj linie między płytkami albo wypełnij obszar płytkami, potem pomaluj każdą płytkę.",
+    "Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it.": "Wybierz narzędzie po lewej: Linia, Kształty i Koła rysują, Płytki wypełniają obszar płytkami, Maluj koloruje płytkę, którą klikniesz.",
+    "Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back.": "Kliknij kolor, potem płytki narzędziem Maluj. Pomyłka? Strzałka u góry to cofnie.",
+    "Shapes": "Kształty",
+    "Circles": "Koła",
+    "Small tiles": "Małe płytki",
+    "Big": "Duże",
+    "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Prosty: tylko narzędzia do rysowania i kolory – dla dzieci i szybkich mozaik. Ekspert: wszystko",
+    "Tile size": "Rozmiar płytek",
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Prosty tryb aplikacji wektorowej jest teraz dla dzieci: tylko podstawowe narzędzia (każde z podpisem) – Zaznacz, Linia, Kształty, Koła, Płytki, Maluj – i duże kolory; na telefonach i tabletach kolory są też na dole. Wszystko inne jest w trybie Ekspert."
   };
 
   // src/shared/i18n.ts
@@ -5189,7 +5253,7 @@
       st.paletteName = name;
       host2.save();
       renderSelect();
-      render3();
+      render4();
     }
     function addPalette2(name, colors) {
       const n4 = uniqueName2(name);
@@ -5204,11 +5268,11 @@
         added++;
       }
       host2.save();
-      render3();
+      render4();
       return added;
     }
     let paletteKey = "";
-    function render3() {
+    function render4() {
       const box4 = $("#palette");
       const counts = host2.counts(), key = st.palette.join();
       if (key === paletteKey && box4.children.length === st.palette.length + 1) {
@@ -5293,17 +5357,17 @@
     function setFill2(c, apply) {
       st.fill = c;
       host2.save();
-      if (!(apply && host2.applyFill && host2.applyFill(c))) render3();
+      if (!(apply && host2.applyFill && host2.applyFill(c))) render4();
     }
     function setStroke2(c, apply) {
       st.stroke = c;
       host2.save();
-      if (!(apply && host2.applyStroke && host2.applyStroke(c))) render3();
+      if (!(apply && host2.applyStroke && host2.applyStroke(c))) render4();
     }
     function removeColor(c) {
       st.palette = st.palette.filter((x) => x !== c);
       host2.save();
-      render3();
+      render4();
     }
     async function editColor(old) {
       const v = await ask(t("Edit color (hex or any CSS color).\nThe drawing is recolored too."), old);
@@ -5322,7 +5386,7 @@
       host2.save();
       const msg = host2.recolor ? host2.recolor(old, c) : null;
       if (msg) toast(msg);
-      render3();
+      render4();
     }
     function addFromInput2() {
       const inp = $("#color-input");
@@ -5394,7 +5458,7 @@
         st.fill = st.stroke;
         st.stroke = f;
         host2.save();
-        render3();
+        render4();
       };
       $("#pal-select").onchange = (e) => switchPalette2(e.target.value);
       $("#btn-pal-new").onclick = async () => {
@@ -5428,7 +5492,7 @@
         if (await askYes(t("Remove all colors from this palette? (The drawing is not changed.)"))) {
           st.palette = [];
           host2.save();
-          render3();
+          render4();
         }
       };
       $("#btn-pal-import").onclick = () => $("#pal-file").click();
@@ -5444,10 +5508,10 @@
         if (e.key !== SHARED_KEY) return;
         loadSharedPalettes(st);
         renderSelect();
-        render3();
+        render4();
       });
     }
-    return { uniqueName: uniqueName2, renderSelect, switchPalette: switchPalette2, addPalette: addPalette2, addColors: addColors2, render: render3, setFill: setFill2, setStroke: setStroke2, addFromInput: addFromInput2, updatePreview, pasteColors: pasteColors2, bind };
+    return { uniqueName: uniqueName2, renderSelect, switchPalette: switchPalette2, addPalette: addPalette2, addColors: addColors2, render: render4, setFill: setFill2, setStroke: setStroke2, addFromInput: addFromInput2, updatePreview, pasteColors: pasteColors2, bind };
   }
 
   // src/core/env.ts
@@ -5471,7 +5535,7 @@
   var gridPath = $("#mz-gridpath");
   var EDITABLE = /* @__PURE__ */ new Set(["line", "polyline", "polygon"]);
   var SHAPE_SEL = "line,polyline,polygon,rect,circle,ellipse,path";
-  var EXPERT_TOOLS = /* @__PURE__ */ new Set(["knife"]);
+  var EXPERT_TOOLS = /* @__PURE__ */ new Set(["knife", "free", "curve", "pan"]);
   var VERSION_EVERY_MS = 3 * 60 * 1e3;
   var MAX_VERSIONS = 40;
   var state = {
@@ -7229,6 +7293,14 @@
     bucket: t("Click or drag across tiles to paint them · click again to recolor · ∅ swatch erases · Alt+click: pick a color"),
     pan: t("Drag to pan · mouse wheel zooms")
   };
+  var KID_HINTS = {
+    select: t("Click a line or shape to pick it, then drag it – or press Delete"),
+    line: t("Drag to draw a line – it sticks to the lines and corners already there"),
+    ngon: t("Drag from the middle to draw a shape – pick how many corners on the right"),
+    ellipse: t("Drag to draw a circle or an oval"),
+    pattern: t("Click inside an area to fill it with tiles"),
+    bucket: t("Pick a color, then click a tile to paint it – or drag across many tiles")
+  };
   function registerTool(name, handlers2, hint) {
     tools[name] = handlers2;
     HINTS[name] = hint;
@@ -7240,7 +7312,7 @@
     stage.dataset.tool = tool;
     for (const b of $$("#tools button")) b.classList.toggle("active", b.dataset.tool === tool);
     for (const s of $$(".tool-opts")) s.hidden = s.dataset.for !== tool;
-    $("#st-hint").textContent = HINTS[tool];
+    $("#st-hint").textContent = state.mode === "simple" && KID_HINTS[tool] || HINTS[tool];
   }
 
   // src/core/files.ts
@@ -7510,7 +7582,7 @@
     state.mode = m === "expert" ? "expert" : "simple";
     document.body.dataset.mode = state.mode;
     for (const b of $$("#mode-switch button")) b.classList.toggle("active", b.dataset.mode === state.mode);
-    if (EXPERT_TOOLS.has(state.tool) && state.mode !== "expert") setTool("select");
+    setTool(EXPERT_TOOLS.has(state.tool) && state.mode !== "expert" ? "select" : state.tool);
     savePrefs();
     applyLayers();
     applyDoc();
@@ -8662,6 +8734,17 @@
       state.pattern.angle = v;
     });
     $("#btn-pat-page").onclick = () => applyPattern(null);
+    const sizes = () => {
+      for (const b of $$("#pat-sizes button")) b.classList.toggle("active", Math.abs(state.pattern.size - tileSize(+b.dataset.tiles)) < 1e-6);
+    };
+    const tileSize = (n4) => +(Math.min(state.doc.w, state.doc.h) / n4).toPrecision(3);
+    for (const b of $$("#pat-sizes button")) b.onclick = () => {
+      state.pattern.size = tileSize(+b.dataset.tiles);
+      $("#pat-size").value = state.pattern.size;
+      savePrefs();
+      sizes();
+    };
+    sizes();
     bindCheck("#opt-snap", "snap");
     bindCheck("#opt-link", "link");
     bindCheck("#opt-border", "border");
@@ -9774,8 +9857,8 @@
     setEps(j.eps);
     const at = sampler(j.photo), d = j.page;
     const page2 = [{ x: d.x, y: d.y }, { x: d.x + d.w, y: d.y }, { x: d.x + d.w, y: d.y + d.h }, { x: d.x, y: d.y + d.h }];
-    const bar = 4 + (1 - j.detail / 100) * 26;
-    const busy = (x, y, w, h) => detailAt(at, x, y, w, h) > bar;
+    const bar2 = 4 + (1 - j.detail / 100) * 26;
+    const busy = (x, y, w, h) => detailAt(at, x, y, w, h) > bar2;
     const cells3 = cells2({ style: j.style, box: d, size: j.size, detail: j.detail / 100, busy, seed: j.seed });
     progress?.(0.5);
     if (cells3.length > j.maxTiles) return { tiles: cells3.length, lines: [], palette: [] };
@@ -10286,7 +10369,7 @@ ${sections.join("\n")}
     });
     const list = dlg4.querySelector("#hist-list");
     let thumbs2 = [];
-    async function render3() {
+    async function render4() {
       thumbs2.forEach((u) => URL.revokeObjectURL(u));
       thumbs2 = [];
       let versions;
@@ -10343,15 +10426,15 @@ ${sections.join("\n")}
       } catch {
         toast(t("Could not save a version (browser storage unavailable)."));
       }
-      render3();
+      render4();
     }
     button.onclick = () => {
-      render3();
+      render4();
       dlg4.showModal();
     };
     dlg4.querySelector("#hist-save").onclick = async () => {
       toast(await host2.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
-      render3();
+      render4();
     };
   }
 
@@ -11909,8 +11992,8 @@ ${shapes.join("\n")}
     if (m.shape === "offset" || m.shape === "square" && !adaptive) {
       return mosaic(img, { tile: m.tile, grout: m.grout, groutColor: m.groutColor, palette: m.palette, bricks: m.shape === "offset" });
     }
-    const bar = 4 + (1 - m.detail / 100) * 26;
-    const busy = (x, y, w, h) => detailAt2(img, x, y, w, h) > bar;
+    const bar2 = 4 + (1 - m.detail / 100) * 26;
+    const busy = (x, y, w, h) => detailAt2(img, x, y, w, h) > bar2;
     const size = m.shape === "brick" ? m.tile / 2 : m.tile;
     const cells3 = cells2({ style: m.shape, box: { x: 0, y: 0, w: img.width, h: img.height }, size, detail: m.detail / 100, busy, seed: 7 });
     progress(0.5);
@@ -12364,12 +12447,12 @@ ${others}
       list.sort((a, b) => a.index - b.index);
       pages = list.map((p) => ({ name: p.name, svg: p.svg, history: null, view: null }));
       cur = pages.findIndex((p) => p.svg === null);
-      render3();
+      render4();
     });
     MZ.on("reset", () => {
       pages = [{ name: t("Page {n}", { n: 1 }), svg: null, history: null, view: null }];
       cur = 0;
-      render3();
+      render4();
     });
     function capture2() {
       const p = pages[cur];
@@ -12392,7 +12475,7 @@ ${others}
         Object.assign(state11.view, p.view);
         MZ.updateView();
       }
-      render3();
+      render4();
       MZ.docChanged();
     }
     function switchTo(i) {
@@ -12420,7 +12503,7 @@ ${others}
       const n4 = await ask(t("Page name:"), pages[i].name);
       if (!n4 || !n4.trim()) return;
       pages[i].name = n4.trim();
-      render3();
+      render4();
       MZ.docChanged();
     }
     async function remove(i) {
@@ -12436,7 +12519,7 @@ ${others}
       } else {
         pages.splice(i, 1);
         if (i < cur) cur--;
-        render3();
+        render4();
         MZ.docChanged();
       }
     }
@@ -12446,7 +12529,7 @@ ${others}
       [pages[i], pages[j]] = [pages[j], pages[i]];
       if (cur === i) cur = j;
       else if (cur === j) cur = i;
-      render3();
+      render4();
       MZ.docChanged();
     }
     function closeMenu() {
@@ -12481,7 +12564,7 @@ ${others}
     document.addEventListener("pointerdown", (e) => {
       if (!e.target.closest("#page-menu, .page-more")) closeMenu();
     });
-    function render3() {
+    function render4() {
       const box4 = $("#page-tabs");
       box4.innerHTML = "";
       pages.forEach((p, i) => {
@@ -12505,7 +12588,7 @@ ${others}
       });
     }
     $("#page-add").onclick = () => add(false);
-    render3();
+    render4();
     return { switchTo, add, get count() {
       return pages.length;
     }, get current() {
@@ -12988,9 +13071,9 @@ void main() {
       count = n4 * 3;
       center = [(x0 + x1) / 2, (y0 + y1) / 2, 0];
       radius = Math.max(1e-3, Math.hypot(x1 - x0, y1 - y0) / 2, z1);
-      render3();
+      render4();
     }
-    function render3() {
+    function render4() {
       const dpr = window.devicePixelRatio || 1, w = Math.round(canvas.clientWidth * dpr) || canvas.width, h = Math.round(canvas.clientHeight * dpr) || canvas.height;
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
@@ -13019,7 +13102,7 @@ void main() {
       cam.yaw = -0.5;
       cam.pitch = 0.85;
       cam.dist = 3;
-      render3();
+      render4();
     }
     const pointers2 = /* @__PURE__ */ new Map();
     let pinch2 = 0;
@@ -13048,7 +13131,7 @@ void main() {
         cam.pitch = Math.min(1.5, Math.max(0, cam.pitch - (e.clientY - p.y) * 0.01));
         pointers2.set(e.pointerId, { x: e.clientX, y: e.clientY });
       }
-      render3();
+      render4();
     });
     const end = (e) => {
       pointers2.delete(e.pointerId);
@@ -13059,13 +13142,13 @@ void main() {
     canvas.addEventListener("wheel", (e) => {
       e.preventDefault();
       cam.dist = Math.min(8, Math.max(0.4, cam.dist * Math.exp(e.deltaY * 1e-3)));
-      render3();
+      render4();
     }, { passive: false });
     canvas.addEventListener("dblclick", reset);
     return { show: show2, setExaggeration: (k) => {
       exaggeration = k;
-      render3();
-    }, reset, render: render3 };
+      render4();
+    }, reset, render: render4 };
   }
 
   // src/shared/export3d.ts
@@ -13199,7 +13282,7 @@ void main() {
           cached = m;
           cachedKey = key;
           busy("");
-          render3();
+          render4();
         }, (e) => {
           if (isCancelled(e) || wanted !== key) return;
           wanted = "";
@@ -13212,7 +13295,7 @@ void main() {
     const byBrightness = (lightFirst) => (a, b) => +isLine(b) - +isLine(a) || (luminance(colors[b]) - luminance(colors[a])) * (lightFirst ? 1 : -1);
     function sortBy(lightFirst) {
       order.sort(byBrightness(lightFirst));
-      render3();
+      render4();
     }
     async function analyse() {
       const { w, h } = size();
@@ -13237,7 +13320,7 @@ void main() {
       const fresh = colors.map((_, i) => i).filter((i) => !known.includes(i)).sort(byBrightness(true));
       order = [...known, ...fresh];
       normalize();
-      render3();
+      render4();
     }
     const rows = /* @__PURE__ */ new Map();
     function move(c, d) {
@@ -13246,7 +13329,7 @@ void main() {
       if (k < 0 || other == null || isLine(other) !== isLine(list[k])) return;
       const a = order.indexOf(list[k]), b = order.indexOf(other);
       [order[a], order[b]] = [order[b], order[a]];
-      render3();
+      render4();
     }
     function toggleGrout(c) {
       const on2 = !lines2.has(c);
@@ -13254,9 +13337,9 @@ void main() {
       if (on2) lines2.add(c);
       else lines2.delete(c);
       normalize();
-      render3();
+      render4();
     }
-    function render3() {
+    function render4() {
       const { w, h } = size(), fl = isFlat();
       for (const el of dlg4.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts2.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
@@ -13516,7 +13599,7 @@ void main() {
         }
         i.value = opts2[key];
         if (again) reanalyse();
-        else render3();
+        else render4();
       };
     };
     bindNum("#m3-detail", "detail", 0.1, 5, false, true);
@@ -13536,7 +13619,7 @@ void main() {
     const setMode2 = (mode) => {
       opts2.mode = mode;
       saveOpts();
-      render3();
+      render4();
     };
     $("#m3-mode-height").onclick = () => setMode2("height");
     $("#m3-mode-flat").onclick = () => setMode2("flat");
@@ -13886,7 +13969,8 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/guide.ts
-  function initGuide(button, steps2, key) {
+  function initGuide(button, stepsOf, key) {
+    let steps2 = typeof stepsOf === "function" ? stepsOf() : stepsOf;
     const card = document.createElement("dialog");
     card.id = "guide";
     card.innerHTML = `<div class="dlg-head"><h2></h2><button class="guide-close" title="${t("Close")}">✕</button></div>
@@ -13916,6 +14000,7 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       lsSet(key, "1");
     }
     function show2() {
+      if (typeof stepsOf === "function") steps2 = stepsOf();
       at = 0;
       draw();
       if (!card.open) card.show();
@@ -13985,7 +14070,12 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       open: fromPhoto
     }
   ]);
-  initGuide(document.querySelector("#btn-guide"), [
+  initGuide(document.querySelector("#btn-guide"), () => MZ.state.mode === "simple" ? [
+    // Simple mode (children): only what they see
+    { title: t("Welcome to Mosaic Paint"), text: t("Make a mosaic: draw the lines between the tiles, or fill an area with tiles, then paint each tile.") },
+    { title: t("Draw"), text: t("Pick a tool on the left: Line, Shapes and Circles draw, Tiles fills an area with tiles, Paint colors a tile when you click it."), target: "#tools" },
+    { title: t("Colors"), text: t("Click a color, then click the tiles with Paint. Made a mistake? The arrow at the top takes it back."), target: "#palette" }
+  ] : [
     { title: t("Welcome to Mosaic Paint"), text: t("Design a mosaic: draw lines or lay a tile pattern, then paint the tiles. Everything is measured in real millimetres.") },
     { title: t("Draw"), text: t("The tools are on the left: lines and shapes, the tile pattern, and the paint bucket that fills a tile with one click."), target: "#tools" },
     { title: t("Colors"), text: t("Pick a color in the palette, then click tiles with the bucket. Palettes are shared with the raster app."), target: "#palette" },
@@ -14375,9 +14465,45 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
     document.head.append(s);
   }
 
+  // src/features/kid-colors.ts
+  var bar = document.createElement("div");
+  bar.id = "kid-colors";
+  bar.setAttribute("role", "toolbar");
+  bar.setAttribute("aria-label", t("Colors"));
+  stage.append(bar);
+  function render3() {
+    const colors = [null, ...state.palette];
+    if (bar.childElementCount !== colors.length || colors.some((c, i) => bar.children[i].dataset.color !== String(c))) {
+      bar.innerHTML = "";
+      for (const c of colors) {
+        const b = document.createElement("button");
+        b.className = "kc" + (c ? "" : " none");
+        b.dataset.color = String(c);
+        if (c) b.style.background = c;
+        b.setAttribute("aria-label", c || t("No color – the bucket erases with it"));
+        b.onclick = () => setFill(c, true);
+        bar.append(b);
+      }
+    }
+    for (const b of bar.children) {
+      const on2 = b.dataset.color === String(state.fill);
+      b.classList.toggle("active", on2);
+      b.setAttribute("aria-pressed", String(on2));
+    }
+  }
+  on("palette", render3);
+  render3();
+
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.10.0" : "dev";
+  var VERSION = true ? "3.0.0" : "dev";
   var RELEASES = [
+    {
+      version: "3.0.0",
+      date: "2026-10-21",
+      items: [
+        "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode."
+      ]
+    },
     {
       version: "2.10.0",
       date: "2026-10-21",
