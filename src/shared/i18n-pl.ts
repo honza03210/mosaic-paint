@@ -1940,8 +1940,8 @@ export const PL: Record<string, string> = {
     'Zamaluj to, co ma zniknąć – po uniesieniu wypełni się z otoczenia',
   'Tap to add text · drag it into place · tap it to edit · Enter places it':
     'Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza',
-  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
-    'Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Rozmycie, Szum, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Twist, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Rozmycie, Szum, Skręcenie, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń',
   'Text – tap to type; fonts, outline, shadow and curved text (T)':
     'Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
@@ -2326,4 +2326,14 @@ export const PL: Record<string, string> = {
     'Obrót (Shift: co 15°)',
   'A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.':
     'Zaznaczenie ma teraz nad sobą uchwyt do obracania (przyciąga do pionu; Shift: co 15°) i pasek pod sobą: obrót w lewo / prawo, odbicie w poziomie / pionie, duplikuj, usuń, anuluj, umieść – myszą lub palcem.',
+  'Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish':
+    'Naciśnij w środku, przeciągnij na zewnątrz dla rozmiaru, potem krąż wokół, by skręcić – im dalej wokół, tym mocniej · puść, by zakończyć',
+  'Twist':
+    'Skręcenie',
+  'Press where the swirl\'s centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.':
+    'Naciśnij tam, gdzie ma być środek wiru, i przeciągnij na zewnątrz: okrąg pokazuje, jak daleko sięga. Potem krąż wokół środka – im dalej wokół, tym mocniejsze skręcenie (z powrotem je cofa). Puść, by zakończyć; przy zaznaczeniu skręcają się tylko zaznaczone piksele.',
+  'Twist – press, drag out for the size, go round to swirl the picture (W)':
+    'Skręcenie – naciśnij, przeciągnij na zewnątrz dla rozmiaru, krąż wokół, a obraz zawiruje (W)',
+  'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.':
+    'Narzędzie Skręcenie (W): naciśnij tam, gdzie ma być środek wiru, przeciągnij na zewnątrz dla jego rozmiaru, potem krąż wokół – im dalej wokół, tym mocniejsze skręcenie (w obie strony). Przy zaznaczeniu skręcają się tylko zaznaczone piksele.',
 };

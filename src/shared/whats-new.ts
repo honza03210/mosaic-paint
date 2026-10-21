@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '2.10.0', date: '2026-10-21', items: [
+      'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.',
+    ],
+  },
+  {
     version: '2.9.0', date: '2026-10-17', items: [
       'A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.',
     ],

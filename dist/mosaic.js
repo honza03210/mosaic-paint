@@ -977,7 +977,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Klepněte, odkud kopírovat (nebo Alt+klik), pak přemalujte místo – po zvednutí splyne",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Přemalujte, co má zmizet – po zvednutí se vyplní z okolí",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Klepnutím přidáte text · přetáhněte ho na místo · klepnutím ho upravíte · Enter ho umístí",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Rozmazání, Šum, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Twist, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Rozmazání, Šum, Zkroucení, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – klepněte a pište; písma, obrys, stín a zakřivený text (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrové aplikaci (T): libovolné písmo (i nainstalovaná, kde je prohlížeč umí zobrazit), velikost, tučné, kurzíva, zarovnání, obrys, stín a zakřivený text. Do umístění plave nad obrázkem – přetáhněte ho, klepnutím upravíte.",
     "The AI could not start in this browser.": "AI se v tomto prohlížeči nepodařilo spustit.",
@@ -1169,7 +1169,12 @@
     "Delete the selected pixels (Del)": "Smazat vybrané pixely (Del)",
     "Drag the knob above a selection": "Tažení úchytu nad výběrem",
     "Turn it (Shift: 15° steps)": "Otočit (Shift: po 15°)",
-    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Výběr má teď nad sebou úchyt k otáčení (přichytí se svisle; Shift: po 15°) a pod sebou lištu: otočit doleva / doprava, překlopit vodorovně / svisle, duplikovat, smazat, zrušit, umístit – myší i prstem."
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Výběr má teď nad sebou úchyt k otáčení (přichytí se svisle; Shift: po 15°) a pod sebou lištu: otočit doleva / doprava, překlopit vodorovně / svisle, duplikovat, smazat, zrušit, umístit – myší i prstem.",
+    "Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish": "Stiskněte ve středu, táhněte ven pro velikost, pak kružte kolem a kruťte – čím dál kolem, tím silněji · zvednutím dokončíte",
+    "Twist": "Zkroucení",
+    "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Stiskněte tam, kde má být střed víru, a táhněte ven: kruh ukazuje, kam až sahá. Pak kružte kolem středu – čím dál kolem, tím silnější zkroucení (zpátky ho vrátíte). Zvednutím dokončíte; s výběrem se zkroutí jen vybrané pixely.",
+    "Twist – press, drag out for the size, go round to swirl the picture (W)": "Zkroucení – stiskněte, táhněte ven pro velikost, kružte kolem a obrázek se zavíří (W)",
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Zkroucení (W): stiskněte tam, kde má být střed víru, táhněte ven pro jeho velikost a pak kružte kolem – čím dál kolem, tím silnější zkroucení (oběma směry). S výběrem se zkroutí jen vybrané pixely."
   };
 
   // src/shared/i18n-de.ts
@@ -2144,7 +2149,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Tippe, wovon kopiert wird (oder Alt+Klick), dann übermale die Stelle – beim Loslassen fügt sie sich ein",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Übermale, was verschwinden soll – beim Loslassen wird es aus der Umgebung gefüllt",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Weichzeichnen, Rauschen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Twist, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Weichzeichnen, Rauschen, Verdrehen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Text-Werkzeug in der Raster-App (T): jede Schrift (auch die installierten, wo der Browser sie auflistet), Größe, fett, kursiv, Ausrichtung, Umriss, Schatten und gebogener Text. Er schwebt, bis er gesetzt wird – ziehen, antippen zum Bearbeiten.",
     "The AI could not start in this browser.": "Die KI konnte in diesem Browser nicht starten.",
@@ -2336,7 +2341,12 @@
     "Delete the selected pixels (Del)": "Die ausgewählten Pixel löschen (Entf)",
     "Drag the knob above a selection": "Den Griff über einer Auswahl ziehen",
     "Turn it (Shift: 15° steps)": "Drehen (Shift: 15°-Schritte)",
-    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Eine Auswahl hat jetzt einen Griff darüber zum Drehen (rastet aufrecht ein; Shift: 15°-Schritte) und eine Leiste darunter: links / rechts drehen, horizontal / vertikal spiegeln, duplizieren, löschen, abbrechen, platzieren – mit der Maus oder dem Finger."
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Eine Auswahl hat jetzt einen Griff darüber zum Drehen (rastet aufrecht ein; Shift: 15°-Schritte) und eine Leiste darunter: links / rechts drehen, horizontal / vertikal spiegeln, duplizieren, löschen, abbrechen, platzieren – mit der Maus oder dem Finger.",
+    "Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish": "In der Mitte drücken, für die Größe nach außen ziehen, dann herumfahren zum Verdrehen – je weiter herum, desto stärker · Loslassen beendet",
+    "Twist": "Verdrehen",
+    "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Dort drücken, wo die Mitte des Wirbels sein soll, und nach außen ziehen: Der Kreis zeigt, wie weit er reicht. Dann um die Mitte herumfahren – je weiter herum, desto stärker die Verdrehung (zurück macht sie rückgängig). Loslassen beendet; mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.",
+    "Twist – press, drag out for the size, go round to swirl the picture (W)": "Verdrehen – drücken, für die Größe nach außen ziehen, herumfahren, und das Bild wirbelt (W)",
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Werkzeug Verdrehen (W): dort drücken, wo die Mitte des Wirbels sein soll, für seine Größe nach außen ziehen, dann herumfahren – je weiter herum, desto stärker die Verdrehung (in beide Richtungen). Mit einer Auswahl verdrehen sich nur die ausgewählten Pixel."
   };
 
   // src/shared/i18n-sk.ts
@@ -3311,7 +3321,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Ťuknite, odkiaľ kopírovať (alebo Alt+klik), potom premaľujte miesto – po zdvihnutí splynie",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Premaľujte, čo má zmiznúť – po zdvihnutí sa vyplní z okolia",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Ťuknutím pridáte text · presuňte ho na miesto · ťuknutím ho upravíte · Enter ho umiestni",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Rozmazanie, Šum, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Twist, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Výber, Štetec, Ceruzka, Guma, Klonovanie, Retuš, Odstrániť, Rozmazanie, Šum, Skrútenie, Text, Čiara, Mnohouholník, Elipsa, Krivka, Vedierko, Kvapkadlo, Posun",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Text – ťuknite a píšte; písma, obrys, tieň a zakrivený text (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Nástroj Text v rastrovej aplikácii (T): ľubovoľné písmo (aj nainštalované, kde ich prehliadač vie zobraziť), veľkosť, tučné, kurzíva, zarovnanie, obrys, tieň a zakrivený text. Do umiestnenia pláva nad obrázkom – presuňte ho, ťuknutím upravíte.",
     "The AI could not start in this browser.": "AI sa v tomto prehliadači nepodarilo spustiť.",
@@ -3503,7 +3513,12 @@
     "Delete the selected pixels (Del)": "Zmazať vybrané pixely (Del)",
     "Drag the knob above a selection": "Ťahanie úchytu nad výberom",
     "Turn it (Shift: 15° steps)": "Otočiť (Shift: po 15°)",
-    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Výber má teraz nad sebou úchyt na otáčanie (prichytí sa zvisle; Shift: po 15°) a pod sebou lištu: otočiť doľava / doprava, prevrátiť vodorovne / zvisle, duplikovať, zmazať, zrušiť, umiestniť – myšou aj prstom."
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Výber má teraz nad sebou úchyt na otáčanie (prichytí sa zvisle; Shift: po 15°) a pod sebou lištu: otočiť doľava / doprava, prevrátiť vodorovne / zvisle, duplikovať, zmazať, zrušiť, umiestniť – myšou aj prstom.",
+    "Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish": "Stlačte v strede, ťahajte von pre veľkosť, potom krúžte okolo a krúťte – čím ďalej okolo, tým silnejšie · zdvihnutím dokončíte",
+    "Twist": "Skrútenie",
+    "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Stlačte tam, kde má byť stred víru, a ťahajte von: kruh ukazuje, kam až siaha. Potom krúžte okolo stredu – čím ďalej okolo, tým silnejšie skrútenie (späť ho vrátite). Zdvihnutím dokončíte; s výberom sa skrútia len vybrané pixely.",
+    "Twist – press, drag out for the size, go round to swirl the picture (W)": "Skrútenie – stlačte, ťahajte von pre veľkosť, krúžte okolo a obrázok sa zavíri (W)",
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Nástroj Skrútenie (W): stlačte tam, kde má byť stred víru, ťahajte von pre jeho veľkosť a potom krúžte okolo – čím ďalej okolo, tým silnejšie skrútenie (oboma smermi). S výberom sa skrútia len vybrané pixely."
   };
 
   // src/shared/i18n-pl.ts
@@ -4478,7 +4493,7 @@
     "Tap where to copy from (or Alt+click), then paint over the spot – it blends in when you lift": "Stuknij, skąd kopiować (lub Alt+klik), potem zamaluj miejsce – po uniesieniu się wtopi",
     "Paint over what should disappear – it is filled from the surroundings when you lift": "Zamaluj to, co ma zniknąć – po uniesieniu wypełni się z otoczenia",
     "Tap to add text · drag it into place · tap it to edit · Enter places it": "Stuknij, aby dodać tekst · przeciągnij go · stuknij, aby edytować · Enter go umieszcza",
-    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Rozmycie, Szum, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
+    "Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Twist, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan": "Zaznaczenie, Pędzel, Ołówek, Gumka, Klonowanie, Korekta, Usuń, Rozmycie, Szum, Skręcenie, Tekst, Linia, Wielokąt, Elipsa, Krzywa, Wiadro, Pobierz kolor, Przesuń",
     "Text – tap to type; fonts, outline, shadow and curved text (T)": "Tekst – stuknij i pisz; czcionki, obrys, cień i wygięty tekst (T)",
     "Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.": "Narzędzie Tekst w aplikacji rastrowej (T): dowolna czcionka (także zainstalowane, gdzie przeglądarka je wyświetla), rozmiar, pogrubienie, kursywa, wyrównanie, obrys, cień i wygięty tekst. Unosi się do czasu umieszczenia – przeciągnij go, stuknij, aby edytować.",
     "The AI could not start in this browser.": "Nie udało się uruchomić AI w tej przeglądarce.",
@@ -4670,7 +4685,12 @@
     "Delete the selected pixels (Del)": "Usuń zaznaczone piksele (Del)",
     "Drag the knob above a selection": "Przeciągnij uchwyt nad zaznaczeniem",
     "Turn it (Shift: 15° steps)": "Obrót (Shift: co 15°)",
-    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Zaznaczenie ma teraz nad sobą uchwyt do obracania (przyciąga do pionu; Shift: co 15°) i pasek pod sobą: obrót w lewo / prawo, odbicie w poziomie / pionie, duplikuj, usuń, anuluj, umieść – myszą lub palcem."
+    "A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.": "Zaznaczenie ma teraz nad sobą uchwyt do obracania (przyciąga do pionu; Shift: co 15°) i pasek pod sobą: obrót w lewo / prawo, odbicie w poziomie / pionie, duplikuj, usuń, anuluj, umieść – myszą lub palcem.",
+    "Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish": "Naciśnij w środku, przeciągnij na zewnątrz dla rozmiaru, potem krąż wokół, by skręcić – im dalej wokół, tym mocniej · puść, by zakończyć",
+    "Twist": "Skręcenie",
+    "Press where the swirl's centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.": "Naciśnij tam, gdzie ma być środek wiru, i przeciągnij na zewnątrz: okrąg pokazuje, jak daleko sięga. Potem krąż wokół środka – im dalej wokół, tym mocniejsze skręcenie (z powrotem je cofa). Puść, by zakończyć; przy zaznaczeniu skręcają się tylko zaznaczone piksele.",
+    "Twist – press, drag out for the size, go round to swirl the picture (W)": "Skręcenie – naciśnij, przeciągnij na zewnątrz dla rozmiaru, krąż wokół, a obraz zawiruje (W)",
+    "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.": "Narzędzie Skręcenie (W): naciśnij tam, gdzie ma być środek wiru, przeciągnij na zewnątrz dla jego rozmiaru, potem krąż wokół – im dalej wokół, tym mocniejsze skręcenie (w obie strony). Przy zaznaczeniu skręcają się tylko zaznaczone piksele."
   };
 
   // src/shared/i18n.ts
@@ -14356,8 +14376,15 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "2.9.0" : "dev";
+  var VERSION = true ? "2.10.0" : "dev";
   var RELEASES = [
+    {
+      version: "2.10.0",
+      date: "2026-10-21",
+      items: [
+        "Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist."
+      ]
+    },
     {
       version: "2.9.0",
       date: "2026-10-17",

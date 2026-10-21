@@ -1940,8 +1940,8 @@ export const CS: Record<string, string> = {
     'Přemalujte, co má zmizet – po zvednutí se vyplní z okolí',
   'Tap to add text · drag it into place · tap it to edit · Enter places it':
     'Klepnutím přidáte text · přetáhněte ho na místo · klepnutím ho upravíte · Enter ho umístí',
-  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
-    'Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Rozmazání, Šum, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Twist, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Výběr, Štětec, Tužka, Guma, Klonování, Retuš, Odstranit, Rozmazání, Šum, Zkroucení, Text, Čára, Mnohoúhelník, Elipsa, Křivka, Kyblík, Kapátko, Posun',
   'Text – tap to type; fonts, outline, shadow and curved text (T)':
     'Text – klepněte a pište; písma, obrys, stín a zakřivený text (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
@@ -2326,4 +2326,14 @@ export const CS: Record<string, string> = {
     'Otočit (Shift: po 15°)',
   'A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.':
     'Výběr má teď nad sebou úchyt k otáčení (přichytí se svisle; Shift: po 15°) a pod sebou lištu: otočit doleva / doprava, překlopit vodorovně / svisle, duplikovat, smazat, zrušit, umístit – myší i prstem.',
+  'Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish':
+    'Stiskněte ve středu, táhněte ven pro velikost, pak kružte kolem a kruťte – čím dál kolem, tím silněji · zvednutím dokončíte',
+  'Twist':
+    'Zkroucení',
+  'Press where the swirl\'s centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.':
+    'Stiskněte tam, kde má být střed víru, a táhněte ven: kruh ukazuje, kam až sahá. Pak kružte kolem středu – čím dál kolem, tím silnější zkroucení (zpátky ho vrátíte). Zvednutím dokončíte; s výběrem se zkroutí jen vybrané pixely.',
+  'Twist – press, drag out for the size, go round to swirl the picture (W)':
+    'Zkroucení – stiskněte, táhněte ven pro velikost, kružte kolem a obrázek se zavíří (W)',
+  'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.':
+    'Nástroj Zkroucení (W): stiskněte tam, kde má být střed víru, táhněte ven pro jeho velikost a pak kružte kolem – čím dál kolem, tím silnější zkroucení (oběma směry). S výběrem se zkroutí jen vybrané pixely.',
 };

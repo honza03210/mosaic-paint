@@ -1940,8 +1940,8 @@ export const DE: Record<string, string> = {
     'Übermale, was verschwinden soll – beim Loslassen wird es aus der Umgebung gefüllt',
   'Tap to add text · drag it into place · tap it to edit · Enter places it':
     'Tippen fügt Text hinzu · an seinen Platz ziehen · antippen zum Bearbeiten · Enter setzt ihn',
-  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
-    'Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Weichzeichnen, Rauschen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben',
+  'Select, Brush, Pencil, Eraser, Clone, Heal, Remove, Blur, Noise, Twist, Text, Line, Polygon, Ellipse, Curve, Bucket, Pick color, Pan':
+    'Auswahl, Pinsel, Stift, Radierer, Klonen, Reparieren, Entfernen, Weichzeichnen, Rauschen, Verdrehen, Text, Linie, Polygon, Ellipse, Kurve, Farbeimer, Farbe aufnehmen, Verschieben',
   'Text – tap to type; fonts, outline, shadow and curved text (T)':
     'Text – tippen und schreiben; Schriften, Umriss, Schatten und gebogener Text (T)',
   'Text tool in the raster app (T): any font (also the installed ones, where the browser lists them), size, bold, italic, alignment, outline, shadow and curved text. It floats until placed – drag it, tap it to edit.':
@@ -2326,4 +2326,14 @@ export const DE: Record<string, string> = {
     'Drehen (Shift: 15°-Schritte)',
   'A selection now has a knob above it to turn it (it snaps upright; Shift: 15° steps) and a bar below it: turn left / right, flip horizontally / vertically, duplicate, delete, cancel, place – with the mouse or a finger.':
     'Eine Auswahl hat jetzt einen Griff darüber zum Drehen (rastet aufrecht ein; Shift: 15°-Schritte) und eine Leiste darunter: links / rechts drehen, horizontal / vertikal spiegeln, duplizieren, löschen, abbrechen, platzieren – mit der Maus oder dem Finger.',
+  'Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish':
+    'In der Mitte drücken, für die Größe nach außen ziehen, dann herumfahren zum Verdrehen – je weiter herum, desto stärker · Loslassen beendet',
+  'Twist':
+    'Verdrehen',
+  'Press where the swirl\'s centre should be and drag out: the circle shows how far it reaches. Then go round the centre – the further round, the stronger the twist (back the other way to undo it). Lift to finish; with a selection, only the selected pixels twist.':
+    'Dort drücken, wo die Mitte des Wirbels sein soll, und nach außen ziehen: Der Kreis zeigt, wie weit er reicht. Dann um die Mitte herumfahren – je weiter herum, desto stärker die Verdrehung (zurück macht sie rückgängig). Loslassen beendet; mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.',
+  'Twist – press, drag out for the size, go round to swirl the picture (W)':
+    'Verdrehen – drücken, für die Größe nach außen ziehen, herumfahren, und das Bild wirbelt (W)',
+  'Twist tool (W): press where the swirl’s centre should be, drag out for its size, then go round – the further round, the stronger the twist (either way). With a selection, only the selected pixels twist.':
+    'Werkzeug Verdrehen (W): dort drücken, wo die Mitte des Wirbels sein soll, für seine Größe nach außen ziehen, dann herumfahren – je weiter herum, desto stärker die Verdrehung (in beide Richtungen). Mit einer Auswahl verdrehen sich nur die ausgewählten Pixel.',
 };

@@ -25,7 +25,7 @@ const SNAP = 3 * Math.PI / 180;
 function startPinch(): void {
   // a second finger turns the gesture into pan / zoom: undo what the first finger began
   const a = state.action;
-  if (a && (a.type === 'stroke')) restoreCurrent();
+  if (a && (a.type === 'stroke' || a.type === 'twist')) restoreCurrent();
   if (a && a.type === 'curve-press') curveBack();
   // a new rectangle begun by the first finger: the selection it replaced comes back
   if (a && a.type === 'marquee' && a.op === 'new' && a.prev) { state.sel = a.prev; selectionChanged(); }
@@ -126,6 +126,8 @@ function bindPointer(): void {
   view.addEventListener('pointercancel', (e) => {
     pointerEnd(e);
     if (state.action && state.action.type === 'stroke') commit();
+    // a twist that didn't finish: as it was
+    if (state.action && state.action.type === 'twist') restoreCurrent();
     state.action = null;
     state.preview = null;
     stage.classList.remove('panning');
@@ -181,6 +183,7 @@ function onKey(e: KeyboardEvent): void {
     case 'r': setTool('remove'); break;
     case 'u': setTool('blur'); break;
     case 'n': setTool('noise'); break;
+    case 'w': setTool('twist'); break;
     case 't': setTool('text'); break;
     case 'l': setTool('line'); break;
     case 'g': setTool('ngon'); break;

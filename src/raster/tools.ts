@@ -5,10 +5,11 @@ import { stage, view, requestRender } from './canvas.ts';
 import { paintTools, cancelCurve, type Tool } from './paint.ts';
 import { selectTool, place } from './select.ts';
 import { textTool } from './text.ts';
+import { twistTool } from './twist-tool.ts';
 import { t } from '../shared/i18n.ts';
 
 export const tools: Record<string, Tool> = {
-  ...paintTools, select: selectTool, text: textTool, pan: { down() {}, move() {}, up() {} },
+  ...paintTools, select: selectTool, text: textTool, twist: twistTool, pan: { down() {}, move() {}, up() {} },
 };
 const HINTS: Record<string, string> = {
   select: t('Drag to select · drag inside the selection to move it (Alt: a copy) · Enter places it · Ctrl+C / X / V copy, cut, paste'),
@@ -20,6 +21,7 @@ const HINTS: Record<string, string> = {
   remove: t('Paint over what should disappear – it is filled from the surroundings when you lift'),
   blur: t('Paint to soften – edges of pasted photos blend in · [ ] size · a soft tip blends best'),
   noise: t('Paint to add grain – a smooth patch matches the photo around it · [ ] size'),
+  twist: t('Press at the centre, drag out for the size, then go round it to twist – the further round, the stronger · lift to finish'),
   text: t('Tap to add text · drag it into place · tap it to edit · Enter places it'),
   line: t('Drag a line · Shift: 15° steps'),
   ngon: t('Drag from the center · Shift: 15° rotation · keys 3–9: sides'),
