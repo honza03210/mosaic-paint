@@ -14,6 +14,8 @@ async function open(page, { mode = 'expert', doc = blank() } = {}) {
   await page.goto('/');
   await page.waitForFunction(() => window.MZ && window.MZ.ready);
   await page.evaluate(([d, m]) => {
+    // (no rulers along the edges: the layout the tests were written for – Expert would show them)
+    MZ.state.rulers = false;
     MZ.setMode(m);
     Object.assign(MZ.state, { newFill: false, snap: true, grid: false, chain: false });
     MZ.state.sym.type = 'none';
