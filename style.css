@@ -69,6 +69,11 @@ kbd { font: 11px ui-monospace, monospace; padding: 0 4px; border: 1px solid var(
 #tools button.active { background: var(--accent-fill); border-color: var(--accent); color: #fff; }
 /* the vector app's Simple mode (for children): bigger tools with a word under each, bigger color swatches */
 body:not([data-mode=simple]) .simple-only { display: none !important; }
+/* hand-laid lines (handlaid.ts): the even lines hide under their tapered pieces (still there to edit) */
+#mz-shapes.hand :not(.mz-fill):not(g) { stroke-opacity: 0; }
+#tools #btn-hand { margin-top: 6px; position: relative; }
+#tools #btn-hand::before { content: ''; position: absolute; left: 4px; right: 4px; top: -6px; border-top: 1px solid var(--border); }
+#tools #btn-hand svg { fill: currentColor; }
 body.in-discord .app-switch.expert { display: inline-flex !important; }
 #tools .tl { display: none; }
 body.app-vector[data-mode=simple] #tools { width: 74px; }
@@ -124,7 +129,7 @@ body.app-vector[data-mode=simple] .swatch .del { display: none !important; }
 }
 #panel section { padding: 10px 12px; border-bottom: 1px solid var(--border); }
 #panel h3 { margin: 0 0 8px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
-#panel h3 span { text-transform: none; letter-spacing: 0; font-weight: 400; }
+#panel h3 span:not(.expert):not(.simple-only) { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .row.small button { padding: 3px 8px; font-size: 12px; }
 .note { margin: 8px 0 0; font-size: 11.5px; color: var(--muted); }

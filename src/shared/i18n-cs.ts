@@ -2368,4 +2368,32 @@ export const CS: Record<string, string> = {
     'Velikost dlaždic',
   'The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.':
     'Jednoduchý režim vektorové aplikace je teď pro děti: jen základní nástroje (každý s popiskem) – Výběr, Čára, Tvary, Kruhy, Dlaždice, Barva – a velké barvy; na telefonech a tabletech jsou barvy i dole. Všechno ostatní je v režimu Expert.',
+  'Remove the picture?':
+    'Odstranit obrázek?',
+  'Picture loaded – draw over it.':
+    'Obrázek je načtený – kresli přes něj.',
+  'Choose another picture…':
+    'Vybrat jiný obrázek…',
+  'Choose a picture…':
+    'Vybrat obrázek…',
+  'Shards':
+    'Střepy',
+  'Hand-laid lines':
+    'Ručně kladené spáry',
+  'Uneven, tapered lines – as if the shards were laid by hand':
+    'Nerovné, zužující se spáry – jako by střepy kladl člověk',
+  'Shuffle':
+    'Zamíchat',
+  'Unevenness':
+    'Nerovnost',
+  'Picture to draw over':
+    'Obrázek pod kresbou',
+  'Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)':
+    'Střepy – nerovné, zužující se spáry, jako by sklo kladl člověk (znovu: rovné spáry)',
+  'Other widths for every piece':
+    'Jiné šířky pro každý kousek',
+  'Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).':
+    'Jednoduchý režim: Vybrat obrázek… vloží obrázek pod kresbu, přes který kreslíš tvary dlaždic (lze ho zesvětlit nebo odstranit).',
+  'Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.':
+    'Střepy (v obou režimech): nerovné, zužující se spáry, jako by skleněné střepy kladl člověk – každý kousek mezi dvěma křížením má vlastní šířku, na jednom konci širší. Zamíchat dá jiné šířky; Nerovnost je v panelu. Čáry pod tím zůstanou, jak jsou; soubory i obrázky ten vzhled zachovají.',
 };

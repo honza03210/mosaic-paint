@@ -26,7 +26,11 @@ export const VERSION_EVERY_MS = 3 * 60 * 1000, MAX_VERSIONS = 40;
 
 // ---- state --------------------------------------------------------------------------------
 export interface Layer { visible: boolean; locked: boolean }
-export interface Doc { x: number; y: number; w: number; h: number; bg: string | null; unit: string }
+export interface Doc {
+  x: number; y: number; w: number; h: number; bg: string | null; unit: string;
+  /** hand-laid lines (handlaid.ts): on when set – the arrangement (seed) and how uneven (0…1) */
+  hand?: { seed: number; amount: number };
+}
 /** ctrl: a curve point the curve doesn't pass through (drawn round) */
 export interface Handle { el: Element; idx: number; x: number; y: number; ctrl?: boolean }
 

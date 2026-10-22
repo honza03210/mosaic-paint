@@ -2368,4 +2368,32 @@ export const DE: Record<string, string> = {
     'Fliesengröße',
   'The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.':
     'Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus.',
+  'Remove the picture?':
+    'Das Bild entfernen?',
+  'Picture loaded – draw over it.':
+    'Bild geladen – zeichne darüber.',
+  'Choose another picture…':
+    'Anderes Bild wählen…',
+  'Choose a picture…':
+    'Bild wählen…',
+  'Shards':
+    'Scherben',
+  'Hand-laid lines':
+    'Von Hand gelegte Fugen',
+  'Uneven, tapered lines – as if the shards were laid by hand':
+    'Ungleiche, spitz zulaufende Fugen – als wären die Scherben von Hand gelegt',
+  'Shuffle':
+    'Mischen',
+  'Unevenness':
+    'Ungleichheit',
+  'Picture to draw over':
+    'Bild unter der Zeichnung',
+  'Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)':
+    'Scherben – ungleiche, spitz zulaufende Fugen, als wäre das Glas von Hand gelegt (nochmal: gleichmäßige Fugen)',
+  'Other widths for every piece':
+    'Andere Breiten für jedes Stück',
+  'Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).':
+    'Einfacher Modus: Bild wählen… legt ein Bild unter die Zeichnung, über das du die Fliesenformen zeichnest (es kann blasser werden oder weg).',
+  'Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.':
+    'Scherben (beide Modi): ungleiche, spitz zulaufende Fugen, als wären Glasscherben von Hand gelegt – jedes Stück zwischen zwei Kreuzungen bekommt seine eigene Breite, an einem Ende breiter. Mischen gibt andere Breiten; Ungleichheit im Panel. Die Linien darunter bleiben, wie sie sind; Dateien und Bilder behalten das Aussehen.',
 };

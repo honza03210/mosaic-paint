@@ -11,6 +11,12 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '3.1.0', date: '2026-10-22', items: [
+      'Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).',
+      'Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.',
+    ],
+  },
+  {
     version: '3.0.0', date: '2026-10-21', items: [
       'The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.',
     ],

@@ -1190,7 +1190,21 @@
     "Big": "Velké",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: jen kreslicí nástroje a barvy – pro děti a rychlé mozaiky. Expert: všechno",
     "Tile size": "Velikost dlaždic",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorové aplikace je teď pro děti: jen základní nástroje (každý s popiskem) – Výběr, Čára, Tvary, Kruhy, Dlaždice, Barva – a velké barvy; na telefonech a tabletech jsou barvy i dole. Všechno ostatní je v režimu Expert."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorové aplikace je teď pro děti: jen základní nástroje (každý s popiskem) – Výběr, Čára, Tvary, Kruhy, Dlaždice, Barva – a velké barvy; na telefonech a tabletech jsou barvy i dole. Všechno ostatní je v režimu Expert.",
+    "Remove the picture?": "Odstranit obrázek?",
+    "Picture loaded – draw over it.": "Obrázek je načtený – kresli přes něj.",
+    "Choose another picture…": "Vybrat jiný obrázek…",
+    "Choose a picture…": "Vybrat obrázek…",
+    "Shards": "Střepy",
+    "Hand-laid lines": "Ručně kladené spáry",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Nerovné, zužující se spáry – jako by střepy kladl člověk",
+    "Shuffle": "Zamíchat",
+    "Unevenness": "Nerovnost",
+    "Picture to draw over": "Obrázek pod kresbou",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Střepy – nerovné, zužující se spáry, jako by sklo kladl člověk (znovu: rovné spáry)",
+    "Other widths for every piece": "Jiné šířky pro každý kousek",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Jednoduchý režim: Vybrat obrázek… vloží obrázek pod kresbu, přes který kreslíš tvary dlaždic (lze ho zesvětlit nebo odstranit).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Střepy (v obou režimech): nerovné, zužující se spáry, jako by skleněné střepy kladl člověk – každý kousek mezi dvěma křížením má vlastní šířku, na jednom konci širší. Zamíchat dá jiné šířky; Nerovnost je v panelu. Čáry pod tím zůstanou, jak jsou; soubory i obrázky ten vzhled zachovají."
   };
 
   // src/shared/i18n-de.ts
@@ -2378,7 +2392,21 @@
     "Big": "Groß",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Einfach: nur die Zeichenwerkzeuge und die Farben – für Kinder und schnelle Mosaike. Experte: alles",
     "Tile size": "Fliesengröße",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus.",
+    "Remove the picture?": "Das Bild entfernen?",
+    "Picture loaded – draw over it.": "Bild geladen – zeichne darüber.",
+    "Choose another picture…": "Anderes Bild wählen…",
+    "Choose a picture…": "Bild wählen…",
+    "Shards": "Scherben",
+    "Hand-laid lines": "Von Hand gelegte Fugen",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Ungleiche, spitz zulaufende Fugen – als wären die Scherben von Hand gelegt",
+    "Shuffle": "Mischen",
+    "Unevenness": "Ungleichheit",
+    "Picture to draw over": "Bild unter der Zeichnung",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Scherben – ungleiche, spitz zulaufende Fugen, als wäre das Glas von Hand gelegt (nochmal: gleichmäßige Fugen)",
+    "Other widths for every piece": "Andere Breiten für jedes Stück",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Einfacher Modus: Bild wählen… legt ein Bild unter die Zeichnung, über das du die Fliesenformen zeichnest (es kann blasser werden oder weg).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Scherben (beide Modi): ungleiche, spitz zulaufende Fugen, als wären Glasscherben von Hand gelegt – jedes Stück zwischen zwei Kreuzungen bekommt seine eigene Breite, an einem Ende breiter. Mischen gibt andere Breiten; Ungleichheit im Panel. Die Linien darunter bleiben, wie sie sind; Dateien und Bilder behalten das Aussehen."
   };
 
   // src/shared/i18n-sk.ts
@@ -3566,7 +3594,21 @@
     "Big": "Veľké",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: len kresliace nástroje a farby – pre deti a rýchle mozaiky. Expert: všetko",
     "Tile size": "Veľkosť dlaždíc",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorovej aplikácie je teraz pre deti: len základné nástroje (každý s popisom) – Výber, Čiara, Tvary, Kruhy, Dlaždice, Farba – a veľké farby; na telefónoch a tabletoch sú farby aj dole. Všetko ostatné je v režime Expert."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorovej aplikácie je teraz pre deti: len základné nástroje (každý s popisom) – Výber, Čiara, Tvary, Kruhy, Dlaždice, Farba – a veľké farby; na telefónoch a tabletoch sú farby aj dole. Všetko ostatné je v režime Expert.",
+    "Remove the picture?": "Odstrániť obrázok?",
+    "Picture loaded – draw over it.": "Obrázok je načítaný – kresli cez neho.",
+    "Choose another picture…": "Vybrať iný obrázok…",
+    "Choose a picture…": "Vybrať obrázok…",
+    "Shards": "Črepy",
+    "Hand-laid lines": "Ručne kladené špáry",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Nerovné, zužujúce sa špáry – akoby črepy kládol človek",
+    "Shuffle": "Zamiešať",
+    "Unevenness": "Nerovnosť",
+    "Picture to draw over": "Obrázok pod kresbou",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Črepy – nerovné, zužujúce sa špáry, akoby sklo kládol človek (znova: rovné špáry)",
+    "Other widths for every piece": "Iné šírky pre každý kúsok",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Jednoduchý režim: Vybrať obrázok… vloží obrázok pod kresbu, cez ktorý kreslíš tvary dlaždíc (dá sa zosvetliť alebo odstrániť).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Črepy (v oboch režimoch): nerovné, zužujúce sa špáry, akoby sklenené črepy kládol človek – každý kúsok medzi dvoma kríženiami má vlastnú šírku, na jednom konci širší. Zamiešať dá iné šírky; Nerovnosť je v paneli. Čiary pod tým zostanú, ako sú; súbory aj obrázky ten vzhľad zachovajú."
   };
 
   // src/shared/i18n-pl.ts
@@ -4754,7 +4796,21 @@
     "Big": "Duże",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Prosty: tylko narzędzia do rysowania i kolory – dla dzieci i szybkich mozaik. Ekspert: wszystko",
     "Tile size": "Rozmiar płytek",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Prosty tryb aplikacji wektorowej jest teraz dla dzieci: tylko podstawowe narzędzia (każde z podpisem) – Zaznacz, Linia, Kształty, Koła, Płytki, Maluj – i duże kolory; na telefonach i tabletach kolory są też na dole. Wszystko inne jest w trybie Ekspert."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Prosty tryb aplikacji wektorowej jest teraz dla dzieci: tylko podstawowe narzędzia (każde z podpisem) – Zaznacz, Linia, Kształty, Koła, Płytki, Maluj – i duże kolory; na telefonach i tabletach kolory są też na dole. Wszystko inne jest w trybie Ekspert.",
+    "Remove the picture?": "Usunąć obraz?",
+    "Picture loaded – draw over it.": "Obraz wczytany – rysuj na nim.",
+    "Choose another picture…": "Wybierz inny obraz…",
+    "Choose a picture…": "Wybierz obraz…",
+    "Shards": "Odłamki",
+    "Hand-laid lines": "Fugi kładzione ręcznie",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Nierówne, zwężające się fugi – jakby odłamki układał człowiek",
+    "Shuffle": "Wymieszaj",
+    "Unevenness": "Nierówność",
+    "Picture to draw over": "Obraz pod rysunkiem",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Odłamki – nierówne, zwężające się fugi, jakby szkło układał człowiek (ponownie: równe fugi)",
+    "Other widths for every piece": "Inne szerokości dla każdego kawałka",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Tryb prosty: Wybierz obraz… kładzie obraz pod rysunek, na którym rysujesz kształty płytek (można go rozjaśnić lub usunąć).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Odłamki (oba tryby): nierówne, zwężające się fugi, jakby szklane odłamki układał człowiek – każdy kawałek między dwoma skrzyżowaniami ma własną szerokość, z jednej strony szerszy. Wymieszaj daje inne szerokości; Nierówność jest w panelu. Linie pod spodem zostają bez zmian; pliki i obrazy zachowują ten wygląd."
   };
 
   // src/shared/i18n.ts
@@ -5036,8 +5092,8 @@
     const X = (R * 0.4124 + G * 0.3576 + B * 0.1805) / 0.95047;
     const Y = R * 0.2126 + G * 0.7152 + B * 0.0722;
     const Z = (R * 0.0193 + G * 0.1192 + B * 0.9505) / 1.08883;
-    const f = (t2) => t2 > 216 / 24389 ? Math.cbrt(t2) : (24389 / 27 * t2 + 16) / 116;
-    const fx = f(X), fy = f(Y), fz = f(Z);
+    const f3 = (t2) => t2 > 216 / 24389 ? Math.cbrt(t2) : (24389 / 27 * t2 + 16) / 116;
+    const fx = f3(X), fy = f3(Y), fz = f3(Z);
     return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
   }
   function fromLab([L, a, b]) {
@@ -5091,11 +5147,11 @@
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
   function fromHsv(h, s, v) {
-    const f = (n4) => {
+    const f3 = (n4) => {
       const k = (n4 + h / 60) % 6;
       return Math.round(255 * (v - v * s * Math.max(0, Math.min(k, 4 - k, 1))));
     };
-    return "#" + [f(5), f(3), f(1)].map((x) => x.toString(16).padStart(2, "0")).join("");
+    return "#" + [f3(5), f3(3), f3(1)].map((x) => x.toString(16).padStart(2, "0")).join("");
   }
   function toHsv(c) {
     const rgb = toRgb(c);
@@ -5454,9 +5510,9 @@
         if (parse(inp.value).length) addFromInput2();
       }, 0));
       $("#btn-swap").onclick = () => {
-        const f = st.fill;
+        const f3 = st.fill;
         st.fill = st.stroke;
-        st.stroke = f;
+        st.stroke = f3;
         host2.save();
         render4();
       };
@@ -5497,12 +5553,12 @@
       };
       $("#btn-pal-import").onclick = () => $("#pal-file").click();
       $("#pal-file").onchange = async (e) => {
-        const f = e.target.files[0];
-        if (!f) return;
-        const text = await f.text();
+        const f3 = e.target.files[0];
+        if (!f3) return;
+        const text = await f3.text();
         e.target.value = "";
         const n4 = addColors2(parse(text));
-        toast(n4 ? t("Imported {n} {n|color|colors}.", { n: n4 }) : t("No new colors found in {name}", { name: f.name }));
+        toast(n4 ? t("Imported {n} {n|color|colors}.", { n: n4 }) : t("No new colors found in {name}", { name: f3.name }));
       };
       window.addEventListener("storage", (e) => {
         if (e.key !== SHARED_KEY) return;
@@ -5860,36 +5916,36 @@
   }
   function regionIndex(segs) {
     const faces = planarFaces(segs);
-    for (const f of faces) f.bb = bounds(f.pts);
-    const inner = faces.filter((f) => f.area > 0), outer = faces.filter((f) => f.area < 0);
-    const all = bounds(inner.flatMap((f) => [{ x: f.bb.x0, y: f.bb.y0 }, { x: f.bb.x1, y: f.bb.y1 }]));
+    for (const f3 of faces) f3.bb = bounds(f3.pts);
+    const inner = faces.filter((f3) => f3.area > 0), outer = faces.filter((f3) => f3.area < 0);
+    const all = bounds(inner.flatMap((f3) => [{ x: f3.bb.x0, y: f3.bb.y0 }, { x: f3.bb.x1, y: f3.bb.y1 }]));
     const grid = new SpatialGrid(Math.max(all.x1 - all.x0, all.y1 - all.y0) / Math.max(8, Math.sqrt(inner.length)));
-    for (const f of inner) grid.insert(f, f.bb);
+    for (const f3 of inner) grid.insert(f3, f3.bb);
     const regions = /* @__PURE__ */ new Map();
     const locate = (p) => {
       let best = null;
-      for (const f of grid.query(p.x, p.y, p.x, p.y)) {
-        const b = f.bb;
+      for (const f3 of grid.query(p.x, p.y, p.x, p.y)) {
+        const b = f3.bb;
         if (p.x < b.x0 || p.x > b.x1 || p.y < b.y0 || p.y > b.y1) continue;
-        if ((!best || f.area < best.area) && pointInPolygon(p, f.pts)) best = f;
+        if ((!best || f3.area < best.area) && pointInPolygon(p, f3.pts)) best = f3;
       }
       return best;
     };
-    const region = (f) => {
-      const known = regions.get(f);
+    const region = (f3) => {
+      const known = regions.get(f3);
       if (known) return known;
-      const cands = outer.filter((h) => h.comp !== f.comp && pointInPolygon(h.pts[0], f.pts));
+      const cands = outer.filter((h) => h.comp !== f3.comp && pointInPolygon(h.pts[0], f3.pts));
       const holes = cands.filter((h) => !cands.some((o) => o !== h && pointInPolygon(h.pts[0], o.pts)));
-      const r = { outer: f.pts, holes: holes.map((h) => h.pts), area: f.area + holes.reduce((s, h) => s + h.area, 0), bb: f.bb };
-      regions.set(f, r);
+      const r = { outer: f3.pts, holes: holes.map((h) => h.pts), area: f3.area + holes.reduce((s, h) => s + h.area, 0), bb: f3.bb };
+      regions.set(f3, r);
       return r;
     };
-    const within = (b) => [...grid.query(b.x0, b.y0, b.x1, b.y1)].filter((f) => f.bb.x1 >= b.x0 && f.bb.x0 <= b.x1 && f.bb.y1 >= b.y0 && f.bb.y0 <= b.y1);
+    const within = (b) => [...grid.query(b.x0, b.y0, b.x1, b.y1)].filter((f3) => f3.bb.x1 >= b.x0 && f3.bb.x0 <= b.x1 && f3.bb.y1 >= b.y0 && f3.bb.y0 <= b.y1);
     return { locate, region, faces: inner, within };
   }
   function findRegion(segs, p) {
-    const ix = regionIndex(segs), f = ix.locate(p);
-    return f ? ix.region(f) : null;
+    const ix = regionIndex(segs), f3 = ix.locate(p);
+    return f3 ? ix.region(f3) : null;
   }
   function clipSegment(a, b, rings, keep) {
     const ts = [0, 1];
@@ -6165,6 +6221,125 @@
     toast(t("Applied the grout color and width to {n} {n|line|lines}.", { n: n4 }));
   }
 
+  // src/lib/handlaid.ts
+  function rand(...k) {
+    let h = 2166136261 >>> 0;
+    for (const v of k) {
+      h ^= Math.round(v * 64) | 0;
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    let s = h;
+    return () => {
+      s = s + 1831565813 >>> 0;
+      let t2 = s;
+      t2 = Math.imul(t2 ^ t2 >>> 15, t2 | 1);
+      t2 ^= t2 + Math.imul(t2 ^ t2 >>> 7, t2 | 61);
+      return ((t2 ^ t2 >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function splitAtCrossings(own, all, min = 1e-6) {
+    const out = [];
+    for (const s of own) {
+      const ts = [0, 1];
+      const x0 = Math.min(s.a.x, s.b.x), x1 = Math.max(s.a.x, s.b.x), y0 = Math.min(s.a.y, s.b.y), y1 = Math.max(s.a.y, s.b.y);
+      for (const o of all) {
+        if (o === s || Math.max(o.a.x, o.b.x) < x0 || Math.min(o.a.x, o.b.x) > x1 || Math.max(o.a.y, o.b.y) < y0 || Math.min(o.a.y, o.b.y) > y1) continue;
+        const hit = segIntersect(s.a, s.b, o.a, o.b);
+        if (hit && hit.t > 0 && hit.t < 1) ts.push(hit.t);
+      }
+      ts.sort((a, b) => a - b);
+      const len = dist(s.a, s.b), at = (t2) => ({ x: s.a.x + (s.b.x - s.a.x) * t2, y: s.a.y + (s.b.y - s.a.y) * t2 });
+      let from = 0;
+      for (let i = 1; i < ts.length; i++) {
+        if ((ts[i] - from) * len < min && i < ts.length - 1) continue;
+        if (ts[i] > from) out.push({ a: at(from), b: at(ts[i]) });
+        from = ts[i];
+      }
+    }
+    return out;
+  }
+  function taper(seed, a, b, amount) {
+    const [p, q] = a.x < b.x || a.x === b.x && a.y <= b.y ? [a, b] : [b, a];
+    const r = rand(seed, p.x, p.y, q.x, q.y);
+    const big = 1 + amount * (0.15 + 0.75 * r()), small = Math.max(0.12, 1 - amount * (0.35 + 0.55 * r()));
+    const w = r() < 0.5 ? [big, small] : [small, big];
+    return p === a ? w : [w[1], w[0]];
+  }
+  var f = (n4) => +n4.toFixed(3);
+  function wedgePath(a, b, r0, r1) {
+    const d = dist(a, b);
+    const circle = (c, r) => `M${f(c.x - r)} ${f(c.y)}a${f(r)} ${f(r)} 0 1 0 ${f(2 * r)} 0a${f(r)} ${f(r)} 0 1 0 ${f(-2 * r)} 0Z`;
+    if (d <= Math.abs(r0 - r1) + 1e-9) return r0 >= r1 ? circle(a, r0) : circle(b, r1);
+    const al = Math.atan2(b.y - a.y, b.x - a.x), be = Math.acos((r0 - r1) / d);
+    const pt = (c, r, ang) => `${f(c.x + r * Math.cos(ang))} ${f(c.y + r * Math.sin(ang))}`;
+    return `M${pt(a, r0, al + be)}L${pt(b, r1, al + be)}A${f(r1)} ${f(r1)} 0 ${be > Math.PI / 2 ? 1 : 0} 0 ${pt(b, r1, al - be)}L${pt(a, r0, al - be)}A${f(r0)} ${f(r0)} 0 ${be < Math.PI / 2 ? 1 : 0} 0 ${pt(a, r0, al + be)}Z`;
+  }
+
+  // src/core/handlaid.ts
+  var HAND_AMOUNT = 0.7;
+  var handG = mk("g", { id: "mz-hand", "pointer-events": "none" }, docG);
+  shapesG.after(handG);
+  function handPaths() {
+    const h = state.doc.hand;
+    if (!h) return [];
+    const g = state.grout.on ? state.grout : null;
+    const lines2 = [], all = [];
+    for (const el of allShapes()) {
+      if (isFill(el)) continue;
+      const cs = getComputedStyle(el), color = g ? g.color : cs.stroke, w = g ? g.width : parseFloat(cs.strokeWidth);
+      if (!color || color === "none" || !(w > 0)) continue;
+      const segs = [];
+      for (const pl of geomOf(el).polys) {
+        const p = pl.pts, n4 = p.length, m = pl.closed ? n4 : n4 - 1;
+        for (let i = 0; i < m; i++) segs.push({ a: p[i], b: p[(i + 1) % n4] });
+      }
+      lines2.push({ segs, color, w });
+      all.push(...segs);
+    }
+    return lines2.map(({ segs, color, w }) => ({
+      color,
+      d: splitAtCrossings(segs, all, w).map((s) => {
+        const [a, b] = taper(h.seed, s.a, s.b, h.amount);
+        return wedgePath(s.a, s.b, w * a / 2, w * b / 2);
+      }).join("")
+    })).filter((p) => p.d);
+  }
+  var frame = 0;
+  function renderHand() {
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      const on2 = !!state.doc.hand;
+      if (shapesG.classList.contains("hand") !== on2) shapesG.classList.toggle("hand", on2);
+      handG.textContent = "";
+      for (const p of handPaths()) mk("path", { d: p.d, fill: p.color }, handG);
+      const b = document.getElementById("btn-hand");
+      if (b) {
+        b.classList.toggle("active", on2);
+        b.setAttribute("aria-pressed", String(on2));
+      }
+      const c = document.getElementById("hand-on");
+      if (c) c.checked = on2;
+      const r = document.getElementById("hand-amount");
+      if (r && state.doc.hand) r.value = String(Math.round(state.doc.hand.amount * 100));
+      for (const id of ["#hand-shuffle", "#hand-amount"]) $(id).disabled = !on2;
+    });
+  }
+  new MutationObserver(renderHand).observe(shapesG, { childList: true, subtree: true, attributes: true, characterData: true });
+  function setHand(h) {
+    state.doc = { ...state.doc, hand: h ? { ...h } : void 0 };
+    if (!h) delete state.doc.hand;
+    renderHand();
+  }
+  var newSeed = () => Math.floor(Math.random() * 1e9);
+  function handGroupSVG(root) {
+    const paths = handPaths();
+    if (!paths.length) return;
+    const g = mk("g", { id: "mosaic-hand" }, root);
+    mk("style", {}, g).textContent = "#mosaic-shapes :not(.mz-fill):not(g){stroke-opacity:0}";
+    for (const p of paths) mk("path", { d: p.d, fill: p.color }, g);
+  }
+
   // src/core/photo.ts
   var refImage = () => refG.querySelector("image");
   function inRef(p) {
@@ -6193,7 +6368,7 @@
     applyLayers();
     savePrefs();
     docChanged();
-    toast(t("Photo loaded and locked. Unlock it to move it with the Select tool."));
+    toast(state.mode === "simple" ? t("Picture loaded – draw over it.") : t("Photo loaded and locked. Unlock it to move it with the Select tool."));
   }
   async function pastePhoto(file) {
     if (refImage() && !await askYes(t("Replace the photo to trace with the pasted image?"))) return;
@@ -6238,10 +6413,11 @@
   function renderPhotoUI() {
     const im = refImage();
     $("#ref-controls").hidden = !im;
-    $("#btn-ref-load").textContent = im ? t("Replace photo…") : t("Load photo…");
+    $("#btn-ref-load").textContent = state.mode === "simple" ? im ? t("Choose another picture…") : t("Choose a picture…") : im ? t("Replace photo…") : t("Load photo…");
     if (im) $("#ref-size").value = Math.round(+im.getAttribute("width") / (+im.dataset.nw * fitScale()) * 100);
     $("#ref-opacity").value = Math.round(state.refOpacity * 100);
   }
+  on("mode", () => renderPhotoUI());
 
   // src/lib/patterns.ts
   var TYPES = [
@@ -6392,16 +6568,16 @@
     }
     return m;
   }
-  function edt1d(f, n4, d, v, z) {
+  function edt1d(f3, n4, d, v, z) {
     let k = 0;
     v[0] = 0;
     z[0] = -INF;
     z[1] = INF;
     for (let q = 1; q < n4; q++) {
-      let s = (f[q] + q * q - (f[v[k]] + v[k] * v[k])) / (2 * q - 2 * v[k]);
+      let s = (f3[q] + q * q - (f3[v[k]] + v[k] * v[k])) / (2 * q - 2 * v[k]);
       while (s <= z[k]) {
         k--;
-        s = (f[q] + q * q - (f[v[k]] + v[k] * v[k])) / (2 * q - 2 * v[k]);
+        s = (f3[q] + q * q - (f3[v[k]] + v[k] * v[k])) / (2 * q - 2 * v[k]);
       }
       k++;
       v[k] = q;
@@ -6411,21 +6587,21 @@
     k = 0;
     for (let q = 0; q < n4; q++) {
       while (z[k + 1] < q) k++;
-      d[q] = (q - v[k]) * (q - v[k]) + f[v[k]];
+      d[q] = (q - v[k]) * (q - v[k]) + f3[v[k]];
     }
   }
   function distanceField(mask, nx, ny) {
     const g = new Float64Array(nx * ny), n4 = Math.max(nx, ny);
-    const f = new Float64Array(n4), d = new Float64Array(n4), v = new Int32Array(n4), z = new Float64Array(n4 + 1);
+    const f3 = new Float64Array(n4), d = new Float64Array(n4), v = new Int32Array(n4), z = new Float64Array(n4 + 1);
     for (let i = 0; i < nx * ny; i++) g[i] = mask[i] ? INF : 0;
     for (let x = 0; x < nx; x++) {
-      for (let y = 0; y < ny; y++) f[y] = g[y * nx + x];
-      edt1d(f, ny, d, v, z);
+      for (let y = 0; y < ny; y++) f3[y] = g[y * nx + x];
+      edt1d(f3, ny, d, v, z);
       for (let y = 0; y < ny; y++) g[y * nx + x] = d[y];
     }
     for (let y = 0; y < ny; y++) {
-      for (let x = 0; x < nx; x++) f[x] = g[y * nx + x];
-      edt1d(f, nx, d, v, z);
+      for (let x = 0; x < nx; x++) f3[x] = g[y * nx + x];
+      edt1d(f3, nx, d, v, z);
       for (let x = 0; x < nx; x++) g[y * nx + x] = Math.sqrt(d[x]);
     }
     return g;
@@ -6981,9 +7157,9 @@
     for (const t2 of symTransforms()) {
       const A = t2(a.a), B = t2(a.b), dir = { x: B.x - A.x, y: B.y - A.y };
       if (Math.hypot(dir.x, dir.y) < 1e-9) continue;
-      const f = a.ix.locate(A);
-      if (!f) continue;
-      const r = a.ix.region(f), c = chordThrough(A, dir, [r.outer, ...r.holes]);
+      const f3 = a.ix.locate(A);
+      if (!f3) continue;
+      const r = a.ix.region(f3), c = chordThrough(A, dir, [r.outer, ...r.holes]);
       if (!c) continue;
       const key = [ptKey(c.a), ptKey(c.b)].sort().join(" ");
       if (seen.has(key)) continue;
@@ -7025,13 +7201,13 @@
     if (!canDraw()) return;
     let region;
     if (p) {
-      const ix = regionIndex2(), f = ix.locate(p);
-      if (!f) {
+      const ix = regionIndex2(), f3 = ix.locate(p);
+      if (!f3) {
         toast(t("Click inside a closed area (or use “Fill whole page”)."));
         showGaps();
         return;
       }
-      region = ix.region(f);
+      region = ix.region(f3);
     } else {
       const pts = pagePts();
       region = { outer: pts, holes: [], area: state.doc.w * state.doc.h, bb: bounds(pts) };
@@ -7105,10 +7281,10 @@
   }
   function paintPoints(p, ctx2) {
     for (const t2 of symTransforms()) {
-      const q = t2(p), f = ctx2.ix.locate(q);
-      if (f && ctx2.done.has(f)) continue;
-      if (f) ctx2.done.add(f);
-      const r = bucketAt(q, fillChooser ? fillChooser(q, f, ctx2) : state.fill, ctx2, f);
+      const q = t2(p), f3 = ctx2.ix.locate(q);
+      if (f3 && ctx2.done.has(f3)) continue;
+      if (f3) ctx2.done.add(f3);
+      const r = bucketAt(q, fillChooser ? fillChooser(q, f3, ctx2) : state.fill, ctx2, f3);
       if (r.found) ctx2.found = true;
       if (r.changed) ctx2.changed = true;
     }
@@ -7322,7 +7498,7 @@
     root.setAttribute("viewBox", `${fmt(d.x)} ${fmt(d.y)} ${fmt(d.w)} ${fmt(d.h)}`);
     root.setAttribute("width", fmt(d.w) + (u === "px" ? "" : u));
     root.setAttribute("height", fmt(d.h) + (u === "px" ? "" : u));
-    mk("metadata", { id: "mosaic-palette" }, root).textContent = JSON.stringify({ palette: state.palette, paletteName: state.paletteName, unit: u });
+    mk("metadata", { id: "mosaic-palette" }, root).textContent = JSON.stringify({ palette: state.palette, paletteName: state.paletteName, unit: u, ...d.hand ? { hand: d.hand } : {} });
     for (const c of defsG.childNodes) root.appendChild(c.cloneNode(true));
     if (opts3.grout) mk("style", {}, root).textContent = groutCSS();
     if (d.bg) mk("rect", { id: "mosaic-bg", x: d.x, y: d.y, width: d.w, height: d.h, fill: d.bg }, root);
@@ -7334,10 +7510,11 @@
       c.setAttribute("data-opacity", String(state.refOpacity));
       g.appendChild(c);
     }
-    const f = mk("g", { id: "mosaic-fills" }, root);
-    for (const c of fillsG.childNodes) f.appendChild(c.cloneNode(true));
+    const f3 = mk("g", { id: "mosaic-fills" }, root);
+    for (const c of fillsG.childNodes) f3.appendChild(c.cloneNode(true));
     const s = mk("g", { id: "mosaic-shapes" }, root);
     for (const c of shapesG.childNodes) s.appendChild(c.cloneNode(true));
+    handGroupSVG(root);
     let out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root).replace(/></g, ">\n<");
     for (const fn of handlers("serialize")) out = fn(out, opts3) || out;
     return out;
@@ -7405,7 +7582,7 @@
         photo = child.querySelector("image");
         continue;
       }
-      if (id === "mosaic-pages") continue;
+      if (id === "mosaic-pages" || id === "mosaic-hand") continue;
       if (["metadata", "title", "desc", "namedview"].includes(tag)) continue;
       if (tag === "defs" || tag === "style") {
         defsG.appendChild(document.importNode(child, true));
@@ -7423,6 +7600,8 @@
     if (meta && meta.unit) docUnit = meta.unit;
     if (meta && Array.isArray(meta.palette) && !opts3.restore) importPalette(meta.palette.map(norm).filter(Boolean), meta.paletteName || opts3.name);
     state.doc = { ...box4, bg: ours ? bg : null, unit: docUnit };
+    if (meta && meta.hand && Number.isFinite(meta.hand.seed)) state.doc.hand = { seed: +meta.hand.seed, amount: Math.min(1, Math.max(0, +meta.hand.amount || 0)) };
+    renderHand();
     if (photo) {
       const href = photo.getAttribute("href") || photo.getAttributeNS("http://www.w3.org/1999/xlink", "href");
       setPhoto(href, +photo.getAttribute("data-nw") || 1, +photo.getAttribute("data-nh") || 1);
@@ -7469,8 +7648,8 @@
     if (w.showOpenFilePicker) {
       try {
         const [h] = await w.showOpenFilePicker({ types: SVG_TYPES });
-        const f = await h.getFile();
-        if (await openText(await f.text(), f.name)) rt.fileHandle = h;
+        const f3 = await h.getFile();
+        if (await openText(await f3.text(), f3.name)) rt.fileHandle = h;
         return;
       } catch (err) {
         if (err.name === "AbortError") return;
@@ -7488,8 +7667,8 @@
     toast(t("Opened {name}", { name }));
     return true;
   }
-  async function loadFile(f) {
-    if (f) await openText(await f.text(), f.name);
+  async function loadFile(f3) {
+    if (f3) await openText(await f3.text(), f3.name);
   }
   async function save(as) {
     const text = buildSVGString(), w = window;
@@ -7700,7 +7879,7 @@
   async function saveVersion(note) {
     lastVersionAt = Date.now();
     try {
-      const fills = [...fillsG.children, ...shapesG.querySelectorAll("[fill]")].map((el) => el.getAttribute("fill")).filter((f) => f && f !== "none");
+      const fills = [...fillsG.children, ...shapesG.querySelectorAll("[fill]")].map((el) => el.getAttribute("fill")).filter((f3) => f3 && f3 !== "none");
       const d = state.doc, colors = new Set(fills).size;
       await Store.addVersion({ time: Date.now(), name: rt.fileName, note, svg: buildSVGString(), tiles: fillsG.children.length, size: { w: d.w, h: d.h, unit: unit() }, colors });
       await Store.trimVersions(MAX_VERSIONS);
@@ -7836,7 +8015,7 @@
   }
   var paintCtx = () => ({ ix: regionIndex2() });
   function bucketAt(p, color, ctx2, face) {
-    const f = face || ctx2.ix.locate(p), region = f ? ctx2.ix.region(f) : null;
+    const f3 = face || ctx2.ix.locate(p), region = f3 ? ctx2.ix.region(f3) : null;
     const near = shapesAt(p), shapesTop = near.filter((e) => !isFill(e));
     const fillsAt = near.filter((e) => isFill(e) && insideEl(e, p));
     const paint = (el) => {
@@ -7904,33 +8083,33 @@
       }
       const samples = gridSample(g.bbox, inside, 64), votes = /* @__PURE__ */ new Map();
       for (const p of samples) {
-        const f = ix.locate(p);
-        if (f) votes.set(f, (votes.get(f) || 0) + 1);
+        const f3 = ix.locate(p);
+        if (f3) votes.set(f3, (votes.get(f3) || 0) + 1);
       }
       items.push({ el, inside, votes, area: area2, bbox: g.bbox, n: samples.length || 1 });
     }
     if (!items.length) return;
     const pairs = [];
-    for (const it of items) for (const [f, v] of it.votes) {
-      const ov = it.area * v / it.n, fa = ix.region(f).area;
-      pairs.push({ it, f, score: ov / (it.area + fa - ov) });
+    for (const it of items) for (const [f3, v] of it.votes) {
+      const ov = it.area * v / it.n, fa = ix.region(f3).area;
+      pairs.push({ it, f: f3, score: ov / (it.area + fa - ov) });
     }
     pairs.sort((a, b) => b.score - a.score || b.it.area - a.it.area);
-    for (const { it, f } of pairs) {
-      if (placed.has(it) || owner.has(f)) continue;
-      owner.set(f, it);
+    for (const { it, f: f3 } of pairs) {
+      if (placed.has(it) || owner.has(f3)) continue;
+      owner.set(f3, it);
       placed.add(it);
-      setFillRegion(it.el, ix.region(f));
+      setFillRegion(it.el, ix.region(f3));
     }
     for (const it of items) if (!placed.has(it)) it.el.remove();
     for (const it of items) {
       if (!it.el.isConnected) continue;
-      for (const f of ix.within(it.bbox)) {
-        if (owner.has(f)) continue;
-        const reg = ix.region(f);
+      for (const f3 of ix.within(it.bbox)) {
+        if (owner.has(f3)) continue;
+        const reg = ix.region(f3);
         const pts = gridSample(reg.bb, (p) => insideRegion(reg, p), 40);
         if (!pts.length || pts.filter(it.inside).length < pts.length * 0.85) continue;
-        owner.set(f, it);
+        owner.set(f3, it);
         const c = it.el.cloneNode(false);
         it.el.after(c);
         setFillRegion(c, reg);
@@ -8156,9 +8335,9 @@
     v.y = p.y - (cy - r.top) / v.s;
     updateView();
   }
-  function zoomCenter(f) {
+  function zoomCenter(f3) {
     const r = svg.getBoundingClientRect();
-    zoomAt(r.left + r.width / 2, r.top + r.height / 2, f);
+    zoomAt(r.left + r.width / 2, r.top + r.height / 2, f3);
   }
   function applyDoc() {
     const d = state.doc;
@@ -8293,13 +8472,13 @@
   }
   function hasFill(el) {
     if (el.tagName === "line") return false;
-    const f = plainFill(el);
-    return (f !== null ? f : getComputedStyle(el).fill) !== "none";
+    const f3 = plainFill(el);
+    return (f3 !== null ? f3 : getComputedStyle(el).fill) !== "none";
   }
   function fillOf(el) {
     if (el.tagName === "line") return null;
-    const f = plainFill(el);
-    return norm(f !== null ? f : getComputedStyle(el).fill);
+    const f3 = plainFill(el);
+    return norm(f3 !== null ? f3 : getComputedStyle(el).fill);
   }
   var docObserver = new MutationObserver((recs) => applyDocChanges(recs));
   docObserver.observe(docG, { childList: true, subtree: true });
@@ -8631,7 +8810,26 @@
     };
   }
   function bindPanel() {
-    for (const b of $$("#tools button")) b.onclick = () => setTool(b.dataset.tool);
+    for (const b of $$("#tools button[data-tool]")) b.onclick = () => setTool(b.dataset.tool);
+    const handToggle = () => {
+      setHand(state.doc.hand ? null : { seed: newSeed(), amount: state.doc.hand?.amount ?? HAND_AMOUNT });
+      commit();
+    };
+    $("#btn-hand").onclick = handToggle;
+    $("#hand-on").onchange = handToggle;
+    $("#hand-shuffle").onclick = () => {
+      if (state.doc.hand) {
+        setHand({ ...state.doc.hand, seed: newSeed() });
+        commit();
+      }
+    };
+    $("#hand-amount").onchange = () => {
+      if (state.doc.hand) {
+        setHand({ ...state.doc.hand, amount: +$("#hand-amount").value / 100 });
+        commit();
+      }
+    };
+    renderHand();
     for (const b of $$("#mode-switch button")) b.onclick = () => setMode(b.dataset.mode);
     $("#btn-new").onclick = newDoc;
     $("#btn-open").onclick = openFile;
@@ -8801,8 +8999,8 @@
     };
     $("#btn-ref-load").onclick = () => $("#ref-file").click();
     $("#ref-file").onchange = async (e) => {
-      const f = e.target.files[0];
-      if (f) await loadPhoto(f);
+      const f3 = e.target.files[0];
+      if (f3) await loadPhoto(f3);
       e.target.value = "";
     };
     $("#ref-opacity").oninput = (e) => {
@@ -8831,7 +9029,7 @@
       docChanged();
     };
     $("#btn-ref-remove").onclick = async () => {
-      if (await askYes(t("Remove the tracing photo?"))) {
+      if (await askYes(state.mode === "simple" ? t("Remove the picture?") : t("Remove the tracing photo?"))) {
         setPhoto(null);
         docChanged();
       }
@@ -8929,11 +9127,11 @@
   function imageFromPaste(e) {
     const dt = e.clipboardData;
     if (!dt) return null;
-    for (const f of dt.files || []) if (/^image\//.test(f.type)) return f;
+    for (const f3 of dt.files || []) if (/^image\//.test(f3.type)) return f3;
     for (const it of dt.items || []) {
       if (it.kind === "file" && /^image\//.test(it.type)) {
-        const f = it.getAsFile();
-        if (f) return f;
+        const f3 = it.getAsFile();
+        if (f3) return f3;
       }
     }
     return null;
@@ -9568,11 +9766,11 @@
     stage.addEventListener("drop", (e) => {
       e.preventDefault();
       stage.classList.remove("drop");
-      const f = e.dataTransfer.files[0];
-      if (!f) return;
-      if (/^image\//.test(f.type) && !/svg/.test(f.type)) loadPhoto(f);
+      const f3 = e.dataTransfer.files[0];
+      if (!f3) return;
+      if (/^image\//.test(f3.type) && !/svg/.test(f3.type)) loadPhoto(f3);
       else confirmDiscard().then((ok) => {
-        if (ok) loadFile(f);
+        if (ok) loadFile(f3);
       });
     });
   }
@@ -9711,10 +9909,10 @@
     for (let j = 0; j * top < box4.h; j++) for (let i = 0; i * top < box4.w; i++) visit(box4.x + i * top, box4.y + j * top, top);
     return out;
   }
-  function clipHalf(poly, f) {
+  function clipHalf(poly, f3) {
     const out = [];
     for (let i = 0, n4 = poly.length; i < n4; i++) {
-      const a = poly[i], b = poly[(i + 1) % n4], fa = f(a), fb = f(b);
+      const a = poly[i], b = poly[(i + 1) % n4], fa = f3(a), fb = f3(b);
       if (fa <= 0) out.push(a);
       if (fa < 0 && fb > 0 || fa > 0 && fb < 0) {
         const t2 = fa / (fa - fb);
@@ -9921,8 +10119,8 @@
       const labs = pal.map((c) => toLab(toRgb(c)));
       const ctx2 = { ix: MZ.regionIndex() };
       let painted = 0, skipped = 0, outside = 0;
-      for (const f of ctx2.ix.faces) {
-        const reg = ctx2.ix.region(f);
+      for (const f3 of ctx2.ix.faces) {
+        const reg = ctx2.ix.region(f3);
         const pts = MZ.gridSample(reg.bb, (p) => MZ.insideRegion(reg, p), 40);
         if (!pts.length) continue;
         if (onlyUnpainted && MZ.isPaintedAt(pts[0])) {
@@ -9934,7 +10132,7 @@
           outside++;
           continue;
         }
-        if (MZ.bucketAt(pts[0], nearest(rgb, pal, labs), ctx2, f).changed) painted++;
+        if (MZ.bucketAt(pts[0], nearest(rgb, pal, labs), ctx2, f3).changed) painted++;
       }
       if (commit2 && painted) MZ.commit(true);
       if (!quiet) {
@@ -9975,21 +10173,21 @@
       const defs = $("#mz-uidefs");
       for (const [t2] of VIEWS) {
         if (t2 === "none") continue;
-        const m = VISION[t2], f = document.createElementNS(NS, "filter"), c = document.createElementNS(NS, "feColorMatrix");
-        f.id = "mz-vision-" + t2;
-        f.setAttribute("color-interpolation-filters", "linearRGB");
+        const m = VISION[t2], f3 = document.createElementNS(NS, "filter"), c = document.createElementNS(NS, "feColorMatrix");
+        f3.id = "mz-vision-" + t2;
+        f3.setAttribute("color-interpolation-filters", "linearRGB");
         c.setAttribute("type", "matrix");
         c.setAttribute("values", `${m[0]} ${m[1]} ${m[2]} 0 0  ${m[3]} ${m[4]} ${m[5]} 0 0  ${m[6]} ${m[7]} ${m[8]} 0 0  0 0 0 1 0`);
-        f.appendChild(c);
-        defs.appendChild(f);
+        f3.appendChild(c);
+        defs.appendChild(f3);
       }
     }
     function setView(v) {
       view = VIEWS.some(([t2]) => t2 === v) ? v : "none";
-      const f = view === "none" ? null : `url(#mz-vision-${view})`;
+      const f3 = view === "none" ? null : `url(#mz-vision-${view})`;
       for (const id of ["#mz-doc", "#mz-page", "#mz-ref"]) {
         const el = $(id);
-        if (f) el.setAttribute("filter", f);
+        if (f3) el.setAttribute("filter", f3);
         else el.removeAttribute("filter");
       }
       $("#view-filter").value = view;
@@ -10002,8 +10200,8 @@
       if (!marking) return 0;
       const ix = MZ.regionIndex();
       let n4 = 0;
-      for (const f of ix.faces) {
-        const reg = ix.region(f), p = MZ.gridSample(reg.bb, (q) => MZ.insideRegion(reg, q), 1)[0];
+      for (const f3 of ix.faces) {
+        const reg = ix.region(f3), p = MZ.gridSample(reg.bb, (q) => MZ.insideRegion(reg, q), 1)[0];
         const c = p && MZ.paintedColorAt(p);
         if (!c) continue;
         const mine = simulate(c, view);
@@ -10092,8 +10290,8 @@
   function unpaintedCount() {
     const ix = MZ.regionIndex();
     let n4 = 0;
-    for (const f of ix.faces) {
-      const r = ix.region(f), p = MZ.gridSample(r.bb, (q) => MZ.insideRegion(r, q), 1)[0];
+    for (const f3 of ix.faces) {
+      const r = ix.region(f3), p = MZ.gridSample(r.bb, (q) => MZ.insideRegion(r, q), 1)[0];
       if (p && !MZ.isPaintedAt(p)) n4++;
     }
     return n4;
@@ -10885,10 +11083,10 @@ ${sections.join("\n")}
       }
     }
     const along2 = [/* @__PURE__ */ new Map(), /* @__PURE__ */ new Map(), /* @__PURE__ */ new Map()];
-    const corner2 = (f, a, b) => f.o.map((c, k) => c + a * f.u[k] + b * f.v[k]);
+    const corner2 = (f3, a, b) => f3.o.map((c, k) => c + a * f3.u[k] + b * f3.v[k]);
     const lineKey = (p, axis) => axis === 0 ? p[1] * 1e5 + p[2] : axis === 1 ? p[0] * 1e5 + p[2] : p[0] * 1e5 + p[1];
-    for (const f of faces) for (const [a, b] of [[0, 0], [1, 0], [1, 1], [0, 1]]) {
-      const p = corner2(f, a, b);
+    for (const f3 of faces) for (const [a, b] of [[0, 0], [1, 0], [1, 1], [0, 1]]) {
+      const p = corner2(f3, a, b);
       for (let axis = 0; axis < 3; axis++) {
         const k = lineKey(p, axis);
         let list = along2[axis].get(k);
@@ -10908,8 +11106,8 @@ ${sections.join("\n")}
       }
       return i;
     };
-    for (const f of faces) {
-      const c = [corner2(f, 0, 0), corner2(f, 1, 0), corner2(f, 1, 1), corner2(f, 0, 1)];
+    for (const f3 of faces) {
+      const c = [corner2(f3, 0, 0), corner2(f3, 1, 0), corner2(f3, 1, 1), corner2(f3, 0, 1)];
       const ring = [];
       for (let e = 0; e < 4; e++) {
         const a = c[e], b = c[(e + 1) % 4], axis = a.findIndex((v, k) => v !== b[k]);
@@ -10926,12 +11124,12 @@ ${sections.join("\n")}
       const ids = ring.map(vertex);
       if (ids.length === 4) {
         triangles.push(ids[0], ids[1], ids[2], ids[0], ids[2], ids[3]);
-        levels.push(f.level, f.level);
+        levels.push(f3.level, f3.level);
       } else {
-        const m = vertex(corner2(f, 0.5, 0.5));
+        const m = vertex(corner2(f3, 0.5, 0.5));
         for (let i = 0; i < ids.length; i++) {
           triangles.push(m, ids[i], ids[(i + 1) % ids.length]);
-          levels.push(f.level);
+          levels.push(f3.level);
         }
       }
     }
@@ -11147,20 +11345,20 @@ ${sections.join("\n")}
       { name: "Metadata/Prusa_Slicer_custom_gcode_per_print_z.xml", data: colorChangeXml(plan) }
     ];
   }
-  function flatHeights(grout, f) {
-    const tile = (f.baseLayers + f.tileLayers) * f.layerHeight, low = (f.baseLayers + Math.max(1, f.tileLayers - f.groutRecess)) * f.layerHeight;
-    return (lv) => lv === -2 ? 0 : lv < 0 ? f.baseLayers * f.layerHeight : grout[lv] ? low : tile;
+  function flatHeights(grout, f3) {
+    const tile = (f3.baseLayers + f3.tileLayers) * f3.layerHeight, low = (f3.baseLayers + Math.max(1, f3.tileLayers - f3.groutRecess)) * f3.layerHeight;
+    return (lv) => lv === -2 ? 0 : lv < 0 ? f3.baseLayers * f3.layerHeight : grout[lv] ? low : tile;
   }
-  function flatParts(grid, w, h, nLevels, grout, f) {
+  function flatParts(grid, w, h, nLevels, grout, f3) {
     const n4 = w * h, out = [];
-    if (f.baseLayers > 0) {
+    if (f3.baseLayers > 0) {
       const top = new Int16Array(n4);
-      for (let i = 0; i < n4; i++) if (grid[i] !== -2) top[i] = f.baseLayers;
+      for (let i = 0; i < n4; i++) if (grid[i] !== -2) top[i] = f3.baseLayers;
       out.push({ part: -1, solid: { bottom: new Int16Array(n4), top, level: new Int16Array(n4) } });
     }
     for (let k = 0; k < nLevels; k++) {
-      const bottom = new Int16Array(n4).fill(f.baseLayers), top = new Int16Array(n4), level = new Int16Array(n4).fill(k);
-      const up = f.baseLayers + (grout[k] ? Math.max(1, f.tileLayers - f.groutRecess) : f.tileLayers);
+      const bottom = new Int16Array(n4).fill(f3.baseLayers), top = new Int16Array(n4), level = new Int16Array(n4).fill(k);
+      const up = f3.baseLayers + (grout[k] ? Math.max(1, f3.tileLayers - f3.groutRecess) : f3.tileLayers);
       let any = false;
       for (let i = 0; i < n4; i++) if (grid[i] === k) {
         top[i] = up;
@@ -11397,9 +11595,9 @@ ${sections.join("\n")}
   }
   var frameTop = (n4, o) => (o.mode === "flat" ? o.baseLayers + o.tileLayers : topLayer(Math.max(0, n4 - 1), printSettings(o))) + o.frameRaise;
   function layout2(g, w, h, cell, o) {
-    const f = finishGrid(g, w, h, { frame: o.frame / cell, corner: o.corner / cell, hole: o.hole / cell }, MARGIN2 / cell);
+    const f3 = finishGrid(g, w, h, { frame: o.frame / cell, corner: o.corner / cell, hole: o.hole / cell }, MARGIN2 / cell);
     const inset = (o.magnet / 2 + MARGIN2 + o.corner * 0.3) / cell;
-    return { ...f, mask: o.magnet > 0 ? pocketMask(f.w, f.h, o.magnet / cell, inset) : null };
+    return { ...f3, mask: o.magnet > 0 ? pocketMask(f3.w, f3.h, o.magnet / cell, inset) : null };
   }
   function columnTop(lv, grout, o) {
     if (lv === -2) return 0;
@@ -11434,11 +11632,11 @@ ${sections.join("\n")}
     return out;
   }
   function downsample(g, w, h, cell, maxCells) {
-    const f = Math.max(1, Math.ceil(Math.sqrt(w * h / maxCells)));
-    if (f === 1) return { grid: g, w, h, cell };
-    const W = Math.ceil(w / f), H = Math.ceil(h / f), out = new Int16Array(W * H);
-    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) out[y * W + x] = g[Math.min(h - 1, y * f) * w + Math.min(w - 1, x * f)];
-    return { grid: out, w: W, h: H, cell: cell * f };
+    const f3 = Math.max(1, Math.ceil(Math.sqrt(w * h / maxCells)));
+    if (f3 === 1) return { grid: g, w, h, cell };
+    const W = Math.ceil(w / f3), H = Math.ceil(h / f3), out = new Int16Array(W * H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) out[y * W + x] = g[Math.min(h - 1, y * f3) * w + Math.min(w - 1, x * f3)];
+    return { grid: out, w: W, h: H, cell: cell * f3 };
   }
   function viewMesh(s, o) {
     const lay = layout2(s.grid, s.w, s.h, s.cell, o);
@@ -11560,7 +11758,7 @@ ${sections.join("\n")}
       }
     });
     const labels = p.labels.map((l) => l < 0 ? -1 : ids[l]);
-    const rings = traceAll(labels, W, H, colors.length, progress && ((f) => progress(0.15 + 0.8 * f)));
+    const rings = traceAll(labels, W, H, colors.length, progress && ((f3) => progress(0.15 + 0.8 * f3)));
     const shapes = [];
     const pts = (r) => r.map((q) => `${n2(q.x * k)},${n2(q.y * k)}`).join(" ");
     rings.forEach((list, i) => {
@@ -11666,9 +11864,9 @@ ${shapes.join("\n")}
     return out;
   }
   function checkFilaments(g, expected, layerHeight) {
-    return expected.map((f, k) => {
+    return expected.map((f3, k) => {
       const r = g.tools.find((x) => x.tool === k), found = r ? r.to : null;
-      return { ok: found != null && Math.abs(found - f.top) <= layerHeight / 2 + 1e-6, kind: "filament", filament: k + 1, color: f.color, top: f.top, found };
+      return { ok: found != null && Math.abs(found - f3.top) <= layerHeight / 2 + 1e-6, kind: "filament", filament: k + 1, color: f3.color, top: f3.top, found };
     });
   }
 
@@ -11682,8 +11880,8 @@ ${shapes.join("\n")}
       x = (x - 128) * k + 128 + b;
       const y = Math.min(1, Math.max(0, x / 255)), bump = 27 / 4;
       x += 255 * 0.25 * bump * (a.shadows / 100 * y * (1 - y) * (1 - y) + a.highlights / 100 * y * y * (1 - y));
-      const f = a.fade / 100;
-      if (f) x = 255 * f * 0.14 + x * (1 - f * 0.22);
+      const f3 = a.fade / 100;
+      if (f3) x = 255 * f3 * 0.14 + x * (1 - f3 * 0.22);
       lut[v] = Math.round(x);
     }
     return lut;
@@ -11766,10 +11964,10 @@ ${shapes.join("\n")}
       }
       if (vg) {
         const x = p % w, y = (p - x) / w, d = Math.hypot(x + 0.5 - cx, y + 0.5 - cy) / rmax, e = Math.max(0, (d - 0.35) / 0.65), m = e * e * (3 - 2 * e);
-        const f = vg > 0 ? 1 - 0.65 * vg * m : 1, add = vg < 0 ? -vg * m * 0.65 : 0;
-        r = r * f + (255 - r) * add;
-        g = g * f + (255 - g) * add;
-        b = b * f + (255 - b) * add;
+        const f3 = vg > 0 ? 1 - 0.65 * vg * m : 1, add = vg < 0 ? -vg * m * 0.65 : 0;
+        r = r * f3 + (255 - r) * add;
+        g = g * f3 + (255 - g) * add;
+        b = b * f3 + (255 - b) * add;
       }
       out[i] = r;
       out[i + 1] = g;
@@ -11843,7 +12041,7 @@ ${shapes.join("\n")}
     let s = seed >>> 0 || 1;
     return () => (s = s * 1664525 + 1013904223 >>> 0) / 4294967296;
   }
-  function solve(l, nnf, iterations, rand) {
+  function solve(l, nnf, iterations, rand2) {
     const { w, h, px: px2, hole } = l;
     const valid = [], isValid = new Uint8Array(w * h);
     const sat = new Int32Array((w + 1) * (h + 1));
@@ -11889,7 +12087,7 @@ ${shapes.join("\n")}
       }
     };
     for (const t2 of targets) {
-      if (map[t2] < 0 || !isValid[map[t2]]) map[t2] = valid[Math.floor(rand() * valid.length)];
+      if (map[t2] < 0 || !isValid[map[t2]]) map[t2] = valid[Math.floor(rand2() * valid.length)];
       dist2[t2] = D(t2, map[t2], Infinity);
     }
     for (let it = 0; it < iterations; it++) {
@@ -11908,7 +12106,7 @@ ${shapes.join("\n")}
         let rad = Math.max(w, h);
         const cx = map[t2] % w, cy = (map[t2] - cx) / w;
         while (rad >= 1) {
-          const rx2 = Math.round(cx + (rand() * 2 - 1) * rad), ry2 = Math.round(cy + (rand() * 2 - 1) * rad);
+          const rx2 = Math.round(cx + (rand2() * 2 - 1) * rad), ry2 = Math.round(cy + (rand2() * 2 - 1) * rad);
           if (rx2 >= 0 && ry2 >= 0 && rx2 < w && ry2 < h) tryMatch(t2, ry2 * w + rx2);
           rad /= 2;
         }
@@ -11949,7 +12147,7 @@ ${shapes.join("\n")}
     }
     const levels = [{ w, h, px: px2, hole }];
     while (levels[levels.length - 1].w > 48 && levels[levels.length - 1].h > 48) levels.push(downscale(levels[levels.length - 1]));
-    const rand = rng2(12345);
+    const rand2 = rng2(12345);
     let nnf = null;
     for (let k = levels.length - 1; k >= 0; k--) {
       const l = levels[k];
@@ -11972,7 +12170,7 @@ ${shapes.join("\n")}
         nnf = up;
       }
       const its = k === 0 ? 3 : k === 1 ? 4 : 6;
-      nnf = solve(l, nnf, its, rand);
+      nnf = solve(l, nnf, its, rand2);
       progress(1 - k / levels.length);
     }
     const out = new Uint8ClampedArray(data);
@@ -12115,7 +12313,7 @@ ${shapes.join("\n")}
       eps,
       maxTiles: MAX_TILES * 1.5,
       suggest: opts.colors === "suggest" ? Math.max(2, Math.min(64, opts.count)) : 0
-    }, { progress: (f) => progress(f * 0.7) });
+    }, { progress: (f3) => progress(f3 * 0.7) });
     if (!res.lines.length) {
       MZ.toast(t("That gives {n} tiles – use a bigger tile size.", { n: res.tiles }));
       return;
@@ -12185,8 +12383,8 @@ ${shapes.join("\n")}
     go.disabled = true;
     go.textContent = t("Working…");
     try {
-      await generate((f) => {
-        go.textContent = t("Working… {p} %", { p: Math.round(f * 100) });
+      await generate((f3) => {
+        go.textContent = t("Working… {p} %", { p: Math.round(f3 * 100) });
       });
     } catch (e) {
       if (!isCancelled(e)) MZ.toast(t("Could not make the mosaic."));
@@ -12393,8 +12591,8 @@ ${shapes.join("\n")}
     let n4 = 0;
     for (const el of state7.selection) {
       if (!MZ.fillOf(el)) continue;
-      const g = MZ.geomOf(el), p = MZ.gridSample(g.bbox, (q) => MZ.insideEl(el, q), 1)[0], f = p && ix.locate(p);
-      MZ.paintFill(el, pick(f ? ix.region(f) : null));
+      const g = MZ.geomOf(el), p = MZ.gridSample(g.bbox, (q) => MZ.insideEl(el, q), 1)[0], f3 = p && ix.locate(p);
+      MZ.paintFill(el, pick(f3 ? ix.region(f3) : null));
       n4++;
     }
     if (n4) MZ.commit(true);
@@ -12946,9 +13144,9 @@ ${others}
   };
   $("#btn-motif-import").onclick = () => $("#motif-file").click();
   $("#motif-file").onchange = async (e) => {
-    const f = e.target.files[0];
-    if (!f) return;
-    const text = await f.text();
+    const f3 = e.target.files[0];
+    if (!f3) return;
+    const text = await f3.text();
     e.target.value = "";
     try {
       const data = JSON.parse(text), list = Array.isArray(data) ? data : data.motifs;
@@ -12997,8 +13195,8 @@ void main() {
     return o;
   };
   var perspective = (fov, aspect, near, far) => {
-    const f = 1 / Math.tan(fov / 2), nf = 1 / (near - far);
-    return new Float32Array([f / aspect, 0, 0, 0, 0, f, 0, 0, 0, 0, (far + near) * nf, -1, 0, 0, 2 * far * near * nf, 0]);
+    const f3 = 1 / Math.tan(fov / 2), nf = 1 / (near - far);
+    return new Float32Array([f3 / aspect, 0, 0, 0, 0, f3, 0, 0, 0, 0, (far + near) * nf, -1, 0, 0, 2 * far * near * nf, 0]);
   };
   var translate = (x, y, z) => new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, z, 1]);
   var rotX = (a) => {
@@ -13277,7 +13475,7 @@ void main() {
       if (wanted !== key) {
         wanted = key;
         busy(t("Working out the model…"));
-        run2("towers", job, { progress: (f) => busy(t("Working out the model… {p} %", { p: Math.round(f * 100) })) }).then((m) => {
+        run2("towers", job, { progress: (f3) => busy(t("Working out the model… {p} %", { p: Math.round(f3 * 100) })) }).then((m) => {
           if (wanted !== key) return;
           cached = m;
           cachedKey = key;
@@ -13393,8 +13591,8 @@ void main() {
       const lowered = m.lowered ? " · " + t("{n} thin {n|piece|pieces} lowered so nothing prints as a thin tower", { n: m.lowered }) : "";
       let summary = !list.length ? t("Nothing is painted yet.") : (fl ? t("{n} {n|color|colors} = {n} {n|filament|filaments} · flat, {h} mm high ({layers} {layers|layer|layers})", { n: list.length, h: num(+f2((fs.baseLayers + fs.tileLayers) * fs.layerHeight)), layers: fs.baseLayers + fs.tileLayers }) : t("{n} {n|color|colors} · height {h} mm ({layers} {layers|layer|layers}) · {c} filament {c|change|changes}", { n: list.length, h: num(modelHeight(list.length, s)), layers: topLayer(list.length - 1, s), c: list.length - 1 })) + atBase + lowered;
       if (list.length && opts2.frame > 0) {
-        const f = finished(m);
-        summary += " · " + t("with the frame {w} × {h} mm, {z} mm high", { w: num(+f2(f.w * cell)), h: num(+f2(f.h * cell)), z: num(+f2(frameTop(list.length, buildOpts()) * opts2.layerHeight)) });
+        const f3 = finished(m);
+        summary += " · " + t("with the frame {w} × {h} mm, {z} mm high", { w: num(+f2(f3.w * cell)), h: num(+f2(f3.h * cell)), z: num(+f2(frameTop(list.length, buildOpts()) * opts2.layerHeight)) });
       }
       $("#m3-summary").textContent = summary;
       drawPreview(m);
@@ -13452,18 +13650,18 @@ void main() {
     function drawPreview(m) {
       const cv = $("#m3-preview");
       if (!m.list.length) return;
-      const f = finished(m), k = Math.min(1, 300 / Math.max(f.w, f.h));
-      cv.width = Math.max(1, Math.round(f.w * k));
-      cv.height = Math.max(1, Math.round(f.h * k));
+      const f3 = finished(m), k = Math.min(1, 300 / Math.max(f3.w, f3.h));
+      cv.width = Math.max(1, Math.round(f3.w * k));
+      cv.height = Math.max(1, Math.round(f3.h * k));
       const small = document.createElement("canvas");
-      small.width = f.w;
-      small.height = f.h;
-      const sx = small.getContext("2d"), im = sx.createImageData(f.w, f.h), rgb = m.list.map((ci) => rgba(colors[ci]));
-      const frame = rgb[isFlat() ? 0 : rgb.length - 1];
-      for (let p = 0; p < f.grid.length; p++) {
-        const lv = f.grid[p];
+      small.width = f3.w;
+      small.height = f3.h;
+      const sx = small.getContext("2d"), im = sx.createImageData(f3.w, f3.h), rgb = m.list.map((ci) => rgba(colors[ci]));
+      const frame2 = rgb[isFlat() ? 0 : rgb.length - 1];
+      for (let p = 0; p < f3.grid.length; p++) {
+        const lv = f3.grid[p];
         if (lv >= 0) im.data.set(rgb[lv], p * 4);
-        else if (lv === FRAME) im.data.set(frame, p * 4);
+        else if (lv === FRAME) im.data.set(frame2, p * 4);
       }
       sx.putImageData(im, 0, 0);
       const x = cv.getContext("2d");
@@ -13533,21 +13731,21 @@ void main() {
         const top = Math.max(topLayer(m.list.length - 1, settings()), opts2.frame > 0 ? frameTop(m.list.length, o) : 0) * lh;
         findings = checkHeights(g, colorPlan(m.list.map((ci) => colors[ci]), settings()), top, lh);
       }
-      const say = (f) => {
-        switch (f.kind) {
+      const say = (f3) => {
+        switch (f3.kind) {
           case "change":
-            return f.ok ? t("Change to {color} at Z {z} mm", { color: f.color, z: mm(f.z) }) : t("No filament change to {color} at Z {z} mm", { color: f.color, z: mm(f.z) });
+            return f3.ok ? t("Change to {color} at Z {z} mm", { color: f3.color, z: mm(f3.z) }) : t("No filament change to {color} at Z {z} mm", { color: f3.color, z: mm(f3.z) });
           case "extra":
-            return t("A filament change the plan does not have, at Z {z} mm", { z: mm(f.z) });
+            return t("A filament change the plan does not have, at Z {z} mm", { z: mm(f3.z) });
           case "top":
-            return f.ok ? t("The top is at {z} mm, as planned", { z: mm(f.z) }) : t("The top is at {found} mm instead of {z} mm", { found: mm(f.found), z: mm(f.z) });
+            return f3.ok ? t("The top is at {z} mm, as planned", { z: mm(f3.z) }) : t("The top is at {found} mm instead of {z} mm", { found: mm(f3.found), z: mm(f3.z) });
           case "filament":
-            return f.found == null ? t("Filament {k} ({color}) is not used – assign it to the part “{k} {color}”", { k: f.filament, color: f.color }) : f.ok ? t("Filament {k} ({color}) prints up to {z} mm", { k: f.filament, color: f.color, z: mm(f.top) }) : t("Filament {k} ({color}) prints up to {found} mm instead of {z} mm", { k: f.filament, color: f.color, found: mm(f.found), z: mm(f.top) });
+            return f3.found == null ? t("Filament {k} ({color}) is not used – assign it to the part “{k} {color}”", { k: f3.filament, color: f3.color }) : f3.ok ? t("Filament {k} ({color}) prints up to {z} mm", { k: f3.filament, color: f3.color, z: mm(f3.top) }) : t("Filament {k} ({color}) prints up to {found} mm instead of {z} mm", { k: f3.filament, color: f3.color, found: mm(f3.found), z: mm(f3.top) });
         }
       };
-      const bad = findings.filter((f) => !f.ok).length, box4 = $("#m3-check");
+      const bad = findings.filter((f3) => !f3.ok).length, box4 = $("#m3-check");
       const head = !g.layers ? t("No printing found in {name} – is it a G-code file?", { name }) : bad ? t("{name}: {n} {n|thing|things} to look at", { name, n: bad }) : t("{name}: everything matches the plan", { name });
-      box4.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f) => `<li class="${f.ok ? "ok" : "bad"}">${f.ok ? "✓" : "✗"} ${esc(say(f))}</li>`).join("") + "</ul>" : "");
+      box4.innerHTML = `<b>${esc(head)}</b>` + (g.layers ? "<ul>" + findings.map((f3) => `<li class="${f3.ok ? "ok" : "bad"}">${f3.ok ? "✓" : "✗"} ${esc(say(f3))}</li>`).join("") + "</ul>" : "");
       box4.classList.toggle("bad", !g.layers || bad > 0);
       box4.hidden = false;
     }
@@ -13566,7 +13764,7 @@ void main() {
           name: base(),
           slicer: opts2.slicer,
           labels: { base: t("Base"), frame: t("Frame") }
-        }, { progress: (f) => busy(t("Building the 3D model… {p} %", { p: Math.round(f * 100) })) });
+        }, { progress: (f3) => busy(t("Building the 3D model… {p} %", { p: Math.round(f3 * 100) })) });
         download(new Blob([r.data], { type: r.type }), r.fileName);
         const v = { name: base(), n: r.triangles, c: m.list.length - 1 };
         if (isFlat()) {
@@ -13662,7 +13860,7 @@ void main() {
       if (!file || !m || !m.list.length) return;
       busy(t("Reading the G-code…"));
       try {
-        const g = await run2("gcode", { text: await file.text() }, { progress: (f) => busy(t("Reading the G-code… {p} %", { p: Math.round(f * 100) })) });
+        const g = await run2("gcode", { text: await file.text() }, { progress: (f3) => busy(t("Reading the G-code… {p} %", { p: Math.round(f3 * 100) })) });
         showCheck(file.name, g, m);
       } catch (e) {
         if (!isCancelled(e)) toast(t("Could not read {name}.", { name: file.name }));
@@ -13703,8 +13901,8 @@ void main() {
     colors() {
       const fills = /* @__PURE__ */ new Set(), strokes = /* @__PURE__ */ new Set();
       for (const el of MZ.allShapes()) {
-        const f = MZ.fillOf(el);
-        if (f) fills.add(f);
+        const f3 = MZ.fillOf(el);
+        if (f3) fills.add(f3);
         if (!MZ.isFill(el)) {
           const cs = getComputedStyle(el), s = norm(cs.stroke);
           if (s && parseFloat(cs.strokeWidth) > 0) strokes.add(s);
@@ -13908,14 +14106,14 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   var HEART_PALETTE = Object.values(HEART_COLORS);
   function sunsetImage(W = 240, H = 160) {
     const data = new Uint8ClampedArray(W * H * 4), horizon = Math.round(H * 0.58);
-    const mix2 = (a, b, f) => a.map((v, i) => v + (b[i] - v) * f);
+    const mix2 = (a, b, f3) => a.map((v, i) => v + (b[i] - v) * f3);
     const sky = ["#2b2d5c", "#6b3e75", "#c0566b", "#f28a4a"].map(hex2), sea = ["#457b9d", "#1d3557"].map(hex2);
     const sun = { x: W / 2, y: horizon, r: H * 0.2 };
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       let c;
       if (y < horizon) {
-        const f = y / horizon * (sky.length - 1), k = Math.min(sky.length - 2, Math.floor(f));
-        c = mix2(sky[k], sky[k + 1], f - k);
+        const f3 = y / horizon * (sky.length - 1), k = Math.min(sky.length - 2, Math.floor(f3));
+        c = mix2(sky[k], sky[k + 1], f3 - k);
         if ((x - sun.x) ** 2 + (y - sun.y) ** 2 < sun.r ** 2) c = hex2("#ffd27a");
       } else {
         c = mix2(sea[0], sea[1], (y - horizon) / (H - horizon));
@@ -14176,24 +14374,24 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
       if (b === 33) {
         const label2 = buf[p++];
         if (label2 === 249 && buf[p] >= 4) {
-          const f3 = buf[p + 1];
-          disposal = f3 >> 2 & 7;
+          const f4 = buf[p + 1];
+          disposal = f4 >> 2 & 7;
           delay = (buf[p + 2] | buf[p + 3] << 8) * 10 || 100;
-          transparent = f3 & 1 ? buf[p + 4] : -1;
+          transparent = f4 & 1 ? buf[p + 4] : -1;
         }
         subBlocks();
         continue;
       }
       if (b !== 44) break;
-      const x0 = buf[p] | buf[p + 1] << 8, y0 = buf[p + 2] | buf[p + 3] << 8, w = buf[p + 4] | buf[p + 5] << 8, h = buf[p + 6] | buf[p + 7] << 8, f = buf[p + 8];
+      const x0 = buf[p] | buf[p + 1] << 8, y0 = buf[p + 2] | buf[p + 3] << 8, w = buf[p + 4] | buf[p + 5] << 8, h = buf[p + 6] | buf[p + 7] << 8, f3 = buf[p + 8];
       p += 9;
       let table = global;
-      if (f & 128) {
-        const n4 = 3 * (1 << (f & 7) + 1);
+      if (f3 & 128) {
+        const n4 = 3 * (1 << (f3 & 7) + 1);
         table = buf.subarray(p, p + n4);
         p += n4;
       }
-      const interlaced = !!(f & 64), minCode = buf[p++], idx = lzw(minCode, subBlocks(), w * h);
+      const interlaced = !!(f3 & 64), minCode = buf[p++], idx = lzw(minCode, subBlocks(), w * h);
       const before = disposal === 3 ? canvas.slice() : null;
       const rows = [];
       if (interlaced) for (const [start, step] of [[0, 8], [4, 8], [2, 4], [1, 2]]) for (let y = start; y < h; y += step) rows.push(y);
@@ -14495,8 +14693,16 @@ ${tiles.map(([x, y, s, c]) => `<rect x="${n3(x)}" y="${n3(y)}" width="${n3(s)}" 
   render3();
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "3.0.0" : "dev";
+  var VERSION = true ? "3.1.0" : "dev";
   var RELEASES = [
+    {
+      version: "3.1.0",
+      date: "2026-10-22",
+      items: [
+        "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).",
+        "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look."
+      ]
+    },
     {
       version: "3.0.0",
       date: "2026-10-21",

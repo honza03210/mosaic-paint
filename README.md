@@ -31,11 +31,15 @@ Both apps are in English, Czech (čeština), German (Deutsch), Slovak (slovenči
 
 The switch in the top-left corner chooses how much of the app you see.
 
-- **Simple** is made for children (about 10 years old) and quick mosaics: only the basic tools, each with a word under it – **Select, Line, Shapes, Circles, Tiles, Paint** – and big color swatches. Shapes offers only the number of corners, Tiles the kind of tile, **Small / Medium / Big** and **Fill whole page**. The top bar keeps New, Save, PNG, undo / redo and zoom; on phones and tablets the colors are also a row along the bottom of the drawing. The guide has three short steps; the hints in the status bar are in plain words. Nothing else shows – no palette management, photo, motifs, pages, report, sharing or settings.
+- **Simple** is made for children (about 10 years old) and quick mosaics: only the basic tools, each with a word under it – **Select, Line, Shapes, Circles, Tiles, Paint** – and big color swatches. Shapes offers only the number of corners, Tiles the kind of tile, **Small / Medium / Big** and **Fill whole page**. **Choose a picture…** puts a picture under the drawing to draw the shapes over (it can fade, or go). The top bar keeps New, Save, PNG, undo / redo and zoom; on phones and tablets the colors are also a row along the bottom of the drawing. The guide has three short steps; the hints in the status bar are in plain words. Nothing else shows – no palette management, photo, motifs, pages, report, sharing or settings.
 - **Expert** has everything: all tools (also free polygon, curve, knife and pan), palettes, the photo to trace, grout preview, motifs, pages, the report, 3D, sharing and history, symmetry, layers, rulers, the printable template, and finer settings:
   - gap tolerance and snapping details
   - numeric polygon editing and line widths
   - a material estimate and CSV export in the report
+
+## Shards (hand-laid lines)
+
+The **Shards** button under the tools (both modes) draws every line as tapered pieces, as if glass shards had been laid by hand: each piece of a line between two crossings – a tile's edge – gets its own width, wider at one end and narrower at the other. **Shuffle** gives other widths, **Unevenness** how much they vary. The lines themselves stay as they are underneath (they still make the tiles and can be edited); the pieces follow every change, and a saved SVG or PNG looks the same (the pieces are a group of their own over the hidden lines). With the grout preview on, the pieces take its color and width.
 
 ## Workflow
 

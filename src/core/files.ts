@@ -6,6 +6,7 @@ import { applyDoc, applyLayers, fitView, updateView } from './view.ts';
 import { resetHistory, afterChange, updateTitle, scheduleAutosave, saveVersion, hasContent } from './history.ts';
 import { savePrefs, switchPalette, uniqueName } from './palette.ts';
 import { applyGrout, groutCSS } from './grout.ts';
+import { handGroupSVG, renderHand } from './handlaid.ts';
 import { refImage, setPhoto, renderPhotoUI } from './photo.ts';
 import { cancelPending, setTool } from './tools.ts';
 import { t } from '../shared/i18n.ts';
@@ -19,7 +20,7 @@ export function buildSVGString(opts: BuildOptions = {}): string {
   root.setAttribute('viewBox', `${fmt(d.x)} ${fmt(d.y)} ${fmt(d.w)} ${fmt(d.h)}`);
   root.setAttribute('width', fmt(d.w) + (u === 'px' ? '' : u));
   root.setAttribute('height', fmt(d.h) + (u === 'px' ? '' : u));
-  mk('metadata', { id: 'mosaic-palette' }, root).textContent = JSON.stringify({ palette: state.palette, paletteName: state.paletteName, unit: u });
+  mk('metadata', { id: 'mosaic-palette' }, root).textContent = JSON.stringify({ palette: state.palette, paletteName: state.paletteName, unit: u, ...(d.hand ? { hand: d.hand } : {}) });
   for (const c of defsG.childNodes) root.appendChild(c.cloneNode(true));
   if (opts.grout) mk('style', {}, root).textContent = groutCSS();
   if (d.bg) mk('rect', { id: 'mosaic-bg', x: d.x, y: d.y, width: d.w, height: d.h, fill: d.bg }, root);
@@ -36,6 +37,8 @@ export function buildSVGString(opts: BuildOptions = {}): string {
   for (const c of fillsG.childNodes) f.appendChild(c.cloneNode(true));
   const s = mk('g', { id: 'mosaic-shapes' }, root);
   for (const c of shapesG.childNodes) s.appendChild(c.cloneNode(true));
+  // hand-laid lines: the tapered pieces over the (hidden) lines
+  handGroupSVG(root);
   let out = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root).replace(/></g, '>\n<');
   // modules may add to the file (pages adds the other pages); opts.pageOnly: just this page
   for (const fn of handlers('serialize')) out = fn(out, opts) || out;
@@ -101,7 +104,7 @@ export function loadSVGText(text: string, opts: LoadOptions = {}): boolean {
     }
     if (id === 'mosaic-bg') { bg = child.getAttribute('fill'); continue; }
     if (id === 'mosaic-reference') { photo = child.querySelector('image'); continue; }
-    if (id === 'mosaic-pages') continue;
+    if (id === 'mosaic-pages' || id === 'mosaic-hand') continue; // (the hand-laid pieces are drawn again from the lines)
     if (['metadata', 'title', 'desc', 'namedview'].includes(tag)) continue;
     if (tag === 'defs' || tag === 'style') { defsG.appendChild(document.importNode(child, true)); continue; }
     if (id === 'mosaic-fills' || id === 'mosaic-shapes') {
@@ -116,6 +119,8 @@ export function loadSVGText(text: string, opts: LoadOptions = {}): boolean {
   if (meta && meta.unit) docUnit = meta.unit;
   if (meta && Array.isArray(meta.palette) && !opts.restore) importPalette(meta.palette.map(Colors.norm).filter(Boolean), meta.paletteName || opts.name);
   state.doc = { ...box, bg: ours ? bg : null, unit: docUnit };
+  if (meta && meta.hand && Number.isFinite(meta.hand.seed)) state.doc.hand = { seed: +meta.hand.seed, amount: Math.min(1, Math.max(0, +meta.hand.amount || 0)) };
+  renderHand();
   if (photo) {
     const href = photo.getAttribute('href') || photo.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
     setPhoto(href, +photo.getAttribute('data-nw') || 1, +photo.getAttribute('data-nh') || 1);

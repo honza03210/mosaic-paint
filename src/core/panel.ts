@@ -13,6 +13,7 @@ import { applyGrout, bakeGrout } from './grout.ts';
 import { refImage, loadPhoto, setPhoto, fitPhoto, setPhotoSize } from './photo.ts';
 import { newDoc, openFile, loadFile, save, exportPNG, setMode } from './files.ts';
 import { setTool, cancelPending, finishFree, freeBack, applyPattern } from './tools.ts';
+import { setHand, newSeed, renderHand, HAND_AMOUNT } from './handlaid.ts';
 import { t } from '../shared/i18n.ts';
 import { askYes } from '../shared/dialogs.ts';
 
@@ -34,7 +35,14 @@ function bindNumber(id: string, get: () => number, set: (v: number) => boolean |
 }
 
 export function bindPanel(): void {
-  for (const b of $$('#tools button')) b.onclick = () => setTool(b.dataset.tool);
+  for (const b of $$('#tools button[data-tool]')) b.onclick = () => setTool(b.dataset.tool);
+  // hand-laid lines: the Shards button, and its panel section (each change an undo step)
+  const handToggle = () => { setHand(state.doc.hand ? null : { seed: newSeed(), amount: state.doc.hand?.amount ?? HAND_AMOUNT }); commit(); };
+  $('#btn-hand').onclick = handToggle;
+  $('#hand-on').onchange = handToggle;
+  $('#hand-shuffle').onclick = () => { if (state.doc.hand) { setHand({ ...state.doc.hand, seed: newSeed() }); commit(); } };
+  $('#hand-amount').onchange = () => { if (state.doc.hand) { setHand({ ...state.doc.hand, amount: +$('#hand-amount').value / 100 }); commit(); } };
+  renderHand();
   for (const b of $$('#mode-switch button')) b.onclick = () => setMode(b.dataset.mode);
   $('#btn-new').onclick = newDoc;
   $('#btn-open').onclick = openFile;
@@ -154,7 +162,7 @@ export function bindPanel(): void {
   };
   $('#ref-size').onchange = (e: any) => setPhotoSize(clamp(+e.target.value || 100, 5, 1000));
   $('#btn-ref-fit').onclick = () => { fitPhoto(); docChanged(); };
-  $('#btn-ref-remove').onclick = async () => { if (await askYes(t('Remove the tracing photo?'))) { setPhoto(null); docChanged(); } };
+  $('#btn-ref-remove').onclick = async () => { if (await askYes(state.mode === 'simple' ? t('Remove the picture?') : t('Remove the tracing photo?'))) { setPhoto(null); docChanged(); } };
   bindCheck('#ref-save', 'savePhoto', docChanged);
   bindCheck('#opt-unpainted', 'onlyUnpainted');
 

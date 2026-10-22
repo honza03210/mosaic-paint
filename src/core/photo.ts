@@ -1,6 +1,6 @@
 /* The tracing photo shown under the drawing. */
 import type { Pt } from '../lib/geometry.ts';
-import { $, state, refG, mk, fmt, toast } from './env.ts';
+import { $, state, refG, mk, fmt, toast, on } from './env.ts';
 import { readAsDataURL, loadImg } from '../shared/ui.ts';
 export { readAsDataURL, loadImg };
 import { applyLayers } from './view.ts';
@@ -32,7 +32,7 @@ export async function loadPhoto(file: Blob): Promise<void> {
   applyLayers();
   savePrefs();
   docChanged();
-  toast(t('Photo loaded and locked. Unlock it to move it with the Select tool.'));
+  toast(state.mode === 'simple' ? t('Picture loaded – draw over it.') : t('Photo loaded and locked. Unlock it to move it with the Select tool.'));
 }
 /** A pasted image becomes the photo to trace (after asking, if there already is one). */
 export async function pastePhoto(file: Blob): Promise<void> {
@@ -71,7 +71,11 @@ export function setPhotoSize(pct: number): void {
 export function renderPhotoUI(): void {
   const im = refImage();
   $('#ref-controls').hidden = !im;
-  $('#btn-ref-load').textContent = im ? t('Replace photo…') : t('Load photo…');
+  // (Simple mode, for children: a picture to draw over)
+  $('#btn-ref-load').textContent = state.mode === 'simple' ? (im ? t('Choose another picture…') : t('Choose a picture…')) : im ? t('Replace photo…') : t('Load photo…');
   if (im) $('#ref-size').value = Math.round(+im.getAttribute('width') / (+im.dataset.nw * fitScale()) * 100);
   $('#ref-opacity').value = Math.round(state.refOpacity * 100);
 }
+
+// the button's words follow the mode
+on('mode', () => renderPhotoUI());

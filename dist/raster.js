@@ -1184,7 +1184,21 @@
     "Big": "Velké",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: jen kreslicí nástroje a barvy – pro děti a rychlé mozaiky. Expert: všechno",
     "Tile size": "Velikost dlaždic",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorové aplikace je teď pro děti: jen základní nástroje (každý s popiskem) – Výběr, Čára, Tvary, Kruhy, Dlaždice, Barva – a velké barvy; na telefonech a tabletech jsou barvy i dole. Všechno ostatní je v režimu Expert."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorové aplikace je teď pro děti: jen základní nástroje (každý s popiskem) – Výběr, Čára, Tvary, Kruhy, Dlaždice, Barva – a velké barvy; na telefonech a tabletech jsou barvy i dole. Všechno ostatní je v režimu Expert.",
+    "Remove the picture?": "Odstranit obrázek?",
+    "Picture loaded – draw over it.": "Obrázek je načtený – kresli přes něj.",
+    "Choose another picture…": "Vybrat jiný obrázek…",
+    "Choose a picture…": "Vybrat obrázek…",
+    "Shards": "Střepy",
+    "Hand-laid lines": "Ručně kladené spáry",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Nerovné, zužující se spáry – jako by střepy kladl člověk",
+    "Shuffle": "Zamíchat",
+    "Unevenness": "Nerovnost",
+    "Picture to draw over": "Obrázek pod kresbou",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Střepy – nerovné, zužující se spáry, jako by sklo kladl člověk (znovu: rovné spáry)",
+    "Other widths for every piece": "Jiné šířky pro každý kousek",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Jednoduchý režim: Vybrat obrázek… vloží obrázek pod kresbu, přes který kreslíš tvary dlaždic (lze ho zesvětlit nebo odstranit).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Střepy (v obou režimech): nerovné, zužující se spáry, jako by skleněné střepy kladl člověk – každý kousek mezi dvěma křížením má vlastní šířku, na jednom konci širší. Zamíchat dá jiné šířky; Nerovnost je v panelu. Čáry pod tím zůstanou, jak jsou; soubory i obrázky ten vzhled zachovají."
   };
 
   // src/shared/i18n-de.ts
@@ -2372,7 +2386,21 @@
     "Big": "Groß",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Einfach: nur die Zeichenwerkzeuge und die Farben – für Kinder und schnelle Mosaike. Experte: alles",
     "Tile size": "Fliesengröße",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Der einfache Modus der Vektor-App ist jetzt für Kinder gemacht: nur die Grundwerkzeuge (jedes mit einem Wort darunter) – Auswahl, Linie, Formen, Kreise, Fliesen, Malen – und große Farben; auf Handys und Tablets sind die Farben auch unten. Alles andere ist im Expertenmodus.",
+    "Remove the picture?": "Das Bild entfernen?",
+    "Picture loaded – draw over it.": "Bild geladen – zeichne darüber.",
+    "Choose another picture…": "Anderes Bild wählen…",
+    "Choose a picture…": "Bild wählen…",
+    "Shards": "Scherben",
+    "Hand-laid lines": "Von Hand gelegte Fugen",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Ungleiche, spitz zulaufende Fugen – als wären die Scherben von Hand gelegt",
+    "Shuffle": "Mischen",
+    "Unevenness": "Ungleichheit",
+    "Picture to draw over": "Bild unter der Zeichnung",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Scherben – ungleiche, spitz zulaufende Fugen, als wäre das Glas von Hand gelegt (nochmal: gleichmäßige Fugen)",
+    "Other widths for every piece": "Andere Breiten für jedes Stück",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Einfacher Modus: Bild wählen… legt ein Bild unter die Zeichnung, über das du die Fliesenformen zeichnest (es kann blasser werden oder weg).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Scherben (beide Modi): ungleiche, spitz zulaufende Fugen, als wären Glasscherben von Hand gelegt – jedes Stück zwischen zwei Kreuzungen bekommt seine eigene Breite, an einem Ende breiter. Mischen gibt andere Breiten; Ungleichheit im Panel. Die Linien darunter bleiben, wie sie sind; Dateien und Bilder behalten das Aussehen."
   };
 
   // src/shared/i18n-sk.ts
@@ -3560,7 +3588,21 @@
     "Big": "Veľké",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Jednoduchý: len kresliace nástroje a farby – pre deti a rýchle mozaiky. Expert: všetko",
     "Tile size": "Veľkosť dlaždíc",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorovej aplikácie je teraz pre deti: len základné nástroje (každý s popisom) – Výber, Čiara, Tvary, Kruhy, Dlaždice, Farba – a veľké farby; na telefónoch a tabletoch sú farby aj dole. Všetko ostatné je v režime Expert."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Jednoduchý režim vektorovej aplikácie je teraz pre deti: len základné nástroje (každý s popisom) – Výber, Čiara, Tvary, Kruhy, Dlaždice, Farba – a veľké farby; na telefónoch a tabletoch sú farby aj dole. Všetko ostatné je v režime Expert.",
+    "Remove the picture?": "Odstrániť obrázok?",
+    "Picture loaded – draw over it.": "Obrázok je načítaný – kresli cez neho.",
+    "Choose another picture…": "Vybrať iný obrázok…",
+    "Choose a picture…": "Vybrať obrázok…",
+    "Shards": "Črepy",
+    "Hand-laid lines": "Ručne kladené špáry",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Nerovné, zužujúce sa špáry – akoby črepy kládol človek",
+    "Shuffle": "Zamiešať",
+    "Unevenness": "Nerovnosť",
+    "Picture to draw over": "Obrázok pod kresbou",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Črepy – nerovné, zužujúce sa špáry, akoby sklo kládol človek (znova: rovné špáry)",
+    "Other widths for every piece": "Iné šírky pre každý kúsok",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Jednoduchý režim: Vybrať obrázok… vloží obrázok pod kresbu, cez ktorý kreslíš tvary dlaždíc (dá sa zosvetliť alebo odstrániť).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Črepy (v oboch režimoch): nerovné, zužujúce sa špáry, akoby sklenené črepy kládol človek – každý kúsok medzi dvoma kríženiami má vlastnú šírku, na jednom konci širší. Zamiešať dá iné šírky; Nerovnosť je v paneli. Čiary pod tým zostanú, ako sú; súbory aj obrázky ten vzhľad zachovajú."
   };
 
   // src/shared/i18n-pl.ts
@@ -4748,7 +4790,21 @@
     "Big": "Duże",
     "Simple: only the drawing tools and the colors – for children and quick mosaics. Expert: everything": "Prosty: tylko narzędzia do rysowania i kolory – dla dzieci i szybkich mozaik. Ekspert: wszystko",
     "Tile size": "Rozmiar płytek",
-    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Prosty tryb aplikacji wektorowej jest teraz dla dzieci: tylko podstawowe narzędzia (każde z podpisem) – Zaznacz, Linia, Kształty, Koła, Płytki, Maluj – i duże kolory; na telefonach i tabletach kolory są też na dole. Wszystko inne jest w trybie Ekspert."
+    "The vector app’s Simple mode is now made for children: only the basic tools (with a word under each) – Select, Line, Shapes, Circles, Tiles, Paint – and big colors; on phones and tablets the colors are along the bottom too. Everything else is in Expert mode.": "Prosty tryb aplikacji wektorowej jest teraz dla dzieci: tylko podstawowe narzędzia (każde z podpisem) – Zaznacz, Linia, Kształty, Koła, Płytki, Maluj – i duże kolory; na telefonach i tabletach kolory są też na dole. Wszystko inne jest w trybie Ekspert.",
+    "Remove the picture?": "Usunąć obraz?",
+    "Picture loaded – draw over it.": "Obraz wczytany – rysuj na nim.",
+    "Choose another picture…": "Wybierz inny obraz…",
+    "Choose a picture…": "Wybierz obraz…",
+    "Shards": "Odłamki",
+    "Hand-laid lines": "Fugi kładzione ręcznie",
+    "Uneven, tapered lines – as if the shards were laid by hand": "Nierówne, zwężające się fugi – jakby odłamki układał człowiek",
+    "Shuffle": "Wymieszaj",
+    "Unevenness": "Nierówność",
+    "Picture to draw over": "Obraz pod rysunkiem",
+    "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Odłamki – nierówne, zwężające się fugi, jakby szkło układał człowiek (ponownie: równe fugi)",
+    "Other widths for every piece": "Inne szerokości dla każdego kawałka",
+    "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Tryb prosty: Wybierz obraz… kładzie obraz pod rysunek, na którym rysujesz kształty płytek (można go rozjaśnić lub usunąć).",
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Odłamki (oba tryby): nierówne, zwężające się fugi, jakby szklane odłamki układał człowiek – każdy kawałek między dwoma skrzyżowaniami ma własną szerokość, z jednej strony szerszy. Wymieszaj daje inne szerokości; Nierówność jest w panelu. Linie pod spodem zostają bez zmian; pliki i obrazy zachowują ten wygląd."
   };
 
   // src/shared/i18n.ts
@@ -14549,8 +14605,16 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "3.0.0" : "dev";
+  var VERSION = true ? "3.1.0" : "dev";
   var RELEASES = [
+    {
+      version: "3.1.0",
+      date: "2026-10-22",
+      items: [
+        "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).",
+        "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look."
+      ]
+    },
     {
       version: "3.0.0",
       date: "2026-10-21",

@@ -5,7 +5,7 @@ const { expect } = h;
 
 test('Simple shows only the basic tools (with words), the colors and the essentials; Expert brings everything back', async ({ page }) => {
   const { errors } = await h.open(page, { mode: 'simple' });
-  const visibleTools = () => page.evaluate(() => [...document.querySelectorAll('#tools button')].filter(b => b.offsetParent).map(b => b.dataset.tool));
+  const visibleTools = () => page.evaluate(() => [...document.querySelectorAll('#tools button[data-tool]')].filter(b => b.offsetParent).map(b => b.dataset.tool));
   expect(await visibleTools()).toEqual(['select', 'line', 'ngon', 'ellipse', 'pattern', 'bucket']);
   await expect(page.locator('[data-tool=line] .tl')).toHaveText('Line');
   // the top bar: the essentials only
@@ -14,7 +14,7 @@ test('Simple shows only the basic tools (with words), the colors and the essenti
   // the panel: the colors; no palette management, no outline color, no other sections
   await expect(page.locator('#palette')).toBeVisible();
   await expect(page.locator('#ac-fill')).toBeVisible();
-  for (const id of ['#pal-select', '#ac-stroke', '#stroke-width', '#color-input', '#btn-pal-import', '#btn-ref-load', '#grout-on', '#motif-list', '#opt-snap', '#doc-w', '#page-add']) await expect(page.locator(id)).toBeHidden();
+  for (const id of ['#pal-select', '#ac-stroke', '#stroke-width', '#color-input', '#btn-pal-import', '#grout-on', '#motif-list', '#opt-snap', '#doc-w', '#page-add']) await expect(page.locator(id)).toBeHidden();
   // a key for a hidden tool does nothing
   await h.key(page, 'p');
   expect(await page.evaluate(() => MZ.state.tool)).not.toBe('free');
@@ -32,7 +32,7 @@ test('the tools keep only their simplest choices: corners for Shapes, kind and s
   await page.click('[data-tool=ngon]');
   await expect(page.locator('#quick-sides')).toBeVisible();
   await expect(page.locator('#opt-sides')).toBeHidden();
-  expect(await page.locator('section.tool-opts[data-for=ngon] h3').innerText()).toBe('Shapes'); // (the Expert title is hidden)
+  expect((await page.locator('section.tool-opts[data-for=ngon] h3').innerText()).toLowerCase()).toBe('shapes'); // (the Expert title is hidden)
   await expect(page.locator('#st-hint')).toContainText('Drag from the middle');
   await page.click('[data-tool=pattern]');
   await expect(page.locator('#pat-type')).toBeVisible();
