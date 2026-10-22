@@ -42,9 +42,10 @@ test('the tools keep only their simplest choices: corners for Shapes, kind and s
   const { size, side } = await page.evaluate(() => ({ size: MZ.state.pattern.size, side: Math.min(MZ.state.doc.w, MZ.state.doc.h) }));
   expect(Math.abs(size - side / 6)).toBeLessThan(side / 600); // (rounded to 3 figures)
   await expect(page.locator('#pat-sizes [data-tiles="6"]')).toHaveClass(/active/);
-  // the line and the bucket have nothing to set
+  // the bucket: only the color mix switch (its long note is Expert's)
   await page.click('[data-tool=bucket]');
-  await expect(page.locator('section.tool-opts[data-for=bucket]')).toBeHidden();
+  await expect(page.locator('#mix-on')).toBeVisible();
+  await expect(page.locator('section.tool-opts[data-for=bucket] > p.note')).toBeHidden();
 });
 
 test('a whole mosaic the simple way: big tiles over the page, then paint one', async ({ page }) => {
@@ -75,4 +76,44 @@ test('the guide in Simple mode talks only about what children see', async ({ pag
   await page.click('#mode-switch [data-mode=expert]');
   await page.click('#btn-guide');
   await expect(card.locator('.guide-count')).toHaveText('1 of 5');
+});
+
+test('Simple mode: the color mix can be switched off – and picking one color switches it off by itself', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mz-mix', JSON.stringify({ on: true, colors: ['#e76f51', '#2a9d8f'], avoid: true })));
+  await h.open(page, { mode: 'simple' });
+  await page.click('[data-tool=bucket]');
+  await expect(page.locator('#mix-on')).toBeVisible();
+  await expect(page.locator('#mix-on')).toBeChecked();
+  // one swatch, without Shift: that color, no mix
+  const want = await page.evaluate(() => MZ.state.palette[3]);
+  await page.locator('#palette .swatch').nth(4).click();
+  await expect(page.locator('#mix-on')).not.toBeChecked();
+  await expect(page.locator('#st-msg')).toContainText('Mixing off');
+  await expect(page.locator('#mix-hint')).toContainText('Off:');
+  expect(await page.evaluate(() => MZ.state.fill)).toBe(want);
+  // painting now uses that one color
+  const s = await h.scr(page, { x: 500, y: 500 });
+  await page.mouse.click(s.x, s.y);
+  expect(await page.evaluate(() => [...document.querySelectorAll('.mz-fill')].map(e => e.getAttribute('fill')))).toEqual([want]);
+  // and it can be switched on again
+  await page.check('#mix-on');
+  await expect(page.locator('#mix-hint')).toContainText('at random');
+});
+
+test('Simple mode: add a color and clear the palette', async ({ page }) => {
+  await h.open(page, { mode: 'simple' });
+  await expect(page.locator('#btn-kid-add')).toBeVisible();
+  await page.click('#btn-kid-clear');
+  await h.answer(page);
+  await expect(page.locator('#palette .swatch')).toHaveCount(1); // only "no color"
+  await page.click('#btn-kid-add');
+  const d = page.locator('#dlg-color');
+  await expect(d.locator('.cp-hex')).toBeVisible();
+  await d.locator('.cp-hex').fill('#123456');
+  await d.locator('button[value=ok]').click();
+  await expect.poll(() => page.evaluate(() => MZ.state.palette)).toEqual(['#123456']);
+  // Expert: the buttons it has had all along
+  await page.click('#mode-switch [data-mode=expert]');
+  await expect(page.locator('#btn-kid-add')).toBeHidden();
+  await expect(page.locator('#btn-pal-clear')).toBeVisible();
 });

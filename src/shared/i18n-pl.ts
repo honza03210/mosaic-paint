@@ -2396,4 +2396,60 @@ export const PL: Record<string, string> = {
     'Tryb prosty: Wybierz obraz… kładzie obraz pod rysunek, na którym rysujesz kształty płytek (można go rozjaśnić lub usunąć).',
   'Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.':
     'Odłamki (oba tryby): nierówne, zwężające się fugi, jakby szklane odłamki układał człowiek – każdy kawałek między dwoma skrzyżowaniami ma własną szerokość, z jednej strony szerszy. Wymieszaj daje inne szerokości; Nierówność jest w panelu. Linie pod spodem zostają bez zmian; pliki i obrazy zachowują ten wygląd.',
+  'Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.':
+    'Wyłączone: każda płytka dostaje ten jeden kolor, który wybierzesz. Włącz, by każda płytka dostała losowo jeden z tych {n} kolorów.',
+  'Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)':
+    'Mieszanie wyłączone – maluje się jednym kolorem. (Mieszaj kolory w opcjach Maluj włącza je ponownie.)',
+  '＋ Add a color':
+    '＋ Dodaj kolor',
+  'Clear palette':
+    'Wyczyść paletę',
+  'Choose any color and add it to the palette':
+    'Wybierz dowolny kolor i dodaj go do palety',
+  'Remove all colors from the palette':
+    'Usuń wszystkie kolory z palety',
+  'Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.':
+    'Wybranie jednego koloru (próbka bez Shift) wyłącza mieszanie kolorów – wiadro maluje tym kolorem. Przełącznik Mieszaj kolory jest też w trybie prostym, tak samo ＋ Dodaj kolor i Wyczyść paletę.',
+  'Set up the palette':
+    'Ustaw paletę',
+  'Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.':
+    'Skopiuj kolory na dowolnej stronie – ze strony z paletami, kody kolorów, listę – i wklej je tutaj (Ctrl+V). Każdy znaleziony kolor pojawi się poniżej; kliknij go, aby go pominąć.',
+  'Paste from clipboard':
+    'Wklej ze schowka',
+  'Colors to paste':
+    'Kolory do wklejenia',
+  'Colors found':
+    'Znalezione kolory',
+  'Add to my palette':
+    'Dodaj do mojej palety',
+  'Use instead of my palette':
+    'Użyj zamiast mojej palety',
+  'Use these colors':
+    'Użyj tych kolorów',
+  '{n} {n|color|colors} found.':
+    '{n|Znaleziono|Znaleziono|Znaleziono} {n} {n|kolor|kolory|kolorów}.',
+  'No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.':
+    'W tym tekście nie ma kolorów – skopiuj kody kolorów (np. #2a9d8f), a nie sam obrazek.',
+  'This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.':
+    'Ta przeglądarka nie pozwala stronie czytać schowka – kliknij w pole i naciśnij Ctrl+V.',
+  'The palette now has {n} {n|color|colors}.':
+    'Paleta ma teraz {n} {n|kolor|kolory|kolorów}.',
+  'Added {n} {n|color|colors} to the palette.':
+    'Dodano {n} {n|kolor|kolory|kolorów} do palety.',
+  'All these colors are in the palette already.':
+    'Wszystkie te kolory już są w palecie.',
+  'Paste colors…':
+    'Wklej kolory…',
+  'Paste colors copied on another website':
+    'Wklej kolory skopiowane na innej stronie',
+  'Visible – click to hide':
+    'Widoczna – kliknij, aby ukryć',
+  'Hidden – click to show':
+    'Ukryta – kliknij, aby pokazać',
+  'Locked – click to unlock':
+    'Zablokowana – kliknij, aby odblokować',
+  'Unlocked – click to lock':
+    'Odblokowana – kliknij, aby zablokować',
+  'Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).':
+    'Wklej kolory… ustawia paletę z kolorów skopiowanych na innej stronie – ze strony z paletami jak Coolors, kody kolorów, CSS: każdy znaleziony kolor się pokaże, kliknięcie go pomija, potem je dodasz albo użyjesz zamiast palety (obie aplikacje).',
 };

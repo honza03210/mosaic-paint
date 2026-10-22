@@ -37,6 +37,7 @@ function render() {
   }
   $('#mix-hint').textContent = mix.colors.length < 2
     ? t('Shift+click two or more swatches to put them in the mix.')
+    : !mix.on ? t('Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.', { n: mix.colors.length })
     : t('Each tile gets one of these {n} colors at random. Shift+click swatches to change the mix.', { n: mix.colors.length });
   $('#btn-mix-sel').hidden = mix.colors.length < 2;
   markSwatches();
@@ -69,6 +70,15 @@ function mixSelection() {
 }
 
 MZ.on('swatch-shift', (c) => { if (c) toggle(c); });
+// picking one color (a swatch clicked without Shift – in the panel, along the bottom or in the quick menu)
+// means painting with that color: the mix stops
+document.addEventListener('click', (e) => {
+  const el = (e.target as Element)?.closest?.('#palette .swatch, #kid-colors .kc, .qm-swatch');
+  if (!el || e.shiftKey || (e.target as Element).closest('.del') || !active()) return;
+  mix.on = false;
+  render();
+  MZ.toast(t('Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)'));
+}, true);
 MZ.on('palette', markSwatches);
 $('#mix-on').onchange = (e) => {
   mix.on = e.target.checked;

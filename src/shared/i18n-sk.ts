@@ -2396,4 +2396,60 @@ export const SK: Record<string, string> = {
     'Jednoduchý režim: Vybrať obrázok… vloží obrázok pod kresbu, cez ktorý kreslíš tvary dlaždíc (dá sa zosvetliť alebo odstrániť).',
   'Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.':
     'Črepy (v oboch režimoch): nerovné, zužujúce sa špáry, akoby sklenené črepy kládol človek – každý kúsok medzi dvoma kríženiami má vlastnú šírku, na jednom konci širší. Zamiešať dá iné šírky; Nerovnosť je v paneli. Čiary pod tým zostanú, ako sú; súbory aj obrázky ten vzhľad zachovajú.',
+  'Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.':
+    'Vypnuté: každá dlaždica dostane tú jednu farbu, ktorú vyberieš. Zapni to a každá dlaždica dostane náhodne jednu z týchto {n} farieb.',
+  'Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)':
+    'Miešanie vypnuté – maľuje sa jednou farbou. (Zapne ho znova Miešať farby v možnostiach Farby.)',
+  '＋ Add a color':
+    '＋ Pridať farbu',
+  'Clear palette':
+    'Vymazať paletu',
+  'Choose any color and add it to the palette':
+    'Vybrať ľubovoľnú farbu a pridať ju do palety',
+  'Remove all colors from the palette':
+    'Odobrať z palety všetky farby',
+  'Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.':
+    'Výber jednej farby (vzorkovník bez Shiftu) vypne miešanie farieb – vedierko maľuje touto farbou. Prepínač Miešať farby je aj v jednoduchom režime, rovnako ako ＋ Pridať farbu a Vymazať paletu.',
+  'Set up the palette':
+    'Nastaviť paletu',
+  'Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.':
+    'Skopíruj farby na akejkoľvek webovej stránke – na webe s paletami, kódy farieb, zoznam – a vlož ich sem (Ctrl+V). Každá nájdená farba sa ukáže nižšie; kliknutím ju vynecháš.',
+  'Paste from clipboard':
+    'Vložiť zo schránky',
+  'Colors to paste':
+    'Farby na vloženie',
+  'Colors found':
+    'Nájdené farby',
+  'Add to my palette':
+    'Pridať do mojej palety',
+  'Use instead of my palette':
+    'Použiť namiesto mojej palety',
+  'Use these colors':
+    'Použiť tieto farby',
+  '{n} {n|color|colors} found.':
+    '{n|Nájdená|Nájdené|Nájdených} {n} {n|farba|farby|farieb}.',
+  'No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.':
+    'V tomto texte nie sú žiadne farby – skopíruj kódy farieb (napríklad #2a9d8f), nie len obrázok.',
+  'This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.':
+    'Tento prehliadač stránke nedovolí čítať schránku – klikni do poľa a stlač Ctrl+V.',
+  'The palette now has {n} {n|color|colors}.':
+    'Paleta má teraz {n} {n|farbu|farby|farieb}.',
+  'Added {n} {n|color|colors} to the palette.':
+    'Do palety {n|pribudla|pribudli|pribudlo} {n} {n|farba|farby|farieb}.',
+  'All these colors are in the palette already.':
+    'Všetky tieto farby už v palete sú.',
+  'Paste colors…':
+    'Vložiť farby…',
+  'Paste colors copied on another website':
+    'Vložiť farby skopírované na inom webe',
+  'Visible – click to hide':
+    'Viditeľná – kliknutím skryjete',
+  'Hidden – click to show':
+    'Skrytá – kliknutím zobrazíte',
+  'Locked – click to unlock':
+    'Zamknutá – kliknutím odomknete',
+  'Unlocked – click to lock':
+    'Odomknutá – kliknutím zamknete',
+  'Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).':
+    'Vložiť farby… nastaví paletu z farieb skopírovaných na inom webe – na webe s paletami ako Coolors, kódy farieb, CSS: každá nájdená farba sa ukáže, kliknutím ju vynecháš, potom ich pridáš alebo použiješ namiesto palety (v oboch aplikáciách).',
 };

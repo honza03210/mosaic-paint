@@ -1,5 +1,6 @@
 /* The image (an offscreen canvas) and the view: zoom / pan, and drawing it all on screen –
    checkerboard under transparent pixels, the pixel grid, the selection and the tool previews. */
+import { t } from '../shared/i18n.ts';
 import type { Pt } from '../lib/geometry.ts';
 import * as R from '../lib/raster.ts';
 import { $, clamp } from '../shared/ui.ts';
@@ -30,7 +31,7 @@ export function useLayer(i: number): void {
   doc = layers[active].canvas;
   dctx = layers[active].ctx;
 }
-layers.push(makeLayer(800, 600, 'Layer 1'));
+layers.push(makeLayer(800, 600, t('Layer {n}', { n: 1 })));
 useLayer(0);
 /** Replaces all the layers (a new or opened image, undo). */
 export function setLayers(list: Layer[], activeIndex: number): void {

@@ -91,7 +91,7 @@ export function applyLayers(): void {
     const L = state.layers[b.dataset.layer], k = b.dataset.prop;
     b.classList.toggle('off', k === 'visible' ? !L.visible : !L.locked);
     b.textContent = k === 'visible' ? (L.visible ? '👁' : '–') : (L.locked ? '🔒' : '🔓');
-    b.title = k === 'visible' ? (L.visible ? 'Visible – click to hide' : 'Hidden – click to show') : (L.locked ? 'Locked – click to unlock' : 'Unlocked – click to lock');
+    b.title = k === 'visible' ? (L.visible ? t('Visible – click to hide') : t('Hidden – click to show')) : (L.locked ? t('Locked – click to unlock') : t('Unlocked – click to lock'));
   }
   $('#ref-show').checked = state.layers.ref.visible;
   $('#ref-lock').checked = state.layers.ref.locked;

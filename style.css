@@ -417,6 +417,12 @@ body.working, body.working * { cursor: progress !important; }
 #dlg-ask .ask-msg { white-space: pre-line; margin: 0 0 10px; }
 #dlg-ask .ask-input { width: 100%; }
 #dlg-color { width: min(340px, 94vw); }
+/* setting up the palette from pasted colors (palette-setup.ts) */
+#dlg-palsetup { width: min(520px, 94vw); }
+#dlg-palsetup .ps-text { width: 100%; box-sizing: border-box; font: 12px/1.4 ui-monospace, monospace; resize: vertical; margin: 6px 0; }
+#dlg-palsetup .ps-found { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; max-height: 180px; overflow: auto; }
+#dlg-palsetup .ps-swatch { width: 34px; height: 34px; padding: 0; border-radius: 6px; border: 2px solid rgba(255,255,255,.35); }
+#dlg-palsetup .ps-swatch.off { opacity: .25; border-style: dashed; }
 .cp-sv { position: relative; height: 180px; border-radius: 6px; cursor: crosshair; touch-action: none;
   background-image: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent); }
 .cp-knob { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;

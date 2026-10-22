@@ -36,6 +36,9 @@ function bindNumber(id: string, get: () => number, set: (v: number) => boolean |
 
 export function bindPanel(): void {
   for (const b of $$('#tools button[data-tool]')) b.onclick = () => setTool(b.dataset.tool);
+  // Simple mode's palette buttons: the color chooser (it adds the color) and Clear
+  $('#btn-kid-add').onclick = () => $('#btn-choose-color').click();
+  $('#btn-kid-clear').onclick = () => $('#btn-pal-clear').click();
   // hand-laid lines: the Shards button, and its panel section (each change an undo step)
   const handToggle = () => { setHand(state.doc.hand ? null : { seed: newSeed(), amount: state.doc.hand?.amount ?? HAND_AMOUNT }); commit(); };
   $('#btn-hand').onclick = handToggle;

@@ -11,6 +11,12 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '3.2.0', date: '2026-10-22', items: [
+      'Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).',
+      'Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.',
+    ],
+  },
+  {
     version: '3.1.0', date: '2026-10-22', items: [
       'Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).',
       'Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.',

@@ -6,6 +6,7 @@ import { $, toast, download, lsGet, lsSet } from './ui.ts';
 import { t } from './i18n.ts';
 import { ask, askYes } from './dialogs.ts';
 import { chooseColor } from './color-picker.ts';
+import { paletteSetup } from './palette-setup.ts';
 
 export interface PaletteState {
   fill: string | null;
@@ -226,8 +227,24 @@ export function createPaletteUI(host: PaletteHost) {
     if (which === 'fill') setFill(r.color, true); else setStroke(r.color, true);
   }
 
+  /** Colors pasted from elsewhere (palette-setup.ts): added to the palette, or instead of it. */
+  async function setup(): Promise<void> {
+    const r = await paletteSetup();
+    if (!r) return;
+    if (r.replace) {
+      st.palette = [...r.colors];
+      host.save();
+      render();
+      toast(t('The palette now has {n} {n|color|colors}.', { n: r.colors.length }));
+    } else {
+      const n = addColors(r.colors);
+      toast(n ? t('Added {n} {n|color|colors} to the palette.', { n }) : t('All these colors are in the palette already.'));
+    }
+  }
+
   /** Wires the palette controls of the side panel. */
   function bind(): void {
+    for (const b of document.querySelectorAll<HTMLElement>('[data-pal-setup]')) b.onclick = setup;
     const inp = $('#color-input');
     $('#btn-add-color').onclick = addFromInput;
     $('#btn-choose-color').onclick = () => choose('fill');

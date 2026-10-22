@@ -153,6 +153,7 @@
         <label class="sw-w expert" title="Line width for new lines and polygons">Width <input id="stroke-width" type="number" min="0" step="0.5"></label>
       </div>
       <div id="palette"></div>
+      <div class="row simple-only"><button id="btn-kid-add" title="Choose any color and add it to the palette">＋ Add a color</button><button data-pal-setup title="Paste colors copied on another website">Paste colors…</button><button id="btn-kid-clear" title="Remove all colors from the palette">Clear palette</button></div>
       <div class="row add-row expert">
         <span id="color-preview" class="mini"></span>
         <input id="color-input" type="text" placeholder="Paste #hex, rgb(), name…" spellcheck="false" autocomplete="off">
@@ -160,6 +161,7 @@
         <button id="btn-choose-color" title="Choose any color: a color area, a hue slider and a color code">Choose…</button>
       </div>
       <div class="row small expert">
+        <button data-pal-setup title="Paste colors copied on another website">Paste colors…</button>
         <button id="btn-pal-import" title="Load colors from a .txt / .gpl / .css file">Import…</button>
         <button id="btn-pal-doc" title="Add every color used in the drawing">From drawing</button>
         <button id="btn-pal-export" title="Download the palette as a list of hex codes">Export</button>
@@ -241,10 +243,10 @@
       <p class="note expert">Click inside a closed area to fill it with tiles. Painted areas keep their color in every new tile. “Rows following the outline” lays rows along the area’s edge and around shapes inside it (Rows 0 = fill it).</p>
     </section>
 
-    <section class="tool-opts expert" data-for="bucket">
+    <section class="tool-opts" data-for="bucket">
       <h3><span class="expert">Paint bucket</span><span class="simple-only">Paint</span></h3>
       <p class="note expert">Click inside any closed area, or drag across many tiles. Click a painted area again to recolor it. The ∅ swatch erases. Alt+click picks a color.</p>
-      <div class="mix-box expert">
+      <div class="mix-box">
         <label class="chk"><input type="checkbox" id="mix-on"> Mix colors (a random one per tile)</label>
         <div id="mix-colors" class="mix-chips"></div>
         <p class="note" id="mix-hint"></p>

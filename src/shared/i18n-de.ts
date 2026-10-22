@@ -2396,4 +2396,60 @@ export const DE: Record<string, string> = {
     'Einfacher Modus: Bild wählen… legt ein Bild unter die Zeichnung, über das du die Fliesenformen zeichnest (es kann blasser werden oder weg).',
   'Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.':
     'Scherben (beide Modi): ungleiche, spitz zulaufende Fugen, als wären Glasscherben von Hand gelegt – jedes Stück zwischen zwei Kreuzungen bekommt seine eigene Breite, an einem Ende breiter. Mischen gibt andere Breiten; Ungleichheit im Panel. Die Linien darunter bleiben, wie sie sind; Dateien und Bilder behalten das Aussehen.',
+  'Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.':
+    'Aus: Jede Fliese bekommt die eine Farbe, die du gewählt hast. Schalte es ein, damit jede Fliese zufällig eine dieser {n} Farben bekommt.',
+  'Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)':
+    'Mischen aus – es wird mit einer Farbe gemalt. (Farben mischen in den Optionen von Malen schaltet es wieder ein.)',
+  '＋ Add a color':
+    '＋ Farbe hinzufügen',
+  'Clear palette':
+    'Palette leeren',
+  'Choose any color and add it to the palette':
+    'Eine beliebige Farbe wählen und zur Palette hinzufügen',
+  'Remove all colors from the palette':
+    'Alle Farben aus der Palette entfernen',
+  'Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.':
+    'Eine Farbe wählen (ein Farbfeld ohne Shift) schaltet das Farbmischen aus – der Farbeimer malt mit dieser Farbe. Der Schalter Farben mischen ist auch im einfachen Modus da, ebenso ＋ Farbe hinzufügen und Palette leeren.',
+  'Set up the palette':
+    'Palette einrichten',
+  'Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.':
+    'Kopiere Farben auf irgendeiner Website – einer Paletten-Seite, Farbcodes, eine Liste – und füge sie hier ein (Strg+V). Jede gefundene Farbe erscheint unten; klick eine an, um sie wegzulassen.',
+  'Paste from clipboard':
+    'Aus der Zwischenablage einfügen',
+  'Colors to paste':
+    'Einzufügende Farben',
+  'Colors found':
+    'Gefundene Farben',
+  'Add to my palette':
+    'Zu meiner Palette hinzufügen',
+  'Use instead of my palette':
+    'Statt meiner Palette verwenden',
+  'Use these colors':
+    'Diese Farben verwenden',
+  '{n} {n|color|colors} found.':
+    '{n} {n|Farbe|Farben} gefunden.',
+  'No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.':
+    'In diesem Text sind keine Farben – kopiere die Farbcodes (wie #2a9d8f), nicht nur das Bild.',
+  'This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.':
+    'Dieser Browser lässt die Seite die Zwischenablage nicht lesen – klick in das Feld und drück Strg+V.',
+  'The palette now has {n} {n|color|colors}.':
+    'Die Palette hat jetzt {n} {n|Farbe|Farben}.',
+  'Added {n} {n|color|colors} to the palette.':
+    '{n} {n|Farbe|Farben} zur Palette hinzugefügt.',
+  'All these colors are in the palette already.':
+    'Alle diese Farben sind schon in der Palette.',
+  'Paste colors…':
+    'Farben einfügen…',
+  'Paste colors copied on another website':
+    'Auf einer anderen Website kopierte Farben einfügen',
+  'Visible – click to hide':
+    'Sichtbar – klicken zum Ausblenden',
+  'Hidden – click to show':
+    'Ausgeblendet – klicken zum Einblenden',
+  'Locked – click to unlock':
+    'Gesperrt – klicken zum Entsperren',
+  'Unlocked – click to lock':
+    'Entsperrt – klicken zum Sperren',
+  'Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).':
+    'Farben einfügen… richtet die Palette aus Farben ein, die auf einer anderen Website kopiert wurden – einer Paletten-Seite wie Coolors, Farbcodes, CSS: Jede gefundene Farbe erscheint, ein Klick lässt sie weg, dann fügst du sie hinzu oder nimmst sie statt der Palette (beide Apps).',
 };

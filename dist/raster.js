@@ -1198,7 +1198,35 @@
     "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Střepy – nerovné, zužující se spáry, jako by sklo kladl člověk (znovu: rovné spáry)",
     "Other widths for every piece": "Jiné šířky pro každý kousek",
     "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Jednoduchý režim: Vybrat obrázek… vloží obrázek pod kresbu, přes který kreslíš tvary dlaždic (lze ho zesvětlit nebo odstranit).",
-    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Střepy (v obou režimech): nerovné, zužující se spáry, jako by skleněné střepy kladl člověk – každý kousek mezi dvěma křížením má vlastní šířku, na jednom konci širší. Zamíchat dá jiné šířky; Nerovnost je v panelu. Čáry pod tím zůstanou, jak jsou; soubory i obrázky ten vzhled zachovají."
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Střepy (v obou režimech): nerovné, zužující se spáry, jako by skleněné střepy kladl člověk – každý kousek mezi dvěma křížením má vlastní šířku, na jednom konci širší. Zamíchat dá jiné šířky; Nerovnost je v panelu. Čáry pod tím zůstanou, jak jsou; soubory i obrázky ten vzhled zachovají.",
+    "Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.": "Vypnuto: každá dlaždice dostane tu jednu barvu, kterou vybereš. Zapni to a každá dlaždice dostane náhodně jednu z těchto {n} barev.",
+    "Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)": "Míchání vypnuto – maluje se jednou barvou. (Zapne ho znovu Míchat barvy v možnostech Barvy.)",
+    "＋ Add a color": "＋ Přidat barvu",
+    "Clear palette": "Vymazat paletu",
+    "Choose any color and add it to the palette": "Vybrat libovolnou barvu a přidat ji do palety",
+    "Remove all colors from the palette": "Odebrat z palety všechny barvy",
+    "Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.": "Výběr jedné barvy (vzorník bez Shiftu) vypne míchání barev – kyblík maluje touto barvou. Přepínač Míchat barvy je i v jednoduchém režimu, stejně jako ＋ Přidat barvu a Vymazat paletu.",
+    "Set up the palette": "Nastavit paletu",
+    "Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.": "Zkopíruj barvy na jakékoli webové stránce – na webu s paletami, kódy barev, seznam – a vlož je sem (Ctrl+V). Každá nalezená barva se ukáže níže; kliknutím ji vynecháš.",
+    "Paste from clipboard": "Vložit ze schránky",
+    "Colors to paste": "Barvy k vložení",
+    "Colors found": "Nalezené barvy",
+    "Add to my palette": "Přidat do mé palety",
+    "Use instead of my palette": "Použít místo mé palety",
+    "Use these colors": "Použít tyto barvy",
+    "{n} {n|color|colors} found.": "{n|Nalezena|Nalezeny|Nalezeno} {n} {n|barva|barvy|barev}.",
+    "No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.": "V tomto textu nejsou žádné barvy – zkopíruj kódy barev (třeba #2a9d8f), ne jen obrázek.",
+    "This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.": "Tento prohlížeč stránce nedovolí číst schránku – klikni do pole a stiskni Ctrl+V.",
+    "The palette now has {n} {n|color|colors}.": "Paleta má teď {n} {n|barvu|barvy|barev}.",
+    "Added {n} {n|color|colors} to the palette.": "Do palety {n|přibyla|přibyly|přibylo} {n} {n|barva|barvy|barev}.",
+    "All these colors are in the palette already.": "Všechny tyto barvy už v paletě jsou.",
+    "Paste colors…": "Vložit barvy…",
+    "Paste colors copied on another website": "Vložit barvy zkopírované na jiném webu",
+    "Visible – click to hide": "Viditelná – kliknutím skryjete",
+    "Hidden – click to show": "Skrytá – kliknutím zobrazíte",
+    "Locked – click to unlock": "Zamčená – kliknutím odemknete",
+    "Unlocked – click to lock": "Odemčená – kliknutím zamknete",
+    "Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).": "Vložit barvy… nastaví paletu z barev zkopírovaných na jiném webu – na webu s paletami jako Coolors, kódy barev, CSS: každá nalezená barva se ukáže, kliknutím ji vynecháš, pak je přidáš nebo použiješ místo palety (v obou aplikacích)."
   };
 
   // src/shared/i18n-de.ts
@@ -2400,7 +2428,35 @@
     "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Scherben – ungleiche, spitz zulaufende Fugen, als wäre das Glas von Hand gelegt (nochmal: gleichmäßige Fugen)",
     "Other widths for every piece": "Andere Breiten für jedes Stück",
     "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Einfacher Modus: Bild wählen… legt ein Bild unter die Zeichnung, über das du die Fliesenformen zeichnest (es kann blasser werden oder weg).",
-    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Scherben (beide Modi): ungleiche, spitz zulaufende Fugen, als wären Glasscherben von Hand gelegt – jedes Stück zwischen zwei Kreuzungen bekommt seine eigene Breite, an einem Ende breiter. Mischen gibt andere Breiten; Ungleichheit im Panel. Die Linien darunter bleiben, wie sie sind; Dateien und Bilder behalten das Aussehen."
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Scherben (beide Modi): ungleiche, spitz zulaufende Fugen, als wären Glasscherben von Hand gelegt – jedes Stück zwischen zwei Kreuzungen bekommt seine eigene Breite, an einem Ende breiter. Mischen gibt andere Breiten; Ungleichheit im Panel. Die Linien darunter bleiben, wie sie sind; Dateien und Bilder behalten das Aussehen.",
+    "Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.": "Aus: Jede Fliese bekommt die eine Farbe, die du gewählt hast. Schalte es ein, damit jede Fliese zufällig eine dieser {n} Farben bekommt.",
+    "Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)": "Mischen aus – es wird mit einer Farbe gemalt. (Farben mischen in den Optionen von Malen schaltet es wieder ein.)",
+    "＋ Add a color": "＋ Farbe hinzufügen",
+    "Clear palette": "Palette leeren",
+    "Choose any color and add it to the palette": "Eine beliebige Farbe wählen und zur Palette hinzufügen",
+    "Remove all colors from the palette": "Alle Farben aus der Palette entfernen",
+    "Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.": "Eine Farbe wählen (ein Farbfeld ohne Shift) schaltet das Farbmischen aus – der Farbeimer malt mit dieser Farbe. Der Schalter Farben mischen ist auch im einfachen Modus da, ebenso ＋ Farbe hinzufügen und Palette leeren.",
+    "Set up the palette": "Palette einrichten",
+    "Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.": "Kopiere Farben auf irgendeiner Website – einer Paletten-Seite, Farbcodes, eine Liste – und füge sie hier ein (Strg+V). Jede gefundene Farbe erscheint unten; klick eine an, um sie wegzulassen.",
+    "Paste from clipboard": "Aus der Zwischenablage einfügen",
+    "Colors to paste": "Einzufügende Farben",
+    "Colors found": "Gefundene Farben",
+    "Add to my palette": "Zu meiner Palette hinzufügen",
+    "Use instead of my palette": "Statt meiner Palette verwenden",
+    "Use these colors": "Diese Farben verwenden",
+    "{n} {n|color|colors} found.": "{n} {n|Farbe|Farben} gefunden.",
+    "No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.": "In diesem Text sind keine Farben – kopiere die Farbcodes (wie #2a9d8f), nicht nur das Bild.",
+    "This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.": "Dieser Browser lässt die Seite die Zwischenablage nicht lesen – klick in das Feld und drück Strg+V.",
+    "The palette now has {n} {n|color|colors}.": "Die Palette hat jetzt {n} {n|Farbe|Farben}.",
+    "Added {n} {n|color|colors} to the palette.": "{n} {n|Farbe|Farben} zur Palette hinzugefügt.",
+    "All these colors are in the palette already.": "Alle diese Farben sind schon in der Palette.",
+    "Paste colors…": "Farben einfügen…",
+    "Paste colors copied on another website": "Auf einer anderen Website kopierte Farben einfügen",
+    "Visible – click to hide": "Sichtbar – klicken zum Ausblenden",
+    "Hidden – click to show": "Ausgeblendet – klicken zum Einblenden",
+    "Locked – click to unlock": "Gesperrt – klicken zum Entsperren",
+    "Unlocked – click to lock": "Entsperrt – klicken zum Sperren",
+    "Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).": "Farben einfügen… richtet die Palette aus Farben ein, die auf einer anderen Website kopiert wurden – einer Paletten-Seite wie Coolors, Farbcodes, CSS: Jede gefundene Farbe erscheint, ein Klick lässt sie weg, dann fügst du sie hinzu oder nimmst sie statt der Palette (beide Apps)."
   };
 
   // src/shared/i18n-sk.ts
@@ -3602,7 +3658,35 @@
     "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Črepy – nerovné, zužujúce sa špáry, akoby sklo kládol človek (znova: rovné špáry)",
     "Other widths for every piece": "Iné šírky pre každý kúsok",
     "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Jednoduchý režim: Vybrať obrázok… vloží obrázok pod kresbu, cez ktorý kreslíš tvary dlaždíc (dá sa zosvetliť alebo odstrániť).",
-    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Črepy (v oboch režimoch): nerovné, zužujúce sa špáry, akoby sklenené črepy kládol človek – každý kúsok medzi dvoma kríženiami má vlastnú šírku, na jednom konci širší. Zamiešať dá iné šírky; Nerovnosť je v paneli. Čiary pod tým zostanú, ako sú; súbory aj obrázky ten vzhľad zachovajú."
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Črepy (v oboch režimoch): nerovné, zužujúce sa špáry, akoby sklenené črepy kládol človek – každý kúsok medzi dvoma kríženiami má vlastnú šírku, na jednom konci širší. Zamiešať dá iné šírky; Nerovnosť je v paneli. Čiary pod tým zostanú, ako sú; súbory aj obrázky ten vzhľad zachovajú.",
+    "Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.": "Vypnuté: každá dlaždica dostane tú jednu farbu, ktorú vyberieš. Zapni to a každá dlaždica dostane náhodne jednu z týchto {n} farieb.",
+    "Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)": "Miešanie vypnuté – maľuje sa jednou farbou. (Zapne ho znova Miešať farby v možnostiach Farby.)",
+    "＋ Add a color": "＋ Pridať farbu",
+    "Clear palette": "Vymazať paletu",
+    "Choose any color and add it to the palette": "Vybrať ľubovoľnú farbu a pridať ju do palety",
+    "Remove all colors from the palette": "Odobrať z palety všetky farby",
+    "Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.": "Výber jednej farby (vzorkovník bez Shiftu) vypne miešanie farieb – vedierko maľuje touto farbou. Prepínač Miešať farby je aj v jednoduchom režime, rovnako ako ＋ Pridať farbu a Vymazať paletu.",
+    "Set up the palette": "Nastaviť paletu",
+    "Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.": "Skopíruj farby na akejkoľvek webovej stránke – na webe s paletami, kódy farieb, zoznam – a vlož ich sem (Ctrl+V). Každá nájdená farba sa ukáže nižšie; kliknutím ju vynecháš.",
+    "Paste from clipboard": "Vložiť zo schránky",
+    "Colors to paste": "Farby na vloženie",
+    "Colors found": "Nájdené farby",
+    "Add to my palette": "Pridať do mojej palety",
+    "Use instead of my palette": "Použiť namiesto mojej palety",
+    "Use these colors": "Použiť tieto farby",
+    "{n} {n|color|colors} found.": "{n|Nájdená|Nájdené|Nájdených} {n} {n|farba|farby|farieb}.",
+    "No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.": "V tomto texte nie sú žiadne farby – skopíruj kódy farieb (napríklad #2a9d8f), nie len obrázok.",
+    "This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.": "Tento prehliadač stránke nedovolí čítať schránku – klikni do poľa a stlač Ctrl+V.",
+    "The palette now has {n} {n|color|colors}.": "Paleta má teraz {n} {n|farbu|farby|farieb}.",
+    "Added {n} {n|color|colors} to the palette.": "Do palety {n|pribudla|pribudli|pribudlo} {n} {n|farba|farby|farieb}.",
+    "All these colors are in the palette already.": "Všetky tieto farby už v palete sú.",
+    "Paste colors…": "Vložiť farby…",
+    "Paste colors copied on another website": "Vložiť farby skopírované na inom webe",
+    "Visible – click to hide": "Viditeľná – kliknutím skryjete",
+    "Hidden – click to show": "Skrytá – kliknutím zobrazíte",
+    "Locked – click to unlock": "Zamknutá – kliknutím odomknete",
+    "Unlocked – click to lock": "Odomknutá – kliknutím zamknete",
+    "Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).": "Vložiť farby… nastaví paletu z farieb skopírovaných na inom webe – na webe s paletami ako Coolors, kódy farieb, CSS: každá nájdená farba sa ukáže, kliknutím ju vynecháš, potom ich pridáš alebo použiješ namiesto palety (v oboch aplikáciách)."
   };
 
   // src/shared/i18n-pl.ts
@@ -4804,7 +4888,35 @@
     "Shards – uneven, tapered lines, as if the glass were laid by hand (click again: even lines)": "Odłamki – nierówne, zwężające się fugi, jakby szkło układał człowiek (ponownie: równe fugi)",
     "Other widths for every piece": "Inne szerokości dla każdego kawałka",
     "Simple mode: Choose a picture… puts a picture under the drawing to draw the tile shapes over (it can fade, or go).": "Tryb prosty: Wybierz obraz… kładzie obraz pod rysunek, na którym rysujesz kształty płytek (można go rozjaśnić lub usunąć).",
-    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Odłamki (oba tryby): nierówne, zwężające się fugi, jakby szklane odłamki układał człowiek – każdy kawałek między dwoma skrzyżowaniami ma własną szerokość, z jednej strony szerszy. Wymieszaj daje inne szerokości; Nierówność jest w panelu. Linie pod spodem zostają bez zmian; pliki i obrazy zachowują ten wygląd."
+    "Shards (both modes): uneven, tapered lines, as if glass shards were laid by hand – every piece between two crossings gets its own width, wider at one end. Shuffle for other widths; Unevenness in the panel. The lines stay as they are underneath; files and pictures keep the look.": "Odłamki (oba tryby): nierówne, zwężające się fugi, jakby szklane odłamki układał człowiek – każdy kawałek między dwoma skrzyżowaniami ma własną szerokość, z jednej strony szerszy. Wymieszaj daje inne szerokości; Nierówność jest w panelu. Linie pod spodem zostają bez zmian; pliki i obrazy zachowują ten wygląd.",
+    "Off: every tile gets the one color you picked. Turn it on to give each tile one of these {n} colors at random.": "Wyłączone: każda płytka dostaje ten jeden kolor, który wybierzesz. Włącz, by każda płytka dostała losowo jeden z tych {n} kolorów.",
+    "Mixing off – painting with one color. (Mix colors in the Paint options turns it on again.)": "Mieszanie wyłączone – maluje się jednym kolorem. (Mieszaj kolory w opcjach Maluj włącza je ponownie.)",
+    "＋ Add a color": "＋ Dodaj kolor",
+    "Clear palette": "Wyczyść paletę",
+    "Choose any color and add it to the palette": "Wybierz dowolny kolor i dodaj go do palety",
+    "Remove all colors from the palette": "Usuń wszystkie kolory z palety",
+    "Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.": "Wybranie jednego koloru (próbka bez Shift) wyłącza mieszanie kolorów – wiadro maluje tym kolorem. Przełącznik Mieszaj kolory jest też w trybie prostym, tak samo ＋ Dodaj kolor i Wyczyść paletę.",
+    "Set up the palette": "Ustaw paletę",
+    "Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.": "Skopiuj kolory na dowolnej stronie – ze strony z paletami, kody kolorów, listę – i wklej je tutaj (Ctrl+V). Każdy znaleziony kolor pojawi się poniżej; kliknij go, aby go pominąć.",
+    "Paste from clipboard": "Wklej ze schowka",
+    "Colors to paste": "Kolory do wklejenia",
+    "Colors found": "Znalezione kolory",
+    "Add to my palette": "Dodaj do mojej palety",
+    "Use instead of my palette": "Użyj zamiast mojej palety",
+    "Use these colors": "Użyj tych kolorów",
+    "{n} {n|color|colors} found.": "{n|Znaleziono|Znaleziono|Znaleziono} {n} {n|kolor|kolory|kolorów}.",
+    "No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.": "W tym tekście nie ma kolorów – skopiuj kody kolorów (np. #2a9d8f), a nie sam obrazek.",
+    "This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.": "Ta przeglądarka nie pozwala stronie czytać schowka – kliknij w pole i naciśnij Ctrl+V.",
+    "The palette now has {n} {n|color|colors}.": "Paleta ma teraz {n} {n|kolor|kolory|kolorów}.",
+    "Added {n} {n|color|colors} to the palette.": "Dodano {n} {n|kolor|kolory|kolorów} do palety.",
+    "All these colors are in the palette already.": "Wszystkie te kolory już są w palecie.",
+    "Paste colors…": "Wklej kolory…",
+    "Paste colors copied on another website": "Wklej kolory skopiowane na innej stronie",
+    "Visible – click to hide": "Widoczna – kliknij, aby ukryć",
+    "Hidden – click to show": "Ukryta – kliknij, aby pokazać",
+    "Locked – click to unlock": "Zablokowana – kliknij, aby odblokować",
+    "Unlocked – click to lock": "Odblokowana – kliknij, aby zablokować",
+    "Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).": "Wklej kolory… ustawia paletę z kolorów skopiowanych na innej stronie – ze strony z paletami jak Coolors, kody kolorów, CSS: każdy znaleziony kolor się pokaże, kliknięcie go pomija, potem je dodasz albo użyjesz zamiast palety (obie aplikacje)."
   };
 
   // src/shared/i18n.ts
@@ -5757,6 +5869,81 @@
     });
   }
 
+  // src/shared/palette-setup.ts
+  var dlg3 = null;
+  function dialog() {
+    if (dlg3) return dlg3;
+    dlg3 = document.createElement("dialog");
+    dlg3.id = "dlg-palsetup";
+    dlg3.innerHTML = `<form method="dialog">
+<div class="dlg-head"><h2>${t("Set up the palette")}</h2></div>
+<p class="note">${t("Copy colors on any website – a palette site, color codes, a list – and paste them here (Ctrl+V). Every color found shows below; click one to leave it out.")}</p>
+<div class="row"><button type="button" class="ps-clip">${t("Paste from clipboard")}</button></div>
+<textarea class="ps-text" rows="4" spellcheck="false" aria-label="${t("Colors to paste")}" placeholder="#264653, #2a9d8f, rgb(233 196 106), https://coolors.co/264653-2a9d8f-e9c46a"></textarea>
+<p class="ps-count note"></p>
+<div class="ps-found" role="group" aria-label="${t("Colors found")}"></div>
+<div class="row seg">
+  <label><input type="radio" name="ps-how" value="add" checked> ${t("Add to my palette")}</label>
+  <label><input type="radio" name="ps-how" value="replace"> ${t("Use instead of my palette")}</label>
+</div>
+<div class="row dlg-foot"><button value="cancel" formnovalidate>${t("Cancel")}</button><button value="ok" class="primary ps-ok">${t("Use these colors")}</button></div>
+</form>`;
+    document.body.append(dlg3);
+    return dlg3;
+  }
+  function paletteSetup() {
+    const d = dialog(), q = (s) => d.querySelector(s);
+    const text = q(".ps-text"), found = q(".ps-found"), ok = q(".ps-ok");
+    let colors = [];
+    const off = /* @__PURE__ */ new Set();
+    const show5 = () => {
+      colors = parse(text.value);
+      found.innerHTML = "";
+      for (const c of colors) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "ps-swatch" + (off.has(c) ? " off" : "");
+        b.style.background = c;
+        b.title = c;
+        b.setAttribute("aria-pressed", String(!off.has(c)));
+        b.setAttribute("aria-label", c);
+        b.onclick = () => {
+          if (off.has(c)) off.delete(c);
+          else off.add(c);
+          show5();
+        };
+        found.append(b);
+      }
+      const n5 = colors.filter((c) => !off.has(c)).length;
+      q(".ps-count").textContent = !text.value.trim() ? "" : colors.length ? t("{n} {n|color|colors} found.", { n: n5 }) : t("No colors found in this text – copy the color codes (like #2a9d8f), not just the picture.");
+      ok.disabled = !n5;
+    };
+    text.value = "";
+    off.clear();
+    q("input[value=add]").checked = true;
+    text.oninput = show5;
+    q(".ps-clip").onclick = async () => {
+      try {
+        text.value = await navigator.clipboard.readText();
+        show5();
+      } catch {
+        text.focus();
+        q(".ps-count").textContent = t("This browser won’t let the page read the clipboard – click in the box and press Ctrl+V.");
+      }
+    };
+    show5();
+    return new Promise((resolve) => {
+      d.onclose = () => {
+        d.onclose = null;
+        const keep = colors.filter((c) => !off.has(c));
+        resolve(d.returnValue === "ok" && keep.length ? { colors: keep, replace: q("input[value=replace]").checked } : null);
+      };
+      d.returnValue = "";
+      d.showModal();
+      text.focus();
+    });
+  }
+
   // src/shared/palette-ui.ts
   var DEFAULT_PALETTE = ["#264653", "#2a9d8f", "#8ab17d", "#e9c46a", "#f4a261", "#e76f51", "#f1faee", "#a8dadc", "#457b9d", "#1d3557"];
   var SHARED_KEY = "mz-prefs";
@@ -5975,7 +6162,21 @@
       if (which === "fill") setFill2(r.color, true);
       else setStroke2(r.color, true);
     }
+    async function setup() {
+      const r = await paletteSetup();
+      if (!r) return;
+      if (r.replace) {
+        st.palette = [...r.colors];
+        host2.save();
+        render3();
+        toast(t("The palette now has {n} {n|color|colors}.", { n: r.colors.length }));
+      } else {
+        const n5 = addColors2(r.colors);
+        toast(n5 ? t("Added {n} {n|color|colors} to the palette.", { n: n5 }) : t("All these colors are in the palette already."));
+      }
+    }
     function bind() {
+      for (const b of document.querySelectorAll("[data-pal-setup]")) b.onclick = setup;
       const inp = $("#color-input");
       $("#btn-add-color").onclick = addFromInput;
       $("#btn-choose-color").onclick = () => choose("fill");
@@ -6184,7 +6385,7 @@
     doc = layers[active].canvas;
     dctx = layers[active].ctx;
   }
-  layers.push(makeLayer(800, 600, "Layer 1"));
+  layers.push(makeLayer(800, 600, t("Layer {n}", { n: 1 })));
   useLayer(0);
   function setLayers(list, activeIndex) {
     layers.splice(0, layers.length, ...list);
@@ -10216,7 +10417,7 @@ ${shapes.join("\n")}
     c.getContext("2d").drawImage(big, -x0 + 1, -y0 + 1);
     return c;
   }
-  var dlg3 = null;
+  var dlg4 = null;
   var spec;
   var at;
   var editing = false;
@@ -10294,7 +10495,7 @@ ${shapes.join("\n")}
     return d;
   }
   function show2() {
-    const q = (s) => dlg3.querySelector(s);
+    const q = (s) => dlg4.querySelector(s);
     q(".tx-text").value = spec.text;
     const fontSel = q(".tx-font");
     if (![...fontSel.options].some((o) => o.value === spec.font)) fontSel.add(new Option(spec.font, spec.font));
@@ -10304,7 +10505,7 @@ ${shapes.join("\n")}
       q(b).setAttribute("aria-pressed", String(on2));
       q(b).classList.toggle("active", on2);
     }
-    for (const b of dlg3.querySelectorAll(".tx-align button")) {
+    for (const b of dlg4.querySelectorAll(".tx-align button")) {
       const on2 = b.dataset.a === spec.align;
       b.classList.toggle("active", on2);
       b.setAttribute("aria-checked", String(on2));
@@ -10318,7 +10519,7 @@ ${shapes.join("\n")}
     q(".tx-curve").nextElementSibling.textContent = String(spec.curve);
   }
   function read() {
-    const q = (s) => dlg3.querySelector(s);
+    const q = (s) => dlg4.querySelector(s);
     spec.text = q(".tx-text").value;
     spec.font = q(".tx-font").value;
     spec.size = Math.max(4, Math.min(1e3, +q(".tx-size").value || 48));
@@ -10344,7 +10545,7 @@ ${shapes.join("\n")}
   }
   var before = null;
   function openText(p) {
-    dlg3 = dlg3 || build();
+    dlg4 = dlg4 || build();
     const f = state.floating;
     before = f;
     isNew = !!p;
@@ -10357,9 +10558,9 @@ ${shapes.join("\n")}
       spec = { ...f.text, color: state.fill, outlineColor: state.stroke };
     }
     show2();
-    dlg3.returnValue = "";
-    dlg3.showModal();
-    const ta = dlg3.querySelector(".tx-text");
+    dlg4.returnValue = "";
+    dlg4.showModal();
+    const ta = dlg4.querySelector(".tx-text");
     ta.focus();
     ta.select();
     if (!p) preview();
@@ -11041,12 +11242,12 @@ ${stack.join("\n")}
       };
     });
   }
-  var dlg4 = null;
-  function dialog() {
-    if (dlg4) return dlg4;
-    dlg4 = document.createElement("dialog");
-    dlg4.id = "dlg-frame";
-    dlg4.innerHTML = `<div class="dlg-head"><h2>${t("Choose a frame")}</h2></div>
+  var dlg5 = null;
+  function dialog2() {
+    if (dlg5) return dlg5;
+    dlg5 = document.createElement("dialog");
+    dlg5.id = "dlg-frame";
+    dlg5.innerHTML = `<div class="dlg-head"><h2>${t("Choose a frame")}</h2></div>
 <div class="fr-stage"><canvas class="fr-canvas"></canvas><video class="fr-video" muted playsinline preload="auto"></video></div>
 <input class="fr-slider" type="range" min="0" step="1" aria-label="${t("Frame")}">
 <div class="row fr-controls">
@@ -11056,11 +11257,11 @@ ${stack.join("\n")}
   <span class="fr-label note grow"></span>
 </div>
 <div class="row dlg-foot"><button class="fr-cancel">${t("Cancel")}</button><button class="fr-ok primary">${t("Use this frame")}</button></div>`;
-    document.body.append(dlg4);
-    return dlg4;
+    document.body.append(dlg5);
+    return dlg5;
   }
   async function chooseFrame(blob, name, o = {}) {
-    const d = dialog(), q = (s) => d.querySelector(s);
+    const d = dialog2(), q = (s) => d.querySelector(s);
     const view2 = q(".fr-canvas"), video = q(".fr-video"), slider = q(".fr-slider");
     const vid = isVideo(blob, name);
     view2.hidden = vid;
@@ -11543,7 +11744,7 @@ ${stack.join("\n")}
   ];
   var toSlider = (k, v) => k === "gamma" ? Math.round(Math.log2(v) * 50) : v;
   var fromSlider = (k, v) => k === "gamma" ? Math.pow(2, v / 50) : v;
-  var dlg5 = null;
+  var dlg6 = null;
   var box3;
   var original;
   var mask = null;
@@ -11624,7 +11825,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     return d;
   }
   function show4() {
-    for (const inp of dlg5.querySelectorAll("input[type=range]")) {
+    for (const inp of dlg6.querySelectorAll("input[type=range]")) {
       const k = inp.dataset.k;
       inp.value = String(toSlider(k, cur[k]));
       inp.nextElementSibling.textContent = k === "gamma" ? cur.gamma.toFixed(2) : String(Math.round(cur[k]));
@@ -11650,7 +11851,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     }, ms);
   }
   async function update() {
-    const label2 = dlg5.querySelector(".adj-busy");
+    const label2 = dlg6.querySelector(".adj-busy");
     if (isNoAdjust(cur)) {
       if (!comparing) putRegion(original.data);
       label2.textContent = "";
@@ -11660,7 +11861,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     try {
       const img = { width: box3.w, height: box3.h, data: new Uint8ClampedArray(original.data) };
       const out = await run2("adjust", { img, adjust: { ...cur } }, { lane: "adjust" });
-      if (dlg5.open && !comparing) putRegion(out.data);
+      if (dlg6.open && !comparing) putRegion(out.data);
       label2.textContent = "";
     } catch (e) {
       if (!isCancelled(e)) {
@@ -11681,7 +11882,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
   }
   function openAdjust() {
     if (state.floating) place();
-    dlg5 = dlg5 || build2();
+    dlg6 = dlg6 || build2();
     const s = state.sel;
     box3 = s ? { x: s.x, y: s.y, w: s.w, h: s.h } : { x: 0, y: 0, w: doc.width, h: doc.height };
     mask = s ? selectionMask() : null;
@@ -11690,9 +11891,9 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     comparing = false;
     finished = false;
     show4();
-    dlg5.querySelector(".adj-busy").textContent = "";
-    dlg5.returnValue = "";
-    dlg5.showModal();
+    dlg6.querySelector(".adj-busy").textContent = "";
+    dlg6.returnValue = "";
+    dlg6.showModal();
   }
 
   // src/shared/curve-notes.ts
@@ -12185,13 +12386,13 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     for (const f of filesOf(a)) if (!await hasFile(f)) out.push(f);
     return out;
   }
-  var dlg6 = null;
-  function dialog2() {
-    if (dlg6) return dlg6;
-    dlg6 = document.createElement("dialog");
-    dlg6.id = "dlg-addon";
-    document.body.append(dlg6);
-    return dlg6;
+  var dlg7 = null;
+  function dialog3() {
+    if (dlg7) return dlg7;
+    dlg7 = document.createElement("dialog");
+    dlg7.id = "dlg-addon";
+    document.body.append(dlg7);
+    return dlg7;
   }
   var inFlight = /* @__PURE__ */ new Map();
   function ensureAddon(id) {
@@ -12211,7 +12412,7 @@ ${GROUPS.map(([title2, sliders]) => `<h3 class="adj-group">${t(title2)}</h3><div
     const need = await missing(a);
     if (!need.length) return true;
     const total2 = need.reduce((s, f) => s + FILES[f].bytes, 0), engine = need.find((f) => f === "ortGpu" || f === "ortCpu");
-    const d = dialog2();
+    const d = dialog3();
     d.innerHTML = `<form method="dialog">
 <div class="dlg-head"><h2>${esc(a.name)}</h2></div>
 <p>${esc(a.what)}</p>
@@ -13538,12 +13739,12 @@ void main() {
 </div>`;
   var SMALL = 2e4;
   function initExport3D(host2, button) {
-    const dlg7 = document.createElement("dialog");
-    dlg7.id = "dlg-3d";
-    dlg7.innerHTML = DIALOG;
-    document.body.append(dlg7);
-    dlg7.addEventListener("click", (e) => {
-      if (e.target === dlg7) dlg7.close();
+    const dlg8 = document.createElement("dialog");
+    dlg8.id = "dlg-3d";
+    dlg8.innerHTML = DIALOG;
+    document.body.append(dlg8);
+    dlg8.addEventListener("click", (e) => {
+      if (e.target === dlg8) dlg8.close();
     });
     let colors = [], counts2 = [], grid = null, gw = 0, gh = 0, cell = opts.detail;
     let order = [], note = "", lines2 = /* @__PURE__ */ new Set(), version = 0;
@@ -13641,7 +13842,7 @@ void main() {
     }
     function render3() {
       const { w, h } = size(), fl = isFlat();
-      for (const el of dlg7.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
+      for (const el of dlg8.querySelectorAll("[data-mode]")) el.hidden = el.dataset.mode !== opts.mode;
       $("#m3-mode-height").classList.toggle("active", !fl);
       $("#m3-mode-flat").classList.toggle("active", fl);
       $("#m3-go").title = fl ? t("The model, one part per color with its filament") : t("The model, with the filament changes for PrusaSlicer");
@@ -13978,7 +14179,7 @@ void main() {
       const real = host2.realSize();
       if (real) opts.width = +real.w.toFixed(2);
       $("#m3-summary").textContent = t("Reading the picture…");
-      dlg7.showModal();
+      dlg8.showModal();
       await analyse().catch(() => toast(t("Could not read the picture.")));
     };
   }
@@ -14473,16 +14674,16 @@ ${sections.join("\n")}
 
   // src/shared/examples-ui.ts
   function initExamples(button, examples) {
-    const dlg7 = document.createElement("dialog");
-    dlg7.id = "dlg-examples";
-    dlg7.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg8 = document.createElement("dialog");
+    dlg8.id = "dlg-examples";
+    dlg8.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("Examples")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${t("Open an example to see how it is made, or to start from it. Your current work is kept in History.")}</p>
 <div class="ex-list"></div>`;
-    document.body.append(dlg7);
-    dlg7.addEventListener("click", (e) => {
-      if (e.target === dlg7) dlg7.close();
+    document.body.append(dlg8);
+    dlg8.addEventListener("click", (e) => {
+      if (e.target === dlg8) dlg8.close();
     });
-    const list = dlg7.querySelector(".ex-list");
+    const list = dlg8.querySelector(".ex-list");
     for (const ex of examples) {
       const card = document.createElement("button");
       card.className = "ex-card";
@@ -14491,7 +14692,7 @@ ${sections.join("\n")}
       card.querySelector("b").textContent = ex.title;
       card.querySelector(".note").textContent = ex.text;
       card.onclick = async () => {
-        dlg7.close();
+        dlg8.close();
         await ex.open();
       };
       list.append(card);
@@ -14500,7 +14701,7 @@ ${sections.join("\n")}
       list.querySelectorAll("img").forEach((img, k) => {
         if (!img.src) img.src = examples[k].preview();
       });
-      dlg7.showModal();
+      dlg8.showModal();
     };
   }
 
@@ -14605,8 +14806,16 @@ ${sections.join("\n")}
   }
 
   // src/shared/whats-new.ts
-  var VERSION = true ? "3.1.0" : "dev";
+  var VERSION = true ? "3.2.0" : "dev";
   var RELEASES = [
+    {
+      version: "3.2.0",
+      date: "2026-10-22",
+      items: [
+        "Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).",
+        "Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette."
+      ]
+    },
     {
       version: "3.1.0",
       date: "2026-10-22",
@@ -14823,12 +15032,12 @@ ${sections.join("\n")}
   ];
   var KEY3 = "mz-version";
   function initWhatsNew() {
-    const dlg7 = document.createElement("dialog");
-    dlg7.id = "dlg-whats-new";
-    dlg7.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
-    document.body.append(dlg7);
-    dlg7.addEventListener("click", (e) => {
-      if (e.target === dlg7) dlg7.close();
+    const dlg8 = document.createElement("dialog");
+    dlg8.id = "dlg-whats-new";
+    dlg8.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("What’s new")}</h2><button title="${t("Close")}">✕</button></form>` + RELEASES.map((r) => `<h3>${esc(r.version)} <span class="note">${esc(new Date(r.date).toLocaleDateString(document.documentElement.lang || "en"))}</span></h3><ul>` + r.items.map((i) => `<li>${esc(t(i))}</li>`).join("") + "</ul>").join("");
+    document.body.append(dlg8);
+    dlg8.addEventListener("click", (e) => {
+      if (e.target === dlg8) dlg8.close();
     });
     const button = document.createElement("button");
     button.id = "st-version";
@@ -14843,23 +15052,23 @@ ${sections.join("\n")}
     button.onclick = () => {
       button.classList.remove("new");
       lsSet(KEY3, VERSION);
-      dlg7.showModal();
+      dlg8.showModal();
     };
   }
 
   // src/shared/history-ui.ts
   function initHistoryUI(host2, button) {
-    const dlg7 = document.createElement("dialog");
-    dlg7.id = "dlg-history";
-    dlg7.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
+    const dlg8 = document.createElement("dialog");
+    dlg8.id = "dlg-history";
+    dlg8.innerHTML = `<form method="dialog" class="dlg-head"><h2>${t("History")}</h2><button title="${t("Close")}">✕</button></form>
 <p class="note">${esc(host2.texts.intro)}</p>
 <div class="row"><button id="hist-save">${t("Save a version now")}</button></div>
 <div id="hist-list"></div>`;
-    document.body.append(dlg7);
-    dlg7.addEventListener("click", (e) => {
-      if (e.target === dlg7) dlg7.close();
+    document.body.append(dlg8);
+    dlg8.addEventListener("click", (e) => {
+      if (e.target === dlg8) dlg8.close();
     });
-    const list = dlg7.querySelector("#hist-list");
+    const list = dlg8.querySelector("#hist-list");
     let thumbs = [];
     async function render3() {
       thumbs.forEach((u) => URL.revokeObjectURL(u));
@@ -14905,7 +15114,7 @@ ${sections.join("\n")}
         };
         restore2.textContent = t("Restore");
         restore2.onclick = async () => {
-          dlg7.close();
+          dlg8.close();
           await host2.restore(v);
         };
         row.append(pin, rename2, restore2);
@@ -14922,9 +15131,9 @@ ${sections.join("\n")}
     }
     button.onclick = () => {
       render3();
-      dlg7.showModal();
+      dlg8.showModal();
     };
-    dlg7.querySelector("#hist-save").onclick = async () => {
+    dlg8.querySelector("#hist-save").onclick = async () => {
       toast(await host2.saveNow() ? t("Version saved.") : t("Could not save a version (browser storage unavailable)."));
       render3();
     };
