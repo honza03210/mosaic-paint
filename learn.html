@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#27282c">
+<meta name="description" content="Learn the raster editor's tools step by step – small tasks for children, one tool at a time.">
+<title>Mosaic Paint – Lessons</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<style>
+  html, body { height: 100%; }
+  body { margin: 0; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .learn-bar { display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: var(--panel); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .learn-bar .brand { font-weight: 700; }
+  .learn-bar .grow { flex: 1; }
+  .learn-bar a { color: var(--accent); }
+  /* the course */
+  #course-view { flex: 1; overflow: auto; padding: 18px 16px 40px; }
+  .intro { max-width: 900px; margin: 0 auto 8px; }
+  .intro h1 { font-size: 26px; margin: 4px 0 6px; }
+  .intro p { margin: 0 0 10px; color: var(--muted); }
+  .progress-row { display: flex; align-items: center; gap: 10px; }
+  .progress-row progress { flex: 1; max-width: 320px; height: 12px; accent-color: #ffd23f; }
+  #course { max-width: 900px; margin: 0 auto; }
+  .unit h2 { font-size: 18px; margin: 22px 0 10px; display: flex; align-items: center; gap: 8px; }
+  .unit-n { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-fill); color: #fff; font-size: 15px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+  .card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 14px 12px; min-height: 64px; text-align: left;
+    font: 600 16px/1.25 inherit; border-radius: 14px; background: var(--panel); border: 2px solid var(--border); color: var(--text); cursor: pointer; }
+  .card:hover { border-color: var(--accent); }
+  .card.next { border-color: #ffd23f; box-shadow: 0 0 0 3px rgba(255,210,63,.25); }
+  .card.done { background: #24352c; }
+  .card-icon { font-size: 26px; }
+  .card-star { font-size: 20px; }
+  /* a lesson */
+  #lesson-view { display: none; flex: 1; flex-direction: column; min-height: 0; }
+  body.in-lesson #course-view { display: none; }
+  body.in-lesson #lesson-view { display: flex; }
+  .lesson-head { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: var(--panel2); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .lesson-head h1 { font-size: 17px; margin: 0; }
+  #lesson-story { margin: 0; color: var(--muted); flex: 1 1 260px; }
+  #dots { display: flex; gap: 6px; }
+  #dots .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); }
+  #dots .dot.now { background: #ffd23f; }
+  #dots .dot.ok { background: #57c785; }
+  .lesson-head button { min-height: 38px; }
+  #editor { flex: 1; width: 100%; border: 0; background: var(--bg); }
+  #finish { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(10,12,20,.6); z-index: 10; padding: 16px; }
+  #finish[hidden] { display: none; }
+  .finish-card { max-width: 420px; padding: 24px; border-radius: 18px; background: var(--panel); border: 1px solid var(--border); text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+  .finish-card .big { font-size: 54px; line-height: 1; animation: pop .5s ease; }
+  .finish-card h2 { margin: 10px 0 6px; font-size: 24px; }
+  .finish-card p { margin: 0 0 18px; }
+  .finish-card .row { justify-content: center; gap: 10px; display: flex; flex-wrap: wrap; }
+  @keyframes pop { 0% { transform: scale(.3); } 70% { transform: scale(1.15); } 100% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) { .finish-card .big { animation: none; } }
+</style>
+</head>
+<body>
+<header class="learn-bar">
+  <span class="brand">Mosaic Paint</span>
+  <span>Lessons</span>
+  <span class="grow"></span>
+  <a href="raster.html">Open the editor</a>
+  <select id="lang-select" aria-label="Language"></select>
+</header>
+
+<main id="course-view">
+  <div class="intro">
+    <h1>Learn the tools</h1>
+    <p>Small tasks, one tool at a time. A glowing frame shows what to tap next – just follow it.</p>
+    <div class="progress-row"><progress id="progress-bar" max="1" value="0"></progress><span id="progress"></span></div>
+  </div>
+  <div id="course"></div>
+</main>
+
+<section id="lesson-view" aria-label="Lesson">
+  <div class="lesson-head">
+    <button id="btn-back" title="Back to all tasks">← All tasks</button>
+    <h1 id="lesson-title"></h1>
+    <div id="dots" aria-hidden="true"></div>
+    <p id="lesson-story"></p>
+    <button id="btn-speak" title="Read the instruction aloud">🔊 Read aloud</button>
+    <button id="btn-again" title="Start this task again">↺ Start again</button>
+  </div>
+  <iframe id="editor" title="Mosaic Paint Raster"></iframe>
+</section>
+
+<div id="finish" hidden role="dialog" aria-modal="true" aria-labelledby="finish-title">
+  <div class="finish-card">
+    <div class="big" aria-hidden="true">⭐</div>
+    <h2 id="finish-title">Well done!</h2>
+    <p id="finish-learned"></p>
+    <div class="row">
+      <button id="btn-done-back">All tasks</button>
+      <button id="btn-next" class="primary"></button>
+    </div>
+  </div>
+</div>
+
+<script src="dist/learn.js"></script>
+</body>
+</html>

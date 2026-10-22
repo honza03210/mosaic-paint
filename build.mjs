@@ -1,6 +1,7 @@
 // Bundles the two apps into one classic script each, so they also run from file://:
 // src/main.ts → dist/mosaic.js (vector, index.html) and src/raster/main.ts → dist/raster.js (raster.html);
-// src/discord/activity.ts → dist/activity.js, which the raster app loads only when it runs inside Discord.
+// src/discord/activity.ts → dist/activity.js, which the raster app loads only when it runs inside Discord;
+// src/learn/main.ts → dist/learn.js, the lessons page (learn.html).
 // The add-ons' code loads only when one is used: src/ai/worker.ts → dist/ai-worker.js (a module worker with
 // ONNX Runtime Web; the engine and the models themselves are downloaded, see src/shared/addons.ts) and
 // src/ocr/ocr.ts → dist/ocr.js (Tesseract's page side). In Discord, src/discord/compress.ts → dist/compress.js
@@ -44,7 +45,7 @@ const stamp = { name: 'stamp-cache', setup(build) { build.onEnd((r) => { if (!r.
 
 const options = {
   ...common,
-  entryPoints: { mosaic: 'src/main.ts', raster: 'src/raster/main.ts', activity: 'src/discord/activity.ts' },
+  entryPoints: { mosaic: 'src/main.ts', raster: 'src/raster/main.ts', activity: 'src/discord/activity.ts', learn: 'src/learn/main.ts' },
   outdir: 'dist',
   format: 'iife',
   sourcemap: true,

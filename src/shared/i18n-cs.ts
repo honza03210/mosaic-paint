@@ -2452,4 +2452,334 @@ export const CS: Record<string, string> = {
     'Odemčená – kliknutím zamknete',
   'Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).':
     'Vložit barvy… nastaví paletu z barev zkopírovaných na jiném webu – na webu s paletami jako Coolors, kódy barev, CSS: každá nalezená barva se ukáže, kliknutím ji vynecháš, pak je přidáš nebo použiješ místo palety (v obou aplikacích).',
+  'done':
+    'hotovo',
+  '{n} of {m} tasks done':
+    'Hotovo {n} z {m} úkolů',
+  'Next: {title}':
+    'Další: {title}',
+  'Look around':
+    'Rozhlédni se',
+  'A ladybird is hiding in the meadow. Zoom in and find it!':
+    'Na louce se schovává beruška. Přibliž si obrázek a najdi ji!',
+  'Zoom in to see details, move around with the hand (or two fingers), and Fit shows the whole picture.':
+    'Přiblížením uvidíš detaily, ručičkou (nebo dvěma prsty) se posouváš a Přizpůsobit ukáže celý obrázek.',
+  'Tap Zoom in to look closer.':
+    'Klepni na Přiblížit a podívej se blíž.',
+  'Spread two fingers on the picture to zoom in.':
+    'Roztáhni dva prsty na obrázku a přiblížíš ho.',
+  'Tap the hand – it moves the picture.':
+    'Klepni na ručičku – posouvá obrázek.',
+  'Drag the picture until you find the ladybird.':
+    'Táhni obrázek, dokud nenajdeš berušku.',
+  'You found it! Now tap Fit to see the whole picture again.':
+    'Máš ji! Teď klepni na Přizpůsobit a uvidíš zase celý obrázek.',
+  'Night sky':
+    'Noční obloha',
+  'The night sky needs glowing stars. Paint them with a soft brush.':
+    'Noční obloha potřebuje zářící hvězdy. Namaluj je měkkým štětcem.',
+  'The Brush paints soft lines. Size makes it bigger, and the Soft tip makes it glow at the edges.':
+    'Štětec maluje měkké čáry. Velikost ho zvětší a měkký hrot ho na okrajích rozzáří.',
+  'Tap the Brush.':
+    'Klepni na Štětec.',
+  'Tap the yellow color.':
+    'Klepni na žlutou barvu.',
+  'Choose the Soft tip – it glows at the edges.':
+    'Vyber měkký hrot – na okrajích září.',
+  'Make the brush big: slide Size to 30 or more.':
+    'Zvětši štětec: posuň Velikost na 30 nebo víc.',
+  'Paint over the 3 stars.':
+    'Přemaluj 3 hvězdy.',
+  'Fill the heart square by square – like a real mosaic.':
+    'Vyplň srdce čtvereček po čtverečku – jako skutečnou mozaiku.',
+  'The Pencil paints whole squares in exactly the chosen color – just right for pixel art.':
+    'Tužka maluje celé čtverečky přesně vybranou barvou – akorát pro pixel art.',
+  'Tap the Pencil.':
+    'Klepni na Tužku.',
+  'Tap the red color.':
+    'Klepni na červenou barvu.',
+  'Make the pencil as small as it goes: slide Size all the way left.':
+    'Zmenši tužku, co nejvíc to jde: posuň Velikost úplně doleva.',
+  'Fill the inside of the heart, square by square.':
+    'Vyplň vnitřek srdce, čtvereček po čtverečku.',
+  'Muddy window':
+    'Zablácené okno',
+  'Someone threw mud at the window. Rub it off!':
+    'Někdo hodil na okno bláto. Vygumuj ho!',
+  'The Eraser takes paint away – where it rubs, the picture becomes see-through (the checkerboard).':
+    'Guma barvu odebírá – kde gumuje, je obrázek průhledný (šachovnice).',
+  'Tap the Eraser.':
+    'Klepni na Gumu.',
+  'Make it big: slide Size to 30 or more.':
+    'Zvětši ji: posuň Velikost na 30 nebo víc.',
+  'Rub out the 4 mud spots.':
+    'Vygumuj 4 skvrny od bláta.',
+  'Copy the color':
+    'Okopíruj barvu',
+  'The parrot lost a feather. Paint a new one in exactly the same purple.':
+    'Papoušek ztratil pero. Namaluj nové přesně stejnou fialovou.',
+  'The color picker takes a color from the picture. (Tip: Alt+click does it with any brush.)':
+    'Kapátko vezme barvu z obrázku. (Tip: s jakýmkoli štětcem to udělá Alt+klik.)',
+  'Tap the color picker – the dropper.':
+    'Klepni na Kapátko.',
+  'Tap a purple feather to take its color.':
+    'Klepni na fialové pero a vezmeš si jeho barvu.',
+  'Now take the Brush.':
+    'Teď vezmi Štětec.',
+  'Make it bigger: Size 20 or more.':
+    'Zvětši ho: Velikost 20 nebo víc.',
+  'Paint the white feather purple.':
+    'Namaluj bílé pero fialově.',
+  'Color the comic':
+    'Vybarvi komiks',
+  'Fill the shapes with color – one tap each.':
+    'Vyplň tvary barvou – každý jedním klepnutím.',
+  'The Paint bucket fills a whole area at once. Tolerance decides how different the colors in it may be.':
+    'Kyblík vyplní celou plochu najednou. Tolerance určuje, jak moc se v ní můžou barvy lišit.',
+  'Tap the Paint bucket.':
+    'Klepni na Kyblík.',
+  'Tap the orange color.':
+    'Klepni na oranžovou barvu.',
+  'Tap inside the circle, the square and the triangle.':
+    'Klepni dovnitř kruhu, čtverce a trojúhelníku.',
+  'This box is shaded. Slide Tolerance up to 60 or more.':
+    'Tenhle obdélník je stínovaný. Posuň Toleranci na 60 nebo víc.',
+  'Now tap inside the shaded box – all of it fills.':
+    'Teď klepni dovnitř stínovaného obdélníku – vyplní se celý.',
+  'Fence':
+    'Plot',
+  'The garden needs a fence. Draw the posts with straight lines.':
+    'Zahrada potřebuje plot. Nakresli sloupky rovnými čarami.',
+  'The Line tool draws straight lines from where you press to where you let go.':
+    'Čára kreslí rovné čáry od místa, kde stiskneš, po místo, kde pustíš.',
+  'Tap the Line tool.':
+    'Klepni na nástroj Čára.',
+  'Tap the dark color.':
+    'Klepni na tmavou barvu.',
+  'Make the line thicker: Size 8 or more.':
+    'Zesil čáru: Velikost 8 nebo víc.',
+  'Draw a line from each bottom dot up to the dot above it.':
+    'Nakresli čáru od každé spodní tečky nahoru k tečce nad ní.',
+  'Beehive':
+    'Úl',
+  'Bees build cells with 6 sides. Draw 3 honeycomb cells.':
+    'Včely stavějí buňky se 6 stranami. Nakresli 3 plástve.',
+  'The Polygon tool draws shapes with as many sides as you choose – filled, outlined or both.':
+    'Mnohoúhelník kreslí tvary s tolika stranami, kolik zvolíš – vyplněné, obtažené nebo obojí.',
+  'Tap the Polygon tool.':
+    'Klepni na nástroj Mnohoúhelník.',
+  'Tap 6 – a honeycomb cell has 6 sides.':
+    'Klepni na 6 – buňka plástve má 6 stran.',
+  'Turn on Fill – the cells will be full of color.':
+    'Zapni Výplň – buňky budou plné barvy.',
+  'Drag from the middle of each cell outwards.':
+    'Táhni od středu každé buňky ven.',
+  'Bubbles':
+    'Bubliny',
+  'Blow 3 round soap bubbles – just the outline, you can see through them.':
+    'Vyfoukni 3 kulaté mýdlové bubliny – jen obrys, je skrz ně vidět.',
+  'The Ellipse tool draws circles and ovals. From center starts in the middle; Fill and Outline decide how it looks.':
+    'Elipsa kreslí kruhy a ovály. Od středu začíná uprostřed; Výplň a Obrys určují, jak vypadá.',
+  'Tap the Ellipse tool.':
+    'Klepni na nástroj Elipsa.',
+  'Choose From center.':
+    'Vyber Od středu.',
+  'Turn Fill off – a bubble is see-through.':
+    'Vypni Výplň – bublina je průhledná.',
+  'Turn Outline on.':
+    'Zapni Obrys.',
+  'Drag from the middle of each bubble to its edge.':
+    'Táhni od středu každé bubliny k jejímu okraji.',
+  'Snake':
+    'Had',
+  'Draw a wiggly snake through the dots.':
+    'Nakresli vlnitého hada přes tečky.',
+  'The Curve tool draws a smooth line through the points you tap – double-tap (or Enter) finishes it.':
+    'Křivka kreslí hladkou čáru přes body, na které klepneš – dvojí klepnutí (nebo Enter) ji dokončí.',
+  'Tap the Curve tool.':
+    'Klepni na nástroj Křivka.',
+  'Tap the green color.':
+    'Klepni na zelenou barvu.',
+  'Make it a fat snake: Size 10 or more.':
+    'Ať je had tlustý: Velikost 10 nebo víc.',
+  'Tap the dots one by one from the head to the tail – tap the last one twice to finish.':
+    'Klepej na tečky jednu po druhé od hlavy k ocasu – na poslední klepni dvakrát a je hotovo.',
+  'Move the cat':
+    'Přesuň kočku',
+  'The cat wants to sleep on the red cushion. Carry it there!':
+    'Kočka chce spát na červeném polštáři. Přenes ji tam!',
+  'Select a part of the picture with a box, drag it somewhere else, then Place it.':
+    'Vyber část obrázku obdélníkem, přetáhni ji jinam a pak ji Umísti.',
+  'Tap the Select tool.':
+    'Klepni na nástroj Výběr.',
+  'Drag a box around the whole cat.':
+    'Natáhni obdélník kolem celé kočky.',
+  'Now drag the cat onto the cushion.':
+    'Teď přetáhni kočku na polštář.',
+  'Tap Place – the cat lies down.':
+    'Klepni na Umístit – kočka si lehne.',
+  'The fish turns round':
+    'Rybka se otočí',
+  'The fish wants to swim the other way – and a little upwards.':
+    'Rybka chce plavat na druhou stranu – a trochu nahoru.',
+  'A selection can be flipped, and turned with the round knob above it.':
+    'Výběr se dá překlopit a otočit kulatým úchytem nad ním.',
+  'Drag a box around the fish.':
+    'Natáhni obdélník kolem rybky.',
+  'Tap Flip horizontally – the fish looks the other way.':
+    'Klepni na Překlopit vodorovně – rybka se dívá na druhou stranu.',
+  'Drag the round knob above the fish a little to the side.':
+    'Posuň kulatý úchyt nad rybkou trochu do strany.',
+  'Tap Place.':
+    'Klepni na Umístit.',
+  'Two balloons':
+    'Dva balonky',
+  'One balloon is not enough. Cut it out along its edge and make a second one.':
+    'Jeden balonek nestačí. Vystřihni ho podél okraje a udělej druhý.',
+  'The Lasso selects any shape you draw around. Duplicate leaves a copy and gives you a new one to move.':
+    'Laso vybere jakýkoli tvar, který obkreslíš. Duplikovat nechá kopii a dá ti novou k posunutí.',
+  'Choose Lasso – it goes around any shape.':
+    'Vyber Laso – obkreslí jakýkoli tvar.',
+  'Draw a line all the way around the balloon.':
+    'Obtáhni čáru úplně kolem balonku.',
+  'Tap Duplicate.':
+    'Klepni na Duplikovat.',
+  'Drag the new balloon over to the empty sky.':
+    'Přetáhni nový balonek na prázdnou oblohu.',
+  'Change the blue sky into an orange sunset.':
+    'Změň modrou oblohu na oranžový západ slunce.',
+  'The Wand selects everything of one color with a single tap. Clear empties the selection.':
+    'Hůlka jedním klepnutím vybere všechno jedné barvy. Vymazat výběr vyprázdní.',
+  'Choose the Wand – it picks one color.':
+    'Vyber Hůlku – vybere jednu barvu.',
+  'Tap the blue sky.':
+    'Klepni na modrou oblohu.',
+  'Tap Clear – the sky disappears.':
+    'Klepni na Vymazat – obloha zmizí.',
+  'Now take the Paint bucket.':
+    'Teď vezmi Kyblík.',
+  'Tap the empty sky – a sunset!':
+    'Klepni na prázdnou oblohu – západ slunce!',
+  'Name poster':
+    'Plakát se jménem',
+  'Write your name on the green banner.':
+    'Napiš své jméno na zelený pruh.',
+  'The Text tool writes words in any size and font – with an outline, a shadow or bent in a curve.':
+    'Text píše slova v jakékoli velikosti a písmu – s obrysem, stínem nebo do oblouku.',
+  'Tap the Text tool.':
+    'Klepni na nástroj Text.',
+  'Tap in the middle of the green banner.':
+    'Klepni doprostřed zeleného pruhu.',
+  'Type your name.':
+    'Napiš své jméno.',
+  'Make the letters big: Size 60.':
+    'Zvětši písmena: Velikost 60.',
+  'Turn on Outline.':
+    'Zapni Obrys.',
+  'Tap Done.':
+    'Klepni na Hotovo.',
+  'Drag your name into the banner.':
+    'Přetáhni své jméno do pruhu.',
+  'Twin flowers':
+    'Květinová dvojčata',
+  'One pot is empty. Grow the same flower in it – copy it with Clone.':
+    'Jeden květináč je prázdný. Vypěstuj v něm stejnou květinu – zkopíruj ji Klonováním.',
+  'Clone paints with a copy of another part of the picture: first tap where to copy from, then paint.':
+    'Klonování maluje kopií jiné části obrázku: nejdřív klepni, odkud kopírovat, pak maluj.',
+  'Tap the Clone tool – the stamp.':
+    'Klepni na Klonování – razítko.',
+  'Make it big: Size 30 or more.':
+    'Zvětši ho: Velikost 30 nebo víc.',
+  'Tap the middle of the flower – the copy comes from there.':
+    'Klepni doprostřed květiny – odtud se bude kopírovat.',
+  'Start in the middle of the dashed circle, then paint all over it – a twin flower grows!':
+    'Začni uprostřed čárkovaného kruhu a pak ho celý přemaluj – vyroste květinové dvojče!',
+  'Fix the apple':
+    'Oprav jablko',
+  'The apple has 3 scratches. Heal them so it looks new.':
+    'Jablko má 3 škrábance. Zahoj je, ať vypadá jako nové.',
+  'Heal copies a clean part and blends it in, so spots and scratches disappear.':
+    'Retuš zkopíruje čisté místo a splyne s okolím, takže skvrny a škrábance zmizí.',
+  'Tap the Heal tool – the plaster.':
+    'Klepni na Retuš – náplast.',
+  'Tap a clean part of the apple.':
+    'Klepni na čisté místo jablka.',
+  'Paint over the 3 scratches.':
+    'Přemaluj 3 škrábance.',
+  'Clean beach':
+    'Čistá pláž',
+  'Someone left a can on the beach. Make it disappear!':
+    'Někdo nechal na pláži plechovku. Nech ji zmizet!',
+  'Remove fills what you paint over from the picture around it – things vanish.':
+    'Odstranit vyplní, co přemaluješ, obrázkem z okolí – věci zmizí.',
+  'Tap the Remove tool.':
+    'Klepni na nástroj Odstranit.',
+  'Paint over the whole can, then lift your finger.':
+    'Přemaluj celou plechovku a pak zvedni prst.',
+  'Star sticker':
+    'Hvězdná samolepka',
+  'The star looks stuck on. Soften its edge with Blur and give it grain with Noise.':
+    'Hvězda vypadá jako nalepená. Změkči jí okraj Rozmazáním a dej jí zrno Šumem.',
+  'Blur softens, Noise adds grain – together they blend a pasted picture into a photo.':
+    'Rozmazání změkčuje, Šum přidává zrno – spolu napojí vložený obrázek do fotky.',
+  'Tap the Blur tool – the drop.':
+    'Klepni na Rozmazání – kapku.',
+  'Make it stronger: slide Strength to 6 or more.':
+    'Zesil ho: posuň Sílu na 6 nebo víc.',
+  'Paint along the edge of the star.':
+    'Maluj podél okraje hvězdy.',
+  'Now tap the Noise tool – the dots.':
+    'Teď klepni na Šum – tečky.',
+  'Slide Amount to 30 or more.':
+    'Posuň Množství na 30 nebo víc.',
+  'Paint over the star – it gets grainy, like the photo.':
+    'Přemaluj hvězdu – bude zrnitá jako fotka.',
+  'Whirlpool':
+    'Vír',
+  'Stir up the lake – make a whirlpool in the circle.':
+    'Rozvíř jezero – udělej v kruhu vír.',
+  'Twist swirls the picture: press the middle, drag out for the size, go round to twist.':
+    'Zkroucení zavíří obrázek: stiskni střed, táhni ven pro velikost a kružením kruť.',
+  'Tap the Twist tool – the spiral.':
+    'Klepni na Zkroucení – spirálu.',
+  'Press in the middle of the circle, drag out to its edge, then go round and round.':
+    'Stiskni uprostřed kruhu, táhni ven k jeho okraji a pak krouži dokola.',
+  'Painting':
+    'Malování',
+  'Selecting and moving':
+    'Výběr a přesouvání',
+  'Photo magic':
+    'Kouzla s fotkou',
+  'Lessons':
+    'Lekce',
+  'Open the editor':
+    'Otevřít editor',
+  'Learn the tools':
+    'Nauč se nástroje',
+  'Small tasks, one tool at a time. A glowing frame shows what to tap next – just follow it.':
+    'Malé úkoly, jeden nástroj po druhém. Zářící rámeček ukazuje, na co klepnout – stačí ho následovat.',
+  '← All tasks':
+    '← Všechny úkoly',
+  '🔊 Read aloud':
+    '🔊 Přečíst nahlas',
+  '↺ Start again':
+    '↺ Znovu',
+  'Well done!':
+    'Výborně!',
+  'All tasks':
+    'Všechny úkoly',
+  'Lesson':
+    'Lekce',
+  'Back to all tasks':
+    'Zpět na všechny úkoly',
+  'Read the instruction aloud':
+    'Přečíst pokyn nahlas',
+  'Start this task again':
+    'Začít tento úkol znovu',
+  'Mosaic Paint Raster':
+    'Mosaic Paint Raster',
+  'Lessons: learn every tool step by step →':
+    'Lekce: nauč se každý nástroj krok za krokem →',
+  'Lessons (learn.html, linked from the raster app’s ? guide): 20 small tasks that teach every raster tool, one at a time. A glowing frame shows what to tap next – the tool, its setting, the part of the picture – and the next step comes by itself. The Curve tool now shows the Size slider.':
+    'Lekce (learn.html, odkaz je v průvodci ? v rastrové aplikaci): 20 malých úkolů, které naučí každý rastrový nástroj, jeden po druhém. Zářící rámeček ukazuje, na co klepnout – nástroj, jeho nastavení, část obrázku – a další krok přijde sám. Nástroj Křivka teď ukazuje posuvník Velikost.',
 };

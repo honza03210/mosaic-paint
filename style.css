@@ -62,8 +62,10 @@ kbd { font: 11px ui-monospace, monospace; padding: 0 4px; border: 1px solid var(
 #tools {
   width: 50px; flex: none; display: flex; flex-direction: column; gap: 5px;
   padding: 7px; background: var(--panel); border-right: 1px solid var(--border);
+  /* a short window: the tools scroll (they were cut off under the status bar) */
+  min-height: 0; overflow-y: auto; scrollbar-width: none;
 }
-#tools button { width: 36px; height: 36px; padding: 0; display: grid; place-items: center; }
+#tools button { flex: none; width: 36px; height: 36px; padding: 0; display: grid; place-items: center; }
 #tools svg { width: 20px; height: 20px; fill: currentColor; }
 #tools svg .st { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
 #tools button.active { background: var(--accent-fill); border-color: var(--accent); color: #fff; }

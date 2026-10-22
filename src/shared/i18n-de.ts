@@ -2452,4 +2452,334 @@ export const DE: Record<string, string> = {
     'Entsperrt – klicken zum Sperren',
   'Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).':
     'Farben einfügen… richtet die Palette aus Farben ein, die auf einer anderen Website kopiert wurden – einer Paletten-Seite wie Coolors, Farbcodes, CSS: Jede gefundene Farbe erscheint, ein Klick lässt sie weg, dann fügst du sie hinzu oder nimmst sie statt der Palette (beide Apps).',
+  'done':
+    'fertig',
+  '{n} of {m} tasks done':
+    '{n} von {m} Aufgaben geschafft',
+  'Next: {title}':
+    'Weiter: {title}',
+  'Look around':
+    'Schau dich um',
+  'A ladybird is hiding in the meadow. Zoom in and find it!':
+    'Auf der Wiese versteckt sich ein Marienkäfer. Zoome hinein und finde ihn!',
+  'Zoom in to see details, move around with the hand (or two fingers), and Fit shows the whole picture.':
+    'Mit Zoomen siehst du Details, mit der Hand (oder zwei Fingern) bewegst du dich, und Einpassen zeigt das ganze Bild.',
+  'Tap Zoom in to look closer.':
+    'Tippe auf Vergrößern, um genauer hinzusehen.',
+  'Spread two fingers on the picture to zoom in.':
+    'Zieh zwei Finger auf dem Bild auseinander, um hineinzuzoomen.',
+  'Tap the hand – it moves the picture.':
+    'Tippe auf die Hand – sie verschiebt das Bild.',
+  'Drag the picture until you find the ladybird.':
+    'Zieh das Bild, bis du den Marienkäfer findest.',
+  'You found it! Now tap Fit to see the whole picture again.':
+    'Gefunden! Tippe jetzt auf Einpassen, um wieder das ganze Bild zu sehen.',
+  'Night sky':
+    'Nachthimmel',
+  'The night sky needs glowing stars. Paint them with a soft brush.':
+    'Der Nachthimmel braucht leuchtende Sterne. Mal sie mit einem weichen Pinsel.',
+  'The Brush paints soft lines. Size makes it bigger, and the Soft tip makes it glow at the edges.':
+    'Der Pinsel malt weiche Linien. Die Größe macht ihn größer, und die weiche Spitze lässt ihn an den Rändern leuchten.',
+  'Tap the Brush.':
+    'Tippe auf den Pinsel.',
+  'Tap the yellow color.':
+    'Tippe auf die gelbe Farbe.',
+  'Choose the Soft tip – it glows at the edges.':
+    'Wähl die weiche Spitze – sie leuchtet an den Rändern.',
+  'Make the brush big: slide Size to 30 or more.':
+    'Mach den Pinsel groß: Schieb die Größe auf 30 oder mehr.',
+  'Paint over the 3 stars.':
+    'Mal über die 3 Sterne.',
+  'Fill the heart square by square – like a real mosaic.':
+    'Füll das Herz Kästchen für Kästchen – wie ein echtes Mosaik.',
+  'The Pencil paints whole squares in exactly the chosen color – just right for pixel art.':
+    'Der Stift malt ganze Kästchen genau in der gewählten Farbe – genau richtig für Pixel-Art.',
+  'Tap the Pencil.':
+    'Tippe auf den Stift.',
+  'Tap the red color.':
+    'Tippe auf die rote Farbe.',
+  'Make the pencil as small as it goes: slide Size all the way left.':
+    'Mach den Stift so klein wie möglich: Schieb die Größe ganz nach links.',
+  'Fill the inside of the heart, square by square.':
+    'Füll das Innere des Herzens, Kästchen für Kästchen.',
+  'Muddy window':
+    'Schmutziges Fenster',
+  'Someone threw mud at the window. Rub it off!':
+    'Jemand hat Matsch ans Fenster geworfen. Radier ihn weg!',
+  'The Eraser takes paint away – where it rubs, the picture becomes see-through (the checkerboard).':
+    'Der Radierer nimmt Farbe weg – wo er reibt, wird das Bild durchsichtig (das Schachbrett).',
+  'Tap the Eraser.':
+    'Tippe auf den Radierer.',
+  'Make it big: slide Size to 30 or more.':
+    'Mach ihn groß: Schieb die Größe auf 30 oder mehr.',
+  'Rub out the 4 mud spots.':
+    'Radier die 4 Matschflecken weg.',
+  'Copy the color':
+    'Farbe kopieren',
+  'The parrot lost a feather. Paint a new one in exactly the same purple.':
+    'Der Papagei hat eine Feder verloren. Mal eine neue in genau demselben Lila.',
+  'The color picker takes a color from the picture. (Tip: Alt+click does it with any brush.)':
+    'Die Pipette nimmt eine Farbe aus dem Bild. (Tipp: Mit jedem Pinsel geht es mit Alt+Klick.)',
+  'Tap the color picker – the dropper.':
+    'Tippe auf die Pipette.',
+  'Tap a purple feather to take its color.':
+    'Tippe auf eine lila Feder, um ihre Farbe zu nehmen.',
+  'Now take the Brush.':
+    'Nimm jetzt den Pinsel.',
+  'Make it bigger: Size 20 or more.':
+    'Mach ihn größer: Größe 20 oder mehr.',
+  'Paint the white feather purple.':
+    'Mal die weiße Feder lila an.',
+  'Color the comic':
+    'Mal den Comic aus',
+  'Fill the shapes with color – one tap each.':
+    'Füll die Formen mit Farbe – jede mit einem Tipp.',
+  'The Paint bucket fills a whole area at once. Tolerance decides how different the colors in it may be.':
+    'Der Farbeimer füllt eine ganze Fläche auf einmal. Die Toleranz bestimmt, wie unterschiedlich die Farben darin sein dürfen.',
+  'Tap the Paint bucket.':
+    'Tippe auf den Farbeimer.',
+  'Tap the orange color.':
+    'Tippe auf die orange Farbe.',
+  'Tap inside the circle, the square and the triangle.':
+    'Tippe in den Kreis, das Quadrat und das Dreieck.',
+  'This box is shaded. Slide Tolerance up to 60 or more.':
+    'Dieses Rechteck ist schattiert. Schieb die Toleranz auf 60 oder mehr.',
+  'Now tap inside the shaded box – all of it fills.':
+    'Tippe jetzt in das schattierte Rechteck – es füllt sich ganz.',
+  'Fence':
+    'Zaun',
+  'The garden needs a fence. Draw the posts with straight lines.':
+    'Der Garten braucht einen Zaun. Zeichne die Pfosten mit geraden Linien.',
+  'The Line tool draws straight lines from where you press to where you let go.':
+    'Die Linie zeichnet gerade Linien von da, wo du drückst, bis da, wo du loslässt.',
+  'Tap the Line tool.':
+    'Tippe auf das Linienwerkzeug.',
+  'Tap the dark color.':
+    'Tippe auf die dunkle Farbe.',
+  'Make the line thicker: Size 8 or more.':
+    'Mach die Linie dicker: Größe 8 oder mehr.',
+  'Draw a line from each bottom dot up to the dot above it.':
+    'Zeichne eine Linie von jedem unteren Punkt hinauf zum Punkt darüber.',
+  'Beehive':
+    'Bienenstock',
+  'Bees build cells with 6 sides. Draw 3 honeycomb cells.':
+    'Bienen bauen Zellen mit 6 Seiten. Zeichne 3 Wabenzellen.',
+  'The Polygon tool draws shapes with as many sides as you choose – filled, outlined or both.':
+    'Das Vieleck zeichnet Formen mit so vielen Seiten, wie du wählst – gefüllt, umrandet oder beides.',
+  'Tap the Polygon tool.':
+    'Tippe auf das Vieleck-Werkzeug.',
+  'Tap 6 – a honeycomb cell has 6 sides.':
+    'Tippe auf 6 – eine Wabenzelle hat 6 Seiten.',
+  'Turn on Fill – the cells will be full of color.':
+    'Schalte Füllen ein – die Zellen werden voller Farbe.',
+  'Drag from the middle of each cell outwards.':
+    'Zieh von der Mitte jeder Zelle nach außen.',
+  'Bubbles':
+    'Seifenblasen',
+  'Blow 3 round soap bubbles – just the outline, you can see through them.':
+    'Puste 3 runde Seifenblasen – nur der Rand, man kann durch sie hindurchsehen.',
+  'The Ellipse tool draws circles and ovals. From center starts in the middle; Fill and Outline decide how it looks.':
+    'Die Ellipse zeichnet Kreise und Ovale. Von der Mitte beginnt in der Mitte; Füllen und Umriss bestimmen, wie sie aussieht.',
+  'Tap the Ellipse tool.':
+    'Tippe auf das Ellipsen-Werkzeug.',
+  'Choose From center.':
+    'Wähl Von der Mitte.',
+  'Turn Fill off – a bubble is see-through.':
+    'Schalte Füllen aus – eine Seifenblase ist durchsichtig.',
+  'Turn Outline on.':
+    'Schalte den Umriss ein.',
+  'Drag from the middle of each bubble to its edge.':
+    'Zieh von der Mitte jeder Seifenblase bis zu ihrem Rand.',
+  'Snake':
+    'Schlange',
+  'Draw a wiggly snake through the dots.':
+    'Zeichne eine schlängelnde Schlange durch die Punkte.',
+  'The Curve tool draws a smooth line through the points you tap – double-tap (or Enter) finishes it.':
+    'Die Kurve zeichnet eine glatte Linie durch die Punkte, die du antippst – Doppeltippen (oder Enter) beendet sie.',
+  'Tap the Curve tool.':
+    'Tippe auf das Kurven-Werkzeug.',
+  'Tap the green color.':
+    'Tippe auf die grüne Farbe.',
+  'Make it a fat snake: Size 10 or more.':
+    'Mach eine dicke Schlange: Größe 10 oder mehr.',
+  'Tap the dots one by one from the head to the tail – tap the last one twice to finish.':
+    'Tippe die Punkte nacheinander vom Kopf bis zum Schwanz an – den letzten zweimal, dann ist sie fertig.',
+  'Move the cat':
+    'Trag die Katze',
+  'The cat wants to sleep on the red cushion. Carry it there!':
+    'Die Katze will auf dem roten Kissen schlafen. Trag sie hin!',
+  'Select a part of the picture with a box, drag it somewhere else, then Place it.':
+    'Wähl einen Teil des Bildes mit einem Rechteck aus, zieh ihn woandershin und Platziere ihn dann.',
+  'Tap the Select tool.':
+    'Tippe auf das Auswahl-Werkzeug.',
+  'Drag a box around the whole cat.':
+    'Zieh ein Rechteck um die ganze Katze.',
+  'Now drag the cat onto the cushion.':
+    'Zieh die Katze jetzt auf das Kissen.',
+  'Tap Place – the cat lies down.':
+    'Tippe auf Platzieren – die Katze legt sich hin.',
+  'The fish turns round':
+    'Der Fisch dreht um',
+  'The fish wants to swim the other way – and a little upwards.':
+    'Der Fisch will in die andere Richtung schwimmen – und ein bisschen nach oben.',
+  'A selection can be flipped, and turned with the round knob above it.':
+    'Eine Auswahl kann man spiegeln und mit dem runden Griff darüber drehen.',
+  'Drag a box around the fish.':
+    'Zieh ein Rechteck um den Fisch.',
+  'Tap Flip horizontally – the fish looks the other way.':
+    'Tippe auf Horizontal spiegeln – der Fisch schaut in die andere Richtung.',
+  'Drag the round knob above the fish a little to the side.':
+    'Zieh den runden Griff über dem Fisch ein bisschen zur Seite.',
+  'Tap Place.':
+    'Tippe auf Platzieren.',
+  'Two balloons':
+    'Zwei Luftballons',
+  'One balloon is not enough. Cut it out along its edge and make a second one.':
+    'Ein Luftballon ist nicht genug. Schneide ihn an seinem Rand aus und mach einen zweiten.',
+  'The Lasso selects any shape you draw around. Duplicate leaves a copy and gives you a new one to move.':
+    'Das Lasso wählt jede Form aus, um die du zeichnest. Duplizieren lässt eine Kopie da und gibt dir eine neue zum Verschieben.',
+  'Choose Lasso – it goes around any shape.':
+    'Wähl das Lasso – es geht um jede Form herum.',
+  'Draw a line all the way around the balloon.':
+    'Zeichne eine Linie ganz um den Luftballon herum.',
+  'Tap Duplicate.':
+    'Tippe auf Duplizieren.',
+  'Drag the new balloon over to the empty sky.':
+    'Zieh den neuen Luftballon hinüber zum leeren Himmel.',
+  'Change the blue sky into an orange sunset.':
+    'Verwandle den blauen Himmel in einen orangen Sonnenuntergang.',
+  'The Wand selects everything of one color with a single tap. Clear empties the selection.':
+    'Der Zauberstab wählt mit einem Tipp alles in einer Farbe aus. Leeren macht die Auswahl leer.',
+  'Choose the Wand – it picks one color.':
+    'Wähl den Zauberstab – er nimmt eine Farbe.',
+  'Tap the blue sky.':
+    'Tippe auf den blauen Himmel.',
+  'Tap Clear – the sky disappears.':
+    'Tippe auf Leeren – der Himmel verschwindet.',
+  'Now take the Paint bucket.':
+    'Nimm jetzt den Farbeimer.',
+  'Tap the empty sky – a sunset!':
+    'Tippe auf den leeren Himmel – ein Sonnenuntergang!',
+  'Name poster':
+    'Namensposter',
+  'Write your name on the green banner.':
+    'Schreib deinen Namen auf das grüne Band.',
+  'The Text tool writes words in any size and font – with an outline, a shadow or bent in a curve.':
+    'Das Textwerkzeug schreibt Wörter in jeder Größe und Schrift – mit Umriss, Schatten oder im Bogen.',
+  'Tap the Text tool.':
+    'Tippe auf das Textwerkzeug.',
+  'Tap in the middle of the green banner.':
+    'Tippe in die Mitte des grünen Bandes.',
+  'Type your name.':
+    'Schreib deinen Namen.',
+  'Make the letters big: Size 60.':
+    'Mach die Buchstaben groß: Größe 60.',
+  'Turn on Outline.':
+    'Schalte den Umriss ein.',
+  'Tap Done.':
+    'Tippe auf Fertig.',
+  'Drag your name into the banner.':
+    'Zieh deinen Namen in das Band.',
+  'Twin flowers':
+    'Zwillingsblumen',
+  'One pot is empty. Grow the same flower in it – copy it with Clone.':
+    'Ein Topf ist leer. Lass darin dieselbe Blume wachsen – kopiere sie mit Klonen.',
+  'Clone paints with a copy of another part of the picture: first tap where to copy from, then paint.':
+    'Klonen malt mit einer Kopie eines anderen Bildteils: Tippe zuerst, woher kopiert wird, dann male.',
+  'Tap the Clone tool – the stamp.':
+    'Tippe auf Klonen – den Stempel.',
+  'Make it big: Size 30 or more.':
+    'Mach es groß: Größe 30 oder mehr.',
+  'Tap the middle of the flower – the copy comes from there.':
+    'Tippe in die Mitte der Blume – von dort kommt die Kopie.',
+  'Start in the middle of the dashed circle, then paint all over it – a twin flower grows!':
+    'Fang in der Mitte des gestrichelten Kreises an und mal ihn dann ganz aus – eine Zwillingsblume wächst!',
+  'Fix the apple':
+    'Repariere den Apfel',
+  'The apple has 3 scratches. Heal them so it looks new.':
+    'Der Apfel hat 3 Kratzer. Repariere sie, damit er wie neu aussieht.',
+  'Heal copies a clean part and blends it in, so spots and scratches disappear.':
+    'Reparieren kopiert eine saubere Stelle und blendet sie ein, so verschwinden Flecken und Kratzer.',
+  'Tap the Heal tool – the plaster.':
+    'Tippe auf Reparieren – das Pflaster.',
+  'Tap a clean part of the apple.':
+    'Tippe auf eine saubere Stelle des Apfels.',
+  'Paint over the 3 scratches.':
+    'Mal über die 3 Kratzer.',
+  'Clean beach':
+    'Sauberer Strand',
+  'Someone left a can on the beach. Make it disappear!':
+    'Jemand hat eine Dose am Strand liegen lassen. Lass sie verschwinden!',
+  'Remove fills what you paint over from the picture around it – things vanish.':
+    'Entfernen füllt, was du übermalst, mit dem Bild drumherum – Dinge verschwinden.',
+  'Tap the Remove tool.':
+    'Tippe auf das Entfernen-Werkzeug.',
+  'Paint over the whole can, then lift your finger.':
+    'Mal über die ganze Dose, dann heb den Finger.',
+  'Star sticker':
+    'Sternaufkleber',
+  'The star looks stuck on. Soften its edge with Blur and give it grain with Noise.':
+    'Der Stern sieht aufgeklebt aus. Mach seinen Rand mit Weichzeichnen weich und gib ihm mit Rauschen Körnung.',
+  'Blur softens, Noise adds grain – together they blend a pasted picture into a photo.':
+    'Weichzeichnen macht weich, Rauschen gibt Körnung – zusammen lassen sie ein eingefügtes Bild mit einem Foto verschmelzen.',
+  'Tap the Blur tool – the drop.':
+    'Tippe auf Weichzeichnen – den Tropfen.',
+  'Make it stronger: slide Strength to 6 or more.':
+    'Mach es stärker: Schieb die Stärke auf 6 oder mehr.',
+  'Paint along the edge of the star.':
+    'Mal am Rand des Sterns entlang.',
+  'Now tap the Noise tool – the dots.':
+    'Tippe jetzt auf Rauschen – die Punkte.',
+  'Slide Amount to 30 or more.':
+    'Schieb die Menge auf 30 oder mehr.',
+  'Paint over the star – it gets grainy, like the photo.':
+    'Mal über den Stern – er wird körnig wie das Foto.',
+  'Whirlpool':
+    'Strudel',
+  'Stir up the lake – make a whirlpool in the circle.':
+    'Rühr den See auf – mach einen Strudel im Kreis.',
+  'Twist swirls the picture: press the middle, drag out for the size, go round to twist.':
+    'Verdrehen wirbelt das Bild: Drück die Mitte, zieh nach außen für die Größe, fahr herum zum Verdrehen.',
+  'Tap the Twist tool – the spiral.':
+    'Tippe auf Verdrehen – die Spirale.',
+  'Press in the middle of the circle, drag out to its edge, then go round and round.':
+    'Drück in die Mitte des Kreises, zieh nach außen bis zu seinem Rand, dann fahr rundherum.',
+  'Painting':
+    'Malen',
+  'Selecting and moving':
+    'Auswählen und Verschieben',
+  'Photo magic':
+    'Fotozauber',
+  'Lessons':
+    'Lektionen',
+  'Open the editor':
+    'Den Editor öffnen',
+  'Learn the tools':
+    'Lerne die Werkzeuge',
+  'Small tasks, one tool at a time. A glowing frame shows what to tap next – just follow it.':
+    'Kleine Aufgaben, ein Werkzeug nach dem anderen. Ein leuchtender Rahmen zeigt, was du als Nächstes antippst – folge ihm einfach.',
+  '← All tasks':
+    '← Alle Aufgaben',
+  '🔊 Read aloud':
+    '🔊 Vorlesen',
+  '↺ Start again':
+    '↺ Noch mal',
+  'Well done!':
+    'Super gemacht!',
+  'All tasks':
+    'Alle Aufgaben',
+  'Lesson':
+    'Lektion',
+  'Back to all tasks':
+    'Zurück zu allen Aufgaben',
+  'Read the instruction aloud':
+    'Die Anweisung vorlesen',
+  'Start this task again':
+    'Diese Aufgabe neu beginnen',
+  'Mosaic Paint Raster':
+    'Mosaic Paint Raster',
+  'Lessons: learn every tool step by step →':
+    'Lektionen: Lerne jedes Werkzeug Schritt für Schritt →',
+  'Lessons (learn.html, linked from the raster app’s ? guide): 20 small tasks that teach every raster tool, one at a time. A glowing frame shows what to tap next – the tool, its setting, the part of the picture – and the next step comes by itself. The Curve tool now shows the Size slider.':
+    'Lektionen (learn.html, verlinkt im ?-Leitfaden der Raster-App): 20 kleine Aufgaben, die jedes Raster-Werkzeug beibringen, eins nach dem anderen. Ein leuchtender Rahmen zeigt, was du als Nächstes antippst – das Werkzeug, seine Einstellung, den Teil des Bildes – und der nächste Schritt kommt von selbst. Das Kurven-Werkzeug zeigt jetzt den Größe-Regler.',
 };

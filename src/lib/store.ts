@@ -39,12 +39,16 @@ async function run<T>(name: string, mode: IDBTransactionMode, fn: (s: IDBObjectS
   });
 }
 
+/** In a lesson nothing is read or kept (the child's own pictures and versions stay as they are). */
+const LESSON = typeof location !== 'undefined' && new URLSearchParams(location.search).has('lesson');
+
 export const Store = {
-  get: <T = any>(k: string) => run<T>('kv', 'readonly', s => s.get(k)),
-  set: (k: string, v: unknown) => run('kv', 'readwrite', s => s.put(v, k)),
-  addVersion: (v: Version) => run('versions', 'readwrite', s => s.add(v)),
+  get: <T = any>(k: string) => (LESSON ? Promise.resolve(undefined as T) : run<T>('kv', 'readonly', s => s.get(k))),
+  set: (k: string, v: unknown) => (LESSON ? Promise.resolve(undefined) : run('kv', 'readwrite', s => s.put(v, k))),
+  addVersion: (v: Version) => (LESSON ? Promise.resolve(undefined) : run('versions', 'readwrite', s => s.add(v))),
   /** The versions of one app, newest first. */
   async listVersions(app = 'vector'): Promise<Version[]> {
+    if (LESSON) return [];
     return (await run<Version[]>('versions', 'readonly', s => s.getAll())).filter(v => appOf(v) === app).sort((a, b) => b.time - a.time);
   },
   deleteVersion: (id: number) => run('versions', 'readwrite', s => s.delete(id)),

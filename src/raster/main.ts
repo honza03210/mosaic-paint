@@ -7,7 +7,7 @@ import { $$, toast } from '../shared/ui.ts';
 import { canvasToPng } from '../shared/clipboard.ts';
 import { initShell } from '../shared/shell.ts';
 import { state, rt, loadPrefs } from './state.ts';
-import { stage, doc, dctx, getImage, toDoc, fitView, flat, layers } from './canvas.ts';
+import { stage, doc, dctx, getImage, toDoc, fitView, flat, layers, knobAt, pieceCorners } from './canvas.ts';
 import { resetHistory, afterChange, updateTitle, startAutosave, loadAutosave, commit } from './history.ts';
 import { renderPalette, renderPaletteSelect } from './palette.ts';
 import { selectionChanged, pasteImage } from './select.ts';
@@ -82,6 +82,8 @@ const RZ = {
     return { x: (x - v.x) * v.s + r.left, y: (y - v.y) * v.s + r.top };
   },
   toDoc, setTool, setMode, commit, fitView, selectionChanged, pasteImage, printPage, vectorSVG,
+  /** for the lessons (learn.html): a starting picture (a fresh history), the rotate knob and the selection's corners */
+  loadPicture: (c: HTMLCanvasElement, name = 'lesson.png') => loadCanvas(c, name), knobAt, pieceCorners,
   /** Replaces the image with a blank one of the given size and color (null = transparent). */
   blank(w: number, h: number, color: string | null = '#ffffff') {
     const c = document.createElement('canvas');

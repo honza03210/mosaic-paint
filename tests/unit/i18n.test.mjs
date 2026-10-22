@@ -40,7 +40,7 @@ function htmlKeys(file) {
   return keys;
 }
 function allKeys() {
-  const keys = new Set([...codeKeys(), ...htmlKeys('index.html'), ...htmlKeys('raster.html')]);
+  const keys = new Set([...codeKeys(), ...htmlKeys('index.html'), ...htmlKeys('raster.html'), ...htmlKeys('learn.html')]);
   for (const [, label] of Patterns.TYPES) keys.add(label);
   for (const [, label] of AutoMosaic.STYLES) keys.add(label);
   for (const k of ['portrait', 'landscape']) keys.add(k);

@@ -37,6 +37,10 @@ The switch in the top-left corner chooses how much of the app you see.
   - numeric polygon editing and line widths
   - a material estimate and CSV export in the report
 
+## Lessons (learn.html)
+
+A page of its own – the editors stay as they are – that teaches every raster tool with a small task: 20 tasks in five units (painting, shapes, selecting and moving, text, photo magic), from finding a ladybird with the zoom to swirling a lake with Twist. The editor opens in a frame with a starting picture drawn for the task; everything is dimmed except the one thing to use next – the tool, its setting, or the part of the picture – with one short instruction beside it (🔊 reads it aloud). Taps elsewhere don't go through, so a child can't get lost; each step moves on by itself as soon as the editor shows it is done, and the checks are forgiving. On a phone the side panel opens and closes by itself, and zooming becomes "spread two fingers". A lesson never touches the child's own picture, versions or settings (the editor runs as `raster.html?lesson=…` with settings in memory only), and the stars for finished tasks are kept in the browser. The raster app's **?** guide links to it.
+
 ## Shards (hand-laid lines)
 
 The **Shards** button under the tools (both modes) draws every line as tapered pieces, as if glass shards had been laid by hand: each piece of a line between two crossings – a tile's edge – gets its own width, wider at one end and narrower at the other. **Shuffle** gives other widths, **Unevenness** how much they vary. The lines themselves stay as they are underneath (they still make the tiles and can be edited); the pieces follow every change, and a saved SVG or PNG looks the same (the pieces are a group of their own over the hidden lines). With the grout preview on, the pieces take its color and width.

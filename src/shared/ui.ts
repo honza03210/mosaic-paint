@@ -1,4 +1,5 @@
 /* Page helpers used by both apps (vector and raster): element lookup, messages, downloads, storage. */
+import { LESSON } from './lesson-mode.ts';
 
 // DOM lookups are typed loosely: the page's markup is the contract
 export const $ = (s: string): any => document.querySelector(s);
@@ -28,8 +29,10 @@ export function working(label: string): { set(f: number): void; done(): void } {
     },
   };
 }
-export function lsGet(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } }
-export function lsSet(k: string, v: string): boolean { try { localStorage.setItem(k, v); return true; } catch { return false; } }
+/** In a lesson (lesson-mode.ts) settings are kept in memory only – they start fresh, and the real ones stay untouched. */
+const lessonStore = LESSON ? new Map<string, string>() : null;
+export function lsGet(k: string): string | null { if (lessonStore) return lessonStore.get(k) ?? null; try { return localStorage.getItem(k); } catch { return null; } }
+export function lsSet(k: string, v: string): boolean { if (lessonStore) { lessonStore.set(k, v); return true; } try { localStorage.setItem(k, v); return true; } catch { return false; } }
 /** Settings remembered in the browser: fills `into` with what was saved under the key, if it can be read. */
 export function loadSettings(key: string, into: object): void {
   try { Object.assign(into, JSON.parse(lsGet(key) || '{}')); } catch { /* unreadable: keep the defaults */ }

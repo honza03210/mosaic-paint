@@ -3,6 +3,7 @@
    links or pages opened from the other app), and the "?" button shows it again. */
 import { lsGet, lsSet } from './ui.ts';
 import { t } from './i18n.ts';
+import { LESSON } from './lesson-mode.ts';
 
 export interface GuideStep {
   title: string;
@@ -12,13 +13,23 @@ export interface GuideStep {
 }
 
 /** steps: fixed, or worked out each time it opens (they can depend on the mode) */
-export function initGuide(button: HTMLElement, stepsOf: GuideStep[] | (() => GuideStep[]), key: string): { show(): void } {
+/** link: one more place to go from the guide (the raster app: its lessons) */
+export function initGuide(button: HTMLElement, stepsOf: GuideStep[] | (() => GuideStep[]), key: string, link?: { text: string; href: string }): { show(): void } {
   let steps = typeof stepsOf === 'function' ? stepsOf() : stepsOf;
   const card = document.createElement('dialog');
   card.id = 'guide';
   card.innerHTML = `<div class="dlg-head"><h2></h2><button class="guide-close" title="${t('Close')}">✕</button></div>
 <p class="guide-text"></p>
 <div class="row dlg-foot"><span class="note guide-count"></span><button class="guide-back">${t('Back')}</button><button class="guide-next primary"></button></div>`;
+  if (link) {
+    const p = document.createElement('p');
+    p.className = 'note guide-link';
+    const a = document.createElement('a');
+    a.href = link.href;
+    a.textContent = link.text;
+    p.append(a);
+    card.querySelector('.dlg-foot').before(p);
+  }
   document.body.append(card);
   let at = 0, marked: HTMLElement | null = null;
   const mark = (el: HTMLElement | null) => {
@@ -55,6 +66,7 @@ export function initGuide(button: HTMLElement, stepsOf: GuideStep[] | (() => Gui
   button.onclick = show;
   // the first time only – and not while a test robot drives the page
   // (nor inside Discord, where the app opens for a quick edit)
-  if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith('discordsays.com')) setTimeout(show, 600);
+  // (nor in a lesson: the lesson guides)
+  if (!lsGet(key) && !location.hash && !navigator.webdriver && !location.hostname.endsWith('discordsays.com') && !LESSON) setTimeout(show, 600);
   return { show };
 }

@@ -11,6 +11,11 @@ export const VERSION = typeof __VERSION__ === 'string' ? __VERSION__ : 'dev';
 /** The releases, newest first: version, date, and what changed (English, translated when shown). */
 export const RELEASES: { version: string; date: string; items: string[] }[] = [
   {
+    version: '3.3.0', date: '2026-10-22', items: [
+      'Lessons (learn.html, linked from the raster app’s ? guide): 20 small tasks that teach every raster tool, one at a time. A glowing frame shows what to tap next – the tool, its setting, the part of the picture – and the next step comes by itself. The Curve tool now shows the Size slider.',
+    ],
+  },
+  {
     version: '3.2.0', date: '2026-10-22', items: [
       'Paste colors… sets up the palette from colors copied on another website – a palette site like Coolors, color codes, CSS: every color found shows, click one to leave it out, then add them or use them instead of the palette (both apps).',
       'Picking one color (a swatch without Shift) switches the color mix off – the bucket paints with that color. The Mix colors switch shows in Simple mode too, and so do ＋ Add a color and Clear palette.',

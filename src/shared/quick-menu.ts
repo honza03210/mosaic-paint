@@ -4,6 +4,7 @@
    While a shape is being drawn (polygon, curve, line), a double-tap keeps its own job (it finishes it).
    Shared by both apps; each gives what it has through QuickHost. */
 import { $, lsGet, lsSet, toast } from './ui.ts';
+import { LESSON } from './lesson-mode.ts';
 import { t } from './i18n.ts';
 import { ICONS } from './icons.ts';
 
@@ -273,7 +274,7 @@ export function initQuickMenu(h: QuickHost): void {
 
 /** The first time a finger draws, a hint says the menu is there. */
 function hintOnce(): void {
-  if (navigator.webdriver || lsGet('mz-quick-hint')) return;
+  if (navigator.webdriver || LESSON || lsGet('mz-quick-hint')) return;
   lsSet('mz-quick-hint', '1');
   toast(t('Tip: double-tap the drawing for a quick menu – tools, colors and size.'));
 }

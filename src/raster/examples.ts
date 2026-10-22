@@ -42,5 +42,7 @@ export function bindExamples(): void {
     { title: t('Colors'), text: t('Pick a color in the palette. Palettes are shared with the vector app.'), target: '#palette' },
     { title: t('Make a mosaic'), text: t('Open a photo, then “Make a mosaic…” turns it into tiles with grout in your palette’s colors.'), target: '#btn-mosaic' },
     { title: t('Start from an example'), text: t('Not sure where to begin? Open an example. The ? button shows this guide again.'), target: '#btn-examples' },
-  ], 'mz-guide-raster');
+  ], 'mz-guide-raster',
+  // the lessons (learn.html) – a page of their own; not inside Discord, which serves only the editor
+  location.hostname.endsWith('discordsays.com') ? undefined : { text: t('Lessons: learn every tool step by step →'), href: 'learn.html' });
 }
